@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Embroidered Saree — Detail Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#7a1414;--gold:#c9963a;--cream:#f7edd8;--dark:#1e0d0d;}
+html,body{width:100%;height:100vh;overflow:hidden;background:#fff;font-family:'Cormorant Garamond',serif;}
+.shell{display:flex;flex-direction:column;height:100vh;width:100vw;overflow:hidden;}
+
+/* TOP ROW */
+.top-row{display:flex;flex:1;min-height:0;overflow:hidden;}
+
+/* LEFT PANEL */
+.lp{width:30%;padding:1.4vh 1.2vw 1vh 1.8vw;display:flex;flex-direction:column;overflow:hidden;background:#fff;}
+.t-sm{font-family:'Playfair Display',serif;font-size:clamp(7px,0.68vw,10px);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);line-height:1;margin-bottom:0.15vh;}
+.t-big{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,48px);font-weight:900;color:var(--red);line-height:.88;margin-bottom:0.1vh;}
+.t-sub{font-family:'Playfair Display',serif;font-size:clamp(6px,0.56vw,9px);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dark);margin-bottom:0.5vh;}
+.orn{display:flex;align-items:center;gap:4px;margin-bottom:0.5vh;}
+.orn .ln{height:1px;width:18px;background:var(--red);}
+.orn .di{width:5px;height:5px;border:1.5px solid var(--red);transform:rotate(45deg);display:inline-block;}
+.intro{font-size:clamp(8px,0.72vw,11px);font-weight:300;line-height:1.4;color:#555;margin-bottom:0.8vh;}
+/* NO justify-content:space-between — features stack naturally */
+.feats{display:flex;flex-direction:column;gap:0;}
+.feat{display:flex;align-items:center;gap:8px;padding:0.5vh 0;border-bottom:1px solid rgba(122,20,20,.08);}
+.feat:last-child{border-bottom:none;}
+.fi{width:clamp(24px,1.9vw,32px);height:clamp(24px,1.9vw,32px);border-radius:50%;border:1.5px solid var(--red);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fi svg{width:55%;height:55%;}
+.fb h4{font-family:'Playfair Display',serif;font-size:clamp(6.5px,0.58vw,9px);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--dark);margin-bottom:1px;}
+.fb p{font-size:clamp(7.5px,0.63vw,10.5px);font-weight:300;line-height:1.3;color:#5a5a5a;}
+
+/* PALETTE */
+.palette-wrap{margin-top:1.2vh;padding-top:1vh;border-top:1px solid rgba(122,20,20,.1);}
+.pal-orn{display:flex;align-items:center;gap:5px;margin-bottom:0.6vh;}
+.pal-ln{flex:1;height:1px;background:rgba(122,20,20,.15);}
+.pal-label{font-family:'Playfair Display',serif;font-size:clamp(6px,0.55vw,8.5px);font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--red);white-space:nowrap;}
+.palette{display:flex;gap:0.5vw;align-items:flex-end;}
+.swatch-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
+.swatch{width:100%;height:clamp(18px,1.6vh,28px);border-radius:3px;}
+.sw-name{font-family:'Cormorant Garamond',serif;font-size:clamp(6px,0.52vw,8px);font-weight:400;text-align:center;color:#666;line-height:1.2;letter-spacing:.2px;}
+/* BADGES */
+.badges-wrap{margin-top:1vh;}
+.badges{display:flex;gap:0.4vw;flex-wrap:nowrap;}
+.badge{flex:1;border:1px solid rgba(122,20,20,.2);border-radius:4px;background:linear-gradient(135deg,#fff9f4,#fdf0e4);padding:0.4vh 0.3vw;display:flex;flex-direction:column;align-items:center;gap:1px;}
+.badge-val{font-family:'Playfair Display',serif;font-size:clamp(9px,0.9vw,14px);font-weight:700;color:var(--red);line-height:1;}
+.badge-unit{font-family:'Cormorant Garamond',serif;font-size:clamp(5.5px,0.48vw,8px);font-weight:400;text-transform:uppercase;letter-spacing:.8px;color:#666;text-align:center;line-height:1.2;}
+/* QUOTE */
+.lquote{margin-top:1vh;padding:0.7vh 0.8vw;background:linear-gradient(135deg,rgba(122,20,20,.04),rgba(201,150,58,.06));border-left:2px solid var(--red);border-radius:0 4px 4px 0;font-family:'Cormorant Garamond',serif;font-size:clamp(8px,0.7vw,11px);font-style:italic;font-weight:300;color:#5a3a3a;line-height:1.45;text-align:center;}
+.lq-mark{font-family:'Playfair Display',serif;font-size:clamp(14px,1.4vw,22px);color:var(--red);opacity:.4;vertical-align:-4px;line-height:0;}
+
+/* ORIGIN STRIP */
+.origin-strip{display:flex;align-items:center;gap:0;margin-top:1vh;padding:0.6vh 0.6vw;background:linear-gradient(90deg,rgba(122,20,20,.04),rgba(201,150,58,.06),rgba(122,20,20,.04));border-radius:5px;border:1px solid rgba(122,20,20,.1);}
+.orig-item{flex:1;display:flex;align-items:center;gap:5px;justify-content:center;}
+.orig-icon{width:clamp(16px,1.4vw,22px);height:clamp(16px,1.4vw,22px);flex-shrink:0;}
+.orig-icon svg{width:100%;height:100%;}
+.orig-text{display:flex;flex-direction:column;}
+.orig-val{font-family:'Playfair Display',serif;font-size:clamp(7px,0.62vw,10px);font-weight:700;color:var(--dark);line-height:1;}
+.orig-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(6px,0.5vw,8px);font-weight:400;letter-spacing:.8px;text-transform:uppercase;color:#888;line-height:1.2;}
+.orig-div{width:1px;height:clamp(20px,2vh,32px);background:rgba(122,20,20,.15);flex-shrink:0;}
+/* MANDALA */
+.mandala-wrap{margin-top:1vh;flex:1;display:flex;align-items:center;justify-content:center;}
+.mandala-svg{width:100%;height:auto;max-height:clamp(55px,7vh,90px);}
+
+/* CENTER */
+.ci{width:40%;position:relative;flex-shrink:0;overflow:hidden;}
+.ci img.main{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.dot{position:absolute;display:flex;align-items:center;pointer-events:none;}
+.dot-circle{width:8px;height:8px;border-radius:50%;border:1.8px solid rgba(255,255,255,.9);background:rgba(255,255,255,.12);flex-shrink:0;}
+.dot-line{height:1px;background:rgba(255,255,255,.7);}
+.dl{left:0;}.dl .dot-line{width:28px;order:1;}.dl .dot-circle{order:2;}
+.dr{right:0;}.dr .dot-circle{order:1;}.dr .dot-line{width:28px;order:2;}
+
+/* RIGHT — How to Wear */
+.rp{width:30%;padding:1.2vh 1.3vw 0.6vh 1vw;display:flex;flex-direction:column;overflow:hidden;background:#fff;}
+.dh{font-family:'Playfair Display',serif;font-size:clamp(7px,0.65vw,10px);font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dark);text-align:center;margin-bottom:0.25vh;}
+.do2{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:0.5vh;}
+.do2 .ln{height:1px;width:16px;background:var(--red);}
+.do2 .sy{font-size:9px;color:var(--red);}
+.steps{display:flex;flex-direction:column;flex:1;justify-content:space-evenly;}
+.step{display:flex;align-items:center;gap:8px;padding:0.2vh 0;border-bottom:1px solid rgba(122,20,20,.07);}
+.step:last-child{border-bottom:none;}
+.step-svg{width:clamp(42px,3.6vw,58px);height:clamp(52px,4.5vw,72px);flex-shrink:0;border-radius:5px;border:1px solid rgba(122,20,20,.18);background:linear-gradient(135deg,#fff9f4 0%,#fdf0e4 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.step-svg svg{width:88%;height:88%;}
+.step-num{font-family:'Playfair Display',serif;font-size:clamp(5px,0.48vw,7.5px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:1px;}
+.step-title{font-family:'Playfair Display',serif;font-size:clamp(6.5px,0.6vw,9px);font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--dark);margin-bottom:1px;}
+.step-desc{font-size:clamp(7px,0.6vw,10px);font-weight:300;line-height:1.3;color:#5a5a5a;}
+
+/* BOTTOM */
+.bot{background:var(--dark);color:#fff;border-top:3px solid var(--red);flex-shrink:0;}
+.bgrid{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.bc{padding:0.65vh 1.3vw;border-right:1px solid rgba(255,255,255,.1);}
+.bc:last-child{border-right:none;}
+.bc h3{font-family:'Playfair Display',serif;font-size:clamp(6px,0.58vw,9px);font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);margin-bottom:0.35vh;padding-bottom:0.35vh;border-bottom:1px solid rgba(255,255,255,.1);}
+.bc p{font-size:clamp(7.5px,0.63vw,10.5px);font-weight:300;line-height:1.45;color:rgba(255,255,255,.8);}
+.icon-row{display:flex;gap:0.7vw;flex-wrap:nowrap;align-items:flex-start;}
+.iitem{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;}
+.icircle{width:clamp(26px,2.2vw,36px);height:clamp(26px,2.2vw,36px);border:1.5px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.icircle svg{width:52%;height:52%;fill:none;stroke:rgba(255,255,255,.85);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
+.ilabel{font-family:'Cormorant Garamond',serif;font-size:clamp(5.5px,0.48vw,7.5px);font-weight:400;letter-spacing:.3px;text-transform:uppercase;color:rgba(255,255,255,.6);max-width:44px;line-height:1.2;}
+
+/* FOOTER TAGLINE */
+.tl{background:var(--red);padding:0.45vh 1.2vw;display:flex;align-items:center;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:clamp(7.5px,0.72vw,11px);font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--cream);white-space:nowrap;}
+.tl-center{display:flex;align-items:center;gap:7px;}
+.tln{display:inline-block;width:26px;height:1px;background:var(--cream);opacity:.5;}
+.tdi{display:inline-block;width:5px;height:5px;border:1.5px solid var(--cream);transform:rotate(45deg);opacity:.7;}
+.tl-credit{font-family:'Cormorant Garamond',serif;font-size:clamp(7px,0.65vw,10px);font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,237,216,.75);white-space:nowrap;}
+.tl-credit a{color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(247,237,216,.45);padding-bottom:1px;transition:opacity .2s;}
+.tl-credit a:hover{opacity:.7;}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top-row">
+
+    <!-- LEFT PANEL -->
+    <div class="lp">
+      <div class="t-sm">Red Embroidered</div>
+      <div class="t-big">Saree</div>
+      <div class="t-sub">Detail Infographic</div>
+      <div class="orn"><span class="ln"></span><span class="di"></span><span class="ln"></span></div>
+      <p class="intro">A close-up view of a traditional Indian saree featuring intricate floral embroidery, rich textures, and elegant draping — a timeless symbol of craftsmanship and grace.</p>
+      <div class="feats">
+        <div class="feat">
+          <div class="fi"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#7a1414" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="#7a1414" stroke-width="1.1"/><circle cx="12" cy="12" r="2" fill="#7a1414"/><line x1="12" y1="3.5" x2="12" y2="7" stroke="#7a1414" stroke-width="1"/><line x1="12" y1="17" x2="12" y2="20.5" stroke="#7a1414" stroke-width="1"/><line x1="3.5" y1="12" x2="7" y2="12" stroke="#7a1414" stroke-width="1"/><line x1="17" y1="12" x2="20.5" y2="12" stroke="#7a1414" stroke-width="1"/></svg></div>
+          <div class="fb"><h4>Embroidered Border</h4><p>Wide border with intricate floral embroidery in gold and copper tones, adding elegance.</p></div>
+        </div>
+        <div class="feat">
+          <div class="fi"><svg viewBox="0 0 24 24" fill="none"><path d="M5 21 C5.5 15 8 11 9 4" stroke="#7a1414" stroke-width="1.7" stroke-linecap="round"/><path d="M9 21 C9.5 16 12 12 12.5 5" stroke="#7a1414" stroke-width="1.3" stroke-linecap="round"/><path d="M13 21 C13.5 17 15.5 14 16.5 7" stroke="#7a1414" stroke-width="1" stroke-linecap="round"/></svg></div>
+          <div class="fb"><h4>Elegant Draping &amp; Pleats</h4><p>Neatly arranged pleats create a graceful fall and traditional charm.</p></div>
+        </div>
+        <div class="feat">
+          <div class="fi"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#7a1414" stroke-width="1.7"/><line x1="3" y1="9" x2="21" y2="9" stroke="#7a1414" stroke-width="1"/><line x1="3" y1="15" x2="21" y2="15" stroke="#7a1414" stroke-width="1"/><line x1="9" y1="3" x2="9" y2="21" stroke="#7a1414" stroke-width="1"/><line x1="15" y1="3" x2="15" y2="21" stroke="#7a1414" stroke-width="1"/></svg></div>
+          <div class="fb"><h4>Rich Fabric Texture</h4><p>Fine woven floral patterns give it a luxurious and regal appearance.</p></div>
+        </div>
+        <div class="feat">
+          <div class="fi"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 C9 7 5 11 5 15 a7 7 0 0 0 14 0 C19 11 15 7 12 3Z" fill="#7a1414"/></svg></div>
+          <div class="fb"><h4>Vibrant Red Color</h4><p>Bold red hue symbolizes passion, tradition, and celebration.</p></div>
+        </div>
+      </div>
+
+      <!-- COLOUR PALETTE -->
+      <div class="palette-wrap">
+        <div class="pal-orn"><span class="pal-ln"></span><span class="pal-label">Colour Palette</span><span class="pal-ln"></span></div>
+        <div class="palette">
+          <div class="swatch-col">
+            <div class="swatch" style="background:#7a1414;"></div>
+            <span class="sw-name">Crimson<br>Red</span>
+          </div>
+          <div class="swatch-col">
+            <div class="swatch" style="background:#c9963a;"></div>
+            <span class="sw-name">Antique<br>Gold</span>
+          </div>
+          <div class="swatch-col">
+            <div class="swatch" style="background:#b06030;"></div>
+            <span class="sw-name">Copper<br>Brown</span>
+          </div>
+          <div class="swatch-col">
+            <div class="swatch" style="background:#f7edd8;border:1px solid #ddd;"></div>
+            <span class="sw-name">Ivory<br>Cream</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRAFT BADGES -->
+      <div class="badges-wrap">
+        <div class="pal-orn"><span class="pal-ln"></span><span class="pal-label">Craft Details</span><span class="pal-ln"></span></div>
+        <div class="badges">
+          <div class="badge"><span class="badge-val">6</span><span class="badge-unit">Yards</span></div>
+          <div class="badge"><span class="badge-val">✦</span><span class="badge-unit">Handcrafted</span></div>
+          <div class="badge"><span class="badge-val">✿</span><span class="badge-unit">Floral Motif</span></div>
+          <div class="badge"><span class="badge-val">✺</span><span class="badge-unit">Zari Work</span></div>
+        </div>
+      </div>
+
+      <!-- QUOTE -->
+      <div class="lquote">
+        <span class="lq-mark">"</span>
+        A saree is not just fabric — it is a story woven in silk and time.
+        <span class="lq-mark">"</span>
+      </div>
+
+      <!-- ORIGIN STRIP -->
+      <div class="origin-strip">
+        <div class="orig-item">
+          <div class="orig-icon"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2 Q14 6 18 8 Q14 10 13 15 Q11 12 9 15 Q8 10 4 8 Q8 6 11 2Z" stroke="#7a1414" stroke-width="1.2" fill="rgba(122,20,20,.1)"/></svg></div>
+          <div class="orig-text"><span class="orig-val">Pure Silk</span><span class="orig-sub">Material</span></div>
+        </div>
+        <div class="orig-div"></div>
+        <div class="orig-item">
+          <div class="orig-icon"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#7a1414" stroke-width="1.2"/><path d="M11 3 Q16 7 16 11 Q16 15 11 19 Q6 15 6 11 Q6 7 11 3Z" fill="rgba(122,20,20,.1)" stroke="#7a1414" stroke-width="1"/><line x1="3" y1="11" x2="19" y2="11" stroke="#7a1414" stroke-width="0.9"/></svg></div>
+          <div class="orig-text"><span class="orig-val">India</span><span class="orig-sub">Origin</span></div>
+        </div>
+        <div class="orig-div"></div>
+        <div class="orig-item">
+          <div class="orig-icon"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="13" rx="1.5" stroke="#7a1414" stroke-width="1.2"/><path d="M3 9 L19 9" stroke="#7a1414" stroke-width="0.9"/><circle cx="8" cy="14" r="1.2" fill="#7a1414" opacity=".5"/><circle cx="14" cy="14" r="1.2" fill="#7a1414" opacity=".5"/></svg></div>
+          <div class="orig-text"><span class="orig-val">Festive</span><span class="orig-sub">Season</span></div>
+        </div>
+      </div>
+
+      <!-- MANDALA ORNAMENT -->
+      <div class="mandala-wrap">
+        <svg viewBox="0 0 200 82" fill="none" xmlns="http://www.w3.org/2000/svg" class="mandala-svg">
+          <line x1="10" y1="41" x2="190" y2="41" stroke="rgba(122,20,20,.1)" stroke-width="1"/>
+          <g transform="translate(100,41)">
+            <circle r="32" stroke="#7a1414" stroke-width="0.7" opacity=".15"/>
+            <circle r="23" stroke="#c9963a" stroke-width="0.8" opacity=".22"/>
+            <circle r="15" stroke="#7a1414" stroke-width="0.8" opacity=".2"/>
+            <circle r="6" fill="rgba(122,20,20,.1)" stroke="#7a1414" stroke-width="0.9"/>
+            <path d="M0 -32 Q5 -23 0 -15 Q-5 -23 0 -32Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M0 32 Q5 23 0 15 Q-5 23 0 32Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M-32 0 Q-23 5 -15 0 Q-23 -5 -32 0Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M32 0 Q23 5 15 0 Q23 -5 32 0Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M-22 -22 Q-15 -18 -11 -11 Q-18 -15 -22 -22Z" fill="rgba(201,150,58,.25)"/>
+            <path d="M22 -22 Q15 -18 11 -11 Q18 -15 22 -22Z" fill="rgba(201,150,58,.25)"/>
+            <path d="M-22 22 Q-15 18 -11 11 Q-18 15 -22 22Z" fill="rgba(201,150,58,.25)"/>
+            <path d="M22 22 Q15 18 11 11 Q18 15 22 22Z" fill="rgba(201,150,58,.25)"/>
+            <line x1="0" y1="-34" x2="0" y2="-38" stroke="#7a1414" stroke-width="0.9" opacity=".28"/>
+            <line x1="0" y1="34" x2="0" y2="38" stroke="#7a1414" stroke-width="0.9" opacity=".28"/>
+            <line x1="-34" y1="0" x2="-38" y2="0" stroke="#7a1414" stroke-width="0.9" opacity=".28"/>
+            <line x1="34" y1="0" x2="38" y2="0" stroke="#7a1414" stroke-width="0.9" opacity=".28"/>
+          </g>
+          <g transform="translate(38,41)">
+            <line x1="0" y1="0" x2="-22" y2="0" stroke="rgba(122,20,20,.18)" stroke-width="0.8"/>
+            <path d="M-7 0 Q-9 -6 -13 -4 Q-11 -1 -7 0Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M-13 0 Q-15 -5 -19 -3 Q-17 0 -13 0Z" fill="rgba(201,150,58,.25)"/>
+            <path d="M-7 0 Q-9 6 -13 4 Q-11 1 -7 0Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M-13 0 Q-15 5 -19 3 Q-17 0 -13 0Z" fill="rgba(201,150,58,.25)"/>
+            <circle cx="-22" cy="0" r="2" fill="rgba(122,20,20,.22)"/>
+          </g>
+          <g transform="translate(162,41)">
+            <line x1="0" y1="0" x2="22" y2="0" stroke="rgba(122,20,20,.18)" stroke-width="0.8"/>
+            <path d="M7 0 Q9 -6 13 -4 Q11 -1 7 0Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M13 0 Q15 -5 19 -3 Q17 0 13 0Z" fill="rgba(201,150,58,.25)"/>
+            <path d="M7 0 Q9 6 13 4 Q11 1 7 0Z" fill="rgba(122,20,20,.2)"/>
+            <path d="M13 0 Q15 5 19 3 Q17 0 13 0Z" fill="rgba(201,150,58,.25)"/>
+            <circle cx="22" cy="0" r="2" fill="rgba(122,20,20,.22)"/>
+          </g>
+          <rect x="57" y="39" width="4" height="4" transform="rotate(45 59 41)" fill="none" stroke="rgba(122,20,20,.28)" stroke-width="0.8"/>
+          <rect x="137" y="39" width="4" height="4" transform="rotate(45 139 41)" fill="none" stroke="rgba(122,20,20,.28)" stroke-width="0.8"/>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- CENTER IMAGE -->
+    <div class="ci">
+      <img class="main" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPni8GBZCC8poMXaMf8GCtMgjlTPyt1zzmcpOBpshr1h_qAduP9GVKIJxb7iS6ohxb-R5FUEtV5DEkZ19-5fy47Xq95sI4AAazrJwq6tIwyHDPop6P-0uSraQctA7Lm79KcHiFHadsa4CuZZh6rC2GhySi_xYrH5b9kLNkwazRSTThIL6sXp9v0Kj_jsp2/s1536/1000245559.jpg" alt="Red Embroidered Saree">
+      <div class="dot dl" style="top:20%;"><div class="dot-line"></div><div class="dot-circle"></div></div>
+      <div class="dot dl" style="top:36%;"><div class="dot-line"></div><div class="dot-circle"></div></div>
+      <div class="dot dl" style="top:54%;"><div class="dot-line"></div><div class="dot-circle"></div></div>
+      <div class="dot dl" style="top:70%;"><div class="dot-line"></div><div class="dot-circle"></div></div>
+      <div class="dot dr" style="top:20%;"><div class="dot-circle"></div><div class="dot-line"></div></div>
+      <div class="dot dr" style="top:36%;"><div class="dot-circle"></div><div class="dot-line"></div></div>
+      <div class="dot dr" style="top:54%;"><div class="dot-circle"></div><div class="dot-line"></div></div>
+      <div class="dot dr" style="top:70%;"><div class="dot-circle"></div><div class="dot-line"></div></div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="rp">
+      <div class="dh">How to Wear a Saree</div>
+      <div class="do2"><span class="ln"></span><span class="sy">✦</span><span class="ln"></span></div>
+      <div class="steps">
+
+        <!-- STEP 1 -->
+        <div class="step">
+          <div class="step-svg">
+            <svg viewBox="0 0 56 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- head -->
+              <ellipse cx="28" cy="8" rx="5" ry="5.5" fill="#f7edd8" stroke="#7a1414" stroke-width="1.4"/>
+              <!-- bun -->
+              <ellipse cx="28" cy="3.2" rx="3" ry="2.2" fill="#7a1414" opacity=".65"/>
+              <!-- neck -->
+              <line x1="28" y1="13.5" x2="28" y2="17" stroke="#7a1414" stroke-width="1.3"/>
+              <!-- blouse/torso -->
+              <path d="M20 17 Q28 14.5 36 17 L37 30 Q28 32.5 19 30 Z" fill="#c9963a" opacity=".25" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- arms down -->
+              <path d="M20 19 L14 29" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M36 19 L41 24" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- petticoat skirt -->
+              <path d="M19 30 Q14 32 12 60 Q28 63 44 60 Q42 32 37 30 Z" fill="#f7edd8" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- skirt vertical lines -->
+              <line x1="20" y1="32" x2="18" y2="59" stroke="#7a1414" stroke-width="0.6" opacity=".4"/>
+              <line x1="28" y1="32" x2="28" y2="60" stroke="#7a1414" stroke-width="0.6" opacity=".4"/>
+              <line x1="36" y1="32" x2="38" y2="59" stroke="#7a1414" stroke-width="0.6" opacity=".4"/>
+              <!-- saree end with arrow tucking at navel -->
+              <path d="M41 24 Q44 28 38 30" stroke="#c9963a" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 1.2"/>
+              <circle cx="28" cy="30" r="2.2" fill="#7a1414" opacity=".7"/>
+              <!-- label -->
+              <text x="28" y="71" text-anchor="middle" font-size="5" fill="#7a1414" font-family="Georgia,serif" font-style="italic">Tuck at navel</text>
+            </svg>
+          </div>
+          <div>
+            <div class="step-num">Step 01</div>
+            <div class="step-title">Start &amp; Tuck</div>
+            <div class="step-desc">Hold saree end at navel, tuck into petticoat waistband from left to right.</div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step">
+          <div class="step-svg">
+            <svg viewBox="0 0 56 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="28" cy="8" rx="5" ry="5.5" fill="#f7edd8" stroke="#7a1414" stroke-width="1.4"/>
+              <ellipse cx="28" cy="3.2" rx="3" ry="2.2" fill="#7a1414" opacity=".65"/>
+              <line x1="28" y1="13.5" x2="28" y2="17" stroke="#7a1414" stroke-width="1.3"/>
+              <path d="M20 17 Q28 14.5 36 17 L37 30 Q28 32.5 19 30 Z" fill="#c9963a" opacity=".25" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- arms out showing wrap -->
+              <path d="M20 20 L11 26" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M36 20 L44 23" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- petticoat skirt -->
+              <path d="M19 30 Q14 32 12 60 Q28 63 44 60 Q42 32 37 30 Z" fill="#f7edd8" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- wrap-around arrow — full circle at waist -->
+              <path d="M37 30 Q48 34 48 44 Q48 54 37 57 Q28 60 19 57 Q9 54 9 44 Q9 36 19 31" stroke="#c9963a" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2.5 1.5"/>
+              <polygon points="19,28.5 17,32 21.5,32" fill="#c9963a"/>
+              <text x="28" y="71" text-anchor="middle" font-size="5" fill="#7a1414" font-family="Georgia,serif" font-style="italic">Full wrap around</text>
+            </svg>
+          </div>
+          <div>
+            <div class="step-num">Step 02</div>
+            <div class="step-title">Wrap Around</div>
+            <div class="step-desc">Bring saree all the way around the waist, lower edge just touching the floor.</div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step">
+          <div class="step-svg">
+            <svg viewBox="0 0 56 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="28" cy="8" rx="5" ry="5.5" fill="#f7edd8" stroke="#7a1414" stroke-width="1.4"/>
+              <ellipse cx="28" cy="3.2" rx="3" ry="2.2" fill="#7a1414" opacity=".65"/>
+              <line x1="28" y1="13.5" x2="28" y2="17" stroke="#7a1414" stroke-width="1.3"/>
+              <path d="M20 17 Q28 14.5 36 17 L37 30 Q28 32.5 19 30 Z" fill="#c9963a" opacity=".25" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- arms gathering pleats -->
+              <path d="M20 22 L14 33" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M36 20 L40 26" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- skirt base -->
+              <path d="M19 30 Q14 32 12 60 Q28 63 44 60 Q42 32 37 30 Z" fill="#f7edd8" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- accordion pleats at front center -->
+              <path d="M20 30 L18 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M23 30 L21 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M26 30 L24 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M29 30 L27 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M32 30 L30 59" stroke="#7a1414" stroke-width="1"/>
+              <!-- gold brace over pleats -->
+              <path d="M19 28 Q25.5 26 32 28" stroke="#c9963a" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="19" y1="28" x2="19" y2="31" stroke="#c9963a" stroke-width="1.2"/>
+              <line x1="32" y1="28" x2="32" y2="31" stroke="#c9963a" stroke-width="1.2"/>
+              <text x="28" y="71" text-anchor="middle" font-size="5" fill="#7a1414" font-family="Georgia,serif" font-style="italic">5–7 neat pleats</text>
+            </svg>
+          </div>
+          <div>
+            <div class="step-num">Step 03</div>
+            <div class="step-title">Make Pleats</div>
+            <div class="step-desc">Fold 5–7 pleats (~5 cm each) facing left, gathered at center front.</div>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step">
+          <div class="step-svg">
+            <svg viewBox="0 0 56 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="28" cy="8" rx="5" ry="5.5" fill="#f7edd8" stroke="#7a1414" stroke-width="1.4"/>
+              <ellipse cx="28" cy="3.2" rx="3" ry="2.2" fill="#7a1414" opacity=".65"/>
+              <line x1="28" y1="13.5" x2="28" y2="17" stroke="#7a1414" stroke-width="1.3"/>
+              <path d="M20 17 Q28 14.5 36 17 L37 30 Q28 32.5 19 30 Z" fill="#c9963a" opacity=".25" stroke="#7a1414" stroke-width="1.2"/>
+              <path d="M20 22 L13 30" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M36 20 L42 24" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M19 30 Q14 32 12 60 Q28 63 44 60 Q42 32 37 30 Z" fill="#f7edd8" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- tucked pleats — fan shape -->
+              <path d="M20 30 L18 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M23 30 L21 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M26 30 L24 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M29 30 L27 59" stroke="#7a1414" stroke-width="1"/>
+              <path d="M32 30 L30 59" stroke="#7a1414" stroke-width="1"/>
+              <!-- waistband tuck bar with arrow -->
+              <rect x="18" y="29" width="15" height="2.5" rx="1" fill="#c9963a" opacity=".8"/>
+              <polygon points="16,28 13,30.5 16,33" fill="#c9963a"/>
+              <text x="28" y="71" text-anchor="middle" font-size="5" fill="#7a1414" font-family="Georgia,serif" font-style="italic">Tuck into waist</text>
+            </svg>
+          </div>
+          <div>
+            <div class="step-num">Step 04</div>
+            <div class="step-title">Tuck Pleats</div>
+            <div class="step-desc">Tuck pleats into waistband slightly left of center, keep them straight.</div>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="step">
+          <div class="step-svg">
+            <svg viewBox="0 0 56 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="28" cy="8" rx="5" ry="5.5" fill="#f7edd8" stroke="#7a1414" stroke-width="1.4"/>
+              <ellipse cx="28" cy="3.2" rx="3" ry="2.2" fill="#7a1414" opacity=".65"/>
+              <line x1="28" y1="13.5" x2="28" y2="17" stroke="#7a1414" stroke-width="1.3"/>
+              <path d="M20 17 Q28 14.5 36 17 L37 30 Q28 32.5 19 30 Z" fill="#c9963a" opacity=".25" stroke="#7a1414" stroke-width="1.2"/>
+              <!-- right arm -->
+              <path d="M36 20 L42 28" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- left arm raised to shoulder -->
+              <path d="M20 19 L13 16" stroke="#7a1414" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- skirt -->
+              <path d="M19 30 Q14 32 12 60 Q28 63 44 60 Q42 32 37 30 Z" fill="#f7edd8" stroke="#7a1414" stroke-width="1.2"/>
+              <path d="M20 30 L18 59" stroke="#7a1414" stroke-width="0.7" opacity=".4"/>
+              <path d="M26 30 L24 59" stroke="#7a1414" stroke-width="0.7" opacity=".4"/>
+              <path d="M32 30 L30 59" stroke="#7a1414" stroke-width="0.7" opacity=".4"/>
+              <!-- pallu fabric drape from right front across to left shoulder then down back -->
+              <path d="M37 22 Q32 20 28 22 Q22 24 19 22 Q15 20 13 16" stroke="#c9963a" stroke-width="2" stroke-linecap="round"/>
+              <!-- pallu cascading down the back left -->
+              <path d="M13 16 Q7 22 7 34 Q7 46 9 58 Q10 62 12 63" stroke="#7a1414" stroke-width="1.4" stroke-dasharray="2.5 1.5" stroke-linecap="round"/>
+              <!-- border strip on pallu -->
+              <path d="M6 22 Q5.5 36 7 50 Q8 56 10 60" stroke="#c9963a" stroke-width="0.8" stroke-dasharray="1.5 1.2" stroke-linecap="round"/>
+              <!-- pin at shoulder -->
+              <circle cx="13" cy="16" r="2.4" fill="#7a1414"/>
+              <line x1="13" y1="13.6" x2="13" y2="18.4" stroke="#fff" stroke-width="0.8"/>
+              <text x="28" y="71" text-anchor="middle" font-size="5" fill="#7a1414" font-family="Georgia,serif" font-style="italic">Pin &amp; drape pallu</text>
+            </svg>
+          </div>
+          <div>
+            <div class="step-num">Step 05</div>
+            <div class="step-title">Drape the Pallu</div>
+            <div class="step-desc">Bring remaining fabric across front, drape pallu over left shoulder and pin.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end top-row -->
+
+  <!-- BOTTOM BAR -->
+  <div class="bot">
+    <div class="bgrid">
+      <div class="bc">
+        <h3>About the Saree</h3>
+        <p>A perfect blend of tradition and elegance. Intricate embroidery, luxurious fabric, and vibrant color make it ideal for weddings, festivals, and celebrations.</p>
+      </div>
+      <div class="bc">
+        <h3>Care Instructions</h3>
+        <div class="icon-row">
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><text x="12" y="15" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,.9)" stroke="none" font-family="serif" font-weight="700">DRY</text></svg>
+            </div>
+            <span class="ilabel">Dry Clean</span>
+          </div>
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><path d="M12 4 L20 19 H4 Z"/><line x1="6" y1="7" x2="18" y2="18" stroke-width="2"/></svg>
+            </div>
+            <span class="ilabel">No Bleach</span>
+          </div>
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><path d="M4 15 C6 11 18 11 20 15 L20 17 L4 17 Z"/><rect x="10" y="17" width="4" height="2"/><circle cx="12" cy="13.2" r=".9" fill="rgba(255,255,255,.85)" stroke="none"/></svg>
+            </div>
+            <span class="ilabel">Low Iron</span>
+          </div>
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4" y1="4" x2="20" y2="20" stroke-width="1.8"/></svg>
+            </div>
+            <span class="ilabel">No Sunlight</span>
+          </div>
+        </div>
+      </div>
+      <div class="bc">
+        <h3>Best Occasions</h3>
+        <div class="icon-row">
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="2.2"/><circle cx="15" cy="6" r="2.2"/><path d="M5 20 C5 14 9 12 12 12 C15 12 19 14 19 20"/><path d="M9 12 L12 16 L15 12"/></svg>
+            </div>
+            <span class="ilabel">Weddings</span>
+          </div>
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><path d="M8 18 C8 15 10 13 12 13 C14 13 16 15 16 18 Z"/><ellipse cx="12" cy="18.5" rx="5" ry="1.4"/><line x1="12" y1="13" x2="12" y2="9"/><path d="M12 9 C12 7 13.5 5 12 3 C10.5 5 12 7 12 9"/></svg>
+            </div>
+            <span class="ilabel">Festivals</span>
+          </div>
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><path d="M12 3 L5 20 L19 20 Z"/><circle cx="12" cy="2.5" r=".9" fill="rgba(255,255,255,.85)" stroke="none"/></svg>
+            </div>
+            <span class="ilabel">Parties</span>
+          </div>
+          <div class="iitem">
+            <div class="icircle">
+              <svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="12" rx="1"/><line x1="4" y1="13" x2="20" y2="13"/><line x1="12" y1="9" x2="12" y2="21"/><path d="M12 9 C12 9 10 7 8 8 C6 9 7 11 12 9 Z"/><path d="M12 9 C12 9 14 7 16 8 C18 9 17 11 12 9 Z"/></svg>
+            </div>
+            <span class="ilabel">Events</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER TAGLINE -->
+    <div class="tl">
+      <div class="tl-center">
+        <span class="tln"></span><span class="tdi"></span>
+        Celebrate Tradition. Wear Elegance.
+        <span class="tdi"></span><span class="tln"></span>
+      </div>
+      <div class="tl-credit">
+        By&nbsp;<a href="https://Wondermayank.github.io" target="_blank" rel="noopener">Wondermayank</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
