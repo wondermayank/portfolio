@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Wondermayank — Portfolio Universe</title>
+<title>Designly — by Wondermayank</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='64' y2='64' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%232563b0'/%3E%3Cstop offset='100%25' stop-color='%235b9bd5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M10 17C10 13.134 13.134 10 17 10h10c2.761 0 5 2.239 5 5s-2.239 5-5 5h-5v5c0 2.761-2.239 5-5 5s-5-2.239-5-5v-8z' fill='white' opacity='0.95'/%3E%3Crect x='10' y='37' width='20' height='17' rx='5' fill='white' opacity='0.75'/%3E%3Crect x='34' y='10' width='20' height='17' rx='5' fill='white' opacity='0.95'/%3E%3Cpath d='M34 32c0-2.761 2.239-5 5-5s5 2.239 5 5v5h5c2.761 0 5 2.239 5 5s-2.239 5-5 5H39c-2.761 0-5-2.239-5-5v-10z' fill='white' opacity='0.8'/%3E%3C/svg%3E" />
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 <style>
   :root {
@@ -22,17 +23,222 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #e8f2fc; color: var(--text-dark); overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #e8f2fc;
-    color: var(--text-dark);
-    overflow-x: hidden;
+  /* ═══════════════ BOOT SCREEN ═══════════════ */
+  #bootScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a1628;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    animation: bootFadeOut 0.6s ease-in-out 2.8s forwards;
   }
 
-  /* ─── HERO ─── */
+  @keyframes bootFadeOut {
+    to { opacity: 0; pointer-events: none; visibility: hidden; }
+  }
+
+  .boot-logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    animation: bootZoomIn 0.7s cubic-bezier(.22,.68,0,1.4) 0.2s both;
+  }
+
+  @keyframes bootZoomIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .boot-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, #2563b0, #5b9bd5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 60px rgba(91,155,213,0.5), 0 0 120px rgba(37,99,176,0.2);
+  }
+
+  .boot-icon svg { width: 52px; height: 52px; }
+
+  .boot-brand {
+    text-align: center;
+  }
+
+  .boot-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 2.4rem;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .boot-by {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .boot-tagline {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .boot-progress-wrap {
+    margin-top: 3rem;
+    width: 200px;
+    animation: bootZoomIn 0.5s ease 0.7s both;
+  }
+
+  .boot-progress-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .boot-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563b0, #5b9bd5, #93c5fd);
+    border-radius: 10px;
+    animation: bootProgress 2.4s cubic-bezier(.4,0,.2,1) 0.5s both;
+    transform-origin: left;
+  }
+
+  @keyframes bootProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+
+  .boot-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 0.8rem;
+  }
+
+  .boot-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .boot-dot:nth-child(1) { animation: dotPulse 1.2s ease 0.8s infinite; }
+  .boot-dot:nth-child(2) { animation: dotPulse 1.2s ease 1.0s infinite; }
+  .boot-dot:nth-child(3) { animation: dotPulse 1.2s ease 1.2s infinite; }
+
+  @keyframes dotPulse {
+    0%, 100% { background: rgba(255,255,255,0.2); transform: scale(1); }
+    50% { background: #5b9bd5; transform: scale(1.4); }
+  }
+
+  /* ═══════════════ NAVBAR ═══════════════ */
+  #navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0.5rem clamp(1rem, 4vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10, 22, 40, 0.78);
+    backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+    animation: navSlideDown 0.5s ease 3s both;
+  }
+
+  @keyframes navSlideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .nav-logo-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #2563b0, #5b9bd5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(91,155,213,0.4);
+  }
+
+  .nav-logo-icon svg { width: 17px; height: 17px; }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .nav-logo-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: #fff;
+    letter-spacing: -0.2px;
+  }
+
+  .nav-logo-sub {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.42);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.28rem;
+    align-items: center;
+  }
+
+  .nav-chip {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: 50px;
+    padding: 0.28rem 0.72rem;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.68rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-chip:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border-color: rgba(255,255,255,0.26);
+  }
+
+  @media (max-width: 580px) {
+    .nav-links { display: none; }
+  }
+
+  /* ═══════════════ HERO ═══════════════ */
   #hero {
     position: relative;
     height: 100vh;
@@ -64,7 +270,7 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    padding-top: 8rem;
+    padding-top: 7rem;
     padding-left: clamp(1.5rem, 6vw, 7rem);
     padding-right: 2rem;
   }
@@ -112,7 +318,6 @@
     letter-spacing: 1px;
   }
 
-  /* Section Preview Strip in Hero */
   .hero-strip {
     position: relative;
     z-index: 2;
@@ -122,6 +327,7 @@
     padding: 2.5rem clamp(1.5rem, 6vw, 7rem) 2.8rem;
     flex-wrap: wrap;
   }
+
   .strip-chip {
     background: rgba(255,255,255,0.14);
     border: 1px solid rgba(255,255,255,0.3);
@@ -137,8 +343,9 @@
   }
   .strip-chip:hover { background: rgba(255,255,255,0.26); transform: translateY(-2px); }
 
-  /* ─── GLOBAL SECTION ─── */
+  /* ═══════════════ GLOBAL SECTION ═══════════════ */
   section { padding: 5rem clamp(1rem, 5vw, 5rem); }
+
   .sec-label {
     font-size: 0.72rem;
     font-weight: 600;
@@ -147,6 +354,7 @@
     color: var(--blue-mid);
     margin-bottom: 0.5rem;
   }
+
   .sec-title {
     font-family: 'Rubik', sans-serif;
     font-size: clamp(1.9rem, 4vw, 2.8rem);
@@ -155,6 +363,7 @@
     line-height: 1.1;
     margin-bottom: 0.8rem;
   }
+
   .sec-sub {
     color: var(--text-mid);
     font-size: 1rem;
@@ -163,16 +372,18 @@
     margin-bottom: 2.8rem;
   }
 
-  /* ─── FUTURE IDEAS ─── */
+  /* ═══════════════ FUTURE IDEAS ═══════════════ */
   #future {
     background: linear-gradient(135deg, #ddeeff 0%, #f0f7ff 100%);
     border-bottom: 1px solid rgba(37,99,176,0.12);
   }
+
   .ideas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.2rem;
   }
+
   .idea-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -184,10 +395,13 @@
     gap: 0.5rem;
     transition: transform 0.22s, box-shadow 0.22s;
     box-shadow: var(--glass-shadow);
+    cursor: pointer;
   }
+
   .idea-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(37,99,176,0.22); }
+  .idea-card:hover .idea-title { color: var(--accent); }
   .idea-icon { font-size: 2rem; }
-  .idea-title { font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 0.98rem; color: var(--blue-deep); }
+  .idea-title { font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 0.98rem; color: var(--blue-deep); transition: color 0.2s; }
   .idea-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.5; }
   .idea-badge {
     display: inline-block;
@@ -203,7 +417,7 @@
     width: fit-content;
   }
 
-  /* ─── CARD GRID SHARED ─── */
+  /* ═══════════════ CARDS ═══════════════ */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -221,6 +435,7 @@
     box-shadow: 0 4px 20px rgba(37,99,176,0.10);
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .showcase-card:hover { transform: translateY(-7px) scale(1.01); box-shadow: 0 20px 50px rgba(37,99,176,0.22); }
 
@@ -242,17 +457,10 @@
     gap: 0.5rem;
     flex: 1;
   }
-  .card-title {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--blue-deep);
-  }
-  .card-sub {
-    font-size: 0.76rem;
-    color: var(--text-mid);
-    line-height: 1.4;
-  }
+
+  .card-title { font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--blue-deep); }
+  .card-sub { font-size: 0.76rem; color: var(--text-mid); line-height: 1.4; }
+
   .card-btn {
     margin-top: auto;
     display: flex;
@@ -265,6 +473,7 @@
     text-transform: uppercase;
   }
   .card-btn svg { width: 14px; height: 14px; }
+
   .preview-count {
     background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
     color: #fff;
@@ -275,16 +484,14 @@
     margin-left: auto;
   }
 
-  /* Section backgrounds */
   #websites { background: linear-gradient(180deg, #f0f8ff 0%, #e2eef8 100%); }
   #portfolios { background: linear-gradient(180deg, #e6f3ff 0%, #ddeeff 100%); }
   #showcases { background: linear-gradient(180deg, #ddeeff 0%, #e8f2fc 100%); }
 
-  /* ─── LOVE BUTTON ─── */
+  /* ═══════════════ LOVE BUTTON ═══════════════ */
   .love-btn {
     position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
+    top: 0.6rem; right: 0.6rem;
     z-index: 10;
     background: rgba(255,255,255,0.9);
     border: none;
@@ -299,9 +506,8 @@
   }
   .love-btn:hover { transform: scale(1.18); }
   .love-btn.loved { background: #fff0f3; }
-  .love-btn.loved::after { content: ''; }
 
-  /* ─── SAVED SECTION ─── */
+  /* ═══════════════ SAVED ═══════════════ */
   #saved {
     background: linear-gradient(180deg, #fff5f7 0%, #ffe4ea 100%);
     border-top: 2px solid rgba(251,113,133,0.2);
@@ -310,85 +516,8 @@
   #saved.has-items { display: block; }
   #saved .sec-title { color: #be123c; }
   #saved .sec-label { color: #f43f5e; }
-  .saved-empty {
-    text-align: center;
-    color: #fda4af;
-    font-size: 1.1rem;
-    padding: 2rem;
-  }
 
-  /* idea-card clickable */
-  .idea-card { cursor: pointer; }
-  .idea-card:hover .idea-title { color: var(--accent); }
-
-  /* ─── MODAL (kept for nothing, removed) ─── */
-  .modal-btn {
-    background: linear-gradient(135deg, rgba(219,234,254,0.8), rgba(255,255,255,0.9));
-    border: 1.5px solid rgba(59,130,246,0.25);
-    border-radius: 14px;
-    padding: 0.75rem 0.9rem;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.18s;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    text-decoration: none;
-  }
-  .modal-btn:hover {
-    background: linear-gradient(135deg, rgba(191,219,254,0.95), rgba(219,234,254,0.9));
-    border-color: rgba(59,130,246,0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(37,99,176,0.15);
-  }
-  .modal-btn-num {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--blue-light);
-    letter-spacing: 0.08em;
-  }
-  .modal-btn-label {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    color: var(--blue-deep);
-  }
-  .modal-btn-type {
-    font-size: 0.68rem;
-    color: var(--text-mid);
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--blue-deep);
-    color: rgba(255,255,255,0.7);
-    text-align: center;
-    padding: 2.2rem 1rem;
-    font-size: 0.9rem;
-  }
-  footer a { color: #93c5fd; text-decoration: none; font-weight: 500; }
-  footer a:hover { color: #fff; }
-
-  /* ─── SVG BG PATTERNS ─── */
-  .section-bg-img { position: relative; }
-  .section-bg-img::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 80% 20%, rgba(37,99,176,0.07) 0%, transparent 60%),
-                      radial-gradient(circle at 10% 80%, rgba(96,165,250,0.06) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  /* Gradient card backgrounds */
-  .gbg-1 { background: linear-gradient(135deg, #dbeafe, #eff6ff); }
-  .gbg-2 { background: linear-gradient(135deg, #e0f2fe, #f0f9ff); }
-  .gbg-3 { background: linear-gradient(135deg, #ede9fe, #f5f3ff); }
-  .gbg-4 { background: linear-gradient(135deg, #fce7f3, #fdf2f8); }
-  .gbg-5 { background: linear-gradient(135deg, #d1fae5, #ecfdf5); }
-  .gbg-6 { background: linear-gradient(135deg, #fef3c7, #fffbeb); }
-
-  /* ─── FILTER BAR ─── */
+  /* ═══════════════ FILTER BAR ═══════════════ */
   .filter-bar {
     display: flex;
     gap: 0.6rem;
@@ -424,26 +553,323 @@
     vertical-align: middle;
   }
 
-  /* ─── CARD SAVED STATE ─── */
-  .showcase-card.saved .card-btn::before {
-    content: '❤️ ';
+  .section-bg-img { position: relative; }
+  .section-bg-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 80% 20%, rgba(37,99,176,0.07) 0%, transparent 60%),
+                      radial-gradient(circle at 10% 80%, rgba(96,165,250,0.06) 0%, transparent 50%);
+    pointer-events: none;
   }
 
+  .gbg-1 { background: linear-gradient(135deg, #dbeafe, #eff6ff); }
+  .gbg-2 { background: linear-gradient(135deg, #e0f2fe, #f0f9ff); }
+  .gbg-3 { background: linear-gradient(135deg, #ede9fe, #f5f3ff); }
+  .gbg-4 { background: linear-gradient(135deg, #fce7f3, #fdf2f8); }
+  .gbg-5 { background: linear-gradient(135deg, #d1fae5, #ecfdf5); }
+  .gbg-6 { background: linear-gradient(135deg, #fef3c7, #fffbeb); }
+
+  /* ═══════════════ IN-SCREEN MODAL ═══════════════ */
+  #modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(10, 22, 40, 0.0);
+    backdrop-filter: blur(0px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+  }
+  #modalOverlay.open {
+    opacity: 1;
+    pointer-events: all;
+    background: rgba(10, 22, 40, 0.72);
+    backdrop-filter: blur(10px);
+  }
+  #modalOverlay.closing {
+    opacity: 0;
+    background: rgba(10, 22, 40, 0.0);
+    backdrop-filter: blur(0px);
+    pointer-events: none;
+  }
+
+  .modal-box {
+    background: #fff;
+    border-radius: 28px;
+    width: 100%;
+    max-width: 760px;
+    max-height: 88vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 100px rgba(10,22,40,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+    transform: scale(0.88) translateY(32px);
+    opacity: 0;
+    transition: transform 0.38s cubic-bezier(.22,.68,0,1.25), opacity 0.28s ease;
+  }
+  #modalOverlay.open .modal-box {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  #modalOverlay.closing .modal-box {
+    transform: scale(0.9) translateY(24px);
+    opacity: 0;
+  }
+
+  .modal-header {
+    padding: 1.6rem 1.8rem 1.2rem;
+    border-bottom: 1.5px solid rgba(37,99,176,0.1);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    background: linear-gradient(135deg, #f0f7ff, #e8f2fc);
+    flex-shrink: 0;
+  }
+
+  .modal-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .modal-icon-big {
+    font-size: 2.8rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .modal-header-text { flex: 1; min-width: 0; }
+
+  .modal-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--blue-deep);
+    line-height: 1.2;
+  }
+
+  .modal-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    margin-top: 0.2rem;
+  }
+
+  .modal-close {
+    background: rgba(37,99,176,0.1);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--blue-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.18s, transform 0.18s;
+  }
+  .modal-close:hover { background: rgba(37,99,176,0.2); transform: rotate(90deg); }
+
+  .modal-body {
+    padding: 1.4rem 1.8rem 1.8rem;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .modal-sec-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 1rem;
+  }
+
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .modal-card {
+    background: linear-gradient(135deg, rgba(219,234,254,0.8), rgba(255,255,255,0.9));
+    border: 1.5px solid rgba(59,130,246,0.2);
+    border-radius: 14px;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-decoration: none;
+  }
+  .modal-card:hover {
+    background: linear-gradient(135deg, rgba(191,219,254,0.95), rgba(219,234,254,0.9));
+    border-color: rgba(59,130,246,0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37,99,176,0.15);
+  }
+
+  .modal-card-num {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--blue-light);
+    letter-spacing: 0.1em;
+  }
+
+  .modal-card-label {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--blue-deep);
+    line-height: 1.2;
+  }
+
+  .modal-card-type {
+    font-size: 0.7rem;
+    color: var(--text-mid);
+  }
+
+  /* Idea detail modal */
+  .idea-modal-content {
+    text-align: center;
+    padding: 1rem 0.5rem;
+  }
+  .idea-modal-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+  .idea-modal-badge {
+    display: inline-block;
+    background: rgba(59,130,246,0.13);
+    color: #2563b0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+  .idea-modal-title {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #1a3a6b;
+    margin-bottom: 0.8rem;
+  }
+  .idea-modal-desc {
+    color: #2d4a7a;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .idea-modal-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #2563b0, #5b9bd5);
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 8px 24px rgba(37,99,176,0.3);
+  }
+  .idea-modal-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(37,99,176,0.4); }
+
+  /* ═══════════════ FOOTER ═══════════════ */
+  footer {
+    background: var(--blue-deep);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 2.2rem 1rem;
+    font-size: 0.9rem;
+  }
+  footer a { color: #93c5fd; text-decoration: none; font-weight: 500; }
+  footer a:hover { color: #fff; }
+
   @media (max-width: 640px) {
-    .hero-content { padding-top: 6rem; }
+    .hero-content { padding-top: 6.5rem; }
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .modal-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════ HERO ══════════════════════ -->
+<!-- ═══════════════ BOOT SCREEN ═══════════════ -->
+<div id="bootScreen">
+  <div class="boot-logo-wrap">
+    <div class="boot-icon">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 14C8 10.686 10.686 8 14 8h8c2.21 0 4 1.79 4 4s-1.79 4-4 4h-4v4c0 2.21-1.79 4-4 4s-4-1.79-4-4v-6z" fill="white" opacity="0.9"/>
+        <rect x="8" y="30" width="16" height="14" rx="4" fill="white" opacity="0.7"/>
+        <rect x="28" y="8" width="16" height="14" rx="4" fill="white" opacity="0.9"/>
+        <path d="M28 26c0-2.21 1.79-4 4-4s4 1.79 4 4v4h4c2.21 0 4 1.79 4 4s-1.79 4-4 4h-8c-2.21 0-4-1.79-4-4v-8z" fill="white" opacity="0.75"/>
+      </svg>
+    </div>
+    <div class="boot-brand">
+      <div class="boot-name">Designly</div>
+      <div class="boot-by">by Wondermayank</div>
+      <div class="boot-tagline">150+ Templates · Portfolio · Showcase</div>
+    </div>
+  </div>
+  <div class="boot-progress-wrap">
+    <div class="boot-progress-bar">
+      <div class="boot-progress-fill"></div>
+    </div>
+    <div class="boot-dots">
+      <div class="boot-dot"></div>
+      <div class="boot-dot"></div>
+      <div class="boot-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 14C8 10.686 10.686 8 14 8h8c2.21 0 4 1.79 4 4s-1.79 4-4 4h-4v4c0 2.21-1.79 4-4 4s-4-1.79-4-4v-6z" fill="white" opacity="0.95"/>
+        <rect x="8" y="30" width="16" height="14" rx="4" fill="white" opacity="0.75"/>
+        <rect x="28" y="8" width="16" height="14" rx="4" fill="white" opacity="0.95"/>
+        <path d="M28 26c0-2.21 1.79-4 4-4s4 1.79 4 4v4h4c2.21 0 4 1.79 4 4s-1.79 4-4 4h-8c-2.21 0-4-1.79-4-4v-8z" fill="white" opacity="0.8"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Designly</span>
+      <span class="nav-logo-sub">by Wondermayank</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-chip" onclick="document.getElementById('websites').scrollIntoView({behavior:'smooth'})">🌐 Websites</button>
+    <button class="nav-chip" onclick="document.getElementById('portfolios').scrollIntoView({behavior:'smooth'})">🏆 Portfolios</button>
+    <button class="nav-chip" onclick="document.getElementById('showcases').scrollIntoView({behavior:'smooth'})">✨ Showcases</button>
+    <button class="nav-chip" onclick="document.getElementById('future').scrollIntoView({behavior:'smooth'})">🔮 Ideas</button>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
 <section id="hero">
   <video autoplay loop muted playsinline>
     <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260206_044704_dd33cb15-c23f-4cfc-aa09-a0465d4dcb54.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
-
   <div class="hero-content">
     <h1 class="hero-headline">
       <span>NEW ERA</span>
@@ -457,7 +883,6 @@
       <span>GET STARTED</span>
     </button>
   </div>
-
   <div class="hero-strip">
     <div class="strip-chip" onclick="document.getElementById('websites').scrollIntoView({behavior:'smooth'})">🌐 50 Websites</div>
     <div class="strip-chip" onclick="document.getElementById('portfolios').scrollIntoView({behavior:'smooth'})">🏆 50 Portfolios</div>
@@ -466,7 +891,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════ FUTURE IDEAS ══════════════════════ -->
+<!-- ═══════════════ FUTURE IDEAS ═══════════════ -->
 <section id="future">
   <div class="sec-label">🔮 Coming Soon</div>
   <div class="sec-title">Future Vision & Ideas</div>
@@ -474,7 +899,7 @@
   <div class="ideas-grid" id="ideasGrid"></div>
 </section>
 
-<!-- ══════════════════════ WEBSITES ══════════════════════ -->
+<!-- ═══════════════ WEBSITES ═══════════════ -->
 <section id="websites" class="section-bg-img">
   <div class="sec-label">🌐 Section 01</div>
   <div class="sec-title">Website Templates <span class="count-badge">50</span></div>
@@ -483,7 +908,7 @@
   <div class="cards-grid" id="websitesGrid"></div>
 </section>
 
-<!-- ══════════════════════ PORTFOLIOS ══════════════════════ -->
+<!-- ═══════════════ PORTFOLIOS ═══════════════ -->
 <section id="portfolios" class="section-bg-img">
   <div class="sec-label">🏆 Section 02</div>
   <div class="sec-title">Professional Portfolios <span class="count-badge">50</span></div>
@@ -492,7 +917,7 @@
   <div class="cards-grid" id="portfoliosGrid"></div>
 </section>
 
-<!-- ══════════════════════ SHOWCASES ══════════════════════ -->
+<!-- ═══════════════ SHOWCASES ═══════════════ -->
 <section id="showcases" class="section-bg-img">
   <div class="sec-label">✨ Section 03</div>
   <div class="sec-title">Item Showcases <span class="count-badge">50</span></div>
@@ -501,44 +926,42 @@
   <div class="cards-grid" id="showcasesGrid"></div>
 </section>
 
-<!-- ══════════════════════ SAVED ══════════════════════ -->
+<!-- ═══════════════ SAVED ═══════════════ -->
 <section id="saved">
   <div class="sec-label">❤️ My Favourites</div>
   <div class="sec-title">Saved Items</div>
-  <div class="sec-sub">Cards you loved — tap ❤️ on any card to save it here. Saved in your browser locally.</div>
+  <div class="sec-sub">Cards you loved — tap ❤️ on any card to save it here.</div>
   <div class="cards-grid" id="savedGrid"></div>
 </section>
 
-<!-- ══════════════════════ MODAL ══════════════════════ -->
-<div style="display:none" id="modalOverlay">
-  <div class="modal-box">
+<!-- ═══════════════ IN-SCREEN MODAL ═══════════════ -->
+<div id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
     <div class="modal-header">
-      <div class="modal-title-row">
-        <span class="modal-icon" id="modalIcon">🌐</span>
-        <span class="modal-title" id="modalTitle">Title</span>
-        <span class="modal-desc" id="modalDesc">Description</span>
+      <div class="modal-header-left">
+        <div class="modal-icon-big" id="modalIcon">🌐</div>
+        <div class="modal-header-text">
+          <div class="modal-title" id="modalTitle">Title</div>
+          <div class="modal-subtitle" id="modalSubtitle">Subtitle</div>
+        </div>
       </div>
-      <button class="modal-close" id="modalCloseBtn">✕</button>
+      <button class="modal-close" onclick="closeModal(null, true)" title="Close">✕</button>
     </div>
     <div class="modal-body">
-      <div class="modal-sec-label">Choose a Preview / Build</div>
-      <div class="modal-buttons" id="modalButtons"></div>
+      <div class="modal-sec-label" id="modalSecLabel">Choose from 30 types below</div>
+      <div id="modalContent"></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
-  Made with 💕 By <a href="https://wondermayank.github.io" target="_blank">Wondermayank</a>
+  Made with 💕 by <a href="https://wondermayank.github.io" target="_blank">Wondermayank</a>
 </footer>
 
 <script>
-/* ════════════════════════════════════════
-   DATA
-════════════════════════════════════════ */
-
+/* ════════ DATA ════════ */
 const futureIdeas = [
-  { icon: '🤖', title: 'AI Portfolio Builder', desc: 'Describe yourself and AI builds your portfolio instantly.', badge: 'AI' },
   { icon: '🕶️', title: 'AR Item Showcase', desc: 'Try on sarees and jewellery in augmented reality.', badge: 'AR/VR' },
   { icon: '🎮', title: 'Gamified Portfolio', desc: 'Your portfolio as an RPG adventure — unlock skills as levels.', badge: 'Gamification' },
   { icon: '🌌', title: '3D Universe Gallery', desc: 'Float through a galaxy where each star is a project.', badge: '3D/WebGL' },
@@ -553,7 +976,6 @@ const futureIdeas = [
 ];
 
 const websiteData = [
-  // Shopping
   { id: 'web', cat: 'Shopping', icon: '👗', title: 'Saree Shopping', sub: 'Online saree store, silk & cotton', bg: 'gbg-4' },
   { id: 'web', cat: 'Shopping', icon: '👶', title: 'Baby Shopping', sub: 'Toys, clothes, accessories for babies', bg: 'gbg-2' },
   { id: 'web', cat: 'Shopping', icon: '💄', title: 'Beauty Shopping', sub: 'Cosmetics & skincare products', bg: 'gbg-3' },
@@ -562,29 +984,24 @@ const websiteData = [
   { id: 'web', cat: 'Shopping', icon: '💍', title: 'Jewellery Shop', sub: 'Gold, diamond, kundan jewellery', bg: 'gbg-6' },
   { id: 'web', cat: 'Shopping', icon: '🌸', title: 'Flower Shop', sub: 'Bouquets, decor, wedding flowers', bg: 'gbg-4' },
   { id: 'web', cat: 'Shopping', icon: '📚', title: 'Book Store', sub: 'New releases, bestsellers, textbooks', bg: 'gbg-2' },
-  // Fashion
   { id: 'web', cat: 'Fashion', icon: '👘', title: 'Ethnic Wear Store', sub: 'Kurta, saree, lehenga online', bg: 'gbg-4' },
   { id: 'web', cat: 'Fashion', icon: '🧥', title: 'Winter Fashion', sub: 'Jackets, coats, woollen wear', bg: 'gbg-1' },
   { id: 'web', cat: 'Fashion', icon: '👜', title: 'Bag & Accessories', sub: 'Handbags, wallets, belts', bg: 'gbg-3' },
   { id: 'web', cat: 'Fashion', icon: '🎽', title: 'Sportswear Brand', sub: 'Activewear, gym, athleisure', bg: 'gbg-5' },
-  // Food & Dining
   { id: 'web', cat: 'Food', icon: '🍕', title: 'Restaurant Website', sub: 'Menu, reservations, ambiance', bg: 'gbg-6' },
   { id: 'web', cat: 'Food', icon: '🍰', title: 'Bakery & Sweets', sub: 'Cakes, pastries, mithai shop', bg: 'gbg-4' },
   { id: 'web', cat: 'Food', icon: '🥗', title: 'Health Food Café', sub: 'Salads, smoothies, clean eating', bg: 'gbg-5' },
   { id: 'web', cat: 'Food', icon: '🍜', title: 'Cloud Kitchen', sub: 'Online food delivery brand', bg: 'gbg-6' },
-  // Services
   { id: 'web', cat: 'Services', icon: '💇', title: 'Salon & Spa', sub: 'Booking, services, gallery', bg: 'gbg-3' },
   { id: 'web', cat: 'Services', icon: '🏥', title: 'Healthcare Portal', sub: 'Clinic, doctor appointments', bg: 'gbg-2' },
   { id: 'web', cat: 'Services', icon: '🏋️', title: 'Fitness & Gym', sub: 'Classes, trainers, memberships', bg: 'gbg-1' },
   { id: 'web', cat: 'Services', icon: '🎓', title: 'EdTech Platform', sub: 'Courses, learning, certifications', bg: 'gbg-2' },
   { id: 'web', cat: 'Services', icon: '🏠', title: 'Real Estate Site', sub: 'Properties, listings, agents', bg: 'gbg-1' },
   { id: 'web', cat: 'Services', icon: '✈️', title: 'Travel Agency', sub: 'Tours, packages, destination', bg: 'gbg-5' },
-  // Tech
   { id: 'web', cat: 'Tech', icon: '🚀', title: 'SaaS Landing Page', sub: 'Product, features, pricing', bg: 'gbg-1' },
   { id: 'web', cat: 'Tech', icon: '🤖', title: 'AI Startup Page', sub: 'AI product, demos, waitlist', bg: 'gbg-3' },
   { id: 'web', cat: 'Tech', icon: '📡', title: 'Tech Agency Site', sub: 'Services, portfolio, contact', bg: 'gbg-1' },
   { id: 'web', cat: 'Tech', icon: '💻', title: 'Developer Blog', sub: 'Articles, tutorials, snippets', bg: 'gbg-2' },
-  // Creative
   { id: 'web', cat: 'Creative', icon: '🌀', title: '3D Parallax Website', sub: 'Depth-scrolling 3D layers', bg: 'gbg-1' },
   { id: 'web', cat: 'Creative', icon: '🪟', title: 'Glassmorphism Site', sub: 'Frosted glass UI system', bg: 'gbg-2' },
   { id: 'web', cat: 'Creative', icon: '⚡', title: 'Animated Landing', sub: 'Motion-first hero design', bg: 'gbg-1' },
@@ -595,19 +1012,16 @@ const websiteData = [
   { id: 'web', cat: 'Creative', icon: '📰', title: 'Editorial Magazine', sub: 'Typographic, layout-driven', bg: 'gbg-6' },
   { id: 'web', cat: 'Creative', icon: '🏛️', title: 'Art Deco Luxury', sub: 'Gold, geometry, elegance', bg: 'gbg-6' },
   { id: 'web', cat: 'Creative', icon: '🎭', title: 'Surrealist Web', sub: 'Unexpected, dreamlike', bg: 'gbg-4' },
-  // Events & Media
   { id: 'web', cat: 'Events', icon: '🎪', title: 'Event Landing Page', sub: 'Conference, festival, party', bg: 'gbg-4' },
   { id: 'web', cat: 'Events', icon: '🎵', title: 'Music Artist Site', sub: 'Dark, mood-driven artist page', bg: 'gbg-3' },
   { id: 'web', cat: 'Events', icon: '📸', title: 'Photography Studio', sub: 'Full-bleed minimal gallery', bg: 'gbg-2' },
   { id: 'web', cat: 'Events', icon: '🎬', title: 'Film Production', sub: 'Cinematic, video-first', bg: 'gbg-3' },
   { id: 'web', cat: 'Events', icon: '🎮', title: 'Game UI Website', sub: 'HUD-style, neon, gaming', bg: 'gbg-3' },
-  // Community
   { id: 'web', cat: 'Community', icon: '🤝', title: 'NGO / Charity Site', sub: 'Impact, donate, volunteer', bg: 'gbg-5' },
   { id: 'web', cat: 'Community', icon: '🕌', title: 'Religious / Temple', sub: 'Events, prayers, trust info', bg: 'gbg-6' },
   { id: 'web', cat: 'Community', icon: '🏫', title: 'School Website', sub: 'Admissions, staff, timetable', bg: 'gbg-2' },
   { id: 'web', cat: 'Community', icon: '🌿', title: 'Organic Farm', sub: 'Fresh produce, subscription box', bg: 'gbg-5' },
   { id: 'web', cat: 'Community', icon: '🐾', title: 'Pet Store', sub: 'Animals, food, vet booking', bg: 'gbg-5' },
-  // Misc
   { id: 'web', cat: 'Misc', icon: '🏗️', title: 'Architecture Firm', sub: '3D renders, project gallery', bg: 'gbg-2' },
   { id: 'web', cat: 'Misc', icon: '🔬', title: 'Research Institute', sub: 'Academic, data-heavy', bg: 'gbg-2' },
   { id: 'web', cat: 'Misc', icon: '💡', title: 'Startup Idea Page', sub: 'Problem → Solution CTA', bg: 'gbg-6' },
@@ -615,21 +1029,18 @@ const websiteData = [
 ];
 
 const portfolioData = [
-  // Professional
   { id: 'port', cat: 'Professional', icon: '🏆', title: 'Corporate Portfolio', sub: 'Enterprise case studies', bg: 'gbg-1' },
   { id: 'port', cat: 'Professional', icon: '🤝', title: 'Consulting Portfolio', sub: 'Results, testimonials, ROI', bg: 'gbg-5' },
   { id: 'port', cat: 'Professional', icon: '📊', title: 'Data Analyst Portfolio', sub: 'Charts, dashboards, insights', bg: 'gbg-1' },
   { id: 'port', cat: 'Professional', icon: '💼', title: 'MBA / Finance Portfolio', sub: 'Projects, internships, skills', bg: 'gbg-2' },
   { id: 'port', cat: 'Professional', icon: '🏢', title: 'HR Manager Portfolio', sub: 'Hiring, culture, leadership', bg: 'gbg-1' },
   { id: 'port', cat: 'Professional', icon: '📋', title: 'Project Manager Portfolio', sub: 'Timelines, delivery, teams', bg: 'gbg-5' },
-  // Animated
   { id: 'port', cat: 'Animated', icon: '✨', title: 'Particle Animation Portfolio', sub: 'JS particles, motion effects', bg: 'gbg-3' },
   { id: 'port', cat: 'Animated', icon: '🌊', title: 'Wave Scroll Portfolio', sub: 'Smooth wave transitions', bg: 'gbg-2' },
   { id: 'port', cat: 'Animated', icon: '⚡', title: 'GSAP Animated Portfolio', sub: 'Timeline, stagger, reveal', bg: 'gbg-1' },
   { id: 'port', cat: 'Animated', icon: '🔮', title: '3D Flip Card Portfolio', sub: 'CSS 3D card interactions', bg: 'gbg-3' },
   { id: 'port', cat: 'Animated', icon: '🎆', title: 'Firework Entry Portfolio', sub: 'Dramatic load animation', bg: 'gbg-3' },
   { id: 'port', cat: 'Animated', icon: '🌀', title: 'Rotating Globe Portfolio', sub: 'WebGL globe of projects', bg: 'gbg-1' },
-  // Creative
   { id: 'port', cat: 'Creative', icon: '🎨', title: 'Designer Portfolio', sub: 'Visual, case-study driven', bg: 'gbg-3' },
   { id: 'port', cat: 'Creative', icon: '📷', title: 'Photographer Portfolio', sub: 'Lightbox, grid masonry', bg: 'gbg-2' },
   { id: 'port', cat: 'Creative', icon: '🎬', title: 'Filmmaker Portfolio', sub: 'Video-first, cinematic', bg: 'gbg-3' },
@@ -638,34 +1049,28 @@ const portfolioData = [
   { id: 'port', cat: 'Creative', icon: '🖌️', title: 'Illustrator Portfolio', sub: 'Artwork, commissions, style', bg: 'gbg-4' },
   { id: 'port', cat: 'Creative', icon: '🎭', title: 'Actor / Model Portfolio', sub: 'Headshots, reels, bookings', bg: 'gbg-4' },
   { id: 'port', cat: 'Creative', icon: '🧵', title: 'Fashion Designer Portfolio', sub: 'Collections, runway, lookbook', bg: 'gbg-4' },
-  // Tech
   { id: 'port', cat: 'Tech', icon: '👨‍💻', title: 'Developer Portfolio', sub: 'Code projects, GitHub links', bg: 'gbg-1' },
   { id: 'port', cat: 'Tech', icon: '🤖', title: 'AI / ML Engineer Portfolio', sub: 'Models, research, demos', bg: 'gbg-3' },
   { id: 'port', cat: 'Tech', icon: '🔒', title: 'Cybersecurity Portfolio', sub: 'CTF wins, tools, certs', bg: 'gbg-1' },
   { id: 'port', cat: 'Tech', icon: '📱', title: 'App Developer Portfolio', sub: 'iOS/Android apps showcase', bg: 'gbg-2' },
   { id: 'port', cat: 'Tech', icon: '🎮', title: 'Game Developer Portfolio', sub: 'Unity, Unreal, indie games', bg: 'gbg-3' },
   { id: 'port', cat: 'Tech', icon: '⚙️', title: 'DevOps Engineer Portfolio', sub: 'Infra, pipelines, CI/CD', bg: 'gbg-1' },
-  // Architecture & Interior
   { id: 'port', cat: 'Architecture', icon: '🏗️', title: 'Architect Portfolio', sub: '3D renders, floor plans', bg: 'gbg-2' },
   { id: 'port', cat: 'Architecture', icon: '🛋️', title: 'Interior Designer Portfolio', sub: 'Room designs, before/after', bg: 'gbg-6' },
   { id: 'port', cat: 'Architecture', icon: '🏙️', title: 'Urban Planner Portfolio', sub: 'City concepts, maps, vision', bg: 'gbg-2' },
   { id: 'port', cat: 'Architecture', icon: '🌿', title: 'Landscape Architecture', sub: 'Gardens, parks, green space', bg: 'gbg-5' },
-  // Education
   { id: 'port', cat: 'Education', icon: '👩‍🏫', title: 'Teacher Portfolio', sub: 'Lessons, curriculum, impact', bg: 'gbg-2' },
   { id: 'port', cat: 'Education', icon: '🔬', title: 'Researcher Portfolio', sub: 'Papers, grants, citations', bg: 'gbg-2' },
   { id: 'port', cat: 'Education', icon: '🏆', title: 'Student Portfolio', sub: 'Projects, internship, skills', bg: 'gbg-5' },
   { id: 'port', cat: 'Education', icon: '📚', title: 'Librarian Portfolio', sub: 'Curation, outreach, events', bg: 'gbg-6' },
-  // Health & Wellness
   { id: 'port', cat: 'Wellness', icon: '🏋️', title: 'Fitness Trainer Portfolio', sub: 'Transformations, plans, certs', bg: 'gbg-5' },
   { id: 'port', cat: 'Wellness', icon: '🧘', title: 'Yoga Teacher Portfolio', sub: 'Classes, philosophy, schedule', bg: 'gbg-5' },
   { id: 'port', cat: 'Wellness', icon: '🍎', title: 'Nutritionist Portfolio', sub: 'Plans, results, blog', bg: 'gbg-5' },
   { id: 'port', cat: 'Wellness', icon: '💆', title: 'Therapist Portfolio', sub: 'Services, approach, booking', bg: 'gbg-2' },
-  // Personal Brand
   { id: 'port', cat: 'Personal Brand', icon: '🌟', title: 'Personal Brand Portfolio', sub: 'Story-first, memorable', bg: 'gbg-4' },
   { id: 'port', cat: 'Personal Brand', icon: '📣', title: 'Social Media Influencer', sub: 'Content, reach, collabs', bg: 'gbg-4' },
   { id: 'port', cat: 'Personal Brand', icon: '🎙️', title: 'Podcast Host Portfolio', sub: 'Episodes, guests, stats', bg: 'gbg-3' },
   { id: 'port', cat: 'Personal Brand', icon: '🌐', title: 'Travel Blogger Portfolio', sub: 'Destinations, stories, tips', bg: 'gbg-5' },
-  // Misc
   { id: 'port', cat: 'Misc', icon: '⚖️', title: 'Lawyer Portfolio', sub: 'Practice areas, wins, team', bg: 'gbg-1' },
   { id: 'port', cat: 'Misc', icon: '💊', title: 'Doctor Portfolio', sub: 'Specialization, research, clinic', bg: 'gbg-2' },
   { id: 'port', cat: 'Misc', icon: '🔧', title: 'Engineer Portfolio', sub: 'Mechanical, civil projects', bg: 'gbg-1' },
@@ -677,175 +1082,60 @@ const portfolioData = [
 ];
 
 const showcaseData = [
-  // Saree
-  { id: 'show', cat: 'Saree', icon: null, img: 'saree', title: 'Saree Showcase', sub: 'Silk, cotton, banarasi & more', bg: 'gbg-4' },
+  { id: 'show', cat: 'Saree', icon: '👗', title: 'Saree Showcase', sub: 'Silk, cotton, banarasi & more', bg: 'gbg-4' },
   { id: 'show', cat: 'Saree', icon: '🧵', title: 'Cotton Saree', sub: 'Everyday handloom & block print', bg: 'gbg-4' },
   { id: 'show', cat: 'Saree', icon: '✨', title: 'Georgette Saree', sub: 'Sheer, lightweight, elegant', bg: 'gbg-4' },
   { id: 'show', cat: 'Saree', icon: '👑', title: 'Banarasi Silk Saree', sub: 'Gold zari, bridal masterpiece', bg: 'gbg-6' },
   { id: 'show', cat: 'Saree', icon: '🌸', title: 'Chiffon Saree', sub: 'Party wear, floral prints', bg: 'gbg-4' },
   { id: 'show', cat: 'Saree', icon: '🎨', title: 'Printed Saree', sub: 'Digital prints, unique patterns', bg: 'gbg-3' },
-  // Jewellery
-  { id: 'show', cat: 'Jewellery', icon: null, img: 'jewellery', title: 'Jewellery Showcase', sub: 'Gold, diamond, kundan sets', bg: 'gbg-6' },
+  { id: 'show', cat: 'Jewellery', icon: '💍', title: 'Jewellery Showcase', sub: 'Gold, diamond, kundan sets', bg: 'gbg-6' },
   { id: 'show', cat: 'Jewellery', icon: '💛', title: 'Gold Jewellery', sub: 'Traditional & modern gold sets', bg: 'gbg-6' },
   { id: 'show', cat: 'Jewellery', icon: '💎', title: 'Diamond Jewellery', sub: 'Solitaires, tennis, eternity', bg: 'gbg-2' },
   { id: 'show', cat: 'Jewellery', icon: '🔴', title: 'Kundan & Polki', sub: 'Bridal, traditional Rajasthani', bg: 'gbg-6' },
   { id: 'show', cat: 'Jewellery', icon: '🌙', title: 'Silver Jewellery', sub: 'Oxidized, tribal, contemporary', bg: 'gbg-2' },
   { id: 'show', cat: 'Jewellery', icon: '🌈', title: 'Fashion Jewellery', sub: 'Beads, resin, statement pieces', bg: 'gbg-3' },
-  // Mehndi
-  { id: 'show', cat: 'Mehndi', icon: null, img: 'mehndi', title: 'Mehndi Showcase', sub: 'Bridal, arabic, indo-western', bg: 'gbg-5' },
+  { id: 'show', cat: 'Mehndi', icon: '🌿', title: 'Mehndi Showcase', sub: 'Bridal, arabic, indo-western', bg: 'gbg-5' },
   { id: 'show', cat: 'Mehndi', icon: '👰', title: 'Bridal Mehndi', sub: 'Full hand intricate bridal', bg: 'gbg-4' },
   { id: 'show', cat: 'Mehndi', icon: '🌺', title: 'Arabic Mehndi', sub: 'Floral bold arabic patterns', bg: 'gbg-5' },
   { id: 'show', cat: 'Mehndi', icon: '🌿', title: 'Indo-Western Mehndi', sub: 'Fusion minimalist designs', bg: 'gbg-5' },
-  // Fruits
   { id: 'show', cat: 'Fruits', icon: '🍎', title: 'Apple Showcase', sub: 'Kashmir, Shimla, Fuji apple', bg: 'gbg-5' },
   { id: 'show', cat: 'Fruits', icon: '🥭', title: 'Mango Showcase', sub: 'Alphonso, Kesar, Dasheri', bg: 'gbg-6' },
   { id: 'show', cat: 'Fruits', icon: '🍇', title: 'Grape Showcase', sub: 'Green, red, black grapes', bg: 'gbg-3' },
   { id: 'show', cat: 'Fruits', icon: '🍋', title: 'Citrus Showcase', sub: 'Lemon, orange, mosambi', bg: 'gbg-6' },
   { id: 'show', cat: 'Fruits', icon: '🍓', title: 'Berry Showcase', sub: 'Strawberry, blueberry, jamun', bg: 'gbg-4' },
   { id: 'show', cat: 'Fruits', icon: '🍌', title: 'Tropical Fruits', sub: 'Banana, papaya, pineapple', bg: 'gbg-6' },
-  // Lehenga
-  { id: 'show', cat: 'Lehenga', icon: null, img: 'lehenga', title: 'Lehenga Showcase', sub: 'Bridal, festive, casual', bg: 'gbg-3' },
+  { id: 'show', cat: 'Lehenga', icon: '👘', title: 'Lehenga Showcase', sub: 'Bridal, festive, casual', bg: 'gbg-3' },
   { id: 'show', cat: 'Lehenga', icon: '👰', title: 'Bridal Lehenga', sub: 'Heavy embroidery, zardosi', bg: 'gbg-4' },
   { id: 'show', cat: 'Lehenga', icon: '🎉', title: 'Festive Lehenga', sub: 'Navratri, Diwali, party', bg: 'gbg-3' },
   { id: 'show', cat: 'Lehenga', icon: '🌸', title: 'Floral Lehenga', sub: 'Pastel blooms, garden theme', bg: 'gbg-4' },
-  // Makeup & Beauty
-  { id: 'show', cat: 'Beauty', icon: null, img: 'makeup', title: 'Makeup Artistry', sub: 'Looks, tutorials, products', bg: 'gbg-3' },
+  { id: 'show', cat: 'Beauty', icon: '💄', title: 'Makeup Artistry', sub: 'Looks, tutorials, products', bg: 'gbg-3' },
   { id: 'show', cat: 'Beauty', icon: '💄', title: 'Bridal Makeup', sub: 'Airbrush, HD, traditional', bg: 'gbg-4' },
   { id: 'show', cat: 'Beauty', icon: '🌟', title: 'Glam Night Makeup', sub: 'Smoky eye, bold lip', bg: 'gbg-3' },
   { id: 'show', cat: 'Beauty', icon: '🌸', title: 'Natural Makeup', sub: 'No-makeup look, glass skin', bg: 'gbg-5' },
   { id: 'show', cat: 'Beauty', icon: '💅', title: 'Nail Art Showcase', sub: 'Gel, acrylic, ombre nails', bg: 'gbg-4' },
   { id: 'show', cat: 'Beauty', icon: '💇', title: 'Hairstyle Showcase', sub: 'Braid, bun, open hair looks', bg: 'gbg-3' },
-  // Food
-  { id: 'show', cat: 'Food', icon: null, img: 'food', title: 'Food & Cuisine', sub: 'Recipe cards, restaurant menu', bg: 'gbg-6' },
+  { id: 'show', cat: 'Food', icon: '🍛', title: 'Food & Cuisine', sub: 'Recipe cards, restaurant menu', bg: 'gbg-6' },
   { id: 'show', cat: 'Food', icon: '🍛', title: 'Indian Cuisine', sub: 'Curries, dal, regional dishes', bg: 'gbg-6' },
   { id: 'show', cat: 'Food', icon: '🍰', title: 'Baked Goods', sub: 'Cakes, cupcakes, bread', bg: 'gbg-4' },
   { id: 'show', cat: 'Food', icon: '🥘', title: 'Street Food', sub: 'Chaat, pani puri, samosa', bg: 'gbg-6' },
   { id: 'show', cat: 'Food', icon: '🍨', title: 'Dessert Showcase', sub: 'Ice cream, kulfi, gulab jamun', bg: 'gbg-4' },
-  // Pottery & Crafts
-  { id: 'show', cat: 'Crafts', icon: null, img: 'pottery', title: 'Pottery & Craft', sub: 'Handmade, artisan works', bg: 'gbg-5' },
+  { id: 'show', cat: 'Crafts', icon: '🏺', title: 'Pottery & Craft', sub: 'Handmade, artisan works', bg: 'gbg-5' },
   { id: 'show', cat: 'Crafts', icon: '🪆', title: 'Wooden Craft', sub: 'Hand-carved toys & decor', bg: 'gbg-6' },
   { id: 'show', cat: 'Crafts', icon: '🎋', title: 'Bamboo Crafts', sub: 'Eco-friendly bamboo products', bg: 'gbg-5' },
   { id: 'show', cat: 'Crafts', icon: '🧶', title: 'Textile Crafts', sub: 'Embroidery, block print, weave', bg: 'gbg-4' },
-  // Flowers
-  { id: 'show', cat: 'Flowers', icon: null, img: 'flower', title: 'Floral Arrangements', sub: 'Wedding, décor, bouquets', bg: 'gbg-4' },
+  { id: 'show', cat: 'Flowers', icon: '🌸', title: 'Floral Arrangements', sub: 'Wedding, décor, bouquets', bg: 'gbg-4' },
   { id: 'show', cat: 'Flowers', icon: '🌹', title: 'Rose Collection', sub: 'Red, yellow, white rose bouquets', bg: 'gbg-4' },
   { id: 'show', cat: 'Flowers', icon: '🌺', title: 'Tropical Flowers', sub: 'Hibiscus, bird of paradise', bg: 'gbg-5' },
   { id: 'show', cat: 'Flowers', icon: '🌻', title: 'Sunflower Collection', sub: 'Bright, cheerful arrangements', bg: 'gbg-6' },
-  // Camera & Tech Products
   { id: 'show', cat: 'Camera', icon: '📷', title: 'Camera Showcase', sub: 'DSLR, mirrorless, vintage', bg: 'gbg-2' },
   { id: 'show', cat: 'Camera', icon: '🔭', title: 'Lens Collection', sub: 'Wide, macro, telephoto lenses', bg: 'gbg-1' },
   { id: 'show', cat: 'Camera', icon: '🎥', title: 'Videography Gear', sub: 'Gimbals, lighting, mics', bg: 'gbg-1' },
-  // Ethnic
-  { id: 'show', cat: 'Ethnic', icon: null, img: 'kurta', title: 'Ethnic Wear Showcase', sub: 'Kurta, sherwani, fusion', bg: 'gbg-1' },
+  { id: 'show', cat: 'Ethnic', icon: '👔', title: 'Ethnic Wear Showcase', sub: 'Kurta, sherwani, fusion', bg: 'gbg-1' },
   { id: 'show', cat: 'Ethnic', icon: '🧢', title: 'Groom Sherwani', sub: 'Wedding, sangeet, reception', bg: 'gbg-1' },
   { id: 'show', cat: 'Ethnic', icon: '🌙', title: 'Ramadan Collection', sub: 'Modest fashion, eid special', bg: 'gbg-3' },
 ];
 
-/* ═══════════════ SVG Icons for showcase ═══════════════ */
-const svgIcons = {
-  saree: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#f9a8d4"/><stop offset="100%" style="stop-color:#c084fc"/></linearGradient></defs>
-    <path d="M10 60 Q20 20 40 15 Q60 10 70 55 Q50 45 40 50 Q25 55 10 60Z" fill="url(#sg)" opacity="0.85"/>
-    <path d="M10 60 Q15 65 20 68 Q35 62 40 60 Q55 55 70 58 Q65 63 60 65 Q45 70 30 68 Q18 66 10 60Z" fill="#7c3aed" opacity="0.5"/>
-    <ellipse cx="25" cy="35" rx="4" ry="6" fill="#f472b6" opacity="0.6" transform="rotate(-20,25,35)"/>
-    <ellipse cx="50" cy="30" rx="3" ry="5" fill="#c084fc" opacity="0.6" transform="rotate(15,50,30)"/>
-    <circle cx="40" cy="22" r="3" fill="#fff" opacity="0.4"/>
-  </svg>`,
-  mehndi: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="mg" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#d97706"/><stop offset="100%" style="stop-color:#92400e"/></linearGradient></defs>
-    <path d="M40 10 C55 10 65 25 65 40 C65 58 52 70 40 70 C28 70 15 58 15 40 C15 25 25 10 40 10Z" fill="url(#mg)" opacity="0.15"/>
-    <path d="M40 18 C42 22 46 22 48 20 C50 22 48 26 45 26 C47 28 50 27 51 25 C52 28 50 32 47 32 C48 35 51 35 52 33 C52 37 49 40 46 39 C45 43 47 46 49 45 C47 49 43 50 41 47 C40 51 40 54 42 55 C39 57 37 54 38 50 C35 52 33 55 35 57 C32 55 31 51 34 48 C31 47 28 49 29 52 C26 49 27 45 31 44 C28 43 25 40 26 37 C28 38 31 38 31 35 C29 33 26 32 27 29 C30 30 32 28 31 26 C34 27 36 24 34 22 C37 24 40 22 40 18Z" fill="url(#mg)" opacity="0.85"/>
-    <circle cx="40" cy="40" r="5" fill="#92400e" opacity="0.4"/>
-    <circle cx="40" cy="40" r="2" fill="#78350f" opacity="0.7"/>
-  </svg>`,
-  jewellery: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="jg" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#fbbf24"/><stop offset="100%" style="stop-color:#f59e0b"/></linearGradient></defs>
-    <circle cx="40" cy="40" r="18" fill="url(#jg)" opacity="0.3"/>
-    <polygon points="40,15 43,37 65,37 48,50 55,70 40,58 25,70 32,50 15,37 37,37" fill="url(#jg)" opacity="0.85"/>
-    <circle cx="40" cy="38" r="6" fill="#fff" opacity="0.5"/>
-    <circle cx="40" cy="38" r="3" fill="#fbbf24"/>
-  </svg>`,
-  lehenga: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#f43f5e"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs>
-    <path d="M28 20 L52 20 L60 70 L20 70Z" fill="url(#lg)" opacity="0.75"/>
-    <path d="M25 28 L55 28 L58 40 L22 40Z" fill="#fff" opacity="0.2"/>
-    <ellipse cx="35" cy="50" rx="4" ry="4" fill="#fbbf24" opacity="0.6"/>
-    <ellipse cx="48" cy="55" rx="3" ry="3" fill="#fbbf24" opacity="0.5"/>
-    <rect x="28" y="12" width="24" height="12" rx="4" fill="url(#lg)" opacity="0.9"/>
-  </svg>`,
-  pottery: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="pg" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#c2410c"/><stop offset="100%" style="stop-color:#ea580c"/></linearGradient></defs>
-    <path d="M30 18 Q28 12 32 10 L48 10 Q52 12 50 18 Q58 22 60 35 Q62 50 55 60 L25 60 Q18 50 20 35 Q22 22 30 18Z" fill="url(#pg)" opacity="0.8"/>
-    <ellipse cx="40" cy="60" rx="15" ry="4" fill="#92400e" opacity="0.4"/>
-    <path d="M32 30 Q40 27 48 30" stroke="#fff" stroke-width="2" fill="none" opacity="0.4"/>
-    <path d="M30 40 Q40 37 50 40" stroke="#fff" stroke-width="2" fill="none" opacity="0.3"/>
-  </svg>`,
-  food: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="40" cy="42" r="24" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-    <circle cx="40" cy="42" r="18" fill="#fde68a" opacity="0.7"/>
-    <circle cx="33" cy="37" r="5" fill="#ef4444" opacity="0.8"/>
-    <circle cx="47" cy="35" r="4" fill="#22c55e" opacity="0.7"/>
-    <circle cx="40" cy="50" r="4" fill="#f97316" opacity="0.8"/>
-    <rect x="38" y="14" width="4" height="10" rx="2" fill="#78350f"/>
-    <path d="M35 16 Q40 12 45 16" stroke="#78350f" stroke-width="2" fill="none"/>
-  </svg>`,
-  flower: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="40" cy="22" rx="8" ry="14" fill="#fb7185" opacity="0.8"/>
-    <ellipse cx="40" cy="58" rx="8" ry="14" fill="#fb7185" opacity="0.8"/>
-    <ellipse cx="22" cy="40" rx="14" ry="8" fill="#fb7185" opacity="0.8"/>
-    <ellipse cx="58" cy="40" rx="14" ry="8" fill="#fb7185" opacity="0.8"/>
-    <ellipse cx="27" cy="27" rx="8" ry="14" fill="#f9a8d4" opacity="0.7" transform="rotate(45,27,27)"/>
-    <ellipse cx="53" cy="53" rx="8" ry="14" fill="#f9a8d4" opacity="0.7" transform="rotate(45,53,53)"/>
-    <ellipse cx="53" cy="27" rx="8" ry="14" fill="#f9a8d4" opacity="0.7" transform="rotate(-45,53,27)"/>
-    <ellipse cx="27" cy="53" rx="8" ry="14" fill="#f9a8d4" opacity="0.7" transform="rotate(-45,27,53)"/>
-    <circle cx="40" cy="40" r="10" fill="#fbbf24"/>
-    <circle cx="40" cy="40" r="5" fill="#f59e0b"/>
-  </svg>`,
-  makeup: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <rect x="32" y="10" width="16" height="30" rx="8" fill="#e879f9" opacity="0.8"/>
-    <rect x="34" y="38" width="12" height="4" rx="2" fill="#a855f7"/>
-    <rect x="30" y="42" width="20" height="24" rx="4" fill="#d8b4fe" opacity="0.9"/>
-    <ellipse cx="40" cy="46" rx="6" ry="3" fill="#c084fc" opacity="0.6"/>
-    <circle cx="56" cy="28" r="8" fill="#fda4af" opacity="0.85"/>
-    <path d="M53 26 Q56 23 59 26" stroke="#fff" stroke-width="1.5" fill="none"/>
-    <circle cx="56" cy="28" r="3" fill="#fb7185"/>
-  </svg>`,
-  kurta: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="kg" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" style="stop-color:#0ea5e9"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs>
-    <path d="M15 28 L28 18 L40 22 L52 18 L65 28 L60 38 L50 32 L50 72 L30 72 L30 32 L20 38Z" fill="url(#kg)" opacity="0.85"/>
-    <path d="M37 22 L43 22 L43 72 L37 72Z" fill="#fff" opacity="0.15"/>
-    <circle cx="40" cy="28" r="2" fill="#fff" opacity="0.7"/>
-    <circle cx="40" cy="36" r="2" fill="#fff" opacity="0.6"/>
-    <circle cx="40" cy="44" r="2" fill="#fff" opacity="0.5"/>
-  </svg>`,
-  art: `<svg viewBox="0 0 80 80" width="70" height="70" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="10" width="60" height="50" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
-    <rect x="10" y="10" width="30" height="50" rx="4" fill="#bfdbfe" opacity="0.6"/>
-    <circle cx="27" cy="32" r="10" fill="#fbbf24" opacity="0.7"/>
-    <path d="M40 60 L55 30 L70 60Z" fill="#f43f5e" opacity="0.6"/>
-    <rect x="8" y="58" width="64" height="14" rx="4" fill="#94a3b8" opacity="0.5"/>
-  </svg>`,
-};
-
-/* ═══════════════ MODAL BUTTONS ═══════════════ */
-function generateModalButtons(item, baseNum) {
-  // Generate 30 sub-type previews specific to the item
-  const subTypes = getSubTypes(item);
-  const buttons = [];
-  for (let i = 1; i <= 30; i++) {
-    const st = subTypes[(i - 1) % subTypes.length];
-    const url = `https://wondermayank.github.io/portfolio/${item.title.toLowerCase().replace(/\s+/g, '-')}/${i}`;
-    buttons.push({ num: i, label: st.label, type: st.type, url });
-  }
-  return buttons;
-}
-
+/* ════════ SUBTYPES ════════ */
 function getSubTypes(item) {
   const t = item.title.toLowerCase();
   const cat = (item.cat || '').toLowerCase();
@@ -856,19 +1146,12 @@ function getSubTypes(item) {
     {label:'Ikat Saree',type:'Tribal'},{label:'Bandhani Saree',type:'Rajasthani'},{label:'Phulkari Saree',type:'Punjabi'},
     {label:'Patola Saree',type:'Gujarat'},{label:'Tussar Silk',type:'Natural'},{label:'Embroidered Saree',type:'Zari Work'},
   ];
-  if (t.includes('mango') || cat === 'fruits') return [
-    {label:'Alphonso Mango',type:'Premium'},{label:'Kesar Mango',type:'Gujarat'},{label:'Dasheri Mango',type:'UP Special'},
-    {label:'Langra Mango',type:'Varanasi'},{label:'Himsagar Mango',type:'Bengal'},{label:'Totapuri Mango',type:'South India'},
-    {label:'Banganapalli',type:'Andhra'},{label:'Chaunsa Mango',type:'North India'},{label:'Neelam Mango',type:'Tamil Nadu'},
-    {label:'Sindhri Mango',type:'Sindh'},{label:'Raspuri Mango',type:'Karnataka'},{label:'Mallika Mango',type:'Hybrid'},
-    {label:'Amrapali Mango',type:'Dwarf Hybrid'},{label:'Rumani Mango',type:'Old Variety'},{label:'Safeda Mango',type:'Early Season'},
-  ];
-  if (t.includes('apple') || t.includes('fruit')) return [
-    {label:'Red Delicious',type:'Sweet'},{label:'Granny Smith',type:'Tart'},{label:'Fuji Apple',type:'Japan'},
-    {label:'Gala Apple',type:'Mild'},{label:'Honeycrisp',type:'Crispy'},{label:'Braeburn',type:'Aromatic'},
-    {label:'Pink Lady',type:'Bi-colour'},{label:'Golden Delicious',type:'Yellow'},{label:'Jonagold',type:'Hybrid'},
-    {label:'McIntosh',type:'Classic'},{label:'Cortland',type:'Baking'},{label:'Empire Apple',type:'All-purpose'},
-    {label:'Macoun Apple',type:'Wine flavour'},{label:'Cameo Apple',type:'Striped'},{label:'Cripps Pink',type:'Firm'},
+  if (cat === 'fruits' || t.includes('mango') || t.includes('apple') || t.includes('fruit') || t.includes('berry') || t.includes('citrus') || t.includes('grape') || t.includes('tropical')) return [
+    {label:'Premium Variety',type:'Grade A'},{label:'Organic Batch',type:'Chemical-free'},{label:'Fresh Harvest',type:'Seasonal'},
+    {label:'Sweet Variety',type:'Classic'},{label:'Export Quality',type:'Premium'},{label:'Local Farm',type:'Desi'},
+    {label:'Seedless Variety',type:'Convenient'},{label:'Jumbo Size',type:'Large'},{label:'Mini Variety',type:'Small'},
+    {label:'Dried Fruit',type:'Preserved'},{label:'Juice Variety',type:'Juicy'},{label:'Colour Pack',type:'Mixed'},
+    {label:'Seasonal Special',type:'Limited'},{label:'Gift Box',type:'Premium Pack'},{label:'Farm Fresh',type:'Direct'},
   ];
   if (t.includes('jewellery') || cat === 'jewellery') return [
     {label:'Necklace Set',type:'Gold'},{label:'Earrings',type:'Diamond'},{label:'Bangles',type:'Kundan'},
@@ -926,59 +1209,134 @@ function getSubTypes(item) {
     {label:'Dokra Metal Art',type:'Tribal'},{label:'Stone Carving',type:'Marble'},{label:'Leather Craft',type:'Handmade'},
     {label:'Kantha Embroidery',type:'Bengal'},{label:'Chikankari Work',type:'Lucknow'},{label:'Banjara Craft',type:'Telangana'},
   ];
-  if (t.includes('ethnic') || t.includes('kurta') || cat === 'ethnic') return [
+  if (t.includes('ethnic') || t.includes('kurta') || t.includes('sherwani') || cat === 'ethnic') return [
     {label:'Kurta Pyjama',type:'Casual'},{label:'Sherwani',type:'Wedding'},{label:'Bandhgala Suit',type:'Formal'},
     {label:'Pathani Suit',type:'Afghan Style'},{label:'Nehru Jacket',type:'Classic'},{label:'Angrakha',type:'Traditional'},
     {label:'Silk Kurta',type:'Festive'},{label:'Linen Kurta',type:'Summer'},{label:'Embroidered Kurta',type:'Party'},
     {label:'Dhoti Kurta',type:'Puja Wear'},{label:'Jodhpuri Suit',type:'Royal'},{label:'Achkan',type:'Bridal Groom'},
     {label:'Salwar Kameez',type:'Women'},{label:'Anarkali Suit',type:'Mughal'},{label:'Palazzo Kurta',type:'Fusion'},
   ];
-  // Default generic sub-types
+  // Generic
   return [
-    {label:`${item.title} Type A`,type:'Classic'},{label:`${item.title} Type B`,type:'Modern'},{label:`${item.title} Type C`,type:'Premium'},
-    {label:`${item.title} Type D`,type:'Budget'},{label:`${item.title} Type E`,type:'Trending'},{label:`${item.title} Type F`,type:'Exclusive'},
-    {label:`${item.title} Type G`,type:'Custom'},{label:`${item.title} Type H`,type:'Luxury'},{label:`${item.title} Type I`,type:'Minimal'},
-    {label:`${item.title} Type J`,type:'Vibrant'},{label:`${item.title} Type K`,type:'Seasonal'},{label:`${item.title} Type L`,type:'Artisan'},
-    {label:`${item.title} Type M`,type:'Handmade'},{label:`${item.title} Type N`,type:'Imported'},{label:`${item.title} Type O`,type:'Local'},
+    {label:`${item.title} – Classic`,type:'Standard'},{label:`${item.title} – Modern`,type:'Contemporary'},
+    {label:`${item.title} – Premium`,type:'Luxury'},{label:`${item.title} – Minimal`,type:'Clean'},
+    {label:`${item.title} – Bold`,type:'Statement'},{label:`${item.title} – Pastel`,type:'Soft'},
+    {label:`${item.title} – Dark`,type:'Moody'},{label:`${item.title} – Vibrant`,type:'Colourful'},
+    {label:`${item.title} – Artisan`,type:'Handcrafted'},{label:`${item.title} – Seasonal`,type:'Limited'},
+    {label:`${item.title} – Signature`,type:'Exclusive'},{label:`${item.title} – Custom`,type:'Bespoke'},
+    {label:`${item.title} – Trendy`,type:'2025 Pick'},{label:`${item.title} – Heritage`,type:'Traditional'},
+    {label:`${item.title} – Fusion`,type:'Indo-Western'},
   ];
 }
 
-/* ═══════════════ RENDER CARDS ═══════════════ */
+/* ════════ MODAL ════════ */
+function openModal(item, type = 'subtypes') {
+  const overlay = document.getElementById('modalOverlay');
+  document.getElementById('modalIcon').textContent = item.icon || '🌐';
+  document.getElementById('modalTitle').textContent = item.title;
+  document.getElementById('modalSubtitle').textContent = item.sub || item.desc || '';
+
+  const content = document.getElementById('modalContent');
+  content.innerHTML = '';
+
+  if (type === 'idea') {
+    document.getElementById('modalSecLabel').textContent = 'Future Concept';
+    content.innerHTML = `
+      <div class="idea-modal-content">
+        <span class="idea-modal-icon">${item.icon}</span>
+        <div class="idea-modal-badge">${item.badge}</div>
+        <div class="idea-modal-title">${item.title}</div>
+        <div class="idea-modal-desc">${item.desc}</div>
+        <a class="idea-modal-cta" href="https://wondermayank.github.io" target="_blank">Visit Wondermayank ↗</a>
+      </div>`;
+  } else {
+    document.getElementById('modalSecLabel').textContent = 'Choose from 30 types below';
+    const subTypes = getSubTypes(item);
+    const grid = document.createElement('div');
+    grid.className = 'modal-grid';
+    for (let i = 1; i <= 30; i++) {
+      const st = subTypes[(i - 1) % subTypes.length];
+      const url = `https://wondermayank.github.io/portfolio/${item.title.toLowerCase().replace(/\s+/g, '-')}/${i}`;
+      const card = document.createElement('a');
+      card.className = 'modal-card';
+      card.href = url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.innerHTML = `
+        <span class="modal-card-num">#${String(i).padStart(2,'0')}</span>
+        <span class="modal-card-label">${st.label}</span>
+        <span class="modal-card-type">${st.type}</span>`;
+      grid.appendChild(card);
+    }
+    content.appendChild(grid);
+  }
+
+  // Lock body scroll
+  document.body.style.overflow = 'hidden';
+  overlay.classList.add('open');
+}
+
+function closeModal(e, force = false) {
+  if (!force && e && e.target !== document.getElementById('modalOverlay')) return;
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.remove('open');
+  overlay.classList.add('closing');
+  setTimeout(() => {
+    overlay.classList.remove('closing');
+    document.body.style.overflow = '';
+  }, 350);
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal(null, true);
+});
+
+/* ════════ RENDER IDEAS ════════ */
+function renderIdeas() {
+  const grid = document.getElementById('ideasGrid');
+  futureIdeas.forEach(idea => {
+    const card = document.createElement('div');
+    card.className = 'idea-card';
+    card.onclick = () => openModal({
+      icon: idea.icon,
+      title: idea.title,
+      sub: idea.badge,
+      desc: idea.desc,
+      badge: idea.badge
+    }, 'idea');
+    card.innerHTML = `
+      <div class="idea-icon">${idea.icon}</div>
+      <div class="idea-title">${idea.title}</div>
+      <div class="idea-desc">${idea.desc}</div>
+      <span class="idea-badge">${idea.badge}</span>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ════════ RENDER CARDS ════════ */
 function renderCards(containerId, data) {
   const grid = document.getElementById(containerId);
   const saved = JSON.parse(localStorage.getItem('wm_loved') || '[]');
-
-  data.forEach((item, idx) => {
+  data.forEach((item) => {
     const card = document.createElement('div');
     card.className = 'showcase-card';
-    card.style.position = 'relative';
-    // Click card body → open subtypes page in new tab
     card.onclick = (e) => {
       if (e.target.closest('.love-btn')) return;
-      openSubtypesTab(item, idx + 1);
+      openModal(item, 'subtypes');
     };
 
     const imgZone = document.createElement('div');
     imgZone.className = `card-img-zone ${item.bg}`;
     imgZone.style.position = 'relative';
+    imgZone.textContent = item.icon;
 
-    if (item.img && svgIcons[item.img]) {
-      imgZone.innerHTML = svgIcons[item.img];
-    } else {
-      imgZone.textContent = item.icon;
-    }
-
-    // Love button
-    const key = item.title;
-    const isLoved = saved.includes(key);
     const loveBtn = document.createElement('button');
+    const isLoved = saved.includes(item.title);
     loveBtn.className = 'love-btn' + (isLoved ? ' loved' : '');
     loveBtn.title = isLoved ? 'Remove from saved' : 'Save to favourites';
     loveBtn.textContent = isLoved ? '❤️' : '🤍';
-    loveBtn.onclick = (e) => {
-      e.stopPropagation();
-      toggleLove(item, loveBtn);
-    };
+    loveBtn.onclick = (e) => { e.stopPropagation(); toggleLove(item, loveBtn); };
     imgZone.appendChild(loveBtn);
 
     const body = document.createElement('div');
@@ -998,125 +1356,9 @@ function renderCards(containerId, data) {
   });
 }
 
-/* ═══════════════ RENDER IDEAS ═══════════════ */
-function openIdeaTab(idea) {
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>${idea.title} — Future Vision</title>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#ddeeff 0%,#f0f7ff 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;}
-  .back-btn{position:fixed;top:1.5rem;left:1.5rem;display:inline-flex;align-items:center;gap:0.5rem;background:rgba(37,99,176,0.1);border:1.5px solid rgba(37,99,176,0.2);border-radius:50px;padding:0.5rem 1.2rem;color:#2563b0;font-weight:600;font-size:0.85rem;cursor:pointer;text-decoration:none;transition:background 0.2s;}
-  .back-btn:hover{background:rgba(37,99,176,0.18);}
-  .card{background:rgba(255,255,255,0.88);border:1.5px solid rgba(255,255,255,0.7);border-radius:32px;padding:3.5rem 3rem;max-width:520px;text-align:center;box-shadow:0 24px 64px rgba(37,99,176,0.15);backdrop-filter:blur(24px);}
-  .icon{font-size:5rem;display:block;margin-bottom:1.5rem;}
-  .badge{display:inline-block;background:rgba(59,130,246,0.13);color:#2563b0;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:1.2rem;}
-  .title{font-family:'Rubik',sans-serif;font-weight:900;font-size:2.2rem;color:#1a3a6b;letter-spacing:-0.5px;margin-bottom:1rem;}
-  .desc{color:#2d4a7a;font-size:1.1rem;line-height:1.7;margin-bottom:2rem;}
-  .cta{display:inline-flex;align-items:center;gap:0.6rem;background:linear-gradient(135deg,#2563b0,#5b9bd5);color:#fff;font-family:'Rubik',sans-serif;font-weight:700;font-size:1rem;padding:0.9rem 2rem;border-radius:50px;text-decoration:none;transition:transform 0.18s,box-shadow 0.18s;box-shadow:0 8px 24px rgba(37,99,176,0.3);}
-  .cta:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(37,99,176,0.4);}
-  footer{margin-top:3rem;color:#2d4a7a;font-size:0.85rem;}
-  footer a{color:#2563b0;}
-</style>
-</head>
-<body>
-  <a class="back-btn" onclick="window.close()">← Back</a>
-  <div class="card">
-    <span class="icon">${idea.icon}</span>
-    <div class="badge">${idea.badge}</div>
-    <div class="title">${idea.title}</div>
-    <div class="desc">${idea.desc}</div>
-    <a class="cta" href="https://wondermayank.github.io" target="_blank">Visit Wondermayank ↗</a>
-  </div>
-  <footer style="margin-top:2rem">Made with 💕 by <a href="https://wondermayank.github.io" target="_blank">Wondermayank</a></footer>
-</body>
-</html>`;
-  const blob = new Blob([html], { type: 'text/html' });
-  window.open(URL.createObjectURL(blob), '_blank');
-}
-
-function renderIdeas() {
-  const grid = document.getElementById('ideasGrid');
-  futureIdeas.forEach(idea => {
-    const card = document.createElement('div');
-    card.className = 'idea-card';
-    card.onclick = () => openIdeaTab(idea);
-    card.innerHTML = `
-      <div class="idea-icon">${idea.icon}</div>
-      <div class="idea-title">${idea.title}</div>
-      <div class="idea-desc">${idea.desc}</div>
-      <span class="idea-badge">${idea.badge}</span>`;
-    grid.appendChild(card);
-  });
-}
-
-/* ═══════════════ OPEN SUBTYPES IN NEW TAB ═══════════════ */
-function openSubtypesTab(item, baseNum) {
-  const subTypes = getSubTypes(item);
-  const icon = item.icon || '🖼️';
-  const rows = [];
-  for (let i = 1; i <= 30; i++) {
-    const st = subTypes[(i - 1) % subTypes.length];
-    const url = `https://wondermayank.github.io/portfolio/${item.title.toLowerCase().replace(/\s+/g, '-')}/${i}`;
-    rows.push(`
-      <a class="sub-card" href="${url}" target="_blank" rel="noopener">
-        <span class="sub-num">#${String(i).padStart(2,'0')}</span>
-        <span class="sub-label">${st.label}</span>
-        <span class="sub-type">${st.type}</span>
-        <span class="sub-arrow">→</span>
-      </a>`);
-  }
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>${item.title} — 30 Types</title>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#e8f2fc 0%,#ddeeff 100%);min-height:100vh;padding:2rem 1rem;}
-  .back-btn{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(37,99,176,0.1);border:1.5px solid rgba(37,99,176,0.2);border-radius:50px;padding:0.5rem 1.2rem;color:#2563b0;font-weight:600;font-size:0.85rem;cursor:pointer;text-decoration:none;margin-bottom:2rem;transition:background 0.2s;}
-  .back-btn:hover{background:rgba(37,99,176,0.18);}
-  .page-header{text-align:center;margin-bottom:2.5rem;}
-  .page-icon{font-size:3.5rem;display:block;margin-bottom:0.5rem;}
-  .page-title{font-family:'Rubik',sans-serif;font-weight:900;font-size:clamp(1.8rem,5vw,3rem);color:#1a3a6b;letter-spacing:-1px;}
-  .page-sub{color:#2d4a7a;margin-top:0.4rem;font-size:1rem;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;max-width:1100px;margin:0 auto;}
-  .sub-card{background:rgba(255,255,255,0.85);border:1.5px solid rgba(37,99,176,0.15);border-radius:16px;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:0.2rem;text-decoration:none;cursor:pointer;transition:transform 0.18s,box-shadow 0.18s;position:relative;backdrop-filter:blur(12px);}
-  .sub-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(37,99,176,0.18);border-color:rgba(37,99,176,0.35);}
-  .sub-num{font-size:0.65rem;font-weight:700;color:#5b9bd5;letter-spacing:0.1em;}
-  .sub-label{font-family:'Rubik',sans-serif;font-weight:700;font-size:1rem;color:#1a3a6b;}
-  .sub-type{font-size:0.78rem;color:#2d4a7a;}
-  .sub-arrow{position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:1.1rem;color:#5b9bd5;opacity:0.5;}
-  .sub-card:hover .sub-arrow{opacity:1;transform:translateY(-50%) translateX(3px);}
-  footer{text-align:center;margin-top:3rem;color:#2d4a7a;font-size:0.85rem;}
-</style>
-</head>
-<body>
-  <a class="back-btn" onclick="window.close()">← Back</a>
-  <div class="page-header">
-    <span class="page-icon">${icon}</span>
-    <div class="page-title">${item.title}</div>
-    <div class="page-sub">${item.sub} — Choose one of 30 types below</div>
-  </div>
-  <div class="grid">${rows.join('')}</div>
-  <footer>Made with 💕 by <a href="https://wondermayank.github.io" target="_blank" style="color:#2563b0">Wondermayank</a></footer>
-</body>
-</html>`;
-  const blob = new Blob([html], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  window.open(url, '_blank');
-}
-
-/* ═══════════════ LOVE / SAVE ═══════════════ */
+/* ════════ LOVE / SAVE ════════ */
 function toggleLove(item, btn) {
   let saved = JSON.parse(localStorage.getItem('wm_loved') || '[]');
-  const allData = [...websiteData, ...portfolioData, ...showcaseData];
   if (saved.includes(item.title)) {
     saved = saved.filter(k => k !== item.title);
     btn.textContent = '🤍';
@@ -1127,7 +1369,6 @@ function toggleLove(item, btn) {
     btn.textContent = '❤️';
     btn.classList.add('loved');
     btn.title = 'Remove from saved';
-    // Animate
     btn.style.transform = 'scale(1.4)';
     setTimeout(() => btn.style.transform = '', 300);
   }
@@ -1142,27 +1383,16 @@ function renderSaved() {
   const sec = document.getElementById('saved');
   const grid = document.getElementById('savedGrid');
   grid.innerHTML = '';
-  if (savedItems.length === 0) {
-    sec.classList.remove('has-items');
-    return;
-  }
+  if (savedItems.length === 0) { sec.classList.remove('has-items'); return; }
   sec.classList.add('has-items');
-  savedItems.forEach((item, idx) => {
+  savedItems.forEach((item) => {
     const card = document.createElement('div');
     card.className = 'showcase-card';
-    card.style.position = 'relative';
-    card.onclick = (e) => {
-      if (e.target.closest('.love-btn')) return;
-      openSubtypesTab(item, idx + 1);
-    };
+    card.onclick = (e) => { if (e.target.closest('.love-btn')) return; openModal(item, 'subtypes'); };
     const imgZone = document.createElement('div');
     imgZone.className = `card-img-zone ${item.bg}`;
     imgZone.style.position = 'relative';
-    if (item.img && svgIcons[item.img]) {
-      imgZone.innerHTML = svgIcons[item.img];
-    } else {
-      imgZone.textContent = item.icon;
-    }
+    imgZone.textContent = item.icon;
     const loveBtn = document.createElement('button');
     loveBtn.className = 'love-btn loved';
     loveBtn.title = 'Remove from saved';
@@ -1171,20 +1401,15 @@ function renderSaved() {
     imgZone.appendChild(loveBtn);
     const body = document.createElement('div');
     body.className = 'card-body';
-    body.innerHTML = `
-      <div class="card-title">${item.title}</div>
-      <div class="card-sub">${item.sub}</div>
-      <div class="card-btn">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-        Explore 30 types <span class="preview-count">30</span>
-      </div>`;
+    body.innerHTML = `<div class="card-title">${item.title}</div><div class="card-sub">${item.sub}</div>
+      <div class="card-btn"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Explore 30 types<span class="preview-count">30</span></div>`;
     card.appendChild(imgZone);
     card.appendChild(body);
     grid.appendChild(card);
   });
 }
 
-/* ═══════════════ FILTER BARS ═══════════════ */
+/* ════════ FILTER BARS ════════ */
 function renderFilterBar(containerId, data, gridId) {
   const container = document.getElementById(containerId);
   const cats = ['All', ...new Set(data.map(d => d.cat).filter(Boolean))];
@@ -1205,7 +1430,7 @@ function renderFilterBar(containerId, data, gridId) {
   });
 }
 
-/* ═══════════════ INIT ═══════════════ */
+/* ════════ INIT ════════ */
 renderIdeas();
 renderCards('websitesGrid', websiteData);
 renderCards('portfoliosGrid', portfolioData);
