@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varanasi Heirlooms — Banarasi Bridal Silk</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C8963E;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5EDD6;
+    --crimson: #8B1A2A;
+    --crimson-deep: #5C0F1A;
+    --ivory: #FAF6EF;
+    --cream: #F0E9D8;
+    --charcoal: #1A1209;
+    --warm-gray: #7A6A54;
+    --border: rgba(200, 150, 62, 0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', serif;
+    background: var(--ivory);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(250, 246, 239, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; letter-spacing: 0.15em;
+    color: var(--crimson); text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; letter-spacing: 0.08em;
+    text-decoration: none; color: var(--warm-gray);
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cart {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; letter-spacing: 0.06em;
+    color: var(--crimson); cursor: pointer;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--crimson);
+    border-radius: 2px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .nav-cart:hover { background: var(--crimson); color: var(--ivory); }
+  .cart-badge {
+    position: absolute; top: -8px; right: -8px;
+    background: var(--gold); color: var(--charcoal);
+    font-size: 0.7rem; font-weight: 600;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── HERO SHOWCASE ── */
+  .hero {
+    padding-top: 80px;
+    position: relative;
+    background: linear-gradient(160deg, var(--crimson-deep) 0%, #3A0510 40%, #1A0A0A 100%);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, rgba(200,150,62,0.04) 0, rgba(200,150,62,0.04) 1px, transparent 1px, transparent 12px),
+      repeating-linear-gradient(-45deg, rgba(200,150,62,0.04) 0, rgba(200,150,62,0.04) 1px, transparent 1px, transparent 12px);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    margin-top: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold-light);
+    opacity: 0.8;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    color: var(--ivory); text-align: center;
+    line-height: 1.15; margin: 0.8rem 0 0.5rem;
+    font-weight: 400;
+  }
+  .hero-title em { color: var(--gold-light); font-style: italic; }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic;
+    color: rgba(245,237,214,0.7); letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+  }
+
+  /* Carousel */
+  .carousel-wrap {
+    width: 100%; max-width: 1200px;
+    padding: 0 2rem; position: relative;
+  }
+  .carousel {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; padding-bottom: 1rem;
+    scroll-behavior: smooth;
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+
+  .saree-card {
+    flex: 0 0 320px; scroll-snap-align: start;
+    border-radius: 4px; overflow: hidden;
+    position: relative; cursor: pointer;
+    transition: transform 0.4s cubic-bezier(.25,.8,.25,1);
+    border: 1px solid rgba(200,150,62,0.2);
+  }
+  .saree-card:hover { transform: translateY(-6px); }
+  .saree-card.active { border-color: var(--gold); }
+
+  .saree-card img {
+    width: 100%; height: 420px;
+    object-fit: cover; display: block;
+    transition: transform 0.6s ease;
+  }
+  .saree-card:hover img { transform: scale(1.04); }
+
+  .saree-card-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(26,8,9,0.95) 0%, transparent 100%);
+    padding: 2rem 1.2rem 1.2rem;
+  }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--ivory);
+    font-weight: 400; margin-bottom: 0.2rem;
+  }
+  .card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+  .card-badge {
+    display: inline-block; margin-bottom: 0.5rem;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 3px 10px; border: 1px solid var(--gold);
+    color: var(--gold-light); border-radius: 1px;
+  }
+
+  /* Carousel controls */
+  .carousel-nav {
+    display: flex; justify-content: center; gap: 0.6rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(200,150,62,0.3); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active { background: var(--gold); width: 24px; border-radius: 3px; }
+
+  /* ── PURCHASE SECTION ── */
+  .purchase-section {
+    padding: 6rem 2rem;
+    background: var(--ivory);
+    position: relative;
+  }
+  .section-header {
+    text-align: center; margin-bottom: 4rem;
+  }
+  .section-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    display: block; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--crimson-deep); font-weight: 400;
+    line-height: 1.2;
+  }
+  .section-divider {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.2rem auto 0;
+  }
+
+  .purchase-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+
+  .product-display {
+    position: relative;
+  }
+  .product-main-img {
+    width: 100%; border-radius: 2px;
+    aspect-ratio: 3/4; object-fit: cover;
+    border: 1px solid var(--border);
+  }
+  .product-thumbs {
+    display: flex; gap: 0.8rem; margin-top: 1rem;
+  }
+  .thumb {
+    width: 70px; height: 70px; object-fit: cover;
+    border-radius: 2px; cursor: pointer;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+    opacity: 0.7;
+  }
+  .thumb:hover, .thumb.active { border-color: var(--gold); opacity: 1; }
+
+  .product-info { padding-top: 0.5rem; }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; color: var(--crimson-deep);
+    font-weight: 400; line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .product-sku {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; color: var(--warm-gray);
+    letter-spacing: 0.1em; margin-bottom: 1.2rem;
+  }
+  .product-rating {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .rating-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; color: var(--warm-gray);
+  }
+  .product-price-block { margin-bottom: 2rem; }
+  .price-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--crimson);
+  }
+  .price-original {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--warm-gray);
+    text-decoration: line-through; margin-left: 0.8rem;
+  }
+  .price-save {
+    display: inline-block; margin-left: 0.8rem;
+    font-size: 0.75rem; padding: 3px 10px;
+    background: var(--gold-pale); color: var(--crimson-deep);
+    border-radius: 2px; letter-spacing: 0.05em;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .option-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--warm-gray);
+    margin-bottom: 0.6rem; display: block;
+  }
+  .color-options { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .color-swatch {
+    width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; transition: all 0.2s;
+    position: relative;
+  }
+  .color-swatch.active { border-color: var(--gold); transform: scale(1.1); }
+  .color-swatch:hover { transform: scale(1.08); }
+
+  .qty-selector {
+    display: flex; align-items: center;
+    border: 1px solid var(--border); border-radius: 2px;
+    width: fit-content; margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  .qty-btn {
+    width: 40px; height: 40px; background: none;
+    border: none; cursor: pointer; font-size: 1.2rem;
+    color: var(--warm-gray); transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qty-btn:hover { background: var(--cream); }
+  .qty-input {
+    width: 50px; height: 40px; border: none;
+    background: none; text-align: center;
+    font-family: 'EB Garamond', serif; font-size: 1rem;
+    color: var(--charcoal); border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .btn-primary {
+    display: block; width: 100%;
+    padding: 1rem; text-align: center;
+    background: var(--crimson-deep); color: var(--ivory);
+    border: none; border-radius: 2px; cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--crimson); }
+
+  .btn-secondary {
+    display: block; width: 100%;
+    padding: 1rem; text-align: center;
+    background: transparent; color: var(--gold);
+    border: 1px solid var(--gold); border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { background: var(--gold-pale); }
+
+  .trust-badges {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem; color: var(--warm-gray);
+  }
+  .trust-icon { font-size: 1rem; }
+
+  .product-details { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .detail-row {
+    display: flex; gap: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(200,150,62,0.1);
+  }
+  .detail-key { color: var(--warm-gray); min-width: 110px; }
+  .detail-val { color: var(--charcoal); }
+
+  /* ── CART DRAWER ── */
+  .cart-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(26,8,9,0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-drawer {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: 420px; background: var(--ivory);
+    z-index: 300; transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(.25,.8,.25,1);
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-head {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 400; color: var(--crimson-deep);
+  }
+  .close-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.4rem; color: var(--warm-gray); line-height: 1;
+    transition: color 0.2s;
+  }
+  .close-btn:hover { color: var(--crimson); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .empty-cart {
+    text-align: center; padding: 3rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: var(--warm-gray); font-style: italic;
+  }
+  .cart-item {
+    display: flex; gap: 1rem; padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(200,150,62,0.15);
+  }
+  .cart-item img { width: 75px; height: 95px; object-fit: cover; border-radius: 2px; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; color: var(--crimson-deep); margin-bottom: 0.3rem;
+  }
+  .cart-item-color {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem; color: var(--warm-gray); margin-bottom: 0.5rem;
+  }
+  .cart-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: var(--gold);
+  }
+  .remove-item {
+    background: none; border: none; cursor: pointer;
+    color: var(--warm-gray); font-size: 0.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0; transition: color 0.2s;
+  }
+  .remove-item:hover { color: var(--crimson); }
+  .cart-footer {
+    padding: 1.5rem 2rem; border-top: 1px solid var(--border);
+  }
+  .cart-total {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .cart-total-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+  .cart-total-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--crimson-deep);
+  }
+
+  /* ── NOTIFICATION ── */
+  .notification {
+    position: fixed; top: 90px; right: 2rem; z-index: 500;
+    background: var(--crimson-deep); color: var(--ivory);
+    padding: 1rem 1.5rem; border-radius: 2px;
+    font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;
+    border-left: 3px solid var(--gold);
+    transform: translateX(150%); transition: transform 0.4s cubic-bezier(.25,.8,.25,1);
+    max-width: 300px;
+  }
+  .notification.show { transform: translateX(0); }
+
+  /* ── HOW TO WEAR SECTION ── */
+  .how-section {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+    padding: 6rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .steps-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .step-card {
+    background: var(--ivory); border: 1px solid var(--border);
+    border-radius: 2px; padding: 2rem 1.5rem;
+    text-align: center; position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .step-card:hover { transform: translateY(-4px); }
+  .step-number {
+    width: 50px; height: 50px; border-radius: 50%;
+    border: 1px solid var(--gold); display: flex;
+    align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold);
+  }
+  .step-img {
+    width: 100%; height: 180px; object-fit: cover;
+    border-radius: 2px; margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--crimson-deep);
+    margin-bottom: 0.6rem; font-weight: 400;
+  }
+  .step-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem; color: var(--warm-gray);
+    line-height: 1.6; font-style: italic;
+  }
+
+  .video-wrap {
+    max-width: 750px; margin: 4rem auto 0;
+    text-align: center;
+  }
+  .video-thumb {
+    width: 100%; border-radius: 4px;
+    border: 1px solid var(--border); position: relative;
+    cursor: pointer; overflow: hidden; display: block;
+  }
+  .video-thumb img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+  .play-btn {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(26,8,9,0.4);
+    transition: background 0.3s;
+  }
+  .video-thumb:hover .play-btn { background: rgba(26,8,9,0.6); }
+  .play-circle {
+    width: 70px; height: 70px; border-radius: 50%;
+    border: 2px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-triangle {
+    width: 0; height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid var(--gold-light);
+    margin-left: 4px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--crimson-deep);
+    color: rgba(245,237,214,0.7);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(200,150,62,0.3);
+  }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--gold-light);
+    letter-spacing: 0.1em; margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; letter-spacing: 0.05em;
+  }
+
+  /* animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label { animation: fadeUp 0.8s ease both; }
+  .hero-title { animation: fadeUp 0.8s 0.15s ease both; }
+  .hero-sub { animation: fadeUp 0.8s 0.3s ease both; }
+  .carousel-wrap { animation: fadeUp 0.8s 0.45s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Varanasi <span>Heirlooms</span></div>
+  <ul class="nav-links">
+    <li><a href="#showcase">Collection</a></li>
+    <li><a href="#purchase">Shop</a></li>
+    <li><a href="#how-to-wear">Draping Guide</a></li>
+  </ul>
+  <div class="nav-cart" onclick="toggleCart()">
+    🛍 View Cart
+    <span class="cart-badge" id="cartBadge">0</span>
+  </div>
+</nav>
+
+<!-- HERO SHOWCASE -->
+<section class="hero" id="showcase">
+  <span class="hero-label">The 2025 Bridal Collection</span>
+  <h1 class="hero-title">Pure <em>Banarasi</em> Bridal Silk</h1>
+  <p class="hero-sub">Handwoven in Varanasi · Pure Katan Silk · Real Zari</p>
+
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel">
+
+      <div class="saree-card active" onclick="selectSaree(0, this)">
+        <img src="https://i.pinimg.com/736x/74/88/a6/7488a6bb8f28664276f6a0e5ead5f5ba.jpg" alt="Crimson Royal Bridal Saree">
+        <div class="saree-card-overlay">
+          <span class="card-badge">Bestseller</span>
+          <div class="card-name">Crimson Royal Katan</div>
+          <div class="card-price">₹68,000</div>
+        </div>
+      </div>
+
+      <div class="saree-card" onclick="selectSaree(1, this)">
+        <img src="https://i.pinimg.com/736x/53/75/a5/5375a5cc94d2b976f5298bbf21e96214.jpg" alt="Deep Maroon Brocade Saree">
+        <div class="saree-card-overlay">
+          <span class="card-badge">New Arrival</span>
+          <div class="card-name">Maroon Minakari Brocade</div>
+          <div class="card-price">₹74,500</div>
+        </div>
+      </div>
+
+      <div class="saree-card" onclick="selectSaree(2, this)">
+        <img src="https://i.pinimg.com/736x/7c/3a/aa/7c3aaa7865d1a6f3ef72cecd5ea3a398.jpg" alt="Golden Tissue Bridal Saree">
+        <div class="saree-card-overlay">
+          <span class="card-badge">Heritage Piece</span>
+          <div class="card-name">Gold Tissue Jangla</div>
+          <div class="card-price">₹92,000</div>
+        </div>
+      </div>
+
+      <div class="saree-card" onclick="selectSaree(3, this)">
+        <img src="https://i.pinimg.com/736x/7a/60/e6/7a60e66936664fdae83085a852433326.jpg" alt="Red Zari Bridal Saree">
+        <div class="saree-card-overlay">
+          <span class="card-badge">Exclusive</span>
+          <div class="card-name">Vermilion Kadwa Weave</div>
+          <div class="card-price">₹81,000</div>
+        </div>
+      </div>
+
+      <div class="saree-card" onclick="selectSaree(4, this)">
+        <img src="https://i.pinimg.com/736x/5e/7a/dc/5e7adcb4861c60ec8f1a3514b7bda223.jpg" alt="Royal Bridal Silk Saree">
+        <div class="saree-card-overlay">
+          <span class="card-badge">Limited Edition</span>
+          <div class="card-name">Royal Cutwork Silk</div>
+          <div class="card-price">₹1,05,000</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="carousel-nav" id="carouselNav">
+      <div class="dot active" onclick="scrollToCard(0)"></div>
+      <div class="dot" onclick="scrollToCard(1)"></div>
+      <div class="dot" onclick="scrollToCard(2)"></div>
+      <div class="dot" onclick="scrollToCard(3)"></div>
+      <div class="dot" onclick="scrollToCard(4)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PURCHASE SECTION -->
+<section class="purchase-section" id="purchase">
+  <div class="section-header">
+    <span class="section-eyebrow">Select & Acquire</span>
+    <h2 class="section-title">Adorn Yourself in Legend</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="purchase-grid">
+    <!-- Product Display -->
+    <div class="product-display">
+      <img class="product-main-img" id="mainImg"
+        src="https://i.pinimg.com/736x/74/88/a6/7488a6bb8f28664276f6a0e5ead5f5ba.jpg"
+        alt="Selected saree">
+      <div class="product-thumbs">
+        <img class="thumb active" src="https://i.pinimg.com/736x/74/88/a6/7488a6bb8f28664276f6a0e5ead5f5ba.jpg"
+          onclick="setThumb(this)" alt="thumb1">
+        <img class="thumb" src="https://i.pinimg.com/736x/53/75/a5/5375a5cc94d2b976f5298bbf21e96214.jpg"
+          onclick="setThumb(this)" alt="thumb2">
+        <img class="thumb" src="https://i.pinimg.com/736x/7c/3a/aa/7c3aaa7865d1a6f3ef72cecd5ea3a398.jpg"
+          onclick="setThumb(this)" alt="thumb3">
+        <img class="thumb" src="https://i.pinimg.com/736x/7a/60/e6/7a60e66936664fdae83085a852433326.jpg"
+          onclick="setThumb(this)" alt="thumb4">
+        <img class="thumb" src="https://i.pinimg.com/736x/5e/7a/dc/5e7adcb4861c60ec8f1a3514b7bda223.jpg"
+          onclick="setThumb(this)" alt="thumb5">
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <h2 class="product-name" id="productName">Crimson Royal Katan Saree</h2>
+      <p class="product-sku">SKU: VH-BRD-2025-001 · Pure Katan Silk</p>
+
+      <div class="product-rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text">4.9 (127 reviews)</span>
+      </div>
+
+      <div class="product-price-block">
+        <span class="price-main" id="productPrice">₹68,000</span>
+        <span class="price-original" id="productMRP">₹85,000</span>
+        <span class="price-save">Save 20%</span>
+      </div>
+
+      <label class="option-label">Choose Colour</label>
+      <div class="color-options">
+        <div class="color-swatch active" style="background:#8B1A2A;" title="Crimson" onclick="selectColor(this,'Crimson')"></div>
+        <div class="color-swatch" style="background:#4A1010;" title="Maroon" onclick="selectColor(this,'Maroon')"></div>
+        <div class="color-swatch" style="background:#C8963E;" title="Gold" onclick="selectColor(this,'Gold')"></div>
+        <div class="color-swatch" style="background:#6B2D6B;" title="Royal Purple" onclick="selectColor(this,'Royal Purple')"></div>
+        <div class="color-swatch" style="background:#1A3D6B;" title="Navy" onclick="selectColor(this,'Navy')"></div>
+      </div>
+
+      <label class="option-label">Quantity</label>
+      <div class="qty-selector">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <input class="qty-input" type="number" id="qty" value="1" min="1" max="5" readonly>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+
+      <button class="btn-primary" onclick="buyNow()">Buy Now — Secure Checkout</button>
+      <button class="btn-secondary" onclick="addToCart()">+ Add to Cart</button>
+
+      <div class="trust-badges">
+        <div class="trust-item"><span class="trust-icon">✦</span> Govt. Certified GI Tag</div>
+        <div class="trust-item"><span class="trust-icon">✦</span> Free Pan-India Delivery</div>
+        <div class="trust-item"><span class="trust-icon">✦</span> 7-Day Returns</div>
+        <div class="trust-item"><span class="trust-icon">✦</span> Certificate of Authenticity</div>
+      </div>
+
+      <div class="product-details">
+        <div class="detail-row"><span class="detail-key">Fabric</span><span class="detail-val">Pure Katan Silk</span></div>
+        <div class="detail-row"><span class="detail-key">Zari</span><span class="detail-val">Real Gold Zari (60% purity)</span></div>
+        <div class="detail-row"><span class="detail-key">Weave</span><span class="detail-val">Handloom, Varanasi</span></div>
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">6.3 metres + blouse piece</span></div>
+        <div class="detail-row"><span class="detail-key">Occasion</span><span class="detail-val">Bridal, Wedding ceremonies</span></div>
+        <div class="detail-row"><span class="detail-key">Care</span><span class="detail-val">Dry clean only</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO WEAR -->
+<section class="how-section" id="how-to-wear">
+  <div class="section-header">
+    <span class="section-eyebrow">The Art of Draping</span>
+    <h2 class="section-title">How to Wear Your Banarasi Saree</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="steps-grid">
+
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <img class="step-img" src="https://i.pinimg.com/736x/74/88/a6/7488a6bb8f28664276f6a0e5ead5f5ba.jpg" alt="Step 1">
+      <div class="step-title">Tuck the Petticoat</div>
+      <p class="step-desc">Begin by tucking the plain end of the saree into the petticoat waist, starting from your right side. Make one full wrap around.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <img class="step-img" src="https://i.pinimg.com/736x/53/75/a5/5375a5cc94d2b976f5298bbf21e96214.jpg" alt="Step 2">
+      <div class="step-title">Form the Pleats</div>
+      <p class="step-desc">Gather 5–7 neat pleats, each about 5 inches wide, folding them to the left. Pin them securely at the waist for an even fall.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <img class="step-img" src="https://i.pinimg.com/736x/7c/3a/aa/7c3aaa7865d1a6f3ef72cecd5ea3a398.jpg" alt="Step 3">
+      <div class="step-title">Drape the Pallu</div>
+      <p class="step-desc">Bring the remaining fabric across your front, over your left shoulder. Let the zari pallu cascade elegantly down your back.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <img class="step-img" src="https://i.pinimg.com/736x/7a/60/e6/7a60e66936664fdae83085a852433326.jpg" alt="Step 4">
+      <div class="step-title">Pin the Pallu</div>
+      <p class="step-desc">Secure the pallu to your blouse at the shoulder with a pin so the brocade motifs remain beautifully visible throughout the ceremony.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">5</div>
+      <img class="step-img" src="https://i.pinimg.com/736x/5e/7a/dc/5e7adcb4861c60ec8f1a3514b7bda223.jpg" alt="Step 5">
+      <div class="step-title">Final Flourish</div>
+      <p class="step-desc">Adjust the border so it falls evenly. Pair with temple jewellery, a silk blouse in contrasting zari, and your bridal joy.</p>
+    </div>
+
+  </div>
+
+  <div class="video-wrap">
+    <div class="video-thumb" onclick="alert('Video tutorial — coming soon! A certified draping expert will guide you through each step.')">
+      <img src="https://i.pinimg.com/736x/74/88/a6/7488a6bb8f28664276f6a0e5ead5f5ba.jpg" alt="Watch draping tutorial">
+      <div class="play-btn">
+        <div class="play-circle">
+          <div class="play-triangle"></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--warm-gray);margin-top:1rem;font-style:italic;">
+      Watch our master draper demonstrate the traditional Varanasi style · 12 minutes
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Varanasi Heirlooms</div>
+  <p>Pure Banarasi Silk · Handwoven with Love · Since 1947</p>
+  <p style="margin-top:0.5rem;font-size:0.78rem;opacity:0.5;">© 2025 Varanasi Heirlooms. All rights reserved.</p>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h2>Your Trousseau</h2>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="empty-cart" id="emptyCart">Your cart is as empty as a blank canvas — let's fill it with silk.</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-price" id="cartTotal">₹0</span>
+    </div>
+    <button class="btn-primary" onclick="alert('Redirecting to secure checkout…')">Proceed to Checkout</button>
+    <button class="btn-secondary" onclick="toggleCart()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification"></div>
+
+<script>
+  const products = [
+    { name: 'Crimson Royal Katan Saree', price: 68000, mrp: 85000, img: 'https://i.pinimg.com/736x/74/88/a6/7488a6bb8f28664276f6a0e5ead5f5ba.jpg', badge: 'Bestseller' },
+    { name: 'Maroon Minakari Brocade', price: 74500, mrp: 93000, img: 'https://i.pinimg.com/736x/53/75/a5/5375a5cc94d2b976f5298bbf21e96214.jpg', badge: 'New Arrival' },
+    { name: 'Gold Tissue Jangla Saree', price: 92000, mrp: 115000, img: 'https://i.pinimg.com/736x/7c/3a/aa/7c3aaa7865d1a6f3ef72cecd5ea3a398.jpg', badge: 'Heritage Piece' },
+    { name: 'Vermilion Kadwa Weave', price: 81000, mrp: 101250, img: 'https://i.pinimg.com/736x/7a/60/e6/7a60e66936664fdae83085a852433326.jpg', badge: 'Exclusive' },
+    { name: 'Royal Cutwork Silk', price: 105000, mrp: 131000, img: 'https://i.pinimg.com/736x/5e/7a/dc/5e7adcb4861c60ec8f1a3514b7bda223.jpg', badge: 'Limited Edition' }
+  ];
+
+  let currentIdx = 0;
+  let currentColor = 'Crimson';
+  let cart = [];
+
+  function selectSaree(idx, el) {
+    currentIdx = idx;
+    document.querySelectorAll('.saree-card').forEach((c,i) => c.classList.toggle('active', i===idx));
+    document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+    const p = products[idx];
+    document.getElementById('mainImg').src = p.img;
+    document.getElementById('productName').textContent = p.name;
+    document.getElementById('productPrice').textContent = '₹' + p.price.toLocaleString('en-IN');
+    document.getElementById('productMRP').textContent = '₹' + p.mrp.toLocaleString('en-IN');
+    document.querySelectorAll('.thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
+  }
+
+  function scrollToCard(i) {
+    const carousel = document.getElementById('carousel');
+    const cards = carousel.querySelectorAll('.saree-card');
+    cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    document.querySelectorAll('.dot').forEach((d,j) => d.classList.toggle('active', j===i));
+  }
+
+  function setThumb(el) {
+    document.getElementById('mainImg').src = el.src;
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function selectColor(el, color) {
+    currentColor = color;
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function changeQty(delta) {
+    const input = document.getElementById('qty');
+    const v = Math.min(5, Math.max(1, parseInt(input.value) + delta));
+    input.value = v;
+  }
+
+  function addToCart() {
+    const p = products[currentIdx];
+    const qty = parseInt(document.getElementById('qty').value);
+    const existing = cart.find(i => i.name === p.name && i.color === currentColor);
+    if (existing) existing.qty += qty;
+    else cart.push({ ...p, color: currentColor, qty });
+    updateCart();
+    showNotification(`"${p.name}" added to your trousseau!`);
+  }
+
+  function buyNow() {
+    addToCart();
+    setTimeout(() => { toggleCart(); }, 400);
+  }
+
+  function removeFromCart(idx) {
+    cart.splice(idx, 1);
+    updateCart();
+  }
+
+  function updateCart() {
+    const badge = document.getElementById('cartBadge');
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    badge.textContent = totalQty;
+    document.getElementById('cartTotal').textContent = '₹' + total.toLocaleString('en-IN');
+    const itemsDiv = document.getElementById('cartItems');
+    const emptyMsg = document.getElementById('emptyCart');
+    const footer = document.getElementById('cartFooter');
+    if (cart.length === 0) {
+      emptyMsg.style.display = 'block';
+      footer.style.display = 'none';
+      itemsDiv.innerHTML = '<div class="empty-cart" id="emptyCart">Your cart is as empty as a blank canvas — let\'s fill it with silk.</div>';
+    } else {
+      footer.style.display = 'block';
+      itemsDiv.innerHTML = cart.map((item, i) => `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-color">Colour: ${item.color} · Qty: ${item.qty}</div>
+            <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+            <button class="remove-item" onclick="removeFromCart(${i})">Remove</button>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  function toggleCart() {
+    document.getElementById('cartOverlay').classList.toggle('open');
+    document.getElementById('cartDrawer').classList.toggle('open');
+  }
+
+  function showNotification(msg) {
+    const n = document.getElementById('notification');
+    n.textContent = msg;
+    n.classList.add('show');
+    setTimeout(() => n.classList.remove('show'), 3200);
+  }
+
+  // Carousel scroll tracking
+  const carousel = document.getElementById('carousel');
+  carousel.addEventListener('scroll', () => {
+    const cards = carousel.querySelectorAll('.saree-card');
+    let closest = 0, minDist = Infinity;
+    cards.forEach((c, i) => {
+      const dist = Math.abs(c.getBoundingClientRect().left - carousel.getBoundingClientRect().left);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === closest));
+  });
+</script>
+</body>
+</html>
