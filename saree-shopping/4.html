@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chiffon Saree — Festive Collection 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-dark: #8b6914;
+      --brown-deep: #2c1a0a;
+      --cream: #fdf6ee;
+      --cream-light: #fef9f4;
+      --green-success: #2d7a4f;
+      --text-main: #1a1008;
+      --text-muted: #7a6540;
+      --text-light: #b8a080;
+      --border: #e8d9c0;
+      --card-bg: #ffffff;
+      --bg: #fdf8f2;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--brown-deep);
+      color: #f5e6c8;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+    }
+    .header-right {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      color: #d4b896;
+    }
+    .header-right a { color: #d4b896; text-decoration: none; cursor: pointer; }
+    .header-right a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--cream-light) 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07), transparent 70%);
+    }
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--brown-deep);
+      margin-bottom: 0.5rem;
+      line-height: 1.15;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-dark);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.2rem;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.7);
+    }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      display: flex;
+      gap: 8px;
+      padding: 14px 24px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      align-items: center;
+      scrollbar-width: none;
+    }
+    .filters-bar::-webkit-scrollbar { display: none; }
+    .filter-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Cormorant Garamond', serif;
+      background: transparent;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      letter-spacing: 0.04em;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px 120px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--brown-deep);
+      padding: 20px 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .section-title span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(44,26,10,0.1);
+      border-color: var(--gold);
+    }
+
+    .img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+    }
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .card-img { transform: scale(1.04); }
+
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,26,10,0.35) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .badge-gold   { background: var(--gold); color: #fff; }
+    .badge-green  { background: var(--green-success); color: #fff; }
+    .badge-red    { background: #c0392b; color: #fff; }
+    .badge-purple { background: #7b4f9e; color: #fff; }
+    .badge-blue   { background: #2471a3; color: #fff; }
+
+    .wishlist-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .wishlist-btn:hover { background: #fff; }
+    .wishlist-btn.wishlisted { color: #c0392b; }
+
+    .card-body { padding: 14px; }
+
+    .stars { color: var(--gold); font-size: 12px; margin-bottom: 5px; }
+    .review-count { font-size: 10px; color: var(--text-light); margin-left: 4px; }
+
+    .saree-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .saree-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .colors-row {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .color-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .color-dot:hover { transform: scale(1.25); }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      font-family: 'Playfair Display', serif;
+    }
+    .old-price {
+      font-size: 11.5px;
+      color: var(--text-light);
+      text-decoration: line-through;
+      margin-left: 5px;
+    }
+    .discount-badge {
+      font-size: 10px;
+      background: #fef0f0;
+      color: #c0392b;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 9px;
+      border: 1.5px solid var(--gold);
+      border-radius: 7px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13.5px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      background: transparent;
+      color: var(--gold-dark);
+      transition: all 0.22s ease;
+      font-weight: 500;
+    }
+    .add-btn:hover {
+      background: var(--gold);
+      color: #fff;
+    }
+    .add-btn.added {
+      background: var(--green-success);
+      border-color: var(--green-success);
+      color: #fff;
+    }
+
+    /* ── CART SIDEBAR ── */
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(44,26,10,0.45);
+      z-index: 200;
+    }
+    .cart-overlay.open { display: block; }
+
+    .cart-panel {
+      position: fixed;
+      right: -420px;
+      top: 0; bottom: 0;
+      width: 380px;
+      max-width: 95vw;
+      background: #fff;
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.32s ease;
+      box-shadow: -8px 0 40px rgba(44,26,10,0.18);
+    }
+    .cart-panel.open { right: 0; }
+
+    .cart-header {
+      padding: 18px 20px;
+      background: var(--brown-deep);
+      color: #f5e6c8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cart-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+    }
+    .cart-close {
+      background: none;
+      border: none;
+      color: #f5e6c8;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .cart-empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+    }
+    .cart-empty-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-item-img {
+      width: 64px; height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 3px;
+    }
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .qty-btn {
+      width: 24px; height: 24px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      transition: all 0.15s;
+    }
+    .qty-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+    .qty-num { font-size: 13px; min-width: 18px; text-align: center; }
+    .remove-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-light); font-size: 16px;
+      align-self: flex-start; margin-top: 2px;
+      transition: color 0.15s;
+    }
+    .remove-btn:hover { color: #c0392b; }
+
+    .cart-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--brown-deep);
+      margin: 10px 0 14px;
+    }
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--brown-deep);
+      color: #f5e6c8;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .checkout-btn:hover { background: var(--gold-dark); }
+
+    /* ── FLOATING CART BTN ── */
+    .float-cart {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--brown-deep);
+      color: #f5e6c8;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 24px rgba(44,26,10,0.3);
+      transition: background 0.2s, transform 0.2s;
+      z-index: 100;
+    }
+    .float-cart:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .float-cart.visible { display: flex; }
+    .float-cart-count {
+      background: var(--gold);
+      color: #fff;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--brown-deep);
+      color: #f5e6c8;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 300;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown-deep);
+      color: #d4b896;
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .products { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .img-wrap { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-brand">✦ Rang Rasm</div>
+    <div class="header-right">
+      <a href="#">Home</a>
+      <a href="#">Collections</a>
+      <a href="#">About</a>
+      <a href="#" onclick="openCart()">🛍 Cart</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Festive Collection 2025</div>
+    <h1>Chiffon <em>Sarees</em></h1>
+    <div class="hero-sub">Handpicked elegance for every celebration</div>
+    <div class="hero-badges">
+      <span class="hero-badge">Free Shipping Above ₹2,499</span>
+      <span class="hero-badge">COD Available</span>
+      <span class="hero-badge">Easy Returns</span>
+      <span class="hero-badge">Genuine Fabrics</span>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterCards('all',this)">All Sarees</button>
+    <button class="filter-btn" onclick="filterCards('floral',this)">Floral</button>
+    <button class="filter-btn" onclick="filterCards('embroidered',this)">Embroidered</button>
+    <button class="filter-btn" onclick="filterCards('printed',this)">Printed</button>
+    <button class="filter-btn" onclick="filterCards('solid',this)">Solid</button>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <div class="section-title">
+      Our Collection
+      <span id="countLabel">5 sarees</span>
+    </div>
+    <div class="products" id="grid"></div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 <a href="#">Rang Rasm</a> — Crafted with love for Indian festive wear. All rights reserved.
+  </footer>
+
+  <!-- FLOATING CART BUTTON -->
+  <button class="float-cart" id="floatCart" onclick="openCart()">
+    🛍 View Cart
+    <span class="float-cart-count" id="floatCount">0</span>
+  </button>
+
+  <!-- CART OVERLAY -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <!-- CART PANEL -->
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛍</div>
+        <div>Your cart is empty</div>
+        <div style="font-size:12px;margin-top:6px;color:#b8a080">Add a saree to get started</div>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-summary-row"><span>Subtotal</span><span id="subtotalVal">₹0</span></div>
+      <div class="cart-summary-row"><span>Shipping</span><span style="color:#2d7a4f">FREE</span></div>
+      <div class="cart-total-row"><span>Total</span><span id="totalVal">₹0</span></div>
+      <button class="checkout-btn" onclick="alert('Proceeding to checkout!')">Proceed to Checkout →</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const sarees = [
+      {
+        id: 1,
+        name: "Rose Petal Chiffon",
+        desc: "Delicate floral print with zari border, perfect for daytime festivities",
+        price: 3499, old: 5200,
+        img: "https://i.pinimg.com/736x/76/e6/d2/76e6d2d5762946a6c60efe49492204b6.jpg",
+        badge: "Best Seller", badgeClass: "badge-gold",
+        tag: "floral", stars: 5, reviews: 128,
+        colors: ["#e8b4b8","#c9a0dc","#87ceeb"]
+      },
+      {
+        id: 2,
+        name: "Ivory Zari Elegance",
+        desc: "Lightweight ivory chiffon with intricate golden embroidery & scalloped pallu",
+        price: 4999, old: 7500,
+        img: "https://i.pinimg.com/736x/29/82/54/298254de18723ed714190b5d33ab1ab0.jpg",
+        badge: "New Arrival", badgeClass: "badge-blue",
+        tag: "embroidered", stars: 5, reviews: 64,
+        colors: ["#f5f0e8","#c9a84c","#e8d5c4"]
+      },
+      {
+        id: 3,
+        name: "Crimson Festive Drape",
+        desc: "Rich crimson chiffon with sequin embellishment, ideal for weddings",
+        price: 5799, old: 8999,
+        img: "https://i.pinimg.com/736x/11/33/bd/1133bd4dada07d96bae7b25718e09d67.jpg",
+        badge: "Premium", badgeClass: "badge-purple",
+        tag: "embroidered", stars: 4, reviews: 89,
+        colors: ["#c0392b","#922b21","#e8b4b8"]
+      },
+      {
+        id: 4,
+        name: "Aqua Blossom Print",
+        desc: "Soft aqua chiffon with hand-block botanical print, lightweight & breezy",
+        price: 2899, old: 4200,
+        img: "https://i.pinimg.com/736x/6d/cb/87/6dcb87583dfafbdec04d1071046a699d.jpg",
+        badge: "Sale", badgeClass: "badge-red",
+        tag: "printed", stars: 4, reviews: 47,
+        colors: ["#76d7c4","#5dade2","#a9cce3"]
+      },
+      {
+        id: 5,
+        name: "Mauve Ombre Dream",
+        desc: "Gradient mauve chiffon with silk blouse piece, contemporary festive look",
+        price: 3999, old: 5800,
+        img: "https://i.pinimg.com/736x/42/30/a2/4230a2beeee815cb3ed3aacf2f3a37c0.jpg",
+        badge: "Trending", badgeClass: "badge-green",
+        tag: "solid", stars: 5, reviews: 103,
+        colors: ["#d7bde2","#a569bd","#f0e6ff"]
+      }
+    ];
+
+    let cart = {};
+    let wishlist = new Set();
+
+    function starsHtml(n) {
+      return '★'.repeat(n) + '☆'.repeat(5 - n);
+    }
+
+    function formatINR(n) {
+      return '₹' + n.toLocaleString('en-IN');
+    }
+
+    function renderGrid(filter) {
+      const grid = document.getElementById('grid');
+      const items = filter === 'all' ? sarees : sarees.filter(s => s.tag === filter);
+      document.getElementById('countLabel').textContent = items.length + ' saree' + (items.length !== 1 ? 's' : '');
+      grid.innerHTML = items.map(s => {
+        const disc = Math.round((s.old - s.price) / s.old * 100);
+        const inCart = !!cart[s.id];
+        const inWish = wishlist.has(s.id);
+        const dotsHtml = s.colors.map(c =>
+          `<div class="color-dot" style="background:${c}" title="${c}"></div>`
+        ).join('');
+        return `
+          <div class="card" id="card-${s.id}">
+            <div class="img-wrap">
+              <img class="card-img" src="${s.img}" alt="${s.name}" loading="lazy"
+                onerror="this.style.background='#f5e6c8';this.removeAttribute('src')">
+              <div class="img-overlay"></div>
+              <div class="badge ${s.badgeClass}">${s.badge}</div>
+              <button class="wishlist-btn ${inWish ? 'wishlisted' : ''}" id="wish-${s.id}"
+                onclick="toggleWish(${s.id},event)">
+                ${inWish ? '♥' : '♡'}
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="stars">${starsHtml(s.stars)}<span class="review-count">(${s.reviews})</span></div>
+              <div class="saree-name">${s.name}</div>
+              <div class="saree-desc">${s.desc}</div>
+              <div class="colors-row">${dotsHtml}</div>
+              <div class="price-row">
+                <div>
+                  <span class="price">${formatINR(s.price)}</span>
+                  <span class="old-price">${formatINR(s.old)}</span>
+                </div>
+                <span class="discount-badge">${disc}% OFF</span>
+              </div>
+              <button class="add-btn ${inCart ? 'added' : ''}" id="btn-${s.id}" onclick="addToCart(${s.id})">
+                ${inCart ? '✓ Added to Cart' : 'Add to Cart'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleWish(id, e) {
+      e.stopPropagation();
+      const btn = document.getElementById('wish-' + id);
+      if (wishlist.has(id)) {
+        wishlist.delete(id);
+        btn.textContent = '♡';
+        btn.classList.remove('wishlisted');
+        showToast('Removed from wishlist');
+      } else {
+        wishlist.add(id);
+        btn.textContent = '♥';
+        btn.classList.add('wishlisted');
+        showToast('Added to wishlist ♥');
+      }
+    }
+
+    function addToCart(id) {
+      const s = sarees.find(x => x.id === id);
+      if (!s) return;
+      if (!cart[id]) cart[id] = { saree: s, qty: 1 };
+      else cart[id].qty++;
+      const btn = document.getElementById('btn-' + id);
+      if (btn) { btn.textContent = '✓ Added to Cart'; btn.classList.add('added'); }
+      updateFloatCart();
+      renderCartPanel();
+      showToast(s.name + ' added to cart');
+    }
+
+    function changeQty(id, delta) {
+      if (!cart[id]) return;
+      cart[id].qty += delta;
+      if (cart[id].qty <= 0) {
+        delete cart[id];
+        const btn = document.getElementById('btn-' + id);
+        if (btn) { btn.textContent = 'Add to Cart'; btn.classList.remove('added'); }
+      }
+      updateFloatCart();
+      renderCartPanel();
+    }
+
+    function removeFromCart(id) {
+      delete cart[id];
+      const btn = document.getElementById('btn-' + id);
+      if (btn) { btn.textContent = 'Add to Cart'; btn.classList.remove('added'); }
+      updateFloatCart();
+      renderCartPanel();
+    }
+
+    function updateFloatCart() {
+      const keys = Object.keys(cart);
+      const floatBtn = document.getElementById('floatCart');
+      const floatCount = document.getElementById('floatCount');
+      const totalQty = keys.reduce((s, k) => s + cart[k].qty, 0);
+      floatCount.textContent = totalQty;
+      if (totalQty > 0) floatBtn.classList.add('visible');
+      else floatBtn.classList.remove('visible');
+    }
+
+    function renderCartPanel() {
+      const container = document.getElementById('cartItems');
+      const footer = document.getElementById('cartFooter');
+      const keys = Object.keys(cart);
+      if (keys.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛍</div>
+            <div>Your cart is empty</div>
+            <div style="font-size:12px;margin-top:6px;color:#b8a080">Add a saree to get started</div>
+          </div>`;
+        footer.style.display = 'none';
+        return;
+      }
+      container.innerHTML = keys.map(k => {
+        const { saree: s, qty } = cart[k];
+        return `
+          <div class="cart-item">
+            <img class="cart-item-img" src="${s.img}" alt="${s.name}">
+            <div class="cart-item-info">
+              <div class="cart-item-name">${s.name}</div>
+              <div class="cart-item-price">${formatINR(s.price)}</div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeQty(${s.id},-1)">−</button>
+                <span class="qty-num">${qty}</span>
+                <button class="qty-btn" onclick="changeQty(${s.id},1)">+</button>
+              </div>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${s.id})">✕</button>
+          </div>`;
+      }).join('');
+      const subtotal = keys.reduce((sum, k) => sum + cart[k].saree.price * cart[k].qty, 0);
+      document.getElementById('subtotalVal').textContent = formatINR(subtotal);
+      document.getElementById('totalVal').textContent = formatINR(subtotal);
+      footer.style.display = 'block';
+    }
+
+    function openCart() {
+      document.getElementById('cartOverlay').classList.add('open');
+      document.getElementById('cartPanel').classList.add('open');
+      renderCartPanel();
+    }
+    function closeCart() {
+      document.getElementById('cartOverlay').classList.remove('open');
+      document.getElementById('cartPanel').classList.remove('open');
+    }
+
+    function filterCards(tag, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrid(tag);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // Init
+    renderGrid('all');
+  </script>
+</body>
+</html>
