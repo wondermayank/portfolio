@@ -8,9 +8,10 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --white: #ffffff; --cream: #faf8f5; --warm: #f4f0eb;
-    --border: #e8e2da; --text: #1a1410; --muted: #7a7068;
-    --accent: #c8964a; --accent-light: #f0e4cc;
+    --white: #ffffff; --cream: #faf8f4; --warm: #f5f0e8;
+    --border: #e6ddd0; --text: #1a1208; --muted: #7a6e60;
+    --accent: #c8873a; --accent2: #e8a24a; --accent-light: #faecd6;
+    --deep: #8b1a2e; --gold: #d4a843;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Jost', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
@@ -20,7 +21,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 48px; height: 64px;
-    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    background: rgba(255,252,248,0.95); backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; letter-spacing: 0.04em; color: var(--text); text-decoration: none; }
@@ -37,12 +38,6 @@
   .slide { min-width: 100%; height: 100%; position: relative; display: flex; align-items: center; }
   .slide-bg { position: absolute; inset: 0; }
   .slide-palette { width: 340px; height: 100%; flex-shrink: 0; }
-  .s1 { background: linear-gradient(160deg,#d4315e,#ff80ab,#c2185b,#f06292); }
-  .s2 { background: linear-gradient(160deg,#1565c0,#42a5f5,#0d47a1,#64b5f6); }
-  .s3 { background: linear-gradient(160deg,#2e7d32,#66bb6a,#1b5e20,#a5d6a7); }
-  .s4 { background: linear-gradient(160deg,#f57f17,#ffca28,#e65100,#ffee58); }
-  .s5 { background: linear-gradient(160deg,#6a1b9a,#ab47bc,#4a148c,#ce93d8); }
-  .s6 { background: linear-gradient(160deg,#c62828,#ef5350,#b71c1c,#ff8a80); }
   .slide-content { position: relative; z-index: 2; margin-left: 380px; padding: 0 80px; }
   .slide-tag { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .slide-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
@@ -64,8 +59,8 @@
   .strip-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; margin-right: 4px; }
   .chip { width: 52px; height: 52px; border-radius: 8px; cursor: pointer; flex-shrink: 0; border: 2.5px solid transparent; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; overflow: hidden; position: relative; }
   .chip img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .chip:hover { transform: scale(1.18); border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
-  .chip .chip-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.55); color: #fff; font-size: 8px; text-align: center; padding: 2px 2px; letter-spacing: 0.04em; opacity: 0; transition: opacity 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chip:hover { transform: scale(1.18); border-color: var(--accent); box-shadow: 0 4px 16px rgba(200,135,58,0.3); }
+  .chip .chip-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.55); color: #fff; font-size: 8px; text-align: center; padding: 2px; letter-spacing: 0.04em; opacity: 0; transition: opacity 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .chip:hover .chip-label { opacity: 1; }
 
   /* CART */
@@ -85,7 +80,9 @@
   .cart-item-img { width: 72px; height: 90px; object-fit: cover; flex-shrink: 0; }
   .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
   .cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: var(--text); }
-  .cart-item-color { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+  .cart-item-color { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+  .cart-item-color-swatch { width: 16px; height: 16px; border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; border: 1px solid var(--border); flex-shrink: 0; }
+  .cart-item-color-swatch img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .cart-item-price { font-size: 13px; color: var(--accent); font-weight: 500; }
   .cart-item-remove { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 18px; align-self: flex-start; padding: 0; line-height: 1; transition: color 0.2s; }
   .cart-item-remove:hover { color: #c62828; }
@@ -103,7 +100,7 @@
   .cart-continue-btn:hover { background: var(--text); color: var(--white); }
 
   /* BRAND HEADER */
-  .brand-header { text-align: center; padding: 80px 48px 60px; background: var(--cream); border-bottom: 1px solid var(--border); }
+  .brand-header { text-align: center; padding: 80px 48px 60px; background: linear-gradient(180deg, var(--cream) 0%, #fff8ee 100%); border-bottom: 1px solid var(--border); }
   .bh-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
   .bh-title { font-family: 'Cormorant Garamond', serif; font-size: 68px; font-weight: 300; line-height: 1; color: var(--text); }
   .bh-title em { font-style: italic; }
@@ -121,26 +118,14 @@
   .section-title em { font-style: italic; color: var(--accent); }
   .section-link { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
   .section-link:hover { color: var(--accent); border-color: var(--accent); }
-  .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
   .product-card { position: relative; overflow: hidden; cursor: pointer; background: var(--warm); }
   .product-card:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .product-img { width: 100%; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-  .saree-visual { width: 100%; height: 100%; position: relative; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .saree-visual { width: 100%; height: 100%; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); object-fit: cover; border-radius: 0; }
   .product-card:hover .saree-visual { transform: scale(1.04); }
-  .sv1 { background: linear-gradient(160deg,#d4315e,#ff80ab,#c2185b,#f06292); }
-  .sv2 { background: linear-gradient(160deg,#1565c0,#64b5f6,#0d47a1,#42a5f5); }
-  .sv3 { background: linear-gradient(160deg,#2e7d32,#a5d6a7,#1b5e20,#66bb6a); }
-  .sv4 { background: linear-gradient(160deg,#f57f17,#ffee58,#e65100,#ffca28); }
-  .sv5 { background: linear-gradient(160deg,#6a1b9a,#ce93d8,#4a148c,#ab47bc); }
-  .sv6 { background: linear-gradient(160deg,#c62828,#ff8a80,#b71c1c,#ef5350); }
-  .sv7 { background: linear-gradient(160deg,#00695c,#80cbc4,#004d40,#26a69a); }
-  .sv8 { background: linear-gradient(160deg,#4527a0,#b39ddb,#311b92,#7e57c2); }
-  .saree-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg,rgba(255,255,255,0.06) 0,rgba(255,255,255,0.06) 1px,transparent 1px,transparent 12px); }
-  .saree-motif { position: absolute; top: 22%; left: 50%; transform: translateX(-50%); font-size: 30px; opacity: 0.18; }
-  .product-card:nth-child(1) .saree-motif { font-size: 60px; top: 28%; }
-  .saree-border { position: absolute; bottom: 0; left: 0; right: 0; height: 26%; background: rgba(0,0,0,0.2); border-top: 3px solid rgba(255,255,255,0.35); }
   .product-overlay { position: absolute; inset: 0; background: rgba(10,6,2,0); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 24px; transition: background 0.4s; }
-  .product-card:hover .product-overlay { background: rgba(10,6,2,0.3); }
+  .product-card:hover .product-overlay { background: rgba(10,6,2,0.32); }
   .product-info { transform: translateY(8px); transition: transform 0.4s; }
   .product-card:hover .product-info { transform: translateY(0); }
   .product-color { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
@@ -150,36 +135,99 @@
   .product-add { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: var(--white); border: none; font-size: 18px; cursor: pointer; opacity: 0; transform: scale(0.8); transition: opacity 0.3s, transform 0.3s; display: flex; align-items: center; justify-content: center; }
   .product-card:hover .product-add { opacity: 1; transform: scale(1); }
 
-  /* PURCHASE */
-  .purchase-section { background: var(--cream); padding: 80px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .purchase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  /* ======= PURCHASE SECTION (REDESIGNED) ======= */
+  .purchase-section {
+    background: linear-gradient(160deg, #fdf8f0 0%, #fff3e0 40%, #fdf0f5 100%);
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .purchase-heading-block { text-align: center; margin-bottom: 56px; }
+  .purchase-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .purchase-eyebrow::before, .purchase-eyebrow::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); }
+  .purchase-main-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--text); }
+  .purchase-main-title em { font-style: italic; color: var(--accent); }
+  .purchase-main-sub { font-size: 14px; color: var(--muted); margin-top: 12px; line-height: 1.8; }
+
+  /* All-sarees gallery */
+  .saree-gallery { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 60px; }
+  .sg-card {
+    cursor: pointer; position: relative; overflow: hidden; border-radius: 8px;
+    border: 2.5px solid transparent; transition: all 0.3s;
+    background: var(--white);
+  }
+  .sg-card:hover { border-color: var(--accent2); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(200,135,58,0.22); }
+  .sg-card.selected { border-color: var(--text); box-shadow: 0 0 0 3px var(--accent-light), 0 8px 28px rgba(0,0,0,0.15); }
+  .sg-card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; }
+  .sg-info { padding: 8px 8px 10px; background: var(--white); }
+  .sg-name { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 400; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sg-price { font-size: 11px; color: var(--accent); font-weight: 500; margin-top: 2px; }
+  .sg-badge { position: absolute; top: 8px; left: 8px; background: var(--accent); color: white; font-size: 8px; padding: 3px 7px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px; opacity: 0; transition: opacity 0.2s; }
+  .sg-card.selected .sg-badge { opacity: 1; background: var(--text); }
+  .sg-card:hover .sg-badge { opacity: 1; }
+
+  /* Selected saree detail panel */
+  .purchase-detail-panel {
+    display: grid; grid-template-columns: 420px 1fr; gap: 64px; align-items: center;
+    background: var(--white); border-radius: 2px; padding: 48px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+    border: 1px solid var(--border);
+  }
+  .purchase-img-col { position: relative; }
+  .purchase-img-wrap {
+    width: 100%; height: 540px; overflow: hidden; position: relative;
+    border-radius: 2px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+  }
+  #purchaseMainImg { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.35s ease; }
+  .purchase-img-badge {
+    position: absolute; top: 24px; right: 24px;
+    width: 88px; height: 88px; border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: white; background: rgba(0,0,0,0.25); backdrop-filter: blur(4px);
+  }
+  .pib-top { font-size: 9px; opacity: 0.8; }
+  .pib-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; line-height: 1; }
+  .pib-bot { font-size: 8px; opacity: 0.8; letter-spacing: 0.1em; text-transform: uppercase; }
+  .purchase-img-float {
+    position: absolute; bottom: -20px; left: 24px;
+    background: var(--white); padding: 16px 22px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+    border: 1px solid var(--border);
+  }
+  .pf-float-icon { font-size: 24px; }
+  .pf-float-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .pf-float-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .purchase-text-col {}
   .purchase-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .purchase-label::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
-  .purchase-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; line-height: 1.1; margin-bottom: 24px; }
+  .purchase-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; line-height: 1.1; margin-bottom: 10px; }
   .purchase-title em { font-style: italic; color: var(--accent); }
-  .purchase-body { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 36px; }
-  .purchase-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
-  .pf-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--white); border: 1px solid var(--border); }
+  .purchase-selected-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--text); font-weight: 400; margin-bottom: 8px; }
+  .purchase-body { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+  .purchase-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+  .pf-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: var(--cream); border: 1px solid var(--border); border-radius: 4px; }
   .pf-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-  .pf-label { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .pf-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
-  .purchase-actions { display: flex; gap: 16px; }
+  .pf-label { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .pf-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .purchase-selected-color { font-size: 12px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; font-weight: 500; }
+  .purchase-colour-picker { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+  .pc-chip { width: 48px; height: 48px; border-radius: 6px; cursor: pointer; flex-shrink: 0; border: 2.5px solid transparent; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; overflow: hidden; position: relative; }
+  .pc-chip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pc-chip:hover { transform: scale(1.14); border-color: var(--accent); box-shadow: 0 4px 16px rgba(200,135,58,0.3); }
+  .pc-chip.selected { border-color: var(--text); box-shadow: 0 0 0 3px var(--accent-light); }
+  .pc-chip .pc-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 7px; text-align: center; padding: 2px; letter-spacing: 0.03em; opacity: 0; transition: opacity 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pc-chip:hover .pc-label, .pc-chip.selected .pc-label { opacity: 1; }
+  .purchase-price-row { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+  .purchase-price-tag { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--text); }
+  .purchase-price-sub { font-size: 12px; color: var(--muted); }
+  .purchase-actions { display: flex; gap: 14px; }
   .btn-primary { padding: 14px 36px; background: var(--text); color: var(--white); border: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
   .btn-primary:hover { background: var(--accent); }
   .btn-outline { padding: 14px 36px; background: transparent; color: var(--text); border: 1.5px solid var(--text); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
   .btn-outline:hover { background: var(--text); color: var(--white); }
-  .purchase-visual { position: relative; height: 500px; }
-  .pv-main { width: 100%; height: 100%; background: linear-gradient(135deg,#c2185b,#ff80ab 40%,#7b1fa2); position: relative; overflow: hidden; }
-  .pv-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg,rgba(255,255,255,0.04) 0,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 24px),repeating-linear-gradient(90deg,rgba(255,255,255,0.04) 0,rgba(255,255,255,0.04) 1px,transparent 1px,transparent 24px); }
-  .pv-text { position: absolute; bottom: 28px; left: 28px; font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; color: rgba(255,255,255,0.1); line-height: 1; }
-  .pv-badge { position: absolute; top: 32px; right: 32px; width: 96px; height: 96px; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--white); }
-  .pv-badge-top { font-size: 10px; opacity: 0.7; }
-  .pv-badge-num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; line-height: 1; }
-  .pv-badge-bot { font-size: 9px; opacity: 0.7; letter-spacing: 0.1em; text-transform: uppercase; }
-  .pv-float { position: absolute; bottom: -24px; left: 28px; background: var(--white); padding: 20px 28px; display: flex; align-items: center; gap: 16px; box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
-  .pv-float-icon { font-size: 28px; }
-  .pv-float-title { font-size: 13px; font-weight: 500; color: var(--text); }
-  .pv-float-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
   /* SPECIALTIES */
   .specialties-section { padding: 100px 48px 80px; background: var(--white); }
@@ -196,32 +244,119 @@
   .spec-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 12px; }
   .spec-desc { font-size: 13px; color: var(--muted); line-height: 1.8; }
 
-  /* HOW TO WEAR */
-  .wear-section { background: var(--text); padding: 80px 48px; }
-  .wear-header { text-align: center; margin-bottom: 60px; }
-  .wear-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  .wear-title { font-family: 'Cormorant Garamond', serif; font-size: 54px; font-weight: 300; color: var(--white); line-height: 1.1; }
+  /* ======= HOW TO WEAR — COMPLETELY REDESIGNED ======= */
+  .wear-section { background: linear-gradient(180deg, #110d06 0%, #1e1508 100%); }
+  .wear-header {
+    text-align: center; padding: 80px 48px 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .wear-eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .wear-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--white); line-height: 1.1; }
   .wear-title em { font-style: italic; color: var(--accent); }
-  .wear-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 14px; line-height: 1.8; max-width: 460px; margin-left: auto; margin-right: auto; }
-  /* WEAR SLIDESHOW */
-  .wear-slideshow { position: relative; width: 100%; max-width: 960px; margin: 0 auto 48px; overflow: hidden; border-radius: 2px; }
-  .wear-slide-track { display: flex; transition: transform 0.7s cubic-bezier(0.77,0,0.18,1); }
-  .wear-slide { min-width: 100%; position: relative; }
-  .wear-slide img { width: 100%; height: 560px; object-fit: cover; display: block; }
-  .wear-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,6,2,0.72) 0%, rgba(10,6,2,0.1) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 36px 40px; }
-  .wear-slide-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 300; color: rgba(255,255,255,0.08); line-height: 1; position: absolute; top: 20px; right: 28px; }
-  .wear-slide-icon { font-size: 28px; margin-bottom: 10px; }
-  .wear-slide-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--white); font-weight: 400; margin-bottom: 8px; }
-  .wear-slide-desc { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.7; max-width: 560px; }
-  .wear-slide-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; }
-  .wear-arrow { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.07); color: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  .wear-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 16px; line-height: 1.8; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+  /* Desktop: 2-column sticky layout */
+  .wear-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    max-width: 100%;
+  }
+
+  /* LEFT: sticky image panel (PC only) */
+  .wear-img-panel {
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+  }
+  .wear-img-inner { width: 100%; height: 100%; position: relative; }
+  #wearStickyImg {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: opacity 0.5s ease;
+  }
+  .wear-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,6,2,0.65) 0%, rgba(10,6,2,0.1) 50%, transparent 100%);
+  }
+  .wear-step-badge {
+    position: absolute; bottom: 40px; left: 40px;
+  }
+  .wsb-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 100px; font-weight: 300;
+    color: rgba(255,255,255,0.12); line-height: 1; display: block;
+  }
+  .wsb-label {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); display: flex; align-items: center; gap: 10px;
+  }
+  .wsb-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  #wearStepTitle {
+    font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300;
+    color: white; margin-top: 4px; display: block;
+  }
+  .wear-progress {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 4px;
+    background: rgba(255,255,255,0.08);
+  }
+  .wear-progress-fill {
+    width: 100%; background: var(--accent); transition: height 0.4s ease;
+    height: 10%;
+  }
+
+  /* RIGHT: scrollable steps */
+  .wear-steps-panel {
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .wear-step {
+    padding: 60px 56px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    min-height: 60vh;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+    transition: background 0.4s;
+  }
+  .wear-step.active-step { background: rgba(200,135,58,0.05); }
+  .wear-step-mobile-img { display: none; } /* shown only on mobile */
+  .wear-step-num-bg {
+    font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 300;
+    color: rgba(255,255,255,0.04); line-height: 1; position: absolute; top: 20px; right: 32px;
+    user-select: none;
+  }
+  .wear-step-eyebrow {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+  .wear-step-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+  .wear-step-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+    color: var(--white); margin-bottom: 16px; line-height: 1.2;
+  }
+  .wear-step-title em { font-style: italic; color: var(--accent); }
+  .wear-step-desc {
+    font-size: 14px; color: rgba(255,255,255,0.62); line-height: 1.85; max-width: 420px;
+  }
+  .wear-step-tip {
+    margin-top: 20px; padding: 14px 18px;
+    background: rgba(200,135,58,0.1); border-left: 3px solid var(--accent);
+    font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.7; font-style: italic;
+    display: none;
+  }
+  .wear-step-tip.show { display: block; }
+  .wear-nav-controls {
+    display: flex; align-items: center; gap: 14px; padding: 32px 56px; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .wear-arrow { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
   .wear-arrow:hover { background: var(--accent); border-color: var(--accent); }
-  .wear-dots { display: flex; gap: 7px; align-items: center; }
-  .wear-dot { width: 20px; height: 3px; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
-  .wear-dot.active { background: var(--accent); width: 36px; }
-  .wear-tip { border: 1px solid rgba(255,255,255,0.1); padding: 28px 40px; display: flex; align-items: center; gap: 20px; }
+  .wear-dots-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .wear-dot { width: 18px; height: 3px; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; border: none; }
+  .wear-dot.active { background: var(--accent); width: 32px; }
+  .wear-tip-global {
+    border-top: 1px solid rgba(255,255,255,0.06); padding: 36px 48px;
+    display: flex; align-items: center; gap: 20px;
+  }
   .tip-icon { font-size: 24px; flex-shrink: 0; }
-  .tip-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  .tip-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
   /* FOOTER */
   footer { background: var(--cream); border-top: 1px solid var(--border); }
@@ -241,78 +376,98 @@
   .footer-copy strong { color: var(--accent); }
   .footer-badge { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
-  /* PURCHASE COLOUR PICKER */
-  .purchase-colour-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-  .pc-chip {
-    width: 52px; height: 52px; border-radius: 8px; cursor: pointer; flex-shrink: 0;
-    border: 2.5px solid transparent; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    overflow: hidden; position: relative;
-  }
-  .pc-chip img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .pc-chip:hover { transform: scale(1.14); border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
-  .pc-chip.selected { border-color: var(--text); box-shadow: 0 0 0 3px var(--accent-light); }
-  .pc-chip .pc-label {
-    position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6);
-    color: #fff; font-size: 7px; text-align: center; padding: 2px; letter-spacing: 0.03em;
-    opacity: 0; transition: opacity 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .pc-chip:hover .pc-label, .pc-chip.selected .pc-label { opacity: 1; }
-  .purchase-selected-color { font-size: 12px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; font-weight: 500; }
-  /* Cart item colour swatch */
-  .cart-item-color-swatch { width: 16px; height: 16px; border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 5px; border: 1px solid var(--border); flex-shrink: 0; }
-  .cart-item-color-swatch img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .cart-item-color { display: flex; align-items: center; }
-
-
+  /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
   .slide-content { animation: fadeUp 0.8s ease both; }
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
+  /* ======= RESPONSIVE ======= */
+  @media (max-width: 1100px) {
+    .saree-gallery { grid-template-columns: repeat(5, 1fr); }
+    .purchase-detail-panel { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .purchase-img-wrap { height: 460px; }
+  }
+
   @media (max-width: 900px) {
     nav { padding: 0 20px; } .nav-links { display: none; }
     .slider-section { height: 480px; }
-    /* Mobile: slide-palette becomes full-bleed background image */
     .slide { position: relative; }
     .slide-bg { position: absolute; inset: 0; }
-    .slide-palette {
-      width: 100% !important;
-      height: 100% !important;
-      position: absolute;
-      inset: 0;
-      display: block !important;
-    }
+    .slide-palette { width: 100% !important; height: 100% !important; position: absolute; inset: 0; display: block !important; }
     .slide-palette img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.42); }
-    .slide-content {
-      position: relative; z-index: 3;
-      margin-left: 0 !important;
-      padding: 0 24px 60px;
-      width: 100%;
-      display: flex; flex-direction: column; justify-content: flex-end; height: 100%;
-    }
+    .slide-content { position: relative; z-index: 3; margin-left: 0 !important; padding: 0 24px 60px; width: 100%; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
     .slide-tag { color: rgba(255,255,255,0.75); }
     .slide-tag::before { background: rgba(255,255,255,0.6); }
     .slide-title { font-size: 40px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
     .slide-title em { color: var(--accent); }
     .slide-desc { color: rgba(255,255,255,0.8); }
     .slide-btn { border-color: rgba(255,255,255,0.8); color: #fff; }
-    .slide-btn:hover { background: #fff; color: var(--text); }
     .slider-arrows { left: 20px; bottom: 12px; }
     .product-grid { grid-template-columns: 1fr 1fr; }
     .product-card:nth-child(1) { grid-column: span 2; }
-    .purchase-grid { grid-template-columns: 1fr; gap: 40px; }
     .spec-grid { grid-template-columns: 1fr; gap: 32px; }
-    .wear-slide img { height: 420px; }
-    .wear-slideshow { margin-bottom: 32px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     .bh-title { font-size: 42px; }
-    .shop-section, .purchase-section, .specialties-section, .wear-section { padding-left: 20px; padding-right: 20px; }
-    .footer-top, .footer-bottom { padding-left: 20px; padding-right: 20px; }
+    .shop-section, .purchase-section, .specialties-section { padding-left: 20px; padding-right: 20px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; padding: 40px 20px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
     .colour-strip { padding: 14px 20px; }
     .brand-header { padding: 60px 20px 40px; }
-    .purchase-colour-picker { gap: 6px; }
-    .pc-chip { width: 44px; height: 44px; }
+
+    /* Purchase section mobile */
+    .saree-gallery { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 40px; }
+    .sg-name { font-size: 11px; }
+    .purchase-detail-panel { grid-template-columns: 1fr; gap: 32px; padding: 28px; }
+    .purchase-img-wrap { height: 380px; }
+    .purchase-img-float { display: none; }
+    .purchase-main-title { font-size: 36px; }
+
+    /* How to Wear mobile */
+    .wear-layout { grid-template-columns: 1fr; }
+    .wear-img-panel { display: none; } /* Hide sticky left image on mobile */
+    .wear-step {
+      min-height: auto;
+      padding: 40px 24px;
+      display: flex; flex-direction: column;
+    }
+    .wear-step-mobile-img {
+      display: block;
+      width: 100%;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .wear-step-mobile-img img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+    }
+    .wear-step-mobile-img .wsm-badge {
+      position: absolute; bottom: 16px; left: 16px;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      color: var(--accent); font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 2px;
+    }
+    .wear-nav-controls { padding: 24px; flex-wrap: wrap; gap: 10px; }
+    .wear-header { padding: 60px 24px 40px; }
+    .wear-header .wear-title { font-size: 38px; }
+    .wear-tip-global { padding: 28px 24px; flex-direction: column; gap: 12px; }
+    .tip-text { font-size: 17px; text-align: center; }
+    .wear-step-num-bg { font-size: 72px; }
+    .wear-step-title { font-size: 28px; }
+    .wear-steps-panel { border-left: none; }
+  }
+
+  @media (max-width: 600px) {
+    .saree-gallery { grid-template-columns: repeat(2, 1fr); }
+    .purchase-colour-picker { gap: 5px; }
+    .pc-chip { width: 42px; height: 42px; }
+    .purchase-img-wrap { height: 300px; }
+    .purchase-actions { flex-direction: column; }
+    .btn-primary, .btn-outline { width: 100%; text-align: center; }
+    .wear-step { padding: 32px 20px; }
+    .wear-step-mobile-img img { height: 280px; }
   }
 </style>
 </head>
@@ -450,7 +605,7 @@
   <div class="bh-divider">🪡</div>
 </div>
 
-<!-- SHOP -->
+<!-- SHOP — ALL 14 SAREES -->
 <section class="shop-section" id="shop">
   <div class="filter-bar">
     <button class="filter-btn active" onclick="setFilter(this)">All</button>
@@ -465,84 +620,217 @@
     <a class="section-link" href="#">View all sarees →</a>
   </div>
   <div class="product-grid">
+    <!-- 1 -->
     <div class="product-card reveal" data-name="Blossom Handloom" data-color="Rose Pink · Pure Cotton" data-price="2450" data-img="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg">
-      <div class="product-img"><img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Rose Pink Saree"></div>
+      <div class="product-img"><img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" class="saree-visual" alt="Rose Pink Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Rose Pink · Pure Cotton</div><div class="product-name">Blossom Handloom</div><div class="product-price">₹ 2,450</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 2 -->
     <div class="product-card reveal" data-name="Indigo Drape" data-color="Royal Blue · Heritage" data-price="1980" data-img="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg">
-      <div class="product-img"><img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Royal Blue Saree"></div>
+      <div class="product-img"><img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" class="saree-visual" alt="Royal Blue Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Royal Blue · Heritage</div><div class="product-name">Indigo Drape</div><div class="product-price">₹ 1,980</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 3 -->
     <div class="product-card reveal" data-name="Verdant Cotton" data-color="Forest Green · Natural" data-price="1750" data-img="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg">
-      <div class="product-img"><img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Forest Green Saree"></div>
+      <div class="product-img"><img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" class="saree-visual" alt="Forest Green Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Forest Green · Natural</div><div class="product-name">Verdant Cotton</div><div class="product-price">₹ 1,750</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 4 -->
     <div class="product-card reveal" data-name="Golden Sunrise" data-color="Golden Yellow · Festive" data-price="2100" data-img="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212">
-      <div class="product-img"><img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Golden Yellow Saree"></div>
+      <div class="product-img"><img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" class="saree-visual" alt="Golden Yellow Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Golden Yellow · Festive</div><div class="product-name">Golden Sunrise</div><div class="product-price">₹ 2,100</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 5 -->
     <div class="product-card reveal" data-name="Amethyst Weave" data-color="Violet · Premium" data-price="2800" data-img="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg">
-      <div class="product-img"><img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Violet Saree"></div>
+      <div class="product-img"><img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" class="saree-visual" alt="Violet Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Violet · Premium</div><div class="product-name">Amethyst Weave</div><div class="product-price">₹ 2,800</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 6 -->
     <div class="product-card reveal" data-name="Crimson Bride" data-color="Crimson Red · Bridal" data-price="3200" data-img="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg">
-      <div class="product-img"><img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Crimson Red Saree"></div>
+      <div class="product-img"><img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" class="saree-visual" alt="Crimson Red Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Crimson Red · Bridal</div><div class="product-name">Crimson Bride</div><div class="product-price">₹ 3,200</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 7 -->
     <div class="product-card reveal" data-name="Ocean Cotton" data-color="Teal Green · Casual" data-price="1650" data-img="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054">
-      <div class="product-img"><img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Teal Green Saree"></div>
+      <div class="product-img"><img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" class="saree-visual" alt="Teal Green Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Teal Green · Casual</div><div class="product-name">Ocean Cotton</div><div class="product-price">₹ 1,650</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
+    <!-- 8 -->
     <div class="product-card reveal" data-name="Iris Loom" data-color="Indigo · Handloom" data-price="2250" data-img="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg">
-      <div class="product-img"><img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" class="saree-visual" style="object-fit:cover;border-radius:0;" alt="Indigo Saree"></div>
+      <div class="product-img"><img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" class="saree-visual" alt="Indigo Saree"></div>
       <div class="product-overlay"><div class="product-info"><div class="product-color">Indigo · Handloom</div><div class="product-name">Iris Loom</div><div class="product-price">₹ 2,250</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
+    </div>
+    <!-- 9 -->
+    <div class="product-card reveal" data-name="Earthen Drape" data-color="Earthy Brown · Cotton" data-price="1900" data-img="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp">
+      <div class="product-img"><img src="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" class="saree-visual" alt="Earthy Brown Saree"></div>
+      <div class="product-overlay"><div class="product-info"><div class="product-color">Earthy Brown · Cotton</div><div class="product-name">Earthen Drape</div><div class="product-price">₹ 1,900</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
+    </div>
+    <!-- 10 -->
+    <div class="product-card reveal" data-name="Flamingo Silk" data-color="Hot Pink · Festive" data-price="2150" data-img="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg">
+      <div class="product-img"><img src="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" class="saree-visual" alt="Hot Pink Saree"></div>
+      <div class="product-overlay"><div class="product-info"><div class="product-color">Hot Pink · Festive</div><div class="product-name">Flamingo Silk</div><div class="product-price">₹ 2,150</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
+    </div>
+    <!-- 11 -->
+    <div class="product-card reveal" data-name="Saffron Glow" data-color="Saffron · Handloom" data-price="2350" data-img="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg">
+      <div class="product-img"><img src="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" class="saree-visual" alt="Saffron Saree"></div>
+      <div class="product-overlay"><div class="product-info"><div class="product-color">Saffron · Handloom</div><div class="product-name">Saffron Glow</div><div class="product-price">₹ 2,350</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
+    </div>
+    <!-- 12 -->
+    <div class="product-card reveal" data-name="Azure Weave" data-color="Steel Blue · Casual" data-price="1850" data-img="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg">
+      <div class="product-img"><img src="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" class="saree-visual" alt="Steel Blue Saree"></div>
+      <div class="product-overlay"><div class="product-info"><div class="product-color">Steel Blue · Casual</div><div class="product-name">Azure Weave</div><div class="product-price">₹ 1,850</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
+    </div>
+    <!-- 13 -->
+    <div class="product-card reveal" data-name="Blush Petal" data-color="Blush · Pure Cotton" data-price="2050" data-img="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg">
+      <div class="product-img"><img src="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" class="saree-visual" alt="Blush Saree"></div>
+      <div class="product-overlay"><div class="product-info"><div class="product-color">Blush · Pure Cotton</div><div class="product-name">Blush Petal</div><div class="product-price">₹ 2,050</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
+    </div>
+    <!-- 14 -->
+    <div class="product-card reveal" data-name="Midnight Navy" data-color="Navy · Heritage" data-price="2600" data-img="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg">
+      <div class="product-img"><img src="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" class="saree-visual" alt="Navy Saree"></div>
+      <div class="product-overlay"><div class="product-info"><div class="product-color">Navy · Heritage</div><div class="product-name">Midnight Navy</div><div class="product-price">₹ 2,600</div></div><button class="product-add" onclick="addToCart(this)">＋</button></div>
     </div>
   </div>
 </section>
 
-<!-- PURCHASE -->
+<!-- PURCHASE — ALL 14 SAREES + DETAIL -->
 <section class="purchase-section" id="purchase">
-  <div class="purchase-grid">
-    <div class="reveal">
+  <div class="purchase-heading-block reveal">
+    <div class="purchase-eyebrow">Choose Your Favourite</div>
+    <h2 class="purchase-main-title">All 14 <em>Sarees</em> — Select &amp; Buy</h2>
+    <p class="purchase-main-sub">Click any saree below to see full details, features, and add it to your cart.</p>
+  </div>
+
+  <!-- 14-saree gallery -->
+  <div class="saree-gallery reveal" id="sareeGallery">
+    <div class="sg-card selected" data-name="Blossom Handloom" data-color="Rose Pink" data-price="2450" data-img="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" onclick="selectSaree(this)">
+      <img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="Rose Pink">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Blossom</div><div class="sg-price">₹2,450</div></div>
+    </div>
+    <div class="sg-card" data-name="Indigo Drape" data-color="Royal Blue" data-price="1980" data-img="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" onclick="selectSaree(this)">
+      <img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" alt="Royal Blue">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Indigo Drape</div><div class="sg-price">₹1,980</div></div>
+    </div>
+    <div class="sg-card" data-name="Verdant Cotton" data-color="Forest Green" data-price="1750" data-img="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" onclick="selectSaree(this)">
+      <img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" alt="Forest Green">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Verdant</div><div class="sg-price">₹1,750</div></div>
+    </div>
+    <div class="sg-card" data-name="Golden Sunrise" data-color="Golden Yellow" data-price="2100" data-img="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" onclick="selectSaree(this)">
+      <img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" alt="Golden Yellow">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Golden</div><div class="sg-price">₹2,100</div></div>
+    </div>
+    <div class="sg-card" data-name="Amethyst Weave" data-color="Violet" data-price="2800" data-img="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" onclick="selectSaree(this)">
+      <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" alt="Violet">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Amethyst</div><div class="sg-price">₹2,800</div></div>
+    </div>
+    <div class="sg-card" data-name="Crimson Bride" data-color="Crimson Red" data-price="3200" data-img="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" onclick="selectSaree(this)">
+      <img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" alt="Crimson Red">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Crimson</div><div class="sg-price">₹3,200</div></div>
+    </div>
+    <div class="sg-card" data-name="Ocean Cotton" data-color="Teal Green" data-price="1650" data-img="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" onclick="selectSaree(this)">
+      <img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" alt="Teal Green">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Ocean</div><div class="sg-price">₹1,650</div></div>
+    </div>
+    <div class="sg-card" data-name="Iris Loom" data-color="Indigo" data-price="2250" data-img="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" onclick="selectSaree(this)">
+      <img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" alt="Indigo">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Iris Loom</div><div class="sg-price">₹2,250</div></div>
+    </div>
+    <div class="sg-card" data-name="Earthen Drape" data-color="Earthy Brown" data-price="1900" data-img="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" onclick="selectSaree(this)">
+      <img src="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" alt="Earthy Brown">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Earthen</div><div class="sg-price">₹1,900</div></div>
+    </div>
+    <div class="sg-card" data-name="Flamingo Silk" data-color="Hot Pink" data-price="2150" data-img="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" onclick="selectSaree(this)">
+      <img src="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" alt="Hot Pink">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Flamingo</div><div class="sg-price">₹2,150</div></div>
+    </div>
+    <div class="sg-card" data-name="Saffron Glow" data-color="Saffron" data-price="2350" data-img="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" onclick="selectSaree(this)">
+      <img src="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" alt="Saffron">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Saffron</div><div class="sg-price">₹2,350</div></div>
+    </div>
+    <div class="sg-card" data-name="Azure Weave" data-color="Steel Blue" data-price="1850" data-img="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" onclick="selectSaree(this)">
+      <img src="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" alt="Steel Blue">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Azure</div><div class="sg-price">₹1,850</div></div>
+    </div>
+    <div class="sg-card" data-name="Blush Petal" data-color="Blush" data-price="2050" data-img="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" onclick="selectSaree(this)">
+      <img src="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" alt="Blush">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Blush Petal</div><div class="sg-price">₹2,050</div></div>
+    </div>
+    <div class="sg-card" data-name="Midnight Navy" data-color="Navy" data-price="2600" data-img="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" onclick="selectSaree(this)">
+      <img src="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" alt="Navy">
+      <div class="sg-badge">Selected</div>
+      <div class="sg-info"><div class="sg-name">Midnight</div><div class="sg-price">₹2,600</div></div>
+    </div>
+  </div>
+
+  <!-- Selected Saree Detail Panel -->
+  <div class="purchase-detail-panel reveal">
+    <!-- LEFT: Large image -->
+    <div class="purchase-img-col">
+      <div class="purchase-img-wrap">
+        <img id="purchaseMainImg" src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="Selected Saree">
+        <div class="purchase-img-badge">
+          <div class="pib-top">Pure</div>
+          <div class="pib-num">100</div>
+          <div class="pib-bot">% Cotton</div>
+        </div>
+      </div>
+      <div class="purchase-img-float">
+        <div class="pf-float-icon">🪡</div>
+        <div>
+          <div class="pf-float-title">Hand-woven by Artisans</div>
+          <div class="pf-float-sub">Supporting 500+ weaver families across India</div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: Text + CTA -->
+    <div class="purchase-text-col">
       <div class="purchase-label">Easy Purchase</div>
-      <h2 class="purchase-title">Saree<br><em>Purchase</em><br>Made Simple</h2>
+      <h2 class="purchase-title">Saree<br><em>Purchase</em></h2>
+      <div class="purchase-selected-name" id="purchaseSelectedNameEl">Blossom Handloom</div>
       <p class="purchase-body">From weaver to wardrobe — our handloom cotton sarees come directly from artisan clusters across India. No middlemen, just pure craft and honest pricing.</p>
       <div class="purchase-features">
-        <div class="pf-item"><div class="pf-icon">🚚</div><div><div class="pf-label">Free Delivery</div><div class="pf-desc">Pan India shipping on all orders above ₹999</div></div></div>
-        <div class="pf-item"><div class="pf-icon">↩️</div><div><div class="pf-label">7-Day Returns</div><div class="pf-desc">Hassle-free returns if you're not satisfied</div></div></div>
-        <div class="pf-item"><div class="pf-icon">🏺</div><div><div class="pf-label">Artisan Direct</div><div class="pf-desc">Every purchase supports a weaver family</div></div></div>
-        <div class="pf-item"><div class="pf-icon">🔒</div><div><div class="pf-label">Secure Payment</div><div class="pf-desc">UPI, cards, COD — all payment modes accepted</div></div></div>
+        <div class="pf-item"><div class="pf-icon">🚚</div><div><div class="pf-label">Free Delivery</div><div class="pf-desc">Pan India on orders above ₹999</div></div></div>
+        <div class="pf-item"><div class="pf-icon">↩️</div><div><div class="pf-label">7-Day Returns</div><div class="pf-desc">Hassle-free if not satisfied</div></div></div>
+        <div class="pf-item"><div class="pf-icon">🏺</div><div><div class="pf-label">Artisan Direct</div><div class="pf-desc">Supports a weaver family</div></div></div>
+        <div class="pf-item"><div class="pf-icon">🔒</div><div><div class="pf-label">Secure Payment</div><div class="pf-desc">UPI, cards, COD accepted</div></div></div>
       </div>
-      <!-- Colour picker -->
-      <div class="purchase-selected-color" id="purchaseColorLabel">Selected: Rose Pink</div>
+      <div class="purchase-price-row">
+        <div class="purchase-price-tag" id="purchasePriceEl">₹ 2,450</div>
+        <div class="purchase-price-sub">Incl. of all taxes<br>Free shipping</div>
+      </div>
+      <div class="purchase-selected-color" id="purchaseColorLabel">Color: Rose Pink</div>
       <div class="purchase-colour-picker" id="purchaseColorPicker">
-        <div class="pc-chip selected" data-color="Rose Pink" data-img="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="Rose Pink"><div class="pc-label">Rose Pink</div></div>
-        <div class="pc-chip" data-color="Royal Blue" data-img="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" alt="Royal Blue"><div class="pc-label">Royal Blue</div></div>
-        <div class="pc-chip" data-color="Forest Green" data-img="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" alt="Forest Green"><div class="pc-label">Forest Green</div></div>
-        <div class="pc-chip" data-color="Golden Yellow" data-img="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" onclick="selectPurchaseColor(this)"><img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" alt="Golden Yellow"><div class="pc-label">Golden Yellow</div></div>
-        <div class="pc-chip" data-color="Violet" data-img="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" onclick="selectPurchaseColor(this)"><img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" alt="Violet"><div class="pc-label">Violet</div></div>
-        <div class="pc-chip" data-color="Crimson Red" data-img="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" alt="Crimson Red"><div class="pc-label">Crimson Red</div></div>
-        <div class="pc-chip" data-color="Teal Green" data-img="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" onclick="selectPurchaseColor(this)"><img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" alt="Teal Green"><div class="pc-label">Teal Green</div></div>
-        <div class="pc-chip" data-color="Indigo" data-img="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" alt="Indigo"><div class="pc-label">Indigo</div></div>
-        <div class="pc-chip" data-color="Earthy Brown" data-img="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" alt="Earthy Brown"><div class="pc-label">Earthy Brown</div></div>
-        <div class="pc-chip" data-color="Hot Pink" data-img="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" alt="Hot Pink"><div class="pc-label">Hot Pink</div></div>
-        <div class="pc-chip" data-color="Saffron" data-img="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" alt="Saffron"><div class="pc-label">Saffron</div></div>
-        <div class="pc-chip" data-color="Steel Blue" data-img="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" alt="Steel Blue"><div class="pc-label">Steel Blue</div></div>
-        <div class="pc-chip" data-color="Blush" data-img="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" alt="Blush"><div class="pc-label">Blush</div></div>
-        <div class="pc-chip" data-color="Navy" data-img="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" alt="Navy"><div class="pc-label">Navy</div></div>
+        <div class="pc-chip selected" data-color="Rose Pink" data-name="Blossom Handloom" data-price="2450" data-img="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="Rose Pink"><div class="pc-label">Rose Pink</div></div>
+        <div class="pc-chip" data-color="Royal Blue" data-name="Indigo Drape" data-price="1980" data-img="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" alt="Royal Blue"><div class="pc-label">Royal Blue</div></div>
+        <div class="pc-chip" data-color="Forest Green" data-name="Verdant Cotton" data-price="1750" data-img="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" alt="Forest Green"><div class="pc-label">Forest Green</div></div>
+        <div class="pc-chip" data-color="Golden Yellow" data-name="Golden Sunrise" data-price="2100" data-img="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" onclick="selectPurchaseColor(this)"><img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" alt="Golden Yellow"><div class="pc-label">Golden Yellow</div></div>
+        <div class="pc-chip" data-color="Violet" data-name="Amethyst Weave" data-price="2800" data-img="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" onclick="selectPurchaseColor(this)"><img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" alt="Violet"><div class="pc-label">Violet</div></div>
+        <div class="pc-chip" data-color="Crimson Red" data-name="Crimson Bride" data-price="3200" data-img="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" alt="Crimson Red"><div class="pc-label">Crimson Red</div></div>
+        <div class="pc-chip" data-color="Teal Green" data-name="Ocean Cotton" data-price="1650" data-img="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" onclick="selectPurchaseColor(this)"><img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" alt="Teal Green"><div class="pc-label">Teal Green</div></div>
+        <div class="pc-chip" data-color="Indigo" data-name="Iris Loom" data-price="2250" data-img="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" onclick="selectPurchaseColor(this)"><img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" alt="Indigo"><div class="pc-label">Indigo</div></div>
+        <div class="pc-chip" data-color="Earthy Brown" data-name="Earthen Drape" data-price="1900" data-img="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" alt="Earthy Brown"><div class="pc-label">Earthy Brown</div></div>
+        <div class="pc-chip" data-color="Hot Pink" data-name="Flamingo Silk" data-price="2150" data-img="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" alt="Hot Pink"><div class="pc-label">Hot Pink</div></div>
+        <div class="pc-chip" data-color="Saffron" data-name="Saffron Glow" data-price="2350" data-img="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/736x/e3/42/58/e342589f722ba940e422f50589de970a.jpg" alt="Saffron"><div class="pc-label">Saffron</div></div>
+        <div class="pc-chip" data-color="Steel Blue" data-name="Azure Weave" data-price="1850" data-img="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/1200x/d7/f0/7d/d7f07dde79e5c041226f0d7bbade9d60.jpg" alt="Steel Blue"><div class="pc-label">Steel Blue</div></div>
+        <div class="pc-chip" data-color="Blush" data-name="Blush Petal" data-price="2050" data-img="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" alt="Blush"><div class="pc-label">Blush</div></div>
+        <div class="pc-chip" data-color="Navy" data-name="Midnight Navy" data-price="2600" data-img="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" onclick="selectPurchaseColor(this)"><img src="https://i.pinimg.com/736x/c0/a5/ec/c0a5ec6cf3b1a0383248ec4ce62f8860.jpg" alt="Navy"><div class="pc-label">Navy</div></div>
       </div>
       <div class="purchase-actions">
         <button class="btn-primary" onclick="addFeaturedToCart()">Add to Cart</button>
         <button class="btn-outline">View Catalogue</button>
-      </div>
-    </div>
-    <div class="reveal" style="transition-delay:0.15s">
-      <div class="purchase-visual">
-        <div class="pv-main" style="background:none;overflow:hidden;">
-          <img id="purchaseMainImg" src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" style="width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.35s ease;" alt="Featured Saree">
-          <div class="pv-badge"><div class="pv-badge-top">Pure</div><div class="pv-badge-num">100</div><div class="pv-badge-bot">% Cotton</div></div>
-        </div>
-        <div class="pv-float"><div class="pv-float-icon">🪡</div><div><div class="pv-float-title">Hand-woven by Artisans</div><div class="pv-float-sub">Supporting 500+ weaver families across India</div></div></div>
       </div>
     </div>
   </div>
@@ -564,113 +852,169 @@
   </div>
 </section>
 
-<!-- HOW TO WEAR -->
+<!-- HOW TO WEAR — REDESIGNED -->
 <section class="wear-section" id="wear">
   <div class="wear-header reveal">
-    <div class="wear-eyebrow">A Complete Guide</div>
+    <div class="wear-eyebrow">A Complete Visual Guide</div>
     <h2 class="wear-title">How to <em>Wear</em><br>a Saree</h2>
-    <p class="wear-sub">Ten visual steps to drape a cotton saree with elegance — the Nivi style, beloved across India.</p>
+    <p class="wear-sub">Ten visual steps to drape a cotton saree with elegance — the classic Nivi style, beloved across India.</p>
   </div>
-  <div class="wear-slideshow reveal">
-    <div class="wear-slide-track" id="wearTrack">
-      <div class="wear-slide">
-        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEic4HXdWtpxHQRRUXkR9LMtksCgy8eEgx8ZTpVzz7LsGM70Jg3KrunxbF4uuZkNKbTLEtTmV9Dym7EmSJNaVAligmyYam8joOvbFlhTlKaTgsvITiBJaqLhHP85Qwe7BhLtNKzt_qfDy-SUx1AoRTdc-0C6TZAxbpJ4s6VzzIaYPDyLg_Jnpcb9cDIOYFo" alt="How to Wear a Saree — Overview">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">1</div>
-          <div class="wear-slide-icon">👘</div>
-          <div class="wear-slide-title">Get Ready</div>
-          <div class="wear-slide-desc">Wear a well-fitted blouse and a petticoat tied firmly at the waist. The petticoat colour should match your saree. Stand straight and ensure the petticoat hem is just above ankle length.</div>
+
+  <div class="wear-layout">
+
+    <!-- LEFT: Sticky image panel (PC only) -->
+    <div class="wear-img-panel" id="wearImgPanel">
+      <div class="wear-img-inner">
+        <img id="wearStickyImg" src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="How to wear saree">
+        <div class="wear-img-overlay"></div>
+        <div class="wear-step-badge">
+          <span class="wsb-num" id="wearStickyNum">1</span>
+          <span class="wsb-label" id="wearStickyEyebrow">Step One</span>
+          <span id="wearStepTitle">Get Ready</span>
         </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="Tuck and Start">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">2</div>
-          <div class="wear-slide-icon">📌</div>
-          <div class="wear-slide-title">Tuck &amp; Start</div>
-          <div class="wear-slide-desc">Hold the plain end of the saree and tuck it into the right side of your petticoat waistband. Go around the waist once from left to right, making sure the lower edge is just above the floor.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" alt="First Round Wrap">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">3</div>
-          <div class="wear-slide-icon">🔄</div>
-          <div class="wear-slide-title">First Round Wrap</div>
-          <div class="wear-slide-desc">Continue wrapping the saree around your body, keeping the lower edge even. Make sure the fabric is smooth and not twisted. This first layer forms the base of your drape.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" alt="Making the Pleats">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">4</div>
-          <div class="wear-slide-icon">🪡</div>
-          <div class="wear-slide-title">Make the Pleats</div>
-          <div class="wear-slide-desc">Gather the fabric into 5–7 neat pleats of about 5 inches each. Keep the pleats uniform and facing left. Hold them together firmly before tucking.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" alt="Tuck the Pleats">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">5</div>
-          <div class="wear-slide-icon">✦</div>
-          <div class="wear-slide-title">Tuck the Pleats</div>
-          <div class="wear-slide-desc">Tuck the gathered pleats at the centre of the waistband, slightly tilting them to the left. The pleats should fall straight and open at the hem for graceful movement as you walk.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" alt="Bring the Pallu">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">6</div>
-          <div class="wear-slide-icon">🌸</div>
-          <div class="wear-slide-title">Bring the Pallu</div>
-          <div class="wear-slide-desc">After tucking the pleats, take the remaining fabric (the pallu) and bring it from behind around the right side, across the front, and up over the left shoulder.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" alt="Drape the Pallu">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">7</div>
-          <div class="wear-slide-icon">💫</div>
-          <div class="wear-slide-title">Drape the Pallu</div>
-          <div class="wear-slide-desc">Let the pallu fall naturally down your back. You may leave it loose for a casual look, or pleat it and pin it to the shoulder of your blouse with a decorative safety pin or brooch.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" alt="Adjust and Smooth">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">8</div>
-          <div class="wear-slide-icon">🔧</div>
-          <div class="wear-slide-title">Adjust &amp; Smooth</div>
-          <div class="wear-slide-desc">Walk a few steps and check the lower hem — it should be even all around. Smooth out any bunching at the waist. Re-tuck if needed to keep the drape clean and structured.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" alt="Secure with Pins">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">9</div>
-          <div class="wear-slide-icon">📿</div>
-          <div class="wear-slide-title">Secure with Pins</div>
-          <div class="wear-slide-desc">Use safety pins at the waistband to secure the pleats and prevent unravelling. Pin the pallu at the left shoulder. For a blouse-to-saree pin, use a small hidden pin inside at the neckline.</div>
-        </div>
-      </div>
-      <div class="wear-slide">
-        <img src="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" alt="Final Look">
-        <div class="wear-slide-overlay">
-          <div class="wear-slide-num">10</div>
-          <div class="wear-slide-icon">👑</div>
-          <div class="wear-slide-title">Final Touch</div>
-          <div class="wear-slide-desc">Add your jewellery — bangles, earrings, a necklace, and a bindi. Spritz on your fragrance. Stand tall, take a breath, and step out in the timeless grace of a perfectly draped cotton saree.</div>
+        <div class="wear-progress">
+          <div class="wear-progress-fill" id="wearProgressFill"></div>
         </div>
       </div>
     </div>
-    <div class="wear-slide-controls">
-      <button class="wear-arrow" id="wearPrev">←</button>
-      <div class="wear-dots" id="wearDots"></div>
-      <button class="wear-arrow" id="wearNext">→</button>
-    </div>
-  </div>
-  <div class="wear-tip reveal">
+
+    <!-- RIGHT: Scrollable steps -->
+    <div class="wear-steps-panel" id="wearStepsPanel">
+
+      <!-- Step 1 -->
+      <div class="wear-step" id="wstep-0" data-step="0" data-img="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" data-title="Get Ready" data-eyebrow="Step One">
+        <div class="wear-step-mobile-img">
+          <img src="https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg" alt="Step 1">
+          <div class="wsm-badge">Step 1</div>
+        </div>
+        <div class="wear-step-num-bg">1</div>
+        <div class="wear-step-eyebrow">Step 01</div>
+        <div class="wear-step-title"><em>Get Ready</em> — Dress First</div>
+        <div class="wear-step-desc">Wear a well-fitted blouse and a petticoat tied firmly at the waist. Choose a petticoat colour that closely matches your saree. Stand straight and ensure the petticoat hem falls just above ankle length for the best drape.</div>
+        <div class="wear-step-tip show">💡 Tip: A contrasting blouse can make the saree look more vibrant and festive.</div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="wear-step" id="wstep-1" data-step="1" data-img="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" data-title="First Tuck" data-eyebrow="Step Two">
+        <div class="wear-step-mobile-img">
+          <img src="https://m.media-amazon.com/images/I/71jXbQRbHBL._SY879_.jpg" alt="Step 2">
+          <div class="wsm-badge">Step 2</div>
+        </div>
+        <div class="wear-step-num-bg">2</div>
+        <div class="wear-step-eyebrow">Step 02</div>
+        <div class="wear-step-title"><em>First Tuck</em> — Start Right</div>
+        <div class="wear-step-desc">Tuck the plain end of the saree into the petticoat at the centre-front (navel area), and wrap the saree once around your body in an anticlockwise direction. The saree should stay about 12 inches above the floor.</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="wear-step" id="wstep-2" data-step="2" data-img="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" data-title="Full Wrap" data-eyebrow="Step Three">
+        <div class="wear-step-mobile-img">
+          <img src="https://m.media-amazon.com/images/I/61ofZmDTEfL._SY879_.jpg" alt="Step 3">
+          <div class="wsm-badge">Step 3</div>
+        </div>
+        <div class="wear-step-num-bg">3</div>
+        <div class="wear-step-eyebrow">Step 03</div>
+        <div class="wear-step-title"><em>Wrap Around</em> — One Full Round</div>
+        <div class="wear-step-desc">Continue to wrap the saree fully around your body from right to left. Keep the lower border even throughout. Tuck the entire wrapped portion firmly and evenly into the petticoat waistband to secure the base layer.</div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="wear-step" id="wstep-3" data-step="3" data-img="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" data-title="Make Pleats" data-eyebrow="Step Four">
+        <div class="wear-step-mobile-img">
+          <img src="https://moora.in/cdn/shop/files/IMG_2781.jpg?v=1706433212" alt="Step 4">
+          <div class="wsm-badge">Step 4</div>
+        </div>
+        <div class="wear-step-num-bg">4</div>
+        <div class="wear-step-eyebrow">Step 04</div>
+        <div class="wear-step-title"><em>Make Pleats</em> — The Art</div>
+        <div class="wear-step-desc">Take the remaining fabric and make 5–7 neat pleats of about 5 inches each. Fold each pleat in the same direction (towards the left) and keep them even and uniform. The pleats are the most artistic part of a saree drape.</div>
+        <div class="wear-step-tip show">💡 Tip: Use your left hand to hold all pleats together. Keep folds facing left for the classic Nivi style.</div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="wear-step" id="wstep-4" data-step="4" data-img="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" data-title="Tuck Pleats" data-eyebrow="Step Five">
+        <div class="wear-step-mobile-img">
+          <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/2024/AUGUST/27/DNkN46f4_673c3527a1c64896b3272153e4ebcb35.jpg" alt="Step 5">
+          <div class="wsm-badge">Step 5</div>
+        </div>
+        <div class="wear-step-num-bg">5</div>
+        <div class="wear-step-eyebrow">Step 05</div>
+        <div class="wear-step-title"><em>Tuck Pleats</em> — Secure Neatly</div>
+        <div class="wear-step-desc">Hold all the pleats together and tuck them neatly into the waistband, slightly to the left of centre. The pleats should fall straight down. Pin the pleats to your petticoat with a safety pin to keep them in place all day.</div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="wear-step" id="wstep-5" data-step="5" data-img="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" data-title="Drape Pallu" data-eyebrow="Step Six">
+        <div class="wear-step-mobile-img">
+          <img src="https://m.media-amazon.com/images/I/61IxoQ3+0UL._SY879_.jpg" alt="Step 6">
+          <div class="wsm-badge">Step 6</div>
+        </div>
+        <div class="wear-step-num-bg">6</div>
+        <div class="wear-step-eyebrow">Step 06</div>
+        <div class="wear-step-title"><em>Drape the Pallu</em> — The Showpiece</div>
+        <div class="wear-step-desc">Take the remaining fabric (the pallu — usually the most decorated end) and bring it from the right side, across the front, over the left shoulder. The pallu is the most visible and beautiful part of the saree — let it drape gracefully.</div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="wear-step" id="wstep-6" data-step="6" data-img="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" data-title="Adjust Length" data-eyebrow="Step Seven">
+        <div class="wear-step-mobile-img">
+          <img src="https://ik.imagekit.io/4sjmoqtje/tr:w-1000,c-at_max/cdn/shop/files/teal-green-chinon-saree-with-cutdana-and-sequins-scallop-border-sg285853-1.jpg?v=1742896054" alt="Step 7">
+          <div class="wsm-badge">Step 7</div>
+        </div>
+        <div class="wear-step-num-bg">7</div>
+        <div class="wear-step-eyebrow">Step 07</div>
+        <div class="wear-step-title"><em>Adjust Length</em> — Perfect Fall</div>
+        <div class="wear-step-desc">Adjust the pallu length so it falls to about knee length at the back. Hold the pallu over your left shoulder and let the embroidered or printed end hang down at the back. You can also pleat the pallu for a neater look.</div>
+      </div>
+
+      <!-- Step 8 -->
+      <div class="wear-step" id="wstep-7" data-step="7" data-img="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" data-title="Pin Shoulder" data-eyebrow="Step Eight">
+        <div class="wear-step-mobile-img">
+          <img src="https://m.media-amazon.com/images/I/61wXvW2PUxL._SY879_.jpg" alt="Step 8">
+          <div class="wsm-badge">Step 8</div>
+        </div>
+        <div class="wear-step-num-bg">8</div>
+        <div class="wear-step-eyebrow">Step 08</div>
+        <div class="wear-step-title"><em>Pin the Shoulder</em> — Stay Secure</div>
+        <div class="wear-step-desc">Pin the pallu to your blouse at the shoulder with a safety pin or a decorative brooch. This keeps the pallu from slipping. You can also pin it at the back for added security. Make sure the drape looks natural and free-flowing.</div>
+        <div class="wear-step-tip show">💡 Tip: A decorative brooch at the shoulder doubles as a jewellery piece and keeps the pallu secure.</div>
+      </div>
+
+      <!-- Step 9 -->
+      <div class="wear-step" id="wstep-8" data-step="8" data-img="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" data-title="Final Touch" data-eyebrow="Step Nine">
+        <div class="wear-step-mobile-img">
+          <img src="https://i.pinimg.com/webp80/736x/d0/ad/fe/d0adfeda5e5a804db7864a9a9b31a895.webp" alt="Step 9">
+          <div class="wsm-badge">Step 9</div>
+        </div>
+        <div class="wear-step-num-bg">9</div>
+        <div class="wear-step-eyebrow">Step 09</div>
+        <div class="wear-step-title"><em>Final Adjustments</em> — Perfect It</div>
+        <div class="wear-step-desc">Walk a few steps and check that the lower hem is even and about 1 inch above the floor. Adjust the pleats if they have shifted. Check the front drape is smooth with no bunching. Secure any loose areas with additional pins hidden inside the folds.</div>
+      </div>
+
+      <!-- Step 10 -->
+      <div class="wear-step" id="wstep-9" data-step="9" data-img="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" data-title="Complete Look" data-eyebrow="Step Ten">
+        <div class="wear-step-mobile-img">
+          <img src="https://i.pinimg.com/1200x/04/6c/01/046c01baee3b3a6d49d7c69e1f87f691.jpg" alt="Step 10">
+          <div class="wsm-badge">Step 10</div>
+        </div>
+        <div class="wear-step-num-bg">10</div>
+        <div class="wear-step-eyebrow">Step 10</div>
+        <div class="wear-step-title">The <em>Complete Look</em> — You're Ready!</div>
+        <div class="wear-step-desc">Add your jewellery — bangles, earrings, a necklace, and a bindi. Slip on your heels or traditional footwear. Your handloom cotton saree is now beautifully draped. Walk with grace and confidence — a saree makes every woman unforgettable.</div>
+        <div class="wear-step-tip show">✨ A well-draped cotton saree needs no jewellery to shine — its texture, colour, and handwoven patterns speak for themselves.</div>
+      </div>
+
+      <!-- Navigation controls at bottom of steps panel -->
+      <div class="wear-nav-controls">
+        <button class="wear-arrow" id="wearPrev">←</button>
+        <div class="wear-dots-row" id="wearDots"></div>
+        <button class="wear-arrow" id="wearNext">→</button>
+      </div>
+    </div><!-- end steps panel -->
+  </div><!-- end layout -->
+
+  <div class="wear-tip-global">
     <div class="tip-icon">💡</div>
     <div class="tip-text">"A well-draped cotton saree needs no jewellery to shine — its texture, colour, and handwoven patterns speak for themselves."</div>
   </div>
@@ -727,18 +1071,16 @@
 </footer>
 
 <script>
-  // Slider logic
+  // ========== HERO SLIDER ==========
   let current = 0, total = 6;
   const track = document.getElementById('sliderTrack');
   const dotsEl = document.getElementById('sliderDots');
-
   for (let i = 0; i < total; i++) {
     const d = document.createElement('div');
     d.className = 'dot' + (i === 0 ? ' active' : '');
     d.onclick = () => goTo(i);
     dotsEl.appendChild(d);
   }
-
   function goTo(n) {
     current = n;
     track.style.transform = `translateX(-${current * 100}%)`;
@@ -746,36 +1088,68 @@
   }
   function nextSlide() { goTo((current + 1) % total); }
   function prevSlide() { goTo((current - 1 + total) % total); }
-
   let auto = setInterval(nextSlide, 5000);
   track.addEventListener('mouseenter', () => clearInterval(auto));
   track.addEventListener('mouseleave', () => { auto = setInterval(nextSlide, 5000); });
 
-  // Filter
+  // ========== FILTER ==========
   function setFilter(btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }
 
-  // Purchase colour picker
+  // ========== PURCHASE — SAREE GALLERY ==========
   let purchaseSelectedImg = 'https://m.media-amazon.com/images/I/71kObz-qhEL._SY879_.jpg';
   let purchaseSelectedColor = 'Rose Pink';
+  let purchaseSelectedName = 'Blossom Handloom';
+  let purchaseSelectedPrice = 2450;
+
+  function updatePurchaseDisplay(img, color, name, price) {
+    purchaseSelectedImg = img;
+    purchaseSelectedColor = color;
+    purchaseSelectedName = name;
+    purchaseSelectedPrice = price;
+    document.getElementById('purchaseColorLabel').textContent = 'Color: ' + color;
+    document.getElementById('purchaseSelectedNameEl').textContent = name;
+    document.getElementById('purchasePriceEl').textContent = '₹ ' + price.toLocaleString('en-IN');
+    const mainImg = document.getElementById('purchaseMainImg');
+    mainImg.style.opacity = '0';
+    setTimeout(() => { mainImg.src = img; mainImg.style.opacity = '1'; }, 180);
+  }
+
+  function selectSaree(card) {
+    document.querySelectorAll('.sg-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const img = card.dataset.img;
+    const color = card.dataset.color;
+    const name = card.dataset.name;
+    const price = parseInt(card.dataset.price);
+    updatePurchaseDisplay(img, color, name, price);
+    // Also sync the color chip picker
+    document.querySelectorAll('.pc-chip').forEach(c => {
+      c.classList.toggle('selected', c.dataset.color === color);
+    });
+    // Smooth scroll to detail panel on mobile
+    if (window.innerWidth <= 900) {
+      document.querySelector('.purchase-detail-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
   function selectPurchaseColor(chip) {
     document.querySelectorAll('.pc-chip').forEach(c => c.classList.remove('selected'));
     chip.classList.add('selected');
-    purchaseSelectedImg = chip.dataset.img;
-    purchaseSelectedColor = chip.dataset.color;
-    document.getElementById('purchaseColorLabel').textContent = 'Selected: ' + purchaseSelectedColor;
-    const mainImg = document.getElementById('purchaseMainImg');
-    mainImg.style.opacity = '0';
-    setTimeout(() => {
-      mainImg.src = purchaseSelectedImg;
-      mainImg.style.opacity = '1';
-    }, 180);
+    const img = chip.dataset.img;
+    const color = chip.dataset.color;
+    const name = chip.dataset.name;
+    const price = parseInt(chip.dataset.price);
+    updatePurchaseDisplay(img, color, name, price);
+    // Sync gallery
+    document.querySelectorAll('.sg-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.color === color);
+    });
   }
 
-  // Cart
+  // ========== CART ==========
   let cart = [];
   function toggleCart() {
     document.getElementById('cartDrawer').classList.toggle('open');
@@ -787,9 +1161,7 @@
     const countEl = document.getElementById('cartCount');
     if (cart.length === 0) {
       container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><span>Your cart is empty</span></div>';
-      footer.style.display = 'none';
-      countEl.style.display = 'none';
-      return;
+      footer.style.display = 'none'; countEl.style.display = 'none'; return;
     }
     let total = 0;
     container.innerHTML = cart.map((item, idx) => {
@@ -817,65 +1189,96 @@
     footer.style.display = '';
     document.getElementById('cartTotal').textContent = '₹ ' + total.toLocaleString('en-IN');
     const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-    countEl.style.display = 'flex';
-    countEl.textContent = totalQty;
+    countEl.style.display = 'flex'; countEl.textContent = totalQty;
   }
   function addToCart(btn) {
     const card = btn.closest('.product-card');
-    const name = card.dataset.name;
-    const color = card.dataset.color;
-    const price = parseInt(card.dataset.price);
-    const img = card.dataset.img;
+    const name = card.dataset.name, color = card.dataset.color;
+    const price = parseInt(card.dataset.price), img = card.dataset.img;
     const existing = cart.find(i => i.name === name && i.color === color);
     if (existing) { existing.qty++; } else { cart.push({ name, color, price, img, qty: 1 }); }
-    renderCart();
-    toggleCart();
+    renderCart(); toggleCart();
   }
   function addFeaturedToCart() {
-    const name = 'Handloom Saree';
-    const color = purchaseSelectedColor;
-    const price = 2450;
-    const img = purchaseSelectedImg;
-    const existing = cart.find(i => i.name === name && i.color === color);
-    if (existing) { existing.qty++; } else { cart.push({ name, color, price, img, qty: 1 }); }
-    renderCart();
-    toggleCart();
+    const existing = cart.find(i => i.name === purchaseSelectedName && i.color === purchaseSelectedColor);
+    if (existing) { existing.qty++; } else { cart.push({ name: purchaseSelectedName, color: purchaseSelectedColor, price: purchaseSelectedPrice, img: purchaseSelectedImg, qty: 1 }); }
+    renderCart(); toggleCart();
   }
   function changeQty(idx, delta) {
     cart[idx].qty += delta;
     if (cart[idx].qty <= 0) cart.splice(idx, 1);
     renderCart();
   }
-  function removeFromCart(idx) {
-    cart.splice(idx, 1);
-    renderCart();
+  function removeFromCart(idx) { cart.splice(idx, 1); renderCart(); }
+
+  // ========== HOW TO WEAR — INTERSECTION OBSERVER ==========
+  const wearSteps = document.querySelectorAll('.wear-step');
+  const stickyImg = document.getElementById('wearStickyImg');
+  const stickyNum = document.getElementById('wearStickyNum');
+  const stickyEyebrow = document.getElementById('wearStickyEyebrow');
+  const stickyTitle = document.getElementById('wearStepTitle');
+  const progressFill = document.getElementById('wearProgressFill');
+  let activeWearStep = 0;
+
+  function setWearStep(idx) {
+    if (idx === activeWearStep) return;
+    activeWearStep = idx;
+    const step = wearSteps[idx];
+    const newImg = step.dataset.img;
+    const newTitle = step.dataset.title;
+    const newEyebrow = step.dataset.eyebrow;
+    // update sticky image
+    stickyImg.style.opacity = '0';
+    setTimeout(() => { stickyImg.src = newImg; stickyImg.style.opacity = '1'; }, 300);
+    stickyNum.textContent = idx + 1;
+    stickyEyebrow.textContent = newEyebrow;
+    stickyTitle.textContent = newTitle;
+    // update progress bar
+    progressFill.style.height = ((idx + 1) / wearSteps.length * 100) + '%';
+    // highlight active step
+    wearSteps.forEach((s, i) => s.classList.toggle('active-step', i === idx));
+    // update dots
+    document.querySelectorAll('.wear-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
   }
 
-  // Wear Slideshow
-  let wearCurrent = 0, wearTotal = 10;
-  const wearTrack = document.getElementById('wearTrack');
+  // IntersectionObserver for scrolling on desktop
+  const wearObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = parseInt(entry.target.dataset.step);
+        setWearStep(idx);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-10% 0px -40% 0px' });
+
+  wearSteps.forEach(step => wearObs.observe(step));
+
+  // Wear dots
   const wearDotsEl = document.getElementById('wearDots');
+  const wearTotal = wearSteps.length;
   for (let i = 0; i < wearTotal; i++) {
-    const d = document.createElement('div');
+    const d = document.createElement('button');
     d.className = 'wear-dot' + (i === 0 ? ' active' : '');
-    d.onclick = () => wearGoTo(i);
+    d.onclick = () => {
+      wearSteps[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
     wearDotsEl.appendChild(d);
   }
-  function wearGoTo(n) {
-    wearCurrent = n;
-    wearTrack.style.transform = `translateX(-${wearCurrent * 100}%)`;
-    document.querySelectorAll('.wear-dot').forEach((d, i) => d.classList.toggle('active', i === wearCurrent));
-  }
-  document.getElementById('wearNext').onclick = () => wearGoTo((wearCurrent + 1) % wearTotal);
-  document.getElementById('wearPrev').onclick = () => wearGoTo((wearCurrent - 1 + wearTotal) % wearTotal);
-  let wearAuto = setInterval(() => wearGoTo((wearCurrent + 1) % wearTotal), 4500);
-  wearTrack.addEventListener('mouseenter', () => clearInterval(wearAuto));
-  wearTrack.addEventListener('mouseleave', () => { wearAuto = setInterval(() => wearGoTo((wearCurrent + 1) % wearTotal), 4500); });
 
+  // Wear arrow navigation
+  document.getElementById('wearNext').onclick = () => {
+    const next = Math.min(activeWearStep + 1, wearTotal - 1);
+    wearSteps[next].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  document.getElementById('wearPrev').onclick = () => {
+    const prev = Math.max(activeWearStep - 1, 0);
+    wearSteps[prev].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
+  // ========== REVEAL OBSERVER ==========
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
