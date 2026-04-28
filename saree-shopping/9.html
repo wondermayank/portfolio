@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Net Saree Party · wondermayank</title>
+  <link rel="icon" href="https://i.pinimg.com/736x/47/a3/1f/47a31fe50981f380a71c0a5b398727c3.jpg" type="image/jpeg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;900&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e8d5a3;
+      --gold-dark: #8b6914;
+      --rose: #d4687a;
+      --rose-light: #f0a8b5;
+      --deep: #1a0a0e;
+      --deep2: #2d1018;
+      --cream: #fdf6ee;
+      --silk: #f5e6d3;
+      --maroon: #5c0e1e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── BOOT SCREEN ── */
+    #boot {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #0a0005;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #boot.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .boot-fabric {
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(201,169,110,0.04) 3px, rgba(201,169,110,0.04) 6px),
+        repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(212,104,122,0.04) 3px, rgba(212,104,122,0.04) 6px);
+      animation: fabricShimmer 4s linear infinite;
+    }
+    @keyframes fabricShimmer { to { background-position: 60px 60px, -60px 60px; } }
+
+    .boot-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,169,110,0.15) 0%, transparent 70%);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+    @keyframes glowPulse { 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.3);opacity:1} }
+
+    /* Boot logo top-right */
+    .boot-logo-corner {
+      position: absolute; top: 28px; right: 36px;
+      display: flex; align-items: center; gap: 10px;
+      opacity: 0; animation: fadeIn 1s ease 0.5s forwards;
+    }
+    .boot-logo-img {
+      width: 44px; height: 44px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 12px rgba(201,169,110,0.5);
+    }
+    .boot-logo-text {
+      font-family: 'Cinzel', serif;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase;
+    }
+
+    /* Boot center */
+    .boot-center {
+      position: relative; text-align: center; z-index: 2;
+    }
+    .boot-ornament {
+      font-size: 42px; color: var(--gold);
+      opacity: 0; animation: fadeInUp 1s ease 0.3s forwards;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 10px rgba(201,169,110,0.7));
+    }
+    .boot-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--rose-light), var(--gold));
+      background-size: 300%;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleReveal 1.2s ease 0.6s forwards, gradientShift 4s linear 1s infinite;
+      opacity: 0; letter-spacing: 8px;
+    }
+    @keyframes titleReveal { to { opacity: 1; transform: translateY(0); } from { opacity:0; transform:translateY(20px); } }
+    @keyframes gradientShift { 0%{background-position:0%} 50%{background-position:100%} 100%{background-position:0%} }
+
+    .boot-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; letter-spacing: 6px;
+      color: var(--rose-light);
+      margin-top: 8px; text-transform: uppercase;
+      opacity: 0; animation: fadeIn 1s ease 1.2s forwards;
+    }
+    .boot-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 24px auto; width: 300px;
+      opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
+    }
+    .boot-divider span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+    .boot-divider span:last-child { background: linear-gradient(to left, transparent, var(--gold)); }
+    .boot-divider i { color: var(--gold); font-size: 18px; }
+
+    .boot-loading {
+      margin-top: 40px;
+      opacity: 0; animation: fadeIn 1s ease 1.8s forwards;
+    }
+    .boot-bar-track {
+      width: 220px; height: 2px;
+      background: rgba(201,169,110,0.2); border-radius: 2px;
+      margin: 0 auto;
+    }
+    .boot-bar-fill {
+      height: 100%; width: 0; border-radius: 2px;
+      background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--rose));
+      box-shadow: 0 0 8px var(--gold);
+      animation: loadFill 2.5s ease 2s forwards;
+    }
+    @keyframes loadFill { to { width: 100%; } }
+    .boot-loading-text {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px; letter-spacing: 4px;
+      color: rgba(201,169,110,0.6);
+      margin-top: 12px; text-transform: uppercase;
+      animation: blinkText 1.5s ease-in-out 2s infinite;
+    }
+    @keyframes blinkText { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } from { opacity:0; transform:translateY(15px); } }
+
+    /* ── MAIN SITE ── */
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: var(--deep);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(10,0,5,0.95), transparent);
+      backdrop-filter: blur(2px);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 10px rgba(201,169,110,0.4);
+      transition: box-shadow 0.3s;
+    }
+    .nav-logo:hover { box-shadow: 0 0 20px rgba(201,169,110,0.8); }
+    .nav-name {
+      font-family: 'Cinzel', serif;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; letter-spacing: 3px;
+      color: rgba(253,246,238,0.6);
+      text-decoration: none; text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transition: transform 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(92,14,30,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(201,169,110,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(212,104,122,0.12) 0%, transparent 50%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.06;
+      background-image:
+        radial-gradient(circle at 1px 1px, var(--gold) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; }
+    .hero-tag {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; letter-spacing: 6px;
+      color: var(--rose-light); text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeIn 1s ease 4.5s forwards;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(48px, 9vw, 100px);
+      font-weight: 900; line-height: 1.05;
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--rose-light) 70%, var(--gold-light) 100%);
+      background-size: 200%;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s linear infinite, heroReveal 1.2s ease 4.6s both;
+      letter-spacing: 6px;
+    }
+    @keyframes heroReveal { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    .hero-title span { display: block; }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 3vw, 28px);
+      font-style: italic; font-weight: 300;
+      color: rgba(253,246,238,0.75);
+      margin-top: 16px; letter-spacing: 2px;
+      opacity: 0; animation: fadeIn 1s ease 5s forwards;
+    }
+    .hero-divider {
+      display: flex; align-items: center; gap: 20px;
+      margin: 36px auto; width: clamp(200px, 40vw, 400px);
+      opacity: 0; animation: fadeIn 1s ease 5.2s forwards;
+    }
+    .hero-divider span { flex:1; height:1px; background:linear-gradient(to right,transparent,var(--gold)); }
+    .hero-divider span:last-child { background:linear-gradient(to left,transparent,var(--gold)); }
+    .hero-divider-gem {
+      width: 8px; height: 8px; background: var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px var(--gold);
+    }
+    .hero-cta {
+      display: inline-block; margin-top: 8px;
+      padding: 14px 40px;
+      font-family: 'Cinzel', serif; font-size: 12px;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--deep);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      text-decoration: none;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      transition: all 0.3s;
+      opacity: 0; animation: fadeIn 1s ease 5.4s forwards;
+      box-shadow: 0 4px 24px rgba(201,169,110,0.4);
+    }
+    .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(201,169,110,0.6); }
+
+    /* Floating fabric strips */
+    .fabric-strip {
+      position: absolute; opacity: 0.07;
+      background: linear-gradient(to bottom, transparent, var(--rose), var(--gold), var(--rose), transparent);
+      width: 2px; border-radius: 2px;
+      animation: float linear infinite;
+    }
+    @keyframes float { 0%{transform:translateY(-100px) scaleY(0.5)} 100%{transform:translateY(110vh) scaleY(1.5)} }
+
+    /* ── SECTION COMMON ── */
+    section { position: relative; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 100px 48px;
+      background: linear-gradient(to bottom, var(--deep), var(--deep2));
+      text-align: center;
+    }
+    .section-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px; letter-spacing: 5px;
+      color: var(--gold); text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(28px, 5vw, 52px);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+    }
+    .about-text {
+      max-width: 680px; margin: 0 auto;
+      font-size: 20px; font-style: italic; line-height: 1.8;
+      color: rgba(253,246,238,0.8);
+    }
+    .about-features {
+      display: flex; gap: 48px; justify-content: center;
+      flex-wrap: wrap; margin-top: 64px;
+    }
+    .feature {
+      text-align: center; max-width: 200px;
+    }
+    .feature-icon {
+      font-size: 36px; margin-bottom: 16px;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(201,169,110,0.5));
+    }
+    .feature-title {
+      font-family: 'Cinzel', serif; font-size: 14px;
+      color: var(--gold-light); letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .feature-desc {
+      font-size: 14px; color: rgba(253,246,238,0.6);
+      line-height: 1.6;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      padding: 100px 24px;
+      background: var(--deep);
+    }
+    .gallery-header { text-align: center; margin-bottom: 60px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 4/3; }
+    .gallery-item:nth-child(4) { grid-column: span 2; aspect-ratio: 16/7; }
+    .gallery-item:nth-child(7) { grid-column: span 1; aspect-ratio: 3/4; }
+    .gallery-item:not(:nth-child(1)):not(:nth-child(4)):not(:nth-child(7)) { aspect-ratio: 3/4; }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,0,5,0.8) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.4s;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay-text {
+      font-family: 'Cinzel', serif; font-size: 13px;
+      color: var(--gold-light); letter-spacing: 3px;
+    }
+
+    /* border accents */
+    .gallery-item::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      box-shadow: inset 0 0 0 1px rgba(201,169,110,0.15);
+      transition: box-shadow 0.3s;
+      pointer-events: none;
+    }
+    .gallery-item:hover::before { box-shadow: inset 0 0 0 2px rgba(201,169,110,0.5); }
+
+    /* ── COLLECTIONS ── */
+    .collections {
+      padding: 100px 48px;
+      background: linear-gradient(135deg, var(--deep2), var(--deep), #1f0810);
+    }
+    .collections-header { text-align: center; margin-bottom: 64px; }
+    .collections-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px; max-width: 1100px; margin: 0 auto;
+    }
+    .collection-card {
+      background: rgba(253,246,238,0.03);
+      border: 1px solid rgba(201,169,110,0.15);
+      padding: 40px 32px;
+      position: relative; overflow: hidden;
+      transition: all 0.4s;
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    }
+    .collection-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--rose));
+      transform: scaleX(0); transition: transform 0.4s;
+      transform-origin: left;
+    }
+    .collection-card:hover { background: rgba(201,169,110,0.06); border-color: rgba(201,169,110,0.4); transform: translateY(-6px); }
+    .collection-card:hover::before { transform: scaleX(1); }
+    .card-num {
+      font-family: 'Cinzel', serif; font-size: 48px; font-weight: 900;
+      color: rgba(201,169,110,0.1); line-height: 1;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-family: 'Cinzel', serif; font-size: 18px;
+      color: var(--gold-light); margin-bottom: 12px;
+    }
+    .card-desc { font-size: 16px; color: rgba(253,246,238,0.6); line-height: 1.7; }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      padding: 28px 0; overflow: hidden;
+      background: linear-gradient(to right, var(--maroon), var(--deep2), var(--maroon));
+      border-top: 1px solid rgba(201,169,110,0.2);
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      white-space: nowrap;
+      animation: marqueeScroll 20s linear infinite;
+    }
+    @keyframes marqueeScroll { to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 24px;
+      padding: 0 40px;
+      font-family: 'Cinzel', serif; font-size: 13px;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase;
+    }
+    .marquee-dot { width: 5px; height: 5px; background: var(--rose); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 60px 48px 40px;
+      background: #06000a;
+      text-align: center;
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+    .footer-logo-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 24px;
+    }
+    .footer-logo {
+      width: 52px; height: 52px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 20px rgba(201,169,110,0.3);
+    }
+    .footer-brand {
+      font-family: 'Cinzel', serif; font-size: 13px;
+      letter-spacing: 4px; color: var(--gold);
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-style: italic;
+      color: rgba(253,246,238,0.5); margin-bottom: 32px;
+    }
+    .footer-link {
+      display: inline-block;
+      font-family: 'Raleway', sans-serif; font-size: 11px;
+      letter-spacing: 3px; color: var(--gold);
+      text-decoration: none; text-transform: uppercase;
+      padding: 10px 28px;
+      border: 1px solid rgba(201,169,110,0.4);
+      transition: all 0.3s;
+    }
+    .footer-link:hover { background: rgba(201,169,110,0.1); border-color: var(--gold); }
+    .footer-copy {
+      margin-top: 40px;
+      font-family: 'Raleway', sans-serif; font-size: 10px;
+      letter-spacing: 2px; color: rgba(253,246,238,0.25);
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(6,0,10,0.95);
+      display: none; align-items: center; justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw; max-height: 90vh;
+      object-fit: contain;
+      border: 1px solid rgba(201,169,110,0.3);
+      box-shadow: 0 0 80px rgba(201,169,110,0.15);
+    }
+    #lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      font-size: 32px; color: var(--gold);
+      cursor: pointer; line-height: 1;
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .about, .collections, footer { padding: 70px 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+      .gallery-item:nth-child(7) { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ BOOT SCREEN ══ -->
+<div id="boot">
+  <div class="boot-fabric"></div>
+  <div class="boot-glow"></div>
+
+  <!-- Top-right logo -->
+  <div class="boot-logo-corner">
+    <img class="boot-logo-img"
+         src="https://i.pinimg.com/736x/47/a3/1f/47a31fe50981f380a71c0a5b398727c3.jpg"
+         alt="wondermayank"/>
+    <div class="boot-logo-text">wondermayank</div>
+  </div>
+
+  <!-- Center content -->
+  <div class="boot-center">
+    <div class="boot-ornament">❋</div>
+    <h1 class="boot-title">Net Saree</h1>
+    <p class="boot-subtitle">Party Collection</p>
+    <div class="boot-divider">
+      <span></span>
+      <i>✦</i>
+      <span></span>
+    </div>
+    <div class="boot-loading">
+      <div class="boot-bar-track"><div class="boot-bar-fill"></div></div>
+      <p class="boot-loading-text">Draping elegance…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a class="nav-brand" href="https://wondermayank.github.io" target="_blank">
+    <img class="nav-logo"
+         src="https://i.pinimg.com/736x/47/a3/1f/47a31fe50981f380a71c0a5b398727c3.jpg"
+         alt="wondermayank logo"/>
+    <span class="nav-name">wondermayank</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="https://wondermayank.github.io/portfolio/saree-shopping/9" target="_blank">Shop</a></li>
+  </ul>
+</nav>
+
+<!-- Floating strips -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <!-- strips -->
+  <div class="fabric-strip" style="left:8%;height:300px;animation-duration:8s;animation-delay:0s"></div>
+  <div class="fabric-strip" style="left:23%;height:200px;animation-duration:11s;animation-delay:2s"></div>
+  <div class="fabric-strip" style="left:71%;height:350px;animation-duration:9s;animation-delay:1s"></div>
+  <div class="fabric-strip" style="left:88%;height:250px;animation-duration:12s;animation-delay:3s"></div>
+
+  <div class="hero-content">
+    <p class="hero-tag">✦ Exclusive Party Wear ✦</p>
+    <h1 class="hero-title">
+      <span>Net</span>
+      <span>Saree</span>
+    </h1>
+    <p class="hero-subtitle">Where tradition meets celebration</p>
+    <div class="hero-divider">
+      <span></span>
+      <div class="hero-divider-gem"></div>
+      <span></span>
+    </div>
+    <a class="hero-cta" href="https://wondermayank.github.io/portfolio/saree-shopping/9" target="_blank">
+      Explore Collection
+    </a>
+  </div>
+</div>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <span class="marquee-item"><span class="marquee-dot"></span> Net Saree Party <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Handcrafted Elegance <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Party Wear Collection <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> wondermayank <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Ethnic Luxury <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Premium Drape <span class="marquee-dot"></span></span>
+    <!-- duplicate -->
+    <span class="marquee-item"><span class="marquee-dot"></span> Net Saree Party <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Handcrafted Elegance <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Party Wear Collection <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> wondermayank <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Ethnic Luxury <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Premium Drape <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="about" id="about">
+  <p class="section-label reveal">Our Story</p>
+  <h2 class="section-title reveal">Draped in Dreams</h2>
+  <p class="about-text reveal">
+    Every thread tells a story of grace. Our Net Saree Party collection is a
+    celebration of femininity — where sheer fabrics shimmer under golden light and
+    intricate embroidery echoes the poetry of centuries-old craft.
+  </p>
+  <div class="about-features">
+    <div class="feature reveal">
+      <span class="feature-icon">✦</span>
+      <div class="feature-title">Net Fabric</div>
+      <p class="feature-desc">Sheer, breathable, and beautifully draped for every celebration.</p>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-icon">❋</span>
+      <div class="feature-title">Embroidery</div>
+      <p class="feature-desc">Zari, sequin & thread work by master artisans.</p>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-icon">◈</span>
+      <div class="feature-title">Party Wear</div>
+      <p class="feature-desc">Designed to make you the most radiant presence in any room.</p>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-icon">⬡</span>
+      <div class="feature-title">Curated</div>
+      <p class="feature-desc">Handpicked by wondermayank for discerning taste.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <p class="section-label reveal">Visual Story</p>
+    <h2 class="section-title reveal">The Collection</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/736x/47/a3/1f/47a31fe50981f380a71c0a5b398727c3.jpg" alt="Net Saree 1" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Floral Net · Party</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/1200x/f7/20/b6/f720b69cf15a2a0dd17f25deef8d3535.jpg" alt="Net Saree 2" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Pastel Bloom</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/1200x/cc/fa/08/ccfa082c9ff80f25a96debe10c6cfeaa.jpg" alt="Net Saree 3" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Embellished Net</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/736x/c6/d3/2b/c6d32b5013beed3b3e119476475d964a.jpg" alt="Net Saree 4" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Sequin & Sheer</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/webp80/1200x/f4/7e/fe/f47efe1bb7f834a5d95ec6276eac4c66.webp" alt="Net Saree 5" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Rose Net Drape</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/736x/e0/9e/50/e09e503c5fd9baeca3a1e2394476ad92.jpg" alt="Net Saree 6" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Golden Thread</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/1200x/e0/b8/cb/e0b8cb7962636f3ccb6084a1136fb28c.jpg" alt="Net Saree 7" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Zari Net Classic</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/736x/80/84/65/80846587eaa177597b7184d00f00fddc.jpg" alt="Net Saree 8" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Occasion Drape</span></div>
+    </div>
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://i.pinimg.com/736x/93/0b/9f/930b9fd7894eb5f3466b47de61d5f6f6.jpg" alt="Net Saree 9" loading="lazy"/>
+      <div class="gallery-overlay"><span class="gallery-overlay-text">Bridal Net</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COLLECTIONS ══ -->
+<section class="collections" id="collections">
+  <div class="collections-header">
+    <p class="section-label reveal">What We Offer</p>
+    <h2 class="section-title reveal">Party Wear Styles</h2>
+  </div>
+  <div class="collections-grid">
+    <div class="collection-card reveal">
+      <div class="card-num">01</div>
+      <div class="card-title">Sequin Net</div>
+      <p class="card-desc">Dazzling all-over sequin embellishment on sheer net base. Perfect for cocktail evenings and festive nights.</p>
+    </div>
+    <div class="collection-card reveal">
+      <div class="card-num">02</div>
+      <div class="card-title">Zari Embroidery</div>
+      <p class="card-desc">Traditional gold and silver zari work woven into delicate net fabric. A timeless celebration of Indian craft.</p>
+    </div>
+    <div class="collection-card reveal">
+      <div class="card-num">03</div>
+      <div class="card-title">Floral Thread</div>
+      <p class="card-desc">Intricate floral motifs in hand-embroidered thread work. Romantic and ethereal for weddings and receptions.</p>
+    </div>
+    <div class="collection-card reveal">
+      <div class="card-num">04</div>
+      <div class="card-title">Stone Work</div>
+      <p class="card-desc">Swarovski-inspired stone clusters scattered across sheer net — effortlessly opulent party wear.</p>
+    </div>
+    <div class="collection-card reveal">
+      <div class="card-num">05</div>
+      <div class="card-title">Printed Net</div>
+      <p class="card-desc">Digital and screen-printed patterns on net base. Contemporary aesthetics meeting ethnic silhouettes.</p>
+    </div>
+    <div class="collection-card reveal">
+      <div class="card-num">06</div>
+      <div class="card-title">Bridal Net</div>
+      <p class="card-desc">Heavily embellished net sarees crafted for bridal wear — every detail speaks of grandeur and love.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee again -->
+<div class="marquee-section">
+  <div class="marquee-track" style="animation-direction:reverse">
+    <span class="marquee-item"><span class="marquee-dot"></span> Net Saree Party <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> by wondermayank <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Shop Now <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Ethnic Luxury <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Celebrate in Style <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Net Saree Party <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> by wondermayank <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Shop Now <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Ethnic Luxury <span class="marquee-dot"></span></span>
+    <span class="marquee-item"><span class="marquee-dot"></span> Celebrate in Style <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo-wrap">
+    <img class="footer-logo"
+         src="https://i.pinimg.com/736x/47/a3/1f/47a31fe50981f380a71c0a5b398727c3.jpg"
+         alt="wondermayank"/>
+    <div class="footer-brand">wondermayank</div>
+  </div>
+  <p class="footer-tagline">Crafting elegance, one drape at a time</p>
+  <a class="footer-link"
+     href="https://wondermayank.github.io/portfolio/saree-shopping/9"
+     target="_blank">
+    Visit Full Portfolio
+  </a>
+  <p class="footer-copy">© 2025 Net Saree Party · Designed by wondermayank · All rights reserved</p>
+</footer>
+
+<!-- ══ LIGHTBOX ══ -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<script>
+  // ── Boot dismiss ──
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('boot').classList.add('hide');
+    }, 4800);
+  });
+
+  // ── Lightbox ──
+  function openLightbox(el) {
+    const src = el.querySelector('img').src;
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+  // ── Scroll Reveal ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
