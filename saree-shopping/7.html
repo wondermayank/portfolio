@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linen Saree by wondermayank</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23b5863a'/><text x='50%25' y='54%25' font-size='38' text-anchor='middle' dominant-baseline='middle' font-family='serif' fill='%23fff5e6'>W</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #b5863a;
+      --gold-light: #d4a85a;
+      --gold-pale: #f0ddb0;
+      --cream: #fdf6ec;
+      --warm-white: #fff9f2;
+      --dark: #1a1209;
+      --brown: #4a2e0e;
+      --text: #2e1f08;
+      --linen: #e8d5b7;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── BOOT SCREEN ── */
+    #boot {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+    #boot.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    /* woven linen texture overlay */
+    #boot::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(181,134,58,0.04) 0px, rgba(181,134,58,0.04) 1px, transparent 1px, transparent 8px),
+        repeating-linear-gradient(90deg, rgba(181,134,58,0.04) 0px, rgba(181,134,58,0.04) 1px, transparent 1px, transparent 8px);
+      pointer-events: none;
+    }
+
+    /* corner ornament lines */
+    #boot::after {
+      content: '';
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(181,134,58,0.22);
+      pointer-events: none;
+    }
+
+    /* top-right logo in boot */
+    .boot-logo {
+      position: absolute;
+      top: 36px; right: 44px;
+      display: flex; align-items: center; gap: 9px;
+      opacity: 0; animation: fadeIn 0.8s 0.3s ease forwards;
+    }
+    .boot-logo .monogram {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 17px; color: var(--dark);
+      font-weight: 600;
+      box-shadow: 0 0 0 2px rgba(181,134,58,0.3), 0 0 14px rgba(181,134,58,0.25);
+    }
+    .boot-logo span {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px; letter-spacing: 2.5px;
+      color: var(--gold-pale);
+      text-transform: uppercase;
+    }
+
+    .boot-center {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 20px;
+      position: relative; z-index: 1;
+    }
+
+    /* animated lotus / ornament SVG */
+    .boot-emblem {
+      width: 110px; height: 110px;
+      opacity: 0; transform: scale(0.7);
+      animation: emblemReveal 1.1s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .boot-emblem circle.ring {
+      stroke-dasharray: 314;
+      stroke-dashoffset: 314;
+      animation: drawRing 1.4s 1s ease forwards;
+    }
+    .boot-emblem .petal {
+      opacity: 0;
+      animation: petalFade 0.5s ease forwards;
+    }
+    .boot-emblem .petal:nth-child(2) { animation-delay: 1.1s; }
+    .boot-emblem .petal:nth-child(3) { animation-delay: 1.2s; }
+    .boot-emblem .petal:nth-child(4) { animation-delay: 1.3s; }
+    .boot-emblem .petal:nth-child(5) { animation-delay: 1.4s; }
+    .boot-emblem .petal:nth-child(6) { animation-delay: 1.5s; }
+    .boot-emblem .petal:nth-child(7) { animation-delay: 1.6s; }
+    .boot-emblem .petal:nth-child(8) { animation-delay: 1.7s; }
+
+    .boot-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(22px, 5vw, 38px);
+      color: var(--gold-pale);
+      letter-spacing: 5px;
+      text-align: center;
+      opacity: 0; transform: translateY(16px);
+      animation: slideUp 0.9s 1.4s ease forwards;
+      line-height: 1.2;
+    }
+    .boot-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.8s 2s ease forwards;
+    }
+
+    /* loading bar */
+    .boot-bar-wrap {
+      width: 180px; height: 1px;
+      background: rgba(181,134,58,0.2);
+      margin-top: 28px;
+      opacity: 0; animation: fadeIn 0.5s 1.8s ease forwards;
+    }
+    .boot-bar {
+      height: 100%; width: 0%;
+      background: var(--gold);
+      animation: loadBar 1.8s 1.9s ease forwards;
+      box-shadow: 0 0 8px var(--gold);
+    }
+    .boot-brand {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px; letter-spacing: 3px;
+      color: rgba(181,134,58,0.5);
+      text-transform: uppercase;
+      margin-top: 10px;
+      opacity: 0; animation: fadeIn 0.6s 2.2s ease forwards;
+    }
+
+    @keyframes emblemReveal {
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes drawRing {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes petalFade {
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes loadBar {
+      to { width: 100%; }
+    }
+
+    /* ── MAIN SITE ── */
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(253,246,236,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(181,134,58,0.15);
+      transition: padding 0.4s;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-monogram {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: 18px;
+      color: var(--dark); font-weight: 600;
+      box-shadow: 0 2px 12px rgba(181,134,58,0.3);
+      transition: transform 0.3s;
+    }
+    .nav-logo:hover .nav-monogram { transform: rotate(15deg) scale(1.06); }
+    .nav-wordmark {
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .nav-wordmark .top {
+      font-family: 'Cinzel', serif; font-size: 13px;
+      letter-spacing: 3px; color: var(--brown);
+    }
+    .nav-wordmark .bottom {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 11px; letter-spacing: 2px; color: var(--gold);
+    }
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif; font-size: 11px;
+      font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--brown);
+      text-decoration: none; position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px; overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(181,134,58,0.03) 0, rgba(181,134,58,0.03) 1px, transparent 1px, transparent 24px),
+        repeating-linear-gradient(90deg, rgba(181,134,58,0.03) 0, rgba(181,134,58,0.03) 1px, transparent 1px, transparent 24px);
+      pointer-events: none;
+    }
+
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 60px 80px 80px;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 10px; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px; display: flex; align-items: center; gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 32px; height: 1px; background: var(--gold);
+    }
+    .hero-h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(36px, 4.5vw, 62px);
+      line-height: 1.12; color: var(--brown);
+      margin-bottom: 6px;
+      letter-spacing: 2px;
+    }
+    .hero-h1 em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--gold);
+      font-weight: 300; font-size: 1.1em;
+    }
+    .hero-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; line-height: 1.7;
+      color: #5a3e1b; margin: 28px 0 44px;
+      max-width: 400px;
+      font-style: italic;
+    }
+    .hero-cta {
+      display: flex; gap: 18px; align-items: center;
+    }
+    .btn-primary {
+      padding: 15px 38px;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Raleway', sans-serif; font-size: 11px;
+      font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      border: none; cursor: pointer; text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      box-shadow: 0 8px 30px rgba(181,134,58,0.35);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      font-family: 'Raleway', sans-serif; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+      padding-bottom: 2px;
+    }
+    .btn-ghost:hover { border-color: var(--gold); }
+
+    .hero-images {
+      position: relative; overflow: hidden;
+    }
+    .hero-img-main {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      filter: saturate(0.9) brightness(0.97);
+    }
+    .hero-img-overlay {
+      position: absolute; bottom: 48px; left: -32px;
+      width: 220px; height: 280px;
+      object-fit: cover; border: 6px solid var(--cream);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    /* ornament divider */
+    .ornament-div {
+      display: flex; align-items: center; gap: 20px;
+      padding: 48px 80px;
+      justify-content: center;
+    }
+    .ornament-div::before, .ornament-div::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-pale), transparent);
+    }
+    .ornament-symbol {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--gold);
+    }
+
+    /* COLLECTION */
+    .section-label {
+      font-size: 10px; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold);
+      text-align: center; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 3.5vw, 42px);
+      color: var(--brown); text-align: center;
+      margin-bottom: 8px; letter-spacing: 2px;
+    }
+    .section-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 18px;
+      color: #7a5525; text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .collection {
+      padding: 80px 60px;
+      background: var(--warm-white);
+    }
+    .grid-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 20px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .card {
+      position: relative; overflow: hidden;
+      cursor: pointer;
+      group: true;
+    }
+    .card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.7s cubic-bezier(0.22,1,0.36,1), filter 0.5s;
+      filter: saturate(0.9);
+    }
+    .card:hover img {
+      transform: scale(1.06);
+      filter: saturate(1.1) brightness(0.92);
+    }
+    .card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,18,9,0.75) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.5s;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 28px;
+    }
+    .card:hover .card-overlay { opacity: 1; }
+    .card-name {
+      font-family: 'Cinzel', serif; font-size: 16px;
+      color: var(--gold-pale); letter-spacing: 2px;
+      transform: translateY(12px); transition: transform 0.4s 0.05s;
+    }
+    .card:hover .card-name { transform: translateY(0); }
+    .card-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 13px;
+      color: var(--gold); letter-spacing: 1px;
+      transform: translateY(12px); transition: transform 0.4s 0.1s;
+      margin-top: 4px;
+    }
+    .card:hover .card-tag { transform: translateY(0); }
+
+    .card-tall { grid-row: span 2; }
+    .card-wide { grid-column: span 2; }
+
+    .card-tall img { height: 640px; }
+    .card img { height: 300px; }
+
+    /* STORY SECTION */
+    .story {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 560px; overflow: hidden;
+    }
+    .story-img {
+      position: relative; overflow: hidden;
+    }
+    .story-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .story-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(181,134,58,0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .story-text {
+      background: var(--brown);
+      padding: 80px 70px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .story-text::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border: 1px solid rgba(181,134,58,0.15);
+      border-radius: 50%;
+    }
+    .story-text::after {
+      content: '';
+      position: absolute; top: -30px; right: -30px;
+      width: 180px; height: 180px;
+      border: 1px solid rgba(181,134,58,0.1);
+      border-radius: 50%;
+    }
+    .story-text .section-label { text-align: left; }
+    .story-text .section-title { text-align: left; color: var(--gold-pale); }
+    .story-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; line-height: 1.8;
+      color: rgba(240,221,176,0.8);
+      font-style: italic; margin: 20px 0 36px;
+    }
+    .story-cta { align-self: flex-start; }
+    .btn-outline-cream {
+      padding: 14px 36px;
+      border: 1px solid var(--gold);
+      color: var(--gold); background: transparent;
+      font-family: 'Raleway', sans-serif; font-size: 11px;
+      font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-outline-cream:hover {
+      background: var(--gold); color: var(--dark);
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      background: var(--dark);
+      padding: 22px 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marquee 22s linear infinite;
+      width: max-content;
+    }
+    .marquee-item {
+      font-family: 'Cinzel', serif; font-size: 12px;
+      letter-spacing: 5px; color: var(--gold);
+      padding: 0 36px; white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .marquee-dot {
+      color: rgba(181,134,58,0.4);
+      align-self: center;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* TESTIMONIAL */
+    .testimonial {
+      padding: 100px 80px;
+      background: var(--cream);
+      text-align: center; position: relative;
+    }
+    .testimonial::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 240px; line-height: 0;
+      color: rgba(181,134,58,0.07);
+      position: absolute; top: 80px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-style: italic; color: var(--brown);
+      line-height: 1.5; max-width: 700px;
+      margin: 0 auto 28px; position: relative; z-index: 1;
+    }
+    .testimonial-author {
+      font-family: 'Raleway', sans-serif; font-size: 11px;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 60px 80px 40px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px; border-bottom: 1px solid rgba(181,134,58,0.15);
+      padding-bottom: 48px; margin-bottom: 32px;
+    }
+    .footer-brand .nav-wordmark .top { font-size: 16px; color: var(--gold-pale); }
+    .footer-brand .nav-wordmark .bottom { font-size: 13px; color: var(--gold); }
+    .footer-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-style: italic;
+      color: rgba(240,221,176,0.55);
+      line-height: 1.7; margin-top: 16px;
+    }
+    .footer-col-title {
+      font-family: 'Cinzel', serif; font-size: 11px;
+      letter-spacing: 3px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-family: 'Raleway', sans-serif; font-size: 12px;
+      color: rgba(240,221,176,0.5); text-decoration: none; letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-size: 11px; letter-spacing: 1.5px;
+      color: rgba(181,134,58,0.35);
+    }
+    .footer-copy a { color: var(--gold); text-decoration: none; }
+    .footer-copy a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-images { min-height: 55vw; }
+      .hero-text { padding: 60px 36px; }
+      .grid-masonry { grid-template-columns: 1fr 1fr; }
+      .card-tall { grid-row: auto; }
+      .card-wide { grid-column: auto; }
+      .card-tall img { height: 300px; }
+      .story { grid-template-columns: 1fr; }
+      .story-text { padding: 60px 36px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      nav { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .ornament-div { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ BOOT SCREEN ══════════ -->
+<div id="boot">
+  <!-- Top-right logo -->
+  <div class="boot-logo">
+    <div class="monogram">W</div>
+    <span>wondermayank</span>
+  </div>
+
+  <div class="boot-center">
+    <!-- Animated lotus emblem -->
+    <svg class="boot-emblem" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle class="ring" cx="55" cy="55" r="50" stroke="#b5863a" stroke-width="0.8"/>
+      <!-- petals -->
+      <ellipse class="petal" cx="55" cy="34" rx="5" ry="14" fill="#b5863a" opacity="0.85"/>
+      <ellipse class="petal" cx="55" cy="76" rx="5" ry="14" fill="#b5863a" opacity="0.85" transform="rotate(180 55 55)"/>
+      <ellipse class="petal" cx="76" cy="55" rx="14" ry="5" fill="#b5863a" opacity="0.85"/>
+      <ellipse class="petal" cx="34" cy="55" rx="14" ry="5" fill="#b5863a" opacity="0.85"/>
+      <ellipse class="petal" cx="69" cy="41" rx="5" ry="13" fill="#d4a85a" opacity="0.65" transform="rotate(-45 69 41)"/>
+      <ellipse class="petal" cx="41" cy="69" rx="5" ry="13" fill="#d4a85a" opacity="0.65" transform="rotate(-45 41 69)"/>
+      <ellipse class="petal" cx="69" cy="69" rx="5" ry="13" fill="#d4a85a" opacity="0.65" transform="rotate(45 69 69)"/>
+      <ellipse class="petal" cx="41" cy="41" rx="5" ry="13" fill="#d4a85a" opacity="0.65" transform="rotate(45 41 41)"/>
+      <!-- centre -->
+      <circle cx="55" cy="55" r="8" fill="#b5863a"/>
+      <circle cx="55" cy="55" r="4" fill="#1a1209"/>
+    </svg>
+
+    <h1 class="boot-title">LINEN SAREE</h1>
+    <p class="boot-subtitle">by wondermayank</p>
+
+    <div class="boot-bar-wrap">
+      <div class="boot-bar"></div>
+    </div>
+    <p class="boot-brand">Crafted · Curated · Timeless</p>
+  </div>
+</div>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-monogram">W</div>
+    <div class="nav-wordmark">
+      <span class="top">LINEN SAREE</span>
+      <span class="bottom">by wondermayank</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#">Lookbook</a></li>
+    <li><a href="#">Care Guide</a></li>
+    <li><a href="https://wondermayank.github.io" target="_blank" rel="noopener">wondermayank.github.io</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">New Season · Handcrafted India</p>
+    <h1 class="hero-h1">
+      Linen Sarees<br/>
+      <em>Refined for Every Day</em>
+    </h1>
+    <p class="hero-desc">
+      Where the ancient weave meets modern grace — breathable, elegant,
+      and effortlessly casual. Linen like you've never felt it.
+    </p>
+    <div class="hero-cta">
+      <a href="#collection" class="btn-primary">Explore Collection</a>
+      <a href="#story" class="btn-ghost">Our Story →</a>
+    </div>
+  </div>
+  <div class="hero-images">
+    <img class="hero-img-main"
+      src="https://i.pinimg.com/1200x/78/a6/4a/78a64a99ac97d665a3657677b92ca3b9.jpg"
+      alt="Linen Saree hero" loading="eager" />
+    <img class="hero-img-overlay"
+      src="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg"
+      alt="Linen detail" loading="eager" />
+  </div>
+</section>
+
+<!-- ornament -->
+<div class="ornament-div">
+  <div class="ornament-symbol">❧</div>
+</div>
+
+<!-- ══════════ COLLECTION ══════════ -->
+<section class="collection" id="collection">
+  <p class="section-label">The Edit</p>
+  <h2 class="section-title">Current Collection</h2>
+  <p class="section-sub">Curated expressions of effortless Indian elegance</p>
+
+  <div class="grid-masonry">
+    <!-- tall card -->
+    <div class="card card-tall">
+      <img src="https://i.pinimg.com/736x/6c/f2/27/6cf22714df75816958786f6fa9688805.jpg" alt="Blush Linen Drape" />
+      <div class="card-overlay">
+        <div class="card-name">Blush Drape</div>
+        <div class="card-tag">Everyday Casual · Cotton Linen</div>
+      </div>
+    </div>
+    <!-- regular -->
+    <div class="card">
+      <img src="https://i.pinimg.com/1200x/fb/02/e6/fb02e699ff69be7ab3013e802b711b27.jpg" alt="Ivory Linen" />
+      <div class="card-overlay">
+        <div class="card-name">Ivory Calm</div>
+        <div class="card-tag">Classic Weave</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/4a/d7/c8/4ad7c8e65154b5010a1b65fe79d0461b.jpg" alt="Natural Linen" />
+      <div class="card-overlay">
+        <div class="card-name">Natural Earth</div>
+        <div class="card-tag">Raw Texture Series</div>
+      </div>
+    </div>
+    <!-- wide card -->
+    <div class="card card-wide">
+      <img src="https://i.pinimg.com/736x/62/a0/46/62a046cbd845772c14b0eb3daaa6ee71.jpg" alt="Sage Linen" style="height:300px;" />
+      <div class="card-overlay">
+        <div class="card-name">Sage Garden</div>
+        <div class="card-tag">Summer Palette · Limited Edition</div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.pinimg.com/736x/48/c7/6f/48c76f92fb6e051d92cf2d5f30944331.jpg" alt="Terracotta Linen" />
+      <div class="card-overlay">
+        <div class="card-name">Terracotta Bloom</div>
+        <div class="card-tag">Festive Casual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Handcrafted Linen</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Timeless Elegance</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">by wondermayank</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Casual Luxe</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Pure & Breathable</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Handcrafted Linen</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Timeless Elegance</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">by wondermayank</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Casual Luxe</span>
+    <span class="marquee-item marquee-dot">✦</span>
+    <span class="marquee-item">Pure & Breathable</span>
+    <span class="marquee-item marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-img">
+    <img src="https://i.pinimg.com/736x/1f/71/df/1f71df6b0d571722ad4c316037844f4f.jpg" alt="Craft story" />
+  </div>
+  <div class="story-text">
+    <p class="section-label">Our Philosophy</p>
+    <h2 class="section-title">Where Linen<br/>Meets Soul</h2>
+    <p class="story-body">
+      Rooted in India's textile heritage, every saree we craft is a quiet
+      conversation between tradition and the present. We choose pure linen
+      for its breath, its texture, its honest beauty — and let the drape
+      tell the rest of the story.
+    </p>
+    <a href="https://wondermayank.github.io" target="_blank" rel="noopener" class="btn-outline-cream story-cta">
+      Meet wondermayank →
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <p class="testimonial-quote">
+    "The moment I draped it, I understood — this is not just fabric.
+    It is memory, morning light, and the ease of a woman who knows herself."
+  </p>
+  <p class="testimonial-author">— A Linen Saree Customer, Jaipur</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-wordmark">
+        <span class="top">LINEN SAREE</span>
+        <span class="bottom">by wondermayank</span>
+      </div>
+      <p class="footer-desc">
+        Handcrafted linen sarees curated for the modern Indian woman —
+        breathable, beautiful, and utterly effortless.
+      </p>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#">Lookbook</a></li>
+        <li><a href="#">Care Guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Connect</p>
+      <ul class="footer-links">
+        <li><a href="https://wondermayank.github.io" target="_blank" rel="noopener">wondermayank.github.io</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">Inquire</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">
+      © 2025 Linen Saree by <a href="https://wondermayank.github.io" target="_blank" rel="noopener">wondermayank</a>. All rights reserved.
+    </p>
+    <p class="footer-copy">Crafted with care · India</p>
+  </div>
+</footer>
+
+<script>
+  // Dismiss boot screen after animations complete (~4s)
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.getElementById('boot').classList.add('hide');
+    }, 3800);
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id === '#') return;
+      e.preventDefault();
+      document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
