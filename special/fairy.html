@@ -1,0 +1,1252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fairy</title>
+
+  <!-- AOS Animation CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --light-bg: linear-gradient(to right, #ffe6f0, #e6f7ff);
+      --dark-bg: linear-gradient(to right, #1a1a2e, #16213e);
+      --light-text: #333;
+      --dark-text: #f0f0f0;
+      --light-card: white;
+      --dark-card: #2e2e3a;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      color: var(--light-text);
+      transition: all 0.5s ease;
+      overflow-x: hidden;
+      cursor: url('https://cur.cursors-4u.net/games/gam-15/gam1416.cur'), auto;
+    }
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+    header {
+      background: linear-gradient(45deg, #ff6ec4, #7873f5);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
+      color: #fffacd;
+    }
+    #themeToggle {
+      background: #fff;
+      color: #333;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .hero {
+  padding: 3rem 1rem;
+  background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.hero-img img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  animation: pulse 3s infinite;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h2 {
+  font-size: 2.5rem;
+  color: #444;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+    section {
+      padding: 4rem 2rem;
+    }
+    section h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--light-card);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, background 0.3s;
+    }
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}
+.card-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-buttons button,
+.card-buttons a {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #ff6ec4;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.card-buttons button:hover,
+.card-buttons a:hover {
+  background: #ff85b4;
+}
+
+.preview-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.preview-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 80%;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+}
+
+.preview-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
+  background: none;
+  color: #ff6ec4;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+    body.dark-mode .card {
+      background: var(--dark-card);
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    }
+    .card h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    .card p {
+      font-size: 1rem;
+    }
+    .skills {
+      max-width: 800px;
+      margin: auto;
+    }
+    .skill-bar {
+      margin: 1rem 0;
+    }
+    .skill-bar span {
+      font-weight: bold;
+    }
+    .bar {
+      height: 20px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      width: 0;
+      animation: fillBar 2s forwards;
+    }
+    @keyframes fillBar {
+      from { width: 0; }
+      to { width: 90%; }
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+      }
+      .hero img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+.sparkle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: sparkleAnim 0.8s ease-out forwards;
+}
+.sparkle.light {
+  background: radial-gradient(circle, #ffdde1, #ee9ca7);
+}
+.sparkle.dark {
+  background: radial-gradient(circle, #ff6ec4, #7873f5);
+}
+@keyframes sparkleAnim {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.light-bubbles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.light-bubbles span {
+  position: absolute;
+  display: block;
+  width: 20px; height: 20px;
+  background: radial-gradient(circle, #ffb6c1, #f0f8ff);
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #ff6ec4;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 10px #ff6ec4;
+  transition: transform 0.1s ease;
+  transform: translate(-50%, -50%);
+}
+}
+
+
+#fairyModal {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1001;
+  font-family: 'Poppins', sans-serif;
+}
+
+body.dark-mode #fairyModal {
+  background: #2e2e3a;
+  color: #fff;
+}
+
+.modal-header {
+  background: #ff6ec4;
+  color: white;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.modal-body {
+  padding: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.fairy-msg {
+  background: #ffe6f0;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 0.9rem;
+}
+body.dark-mode .fairy-msg {
+  background: #444;
+}
+
+#fairyInput {
+  border: none;
+  padding: 0.7rem 1rem;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  outline: none;
+}
+body.dark-mode #fairyInput {
+  background: #2e2e3a;
+  color: white;
+  border-top: 1px solid #555;
+}
+/* Fairy Button */
+#fairyBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 24px;
+  background: #ff6ec4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+#fairyBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Fairy Modal */
+#fairyModal {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: var(--card-bg, #fff);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9998;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body.dark-mode #fairyModal {
+  background: #2e2e3a;
+  color: #fff;
+}
+
+/* Modal Header */
+.modal-header {
+  background: #ff6ec4;
+  color: white;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.modal-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+    #fairyBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffb6c1;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    #fairyModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .fairy-box {
+      background: #fff;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      max-height: 80%;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      overflow: hidden;
+      position: relative;
+    }
+
+    #closeFairy {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #fairyChat {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 30px;
+      padding-right: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fairy-msg {
+      background: #e0eaff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .fairy-msg.user {
+      background: #d4ffd9;
+      align-self: flex-end;
+    }
+
+    #fairyInput {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+#themeSelect {
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 20px;
+  font-weight: bold;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+}
+body.dark-mode #themeSelect {
+  background: #444;
+  color: white;
+}
+body.anime-mode {
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  background-image: url('https://img.freepik.com/free-vector/set-torii-gates-water_52683-44986.jpg?semt=ais_hybrid&w=740'); /* You can use any anime-themed wallpaper */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #333;
+}
+
+body.aurora-mode {
+  background: radial-gradient(circle at top, #0d1b2a 0%, #000814 100%);
+  color: #fff;
+  /* overflow: hidden; <-- Remove this line */
+}
+body.aurora-mode .card-buttons button,
+body.aurora-mode .card-buttons a {
+  background: #ffe3f0; /* or any aurora-friendly color */
+  color: #333;
+}
+body.aurora-mode .card {
+  color: #222; /* Dark readable text */
+}
+
+body.aurora-mode .card h4,
+body.aurora-mode .card p {
+  color: #222; /* Ensure headings and paragraphs inside cards are dark */
+}
+
+body.aurora-mode .card:hover {
+  color: #222;
+}
+
+#auroraCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: none;
+}
+body.aurora-mode #auroraCanvas {
+  display: block;
+}
+.aurora-stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-stars::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%;
+  height: 200%;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: moveStars 120s linear infinite;
+  opacity: 0.4;
+  filter: brightness(1.5);
+}
+
+@keyframes moveStars {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+.background-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Optional: give meteorCanvas a darker background */
+body.aurora-mode #meteorCanvas {
+  background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000814 100%);
+}
+body.aurora-mode #particles-js {
+  display: none !important;
+}
+/* Hide all by default */
+.mode-image {
+  display: none;
+}
+
+/* Show based on theme */
+body.light-mode .light-mode-img {
+  display: block;
+}
+body.dark-mode .dark-mode-img {
+  display: block;
+}
+body.anime-mode .anime-mode-img {
+  display: block;
+}
+body.aurora-mode .aurora-mode-img {
+  display: block;
+}
+.mode-image {
+  width: 100px;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+.mode-image {
+  display: none;
+  width: 150px; /* or whatever size fits your layout */
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+body.light-mode .light-mode-img {
+  display: block;
+}
+body.dark-mode .dark-mode-img {
+  display: block;
+}
+body.anime-mode .anime-mode-img {
+  display: block;
+}
+body.aurora-mode .aurora-mode-img {
+  display: block;
+}
+.telegram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.telegram-btn:hover {
+  transform: scale(1.05);
+  background: rgba(0, 136, 204, 0.2);
+  box-shadow: 0 12px 25px rgba(0, 136, 204, 0.4);
+}
+
+.telegram-logo {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.telegram-btn:hover .telegram-logo {
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* Optional: Dark/Light mode adaptation */
+body.light-mode .telegram-btn {
+  color: black;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+  </style>
+</head>
+<div class="light-bubbles" id="lightBubbles"></div>
+<!-- HTML -->
+
+<body>
+  <div class="aurora-stars" id="auroraStars"></div>
+  <canvas id="auroraCanvas" class="hidden"></canvas>
+  <button id="fairyBtn" title="Talk to Fairy">🧚</button>
+
+<!-- Fairy Chat Modal -->
+<div id="fairyModal">
+  <div class="fairy-box">
+    <button id="closeFairy">&times;</button>
+    <div id="fairyChat"></div>
+    <input id="fairyInput" type="text" placeholder="Ask me something..." />
+  </div>
+</div>
+<div class="cursor-dot" id="cursorDot"></div>
+  <header data-aos="fade-down">
+    <h1>Fairy 🏆</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <select id="themeSelect" title="Choose Theme">
+  <option value="light">☀️ Light</option>
+  <option value="dark">🌙 Dark</option>
+  <option value="anime">🌸 Anime</option>
+  <option value="aurora">🌌 Aurora</option>
+</select>
+    </nav>
+  </header>
+
+<div class="hero" data-aos="fade-up">
+  <div class="hero-content">
+    <div class="hero-img" data-aos="fade-right">
+<img src="https://blogger.googleusercontent.com/img/a/AVvXsEhXIoCFcZSQCLYHvMltcJdDymIepsJW2BH7DaCfIObvltcc0TzCXwReIvL6wxvhzNmOnGGlOno7exgtlC5rKB4wCR9gbLw42q1nDzUSs52Q5fx09MVq4lWsceNm3QB_QKu1mY4RSGwkKjwdwNpP_XM3GDviwJLzCtDiqpL7sdxwiVDfCblkEwSPou9NMguO" class="mode-image light-mode-img" alt="Owner">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiTe06YvmSQE01BSTSiENJ2MHp7NZPGM3tlhtSYLJHGKONMtWC4r4tXp9iKPchPsul32tWfIiINTQyE6YMmG2QghFSX6cqgmMNajtqCe8G005ji-VcLQfx8UlEQ-5l5Y57QZmvprU_QRJWe73NDHJcKQOQemZOpCEGYKF8YcTBfyOXikSo0M08oE2K3_chK" class="mode-image dark-mode-img" alt="Owner">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj8i7k3EIiwqrmkCGmqCjAfUWPEW3gzngeJA9-aVilicDfg0FMuhAUKDOQB86h_qhayvDkBGV6Ao8NUPHrgmAzskoMlIdAtZ0dGQlWEGG-E1pRJXheVQXzrayLEXXjPFB8c7IOiOq0DGIrIOI6UtFUGriW0ppetb6ER2vGlBammuHRbist8yWvoOuP_jCXA" class="mode-image anime-mode-img" alt="Owner">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg-jeyBHe0-2h78h1aXhoSlTkNHydsv7VA_J13lb_1yZu_sD4eJ0h7eZGJj1m8TfwNYTdwTjd1Ew7yCHY5tw6U2FO0F664eVz20Xi87dVOgQIyF62qPGYZtiWK2Zwi_k5jzzieEpbqFrW6VAW4HXOG-5vqXUV7BtI-9AwcEp0kxqrNKHrUZ-xwIy6abgGWF" class="mode-image aurora-mode-img" alt="Owner">
+</div>
+
+    <div class="hero-text" data-aos="fade-left">
+      <h2>Fairy</h2>
+      <p id="typed-text">Web Developer • Designer • Creator</p>
+    </div>
+  </div>
+</div>
+
+  <section id="about" data-aos="fade-right">
+    <h3>About Me</h3>
+    <p style="max-width: 800px; margin: auto; text-align: center;">
+      Born in the dark, I am the shadow that rides the thunder.
+    </p>
+  </section>
+
+<section id="projects" data-aos="zoom-in">
+  <h3>My Projects</h3>
+  <div class="projects">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180?text=Calculator+Hub" alt="Calculator Hub" />
+      <h4>✨ Calculator Hub</h4>
+      <p>A complete set of CA tools with animations and localStorage.</p>
+      <div class="card-buttons">
+        <button onclick="openPreview('https://your-preview-url.com')">👁️ Preview</button>
+        <a href="https://your-readmore-url.com" target="_blank">📖 Read More</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180?text=Book+Library" alt="Book Library" />
+      <h4>📚 Book Library</h4>
+      <p>A manga-style book viewer with flip animation and image preview.</p>
+      <div class="card-buttons">
+        <button onclick="openPreview('https://your-book-preview.com')">👁️ Preview</button>
+        <a href="https://your-book-link.com" target="_blank">📖 Read More</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180?text=Portfolio+Girl" alt="Portfolio Girl Version" />
+      <h4>🖼️ Portfolio Girl Version</h4>
+      <p>A soft pink-themed portfolio with AOS and custom styling.</p>
+      <div class="card-buttons">
+        <button onclick="openPreview('https://your-portfolio-preview.com')">👁️ Preview</button>
+        <a href="https://your-portfolio-link.com" target="_blank">📖 Read More</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Modal Preview Box -->
+<div id="previewModal" class="preview-modal">
+  <div class="preview-content">
+    <button onclick="closePreview()" class="close-btn">&times;</button>
+    <iframe id="previewFrame" src="" frameborder="0"></iframe>
+  </div>
+</div>
+
+
+  <section id="skills" data-aos="fade-up">
+    <h3>My Skills</h3>
+    <div class="skills">
+      <div class="skill-bar">
+        <span>HTML</span>
+        <div class="bar"><div class="bar-fill" style="width: 100%;"></div></div>
+      </div>
+      <div class="skill-bar">
+        <span>CSS</span>
+        <div class="bar"><div class="bar-fill" style="width: 100%;"></div></div>
+      </div>
+      <div class="skill-bar">
+        <span>JavaScript</span>
+        <div class="bar"><div class="bar-fill" style="width: 100%;"></div></div>
+      </div>
+      <div class="skill-bar">
+        <span>React</span>
+        <div class="bar"><div class="bar-fill" style="width: 100%;"></div></div>
+      </div>
+    </div>
+  </section>
+<section style="
+  display: flex;
+  justify-content: center;
+  align-items: center;
+">
+
+  <!-- AOS for entry animation (optional) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <!-- Telegram Join Button -->
+  <a href="https://t.me/Fairy_thunder" target="_blank" class="telegram-btn" data-aos="zoom-in">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-logo">
+    <span>Join Telegram</span>
+  </a>
+</section>
+  <footer>
+    Made with ❤️ by Fairy © 2025
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+  </script>
+<!-- Particles.js Background -->
+<div id="particles-js" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  const fairyBtn = document.getElementById("fairyBtn");
+const fairyModal = document.getElementById("fairyModal");
+const closeFairy = document.getElementById("closeFairy");
+const fairyInput = document.getElementById("fairyInput");
+const fairyChat = document.getElementById("fairyChat");
+
+fairyBtn.addEventListener("click", () => {
+  fairyModal.style.display = "flex";
+  fairyInput.focus();
+});
+
+closeFairy.addEventListener("click", () => {
+  fairyModal.style.display = "none";
+});
+
+fairyInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && fairyInput.value.trim() !== "") {
+    const userMsg = document.createElement("div");
+    userMsg.className = "fairy-msg";
+    userMsg.style.alignSelf = "flex-end";
+    userMsg.textContent = fairyInput.value;
+    fairyChat.appendChild(userMsg);
+
+    const reply = document.createElement("div");
+    reply.className = "fairy-msg";
+    reply.textContent = "✨ Let me sprinkle some fairy dust on that...";
+    fairyChat.appendChild(reply);
+
+    fairyChat.scrollTop = fairyChat.scrollHeight;
+    fairyInput.value = "";
+  }
+});
+
+  particlesJS("particles-js", {
+    "particles": {
+      "number": { "value": 60 },
+      "color": { "value": "#ffffff" },
+      "shape": { "type": "circle" },
+      "opacity": {
+        "value": 0.5,
+        "random": true
+      },
+      "size": {
+        "value": 3,
+        "random": true
+      },
+      "move": {
+        "enable": true,
+        "speed": 1,
+        "direction": "none",
+        "out_mode": "out"
+      }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": { "enable": true, "mode": "repulse" }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
+<script>
+  const typedText = document.getElementById("typed-text");
+  const words = ["Web Developer", "Designer", "Creator", "Frontend Wizard"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let typing = true;
+
+  function typeLoop() {
+    const currentWord = words[wordIndex];
+    if (typing) {
+      typedText.textContent = currentWord.slice(0, ++charIndex);
+      if (charIndex === currentWord.length) {
+        typing = false;
+        setTimeout(typeLoop, 1200);
+      } else {
+        setTimeout(typeLoop, 100);
+      }
+    } else {
+      typedText.textContent = currentWord.slice(0, --charIndex);
+      if (charIndex === 0) {
+        typing = true;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(typeLoop, 300);
+      } else {
+        setTimeout(typeLoop, 50);
+      }
+    }
+  }
+
+  typeLoop();
+</script>
+<script>
+  document.addEventListener("mousemove", function(e) {
+    const sparkle = document.createElement("div");
+    sparkle.className = document.body.classList.contains("dark-mode") ? "sparkle dark" : "sparkle light";
+    document.body.appendChild(sparkle);
+    sparkle.style.left = `${e.clientX}px`;
+    sparkle.style.top = `${e.clientY}px`;
+    setTimeout(() => sparkle.remove(), 800);
+  });
+</script>
+<script>
+  function createBubbles() {
+    const container = document.getElementById("lightBubbles");
+    for (let i = 0; i < 20; i++) {
+      const span = document.createElement("span");
+      const size = Math.random() * 20 + 10;
+      span.style.width = `${size}px`;
+      span.style.height = `${size}px`;
+      span.style.left = `${Math.random() * 100}vw`;
+      span.style.animationDuration = `${8 + Math.random() * 4}s`;
+      container.appendChild(span);
+      setTimeout(() => span.remove(), 12000);
+    }
+  }
+
+  // Only show in light mode
+ function toggleBubbles() {
+  const bubbles = document.getElementById("lightBubbles");
+  const isLightTheme = !document.body.classList.contains("dark-mode") &&
+                       !document.body.classList.contains("anime-mode") &&
+                       !document.body.classList.contains("aurora-mode");
+
+  bubbles.style.display = isLightTheme ? "block" : "none";
+}
+
+  // Create bubbles repeatedly
+setInterval(() => {
+  const isLightTheme = !document.body.classList.contains("dark-mode") &&
+                       !document.body.classList.contains("anime-mode") &&
+                       !document.body.classList.contains("aurora-mode");
+
+  if (isLightTheme) {
+    createBubbles();
+  }
+}, 1000);
+
+
+  // Call on theme toggle too
+ document.getElementById('themeSelect').addEventListener('change', toggleBubbles);
+</script>
+<script>
+  const dot = document.getElementById("cursorDot");
+  let mouseX = 0, mouseY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+  });
+
+  function animateCursor() {
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+</script>
+<script>
+  const fairyBtn = document.getElementById("fairyBtn");
+  const fairyModal = document.getElementById("fairyModal");
+  const closeFairy = document.getElementById("closeFairy");
+  const fairyInput = document.getElementById("fairyInput");
+  const fairyChat = document.getElementById("fairyChat");
+
+  fairyBtn.addEventListener("click", () => {
+    fairyModal.style.display = "flex";
+    fairyInput.focus();
+  });
+
+  closeFairy.addEventListener("click", () => {
+    fairyModal.style.display = "none";
+  });
+
+  fairyInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && fairyInput.value.trim() !== "") {
+      const input = fairyInput.value.trim();
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.className = "fairy-msg user";
+      userMsg.textContent = input;
+      fairyChat.appendChild(userMsg);
+
+      // Fairy reply
+      const reply = document.createElement("div");
+      reply.className = "fairy-msg";
+      reply.textContent = getFairyReply(input);
+      fairyChat.appendChild(reply);
+
+      fairyChat.scrollTop = fairyChat.scrollHeight;
+      fairyInput.value = "";
+    }
+  });
+
+  // Demo fairy reply logic
+  function getFairyReply(input) {
+    const lower = input.toLowerCase();
+    if (lower.includes("hello")) return "🌸 Hello, lovely soul!";
+    if (lower.includes("how are you")) return "🧚 I’m sparkling with joy! You?";
+    if (lower.includes("love")) return "💖 Love makes everything magical!";
+    return "✨ I'm thinking... (This is a demo reply!)";
+  }
+</script>
+<script>
+  const modal = document.getElementById("previewModal");
+  const frame = document.getElementById("previewFrame");
+
+  function openPreview(link) {
+    frame.src = link;
+    modal.style.display = "flex";
+  }
+
+  function closePreview() {
+    modal.style.display = "none";
+    frame.src = "";
+  }
+
+  // Optional: Close modal when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closePreview();
+    }
+  });
+</script>
+<script>
+const canvas = document.getElementById('auroraCanvas');
+const ctx = canvas.getContext('2d');
+let meteors = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function createMeteor() {
+  return {
+    x: Math.random() * canvas.width,
+    y: -20,
+    length: Math.random() * 80 + 40,
+    speed: Math.random() * 6 + 4,
+    angle: Math.PI / 4,
+    opacity: Math.random() * 0.5 + 0.5
+  };
+}
+
+function drawMeteor(meteor) {
+  const x = meteor.x;
+  const y = meteor.y;
+  const endX = x + meteor.length * Math.cos(meteor.angle);
+  const endY = y + meteor.length * Math.sin(meteor.angle);
+
+  const gradient = ctx.createLinearGradient(x, y, endX, endY);
+  gradient.addColorStop(0, `rgba(255,255,255,${meteor.opacity})`);
+  gradient.addColorStop(1, `rgba(0,0,255,0)`);
+
+  ctx.strokeStyle = gradient;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(endX, endY);
+  ctx.stroke();
+}
+
+function updateMeteors() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (Math.random() < 0.1) meteors.push(createMeteor());
+  meteors.forEach((m, i) => {
+    m.x += m.speed * Math.cos(m.angle);
+    m.y += m.speed * Math.sin(m.angle);
+    drawMeteor(m);
+    if (m.x > canvas.width || m.y > canvas.height) meteors.splice(i, 1);
+  });
+  requestAnimationFrame(updateMeteors);
+}
+
+updateMeteors();
+</script>
+<script>
+function applyTheme(theme) {
+  document.getElementById("themeSelect").addEventListener("change", (e) => {
+  applyTheme(e.target.value);
+});
+
+  document.body.className = '';
+  document.body.classList.add(theme + '-mode');
+
+  // Hide all other canvases
+  document.getElementById('bubbleCanvas')?.classList.add('hidden');
+  document.getElementById('auroraCanvas')?.classList.add('hidden');
+
+  // Then enable only the one for the selected theme
+  if (theme === 'aurora') {
+    document.getElementById('meteorCanvas')?.classList.remove('hidden');
+  } else if (theme === 'light' || theme === 'dark') {
+    document.getElementById('bubbleCanvas')?.classList.remove('hidden');
+  } else if (theme === 'anime') {
+    document.getElementById('auroraCanvas')?.classList.remove('hidden');
+  }
+
+  // Optional: store theme in localStorage
+  localStorage.setItem('selectedTheme', theme);
+}
+
+// Optional: restore theme on load
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('selectedTheme') || 'light';
+  applyTheme(savedTheme);
+});
+</script>
+<script>
+  const profilePhoto = document.getElementById('profilePhoto');
+
+  const themeImages = {
+    light: "https://blogger.googleusercontent.com/img/a/AVvXsEhXIoCFcZSQCLYHvMltcJdDymIepsJW2BH7DaCfIObvltcc0TzCXwReIvL6wxvhzNmOnGGlOno7exgtlC5rKB4wCR9gbLw42q1nDzUSs52Q5fx09MVq4lWsceNm3QB_QKu1mY4RSGwkKjwdwNpP_XM3GDviwJLzCtDiqpL7sdxwiVDfCblkEwSPou9NMguO",
+    dark: "https://blogger.googleusercontent.com/img/a/AVvXsEiTe06YvmSQE01BSTSiENJ2MHp7NZPGM3tlhtSYLJHGKONMtWC4r4tXp9iKPchPsul32tWfIiINTQyE6YMmG2QghFSX6cqgmMNajtqCe8G005ji-VcLQfx8UlEQ-5l5Y57QZmvprU_QRJWe73NDHJcKQOQemZOpCEGYKF8YcTBfyOXikSo0M08oE2K3_chK",
+    anime: "https://blogger.googleusercontent.com/img/a/AVvXsEj8i7k3EIiwqrmkCGmqCjAfUWPEW3gzngeJA9-aVilicDfg0FMuhAUKDOQB86h_qhayvDkBGV6Ao8NUPHrgmAzskoMlIdAtZ0dGQlWEGG-E1pRJXheVQXzrayLEXXjPFB8c7IOiOq0DGIrIOI6UtFUGriW0ppetb6ER2vGlBammuHRbist8yWvoOuP_jCXA",
+    aurora: "https://blogger.googleusercontent.com/img/a/AVvXsEgX9OPCxwToyLBRe7vfWqokbO8uE3_4mtX6r4Dd7UoFc3Rmc-JRkikIMAPojmLyYmoVpkyoP7pJR-1vK9rmPV6xfrdDg-72EPDD49z9UK5FhFLQoWhG7iQqb-CVFJLGvBGAVLL62GCqnDAq7jKIqAldJoZiUq9OUO_TrX7qVsZRuGAwTylffNORT8YTYA5E"
+  };
+
+  function updateProfilePhoto(theme) {
+    if (themeImages[theme]) {
+      profilePhoto.src = themeImages[theme];
+    }
+  }
+
+  // Watch for theme changes
+  function applyTheme(theme) {
+    document.body.classList = theme;
+    localStorage.setItem("theme", theme);
+    updateProfilePhoto(theme); // 🔁 Automatically change image
+  }
+ profilePhoto.src = themeImages[theme];
+});
+  // Initial setup on page load
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.body.classList = savedTheme;
+  updateProfilePhoto(savedTheme); // 👈 Make sure image matches on load
+
+  // Example: Hook for your buttons (optional)
+  document.querySelectorAll("[data-theme]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      applyTheme(btn.getAttribute("data-theme"));
+    });
+  });
+</script>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+
+    const img = document.getElementById("themeImage");
+    if (document.body.classList.contains("dark-mode")) {
+      img.src = "https://blogger.googleusercontent.com/img/a/AVvXsEiTe06YvmSQE01BSTSiENJ2MHp7NZPGM3tlhtSYLJHGKONMtWC4r4tXp9iKPchPsul32tWfIiINTQyE6YMmG2QghFSX6cqgmMNajtqCe8G005ji-VcLQfx8UlEQ-5l5Y57QZmvprU_QRJWe73NDHJcKQOQemZOpCEGYKF8YcTBfyOXikSo0M08oE2K3_chK"; // replace with your actual dark image
+    } else {
+      img.src = "https://blogger.googleusercontent.com/img/a/AVvXsEhXIoCFcZSQCLYHvMltcJdDymIepsJW2BH7DaCfIObvltcc0TzCXwReIvL6wxvhzNmOnGGlOno7exgtlC5rKB4wCR9gbLw42q1nDzUSs52Q5fx09MVq4lWsceNm3QB_QKu1mY4RSGwkKjwdwNpP_XM3GDviwJLzCtDiqpL7sdxwiVDfCblkEwSPou9NMguO"; // replace with your actual light image
+    }
+  }
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"5dd516cab50b40299b599fc6a3569f8a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
