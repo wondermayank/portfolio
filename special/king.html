@@ -1,0 +1,331 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cherry Blossom — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#2f3be2;
+      --muted:#6b6b6b;
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.85);
+      --bg-overlay: linear-gradient(90deg, rgba(250,248,253,0.95) 0%, rgba(250,248,253,0.5) 30%, rgba(255,255,255,0.0) 60%);
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#111827;
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Full-screen hero with background image */
+    .hero {
+      min-height:100vh;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+      background-color:#f6f7fb;
+      background-image: url('https://i.pinimg.com/1200x/a8/f2/7e/a8f27e740542d688d4da4e7bc95d2f15.jpg'); /* <-- replace with your image file or URL */
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position: right center; /* keep main subject on the right */
+    }
+
+    /* translucent overlay to ensure left text is readable */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.6) 35%, rgba(255,255,255,0.08) 70%);
+      pointer-events:none;
+    }
+
+    /* container to center content and limit width */
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      margin:0 24px;
+      display:grid;
+      grid-template-columns: 1fr 560px; /* left content + right image area */
+      gap: 32px;
+      align-items:center;
+      position:relative;
+      z-index:1;
+    }
+
+    /* Top nav: centered */
+    .topnav {
+      position:absolute;
+      top:22px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index: 5;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      border-radius:999px;
+      padding:6px 12px;
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+    }
+    .topnav button{
+      background:transparent;
+      border:0;
+      font-weight:600;
+      padding:8px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      color:#333;
+      font-size:14px;
+    }
+    .topnav button.active{
+      background:var(--accent);
+      color:white;
+      box-shadow: 0 6px 14px rgba(47,59,226,0.14);
+    }
+
+    /* Left text block (vertically centered) */
+    .left {
+      padding:48px 20px;
+      align-self:center;
+    }
+    .eyebrow{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:14px;
+      font-weight:600;
+      letter-spacing:0.6px;
+    }
+    .title{
+      font-size:72px;
+      line-height:0.95;
+      margin:0 0 14px 0;
+      font-weight:800;
+      color:#2b2b2b;
+    }
+    .subtitle{
+      max-width:560px;
+      color:#4b5563;
+      font-size:16px;
+      line-height:1.5;
+      margin-bottom:22px;
+    }
+    .cta{
+      display:inline-block;
+      padding:12px 22px;
+      border-radius:999px;
+      background:var(--accent);
+      color:white;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 6px 18px rgba(47,59,226,0.14);
+    }
+
+    /* small footer inside hero left column */
+    .meta {
+      margin-top:34px;
+      display:flex;
+      gap:28px;
+      color:var(--muted);
+      font-size:13px;
+      align-items:center;
+    }
+
+    /* Right column: decorative panel (we let background image cover this, but include a subtle translucent card) */
+    .right {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+      .artcard{
+  width:100%;
+  height:70vh;
+  max-height:820px;
+  border-radius:0;
+  overflow:hidden;
+  box-shadow:none;
+  background:none;
+  border:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.artcard::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: url('https://images.seeklogo.com/logo-png/45/2/one-piece-logo-png_seeklogo-453433.png');
+  background-size: contain;  /* ensures full image is visible, not cropped */
+  background-repeat: no-repeat;
+  background-position: center; /* keeps image centered */
+  filter: none;
+  opacity:1;
+  transform:none;
+}
+
+    /* ABOUT page styles (hidden by default, shown via JS) */
+    .page {
+      position:relative;
+      display:block;
+    }
+    .hidden { display:none; }
+
+    /* Responsive tweaks */
+    @media (max-width:1024px){
+      .container { grid-template-columns: 1fr; gap:20px; }
+      .right { order:-1; }
+      .title { font-size:48px; }
+      .artcard{height:50vh}
+    }
+    @media (max-width:520px){
+      .title{font-size:36px}
+      .topnav{padding:4px 8px;font-size:13px}
+      .hero::before{background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0.02) 60%);}
+    }
+  </style>
+</head>
+<body>
+  <main class="hero" role="main" aria-labelledby="main-title">
+    <!-- Top centered nav (toggle-like) -->
+    <nav class="topnav" aria-label="Primary">
+      <button id="nav-home" class="active" data-page="home">Home</button>
+      <button id="nav-overview" data-page="overview">Overview</button>
+      <button id="nav-about" data-page="about">About</button>
+      <button id="nav-info" data-page="info">Info</button>
+    </nav>
+
+    <div class="container" role="region" aria-label="Hero area">
+      <!-- LEFT: Text block -->
+      <section class="left">
+        <!-- Home page content -->
+        <article id="page-home" class="page">
+          <div class="eyebrow">Owner</div>
+          <h1 id="main-title" class="title">King<br></h1>
+          <p class="subtitle">
+            Owner of GalaxyOfficialX, ThunderOfficialX & CosmicOfficialX — sharing free study materials, anime, movies, web series, APKs & more for everyone.
+          </p>
+          <a href="#more" class="cta" onclick="openReadMore(event)">Read More</a>
+
+          <div class="meta" aria-hidden="true">
+            <div><strong>Instagram</strong><div style="font-weight:600">Seeyou2mars</div></div>
+            <div><strong>Art By</strong><div style="font-weight:600">Wounds</div></div>
+            <div style="margin-left:auto; text-align:right; font-size:12px;">
+              Sat, 20 Nov<br><span style="font-weight:600">17:78 PM</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ABOUT page content -->
+        <article id="page-about" class="page hidden" aria-live="polite">
+          <h2 class="title" style="font-size:40px; margin-bottom:8px;">About the Artwork</h2>
+          <p class="subtitle">
+            This artwork is a stylized portrait highlighting cherry blossom aesthetics, soft lighting,
+            and pastel tones. The right side features the character and floral details while the left
+            side contains textual context and navigation. The site is a mock landing page to present the piece.
+          </p>
+          <p style="color:var(--muted);font-size:15px; max-width:600px;">
+            Credits, production notes, licensing, and contact information can go here. Use the top
+            toggle to switch back to Home or view additional sections like Overview and Info.
+          </p>
+        </article>
+
+        <!-- OVERVIEW page -->
+        <article id="page-overview" class="page hidden" aria-live="polite">
+          <h2 class="title" style="font-size:40px; margin-bottom:8px;">Overview</h2>
+          <p class="subtitle">
+            Overview content: quick facts, color palette, composition notes, usage rights, and related works.
+          </p>
+        </article>
+
+        <!-- INFO page -->
+        <article id="page-info" class="page hidden" aria-live="polite">
+          <h2 class="title" style="font-size:40px; margin-bottom:8px;">Info</h2>
+          <p class="subtitle">
+            Info content: contact, social links, download options, and artist bio.
+          </p>
+        </article>
+
+      </section>
+
+      <!-- RIGHT: visual card (the image is actually the page background; artcard is decorative) -->
+      <aside class="right" aria-hidden="true">
+        <div class="artcard" role="https://pin.it/7xPnob259" aria-label="Cherry blossom artwork"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    // Simple single-page navigation (toggles pages without reload)
+    (function(){
+      const navButtons = document.querySelectorAll('.topnav button');
+      const pages = {
+        home: document.getElementById('page-home'),
+        about: document.getElementById('page-about'),
+        overview: document.getElementById('page-overview'),
+        info: document.getElementById('page-info')
+      };
+
+      function showPage(name){
+        // hide all
+        Object.values(pages).forEach(p => p.classList.add('hidden'));
+        // show selected
+        const target = pages[name] || pages.home;
+        target.classList.remove('hidden');
+
+        // update nav active states
+        navButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.page === name);
+          btn.setAttribute('aria-pressed', btn.dataset.page === name ? 'true' : 'false');
+        });
+
+        // update document title for clarity
+        document.title = (name.charAt(0).toUpperCase() + name.slice(1)) + " — Cherry Blossom";
+      }
+
+      // attach events
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const page = btn.dataset.page;
+          showPage(page);
+        });
+      });
+
+      // keyboard shortcuts: H = home, A = about, O = overview, I = info
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'h' || e.key === 'H') showPage('home');
+        if (e.key === 'a' || e.key === 'A') showPage('about');
+        if (e.key === 'o' || e.key === 'O') showPage('overview');
+        if (e.key === 'i' || e.key === 'I') showPage('info');
+      });
+
+      // initial state
+      showPage('home');
+
+      // smooth "Read More" open to About
+      window.openReadMore = function(e){
+        e.preventDefault();
+        showPage('about');
+        // scroll the left area into view on small screens
+        document.querySelector('.left').scrollIntoView({behavior:'smooth', block:'center'});
+      };
+    })();
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"5dd516cab50b40299b599fc6a3569f8a","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
