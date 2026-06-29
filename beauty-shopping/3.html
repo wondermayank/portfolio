@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bare — No-Makeup Look</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --nude:    #F0E6DC;
+    --blush:   #E8C4AD;
+    --rose:    #C4826A;
+    --umber:   #6B4538;
+    --cream:   #FAF6F2;
+    --charcoal:#2A1F1A;
+    --mist:    #EDE3DB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    background: rgba(250,246,242,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(196,130,106,0.15);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300; letter-spacing: 0.18em;
+    color: var(--umber); text-transform: uppercase;
+  }
+  .nav-logo span { font-style: italic; color: var(--rose); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--charcoal); text-decoration: none; opacity: 0.7;
+    transition: opacity .2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .cart-btn {
+    background: var(--rose); color: #fff; border: none; cursor: pointer;
+    padding: 9px 22px; font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; border-radius: 40px;
+    font-family: 'DM Sans', sans-serif; transition: background .2s;
+  }
+  .cart-btn:hover { background: var(--umber); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 24px;
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--umber);
+    margin-bottom: 28px;
+  }
+  .hero-headline em { font-style: italic; color: var(--rose); }
+  .hero-sub {
+    font-size: 0.92rem; line-height: 1.75; color: #6B5A52;
+    max-width: 380px; margin-bottom: 44px;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .btn-primary {
+    background: var(--umber); color: var(--cream);
+    padding: 14px 34px; border-radius: 40px; border: none; cursor: pointer;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; transition: background .2s;
+  }
+  .btn-primary:hover { background: var(--rose); }
+  .btn-ghost {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--umber); text-decoration: none;
+    border-bottom: 1px solid var(--blush); padding-bottom: 2px;
+    transition: border-color .2s;
+  }
+  .btn-ghost:hover { border-color: var(--rose); }
+
+  .hero-visual {
+    position: relative; overflow: hidden;
+    background: var(--nude);
+  }
+  .hero-images {
+    position: absolute; inset: 0;
+    display: grid; grid-template-rows: 1fr 1fr;
+    gap: 3px;
+  }
+  .hero-images img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    display: block;
+  }
+  .hero-badge {
+    position: absolute; bottom: 40px; left: -20px;
+    background: var(--cream); border-radius: 16px;
+    padding: 18px 24px; box-shadow: 0 8px 32px rgba(107,69,56,0.12);
+  }
+  .hero-badge p { font-size: 0.7rem; color: var(--rose); letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-badge h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300;
+    color: var(--umber); margin-top: 2px;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--umber); overflow: hidden; padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 0; animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track span {
+    color: var(--blush); font-size: 0.7rem; letter-spacing: 0.25em;
+    text-transform: uppercase; padding: 0 40px;
+  }
+  .marquee-track span.dot { color: var(--rose); padding: 0; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    text-align: center; padding: 80px 24px 48px;
+  }
+  .section-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--rose); display: block; margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300;
+    color: var(--umber);
+  }
+  .section-title em { font-style: italic; }
+
+  /* ── PRODUCTS ── */
+  .products { padding: 0 48px 100px; }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .product-card {
+    background: #fff; border-radius: 18px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(107,69,56,0.06);
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(107,69,56,0.14);
+  }
+  .product-img {
+    width: 100%; aspect-ratio: 1/1.1; overflow: hidden;
+    background: var(--mist); position: relative;
+  }
+  .product-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .product-card:hover .product-img img { transform: scale(1.05); }
+  .product-tag {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--rose); color: #fff;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .product-info { padding: 18px 20px 20px; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 400; color: var(--umber);
+    margin-bottom: 4px;
+  }
+  .product-sub {
+    font-size: 0.75rem; color: #9A7A70; margin-bottom: 14px;
+    letter-spacing: 0.04em;
+  }
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .product-price {
+    font-size: 1rem; font-weight: 500; color: var(--umber);
+  }
+  .add-btn {
+    background: var(--mist); border: none; cursor: pointer;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .add-btn:hover { background: var(--blush); }
+  .add-btn svg { width: 15px; height: 15px; stroke: var(--umber); fill: none; stroke-width: 2; }
+
+  /* ── LOOK BUILDER ── */
+  .look-builder {
+    background: var(--nude);
+    padding: 80px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .look-builder-text {}
+  .look-steps { margin-top: 40px; display: flex; flex-direction: column; gap: 28px; }
+  .look-step { display: flex; gap: 20px; align-items: flex-start; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
+    color: var(--blush); line-height: 1; min-width: 32px;
+  }
+  .step-content {}
+  .step-title { font-size: 0.85rem; font-weight: 500; color: var(--umber); margin-bottom: 4px; }
+  .step-desc { font-size: 0.82rem; line-height: 1.6; color: #7A5E55; }
+
+  .look-builder-visual {
+    position: relative;
+  }
+  .look-model-img {
+    width: 100%; border-radius: 24px; overflow: hidden;
+    aspect-ratio: 3/4; background: var(--mist);
+  }
+  .look-model-img img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top;
+  }
+  .look-pins {
+    position: absolute; inset: 0;
+  }
+  .look-pin {
+    position: absolute;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pin-dot {
+    width: 10px; height: 10px; background: var(--rose); border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(196,130,106,0.25);
+    flex-shrink: 0;
+  }
+  .pin-label {
+    background: #fff; border-radius: 10px;
+    padding: 8px 14px; font-size: 0.72rem; color: var(--umber);
+    box-shadow: 0 4px 16px rgba(107,69,56,0.12);
+    white-space: nowrap;
+  }
+  .pin-label strong { display: block; font-size: 0.8rem; }
+  .pin1 { top: 18%; left: -30px; }
+  .pin2 { top: 42%; right: -20px; }
+  .pin3 { bottom: 30%; left: -20px; }
+
+  /* ── INGREDIENTS ── */
+  .ingredients {
+    padding: 80px 80px;
+    text-align: center;
+  }
+  .ingredient-grid {
+    display: flex; justify-content: center; gap: 60px; margin-top: 56px;
+    flex-wrap: wrap;
+  }
+  .ingredient-item {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    max-width: 140px;
+  }
+  .ingredient-icon {
+    width: 72px; height: 72px; background: var(--nude);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .ingredient-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--umber);
+  }
+  .ingredient-desc { font-size: 0.72rem; color: #9A7A70; line-height: 1.5; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--umber); padding: 80px;
+    text-align: center;
+  }
+  .testimonials .section-title { color: var(--blush); }
+  .testimonials .section-eyebrow { color: var(--rose); }
+  .testimonial-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 56px;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(232,196,173,0.18);
+    border-radius: 18px; padding: 32px 28px;
+    text-align: left;
+  }
+  .t-quote {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300;
+    color: var(--nude); line-height: 1.65; margin-bottom: 24px; font-style: italic;
+  }
+  .t-author { font-size: 0.72rem; color: var(--rose); letter-spacing: 0.1em; text-transform: uppercase; }
+  .t-stars { color: var(--blush); font-size: 0.85rem; margin-bottom: 14px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 56px 80px 36px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    border-top: 1px solid var(--mist);
+  }
+  .footer-brand .nav-logo { font-size: 1.8rem; }
+  .footer-tagline { font-size: 0.82rem; color: #9A7A70; margin-top: 12px; max-width: 220px; line-height: 1.6; }
+  .footer-col h4 {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 0.82rem; color: #7A5E55; text-decoration: none; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--umber); }
+  .footer-bottom {
+    padding: 24px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--mist);
+  }
+  .footer-bottom p { font-size: 0.72rem; color: #B09990; }
+
+  /* ── FLOATING CART ── */
+  .floating-cart {
+    position: fixed; bottom: 32px; right: 32px; z-index: 200;
+    background: var(--umber); color: var(--cream);
+    width: 58px; height: 58px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(107,69,56,0.3);
+    cursor: pointer; border: none;
+    transition: transform .2s, background .2s;
+  }
+  .floating-cart:hover { transform: scale(1.08); background: var(--rose); }
+  .floating-cart svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--rose); color: #fff;
+    width: 20px; height: 20px; border-radius: 50%;
+    font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+    font-weight: 500;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 100px 24px 48px; }
+    .hero-visual { height: 50vw; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .look-builder { grid-template-columns: 1fr; padding: 48px 24px; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr 1fr; padding: 40px 24px; }
+    .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; }
+    .products { padding: 0 24px 60px; }
+    .ingredients { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">B<span>are</span></div>
+  <ul class="nav-links">
+    <li><a href="#">The Look</a></li>
+    <li><a href="#">Products</a></li>
+    <li><a href="#">Ingredients</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn">Shop Now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">The No-Makeup Edit · 2026</p>
+    <h1 class="hero-headline">
+      Skin that looks<br><em>like skin.</em>
+    </h1>
+    <p class="hero-sub">
+      A curated routine for your most natural self — nothing to hide behind, nothing to cover up. Just effortlessly radiant, comfortable skin.
+    </p>
+    <div class="hero-cta">
+      <button class="btn-primary">Shop the Look</button>
+      <a href="#" class="btn-ghost">How it works</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-images">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5bDXsg36Vb5shWR6FYo1S7Cfx2T-qosNi0DAciUMizoDBEKYTtiVsLCA&s=10" alt="Natural skin model one" />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmVEXPHzS2pqXSydHUsEtoYr0V40Tl2S5ooHb_QHbGbebgD1hHk8O1qcCJ&s=10" alt="Natural skin model two" />
+    </div>
+    <div class="hero-badge">
+      <p>This Season's Edit</p>
+      <h3>Bare Skin Formula</h3>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Clean Ingredients</span><span class="dot">·</span>
+    <span>No-Makeup Makeup</span><span class="dot">·</span>
+    <span>Vegan &amp; Cruelty Free</span><span class="dot">·</span>
+    <span>Dermatologist Tested</span><span class="dot">·</span>
+    <span>Skin-First Formula</span><span class="dot">·</span>
+    <span>Natural Radiance</span><span class="dot">·</span>
+    <span>Clean Ingredients</span><span class="dot">·</span>
+    <span>No-Makeup Makeup</span><span class="dot">·</span>
+    <span>Vegan &amp; Cruelty Free</span><span class="dot">·</span>
+    <span>Dermatologist Tested</span><span class="dot">·</span>
+    <span>Skin-First Formula</span><span class="dot">·</span>
+    <span>Natural Radiance</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <span class="section-eyebrow">The Edit</span>
+    <h2 class="section-title">Your <em>4-Step</em> Ritual</h2>
+  </div>
+  <div class="products">
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTfWVdTlnhu2h-MrfLjl7VgWSTB8vktxkusiQV-kImQ_-kcvZia475xun1dCAIYsuMdcwPr_86sQ-Jd_jb4XdsxkRIt1nIJK5STNx7gqkS8DElq-pxswsghrw" alt="Skin Tint" />
+          <span class="product-tag">Step 1</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Skin Tint SPF 30</p>
+          <p class="product-sub">Sheer coverage · 12 shades</p>
+          <div class="product-footer">
+            <span class="product-price">$38</span>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://i.etsystatic.com/5291298/r/il/1cc663/2907646685/il_1588xN.2907646685_tof6.jpg" alt="Lip & Cheek Balm" />
+          <span class="product-tag">Step 2</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Lip &amp; Cheek Flush</p>
+          <p class="product-sub">Buildable blush · 8 tones</p>
+          <div class="product-footer">
+            <span class="product-price">$26</span>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQwdjnqsseSdwVJoyL2XrSeRxy0PUkdzIQVQgO6A6rGiAVhTrVrP9bF4PtYMrkU5vBONRaudfHPRgki5NWpipZHw6-sV5VbrA" alt="Brow Gel" />
+          <span class="product-tag">Step 3</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Brow Soap Sculpt</p>
+          <p class="product-sub">Clear feathered finish</p>
+          <div class="product-footer">
+            <span class="product-price">$22</span>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSF4bdMJHpWPyDlZCiK-_UcXhusowOB7k1iBywe3AMqKaKnftEr_0l4StVJ1uqqUaPzQKEMzHGSddsZ_gPVOOPBK4j06hUh_UocNgvI1a1PlUKUYpEyBXcC07A" alt="Setting Dew Mist" />
+          <span class="product-tag">Step 4</span>
+        </div>
+        <div class="product-info">
+          <p class="product-name">Dew Setting Mist</p>
+          <p class="product-sub">Glass skin finish · all day</p>
+          <div class="product-footer">
+            <span class="product-price">$32</span>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOOK BUILDER -->
+<section class="look-builder">
+  <div class="look-builder-text">
+    <span class="section-eyebrow">How to wear it</span>
+    <h2 class="section-title">Build your<br><em>bare look</em></h2>
+    <div class="look-steps">
+      <div class="look-step">
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <p class="step-title">Prep with moisture</p>
+          <p class="step-desc">Start with clean, hydrated skin. Our Skin Tint adheres best over moisturizer — giving that lit-from-within finish.</p>
+        </div>
+      </div>
+      <div class="look-step">
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <p class="step-title">Press, don't rub</p>
+          <p class="step-desc">Dot the Skin Tint across cheeks, nose, and forehead — blend with fingertips using gentle pressing motions.</p>
+        </div>
+      </div>
+      <div class="look-step">
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <p class="step-title">Color in one swipe</p>
+          <p class="step-desc">Tap Lip &amp; Cheek Flush onto the apples of cheeks and lips. Use a finger to blend for a natural, monochromatic flush.</p>
+        </div>
+      </div>
+      <div class="look-step">
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <p class="step-title">Set and go</p>
+          <p class="step-desc">Mist your face from 12 inches away. Let dry — and that's your whole morning routine done.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="look-builder-visual">
+    <div class="look-model-img">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5bDXsg36Vb5shWR6FYo1S7Cfx2T-qosNi0DAciUMizoDBEKYTtiVsLCA&s=10" alt="Model showing natural look" />
+    </div>
+    <div class="look-pins">
+      <div class="look-pin pin1">
+        <div class="pin-dot"></div>
+        <div class="pin-label"><strong>Skin Tint SPF 30</strong>Feather-light coverage</div>
+      </div>
+      <div class="look-pin pin2">
+        <div class="pin-label" style="text-align:right"><strong>Lip &amp; Cheek Flush</strong>Natural rose tone</div>
+        <div class="pin-dot"></div>
+      </div>
+      <div class="look-pin pin3">
+        <div class="pin-dot"></div>
+        <div class="pin-label"><strong>Dew Mist</strong>Glass skin seal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients">
+  <span class="section-eyebrow">What's inside</span>
+  <h2 class="section-title">Skin-first <em>ingredients</em></h2>
+  <div class="ingredient-grid">
+    <div class="ingredient-item">
+      <div class="ingredient-icon">🌿</div>
+      <p class="ingredient-name">Niacinamide</p>
+      <p class="ingredient-desc">Evens tone, minimises pores and strengthens barrier</p>
+    </div>
+    <div class="ingredient-item">
+      <div class="ingredient-icon">💧</div>
+      <p class="ingredient-name">Hyaluronic Acid</p>
+      <p class="ingredient-desc">Binds moisture for all-day plumpness</p>
+    </div>
+    <div class="ingredient-item">
+      <div class="ingredient-icon">🌸</div>
+      <p class="ingredient-name">Rosehip Oil</p>
+      <p class="ingredient-desc">Brightens and fades dark spots naturally</p>
+    </div>
+    <div class="ingredient-item">
+      <div class="ingredient-icon">☀️</div>
+      <p class="ingredient-name">Zinc Oxide</p>
+      <p class="ingredient-desc">Mineral SPF shield without white cast</p>
+    </div>
+    <div class="ingredient-item">
+      <div class="ingredient-icon">🌾</div>
+      <p class="ingredient-name">Squalane</p>
+      <p class="ingredient-desc">Weightless oil that mimics your skin's own sebum</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <span class="section-eyebrow">Real skin, real people</span>
+  <h2 class="section-title">What they're <em>saying</em></h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">I genuinely forget I'm wearing anything. My skin looks healthy, not "made up." My husband didn't even notice — which is exactly the point.</p>
+      <p class="t-author">Priya M. · Mumbai</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">Finally a tint that doesn't oxidise on my medium-deep skin. It looks like my skin but perfected. I use it daily.</p>
+      <p class="t-author">Amara K. · London</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">The four-step kit is all I need. I've stopped carrying a full makeup bag. Two minutes and I'm out the door looking put-together.</p>
+      <p class="t-author">Sofia R. · São Paulo</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-logo">B<span>are</span></div>
+    <p class="footer-tagline">A minimal ritual for your most honest, radiant skin.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Shop</h4>
+    <ul>
+      <li><a href="#">Skin Tint</a></li>
+      <li><a href="#">Lip &amp; Cheek</a></li>
+      <li><a href="#">Brow Sculpt</a></li>
+      <li><a href="#">Setting Mist</a></li>
+      <li><a href="#">The Full Kit</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Learn</h4>
+    <ul>
+      <li><a href="#">How to Layer</a></li>
+      <li><a href="#">Shade Finder</a></li>
+      <li><a href="#">Ingredients</a></li>
+      <li><a href="#">Our Story</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Support</h4>
+    <ul>
+      <li><a href="#">FAQs</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Stockists</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 Bare Beauty. All rights reserved.</p>
+  <p>Clean · Conscious · Honest</p>
+</div>
+
+<!-- FLOATING CART -->
+<button class="floating-cart" aria-label="View shopping bag">
+  <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  <span class="cart-count">0</span>
+</button>
+
+<script>
+  // Cart counter
+  let count = 0;
+  const cartCount = document.querySelector('.cart-count');
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      count++;
+      cartCount.textContent = count;
+      btn.style.background = 'var(--blush)';
+      setTimeout(() => btn.style.background = '', 300);
+    });
+  });
+
+  // Scroll-reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.product-card, .look-step, .ingredient-item, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
