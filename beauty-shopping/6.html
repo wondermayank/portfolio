@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOLD — The Cut Crease Issue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B0E12;
+    --plum:#2B1320;
+    --plum-deep:#1F0E18;
+    --bone:#F4ECDF;
+    --bone-dim:#E4D8C6;
+    --gold:#C8A35A;
+    --gold-bright:#DDBD7C;
+    --rose:#B26B72;
+    --lilac:#D9C7CE;
+    --line:rgba(200,163,90,0.35);
+    --maxw:1280px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--plum);
+    color:var(--bone);
+    font-family:'Manrope', sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  a{color:inherit; text-decoration:none;}
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.02;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- focus visibility ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold-bright);
+    outline-offset:3px;
+  }
+
+  /* ================= NAV ================= */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:linear-gradient(180deg, rgba(27,14,18,0.92) 0%, rgba(27,14,18,0));
+    backdrop-filter:blur(2px);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:22px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:24px;
+    letter-spacing:.01em;
+    color:var(--bone);
+  }
+  .wordmark span{color:var(--gold-bright);}
+  nav.links{display:flex; gap:36px; font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
+  nav.links a{position:relative; padding-bottom:4px; opacity:.85; transition:opacity .25s;}
+  nav.links a:hover{opacity:1;}
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--gold-bright); transition:width .3s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .bag-btn{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:.05em;
+    border:1px solid var(--line); padding:8px 14px; border-radius:999px;
+    display:flex; align-items:center; gap:8px; background:rgba(244,236,223,0.04);
+    cursor:pointer; color:var(--bone); transition:border-color .25s, background .25s;
+  }
+  .bag-btn:hover{border-color:var(--gold-bright); background:rgba(200,163,90,0.1);}
+  .bag-count{
+    background:var(--gold-bright); color:var(--ink); border-radius:50%;
+    width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center;
+    font-size:10px; font-weight:700;
+  }
+  .nav-mobile-hide{display:flex;}
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:stretch;
+    background:var(--ink);
+  }
+  .hero-grid{
+    width:100%; display:grid; grid-template-columns: 1.05fr 1fr; min-height:100vh;
+  }
+  .hero-copy{
+    position:relative; z-index:5; padding:160px 56px 80px 32px;
+    display:flex; flex-direction:column; justify-content:center; gap:26px;
+    max-width:560px;
+  }
+  .hero-copy .eyebrow{margin-bottom:2px;}
+  .hero-title{
+    font-size:clamp(52px, 8vw, 96px);
+    color:var(--bone);
+  }
+  .hero-title em{
+    font-style:italic; color:var(--gold-bright); font-weight:400;
+    display:block;
+  }
+  .hero-sub{
+    font-size:16px; line-height:1.65; color:var(--bone-dim); max-width:420px;
+    font-weight:300;
+  }
+  .hero-cta-row{display:flex; align-items:center; gap:22px; margin-top:6px;}
+  .btn-primary{
+    background:var(--gold-bright); color:var(--ink); border:none;
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:.06em;
+    text-transform:uppercase; padding:15px 26px; border-radius:2px; cursor:pointer;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); background:var(--bone);}
+  .btn-ghost{
+    font-size:13px; letter-spacing:.05em; text-transform:uppercase; color:var(--bone-dim);
+    border-bottom:1px solid var(--line); padding-bottom:3px; transition:color .25s, border-color .25s;
+  }
+  .btn-ghost:hover{color:var(--gold-bright); border-color:var(--gold-bright);}
+
+  .hero-img{
+    position:relative; overflow:hidden;
+  }
+  .hero-img img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    filter:saturate(1.05) contrast(1.03);
+  }
+  .hero-img::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(100deg, var(--ink) 0%, rgba(27,14,18,0) 18%, rgba(27,14,18,0) 78%, rgba(27,14,18,.5) 100%);
+  }
+  .hero-tag{
+    position:absolute; bottom:36px; right:36px; z-index:6;
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.12em;
+    color:var(--bone); text-transform:uppercase; text-align:right;
+    background:rgba(27,14,18,0.55); padding:10px 14px; border:1px solid var(--line);
+    backdrop-filter:blur(4px);
+  }
+  .scroll-cue{
+    position:absolute; bottom:34px; left:32px; z-index:6;
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Mono', monospace; font-size:10px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--bone-dim);
+  }
+  .scroll-cue .line{width:1px; height:40px; background:var(--line); position:relative; overflow:hidden;}
+  .scroll-cue .line::after{
+    content:''; position:absolute; top:0; left:0; width:100%; height:14px; background:var(--gold-bright);
+    animation:slide 2.2s ease-in-out infinite;
+  }
+  @keyframes slide{0%{transform:translateY(-20px)}50%{transform:translateY(40px)}100%{transform:translateY(-20px)}}
+
+  /* ============ CREASE DIVIDER (signature) ============ */
+  .crease{
+    position:relative; height:140px; overflow:hidden;
+  }
+  .crease svg{position:absolute; top:0; left:0; width:100%; height:100%;}
+  .crease-label{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-65%);
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.25em;
+    text-transform:uppercase; color:var(--gold-bright);
+    background:var(--plum); padding:6px 16px;
+    white-space:nowrap;
+  }
+
+  /* ================= STORY ================= */
+  .story{padding:100px 0 70px;}
+  .story-grid{
+    display:grid; grid-template-columns: 1.1fr .9fr; gap:80px; align-items:start;
+  }
+  .story-head{font-size:clamp(34px,4vw,48px); margin-bottom:28px; max-width:480px;}
+  .story-body p{
+    font-size:16px; line-height:1.85; color:var(--bone-dim); max-width:480px; font-weight:300;
+  }
+  .story-body p + p{margin-top:18px;}
+  blockquote{
+    margin-top:34px; padding-left:24px; border-left:2px solid var(--gold);
+    font-family:'Fraunces', serif; font-style:italic; font-size:22px;
+    color:var(--bone); max-width:460px; line-height:1.4;
+  }
+  blockquote cite{
+    display:block; margin-top:14px; font-family:'Space Mono', monospace;
+    font-style:normal; font-size:11px; letter-spacing:.1em; color:var(--gold-bright);
+    text-transform:uppercase;
+  }
+  .story-side{position:relative;}
+  .story-side .frame{
+    position:relative; aspect-ratio:4/5; overflow:hidden; border:1px solid var(--line);
+  }
+  .story-side img{width:100%; height:100%; object-fit:cover;}
+  .story-side .caption{
+    margin-top:14px; font-family:'Space Mono', monospace; font-size:11px;
+    letter-spacing:.08em; color:var(--bone-dim); display:flex; justify-content:space-between;
+    text-transform:uppercase;
+  }
+
+  /* ================= LOOKBOOK ================= */
+  .lookbook{padding:60px 0 100px;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+    margin-bottom:48px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(32px,4.2vw,52px);}
+  .section-head p{max-width:300px; font-size:14px; color:var(--bone-dim); font-weight:300; line-height:1.6;}
+
+  .look-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:18px;
+  }
+  .look-card{
+    position:relative; overflow:hidden; aspect-ratio:3/4.3; cursor:pointer;
+    border:1px solid var(--line);
+  }
+  .look-card:nth-child(2){ transform:translateY(28px); }
+  .look-card:nth-child(4){ transform:translateY(28px); }
+  .look-card img{
+    width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .look-card:hover img{transform:scale(1.07);}
+  .look-card::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(27,14,18,0) 45%, rgba(27,14,18,.92) 100%);
+    z-index:1; transition:opacity .3s;
+  }
+  .look-meta{
+    position:absolute; left:16px; right:16px; bottom:14px; z-index:2;
+  }
+  .look-meta .num{
+    font-family:'Space Mono', monospace; font-size:11px; color:var(--gold-bright); letter-spacing:.1em;
+  }
+  .look-meta h3{font-size:19px; color:var(--bone); margin-top:4px; font-weight:500;}
+
+  /* ================= SHOP ================= */
+  .shop{padding:60px 0 110px;}
+  .shop-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:22px;
+  }
+  .product{
+    display:flex; flex-direction:column; background:var(--plum-deep);
+    border:1px solid var(--line); position:relative;
+  }
+  .product-img{
+    position:relative; aspect-ratio:1/1; background:var(--bone-dim);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .product-img img{
+    width:100%; height:100%; object-fit:contain; padding:18px;
+    mix-blend-mode:normal;
+  }
+  .tag{
+    position:absolute; top:12px; right:-8px; z-index:2;
+    background:var(--gold-bright); color:var(--ink);
+    font-family:'Space Mono', monospace; font-size:11px; font-weight:700;
+    padding:6px 12px 6px 10px; transform:rotate(4deg);
+    box-shadow:0 4px 10px rgba(0,0,0,.25);
+  }
+  .tag::after{
+    content:''; position:absolute; right:6px; top:50%; width:5px; height:5px;
+    background:var(--plum-deep); border-radius:50%; transform:translateY(-50%);
+  }
+  .product-info{padding:20px 18px 22px; display:flex; flex-direction:column; gap:10px; flex:1;}
+  .product-info .pk{
+    font-family:'Space Mono', monospace; font-size:10px; letter-spacing:.12em;
+    color:var(--rose); text-transform:uppercase;
+  }
+  .product-info h3{
+    font-size:18px; font-weight:500; color:var(--bone); line-height:1.25;
+  }
+  .product-info .desc{font-size:13px; color:var(--bone-dim); line-height:1.55; font-weight:300; flex:1;}
+  .product-foot{
+    display:flex; align-items:center; justify-content:space-between; margin-top:6px;
+  }
+  .price{font-family:'Space Mono', monospace; font-size:15px; color:var(--gold-bright);}
+  .add-btn{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    background:none; border:1px solid var(--line); color:var(--bone);
+    padding:9px 14px; cursor:pointer; transition:all .25s; border-radius:2px;
+  }
+  .add-btn:hover{background:var(--gold-bright); border-color:var(--gold-bright); color:var(--ink);}
+  .add-btn.added{background:var(--rose); border-color:var(--rose); color:var(--bone);}
+
+  /* ================= FOOTER ================= */
+  footer{
+    border-top:1px solid var(--line); padding:64px 0 40px; margin-top:20px;
+  }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;
+  }
+  .footer-brand .wordmark{font-size:26px; margin-bottom:14px; display:block;}
+  .footer-brand p{font-size:13px; color:var(--bone-dim); max-width:260px; line-height:1.6; font-weight:300;}
+  .footer-col h4{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-bright); margin-bottom:16px;
+  }
+  .footer-col a{display:block; font-size:13px; color:var(--bone-dim); margin-bottom:10px; transition:color .2s;}
+  .footer-col a:hover{color:var(--bone);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:'Space Mono', monospace; font-size:11px; color:var(--bone-dim); letter-spacing:.05em;
+    padding-top:24px; border-top:1px solid var(--line);
+  }
+
+  /* ================= REVEAL ANIM ================= */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .scroll-cue .line::after{animation:none;}
+    .look-card img{transition:none;}
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 980px){
+    nav.links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-img{min-height:46vh;}
+    .hero-copy{padding:150px 24px 60px;}
+    .story-grid{grid-template-columns:1fr; gap:50px;}
+    .look-grid{grid-template-columns:repeat(2,1fr);}
+    .look-card:nth-child(2),.look-card:nth-child(4){transform:none;}
+    .shop-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr; row-gap:30px;}
+  }
+  @media (max-width: 560px){
+    .wrap{padding:0 18px;}
+    .hero-title{font-size:clamp(40px,12vw,56px);}
+    .look-grid{grid-template-columns:1fr;}
+    .shop-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-tag{right:18px; bottom:18px;}
+    .scroll-cue{left:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="wordmark">FOLD<span>.</span></a>
+    <nav class="links nav-mobile-hide">
+      <a href="#story">Story</a>
+      <a href="#lookbook">Lookbook</a>
+      <a href="#shop">Shop</a>
+    </nav>
+    <button class="bag-btn" id="bagBtn" aria-label="View bag">
+      Bag <span class="bag-count" id="bagCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Vol. 01 — Eye Editorial</span>
+      <h1 class="hero-title">The Cut<br><em>Crease.</em></h1>
+      <p class="hero-sub">One incision of colour, set into the socket like a hinge. Four artists, one technique, an entire issue built around the line that splits light from shadow.</p>
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop the look</button>
+        <a href="#lookbook" class="btn-ghost">View lookbook</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQI5x36ks-z4VV1hpxJevMlthg1uKl5EeMCXZKQeYsy9EuPeKWg3FYw2Vkly1P4UyMUnfFuV8eU6w3gPiZC0chsaKsDyrr3vA" alt="Close-up editorial shot of a cut crease eye makeup look">
+      <div class="hero-tag">Shade — Bronze Vein<br>Finish — Satin Crease</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span>Scroll</div>
+</section>
+
+<!-- ============ CREASE DIVIDER ============ -->
+<div class="crease" aria-hidden="true">
+  <svg viewBox="0 0 1280 140" preserveAspectRatio="none">
+    <line x1="0" y1="20" x2="1280" y2="115" stroke="var(--gold)" stroke-width="1"/>
+    <line x1="-4" y1="6" x2="20" y2="34" stroke="var(--gold)" stroke-width="1"/>
+    <line x1="1260" y1="100" x2="1284" y2="129" stroke="var(--gold)" stroke-width="1"/>
+  </svg>
+  <span class="crease-label">The Line of the Look</span>
+</div>
+
+<!-- ================= STORY ================= -->
+<section class="story wrap" id="story">
+  <div class="story-grid">
+    <div class="reveal">
+      <span class="eyebrow">Editor's Note</span>
+      <h2 class="story-head">A crease is just a decision, drawn in colour.</h2>
+      <div class="story-body">
+        <p>Every cut crease begins the same way: a transition colour swept through the socket, then erased along one clean edge. What's left behind isn't a gradient — it's a border. Lid colour on one side, bare skin or a contrasting shade on the other, with nothing soft between them.</p>
+        <p>For this issue, we asked four artists to treat that border as the entire concept. Not a finishing touch on a smoky eye, but the headline. The sharper the cut, the louder the statement — and the more it depends on having the right tools in hand before the blending sponge ever comes out.</p>
+      </div>
+      <blockquote>
+        "It's the one technique where a single shaky millimetre changes the whole story of the eye."
+        <cite>— Lead Artist, Issue 01</cite>
+      </blockquote>
+    </div>
+    <div class="story-side reveal">
+      <div class="frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLdzjpNjZyG_aCm1UtX67l-_ngW3wL0yBB1gx4mV1Uc5aWpqYRly0LZQ8&s=10" alt="Editorial portrait detailing a precise cut crease eyeshadow line">
+      </div>
+      <div class="caption"><span>Backstage, Issue 01</span><span>Plate 03</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="crease" aria-hidden="true">
+  <svg viewBox="0 0 1280 140" preserveAspectRatio="none">
+    <line x1="0" y1="118" x2="1280" y2="24" stroke="var(--gold)" stroke-width="1"/>
+    <line x1="-4" y1="132" x2="20" y2="104" stroke="var(--gold)" stroke-width="1"/>
+    <line x1="1260" y1="38" x2="1284" y2="10" stroke="var(--gold)" stroke-width="1"/>
+  </svg>
+  <span class="crease-label">Four Takes, One Technique</span>
+</div>
+
+<!-- ================= LOOKBOOK ================= -->
+<section class="lookbook wrap" id="lookbook">
+  <div class="section-head reveal">
+    <h2>The Lookbook</h2>
+    <p>Four interpretations of the cut crease, shot for the issue — from a soft bronze fold to a graphic ink wing.</p>
+  </div>
+  <div class="look-grid">
+    <div class="look-card reveal">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLdzjpNjZyG_aCm1UtX67l-_ngW3wL0yBB1gx4mV1Uc5aWpqYRly0LZQ8&s=10" alt="Model wearing a bronze cut crease eye look">
+      <div class="look-meta"><span class="num">Look 01</span><h3>Bronze Fold</h3></div>
+    </div>
+    <div class="look-card reveal">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR05yDf-voeplkH6YCcZyRf7-cUNzi01BDSZ_lEG3PfiLMRbqxkdDnhNEs3&s=10" alt="Model wearing a deep ink cut crease eye look">
+      <div class="look-meta"><span class="num">Look 02</span><h3>Wet Ink Line</h3></div>
+    </div>
+    <div class="look-card reveal">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmYbTmTtElnBnKU3eu4ynp9_gEvvXqjub6jy9ntQgPjwuhE0tttvFjK1U&s=10" alt="Model wearing a soft rose cut crease eye look">
+      <div class="look-meta"><span class="num">Look 03</span><h3>Smoke Rose</h3></div>
+    </div>
+    <div class="look-card reveal">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT919iYQ-CSzWxn4sabUrNlS13rtJBsMPnUywZbIRrYWNjvXYY_tx262lQ&s=10" alt="Model wearing a graphic winged cut crease eye look">
+      <div class="look-meta"><span class="num">Look 04</span><h3>Graphic Wing</h3></div>
+    </div>
+  </div>
+</section>
+
+<div class="crease" aria-hidden="true">
+  <svg viewBox="0 0 1280 140" preserveAspectRatio="none">
+    <line x1="0" y1="22" x2="1280" y2="112" stroke="var(--gold)" stroke-width="1"/>
+    <line x1="-4" y1="8" x2="20" y2="36" stroke="var(--gold)" stroke-width="1"/>
+    <line x1="1260" y1="98" x2="1284" y2="126" stroke="var(--gold)" stroke-width="1"/>
+  </svg>
+  <span class="crease-label">Shop the Story</span>
+</div>
+
+<!-- ================= SHOP ================= -->
+<section class="shop wrap" id="shop">
+  <div class="section-head reveal">
+    <h2>Shop the Crease</h2>
+    <p>The exact kit our artists reached for between takes — built for one clean line, every time.</p>
+  </div>
+  <div class="shop-grid">
+
+    <div class="product reveal">
+      <div class="product-img">
+        <span class="tag">₹1,450</span>
+        <img src="https://www.swati.com/cdn/shop/products/cut-crease-brush.png?v=1657100053&width=1920" alt="Precision cut crease eyeshadow brush">
+      </div>
+      <div class="product-info">
+        <span class="pk">Tools</span>
+        <h3>Precision Crease Brush</h3>
+        <p class="desc">A firm, angled head built to lay colour in one motion and cut a hairline edge without disturbing the lid shade beneath it.</p>
+        <div class="product-foot">
+          <span class="price">₹1,450</span>
+          <button class="add-btn">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product reveal">
+      <div class="product-img">
+        <span class="tag">₹2,100</span>
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT4rtptqDU4c5HkFuNjiH3R83l3S3MuNC8RQJtRCo60PTkc4TVpF--m5fD1IsRIDE0CHCawO06icEVpENw-VKjnpmMzKtP5VA20k267jpEuK7DAUCV14T6Khg" alt="Mono eyeshadow pot used for the cut crease shade">
+      </div>
+      <div class="product-info">
+        <span class="pk">Colour</span>
+        <h3>Mono Crease Pot — Bronze Vein</h3>
+        <p class="desc">A dense, buildable bronze with enough pigment to hold its line through twelve hours and a full editorial shoot.</p>
+        <div class="product-foot">
+          <span class="price">₹2,100</span>
+          <button class="add-btn">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product reveal">
+      <div class="product-img">
+        <span class="tag">₹1,890</span>
+        <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRUarprXn0_UjZ6LC6wgdF2Mrj5RnYS93b9MMQTygkUPQYsLWNIa5v_8ukO0paSaKLWf4v_oUq6LqtyqB-XhtmXhs-a2nkCOJ9h3mAPXbomggnej32v9vHPJQ" alt="Wet-set liquid liner used to sharpen the crease line">
+      </div>
+      <div class="product-info">
+        <span class="pk">Liner</span>
+        <h3>Wet-Set Liner — Ink Black</h3>
+        <p class="desc">A fine-tip liquid liner that sets matte in seconds, used to re-sharpen the crease edge after blending.</p>
+        <div class="product-foot">
+          <span class="price">₹1,890</span>
+          <button class="add-btn">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product reveal">
+      <div class="product-img">
+        <span class="tag">₹980</span>
+        <img src="https://m.media-amazon.com/images/I/41r1ovHORcL.jpg" alt="Blending sponge duo used to soften the cut crease edge">
+      </div>
+      <div class="product-info">
+        <span class="pk">Tools</span>
+        <h3>Blending Duo — Soft Smoke</h3>
+        <p class="desc">A two-headed sponge for diffusing just the upper edge of the crease, so the cut stays sharp and the gradient above it stays soft.</p>
+        <div class="product-foot">
+          <span class="price">₹980</span>
+          <button class="add-btn">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="wordmark">FOLD<span>.</span></a>
+      <p>An eye editorial and shop, built one technique at a time. Issue 01: The Cut Crease.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Issue</h4>
+      <a href="#story">Editor's note</a>
+      <a href="#lookbook">Lookbook</a>
+      <a href="#shop">Shop the kit</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FOLD Editorial</span>
+    <span>Vol. 01 — The Cut Crease Issue</span>
+  </div>
+</footer>
+
+<script>
+  // bag counter
+  let count = 0;
+  const bagCount = document.getElementById('bagCount');
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(btn.classList.contains('added')) return;
+      count++;
+      bagCount.textContent = count;
+      btn.textContent = 'Added';
+      btn.classList.add('added');
+      setTimeout(()=>{ btn.textContent='Add to bag'; btn.classList.remove('added'); }, 1400);
+    });
+  });
+
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  reveals.forEach(r=>io.observe(r));
+</script>
+
+</body>
+</html>
