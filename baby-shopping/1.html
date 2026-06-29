@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Classic Standard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#1a2e4a;--cream:#f9f5ef;--gold:#c8962e;--rose:#e8c5b8;--text:#2d2d2d;
+  }
+  body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--text)}
+  nav{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+  nav .logo{font-family:'Playfair Display',serif;color:#fff;font-size:1.5rem;letter-spacing:.5px}
+  nav .tagline{color:#c5d3e0;font-size:.8rem;letter-spacing:2px;text-transform:uppercase}
+  nav .nav-links{display:flex;gap:2rem}
+  nav .nav-links a{color:#c5d3e0;text-decoration:none;font-size:.9rem;letter-spacing:.5px}
+  nav .nav-links a:hover{color:#fff}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:82vh}
+  .hero-left{background:var(--navy);display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem}
+  .hero-left .eyebrow{color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:.8rem;margin-bottom:1.5rem}
+  .hero-left h1{font-family:'Playfair Display',serif;color:#fff;font-size:3.2rem;line-height:1.25;margin-bottom:1.5rem}
+  .hero-left p{color:#c5d3e0;font-size:1.05rem;line-height:1.8;margin-bottom:2.5rem;max-width:400px}
+  .btn-primary{display:inline-block;background:var(--gold);color:#fff;padding:.9rem 2.2rem;text-decoration:none;font-weight:600;letter-spacing:.5px;transition:.2s}
+  .btn-primary:hover{background:#a87920}
+  .btn-outline{display:inline-block;border:2px solid rgba(255,255,255,.3);color:#fff;padding:.9rem 2.2rem;text-decoration:none;font-weight:600;letter-spacing:.5px;margin-left:1rem;transition:.2s}
+  .btn-outline:hover{border-color:#fff}
+  .hero-right{background:var(--rose);position:relative;overflow:hidden}
+  .hero-right img{width:100%;height:100%;object-fit:cover}
+  .hero-badge{position:absolute;bottom:2rem;right:2rem;background:var(--navy);color:#fff;padding:1rem 1.5rem;font-family:'Playfair Display',serif;text-align:center}
+  .hero-badge span{display:block;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+  .hero-badge strong{font-size:1.1rem}
+  .categories{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+  .section-header{text-align:center;margin-bottom:3rem}
+  .section-header h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy);margin-bottom:.5rem}
+  .section-header p{color:#666;font-size:1rem}
+  .section-header .divider{width:50px;height:2px;background:var(--gold);margin:1rem auto 0}
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .cat-card{background:#fff;border:1px solid #e8e0d5;padding:2rem 1.5rem;text-align:center;transition:.2s;cursor:pointer}
+  .cat-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-2px)}
+  .cat-card .icon{font-size:2.5rem;margin-bottom:1rem}
+  .cat-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.4rem}
+  .cat-card p{font-size:.85rem;color:#888}
+  .featured{background:var(--navy);padding:4rem 2rem}
+  .featured-inner{max-width:1100px;margin:0 auto}
+  .featured h2{font-family:'Playfair Display',serif;color:#fff;text-align:center;font-size:2rem;margin-bottom:.5rem}
+  .featured .sub{color:#c5d3e0;text-align:center;margin-bottom:3rem}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .prod-card{background:#fff;overflow:hidden}
+  .prod-card img{width:100%;height:220px;object-fit:cover}
+  .prod-info{padding:1.5rem}
+  .prod-info .tag{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+  .prod-info h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.5rem}
+  .prod-info .price{font-weight:600;color:var(--navy);font-size:1.1rem}
+  .prod-info .old{text-decoration:line-through;color:#aaa;font-size:.9rem;margin-right:.5rem}
+  .prod-actions{display:flex;align-items:center;justify-content:space-between;margin-top:1rem}
+  .btn-cart{background:var(--navy);color:#fff;border:none;padding:.6rem 1.2rem;font-size:.85rem;cursor:pointer;letter-spacing:.5px}
+  .btn-cart:hover{background:var(--gold)}
+  .trust{background:var(--cream);border-top:1px solid #e8e0d5;border-bottom:1px solid #e8e0d5;padding:2.5rem 2rem}
+  .trust-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+  .trust-item .t-icon{font-size:2rem;margin-bottom:.8rem}
+  .trust-item h4{font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:.3rem}
+  .trust-item p{font-size:.85rem;color:#777}
+  footer{background:var(--navy);color:#c5d3e0;padding:3rem 2rem;text-align:center}
+  footer .logo{font-family:'Playfair Display',serif;color:#fff;font-size:1.4rem;margin-bottom:.5rem}
+  footer p{font-size:.85rem}
+</style>
+</head>
+<body>
+<nav>
+  <div>
+    <div class="logo">LittleNest</div>
+    <div class="tagline">Est. 2015 · Premium Baby Essentials</div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Clothing</a>
+    <a href="#">Toys</a>
+    <a href="#">Nursery</a>
+    <a href="#">Feeding</a>
+    <a href="#">Offers</a>
+  </div>
+  <div style="color:#c5d3e0;font-size:.9rem">🛒 Cart (0)</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">New Collection 2025</div>
+    <h1>Gentle Beginnings for Your Little One</h1>
+    <p>Carefully selected essentials crafted for comfort, safety and the quiet magic of early childhood. Trusted by families across India.</p>
+    <div>
+      <a href="#" class="btn-primary">Shop Now</a>
+      <a href="#" class="btn-outline">View Catalogue</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdRh03UGwAtfpGH4-RY1ci3rDycxI0EuWAlg&s" alt="Baby essentials">
+    <div class="hero-badge">
+      <span>Trusted by</span>
+      <strong>50,000+ Families</strong>
+    </div>
+  </div>
+</section>
+
+<section class="categories">
+  <div class="section-header">
+    <h2>Shop by Category</h2>
+    <p>Everything your baby needs, from newborn to toddler</p>
+    <div class="divider"></div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card"><div class="icon">👶</div><h3>Clothing</h3><p>Rompers, bodysuits & more</p></div>
+    <div class="cat-card"><div class="icon">🧸</div><h3>Toys</h3><p>Safe & stimulating play</p></div>
+    <div class="cat-card"><div class="icon">🛏️</div><h3>Nursery</h3><p>Cribs, bedding & décor</p></div>
+    <div class="cat-card"><div class="icon">🍼</div><h3>Feeding</h3><p>Bottles, bibs & high chairs</p></div>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="featured-inner">
+    <h2>Featured Products</h2>
+    <p class="sub">Curated picks loved by parents this season</p>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt="Baby set">
+        <div class="prod-info">
+          <div class="tag">Best Seller</div>
+          <h3>Classic Organic Cotton Romper Set</h3>
+          <div><span class="old">₹899</span><span class="price">₹649</span></div>
+          <div class="prod-actions"><button class="btn-cart">Add to Cart</button><span>⭐ 4.8</span></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_16.jpg" alt="Baby toy">
+        <div class="prod-info">
+          <div class="tag">New Arrival</div>
+          <h3>Soft Knit Activity Toy Bundle</h3>
+          <div><span class="old">₹1,299</span><span class="price">₹999</span></div>
+          <div class="prod-actions"><button class="btn-cart">Add to Cart</button><span>⭐ 4.9</span></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt="Baby care">
+        <div class="prod-info">
+          <div class="tag">Popular</div>
+          <h3>Natural Baby Care Starter Kit</h3>
+          <div><span class="old">₹1,599</span><span class="price">₹1,199</span></div>
+          <div class="prod-actions"><button class="btn-cart">Add to Cart</button><span>⭐ 4.7</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="t-icon">🚚</div><h4>Free Delivery</h4><p>On orders above ₹499</p></div>
+    <div class="trust-item"><div class="t-icon">✅</div><h4>100% Safe</h4><p>BIS certified products</p></div>
+    <div class="trust-item"><div class="t-icon">↩️</div><h4>Easy Returns</h4><p>7-day hassle-free returns</p></div>
+    <div class="trust-item"><div class="t-icon">🔒</div><h4>Secure Payment</h4><p>UPI, Cards & EMI accepted</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="logo">LittleNest</div>
+  <p>© 2025 LittleNest Baby Shopping. All rights reserved.</p>
+</footer>
+</body>
+</html>
