@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOMUL — Glass Skin, No Filter | K-Beauty Shop</title>
+<meta name="description" content="BOMUL is a Seoul-style dewy skincare line built on rice water, centella, and the 5-step routine logic K-beauty is known for.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23D9A95C' d='M12 2C8 8 5 12 5 15.5C5 19.5 8.1 22 12 22C15.9 22 19 19.5 19 15.5C19 12 16 8 12 2Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+<style>
+  :root{
+    --cream:#FBF3EC;
+    --cream-deep:#F5E9DD;
+    --blush:#F1B8B0;
+    --blush-soft:#F7D6D0;
+    --ink:#3B2A2E;
+    --ink-soft:#6E5A57;
+    --sage:#8FA382;
+    --sage-deep:#6E8763;
+    --gold:#D9A95C;
+    --mist:#EAF1EC;
+    --white:#FFFDFB;
+    --shadow: 0 18px 40px -18px rgba(59,42,46,0.28);
+    --shadow-soft: 0 10px 24px -12px rgba(59,42,46,0.18);
+    --radius-lg: 28px;
+    --maxw: 1180px;
+    --ff-display: "Fraunces", serif;
+    --ff-body: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ff-mono: "Space Mono", monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--ff-body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  ul{ list-style:none; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  .eyebrow{
+    font-family:var(--ff-mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:""; width:18px; height:1px; background:var(--sage-deep); display:inline-block;
+  }
+  h1,h2,h3{ font-family:var(--ff-display); font-weight:600; color:var(--ink); }
+  em{ font-style:italic; color:var(--gold); }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 28px; border-radius:999px; font-weight:600; font-size:0.95rem;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--cream); box-shadow:var(--shadow-soft); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+  .btn-ghost{ border:1.5px solid var(--ink); color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--cream); }
+  .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2.5px solid var(--sage-deep); outline-offset:3px;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- drop frame (organic blob mask for photos) ---------- */
+  .drop-frame{
+    position:relative; overflow:hidden;
+    border-radius:44% 56% 62% 38% / 48% 40% 60% 52%;
+    box-shadow:var(--shadow);
+    background:var(--blush-soft);
+  }
+  .drop-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .drop-frame.alt{ border-radius:58% 42% 40% 60% / 55% 50% 50% 45%; }
+
+  /* ---------- header ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,236,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(59,42,46,0.08);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:var(--maxw); margin:0 auto;
+  }
+  .logo{ display:flex; align-items:center; gap:8px; font-family:var(--ff-display); font-weight:600; font-size:1.3rem; letter-spacing:0.01em; }
+  .logo svg{ flex-shrink:0; }
+  .nav-links{ display:flex; gap:34px; font-size:0.92rem; font-weight:500; }
+  .nav-links a{ position:relative; padding-bottom:4px; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px; background:var(--gold);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:18px; }
+  .bag-btn{ display:flex; align-items:center; gap:6px; font-weight:600; font-size:0.92rem; }
+  .bag-count{
+    background:var(--gold); color:var(--white); font-family:var(--ff-mono); font-size:0.7rem;
+    min-width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    transition:transform .3s ease;
+  }
+  .bag-count.pulse{ transform:scale(1.4); }
+  .menu-toggle{ display:none; }
+
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0; background:var(--cream);
+      flex-direction:column; padding:18px 32px 26px; gap:18px; border-bottom:1px solid rgba(59,42,46,0.08);
+      transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease;
+    }
+    .nav-links.open{ transform:none; opacity:1; pointer-events:auto; }
+    .menu-toggle{ display:flex; flex-direction:column; gap:4px; }
+    .menu-toggle span{ width:22px; height:2px; background:var(--ink); border-radius:2px; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{ position:relative; padding:64px 0 0; }
+  .hero-inner{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center; }
+  .hero-copy h1{ font-size:clamp(2.6rem, 5.4vw, 4.6rem); line-height:1.04; margin:18px 0 22px; }
+  .hero-copy p.lede{ font-size:1.08rem; color:var(--ink-soft); max-width:460px; margin-bottom:30px; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:32px; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    font-family:var(--ff-mono); font-size:0.68rem; letter-spacing:0.04em; text-transform:uppercase;
+    border:1px solid rgba(59,42,46,0.18); padding:7px 13px; border-radius:999px; color:var(--ink-soft);
+  }
+
+  .hero-art{ position:relative; height:520px; }
+  .shine{
+    position:absolute; width:340px; height:340px; border-radius:50%; pointer-events:none;
+    background:radial-gradient(circle, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%);
+    transform:translate(-50%,-50%); top:40%; left:50%; mix-blend-mode:screen; filter:blur(2px);
+    transition:opacity .3s ease;
+  }
+  .hero-art .glow-blob{
+    position:absolute; width:380px; height:380px; border-radius:50%;
+    background:radial-gradient(circle, var(--blush) 0%, transparent 70%);
+    top:6%; right:-6%; opacity:0.7; filter:blur(6px); z-index:0;
+  }
+  .frame-1{ width:280px; height:340px; position:absolute; top:0; right:8%; z-index:2; }
+  .frame-2{ width:220px; height:260px; position:absolute; bottom:0; left:0; z-index:3; }
+  .stat-card{
+    position:absolute; bottom:14%; right:2%; z-index:4;
+    background:var(--white); padding:16px 18px; border-radius:18px; box-shadow:var(--shadow);
+    max-width:200px; font-size:0.78rem; color:var(--ink-soft);
+  }
+  .stat-card strong{ display:block; font-family:var(--ff-display); font-size:1.6rem; color:var(--ink); line-height:1; margin-bottom:4px; }
+
+  .drip-divider{ width:100%; display:block; margin-top:-2px; }
+  .drip-divider svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- routine ---------- */
+  .routine{ background:var(--cream-deep); padding:96px 0 110px; position:relative; }
+  .section-head{ max-width:560px; margin-bottom:54px; }
+  .section-head h2{ font-size:clamp(2rem, 3.6vw, 2.8rem); margin-top:14px; }
+  .routine-row{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:20px;
+  }
+  .step{
+    background:var(--white); border-radius:20px; padding:26px 20px 24px; box-shadow:var(--shadow-soft);
+    position:relative; transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .step:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .step .num{ font-family:var(--ff-mono); font-size:0.72rem; color:var(--gold); letter-spacing:0.05em; }
+  .step .icon{ margin:14px 0 16px; color:var(--sage-deep); }
+  .step h3{ font-size:1.05rem; font-weight:600; margin-bottom:8px; font-family:var(--ff-body); }
+  .step p{ font-size:0.85rem; color:var(--ink-soft); }
+
+  /* ---------- shop ---------- */
+  .shop{ padding:104px 0 110px; }
+  .product-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .product-card{
+    background:var(--white); border-radius:22px; overflow:hidden; box-shadow:var(--shadow-soft);
+    transition:transform .35s ease, box-shadow .35s ease; display:flex; flex-direction:column;
+  }
+  .product-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow); }
+  .product-media{
+    position:relative; background:var(--mist); aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+    overflow:hidden; padding:26px;
+  }
+  .product-media img{ max-height:100%; object-fit:contain; transition:transform .5s ease; }
+  .product-card:hover .product-media img{ transform:scale(1.06); }
+  .product-media::after{
+    content:""; position:absolute; inset:0; background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.65) 50%, transparent 60%);
+    transform:translateX(-120%); transition:transform .7s ease;
+  }
+  .product-card:hover .product-media::after{ transform:translateX(120%); }
+  .badge{
+    position:absolute; top:12px; left:12px; background:var(--ink); color:var(--cream); font-family:var(--ff-mono);
+    font-size:0.62rem; letter-spacing:0.05em; padding:5px 10px; border-radius:999px; text-transform:uppercase;
+  }
+  .product-info{ padding:20px 20px 22px; flex:1; display:flex; flex-direction:column; }
+  .product-info h3{ font-size:1.05rem; font-weight:600; font-family:var(--ff-body); margin-bottom:6px; }
+  .product-info p.desc{ font-size:0.84rem; color:var(--ink-soft); margin-bottom:12px; flex:1; }
+  .tag-mono{
+    font-family:var(--ff-mono); font-size:0.66rem; letter-spacing:0.05em; color:var(--sage-deep);
+    text-transform:uppercase; margin-bottom:14px; display:inline-block;
+  }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; }
+  .price .usd{ font-weight:700; font-size:1.02rem; }
+  .price .krw{ font-family:var(--ff-mono); font-size:0.68rem; color:var(--ink-soft); margin-left:6px; }
+  .add-btn{
+    width:38px; height:38px; border-radius:50%; background:var(--cream-deep); display:flex; align-items:center;
+    justify-content:center; transition:background .25s ease, transform .2s ease;
+  }
+  .add-btn:hover{ background:var(--gold); color:var(--white); transform:rotate(90deg); }
+
+  /* ---------- gallery ---------- */
+  .gallery{ background:var(--mist); padding:104px 0 112px; }
+  .gallery-row{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .gallery-photo{ display:flex; align-items:center; gap:22px; }
+  .gallery-photo .drop-frame{ width:220px; height:260px; flex-shrink:0; }
+  .gallery-photo figcaption{ font-family:var(--ff-mono); font-size:0.76rem; color:var(--ink-soft); max-width:160px; line-height:1.5; }
+  .gallery-photo:nth-child(2) .drop-frame{ order:2; }
+  .gallery-photo:nth-child(2) figcaption{ order:1; text-align:right; }
+  .gallery-photo:nth-child(2){ justify-content:flex-end; }
+
+  /* ---------- newsletter ---------- */
+  .newsletter{ padding:100px 0; text-align:center; }
+  .newsletter h2{ font-size:clamp(2rem,4vw,2.8rem); margin-bottom:14px; }
+  .newsletter p{ color:var(--ink-soft); margin-bottom:30px; }
+  .news-form{ display:flex; gap:10px; justify-content:center; max-width:440px; margin:0 auto; }
+  .news-form input{
+    flex:1; padding:14px 18px; border-radius:999px; border:1.5px solid rgba(59,42,46,0.2);
+    background:var(--white); font-family:inherit; font-size:0.92rem; color:var(--ink);
+  }
+  .news-form input::placeholder{ color:var(--ink-soft); }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--ink); color:var(--cream); padding:70px 0 30px; }
+  .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(251,243,236,0.14); }
+  .footer-top .logo{ color:var(--cream); margin-bottom:14px; }
+  .footer-top p{ color:rgba(251,243,236,0.6); font-size:0.88rem; max-width:280px; }
+  .footer-col h4{ font-family:var(--ff-mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:10px; }
+  .footer-col a{ font-size:0.88rem; color:rgba(251,243,236,0.75); transition:color .2s ease; }
+  .footer-col a:hover{ color:var(--cream); }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:0.74rem; color:rgba(251,243,236,0.45); flex-wrap:wrap; gap:10px; }
+
+  .toast{
+    position:fixed; bottom:26px; left:50%; transform:translate(-50%, 20px); background:var(--ink); color:var(--cream);
+    padding:13px 22px; border-radius:999px; font-size:0.85rem; box-shadow:var(--shadow); opacity:0; pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease; z-index:99; display:flex; align-items:center; gap:8px;
+  }
+  .toast.show{ opacity:1; transform:translate(-50%, 0); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-art{ height:420px; margin-top:20px; }
+    .routine-row{ grid-template-columns:repeat(3,1fr); }
+    .product-grid{ grid-template-columns:repeat(2,1fr); }
+    .footer-top{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:760px){
+    .wrap{ padding:0 22px; }
+    .nav-links{ left:0; right:0; }
+    .routine-row{ grid-template-columns:repeat(2,1fr); }
+    .gallery-row{ grid-template-columns:1fr; gap:36px; }
+    .gallery-photo:nth-child(2){ justify-content:flex-start; }
+    .gallery-photo:nth-child(2) .drop-frame{ order:0; }
+    .gallery-photo:nth-child(2) figcaption{ order:1; text-align:left; }
+    .news-form{ flex-direction:column; }
+    .footer-top{ grid-template-columns:1fr; }
+  }
+  @media (max-width:520px){
+    .routine-row{ grid-template-columns:1fr 1fr; }
+    .product-grid{ grid-template-columns:1fr 1fr; }
+    .hero-art{ height:380px; }
+    .frame-1{ width:200px; height:240px; right:0; }
+    .frame-2{ width:160px; height:190px; }
+    .stat-card{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- shared blob clip not required: using CSS border-radius blobs for cross-browser safety -->
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo" aria-label="BOMUL home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#D9A95C"><path d="M12 2C8 8 5 12 5 15.5C5 19.5 8.1 22 12 22C15.9 22 19 19.5 19 15.5C19 12 16 8 12 2Z"/></svg>
+      BOMUL
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#routine">Routine</a>
+      <a href="#shop">Shop</a>
+      <a href="#reviews">Real Skin</a>
+      <a href="#newsletter">Glow Guide</a>
+    </nav>
+    <div class="nav-right">
+      <button class="bag-btn" aria-label="View bag">
+        Bag <span class="bag-count" id="bagCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Seoul Dew Lab</p>
+        <h1>Glass skin.<br><em>No filter.</em></h1>
+        <p class="lede">Four products, five minutes, one finish: skin that looks lit from inside. Built on rice water, centella, and the layering logic Seoul skincare is known for.</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn-primary">Shop the glow</a>
+          <a href="#routine" class="btn btn-ghost">See the routine</a>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Rice water</span>
+          <span class="chip">Centella 80%</span>
+          <span class="chip">Niacinamide 10%</span>
+          <span class="chip">No alcohol</span>
+        </div>
+      </div>
+
+      <div class="hero-art" id="heroArt">
+        <div class="glow-blob"></div>
+        <div class="shine" id="heroShine"></div>
+        <div class="drop-frame frame-1">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFDUOXyjlwHIAQl3MNEaT8Kowmxl1srj3ifdbIxog7cgDpc5_sS6yvM5_Z&s=10" alt="Model with dewy, glowing skin" loading="lazy">
+        </div>
+        <div class="drop-frame alt frame-2">
+          <img src="https://i.pinimg.com/236x/19/c4/1b/19c41b52f04c6053e9af096f377c322b.jpg" alt="Close-up of dewy, hydrated skin" loading="lazy">
+        </div>
+        <div class="stat-card">
+          <strong>92%</strong>
+          saw visibly dewier skin in 14 days*
+        </div>
+      </div>
+    </div>
+
+    <div class="drip-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path d="M0,40 C220,100 420,0 720,46 C1020,92 1240,10 1440,52 L1440,110 L0,110 Z" fill="#F5E9DD"/></svg>
+    </div>
+  </section>
+
+  <!-- ROUTINE -->
+  <section class="routine" id="routine">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The 5-step dew routine</p>
+        <h2>One drop leads to the next.</h2>
+      </div>
+
+      <div class="routine-row">
+        <div class="step reveal">
+          <p class="num">01</p>
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="13" r="7"/><path d="M9 11c.6.8 1.4.8 2 0s1.4-.8 2 0M9 15c.6.8 1.4.8 2 0s1.4-.8 2 0"/></svg></div>
+          <h3>Cleanse</h3>
+          <p>Low-pH gel lifts SPF and dirt without stripping the barrier.</p>
+        </div>
+        <div class="step reveal">
+          <p class="num">02</p>
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7" opacity="0.55"/><circle cx="12" cy="12" r="10.5" opacity="0.3"/></svg></div>
+          <h3>Tone</h3>
+          <p>Rice water mist preps skin to drink in everything after it.</p>
+        </div>
+        <div class="step reveal">
+          <p class="num">03</p>
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5-4 11-4-11 1-5Z"/><path d="M9.5 8h5"/></svg></div>
+          <h3>Treat</h3>
+          <p>Centella ampoule calms redness, rebuilds the moisture barrier.</p>
+        </div>
+        <div class="step reveal">
+          <p class="num">04</p>
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h12v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg></div>
+          <h3>Moisturize</h3>
+          <p>Honey glass cream locks in water for a lit-from-within finish.</p>
+        </div>
+        <div class="step reveal">
+          <p class="num">05</p>
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 13.5A7.5 7.5 0 1 1 10.5 5 6 6 0 0 0 19 13.5Z"/></svg></div>
+          <h3>Seal</h3>
+          <p>Jelly mask overnight, SPF by day — both keep the glow in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Shop the glow</p>
+        <h2>Four steps. One finish: dewy.</h2>
+      </div>
+
+      <div class="product-grid">
+
+        <div class="product-card reveal">
+          <div class="product-media">
+            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTC4400MMQxCKKD6w_lFwg7y4ostTrVLmoAeZLIQb_NnQH5vcec6tmOfDphoHzMSuI872AMkGLbwEfTDf7Adp9H3C-2gKPMu39nUVbo-FoW1pd-js9egnxXrA" alt="Rice Water Essence Toner" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Rice Water Essence Toner</h3>
+            <p class="desc">First-step toner with fermented rice water. Preps skin to absorb everything next.</p>
+            <span class="tag-mono">Rice ferment</span>
+            <div class="price-row">
+              <div class="price"><span class="usd">$22</span><span class="krw">₩29,000</span></div>
+              <button class="add-btn" aria-label="Add Rice Water Essence Toner to bag">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="product-media">
+            <span class="badge">Bestseller</span>
+            <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcStsEmLZD7mbixRiWXotKp_jpBTso74fIzU1Ji1Pd5UcClG8sLBxAWtsDtBJOFUjUy8qGPLuzqsZihrxrIya1vk8gRDnRgm3A8Pwcva_3hVUPOPIIKLWK1W" alt="Centella Calm Ampoule" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Centella Calm Ampoule</h3>
+            <p class="desc">80% centella asiatica. Calms redness and rebuilds a tired barrier fast.</p>
+            <span class="tag-mono">Centella 80%</span>
+            <div class="price-row">
+              <div class="price"><span class="usd">$34</span><span class="krw">₩45,000</span></div>
+              <button class="add-btn" aria-label="Add Centella Calm Ampoule to bag">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="product-media">
+            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSioP48uE-LYMCp3hykdvdmcEzbl9Tcy53Vggo9S-GqJQgUd2621j4LHpoY9Xn_7r0RrO7coRYtdbcc2HRdGLBY5cE3BiBBRF0NHymFLzOU" alt="Honey Glass Water Cream" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Honey Glass Water Cream</h3>
+            <p class="desc">Lightweight, jelly-textured moisturizer for all-day dew without the grease.</p>
+            <span class="tag-mono">Honey + hyaluronic</span>
+            <div class="price-row">
+              <div class="price"><span class="usd">$28</span><span class="krw">₩37,000</span></div>
+              <button class="add-btn" aria-label="Add Honey Glass Water Cream to bag">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="product-media">
+            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS0aoXqqgcnN0frzc9VFbbOEqN1ReIiBlPSrBb4aruh9CJKjM9wP3nKBmCamcY8pYU52F4DyHmX2h_HIigNfcX7hUp0ZWbb6ODmE5WAgVH8eZm4_BkDFIoS7k8" alt="Glow Jelly Sleeping Mask" loading="lazy">
+          </div>
+          <div class="product-info">
+            <h3>Glow Jelly Sleeping Mask</h3>
+            <p class="desc">Overnight jelly mask with niacinamide. Wake up to softer, dewier skin.</p>
+            <span class="tag-mono">Niacinamide 10%</span>
+            <div class="price-row">
+              <div class="price"><span class="usd">$30</span><span class="krw">₩40,000</span></div>
+              <button class="add-btn" aria-label="Add Glow Jelly Sleeping Mask to bag">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Real skin, real glow</p>
+        <h2>No filter. Just routine.</h2>
+      </div>
+
+      <div class="gallery-row">
+        <figure class="gallery-photo reveal">
+          <div class="drop-frame">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_XHa-9ePILzymsIaxVKVKNBA_iU9eWeWn3CfrsqYMut6cj1eXlny0Ryo&s=10" alt="Skin after centella ampoule, week two" loading="lazy">
+          </div>
+          <figcaption>Centella Calm Ampoule — week 2 of use</figcaption>
+        </figure>
+        <figure class="gallery-photo reveal">
+          <div class="drop-frame alt">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_qYZa9IGKXE7YGitC3fswhon6_rFJBvb5MtRVTIa9bUpggcchKpnFRiM&s=10" alt="Skin after full 5-step routine, day thirty" loading="lazy">
+          </div>
+          <figcaption>Full 5-step routine — day 30</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="newsletter">
+    <div class="wrap">
+      <h2 class="reveal">Get the glow guide</h2>
+      <p class="reveal">A free 5-day mini routine, sent straight to your inbox.</p>
+      <form class="news-form reveal" id="newsForm">
+        <input type="email" required placeholder="you@email.com" aria-label="Email address">
+        <button type="submit" class="btn btn-primary">Send it to me</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="logo" aria-label="BOMUL home">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#D9A95C"><path d="M12 2C8 8 5 12 5 15.5C5 19.5 8.1 22 12 22C15.9 22 19 19.5 19 15.5C19 12 16 8 12 2Z"/></svg>
+          BOMUL
+        </a>
+        <p>Seoul skincare logic, built on rice, centella, and honey — formulated for one result: skin that looks dewy, not done.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Toners</a></li>
+          <li><a href="#shop">Ampoules</a></li>
+          <li><a href="#shop">Moisturizers</a></li>
+          <li><a href="#shop">Masks</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Routine</h4>
+        <ul>
+          <li><a href="#routine">The 5 steps</a></li>
+          <li><a href="#reviews">Real skin</a></li>
+          <li><a href="#newsletter">Glow guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BOMUL Skin Lab. Patch test recommended.</span>
+      <span>*Self-reported, 120-person at-home trial.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Added to bag</div>
+
+<script>
+  // mobile nav
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // bag count
+  let bagCount = 0;
+  const bagCountEl = document.getElementById('bagCount');
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bagCount++;
+      bagCountEl.textContent = bagCount;
+      bagCountEl.classList.add('pulse');
+      setTimeout(() => bagCountEl.classList.remove('pulse'), 300);
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+    });
+  });
+
+  // newsletter (demo only, no backend)
+  document.getElementById('newsForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    toast.textContent = 'Glow guide on its way';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Added to bag'; }, 1800);
+    e.target.reset();
+  });
+
+  // reduced motion check
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // scroll reveal
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
+
+  // hero ambient shine follows pointer (desktop only, fine pointer, motion allowed)
+  const heroArt = document.getElementById('heroArt');
+  const heroShine = document.getElementById('heroShine');
+  if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+    heroArt.addEventListener('mousemove', (e) => {
+      const r = heroArt.getBoundingClientRect();
+      heroShine.style.left = (e.clientX - r.left) + 'px';
+      heroShine.style.top = (e.clientY - r.top) + 'px';
+    });
+    heroArt.addEventListener('mouseleave', () => { heroShine.style.opacity = '0'; });
+    heroArt.addEventListener('mouseenter', () => { heroShine.style.opacity = '1'; });
+  } else {
+    heroShine.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
