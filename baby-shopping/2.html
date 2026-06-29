@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Modern Contemporary</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--teal:#0d9488;--teal-light:#ccfbf1;--dark:#111827;--mid:#374151;--light:#f0fdf4;--white:#fff}
+  body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--dark)}
+  nav{border-bottom:1px solid #e5e7eb;padding:1rem 3rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:100}
+  .nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal)}
+  .nav-logo span{color:var(--dark)}
+  .nav-links{display:flex;gap:2.5rem}
+  .nav-links a{text-decoration:none;color:var(--mid);font-size:.9rem;font-weight:500;transition:.15s}
+  .nav-links a:hover{color:var(--teal)}
+  .nav-actions{display:flex;gap:1rem;align-items:center}
+  .nav-actions .btn{background:var(--teal);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:50px;font-size:.85rem;cursor:pointer;font-weight:600}
+  .hero{display:grid;grid-template-columns:55% 45%;min-height:90vh;overflow:hidden}
+  .hero-content{padding:5rem 3rem 3rem 3rem;display:flex;flex-direction:column;justify-content:center}
+  .hero-chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal-light);color:var(--teal);padding:.35rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:2rem;width:fit-content}
+  .hero-chip::before{content:'✦';font-size:.7rem}
+  .hero-content h1{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;line-height:1.15;font-weight:700;margin-bottom:1.5rem}
+  .hero-content h1 em{color:var(--teal);font-style:normal;display:block}
+  .hero-content p{color:var(--mid);font-size:1.05rem;line-height:1.75;max-width:480px;margin-bottom:2.5rem}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+  .cta-primary{background:var(--teal);color:#fff;padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:.2s}
+  .cta-primary:hover{background:#0f766e;transform:translateY(-1px)}
+  .cta-ghost{border:2px solid var(--dark);color:var(--dark);padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:.2s}
+  .cta-ghost:hover{background:var(--dark);color:#fff}
+  .hero-stats{display:flex;gap:3rem;margin-top:3rem;padding-top:2rem;border-top:1px solid #e5e7eb}
+  .stat h3{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:var(--teal)}
+  .stat p{font-size:.8rem;color:#9ca3af;margin-top:.2rem}
+  .hero-visual{background:var(--light);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:4px}
+  .hero-visual img{width:100%;height:100%;object-fit:cover}
+  .hero-visual img:first-child{grid-column:1/-1;max-height:320px}
+  .marquee-bar{background:var(--teal);padding:.75rem 0;overflow:hidden;white-space:nowrap}
+  .marquee-inner{display:inline-flex;gap:3rem;animation:marquee 18s linear infinite}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee-inner span{color:#fff;font-size:.85rem;font-weight:500;letter-spacing:.5px}
+  .marquee-inner span::before{content:'✦';margin-right:.8rem;font-size:.7rem;opacity:.7}
+  .products{padding:5rem 3rem;max-width:1200px;margin:0 auto}
+  .section-label{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.8rem}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:.5rem}
+  .section-sub{color:var(--mid);margin-bottom:3rem}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+  .p-card{border-radius:16px;overflow:hidden;background:#f9fafb;transition:.25s;cursor:pointer}
+  .p-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(13,148,136,.15)}
+  .p-card img{width:100%;height:200px;object-fit:cover}
+  .p-card-body{padding:1.2rem}
+  .p-cat{font-size:.75rem;color:var(--teal);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
+  .p-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;margin-bottom:.6rem}
+  .p-price{font-weight:700;font-size:1.1rem;color:var(--dark)}
+  .p-price s{font-weight:400;color:#9ca3af;font-size:.9rem;margin-right:.4rem}
+  .p-btn{width:100%;margin-top:.8rem;background:var(--teal);color:#fff;border:none;padding:.65rem;border-radius:10px;font-weight:600;cursor:pointer;font-size:.9rem}
+  .p-btn:hover{background:#0f766e}
+  .banner{margin:0 3rem;border-radius:20px;background:var(--dark);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;margin-bottom:5rem}
+  .banner-left{padding:4rem;display:flex;flex-direction:column;justify-content:center}
+  .banner-left .eyebrow{color:var(--teal);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:1rem}
+  .banner-left h2{font-family:'Space Grotesk',sans-serif;color:#fff;font-size:2.2rem;font-weight:700;margin-bottom:1rem}
+  .banner-left p{color:#9ca3af;line-height:1.7;margin-bottom:2rem}
+  .banner-cta{background:var(--teal);color:#fff;padding:.8rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;width:fit-content}
+  .banner-right img{width:100%;height:100%;object-fit:cover;opacity:.8}
+  footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+  footer .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--teal)}
+  footer p{font-size:.85rem;color:#9ca3af}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">baby<span>Cove</span></div>
+  <div class="nav-links">
+    <a href="#">New In</a>
+    <a href="#">Clothing</a>
+    <a href="#">Gear</a>
+    <a href="#">Toys</a>
+    <a href="#">Sale</a>
+  </div>
+  <div class="nav-actions">
+    <span style="font-size:.9rem;color:var(--mid)">🔍</span>
+    <button class="btn">Cart · 0</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-chip">Free delivery on ₹499+</div>
+    <h1>Smart picks for <em>smart parents.</em></h1>
+    <p>Modern, well-designed products that grow with your child. Curated by parents, loved by babies — from feeding to play and everything in between.</p>
+    <div class="hero-ctas">
+      <a href="#" class="cta-primary">Explore Products</a>
+      <a href="#" class="cta-ghost">View Lookbook</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><h3>12k+</h3><p>Happy families</p></div>
+      <div class="stat"><h3>500+</h3><p>Products</p></div>
+      <div class="stat"><h3>4.9★</h3><p>Avg. rating</p></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt="">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_16.jpg" alt="">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt="">
+  </div>
+</section>
+
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>Free Shipping Above ₹499</span><span>100% Safe Materials</span><span>ISI Certified</span><span>Paediatrician Approved</span><span>Easy 7-Day Returns</span>
+    <span>Free Shipping Above ₹499</span><span>100% Safe Materials</span><span>ISI Certified</span><span>Paediatrician Approved</span><span>Easy 7-Day Returns</span>
+  </div>
+</div>
+
+<section class="products">
+  <div class="section-label">Trending Now</div>
+  <h2 class="section-title">Products parents love</h2>
+  <p class="section-sub">Top-rated picks for every stage of your baby's growth</p>
+  <div class="prod-grid">
+    <div class="p-card">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt="">
+      <div class="p-card-body"><div class="p-cat">Clothing</div><div class="p-name">Organic Zip Romper</div><div class="p-price"><s>₹799</s>₹549</div><button class="p-btn">Add to Cart</button></div>
+    </div>
+    <div class="p-card">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt="">
+      <div class="p-card-body"><div class="p-cat">Toys</div><div class="p-name">Stacking Rings Set</div><div class="p-price"><s>₹1,099</s>₹799</div><button class="p-btn">Add to Cart</button></div>
+    </div>
+    <div class="p-card">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt="">
+      <div class="p-card-body"><div class="p-cat">Nursery</div><div class="p-name">Cloud Mobile Crib Toy</div><div class="p-price"><s>₹1,499</s>₹1,099</div><button class="p-btn">Add to Cart</button></div>
+    </div>
+    <div class="p-card">
+      <img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt="">
+      <div class="p-card-body"><div class="p-cat">Teething</div><div class="p-name">Natural Rubber Teether</div><div class="p-price"><s>₹599</s>₹429</div><button class="p-btn">Add to Cart</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="banner-left">
+    <div class="eyebrow">Limited Time Offer</div>
+    <h2>New Parent Bundle — 30% off everything</h2>
+    <p>Get the essentials your newborn needs in one curated bundle. Clothes, care, and comfort — all vetted for safety.</p>
+    <a href="#" class="banner-cta">Shop the Bundle</a>
+  </div>
+  <div class="banner-right">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_157.jpg" alt="">
+  </div>
+</div>
+
+<footer>
+  <div class="logo">babyCove</div>
+  <p>© 2025 babyCove. Modern baby shopping for modern families.</p>
+</footer>
+</body>
+</html>

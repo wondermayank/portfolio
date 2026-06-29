@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Vibrant Colourful</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--r:#ff4757;--o:#ff9f43;--y:#ffd32a;--g:#2ed573;--b:#1e90ff;--p:#a29bfe;--pink:#fd79a8;--dark:#2d3436;--white:#fff}
+  body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--dark)}
+  nav{background:#fff;border-bottom:3px solid var(--y);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .logo{font-family:'Fredoka One',cursive;font-size:2rem;background:linear-gradient(90deg,var(--r),var(--o),var(--y),var(--g),var(--b),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links a{text-decoration:none;color:var(--dark);font-size:.85rem;font-weight:600;margin-left:2rem;transition:.15s}
+  .nav-links a:hover{color:var(--b)}
+  .cart-btn{background:linear-gradient(135deg,var(--b),var(--p));color:#fff;border:none;padding:.6rem 1.5rem;border-radius:50px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif}
+  .hero{background:linear-gradient(135deg,#fff9f0 0%,#f0f8ff 50%,#fff0f8 100%);padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;min-height:88vh;align-items:center;gap:2rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(161,155,254,.2),transparent 70%);border-radius:50%}
+  .hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(255,71,87,.15),transparent 70%);border-radius:50%}
+  .hero-left{position:relative;z-index:2}
+  .fun-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--y);padding:.5rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:1.5rem;width:fit-content}
+  .hero-left h1{font-family:'Fredoka One',cursive;font-size:3.5rem;line-height:1.2;margin-bottom:1.2rem;color:var(--dark)}
+  .hero-left h1 .c1{color:var(--r)}
+  .hero-left h1 .c2{color:var(--b)}
+  .hero-left h1 .c3{color:var(--g)}
+  .hero-left p{font-size:.95rem;color:#636e72;line-height:1.8;max-width:400px;margin-bottom:2rem}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .hbtn{padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.2s}
+  .hbtn-1{background:var(--r);color:#fff;box-shadow:0 6px 20px rgba(255,71,87,.35)}
+  .hbtn-1:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,71,87,.5)}
+  .hbtn-2{background:var(--b);color:#fff;box-shadow:0 6px 20px rgba(30,144,255,.35)}
+  .hbtn-2:hover{transform:translateY(-2px)}
+  .hero-right{position:relative;z-index:2}
+  .bubble-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .bubble{border-radius:24px;overflow:hidden;position:relative;cursor:pointer;transition:.25s}
+  .bubble:hover{transform:translateY(-5px) rotate(-1deg)}
+  .bubble img{width:100%;height:180px;object-fit:cover}
+  .bubble .blabel{position:absolute;bottom:.8rem;left:.8rem;background:rgba(255,255,255,.9);padding:.4rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700}
+  .bubble-wide{grid-column:1/-1}
+  .bubble-wide img{height:200px}
+  .cats{padding:3rem 2rem;background:var(--dark)}
+  .cats h2{font-family:'Fredoka One',cursive;font-size:2rem;text-align:center;margin-bottom:.4rem;color:#fff}
+  .cats .sub{text-align:center;color:rgba(255,255,255,.5);font-size:.9rem;margin-bottom:2.5rem}
+  .cat-pills{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .cpill{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.5rem;border-radius:50px;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s;text-decoration:none;color:#fff}
+  .cpill:hover{transform:scale(1.05)}
+  .cpill-r{background:var(--r)}.cpill-o{background:var(--o)}.cpill-y{background:var(--y);color:var(--dark)}.cpill-g{background:var(--g);color:var(--dark)}.cpill-b{background:var(--b)}.cpill-p{background:var(--p)}
+  .products{padding:4rem 2rem}
+  .products h2{font-family:'Fredoka One',cursive;font-size:2.2rem;text-align:center;margin-bottom:.4rem}
+  .products .sub{text-align:center;color:#636e72;margin-bottom:3rem}
+  .pg{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1200px;margin:0 auto}
+  .pc{border-radius:20px;overflow:hidden;transition:.25s;cursor:pointer}
+  .pc:nth-child(1){box-shadow:0 4px 20px rgba(255,71,87,.2)}
+  .pc:nth-child(2){box-shadow:0 4px 20px rgba(30,144,255,.2)}
+  .pc:nth-child(3){box-shadow:0 4px 20px rgba(46,213,115,.2)}
+  .pc:nth-child(4){box-shadow:0 4px 20px rgba(253,121,168,.2)}
+  .pc:hover{transform:translateY(-6px)}
+  .pc-top{height:200px;overflow:hidden}
+  .pc-top img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .pc:hover .pc-top img{transform:scale(1.06)}
+  .pc-body{padding:1.2rem;background:#fff}
+  .pc-body .pt{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
+  .pc:nth-child(1) .pt{color:var(--r)}.pc:nth-child(2) .pt{color:var(--b)}.pc:nth-child(3) .pt{color:var(--g)}.pc:nth-child(4) .pt{color:var(--pink)}
+  .pc-body .pn{font-weight:700;font-size:.95rem;margin-bottom:.5rem}
+  .pc-body .pp{font-weight:700;font-size:1rem}
+  .pc-body .pp del{font-weight:400;color:#b2bec3;font-size:.85rem;margin-right:.3rem}
+  .pc-body .pa{display:block;width:100%;margin-top:.8rem;border:none;padding:.7rem;border-radius:50px;font-weight:700;cursor:pointer;font-size:.85rem;font-family:'Poppins',sans-serif;color:#fff;transition:.2s}
+  .pc:nth-child(1) .pa{background:var(--r)}.pc:nth-child(2) .pa{background:var(--b)}.pc:nth-child(3) .pa{background:var(--g);color:var(--dark)}.pc:nth-child(4) .pa{background:var(--pink)}
+  .fun-banner{background:linear-gradient(135deg,var(--b),var(--p));padding:4rem 2rem;text-align:center;color:#fff;margin:0 2rem 3rem;border-radius:28px}
+  .fun-banner h2{font-family:'Fredoka One',cursive;font-size:2.5rem;margin-bottom:.8rem}
+  .fun-banner p{font-size:1rem;opacity:.9;margin-bottom:2rem}
+  .fun-banner a{background:var(--y);color:var(--dark);font-weight:700;padding:.9rem 2.5rem;border-radius:50px;text-decoration:none;font-size:.95rem}
+  footer{background:var(--dark);padding:2rem;text-align:center}
+  footer .fl{font-family:'Fredoka One',cursive;font-size:1.5rem;background:linear-gradient(90deg,var(--r),var(--o),var(--y),var(--g),var(--b),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+  footer p{font-size:.8rem;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">RainbowBaby!</div>
+  <div class="nav-links">
+    <a href="#">Clothing</a><a href="#">Toys</a><a href="#">Nursery</a><a href="#">Deals</a>
+  </div>
+  <button class="cart-btn">🛒 Cart (0)</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="fun-badge">🎉 Biggest Baby Sale of 2025!</div>
+    <h1>Big fun.<br><span class="c1">Tiny</span> <span class="c2">humans.</span><br><span class="c3">Big love.</span></h1>
+    <p>Colourful, joyful products that spark curiosity and make every moment with your baby a little more magical.</p>
+    <div class="hero-btns">
+      <a href="#" class="hbtn hbtn-1">Shop Clothing</a>
+      <a href="#" class="hbtn hbtn-2">Explore Toys</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="bubble-grid">
+      <div class="bubble bubble-wide"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt=""><div class="blabel">🌈 New Collection</div></div>
+      <div class="bubble"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt=""><div class="blabel">👕 Clothing</div></div>
+      <div class="bubble"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt=""><div class="blabel">🧸 Toys</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cats">
+  <h2>Find What Your Baby Needs 🌟</h2>
+  <p class="sub">Tap to explore — it's all in one rainbow place</p>
+  <div class="cat-pills">
+    <a href="#" class="cpill cpill-r">👶 Newborn</a>
+    <a href="#" class="cpill cpill-o">🍼 Feeding</a>
+    <a href="#" class="cpill cpill-y">🧸 Toys</a>
+    <a href="#" class="cpill cpill-g">🛁 Bath Time</a>
+    <a href="#" class="cpill cpill-b">🛏️ Sleep</a>
+    <a href="#" class="cpill cpill-p">🎁 Gifts</a>
+  </div>
+</section>
+
+<section class="products">
+  <h2>Hot Picks This Week 🔥</h2>
+  <p class="sub">Parent-approved, baby-adored — now at great prices</p>
+  <div class="pg">
+    <div class="pc"><div class="pc-top"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt=""></div><div class="pc-body"><div class="pt">Clothing</div><div class="pn">Rainbow Onesie Set ×3</div><div class="pp"><del>₹799</del>₹499</div><button class="pa">Add to Cart</button></div></div>
+    <div class="pc"><div class="pc-top"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_16.jpg" alt=""></div><div class="pc-body"><div class="pt">Toys</div><div class="pn">Sensory Ball Set ×5</div><div class="pp"><del>₹999</del>₹699</div><button class="pa">Add to Cart</button></div></div>
+    <div class="pc"><div class="pc-top"><img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt=""></div><div class="pc-body"><div class="pt">Teething</div><div class="pn">Colorful Teether Toy</div><div class="pp"><del>₹449</del>₹299</div><button class="pa">Add to Cart</button></div></div>
+    <div class="pc"><div class="pc-top"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt=""></div><div class="pc-body"><div class="pt">Nursery</div><div class="pn">Rainbow Crib Mobile</div><div class="pp"><del>₹1,499</del>₹999</div><button class="pa">Add to Cart</button></div></div>
+  </div>
+</section>
+
+<div class="fun-banner">
+  <h2>🎁 Big Baby Bundle — Only ₹1,999!</h2>
+  <p>Romper + teether + bib + mobile — the ultimate colour-filled starter pack</p>
+  <a href="#">Grab the Bundle 🚀</a>
+</div>
+
+<footer>
+  <div class="fl">RainbowBaby!</div>
+  <p>© 2025 RainbowBaby. Life's too short for boring baby stuff.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Minimal Clean</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--accent:#ff6b35;--black:#0a0a0a;--gray:#6b7280;--lgray:#f5f5f5;--white:#fff}
+  body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);font-size:15px}
+  nav{padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee}
+  .logo{font-size:1rem;font-weight:600;letter-spacing:-.3px}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:2.5rem}
+  .nav-links a{text-decoration:none;color:var(--gray);font-size:.85rem;transition:.15s}
+  .nav-links a:hover{color:var(--black)}
+  .nav-r{display:flex;gap:1.5rem;align-items:center;font-size:.85rem;color:var(--gray)}
+  .hero{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;max-width:1200px;margin:0 auto}
+  .hero-left h1{font-size:3.8rem;font-weight:300;line-height:1.15;letter-spacing:-1.5px;margin-bottom:1.5rem}
+  .hero-left h1 strong{font-weight:600;color:var(--accent)}
+  .hero-left p{color:var(--gray);line-height:1.8;max-width:420px;margin-bottom:2.5rem;font-size:.95rem}
+  .hero-left .actions{display:flex;gap:1rem;align-items:center}
+  .btn-accent{background:var(--accent);color:#fff;padding:.8rem 2rem;text-decoration:none;font-weight:500;font-size:.9rem;border-radius:6px}
+  .btn-text{color:var(--black);text-decoration:none;font-size:.9rem;font-weight:500;display:flex;align-items:center;gap:.4rem}
+  .btn-text::after{content:'→'}
+  .hero-img{position:relative}
+  .hero-img img{width:100%;border-radius:12px;aspect-ratio:4/5;object-fit:cover}
+  .hero-float{position:absolute;bottom:-1.5rem;left:-1.5rem;background:#fff;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 4px 30px rgba(0,0,0,.1);font-size:.85rem}
+  .hero-float strong{color:var(--accent);font-size:1.1rem;display:block}
+  .cats{padding:3rem;border-top:1px solid #eee;border-bottom:1px solid #eee;display:flex;justify-content:center;gap:3rem}
+  .cat-chip{display:flex;align-items:center;gap:.8rem;cursor:pointer;padding:.6rem 1.2rem;border-radius:50px;transition:.2s}
+  .cat-chip:hover{background:var(--lgray)}
+  .cat-chip .ci{font-size:1.5rem}
+  .cat-chip span{font-size:.9rem;font-weight:500}
+  .products{padding:4rem 3rem;max-width:1200px;margin:0 auto}
+  .p-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem}
+  .p-header h2{font-size:1.5rem;font-weight:600;letter-spacing:-.5px}
+  .p-header a{font-size:.85rem;color:var(--accent);text-decoration:none;font-weight:500}
+  .p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+  .p-item .img-wrap{background:var(--lgray);border-radius:10px;overflow:hidden;margin-bottom:1rem;aspect-ratio:1}
+  .p-item .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .p-item:hover .img-wrap img{transform:scale(1.04)}
+  .p-item .p-label{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem}
+  .p-item .p-name{font-weight:500;margin-bottom:.5rem;font-size:.95rem;letter-spacing:-.2px}
+  .p-item .p-price{font-size:.95rem;font-weight:600;color:var(--black)}
+  .p-item .p-price del{font-weight:400;color:var(--gray);margin-right:.3rem;font-size:.85rem}
+  .p-item .add{display:block;width:100%;margin-top:.8rem;background:var(--black);color:#fff;border:none;padding:.7rem;border-radius:6px;font-size:.85rem;font-weight:500;cursor:pointer;transition:.2s}
+  .p-item .add:hover{background:var(--accent)}
+  .mid-banner{margin:0 3rem;background:var(--lgray);border-radius:16px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;margin-bottom:4rem}
+  .mid-txt{padding:4rem}
+  .mid-txt .tag{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem}
+  .mid-txt h2{font-size:2rem;font-weight:300;letter-spacing:-.5px;line-height:1.3;margin-bottom:1rem}
+  .mid-txt p{color:var(--gray);line-height:1.7;margin-bottom:2rem;font-size:.9rem}
+  .mid-txt a{display:inline-block;background:var(--black);color:#fff;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-size:.9rem;font-weight:500}
+  .mid-img img{width:100%;height:100%;object-fit:cover}
+  footer{padding:2rem 3rem;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+  footer .logo{font-size:.95rem;font-weight:600}footer .logo span{color:var(--accent)}
+  footer p{font-size:.8rem;color:var(--gray)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">pebble<span>.</span></div>
+  <div class="nav-links">
+    <a href="#">Essentials</a>
+    <a href="#">Clothing</a>
+    <a href="#">Toys</a>
+    <a href="#">Sleep</a>
+    <a href="#">Bundles</a>
+  </div>
+  <div class="nav-r">
+    <span>Search</span>
+    <span>· Cart 0</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <h1>Less noise.<br><strong>More joy.</strong></h1>
+    <p>Simple, safe, and beautifully designed baby products for parents who believe less is always more.</p>
+    <div class="actions">
+      <a href="#" class="btn-accent">Shop Now</a>
+      <a href="#" class="btn-text">See All Products</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt="">
+    <div class="hero-float"><strong>₹499+</strong>Free delivery every time</div>
+  </div>
+</section>
+
+<div class="cats">
+  <div class="cat-chip"><span class="ci">👶</span><span>Clothing</span></div>
+  <div class="cat-chip"><span class="ci">🍼</span><span>Feeding</span></div>
+  <div class="cat-chip"><span class="ci">🧸</span><span>Toys</span></div>
+  <div class="cat-chip"><span class="ci">🛏️</span><span>Sleep</span></div>
+  <div class="cat-chip"><span class="ci">🛁</span><span>Bath</span></div>
+  <div class="cat-chip"><span class="ci">🎁</span><span>Gifts</span></div>
+</div>
+
+<section class="products">
+  <div class="p-header">
+    <h2>Popular right now</h2>
+    <a href="#">View all →</a>
+  </div>
+  <div class="p-grid">
+    <div class="p-item"><div class="img-wrap"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt=""></div><div class="p-label">Clothing</div><div class="p-name">Organic Cotton Bodysuit</div><div class="p-price"><del>₹699</del>₹499</div><button class="add">Add to Cart</button></div>
+    <div class="p-item"><div class="img-wrap"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt=""></div><div class="p-label">Feeding</div><div class="p-name">Silicone Bib Set · 3pc</div><div class="p-price"><del>₹499</del>₹349</div><button class="add">Add to Cart</button></div>
+    <div class="p-item"><div class="img-wrap"><img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt=""></div><div class="p-label">Teething</div><div class="p-name">Plant-Based Teether</div><div class="p-price"><del>₹449</del>₹329</div><button class="add">Add to Cart</button></div>
+    <div class="p-item"><div class="img-wrap"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt=""></div><div class="p-label">Play</div><div class="p-name">Montessori Stacking Rings</div><div class="p-price"><del>₹899</del>₹649</div><button class="add">Add to Cart</button></div>
+  </div>
+</section>
+
+<div class="mid-banner">
+  <div class="mid-txt">
+    <div class="tag">Curated for newborns</div>
+    <h2>The First Week<br>Starter Bundle</h2>
+    <p>Everything you need from day one. Swaddle, bodysuit, bib, teether — all in one clean box.</p>
+    <a href="#">Build Your Bundle</a>
+  </div>
+  <div class="mid-img"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_160.jpg" alt=""></div>
+</div>
+
+<footer>
+  <div class="logo">pebble<span>.</span></div>
+  <p>© 2025 Pebble Baby · Minimal by design.</p>
+</footer>
+</body>
+</html>

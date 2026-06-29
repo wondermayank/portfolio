@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Premium Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--midnight:#0e0f14;--champagne:#c9a96e;--ivory:#faf8f4;--warm:#e8e0d4;--text:#1a1a22}
+  body{font-family:'Jost',sans-serif;background:var(--midnight);color:var(--ivory)}
+  nav{padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,169,110,.2)}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--champagne)}
+  .nav-c{display:flex;gap:3rem}
+  .nav-c a{text-decoration:none;color:rgba(250,248,244,.5);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;transition:.2s}
+  .nav-c a:hover{color:var(--champagne)}
+  .nav-r{display:flex;gap:1.5rem;align-items:center;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:rgba(250,248,244,.5)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+  .hero-l{position:relative;overflow:hidden}
+  .hero-l img{width:100%;height:100%;object-fit:cover;filter:brightness(.65);transition:transform 8s ease}
+  .hero-l:hover img{transform:scale(1.04)}
+  .hero-l-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(14,15,20,.4),transparent)}
+  .hero-r{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem;background:var(--midnight)}
+  .season{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--champagne);margin-bottom:2rem;opacity:.9}
+  .hero-r h1{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;line-height:1.2;margin-bottom:2rem}
+  .hero-r h1 em{font-style:italic;color:var(--champagne)}
+  .hero-r p{font-size:.9rem;line-height:2;color:rgba(250,248,244,.6);max-width:380px;margin-bottom:3rem;letter-spacing:.3px}
+  .luxury-btn{display:inline-flex;align-items:center;gap:1rem;border:1px solid var(--champagne);color:var(--champagne);padding:1.1rem 2.5rem;text-decoration:none;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;transition:.3s}
+  .luxury-btn:hover{background:var(--champagne);color:var(--midnight)}
+  .luxury-btn-ghost{display:inline-flex;align-items:center;gap:1rem;color:rgba(250,248,244,.5);padding:1.1rem 0;text-decoration:none;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;margin-left:2rem}
+  .hero-r-btns{display:flex;align-items:center}
+  .collection-bar{border-top:1px solid rgba(201,169,110,.15);border-bottom:1px solid rgba(201,169,110,.15);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center}
+  .col-item{text-align:center}
+  .col-item h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--champagne)}
+  .col-item p{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(250,248,244,.4);margin-top:.4rem}
+  .col-divider{width:1px;height:40px;background:rgba(201,169,110,.2)}
+  .editorial{padding:5rem 3rem;max-width:1200px;margin:0 auto}
+  .editorial-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+  .editorial-header .left h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300}
+  .editorial-header .left .sub{color:var(--champagne);font-size:.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem}
+  .editorial-header a{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--champagne);text-decoration:none;border-bottom:1px solid var(--champagne);padding-bottom:.2rem}
+  .edit-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:2px}
+  .edit-card{position:relative;overflow:hidden;cursor:pointer}
+  .edit-card img{width:100%;height:100%;object-fit:cover;min-height:280px;transition:transform .6s ease;filter:brightness(.75)}
+  .edit-card:hover img{transform:scale(1.04);filter:brightness(.9)}
+  .edit-card.large{grid-row:1/3}
+  .edit-card .card-label{position:absolute;bottom:1.5rem;left:1.5rem}
+  .card-label .c-tag{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--champagne);margin-bottom:.4rem}
+  .card-label h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--ivory)}
+  .card-label .c-price{font-size:.8rem;color:rgba(250,248,244,.6);margin-top:.4rem;letter-spacing:1px}
+  .testimonial{background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.15);padding:4rem;text-align:center;margin:0 3rem 5rem}
+  .testimonial .quote-mark{font-family:'Cormorant Garamond',serif;font-size:5rem;line-height:.5;color:var(--champagne);opacity:.4;margin-bottom:1rem}
+  .testimonial p{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;font-style:italic;line-height:1.7;color:var(--ivory);max-width:600px;margin:0 auto 1.5rem}
+  .testimonial .author{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--champagne)}
+  footer{border-top:1px solid rgba(201,169,110,.2);padding:3rem;display:flex;justify-content:space-between;align-items:center}
+  footer .logo-f{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--champagne)}
+  footer p{font-size:.75rem;letter-spacing:1px;color:rgba(250,248,244,.3)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Lumière Bébé</div>
+  <div class="nav-c">
+    <a href="#">Layette</a>
+    <a href="#">Nursery</a>
+    <a href="#">Gifts</a>
+    <a href="#">Collections</a>
+  </div>
+  <div class="nav-r">
+    <span>Search</span>
+    <span>Boutique</span>
+    <span>Bag (0)</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-l">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_157.jpg" alt="Luxury baby">
+    <div class="hero-l-overlay"></div>
+  </div>
+  <div class="hero-r">
+    <div class="season">Prestige Collection · Autumn Winter 2025</div>
+    <h1>Where <em>refinement</em><br>meets new life.</h1>
+    <p>Each piece in our collection is chosen for its exquisite material, enduring quality and the tender care it carries. For the family that expects the finest.</p>
+    <div class="hero-r-btns">
+      <a href="#" class="luxury-btn">Explore Collection</a>
+      <a href="#" class="luxury-btn-ghost">Bespoke Orders →</a>
+    </div>
+  </div>
+</section>
+
+<div class="collection-bar">
+  <div class="col-item"><h3>48</h3><p>Curated Pieces</p></div>
+  <div class="col-divider"></div>
+  <div class="col-item"><h3>100%</h3><p>Organic Materials</p></div>
+  <div class="col-divider"></div>
+  <div class="col-item"><h3>Gift</h3><p>Wrapping Included</p></div>
+  <div class="col-divider"></div>
+  <div class="col-item"><h3>Free</h3><p>White-Glove Delivery</p></div>
+  <div class="col-divider"></div>
+  <div class="col-item"><h3>★★★★★</h3><p>5-Star Rated</p></div>
+</div>
+
+<section class="editorial">
+  <div class="editorial-header">
+    <div class="left">
+      <div class="sub">The Edit</div>
+      <h2>Pieces Worth Treasuring</h2>
+    </div>
+    <a href="#">View All →</a>
+  </div>
+  <div class="edit-grid">
+    <div class="edit-card large">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_160.jpg" alt="" style="min-height:600px">
+      <div class="card-label">
+        <div class="c-tag">Hero Piece</div>
+        <h3>Heritage Knit Sleep Sack</h3>
+        <div class="c-price">From ₹3,499</div>
+      </div>
+    </div>
+    <div class="edit-card">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt="">
+      <div class="card-label">
+        <div class="c-tag">Layette</div>
+        <h3>Cashmere Touch Romper</h3>
+        <div class="c-price">₹2,199</div>
+      </div>
+    </div>
+    <div class="edit-card">
+      <img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt="">
+      <div class="card-label">
+        <div class="c-tag">Accessories</div>
+        <h3>Natural Artisan Teether</h3>
+        <div class="c-price">₹1,299</div>
+      </div>
+    </div>
+    <div class="edit-card">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt="">
+      <div class="card-label">
+        <div class="c-tag">Nursery</div>
+        <h3>Hand-woven Crib Mobile</h3>
+        <div class="c-price">₹4,799</div>
+      </div>
+    </div>
+    <div class="edit-card">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt="">
+      <div class="card-label">
+        <div class="c-tag">Play</div>
+        <h3>Heirloom Stacking Set</h3>
+        <div class="c-price">₹2,899</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="testimonial">
+  <div class="quote-mark">"</div>
+  <p>Lumière Bébé is the only place I trust for my daughter's first wardrobe. The quality is something you feel immediately — and it lasts for years.</p>
+  <div class="author">— Priya S., Mother of Two · New Delhi</div>
+</div>
+
+<footer>
+  <div class="logo-f">Lumière Bébé</div>
+  <p>© 2025 Lumière Bébé · All rights reserved · For the family that demands excellence</p>
+</footer>
+</body>
+</html>

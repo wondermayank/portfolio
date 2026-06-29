@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Bold Statement</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--yellow:#ffe000;--black:#0a0a0a;--white:#fff;--red:#ff2d20}
+  body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+  nav{padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--yellow)}
+  .logo{font-family:'Bebas Neue',cursive;font-size:2rem;color:var(--yellow);letter-spacing:3px}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{text-decoration:none;color:rgba(255,255,255,.6);font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:.15s}
+  .nav-links a:hover{color:var(--yellow)}
+  .nav-r{font-size:.85rem;font-weight:700;letter-spacing:1px;color:var(--yellow);cursor:pointer}
+  .ticker{background:var(--yellow);padding:.6rem 0;overflow:hidden;white-space:nowrap}
+  .ticker-inner{display:inline-flex;gap:4rem;animation:tick 15s linear infinite}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ticker-inner span{font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:3px;color:var(--black)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;border-bottom:2px solid var(--yellow)}
+  .hero-left{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center;border-right:2px solid var(--yellow)}
+  .hero-tag{display:inline-block;background:var(--yellow);color:var(--black);font-family:'Bebas Neue',cursive;letter-spacing:3px;font-size:1.1rem;padding:.4rem 1.2rem;margin-bottom:2rem}
+  .hero-left h1{font-family:'Bebas Neue',cursive;font-size:6rem;line-height:.95;letter-spacing:2px;margin-bottom:2rem}
+  .hero-left h1 span{color:var(--yellow)}
+  .hero-left p{font-size:1rem;font-weight:500;color:rgba(255,255,255,.6);line-height:1.7;max-width:400px;margin-bottom:3rem}
+  .bold-btn{display:inline-block;background:var(--yellow);color:var(--black);font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:3px;padding:1.2rem 3rem;text-decoration:none;transition:.2s;border:2px solid var(--yellow)}
+  .bold-btn:hover{background:transparent;color:var(--yellow)}
+  .bold-btn-out{display:inline-block;border:2px solid rgba(255,255,255,.3);color:#fff;font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:3px;padding:1.2rem 3rem;text-decoration:none;margin-left:1rem;transition:.2s}
+  .bold-btn-out:hover{border-color:var(--yellow);color:var(--yellow)}
+  .hero-right{position:relative;overflow:hidden}
+  .hero-right img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.1)}
+  .hero-stamp{position:absolute;top:2rem;right:2rem;background:var(--yellow);width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(12deg)}
+  .hero-stamp .pct{font-family:'Bebas Neue',cursive;font-size:2.2rem;color:var(--black);line-height:1}
+  .hero-stamp .off{font-family:'Bebas Neue',cursive;font-size:1rem;color:var(--black);letter-spacing:2px}
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--yellow)}
+  .stat-box{padding:2rem;border-right:2px solid var(--yellow);text-align:center}
+  .stat-box:last-child{border-right:none}
+  .stat-box h3{font-family:'Bebas Neue',cursive;font-size:3rem;color:var(--yellow);line-height:1}
+  .stat-box p{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.4rem}
+  .products{padding:4rem 2.5rem}
+  .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem}
+  .section-head h2{font-family:'Bebas Neue',cursive;font-size:3rem;letter-spacing:3px}
+  .section-head h2 span{color:var(--yellow)}
+  .section-head a{font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:var(--yellow);text-decoration:none;border-bottom:1px solid var(--yellow);padding-bottom:.2rem}
+  .p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+  .p-card{background:#111;border:2px solid #222;overflow:hidden;transition:.2s;cursor:pointer}
+  .p-card:hover{border-color:var(--yellow)}
+  .p-card img{width:100%;height:240px;object-fit:cover;filter:grayscale(15%);transition:.3s}
+  .p-card:hover img{filter:grayscale(0%)}
+  .p-body{padding:1.2rem}
+  .p-body .label{font-size:.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem}
+  .p-body .name{font-family:'Bebas Neue',cursive;font-size:1.3rem;letter-spacing:1px;margin-bottom:.6rem}
+  .p-body .price{font-size:1.1rem;font-weight:900;color:var(--yellow)}
+  .p-body .price del{font-weight:500;color:rgba(255,255,255,.4);font-size:.9rem;margin-right:.4rem}
+  .p-body .cta{display:block;width:100%;margin-top:.8rem;background:var(--yellow);color:var(--black);border:none;font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;padding:.7rem;cursor:pointer;transition:.2s}
+  .p-body .cta:hover{background:#fff}
+  .banner{background:var(--yellow);padding:4rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;border-top:2px solid var(--black);border-bottom:2px solid var(--black)}
+  .banner h2{font-family:'Bebas Neue',cursive;font-size:4rem;color:var(--black);letter-spacing:3px;line-height:1}
+  .banner p{color:rgba(0,0,0,.6);font-size:1rem;font-weight:500;line-height:1.7;margin-bottom:2rem}
+  .banner a{display:inline-block;background:var(--black);color:var(--yellow);font-family:'Bebas Neue',cursive;font-size:1.2rem;letter-spacing:3px;padding:1rem 2.5rem;text-decoration:none}
+  footer{padding:2rem 2.5rem;border-top:2px solid var(--yellow);display:flex;justify-content:space-between;align-items:center}
+  footer .logo{font-family:'Bebas Neue',cursive;font-size:1.5rem;color:var(--yellow);letter-spacing:3px}
+  footer p{font-size:.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+<div class="ticker"><div class="ticker-inner">
+  <span>NEW DROP IS LIVE</span><span>FREE SHIPPING ₹499+</span><span>BIG BABY SALE ON NOW</span><span>UP TO 50% OFF</span><span>ISI CERTIFIED</span>
+  <span>NEW DROP IS LIVE</span><span>FREE SHIPPING ₹499+</span><span>BIG BABY SALE ON NOW</span><span>UP TO 50% OFF</span><span>ISI CERTIFIED</span>
+</div></div>
+
+<nav>
+  <div class="logo">TINY LOUD</div>
+  <div class="nav-links">
+    <a href="#">Drops</a>
+    <a href="#">Clothing</a>
+    <a href="#">Gear</a>
+    <a href="#">Bundles</a>
+    <a href="#">Sale</a>
+  </div>
+  <div class="nav-r">BAG [0]</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">★ 2025 Collection Is Here ★</div>
+    <h1>Bold from<br>Day <span>One.</span></h1>
+    <p>Your baby arrived with big energy. The wardrobe should match. No boring pastels. No compromise on quality.</p>
+    <div>
+      <a href="#" class="bold-btn">Shop the Drop</a>
+      <a href="#" class="bold-btn-out">All Products</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_160.jpg" alt="">
+    <div class="hero-stamp"><span class="pct">50%</span><span class="off">OFF</span></div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-box"><h3>50K+</h3><p>Babies dressed</p></div>
+  <div class="stat-box"><h3>500+</h3><p>Bold styles</p></div>
+  <div class="stat-box"><h3>4.9</h3><p>Star rating</p></div>
+  <div class="stat-box"><h3>₹0</h3><p>Shipping on ₹499+</p></div>
+</div>
+
+<section class="products">
+  <div class="section-head">
+    <h2>Fresh <span>Drops</span></h2>
+    <a href="#">See All →</a>
+  </div>
+  <div class="p-grid">
+    <div class="p-card"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt=""><div class="p-body"><div class="label">Clothing</div><div class="name">Statement Romper Set</div><div class="price"><del>₹899</del>₹549</div><button class="cta">Add to Cart</button></div></div>
+    <div class="p-card"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt=""><div class="p-body"><div class="label">Gear</div><div class="name">Bold Bib Pack ×3</div><div class="price"><del>₹499</del>₹299</div><button class="cta">Add to Cart</button></div></div>
+    <div class="p-card"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt=""><div class="p-body"><div class="label">Play</div><div class="name">Loud &amp; Learn Ring Set</div><div class="price"><del>₹999</del>₹699</div><button class="cta">Add to Cart</button></div></div>
+    <div class="p-card"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt=""><div class="p-body"><div class="label">Essentials</div><div class="name">Day One Starter Kit</div><div class="price"><del>₹1,799</del>₹1,199</div><button class="cta">Add to Cart</button></div></div>
+  </div>
+</section>
+
+<div class="banner">
+  <div>
+    <h2>Half price. Zero compromise.</h2>
+    <p>Everything your baby needs, at prices that make sense. ISI certified, parent-approved, baby-adored.</p>
+    <a href="#">Shop the Sale →</a>
+  </div>
+  <div style="text-align:right">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_157.jpg" alt="" style="width:100%;max-height:280px;object-fit:cover;border:4px solid #000">
+  </div>
+</div>
+
+<footer>
+  <div class="logo">TINY LOUD</div>
+  <p>© 2025 TINY LOUD Baby. Born to Stand Out.</p>
+</footer>
+</body>
+</html>

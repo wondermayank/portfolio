@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Artisan Handcrafted</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--earth:#5c4a35;--terracotta:#c1440e;--sand:#f5e6d3;--warm:#ede0ce;--cream:#faf8f3;--bark:#3d2b1f;--sage:#6a8c69;--text:#2c2118}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)}
+  nav{background:var(--bark);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:300;color:var(--sand);letter-spacing:2px;font-style:italic}
+  .logo span{color:var(--terracotta);font-style:normal;font-weight:600}
+  .nav-links a{text-decoration:none;color:rgba(245,230,211,.6);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-left:2.5rem;transition:.2s}
+  .nav-links a:hover{color:var(--sand)}
+  .nav-r{font-size:.82rem;letter-spacing:1px;text-transform:uppercase;color:rgba(245,230,211,.6)}
+  .hero{display:grid;grid-template-columns:55% 45%;min-height:90vh}
+  .hero-img{position:relative;overflow:hidden}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+  .hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(61,43,31,.5))}
+  .hero-img-text{position:absolute;bottom:3rem;left:3rem;color:var(--sand)}
+  .hero-img-text h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:300;font-style:italic;margin-bottom:.3rem}
+  .hero-img-text p{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;opacity:.7}
+  .hero-right{background:var(--sand);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+  .craft-tag{display:inline-flex;align-items:center;gap:.8rem;margin-bottom:2rem;width:fit-content}
+  .craft-tag .line{width:30px;height:1px;background:var(--terracotta)}
+  .craft-tag span{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);font-weight:500}
+  .hero-right h1{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:300;line-height:1.25;margin-bottom:1.5rem;color:var(--bark)}
+  .hero-right h1 em{font-style:italic;color:var(--terracotta)}
+  .hero-right p{font-size:.95rem;line-height:1.9;color:var(--earth);max-width:400px;margin-bottom:3rem}
+  .btns{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+  .btn-tc{background:var(--terracotta);color:#fff;padding:.95rem 2.5rem;text-decoration:none;font-weight:500;font-size:.9rem;letter-spacing:.5px;transition:.2s}
+  .btn-tc:hover{background:var(--bark)}
+  .btn-line{border-bottom:2px solid var(--terracotta);color:var(--terracotta);text-decoration:none;font-size:.85rem;letter-spacing:1px;padding-bottom:.2rem;font-weight:500}
+  .values{background:var(--bark);padding:2.5rem;display:flex;justify-content:space-around}
+  .val{text-align:center}
+  .val .vi{font-size:2rem;margin-bottom:.5rem}
+  .val h4{font-family:'Fraunces',serif;font-size:.95rem;color:var(--sand);font-weight:400;font-style:italic;margin-bottom:.2rem}
+  .val p{font-size:.75rem;color:rgba(245,230,211,.5);letter-spacing:.5px}
+  .craft-story{padding:5rem 2.5rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .story-text .st{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);margin-bottom:1rem}
+  .story-text h2{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:300;line-height:1.3;margin-bottom:1.5rem;color:var(--bark)}
+  .story-text h2 em{font-style:italic;color:var(--terracotta)}
+  .story-text p{font-size:.9rem;line-height:2;color:var(--earth);margin-bottom:1.2rem}
+  .story-text .sig{font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--terracotta);margin-top:1.5rem}
+  .story-imgs{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .story-imgs img{width:100%;aspect-ratio:3/4;object-fit:cover}
+  .story-imgs img:first-child{aspect-ratio:1;grid-column:1/-1}
+  .products{padding:4rem 2.5rem;background:var(--warm)}
+  .products-inner{max-width:1200px;margin:0 auto}
+  .ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+  .ph .kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);margin-bottom:.6rem}
+  .ph h2{font-family:'Fraunces',serif;font-size:2rem;font-weight:300;font-style:italic;color:var(--bark)}
+  .ph a{font-size:.8rem;letter-spacing:1px;color:var(--terracotta);text-decoration:none;border-bottom:1px solid var(--terracotta);padding-bottom:.2rem}
+  .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .pc{background:var(--cream);overflow:hidden;transition:.2s;cursor:pointer}
+  .pc:hover{box-shadow:0 12px 40px rgba(92,74,53,.15)}
+  .pc img{width:100%;height:260px;object-fit:cover;filter:saturate(.9);transition:.3s}
+  .pc:hover img{filter:saturate(1);transform:scale(1.02)}
+  .pc-body{padding:1.5rem}
+  .pc-mat{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:.4rem}
+  .pc-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:300;color:var(--bark);margin-bottom:.5rem}
+  .pc-desc{font-size:.82rem;color:var(--earth);line-height:1.6;margin-bottom:1rem}
+  .pc-foot{display:flex;align-items:center;justify-content:space-between}
+  .pc-price{font-weight:500;color:var(--bark);font-size:1rem}
+  .pc-price del{font-weight:300;color:#aaa;font-size:.85rem;margin-right:.3rem}
+  .pc-add{background:var(--terracotta);color:#fff;border:none;padding:.55rem 1.2rem;font-size:.8rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.5px;transition:.2s}
+  .pc-add:hover{background:var(--bark)}
+  footer{background:var(--bark);padding:3rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+  footer .fl{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:300;font-style:italic;color:var(--sand)}
+  footer p{font-size:.8rem;color:rgba(245,230,211,.4);letter-spacing:.5px}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><span>Haath</span>made Baby</div>
+  <div class="nav-links">
+    <a href="#">Handmade</a><a href="#">Organic</a><a href="#">Gifts</a><a href="#">Our Story</a>
+  </div>
+  <div class="nav-r">Cart (0)</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_157.jpg" alt="">
+    <div class="hero-img-overlay"></div>
+    <div class="hero-img-text">
+      <h3>Made in India, with love</h3>
+      <p>By artisan hands, for tiny ones</p>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="craft-tag"><div class="line"></div><span>Artisan Collection 2025</span></div>
+    <h1>Made by hand.<br>Given with <em>heart.</em></h1>
+    <p>Every product in our collection is crafted by skilled Indian artisans using time-honored techniques and the safest natural materials. Not mass-produced — made for your child.</p>
+    <div class="btns">
+      <a href="#" class="btn-tc">Explore Handmade</a>
+      <a href="#" class="btn-line">Our Artisans →</a>
+    </div>
+  </div>
+</section>
+
+<div class="values">
+  <div class="val"><div class="vi">🌿</div><h4>100% Natural Materials</h4><p>No synthetics, no compromise</p></div>
+  <div class="val"><div class="vi">🖐️</div><h4>Hand-Stitched</h4><p>Every seam tells a story</p></div>
+  <div class="val"><div class="vi">🇮🇳</div><h4>Made in India</h4><p>Supporting artisan families</p></div>
+  <div class="val"><div class="vi">🌱</div><h4>Certified Organic</h4><p>GOTS + BIS certified</p></div>
+</div>
+
+<section class="craft-story">
+  <div class="story-text">
+    <div class="st">Our Story</div>
+    <h2>Rooted in craft,<br>made for <em>new life.</em></h2>
+    <p>Haathmade Baby began in a small workshop in Jaipur, where a grandmother's tradition of hand-stitching baby clothes met a mother's desire to give her child only the purest things.</p>
+    <p>We work with 40+ artisan families across Rajasthan, Gujarat and Tamil Nadu — keeping traditional crafts alive while making products safe for the most sensitive skin.</p>
+    <div class="sig">— Meera Sharma, Founder</div>
+  </div>
+  <div class="story-imgs">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_160.jpg" alt="">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt="">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt="">
+  </div>
+</section>
+
+<section class="products">
+  <div class="products-inner">
+    <div class="ph">
+      <div><div class="kicker">Handmade with care</div><h2>This Season's Craft</h2></div>
+      <a href="#">View All Pieces →</a>
+    </div>
+    <div class="pg">
+      <div class="pc"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt=""><div class="pc-body"><div class="pc-mat">Hand-woven Cotton</div><div class="pc-name">Block-Print Romper Set</div><div class="pc-desc">Dyed with natural indigo, stitched in Jaipur</div><div class="pc-foot"><div class="pc-price"><del>₹1,199</del>₹849</div><button class="pc-add">Add to Cart</button></div></div></div>
+      <div class="pc"><img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt=""><div class="pc-body"><div class="pc-mat">Natural Rubber</div><div class="pc-name">Hand-carved Teether Ring</div><div class="pc-desc">Carved from single-piece natural rubber, BPA-free</div><div class="pc-foot"><div class="pc-price"><del>₹799</del>₹549</div><button class="pc-add">Add to Cart</button></div></div></div>
+      <div class="pc"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt=""><div class="pc-body"><div class="pc-mat">Macramé + Wood</div><div class="pc-name">Woven Crib Mobile</div><div class="pc-desc">Each mobile hand-knotted, entirely unique</div><div class="pc-foot"><div class="pc-price"><del>₹2,499</del>₹1,799</div><button class="pc-add">Add to Cart</button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">Haathmade Baby</div>
+  <p>© 2025 Haathmade Baby · Craft lives in every stitch.</p>
+</footer>
+</body>
+</html>

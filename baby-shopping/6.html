@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Pastel Soft</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--blush:#fde8e8;--lavender:#ede7f6;--mint:#e8f5e9;--peach:#fff3e0;--rose:#f48fb1;--purple:#9c6ad8;--green:#66bb6a;--dark:#3d3d3d;--mid:#777;--white:#fff}
+  body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--dark)}
+  nav{background:var(--white);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+  .logo{font-family:'Lora',serif;font-size:1.5rem;color:var(--purple)}
+  .logo span{color:var(--rose)}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{text-decoration:none;color:var(--mid);font-size:.9rem;font-weight:600;transition:.15s}
+  .nav-links a:hover{color:var(--purple)}
+  .nav-r{display:flex;align-items:center;gap:.8rem}
+  .cart-btn{background:var(--purple);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:50px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+  .hero{background:linear-gradient(135deg,var(--blush) 0%,var(--lavender) 50%,var(--mint) 100%);padding:4rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;min-height:85vh}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:#fff;padding:.5rem 1.2rem;border-radius:50px;font-size:.8rem;font-weight:700;color:var(--purple);box-shadow:0 2px 12px rgba(156,106,216,.2);margin-bottom:1.5rem;width:fit-content}
+  .hero-badge::before{content:'🌸'}
+  .hero-left h1{font-family:'Lora',serif;font-size:3.2rem;line-height:1.25;margin-bottom:1.5rem;color:var(--dark)}
+  .hero-left h1 em{font-style:italic;color:var(--purple)}
+  .hero-left p{font-size:1rem;color:var(--mid);line-height:1.8;max-width:420px;margin-bottom:2.5rem;font-weight:400}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-p{background:var(--purple);color:#fff;padding:1rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 6px 20px rgba(156,106,216,.35);transition:.2s}
+  .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(156,106,216,.45)}
+  .btn-out{border:2.5px solid var(--purple);color:var(--purple);padding:.95rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:.2s;background:rgba(255,255,255,.6)}
+  .btn-out:hover{background:var(--purple);color:#fff}
+  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .hero-right img{border-radius:20px;width:100%;aspect-ratio:3/4;object-fit:cover;box-shadow:0 8px 30px rgba(0,0,0,.1)}
+  .hero-right img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+  .floating-tag{background:#fff;border-radius:20px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.8rem;box-shadow:0 4px 20px rgba(0,0,0,.08);margin-top:1rem;grid-column:1/-1}
+  .floating-tag .ft-icon{font-size:2rem}
+  .floating-tag h4{font-size:.9rem;font-weight:700;color:var(--dark)}
+  .floating-tag p{font-size:.8rem;color:var(--mid)}
+  .categories{padding:4rem 2.5rem;background:var(--blush)}
+  .categories h2{font-family:'Lora',serif;text-align:center;font-size:2rem;color:var(--dark);margin-bottom:.5rem}
+  .categories .sub{text-align:center;color:var(--mid);margin-bottom:3rem;font-size:.95rem}
+  .cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+  .cat-item{background:#fff;border-radius:20px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:.2s;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+  .cat-item:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
+  .cat-item .ci{font-size:2.5rem;margin-bottom:.8rem}
+  .cat-item h3{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+  .cat-item p{font-size:.75rem;color:var(--mid)}
+  .products{padding:4rem 2.5rem;background:var(--lavender)}
+  .products h2{font-family:'Lora',serif;text-align:center;font-size:2rem;color:var(--dark);margin-bottom:.5rem}
+  .products .sub{text-align:center;color:var(--mid);margin-bottom:3rem}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
+  .pcard{background:#fff;border-radius:20px;overflow:hidden;transition:.25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .pcard:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+  .pcard img{width:100%;height:200px;object-fit:cover}
+  .pcard-body{padding:1.2rem}
+  .pcard-body .ptag{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--rose);margin-bottom:.4rem}
+  .pcard-body .pname{font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:.5rem}
+  .pcard-body .pprice{font-weight:800;font-size:1.1rem;color:var(--purple)}
+  .pcard-body .pprice del{font-weight:400;color:var(--mid);font-size:.85rem;margin-right:.3rem}
+  .pcard-body .padd{display:block;width:100%;margin-top:.8rem;background:linear-gradient(135deg,var(--purple),var(--rose));color:#fff;border:none;padding:.7rem;border-radius:50px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:'Nunito',sans-serif}
+  .newsletter{background:linear-gradient(135deg,var(--purple),var(--rose));padding:4rem 2.5rem;text-align:center;color:#fff}
+  .newsletter h2{font-family:'Lora',serif;font-size:2.2rem;margin-bottom:.8rem}
+  .newsletter p{font-size:1rem;opacity:.9;margin-bottom:2rem}
+  .nl-form{display:flex;gap:.8rem;max-width:500px;margin:0 auto;justify-content:center}
+  .nl-form input{flex:1;padding:.9rem 1.5rem;border-radius:50px;border:none;font-size:.9rem;font-family:'Nunito',sans-serif}
+  .nl-form button{background:#fff;color:var(--purple);font-weight:700;padding:.9rem 2rem;border-radius:50px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.9rem}
+  footer{background:var(--dark);color:rgba(255,255,255,.6);padding:2rem 2.5rem;text-align:center;font-size:.85rem}
+  footer .fl{font-family:'Lora',serif;color:var(--rose);font-size:1.2rem;margin-bottom:.4rem}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">blossom<span>baby</span></div>
+  <div class="nav-links">
+    <a href="#">Newborn</a>
+    <a href="#">Clothing</a>
+    <a href="#">Toys</a>
+    <a href="#">Gifting</a>
+    <a href="#">Sale</a>
+  </div>
+  <div class="nav-r">
+    <button class="cart-btn">🛒 Cart (0)</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">New Spring Collection is Here!</div>
+    <h1>Soft, sweet<br>& made for your<br><em>little blossom.</em></h1>
+    <p>Gentle on skin, gentle on your heart. Every product is chosen with love for your baby's delicate first years.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-p">Shop Now 🌸</a>
+      <a href="#" class="btn-out">View All</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt="">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_16.jpg" alt="">
+    <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt="">
+    <div class="floating-tag">
+      <span class="ft-icon">🚚</span>
+      <div><h4>Free delivery on ₹499+</h4><p>Same-day dispatch available</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="categories">
+  <h2>Shop by Little One's Needs</h2>
+  <p class="sub">Everything from naptime to playtime, in one soft place</p>
+  <div class="cat-grid">
+    <div class="cat-item"><div class="ci">👶</div><h3>Newborn</h3><p>0–3 months</p></div>
+    <div class="cat-item"><div class="ci">🧺</div><h3>Clothing</h3><p>All sizes</p></div>
+    <div class="cat-item"><div class="ci">🧸</div><h3>Plush Toys</h3><p>Cuddle friends</p></div>
+    <div class="cat-item"><div class="ci">🛁</div><h3>Bath Time</h3><p>Gentle & safe</p></div>
+    <div class="cat-item"><div class="ci">🎁</div><h3>Gift Sets</h3><p>For loved ones</p></div>
+  </div>
+</section>
+
+<section class="products">
+  <h2>Everyone's Favourites 💜</h2>
+  <p class="sub">Trusted by thousands of happy families</p>
+  <div class="prod-grid">
+    <div class="pcard"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt=""><div class="pcard-body"><div class="ptag">Best Seller</div><div class="pname">Pastel Floral Romper Set</div><div class="pprice"><del>₹799</del>₹549</div><button class="padd">Add to Cart</button></div></div>
+    <div class="pcard"><img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt=""><div class="pcard-body"><div class="ptag">Organic</div><div class="pname">Soft Rubber Teether Toy</div><div class="pprice"><del>₹599</del>₹399</div><button class="padd">Add to Cart</button></div></div>
+    <div class="pcard"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_76.jpg" alt=""><div class="pcard-body"><div class="ptag">Montessori</div><div class="pname">Rainbow Ring Stack</div><div class="pprice"><del>₹999</del>₹699</div><button class="padd">Add to Cart</button></div></div>
+    <div class="pcard"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt=""><div class="pcard-body"><div class="ptag">Nursery</div><div class="pname">Cloud Crib Dreamer Mobile</div><div class="pprice"><del>₹1,499</del>₹1,099</div><button class="padd">Add to Cart</button></div></div>
+  </div>
+</section>
+
+<div class="newsletter">
+  <h2>🌷 Get 10% off your first order</h2>
+  <p>Join 20,000+ parents who trust BlossomBaby for the softest, safest picks.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="Your email address">
+    <button>Subscribe</button>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">blossombaby</div>
+  <p>© 2025 BlossomBaby · Gentle products for gentle beginnings.</p>
+</footer>
+</body>
+</html>
