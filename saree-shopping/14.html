@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C4982B;--gold-lt:#F5E9C8;--deep:#1C1008;--ivory:#FAF7F0;
+  --red:#C0392B;--green:#1E8449;--green-bg:#EDFBF0;
+}
+body{font-family:'Nunito Sans',sans-serif;background:var(--ivory);color:var(--deep);overflow-x:hidden}
+/* Banner */
+.banner{background:var(--gold);padding:7px;text-align:center;font-size:10.5px;letter-spacing:.32em;color:var(--deep);font-weight:700;text-transform:uppercase}
+/* Nav */
+nav{background:var(--deep);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:60}
+.brand-name{font-family:'Cormorant SC',serif;font-size:1.28rem;letter-spacing:.14em;color:var(--gold);line-height:1}
+.brand-sub{font-size:9.5px;letter-spacing:.28em;color:rgba(250,247,240,.38);text-transform:uppercase;margin-top:2px}
+.nav-btns{display:flex;gap:18px;align-items:center}
+.nav-btn{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.68);transition:color .2s;position:relative;padding:4px;display:flex}
+.nav-btn:hover{color:var(--gold)}
+.badge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--deep);font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+/* Hero */
+.hero{position:relative;height:490px;overflow:hidden}
+.hero-slide{position:absolute;inset:0;transition:opacity .85s ease}
+.hero-slide img{width:100%;height:100%;object-fit:cover}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(108deg,rgba(28,16,8,.84) 0%,rgba(28,16,8,.28) 55%,transparent 84%)}
+.hero-content{position:absolute;left:5%;top:50%;transform:translateY(-50%);z-index:2}
+.hero-eyebrow{font-size:9.5px;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;margin-bottom:11px}
+.hero-title{font-family:'Cormorant SC',serif;font-size:2.7rem;color:var(--ivory);line-height:1.07;margin-bottom:12px;max-width:440px}
+.hero-desc{font-size:13px;color:rgba(250,247,240,.68);max-width:330px;line-height:1.82;margin-bottom:20px}
+.hero-cta{display:inline-block;padding:10px 26px;background:var(--gold);color:var(--deep);font-size:10.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;font-family:'Nunito Sans',sans-serif}
+.hero-cta:hover{background:#d4a83f}
+.harrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(250,247,240,.1);border:1px solid rgba(250,247,240,.18);color:white;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:20px}
+.harrow:hover{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+.harrow-l{left:16px}.harrow-r{right:16px}
+.hdots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:2;display:flex;gap:5px}
+.hdot{width:22px;height:2px;background:rgba(255,255,255,.28);border:none;cursor:pointer;transition:all .3s}
+.hdot.on{background:var(--gold);width:38px}
+/* Thumbs */
+.thumbs{background:var(--deep);display:flex;justify-content:center;gap:5px;padding:9px 14px;overflow-x:auto}
+.thumb{width:50px;height:50px;object-fit:cover;cursor:pointer;opacity:.42;transition:all .2s;border:2px solid transparent;flex-shrink:0}
+.thumb.on{opacity:1;border-color:var(--gold)}
+/* Section */
+.section{padding:48px 24px;max-width:1200px;margin:0 auto}
+.sec-hd{text-align:center;margin-bottom:40px}
+.sec-eye{font-size:10px;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;margin-bottom:7px}
+.sec-title{font-family:'Cormorant SC',serif;font-size:1.95rem;color:var(--deep)}
+.divider{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:11px}
+.dline{width:54px;height:1px;background:var(--gold);opacity:.38}
+.dgem{width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+/* Card */
+.card{background:#fff;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(28,16,8,.1)}
+.card-img-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--gold-lt)}
+.card-img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .card-img{transform:scale(1.065)}
+.card-tags{position:absolute;top:9px;left:9px;display:flex;flex-direction:column;gap:3px;z-index:1}
+.ctag{font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;padding:3px 6px;background:var(--deep);color:var(--gold)}
+.ctag-sp{background:var(--gold);color:var(--deep)}
+.like-btn{position:absolute;top:9px;right:9px;z-index:1;background:rgba(250,247,240,.9);border:none;width:33px;height:33px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:15px;line-height:1}
+.like-btn:hover{background:#fff;transform:scale(1.1)}
+.like-btn.on{background:#FDEAEA}
+.card-body{padding:13px 15px 15px}
+.card-sub{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:500;color:var(--deep);margin-bottom:6px;line-height:1.28}
+.rating{display:flex;align-items:center;gap:5px;margin-bottom:7px}
+.stars{display:flex;gap:1px;font-size:10.5px;letter-spacing:-1px}
+.star-on{color:var(--gold)}.star-off{color:#ddd}
+.rtext{font-size:11px;color:#aaa}
+.price-row{display:flex;align-items:center;gap:7px;margin-bottom:11px;flex-wrap:wrap}
+.pnow{font-family:'Cormorant SC',serif;font-size:1.12rem;color:var(--deep);font-weight:600}
+.pwas{font-size:12px;color:#bbb;text-decoration:line-through}
+.poff{font-size:9.5px;background:var(--green-bg);color:var(--green);padding:2px 5px;font-weight:700}
+.add-btn{width:100%;padding:10px;background:var(--deep);color:var(--gold);border:none;cursor:pointer;font-family:'Nunito Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.add-btn:hover{background:var(--gold);color:var(--deep)}
+.add-btn.added{background:var(--green);color:#fff}
+/* Cart Drawer — absolute within relative root */
+.cart-overlay{position:absolute;inset:0;background:rgba(28,16,8,.52);z-index:90}
+.cart-panel{position:absolute;top:0;right:0;width:360px;bottom:0;background:#fff;z-index:91;display:flex;flex-direction:column;max-height:100%}
+.cart-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:var(--deep);color:var(--ivory);flex-shrink:0}
+.cart-title{font-family:'Cormorant SC',serif;font-size:1.05rem;color:var(--gold)}
+.cart-count{font-size:9.5px;color:rgba(250,247,240,.4);letter-spacing:.14em;margin-top:2px}
+.cart-x{background:none;border:none;color:rgba(250,247,240,.62);cursor:pointer;transition:color .2s;display:flex;font-size:18px;line-height:1}
+.cart-x:hover{color:var(--gold)}
+.cart-items{flex:1;overflow-y:auto;padding:10px}
+.ci{display:flex;gap:9px;padding:9px 0;border-bottom:1px solid #F5EDD8;align-items:flex-start}
+.ci-img{width:52px;height:64px;object-fit:cover;flex-shrink:0}
+.ci-name{font-size:12.5px;font-weight:600;color:var(--deep);margin-bottom:2px}
+.ci-qty{font-size:10.5px;color:#aaa;margin-bottom:2px}
+.ci-price{font-size:11.5px;color:var(--gold);font-weight:700}
+.ci-rm{background:none;border:none;color:#ccc;cursor:pointer;transition:color .2s;margin-left:auto;font-size:13px;line-height:1;flex-shrink:0}
+.ci-rm:hover{color:var(--red)}
+.cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:160px;color:#ccc;gap:8px;font-size:13px}
+.cart-empty-icon{font-size:28px;opacity:.3}
+.cart-ft{padding:18px 20px;border-top:1px solid #F0EAD8;background:var(--gold-lt);flex-shrink:0}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
+.ct-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#999}
+.ct-amt{font-family:'Cormorant SC',serif;font-size:1.3rem;color:var(--deep)}
+.chk-btn{width:100%;padding:11px;background:var(--deep);color:var(--gold);border:none;cursor:pointer;font-family:'Nunito Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;transition:all .2s}
+.chk-btn:hover{background:var(--gold);color:var(--deep)}
+/* Footer */
+footer{background:var(--deep);padding:30px 24px;text-align:center}
+.footer-brand{font-family:'Cormorant SC',serif;color:var(--gold);font-size:1rem;margin-bottom:5px}
+.footer-text{font-size:10.5px;color:rgba(250,247,240,.38);letter-spacing:.09em}
+</style>
+</head>
+<body>
+<div id="root" style="position:relative;min-height:600px"></div>
+
+<script>
+const products=[
+  {id:1,name:"Gicha Tussar Silk Saree",subtitle:"Bengal Handloom Collection",price:4850,orig:6200,rating:4.8,reviews:124,img:"https://bengalloomsindia.com/cdn/shop/products/gicha-tussar-saree_39_1024x1024@2x.jpg",tags:["Bestseller"],sp:[0]},
+  {id:2,name:"Handloom Pure Tussar Silk",subtitle:"Cream Elegance Series",price:5650,orig:7200,rating:4.9,reviews:89,img:"https://medias.utsavfashion.com/media/catalog/product/cache/1/image/500x/040ec09b1e35df139433887a97daa66f/h/a/handloom-pure-tussar-silk-saree-in-cream-v1-sbea3203.jpg",tags:["Pure Silk","Handloom"],sp:[]},
+  {id:3,name:"Natural Tussar Silk Saree",subtitle:"Unbleached Heritage Weave",price:3950,orig:5100,rating:4.7,reviews:203,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhIQoz03VpIFlOrGFDbWRt-dGTltEOXJXwjw&s",tags:["Natural"],sp:[]},
+  {id:4,name:"Bihar Khadi Tussar Silk",subtitle:"Madhubani Art Edition",price:7200,orig:9500,rating:5.0,reviews:67,img:"https://www.biharkhadi.com/content/images/thumbs/0007790_bihar-khadi-tussar-silk-saree-in-natural-color-with-handpainted-madhubani-art_600.jpeg",tags:["Artisan","Limited"],sp:[1]},
+  {id:5,name:"Bhasha Tussar Silk Saree",subtitle:"Contemporary Natural Weave",price:4200,orig:5500,rating:4.6,reviews:156,img:"https://bhashabharat.com/cdn/shop/files/LIN0028_2.jpg?v=1753443319",tags:["New Arrival"],sp:[]},
+  {id:6,name:"Pure Tussar Silk Saree",subtitle:"The Loom Signature Series",price:6100,orig:8000,rating:4.9,reviews:98,img:"https://img.theloom.in/live/media/catalog/product/cache/101a419f04e4161b4f9f2458eaa9a195/d/s/dsc9714-_1_.jpg",tags:["Premium"],sp:[0]}
+];
+
+let heroIdx=0,liked=new Set(),cart=[],cartOpen=false,justAdded=null,timer;
+
+function fmt(n){return'₹'+n.toLocaleString('en-IN')}
+function stars(r){let s='';for(let i=1;i<=5;i++)s+=`<span class="${i<=Math.floor(r)?'star-on':'star-off'}">★</span>`;return s}
+
+function startTimer(){clearInterval(timer);timer=setInterval(()=>{heroIdx=(heroIdx+1)%products.length;renderHero();},4000)}
+function setHero(i){heroIdx=i;renderHero();startTimer()}
+
+function renderHero(){
+  const slides=document.querySelectorAll('.hero-slide');
+  const dots=document.querySelectorAll('.hdot');
+  const thumbs=document.querySelectorAll('.thumb');
+  const htitle=document.querySelector('.hero-title');
+  slides.forEach((s,i)=>s.style.opacity=i===heroIdx?'1':'0');
+  dots.forEach((d,i)=>d.classList.toggle('on',i===heroIdx));
+  thumbs.forEach((t,i)=>t.classList.toggle('on',i===heroIdx));
+  if(htitle)htitle.textContent=products[heroIdx].name;
+}
+
+function toggleLike(id){
+  liked.has(id)?liked.delete(id):liked.add(id);
+  const btn=document.querySelector(`.like-btn[data-id="${id}"]`);
+  if(btn){btn.classList.toggle('on',liked.has(id));btn.innerHTML=liked.has(id)?'♥':'♡';btn.style.color=liked.has(id)?'#C0392B':'#aaa';}
+}
+
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  justAdded=id;
+  const btn=document.querySelector(`.add-btn[data-id="${id}"]`);
+  if(btn){btn.classList.add('added');btn.innerHTML='✓ Added!'}
+  updateBadge();
+  setTimeout(()=>{
+    justAdded=null;
+    if(btn){btn.classList.remove('added');btn.innerHTML='🛍 Add to Bag'}
+  },1500);
+  if(cartOpen)renderCartItems();
+}
+
+function removeFromCart(id){
+  cart=cart.filter(x=>x.id!==id);
+  updateBadge();
+  renderCartItems();
+}
+
+function updateBadge(){
+  const cnt=cart.reduce((a,x)=>a+x.qty,0);
+  const b=document.querySelector('.badge');
+  if(b){b.textContent=cnt;b.style.display=cnt>0?'flex':'none'}
+}
+
+function renderCartItems(){
+  const el=document.querySelector('.cart-items');
+  if(!el)return;
+  const total=cart.reduce((a,x)=>a+x.price*x.qty,0);
+  const ft=document.querySelector('.cart-ft');
+  if(cart.length===0){
+    el.innerHTML=`<div class="cart-empty"><span class="cart-empty-icon">🛍</span><span>Your bag is empty</span></div>`;
+    if(ft)ft.style.display='none';
+    return;
+  }
+  if(ft)ft.style.display='block';
+  el.innerHTML=cart.map(item=>`
+    <div class="ci">
+      <img class="ci-img" src="${item.img}" alt="${item.name}" onerror="this.style.background='#F5E9C8'">
+      <div style="flex:1">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-qty">Qty: ${item.qty}</div>
+        <div class="ci-price">${fmt(item.price*item.qty)}</div>
+      </div>
+      <button class="ci-rm" onclick="removeFromCart(${item.id})">✕</button>
+    </div>
+  `).join('');
+  const amtEl=document.querySelector('.ct-amt');
+  if(amtEl)amtEl.textContent=fmt(total);
+}
+
+function openCart(){
+  cartOpen=true;
+  const panel=document.querySelector('.cart-panel');
+  const overlay=document.querySelector('.cart-overlay');
+  if(panel){panel.style.display='flex';}
+  if(overlay){overlay.style.display='block';}
+  renderCartItems();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function closeCart(){
+  cartOpen=false;
+  const panel=document.querySelector('.cart-panel');
+  const overlay=document.querySelector('.cart-overlay');
+  if(panel)panel.style.display='none';
+  if(overlay)overlay.style.display='none';
+}
+
+function render(){
+  const root=document.getElementById('root');
+  const heroSlides=products.map((p,i)=>`<div class="hero-slide" style="opacity:${i===0?1:0};z-index:${i===0?1:0}"><img src="${p.img}" alt="${p.name}" loading="${i===0?'eager':'lazy'}"></div>`).join('');
+  const dots=products.map((_,i)=>`<button class="hdot${i===0?' on':''}" onclick="setHero(${i})"></button>`).join('');
+  const thumbs=products.map((p,i)=>`<img class="thumb${i===0?' on':''}" src="${p.img}" alt="${p.name}" onclick="setHero(${i})" loading="lazy">`).join('');
+  const cards=products.map(p=>{
+    const disc=Math.round((1-p.price/p.orig)*100);
+    const tags=p.tags.map((t,ti)=>`<span class="ctag${p.sp.includes(ti)?' ctag-sp':''}">${t}</span>`).join('');
+    return`<div class="card">
+      <div class="card-img-wrap">
+        <img class="card-img" src="${p.img}" alt="${p.name}" loading="lazy">
+        <div class="card-tags">${tags}</div>
+        <button class="like-btn" data-id="${p.id}" onclick="toggleLike(${p.id})" style="color:#aaa">♡</button>
+      </div>
+      <div class="card-body">
+        <div class="card-sub">${p.subtitle}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="rating"><div class="stars">${stars(p.rating)}</div><span class="rtext">${p.rating} (${p.reviews})</span></div>
+        <div class="price-row">
+          <span class="pnow">${fmt(p.price)}</span>
+          <span class="pwas">${fmt(p.orig)}</span>
+          <span class="poff">${disc}% off</span>
+        </div>
+        <button class="add-btn" data-id="${p.id}" onclick="addToCart(${p.id})">🛍 Add to Bag</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  root.innerHTML=`
+    <!-- Cart Layer -->
+    <div class="cart-overlay" style="display:none" onclick="closeCart()"></div>
+    <div class="cart-panel" style="display:none">
+      <div class="cart-hd">
+        <div><div class="cart-title">Shopping Bag</div><div class="cart-count">Your curated collection</div></div>
+        <button class="cart-x" onclick="closeCart()">✕</button>
+      </div>
+      <div class="cart-items"><div class="cart-empty"><span class="cart-empty-icon">🛍</span><span>Your bag is empty</span></div></div>
+      <div class="cart-ft" style="display:none">
+        <div class="cart-total"><span class="ct-lbl">Order Total</span><span class="ct-amt">₹0</span></div>
+        <button class="chk-btn">Proceed to Checkout →</button>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">✦ Free Shipping on Orders Above ₹2,999 &nbsp;·&nbsp; Pure Handwoven Tussar ✦</div>
+
+    <!-- Nav -->
+    <nav>
+      <div>
+        <div class="brand-name">Tussar Silk Natural</div>
+        <div class="brand-sub">Est. 1986 · Pure Handloom</div>
+      </div>
+      <div class="nav-btns">
+        <button class="nav-btn" title="Search">🔍</button>
+        <button class="nav-btn" onclick="openCart()" title="Cart" style="position:relative">
+          🛍
+          <span class="badge" style="display:none">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+      ${heroSlides}
+      <div class="hero-grad" style="z-index:1"></div>
+      <div class="hero-content" style="z-index:2">
+        <div class="hero-eyebrow">Pure · Natural · Handwoven</div>
+        <div class="hero-title">${products[0].name}</div>
+        <div class="hero-desc">Each saree is handwoven by master artisans using the finest natural tussar silk — a fabric that carries centuries of Indian weaving heritage.</div>
+        <button class="hero-cta" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">Explore Collection</button>
+      </div>
+      <button class="harrow harrow-l" style="z-index:2" onclick="setHero((heroIdx-1+${products.length})%${products.length})">‹</button>
+      <button class="harrow harrow-r" style="z-index:2" onclick="setHero((heroIdx+1)%${products.length})">›</button>
+      <div class="hdots" style="z-index:2">${dots}</div>
+    </div>
+
+    <!-- Thumb Strip -->
+    <div class="thumbs">${thumbs}</div>
+
+    <!-- Collection -->
+    <div class="section" id="collection">
+      <div class="sec-hd">
+        <div class="sec-eye">Handpicked for You</div>
+        <div class="sec-title">Our Collection</div>
+        <div class="divider"><div class="dline"></div><div class="dgem"></div><div class="dline"></div></div>
+      </div>
+      <div class="grid">${cards}</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-brand">Tussar Silk Natural</div>
+      <div class="footer-text">© 2026 · Handcrafted with love · Pure Indian Silk · Est. 1986</div>
+    </footer>
+  `;
+
+  startTimer();
+}
+
+render();
+</script>
+</body>
+</html>
