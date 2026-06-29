@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phulkari Punjabi Sarees – Ethnic Elegance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#BE185D;--primary-dark:#9D174D;--primary-light:#FDE8F0;
+  --gold:#B45309;--gold-light:#FEF3C7;--gold-bg:#FFFBEB;
+  --purple:#6D28D9;--purple-light:#F5F3FF;
+  --cream:#FEF7EE;--cream-2:#FDF2E9;--cream-3:#FDE8D8;
+  --charcoal:#1A0A0F;--text:#3D1A2A;--muted:#78716C;--subtle:#A8967F;
+  --border:#E8D9CF;--border-2:#D4B8A8;
+  --white:#FFFFFF;--shadow:rgba(180,100,50,.12);
+  --fs-h:clamp(28px,4vw,48px);--radius:12px;--radius-sm:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+
+/* Phulkari Stripe */
+.phulkari-stripe{height:7px;background:repeating-linear-gradient(90deg,
+  #BE185D 0%,#BE185D 14.28%,#EA580C 14.28%,#EA580C 28.56%,
+  #D97706 28.56%,#D97706 42.84%,#16A34A 42.84%,#16A34A 57.12%,
+  #0891B2 57.12%,#0891B2 71.4%,#1D4ED8 71.4%,#1D4ED8 85.68%,
+  #7C3AED 85.68%,#7C3AED 100%)}
+
+/* Navbar */
+nav{position:sticky;top:0;z-index:100;background:rgba(254,247,238,.96);
+  backdrop-filter:blur(16px);border-bottom:1.5px solid var(--border);
+  padding:0 clamp(16px,4vw,64px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo .logomark{width:36px;height:36px;background:var(--primary);border-radius:50%;
+  display:grid;place-items:center;flex-shrink:0}
+.nav-logo .logomark svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;
+  color:var(--charcoal);letter-spacing:-0.3px;line-height:1}
+.nav-logo-sub{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:1.5px;
+  text-transform:uppercase;display:block}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;
+  transition:color .2s;letter-spacing:.3px}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:6px}
+.nav-btn{position:relative;background:none;border:none;cursor:pointer;
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  transition:background .2s;color:var(--text)}
+.nav-btn:hover{background:var(--primary-light)}
+.nav-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2}
+.nav-badge{position:absolute;top:6px;right:6px;width:16px;height:16px;background:var(--primary);
+  color:#fff;border-radius:50%;font-size:9px;font-weight:700;display:grid;place-items:center;
+  border:2px solid var(--cream)}
+.nav-cart-btn{background:var(--primary);color:#fff!important;border:none;cursor:pointer;
+  display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;
+  font-size:13px;font-weight:600;font-family:'Nunito',sans-serif;
+  transition:background .2s,transform .15s;letter-spacing:.3px}
+.nav-cart-btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.nav-cart-btn svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.5}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:var(--charcoal);
+  padding:clamp(60px,9vw,110px) clamp(24px,6vw,80px);text-align:center;
+  min-height:420px;display:flex;align-items:center;justify-content:center}
+.hero-pattern{position:absolute;inset:0;opacity:.12;
+  background-image:repeating-linear-gradient(45deg,var(--primary) 0,var(--primary) 1px,transparent 0,transparent 50%),
+    repeating-linear-gradient(-45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);
+  background-size:22px 22px}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(190,24,93,.35) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(190,24,93,.25);border:1px solid rgba(190,24,93,.4);
+  color:#F9A8D4;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 16px;border-radius:50px;margin-bottom:20px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:var(--fs-h);font-weight:700;
+  color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+.hero-title em{font-style:italic;color:#F9A8D4}
+.hero-desc{font-size:16px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-hero-primary{background:var(--primary);color:#fff;border:none;cursor:pointer;
+  padding:14px 32px;border-radius:50px;font-size:15px;font-weight:700;
+  font-family:'Nunito',sans-serif;transition:all .2s;letter-spacing:.4px}
+.btn-hero-primary:hover{background:var(--primary-dark);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(190,24,93,.45)}
+.btn-hero-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.25);
+  cursor:pointer;padding:14px 32px;border-radius:50px;font-size:15px;font-weight:600;
+  font-family:'Nunito',sans-serif;transition:all .2s;backdrop-filter:blur(8px)}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* Trust badges */
+.trust-strip{background:var(--cream-2);border-bottom:1px solid var(--border);
+  padding:12px clamp(24px,5vw,80px);display:flex;justify-content:center;flex-wrap:wrap;gap:32px}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:500}
+.trust-item svg{width:16px;height:16px;fill:none;stroke:var(--primary);stroke-width:2;flex-shrink:0}
+
+/* Section */
+.section{padding:clamp(40px,6vw,80px) clamp(16px,4vw,64px)}
+.section-header{text-align:center;margin-bottom:clamp(32px,4vw,56px)}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--primary);margin-bottom:10px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,42px);
+  font-weight:700;color:var(--charcoal);letter-spacing:-0.5px;line-height:1.15}
+
+/* Product Showcase */
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px);
+  max-width:1200px;margin:0 auto;align-items:start}
+@media(max-width:768px){.showcase{grid-template-columns:1fr}}
+
+/* Image Panel */
+.img-panel{}
+.main-img-wrap{border-radius:var(--radius);overflow:hidden;background:var(--white);
+  border:1.5px solid var(--border);aspect-ratio:3/4;position:relative;
+  box-shadow:0 4px 32px var(--shadow)}
+.main-img-wrap img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+.main-img-wrap .zoom-hint{position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,.55);
+  color:#fff;font-size:11px;padding:5px 10px;border-radius:50px;pointer-events:none;
+  display:flex;align-items:center;gap:5px}
+.main-img-wrap .zoom-hint svg{width:12px;height:12px;fill:none;stroke:#fff;stroke-width:2}
+.thumbs{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:4px}
+.thumb{width:70px;height:90px;flex-shrink:0;border-radius:var(--radius-sm);overflow:hidden;
+  cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .15s;
+  background:var(--white)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb.active{border-color:var(--primary)}
+.thumb:hover:not(.active){border-color:var(--border-2);transform:translateY(-2px)}
+
+/* Product Info */
+.product-info{padding:4px 0}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);
+  margin-bottom:18px;flex-wrap:wrap}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--primary)}
+.breadcrumb-sep{color:var(--border-2)}
+.product-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:50px;
+  letter-spacing:.5px;text-transform:uppercase}
+.badge-bestseller{background:#FEF3C7;color:#92400E}
+.badge-handcrafted{background:var(--primary-light);color:var(--primary-dark)}
+.badge-auth{background:#DCFCE7;color:#166534}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);
+  font-weight:700;color:var(--charcoal);line-height:1.15;margin-bottom:14px;letter-spacing:-.5px}
+.product-rating{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.stars{display:flex;gap:2px}
+.stars svg{width:16px;height:16px;fill:#D97706;stroke:#D97706}
+.rating-val{font-weight:700;font-size:14px;color:var(--charcoal)}
+.rating-count{font-size:13px;color:var(--muted)}
+.rating-sep{color:var(--border-2);font-size:12px}
+.in-stock{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#16A34A}
+.in-stock span{width:7px;height:7px;background:#16A34A;border-radius:50%;flex-shrink:0}
+
+/* Pricing */
+.pricing{background:var(--gold-bg);border:1px solid #FDE68A;border-radius:var(--radius);
+  padding:16px 20px;margin-bottom:24px}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price-current{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--charcoal)}
+.price-current sup{font-size:18px;vertical-align:super}
+.price-mrp{font-size:17px;color:var(--muted);text-decoration:line-through}
+.price-off{background:var(--primary);color:#fff;font-size:12px;font-weight:700;
+  padding:3px 10px;border-radius:50px;letter-spacing:.5px}
+.price-saving{font-size:13px;color:#16A34A;font-weight:600;margin-top:6px}
+
+/* Colors */
+.option-section{margin-bottom:20px}
+.option-label{font-size:13px;font-weight:700;color:var(--charcoal);margin-bottom:10px;
+  letter-spacing:.3px;display:flex;gap:6px}
+.option-label span{color:var(--muted);font-weight:400}
+.color-dots{display:flex;gap:10px;flex-wrap:wrap}
+.color-dot{width:32px;height:32px;border-radius:50%;cursor:pointer;border:3px solid transparent;
+  outline:none;transition:transform .15s,box-shadow .2s;position:relative}
+.color-dot:hover{transform:scale(1.12)}
+.color-dot.active{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--primary)}
+
+/* Sizes */
+.size-opts{display:flex;gap:8px;flex-wrap:wrap}
+.size-btn{padding:8px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--border);
+  background:var(--white);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .18s;font-family:'Nunito',sans-serif}
+.size-btn:hover{border-color:var(--primary);color:var(--primary)}
+.size-btn.active{background:var(--charcoal);border-color:var(--charcoal);color:#fff}
+
+/* Quantity */
+.qty-wrap{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);overflow:hidden;width:fit-content}
+.qty-btn{width:40px;height:40px;background:var(--cream-2);border:none;cursor:pointer;
+  font-size:18px;color:var(--text);transition:background .15s;font-family:'Nunito',sans-serif;font-weight:300}
+.qty-btn:hover{background:var(--cream-3)}
+.qty-val{width:48px;height:40px;border:none;text-align:center;font-size:15px;font-weight:600;
+  color:var(--charcoal);background:var(--white);font-family:'Nunito',sans-serif}
+
+/* CTA Buttons */
+.cta-row{display:flex;gap:12px;margin-bottom:24px;margin-top:20px}
+.btn-wishlist{flex:0 0 auto;height:52px;width:52px;border-radius:50%;border:1.5px solid var(--border);
+  background:var(--white);cursor:pointer;display:grid;place-items:center;transition:all .2s}
+.btn-wishlist svg{width:22px;height:22px;fill:none;stroke:var(--muted);stroke-width:2;transition:all .2s}
+.btn-wishlist.liked{border-color:var(--primary);background:var(--primary-light)}
+.btn-wishlist.liked svg{fill:var(--primary);stroke:var(--primary)}
+.btn-wishlist:hover{border-color:var(--primary)}
+.btn-add-cart{flex:1;height:52px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;
+  border-radius:50px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;letter-spacing:.4px}
+.btn-add-cart:hover{background:var(--primary);transform:translateY(-1px);
+  box-shadow:0 6px 24px rgba(190,24,93,.35)}
+.btn-add-cart svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2}
+.btn-buy-now{flex:1;height:52px;background:var(--primary);color:#fff;border:none;cursor:pointer;
+  border-radius:50px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;
+  transition:all .2s;letter-spacing:.4px}
+.btn-buy-now:hover{background:var(--primary-dark);transform:translateY(-1px)}
+
+/* Delivery info */
+.delivery-info{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+  margin-bottom:20px}
+.delivery-row{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+  border-bottom:1px solid var(--border);font-size:13px}
+.delivery-row:last-child{border-bottom:none}
+.delivery-row svg{width:18px;height:18px;fill:none;stroke:var(--primary);stroke-width:2;flex-shrink:0;margin-top:1px}
+.delivery-row strong{color:var(--charcoal);font-weight:600;display:block;margin-bottom:2px}
+.delivery-row span{color:var(--muted);line-height:1.5}
+
+/* Collection Grid */
+.collection{background:var(--cream-2)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:clamp(16px,2.5vw,28px);max-width:1200px;margin:0 auto}
+.card{background:var(--white);border-radius:var(--radius);overflow:hidden;
+  border:1.5px solid var(--border);transition:transform .25s,box-shadow .25s;position:relative}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 40px var(--shadow)}
+.card-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--cream-2)}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover .card-img-wrap img{transform:scale(1.06)}
+.card-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:700;
+  padding:4px 10px;border-radius:50px;letter-spacing:.5px;text-transform:uppercase;z-index:2}
+.cb-bestseller{background:#FEF3C7;color:#92400E}
+.cb-new{background:#DCFCE7;color:#166534}
+.cb-premium{background:var(--purple-light);color:var(--purple)}
+.cb-limited{background:var(--primary-light);color:var(--primary-dark)}
+.card-like{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border:1px solid var(--border);
+  cursor:pointer;display:grid;place-items:center;transition:all .2s;z-index:2}
+.card-like svg{width:17px;height:17px;fill:none;stroke:var(--muted);stroke-width:2;transition:all .2s}
+.card-like.liked{background:var(--primary-light);border-color:var(--primary)}
+.card-like.liked svg{fill:var(--primary);stroke:var(--primary)}
+.card-like:hover{transform:scale(1.12)}
+.card-body{padding:16px}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;
+  color:var(--charcoal);margin-bottom:8px;line-height:1.3;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.card-stars{display:flex;gap:1.5px}
+.card-stars svg{width:12px;height:12px;fill:#D97706;stroke:#D97706}
+.card-rev{font-size:11px;color:var(--muted)}
+.card-pricing{display:flex;align-items:baseline;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.card-price{font-size:20px;font-weight:700;color:var(--charcoal)}
+.card-mrp{font-size:13px;color:var(--muted);text-decoration:line-through}
+.card-off{font-size:11px;font-weight:700;color:var(--primary)}
+.card-actions{display:flex;gap:8px}
+.card-btn-cart{flex:1;height:40px;background:var(--charcoal);color:#fff;border:none;cursor:pointer;
+  border-radius:var(--radius-sm);font-size:12.5px;font-weight:600;font-family:'Nunito',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:7px;transition:all .18s}
+.card-btn-cart:hover{background:var(--primary)}
+.card-btn-cart svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.5}
+
+/* Cart Drawer */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:200;
+  pointer-events:none;transition:background .3s}
+.cart-overlay.open{background:rgba(0,0,0,.4);pointer-events:all}
+.cart-drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100vw);
+  background:var(--white);z-index:201;transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;
+  border-left:1.5px solid var(--border)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{padding:20px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between}
+.cart-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--charcoal)}
+.cart-close{background:none;border:none;cursor:pointer;width:36px;height:36px;
+  border-radius:50%;display:grid;place-items:center;transition:background .15s;color:var(--text)}
+.cart-close:hover{background:var(--cream-2)}
+.cart-close svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:12px;color:var(--muted);text-align:center;padding:40px}
+.cart-empty svg{width:56px;height:56px;fill:none;stroke:var(--border-2);stroke-width:1.5}
+.cart-empty p{font-size:15px}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);
+  animation:slideInRight .3s ease}
+@keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.cart-item-img{width:70px;height:90px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;
+  background:var(--cream-2);border:1px solid var(--border)}
+.cart-item-img img{width:100%;height:100%;object-fit:cover}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-size:14px;font-weight:600;color:var(--charcoal);margin-bottom:4px;
+  line-height:1.35}
+.cart-item-meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+.cart-item-row{display:flex;align-items:center;justify-content:space-between}
+.cart-item-price{font-size:16px;font-weight:700;color:var(--charcoal)}
+.cart-item-remove{background:none;border:none;cursor:pointer;color:var(--muted);
+  font-size:12px;transition:color .15s;padding:2px 6px;border-radius:4px}
+.cart-item-remove:hover{color:var(--primary);background:var(--primary-light)}
+.cart-footer{padding:20px 24px;border-top:1px solid var(--border)}
+.cart-subtotal{display:flex;justify-content:space-between;font-size:15px;
+  color:var(--charcoal);font-weight:600;margin-bottom:6px}
+.cart-subtotal-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700}
+.cart-note{font-size:12px;color:var(--muted);margin-bottom:16px}
+.btn-checkout{width:100%;height:52px;background:var(--primary);color:#fff;border:none;
+  cursor:pointer;border-radius:50px;font-size:15px;font-weight:700;
+  font-family:'Nunito',sans-serif;transition:all .2s}
+.btn-checkout:hover{background:var(--primary-dark)}
+
+/* Toast */
+.toast-wrap{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:300;
+  pointer-events:none;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{background:var(--charcoal);color:#fff;padding:12px 24px;border-radius:50px;
+  font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;
+  box-shadow:0 4px 24px rgba(0,0,0,.3);opacity:0;transform:translateY(16px);
+  transition:all .3s;white-space:nowrap}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.toast.toast-heart svg{stroke:#F472B6}
+.toast.toast-cart svg{stroke:#86EFAC}
+
+/* Footer */
+footer{background:var(--charcoal);color:rgba(255,255,255,.65);
+  padding:40px clamp(24px,5vw,80px) 24px;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;
+  color:#fff;margin-bottom:8px}
+.footer-tagline{font-size:13px;margin-bottom:24px}
+.footer-phulkari-stripe{height:4px;border-radius:2px;margin:20px 0;
+  background:repeating-linear-gradient(90deg,
+    #BE185D 0,#BE185D 14.28%,#EA580C 14.28%,#EA580C 28.56%,
+    #D97706 28.56%,#D97706 42.84%,#16A34A 42.84%,#16A34A 57.12%,
+    #0891B2 57.12%,#0891B2 71.4%,#1D4ED8 71.4%,#1D4ED8 85.68%,
+    #7C3AED 85.68%,#7C3AED 100%)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.35)}
+
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hero-actions{flex-direction:column;align-items:center}
+  .cta-row{flex-wrap:wrap}
+  .btn-add-cart,.btn-buy-now{flex-basis:100%}
+  .btn-wishlist{flex:0 0 52px}
+  .trust-strip{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="phulkari-stripe"></div>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logomark">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 3 1.5 5 4 7l3 3 3-3c2.5-2 4-4 4-7 0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <div>
+        <span class="nav-logo-text">Phulkari</span>
+        <span class="nav-logo-sub">Ethnic Elegance</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-btn" aria-label="Search" onclick="showToast('search','Search feature coming soon!','')">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="nav-btn" id="nav-wish-btn" aria-label="Wishlist" onclick="openCart()">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="nav-badge" id="wish-count" style="display:none">0</span>
+      </button>
+      <button class="nav-cart-btn" onclick="openCart()">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Cart <span id="cart-count-nav">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:none;stroke:#F9A8D4;stroke-width:2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      100% Authentic Punjabi Craft
+    </div>
+    <h1 class="hero-title">Wearable Art from <em>Punjab's Heart</em></h1>
+    <p class="hero-desc">Each saree tells a story of generations — hand-embroidered Phulkari designs blooming in vibrant threads. Own a piece of living heritage.</p>
+    <div class="hero-actions">
+      <button class="btn-hero-primary" onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'})">Shop Featured Saree</button>
+      <button class="btn-hero-ghost" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">View Full Collection</button>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Strip -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Free delivery above ₹999
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> 100% Authentic
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg> Easy 7-day Returns
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> Secure Payment
+  </div>
+</div>
+
+<!-- Product Showcase -->
+<section class="section" id="showcase">
+  <div class="section-header">
+    <p class="section-eyebrow">Featured Product</p>
+    <h2 class="section-title">Royal Phulkari Embroidered Saree</h2>
+  </div>
+  <div class="showcase">
+
+    <!-- Image Panel -->
+    <div class="img-panel">
+      <div class="main-img-wrap">
+        <img id="main-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoyNKddrj5Mrgbgs91-79Q4EyjYY2XQqMvRu3UnBWLQ&s=10" alt="Phulkari Saree Main View" style="image-rendering:auto">
+        <div class="zoom-hint">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          Hover to zoom
+        </div>
+      </div>
+      <div class="thumbs" id="thumbs-wrap">
+        <div class="thumb active" onclick="setMain(this,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoyNKddrj5Mrgbgs91-79Q4EyjYY2XQqMvRu3UnBWLQ&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoyNKddrj5Mrgbgs91-79Q4EyjYY2XQqMvRu3UnBWLQ&s=10" alt="">
+        </div>
+        <div class="thumb" onclick="setMain(this,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-2Yx--Mxv5vW6KjURxkeQNPy8bpvPQk0D7ij3Y2XydQ&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-2Yx--Mxv5vW6KjURxkeQNPy8bpvPQk0D7ij3Y2XydQ&s=10" alt="">
+        </div>
+        <div class="thumb" onclick="setMain(this,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdRcEeEKY_5yrXh7dLkDBYOi8H7n-Khpy8LGLuxC2U8w&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdRcEeEKY_5yrXh7dLkDBYOi8H7n-Khpy8LGLuxC2U8w&s=10" alt="">
+        </div>
+        <div class="thumb" onclick="setMain(this,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcJSOvLXSwbedyppZ5_WB-L6Gr9LueJW6vnylO7DJtwg&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcJSOvLXSwbedyppZ5_WB-L6Gr9LueJW6vnylO7DJtwg&s=10" alt="">
+        </div>
+        <div class="thumb" onclick="setMain(this,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgiepeBI5xjqZQqBAYTlfPbQ1R8m7jKAQ6VLwd7oeig&s=10')">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgiepeBI5xjqZQqBAYTlfPbQ1R8m7jKAQ6VLwd7oeig&s=10" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <div class="breadcrumb">
+        <a href="#">Home</a><span class="breadcrumb-sep">›</span>
+        <a href="#">Sarees</a><span class="breadcrumb-sep">›</span>
+        <a href="#">Phulkari</a><span class="breadcrumb-sep">›</span>
+        <span style="color:var(--text)">Royal Embroidered Saree</span>
+      </div>
+      <div class="product-badges">
+        <span class="badge badge-bestseller">⭐ Bestseller</span>
+        <span class="badge badge-handcrafted">Handcrafted</span>
+        <span class="badge badge-auth">✓ Authentic Punjab</span>
+      </div>
+      <h1 class="product-name">Royal Phulkari Embroidered Punjabi Saree</h1>
+      <div class="product-rating">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span class="rating-val">4.8</span>
+        <span class="rating-count">(124 reviews)</span>
+        <span class="rating-sep">|</span>
+        <div class="in-stock"><span></span>In Stock</div>
+      </div>
+
+      <div class="pricing">
+        <div class="price-row">
+          <span class="price-current"><sup>₹</sup>2,499</span>
+          <span class="price-mrp">₹4,999</span>
+          <span class="price-off">50% OFF</span>
+        </div>
+        <div class="price-saving">You save ₹2,500 on this order!</div>
+      </div>
+
+      <div class="option-section">
+        <div class="option-label">Color: <span id="color-label">Magenta Bloom</span></div>
+        <div class="color-dots">
+          <button class="color-dot active" style="background:#BE185D" onclick="selectColor(this,'Magenta Bloom')" aria-label="Magenta Bloom"></button>
+          <button class="color-dot" style="background:#EA580C" onclick="selectColor(this,'Saffron Glow')" aria-label="Saffron Glow"></button>
+          <button class="color-dot" style="background:#0891B2" onclick="selectColor(this,'Peacock Teal')" aria-label="Peacock Teal"></button>
+          <button class="color-dot" style="background:#7C3AED" onclick="selectColor(this,'Royal Indigo')" aria-label="Royal Indigo"></button>
+          <button class="color-dot" style="background:#16A34A" onclick="selectColor(this,'Emerald Garden')" aria-label="Emerald Garden"></button>
+        </div>
+      </div>
+
+      <div class="option-section">
+        <div class="option-label">Size: <span id="size-label">5.5m</span></div>
+        <div class="size-opts">
+          <button class="size-btn" onclick="selectSize(this,'5.0m')">5.0m</button>
+          <button class="size-btn active" onclick="selectSize(this,'5.5m')">5.5m</button>
+          <button class="size-btn" onclick="selectSize(this,'6.0m')">6.0m</button>
+          <button class="size-btn" onclick="selectSize(this,'6.5m')">6.5m</button>
+        </div>
+      </div>
+
+      <div class="option-section">
+        <div class="option-label">Quantity:</div>
+        <div class="qty-wrap">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <input class="qty-val" id="qty" type="number" value="1" min="1" max="10" readonly>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <button class="btn-wishlist" id="main-wish-btn" onclick="toggleMainWishlist()" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="btn-add-cart" onclick="addToCart({id:'featured',name:'Royal Phulkari Embroidered Punjabi Saree',price:2499,img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoyNKddrj5Mrgbgs91-79Q4EyjYY2XQqMvRu3UnBWLQ&s=10'})">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Add to Cart
+        </button>
+        <button class="btn-buy-now" onclick="showToast('cart','Order Placed! Redirecting...','')">Buy Now</button>
+      </div>
+
+      <div class="delivery-info">
+        <div class="delivery-row">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div>
+            <strong>Free Delivery</strong>
+            <span>Delivered in 5–7 business days across India</span>
+          </div>
+        </div>
+        <div class="delivery-row">
+          <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          <div>
+            <strong>Easy 7-Day Return</strong>
+            <span>Hassle-free returns. Quality guaranteed.</span>
+          </div>
+        </div>
+        <div class="delivery-row">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <strong>Authenticity Assured</strong>
+            <span>Directly sourced from Punjabi artisans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Collection Grid -->
+<section class="section collection" id="collection">
+  <div class="section-header">
+    <p class="section-eyebrow">Our Collection</p>
+    <h2 class="section-title">More Phulkari Treasures</h2>
+  </div>
+  <div class="cards-grid" id="cards-grid"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Phulkari Ethnic Elegance</div>
+  <p class="footer-tagline">Celebrating the art of Punjab — one stitch at a time.</p>
+  <div class="footer-phulkari-stripe"></div>
+  <p class="footer-copy">© 2024 Phulkari Ethnic Elegance · Made with ♥ for Wondermayank</p>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Cart</span>
+    <button class="cart-close" onclick="closeCart()" aria-label="Close cart">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cart-items-list">
+    <div class="cart-empty">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p>Your cart is empty</p>
+      <p style="font-size:13px">Add some beautiful Phulkari sarees!</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span class="cart-subtotal-val" id="cart-total">₹0</span>
+    </div>
+    <div class="cart-note">Free delivery on this order 🎉</div>
+    <button class="btn-checkout" onclick="showToast('cart','Order Placed! Thank you! 🎊','')">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-wrap">
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+const PRODUCTS=[
+  {id:1,name:"Royal Phulkari Embroidered Saree",price:2499,mrp:4999,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoyNKddrj5Mrgbgs91-79Q4EyjYY2XQqMvRu3UnBWLQ&s=10",rating:4.8,reviews:124,discount:50,badge:"bestseller"},
+  {id:2,name:"Bagh Work Silk Phulkari Saree",price:3299,mrp:6499,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-2Yx--Mxv5vW6KjURxkeQNPy8bpvPQk0D7ij3Y2XydQ&s=10",rating:4.6,reviews:89,discount:49,badge:"new"},
+  {id:3,name:"Traditional Phulkari Dupatta Saree",price:1899,mrp:3499,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdRcEeEKY_5yrXh7dLkDBYOi8H7n-Khpy8LGLuxC2U8w&s=10",rating:4.7,reviews:203,discount:46,badge:""},
+  {id:4,name:"Chope Embroidered Bridal Saree",price:4599,mrp:8999,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcJSOvLXSwbedyppZ5_WB-L6Gr9LueJW6vnylO7DJtwg&s=10",rating:4.9,reviews:67,discount:49,badge:"premium"},
+  {id:5,name:"Vari-da-Bagh Classic Saree",price:2199,mrp:4299,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWgiepeBI5xjqZQqBAYTlfPbQ1R8m7jKAQ6VLwd7oeig&s=10",rating:4.5,reviews:156,discount:49,badge:""},
+  {id:6,name:"Mirror Work Phulkari Saree",price:3799,mrp:7499,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPoyNKddrj5Mrgbgs91-79Q4EyjYY2XQqMvRu3UnBWLQ&s=10",rating:4.7,reviews:92,discount:49,badge:"limited"},
+];
+
+let cart=[],wishlist=new Set(),mainWished=false;
+
+function starHTML(r){
+  return Array.from({length:5},(_,i)=>`<svg viewBox="0 0 24 24" style="${i<Math.floor(r)?'fill:#D97706;stroke:#D97706':'fill:none;stroke:#D4C5A9'}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
+}
+
+function badgeHTML(b){
+  const map={bestseller:'cb-bestseller',new:'cb-new',premium:'cb-premium',limited:'cb-limited'};
+  const label={bestseller:'Bestseller',new:'New',premium:'Premium',limited:'Limited'};
+  return b?`<span class="card-badge ${map[b]}">${label[b]}</span>`:'';
+}
+
+function renderCards(){
+  const g=document.getElementById('cards-grid');
+  g.innerHTML=PRODUCTS.map(p=>`
+    <div class="card" id="card-${p.id}">
+      <div class="card-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${badgeHTML(p.badge)}
+        <button class="card-like" id="like-${p.id}" onclick="toggleLike(${p.id})" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-meta">
+          <div class="card-stars">${starHTML(p.rating)}</div>
+          <span class="card-rev">${p.rating} (${p.reviews})</span>
+        </div>
+        <div class="card-pricing">
+          <span class="card-price">₹${p.price.toLocaleString('en-IN')}</span>
+          <span class="card-mrp">₹${p.mrp.toLocaleString('en-IN')}</span>
+          <span class="card-off">${p.discount}% off</span>
+        </div>
+        <div class="card-actions">
+          <button class="card-btn-cart" onclick="addToCart({id:${p.id},name:'${p.name}',price:${p.price},img:'${p.img}'})">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleLike(id){
+  const btn=document.getElementById('like-'+id);
+  if(wishlist.has(id)){wishlist.delete(id);btn.classList.remove('liked');showToast('heart','Removed from wishlist','toast-heart')}
+  else{wishlist.add(id);btn.classList.add('liked');showToast('heart','Added to wishlist ♡','toast-heart')}
+  updateWishCount();
+}
+
+function toggleMainWishlist(){
+  const btn=document.getElementById('main-wish-btn');
+  mainWished=!mainWished;
+  btn.classList.toggle('liked',mainWished);
+  showToast('heart',mainWished?'Added to wishlist ♡':'Removed from wishlist','toast-heart');
+  updateWishCount();
+}
+
+function updateWishCount(){
+  const total=wishlist.size+(mainWished?1:0);
+  const el=document.getElementById('wish-count');
+  el.textContent=total;
+  el.style.display=total>0?'grid':'none';
+}
+
+function addToCart(p){
+  const existing=cart.find(i=>i.id===p.id);
+  if(existing){existing.qty++;showToast('cart',`Updated: ${p.name.substring(0,28)}…`,'toast-cart')}
+  else{cart.push({...p,qty:1});showToast('cart','Added to cart! 🛍','toast-cart')}
+  updateCartCount();renderCartItems();
+}
+
+function removeFromCart(id){
+  cart=cart.filter(i=>i.id!==id);
+  updateCartCount();renderCartItems();
+}
+
+function updateCartCount(){
+  const total=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cart-count-nav').textContent=total;
+}
+
+function renderCartItems(){
+  const list=document.getElementById('cart-items-list');
+  const footer=document.getElementById('cart-footer');
+  if(!cart.length){
+    list.innerHTML=`<div class="cart-empty"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Your cart is empty</p><p style="font-size:13px">Add some beautiful Phulkari sarees!</p></div>`;
+    footer.style.display='none';return;
+  }
+  list.innerHTML=cart.map(i=>`
+    <div class="cart-item">
+      <div class="cart-item-img"><img src="${i.img}" alt="${i.name}"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-meta">Qty: ${i.qty} · Size: 5.5m</div>
+        <div class="cart-item-row">
+          <span class="cart-item-price">₹${(i.price*i.qty).toLocaleString('en-IN')}</span>
+          <button class="cart-item-remove" onclick="removeFromCart('${i.id}')">Remove</button>
+        </div>
+      </div>
+    </div>`).join('');
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('cart-total').textContent='₹'+total.toLocaleString('en-IN');
+  footer.style.display='block';
+}
+
+function openCart(){
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-drawer').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCart(){
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+let toastTimer;
+function showToast(type,msg,cls){
+  const t=document.getElementById('toast');
+  const icon=type==='heart'?
+    `<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`:
+    `<svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`;
+  t.className='toast '+(cls||'toast-cart');
+  t.innerHTML=icon+msg;
+  clearTimeout(toastTimer);
+  requestAnimationFrame(()=>{t.classList.add('show');toastTimer=setTimeout(()=>t.classList.remove('show'),2800)});
+}
+
+function setMain(el,src){
+  document.getElementById('main-img').src=src;
+  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function selectColor(el,name){
+  document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('color-label').textContent=name;
+}
+function selectSize(el,sz){
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('size-label').textContent=sz;
+}
+function changeQty(d){
+  const inp=document.getElementById('qty');
+  const v=Math.max(1,Math.min(10,parseInt(inp.value)+d));
+  inp.value=v;
+}
+
+renderCards();
+</script>
+</body>
+</html>
