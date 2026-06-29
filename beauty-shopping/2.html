@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Smoky Eye Look Evening — LUXORA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C8A96E;
+    --dark: #1A1A1A;
+    --charcoal: #2D2D2D;
+    --smoke: #3D3344;
+    --cream: #FAF8F5;
+    --muted: #7A7068;
+    --border: #E8E2D9;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--dark);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    padding: 9px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  .topbar span { opacity: 0.75; }
+  .topbar .highlight { color: var(--gold); font-weight: 500; cursor: pointer; }
+
+  /* ── NAV ── */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 22px; height: 22px; fill: var(--gold); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-icons { display: flex; gap: 20px; align-items: center; }
+  .nav-icons svg { width: 18px; height: 18px; stroke: var(--dark); fill: none; cursor: pointer; transition: stroke 0.2s; }
+  .nav-icons svg:hover { stroke: var(--gold); }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    padding: 14px 60px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+  }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span { margin: 0 8px; }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-visual {
+    position: relative;
+    background: #1A1017;
+    overflow: hidden;
+  }
+  .hero-bg-layer {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(200,169,110,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(61,51,68,0.6) 0%, transparent 50%);
+  }
+  /* Hero model images grid */
+  .hero-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+  }
+  .hero-img {
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(0.85);
+    transition: transform 0.6s ease;
+  }
+  .hero-img:hover img { transform: scale(1.04); }
+  .hero-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(26,16,23,0.5) 100%);
+  }
+  .hero-img.large {
+    grid-row: 1 / 3;
+  }
+  /* Gold line accent */
+  .hero-gold-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 120px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    z-index: 5;
+  }
+  /* Floating label */
+  .hero-float-label {
+    position: absolute;
+    bottom: 28px;
+    left: 24px;
+    z-index: 10;
+    color: #fff;
+  }
+  .hero-float-label .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .hero-float-label .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── HERO INFO ── */
+  .hero-info {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 60px;
+    position: relative;
+  }
+  .look-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .look-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .look-title em {
+    font-style: italic;
+    color: var(--smoke);
+  }
+  .look-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+  .look-desc {
+    font-size: 13px;
+    line-height: 1.85;
+    color: #5A5650;
+    max-width: 400px;
+    margin-bottom: 36px;
+  }
+  .look-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    color: var(--muted);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tag:hover, .tag.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(200,169,110,0.06);
+  }
+  .look-cta {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 44px;
+  }
+  .btn-primary {
+    background: var(--dark);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-primary:hover { background: var(--smoke); }
+  .btn-outline {
+    background: transparent;
+    color: var(--dark);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 15px 28px;
+    border: 1px solid var(--dark);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .look-meta {
+    display: flex;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .meta-item .label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .meta-item .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark);
+  }
+  .meta-item .value.gold { color: var(--gold); }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 80px 60px; }
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .section-title em { font-style: italic; }
+  .section-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+
+  /* ── HOW TO APPLY ── */
+  .how-to {
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .steps { display: flex; flex-direction: column; gap: 32px; }
+  .step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+    cursor: default;
+  }
+  .step:first-child { opacity: 1; }
+  .step:hover { opacity: 1; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    min-width: 48px;
+    text-align: right;
+    transition: color 0.3s;
+  }
+  .step:hover .step-num, .step:first-child .step-num { color: var(--gold); }
+  .step-body h4 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .step-body p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .how-visual {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+  .how-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(0.9);
+  }
+  .how-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,16,23,0.55) 0%, transparent 50%);
+  }
+  .how-visual-badge {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    background: rgba(26,26,26,0.85);
+    backdrop-filter: blur(8px);
+    padding: 16px 20px;
+    border-left: 2px solid var(--gold);
+  }
+  .how-visual-badge .tip-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+  .how-visual-badge .tip-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #fff;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ── PRODUCTS GRID ── */
+  .products-section { background: var(--cream); }
+  .products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .view-all {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .product-card {
+    background: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    position: relative;
+  }
+  .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.09); }
+  .product-img {
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    background: #F5F2EE;
+  }
+  .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .product-card:hover .product-img img { transform: scale(1.06); }
+  .product-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    font-weight: 600;
+    z-index: 2;
+  }
+  .badge-new { background: var(--dark); color: #fff; }
+  .badge-sale { background: var(--gold); color: #fff; }
+  .badge-essential { background: var(--smoke); color: #fff; }
+  .product-wish {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .product-wish:hover { background: var(--gold); }
+  .product-wish svg { width: 14px; height: 14px; stroke: var(--dark); fill: none; }
+  .product-wish:hover svg { stroke: #fff; }
+  .product-info { padding: 20px 20px 22px; }
+  .product-brand {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .product-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .product-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--dark);
+  }
+  .product-old {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-left: 8px;
+  }
+  .product-stars {
+    font-size: 11px;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .product-stars span { color: var(--muted); font-size: 10px; }
+  .add-to-bag {
+    width: 100%;
+    margin-top: 14px;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 11px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .add-to-bag:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
+
+  /* ── MODELS LOOKS ── */
+  .models-section {
+    background: var(--dark);
+    padding: 80px 60px;
+  }
+  .models-section .section-eyebrow { color: var(--gold); }
+  .models-section .section-title { color: #fff; }
+  .models-section .section-desc { color: rgba(255,255,255,0.5); }
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .model-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .model-card img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: grayscale(20%) contrast(1.05);
+  }
+  .model-card:hover img { transform: scale(1.05); filter: grayscale(0%) contrast(1.08); }
+  .model-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,26,26,0.8) 0%, transparent 55%);
+    transition: opacity 0.3s;
+  }
+  .model-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 16px;
+    color: #fff;
+    transform: translateY(8px);
+    transition: transform 0.3s;
+  }
+  .model-card:hover .model-info { transform: translateY(0); }
+  .model-look-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  .model-look-tag {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── FLASH SALE BANNER ── */
+  .flash-banner {
+    background: linear-gradient(135deg, var(--smoke) 0%, #1A1017 60%, var(--charcoal) 100%);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .flash-banner::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: 200px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,169,110,0.12);
+  }
+  .flash-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: 100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,169,110,0.07);
+  }
+  .flash-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .flash-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .flash-title span { color: var(--gold); }
+  .flash-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 28px; }
+  .countdown {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .cd-block {
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    padding: 14px 18px;
+    min-width: 64px;
+    border: 1px solid rgba(200,169,110,0.2);
+  }
+  .cd-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #fff;
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .cd-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .flash-cta { display: flex; gap: 14px; }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .btn-gold:hover { opacity: 0.88; }
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── NEWSLETTER ── */
+  .newsletter {
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 80px 60px;
+  }
+  .newsletter-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    border-radius: 2px;
+  }
+  .newsletter-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: saturate(0.85) contrast(1.05);
+  }
+  .newsletter-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(61,51,68,0.35) 0%, transparent 60%);
+  }
+  .newsletter-form-area {}
+  .nl-input-row {
+    display: flex;
+    gap: 0;
+    margin-top: 28px;
+  }
+  .nl-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-right: none;
+    padding: 14px 18px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    background: var(--cream);
+    color: var(--dark);
+    transition: border-color 0.2s;
+  }
+  .nl-input:focus { border-color: var(--gold); }
+  .nl-input::placeholder { color: var(--muted); }
+  .nl-btn {
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+  }
+  .nl-btn:hover { background: var(--smoke); }
+  .nl-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; }
+  .nl-note { font-size: 11px; color: var(--muted); margin-top: 12px; }
+  .nl-perks { display: flex; gap: 24px; margin-top: 32px; }
+  .nl-perk { display: flex; align-items: center; gap: 8px; }
+  .nl-perk svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; }
+  .nl-perk span { font-size: 12px; color: var(--muted); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.55);
+    padding: 56px 60px 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .footer-brand-desc { font-size: 12px; line-height: 1.75; margin-bottom: 24px; }
+  .footer-socials { display: flex; gap: 14px; }
+  .footer-socials a {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .footer-socials a:hover { border-color: var(--gold); }
+  .footer-socials svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.55); fill: none; }
+  .footer-col h5 {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li { font-size: 12px; cursor: pointer; transition: color 0.2s; }
+  .footer-col ul li:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-visual { aspect-ratio: 4/3; }
+    .hero-info { padding: 40px 24px; }
+    section { padding: 56px 24px; }
+    .how-to { grid-template-columns: 1fr; gap: 40px; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .models-grid { grid-template-columns: 1fr 1fr; }
+    .flash-banner { grid-template-columns: 1fr; padding: 40px 24px; }
+    .newsletter { grid-template-columns: 1fr; gap: 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .breadcrumb { padding: 12px 24px; }
+  }
+  @media (max-width: 540px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .models-grid { grid-template-columns: 1fr 1fr; }
+    .hero-images { grid-template-columns: 1fr 1fr; }
+    .hero-img.large { grid-row: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Free shipping on orders over $99</span>
+  <span>⬥</span>
+  <span>Exclusive Summer Sale — Up to 40% Off <a class="highlight">Shop Now</a></span>
+  <span>⬥</span>
+  <span>Track Order &nbsp;·&nbsp; Help</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z"/></svg>
+    LUXORA
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">New In</a></li>
+    <li><a href="#">Women</a></li>
+    <li><a href="#">Men</a></li>
+    <li><a href="#">Home</a></li>
+    <li><a href="#" class="active" style="color:var(--gold)">Beauty</a></li>
+    <li><a href="#">Accessories</a></li>
+    <li><a href="#">Brands</a></li>
+    <li><a href="#" style="color:#c0392b">Sale</a></li>
+  </ul>
+  <div class="nav-icons">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <div style="position:relative;cursor:pointer;">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span style="position:absolute;top:-6px;right:-6px;background:var(--gold);color:#fff;width:16px;height:16px;border-radius:50%;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:600;">2</span>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a><span>›</span>
+  <a href="#">Beauty</a><span>›</span>
+  <a href="#">Curated Looks</a><span>›</span>
+  Smoky Eye Look Evening
+</div>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-visual">
+    <div class="hero-bg-layer"></div>
+    <div class="hero-images">
+      <div class="hero-img large">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPRMzS6yTQooKpgm6lMWuqPS31WwQaGJCFO7__pttzg&s=10" alt="Smoky eye evening look model 1"/>
+      </div>
+      <div class="hero-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lqtKuQ7yXK38AiuHXgBt3tBwmAy9w8r8E-vOFgRaUQ&s=10" alt="Smoky eye evening look model 2"/>
+        <div class="hero-float-label">
+          <div class="eyebrow">Editorial Look</div>
+          <div class="name">Midnight Allure</div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfbm6pFBo6-CJzXUjeyEMzT8OLwPx_5KXJO1XfaflQow&s=10" alt="Smoky eye evening look model 3"/>
+      </div>
+    </div>
+    <div class="hero-gold-line"></div>
+  </div>
+
+  <div class="hero-info">
+    <div class="look-eyebrow">Curated Beauty Look</div>
+    <h1 class="look-title">Smoky Eye<br><em>Look Evening</em></h1>
+    <div class="look-subtitle">Drama that speaks before you do.</div>
+    <p class="look-desc">
+      A masterclass in depth and intensity — the smoky eye reigns supreme for evening occasions. 
+      Blended charcoal, deep plum, and burnished bronze converge to sculpt the eyes with seductive 
+      shadow. Paired with luminous skin and a nude lip, this look commands every room it enters.
+    </p>
+    <div class="look-tags">
+      <span class="tag active">Evening</span>
+      <span class="tag">Cocktail</span>
+      <span class="tag">Gala</span>
+      <span class="tag">Date Night</span>
+      <span class="tag">Editorial</span>
+    </div>
+    <div class="look-cta">
+      <button class="btn-primary">Shop This Look</button>
+      <button class="btn-outline">Save Look</button>
+    </div>
+    <div class="look-meta">
+      <div class="meta-item">
+        <div class="label">Skill Level</div>
+        <div class="value">Intermediate</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Time</div>
+        <div class="value">25–35 min</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Total Value</div>
+        <div class="value gold">$389.00</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Rating</div>
+        <div class="value">★ 4.9</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO APPLY -->
+<section class="how-to">
+  <div>
+    <div class="section-eyebrow">Application Guide</div>
+    <h2 class="section-title">How to <em>Achieve the Look</em></h2>
+    <p class="section-desc">Follow our step-by-step guide, curated by Luxora's in-house beauty editors and professional makeup artists.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Prime &amp; Prep</h4>
+          <p>Apply an eyeshadow primer across the lid to the brow bone. This ensures pigment stays vibrant and crease-free through the evening.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Lay the Base Shadow</h4>
+          <p>Pack a mid-tone taupe across the lid with a flat shader brush. Build coverage gradually to avoid over-application.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Build the Smoke</h4>
+          <p>Using a fluffy blending brush, work deep charcoal or black into the outer corner and crease in circular buffing motions for a seamless gradient.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h4>Line &amp; Define</h4>
+          <p>Apply kohl liner along the upper lash line — smudge for that lived-in, sultry edge. Tight-line the waterline with a white pencil to open the eye.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h4>Highlight &amp; Finish</h4>
+          <p>Press a champagne shimmer to the inner corner and brow bone. Finish with volumising mascara, building three coats from root to tip.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-visual">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxQmCT5yCOjG9WTVLib3EVY3yUtIcsp5NsWpO9txx3_A&s=10" alt="Smoky eye technique close-up"/>
+    <div class="how-visual-overlay"></div>
+    <div class="how-visual-badge">
+      <div class="tip-label">Pro Tip</div>
+      <div class="tip-text">"Apply shadow before foundation — fallout wipes away cleanly."</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="products-header">
+    <div>
+      <div class="section-eyebrow">Shop The Look</div>
+      <h2 class="section-title">Essential <em>Products</em></h2>
+    </div>
+    <a href="#" class="view-all">View All</a>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="product-badge badge-essential">Essential</span>
+        <div class="product-wish">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <img src="https://m.media-amazon.com/images/I/81L2rHY7fzL.jpg" alt="Eyeshadow Palette" style="object-position:center;"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Urban Decay</div>
+        <div class="product-name">Naked Smoky Palette</div>
+        <div class="product-sub">12-pan collection built for depth, dimension & drama</div>
+        <div class="product-price-row">
+          <div>
+            <span class="product-price">$54.00</span>
+            <span class="product-old">$72.00</span>
+          </div>
+          <div class="product-stars">★★★★★ <span>(4.9)</span></div>
+        </div>
+        <button class="add-to-bag">Add to Bag</button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="product-badge badge-new">New</span>
+        <div class="product-wish">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ8hpLsPWJ0k04slZ5U_tqOYabdKdx1oonbhlj12NmcVqjf_Q3WZYwuV-fK66iUwQTs5uqmrQ5JpBedFnHv1OYNd3oRw-6Keo6sK36dZl1A9sFe_JEGsI_0vg" alt="Kohl Liner" style="object-position:center;"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Charlotte Tilbury</div>
+        <div class="product-name">Rock 'N' Kohl Liner</div>
+        <div class="product-sub">Smudge-proof defining liner for intense eye looks</div>
+        <div class="product-price-row">
+          <div>
+            <span class="product-price">$28.00</span>
+          </div>
+          <div class="product-stars">★★★★★ <span>(4.8)</span></div>
+        </div>
+        <button class="add-to-bag">Add to Bag</button>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-img">
+        <span class="product-badge badge-sale">Sale</span>
+        <div class="product-wish">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSVNUDKpFQh6eAHhOR4wJ4q_RgSvBs8z3xnI8AM3ZGFbRHAxjP8ZQznMWuf0SczlL5u_XpoVfGS9lmbPwxYgehfwWk-OPabSFsXqAsxPOs19UXE3TKVUc6QnDeQ" alt="Mascara" style="object-position:center;"/>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Lancôme</div>
+        <div class="product-name">Idôle Lash Lift Mascara</div>
+        <div class="product-sub">Extreme volume & curl for a dramatic lash finish</div>
+        <div class="product-price-row">
+          <div>
+            <span class="product-price">$26.00</span>
+            <span class="product-old">$34.00</span>
+          </div>
+          <div class="product-stars">★★★★☆ <span>(4.7)</span></div>
+        </div>
+        <button class="add-to-bag">Add to Bag</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODELS / LOOKS GALLERY -->
+<section class="models-section">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;">
+    <div>
+      <div class="section-eyebrow">The Look in Action</div>
+      <h2 class="section-title" style="color:#fff;">Worn <em style="color:rgba(255,255,255,0.55);">Four Ways</em></h2>
+    </div>
+    <a href="#" class="view-all">View Gallery</a>
+  </div>
+  <div class="models-grid">
+    <div class="model-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPRMzS6yTQooKpgm6lMWuqPS31WwQaGJCFO7__pttzg&s=10" alt="Model 1 smoky eye look"/>
+      <div class="model-overlay"></div>
+      <div class="model-info">
+        <div class="model-look-name">Noir Intensé</div>
+        <div class="model-look-tag">Classic Smoky</div>
+      </div>
+    </div>
+    <div class="model-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lqtKuQ7yXK38AiuHXgBt3tBwmAy9w8r8E-vOFgRaUQ&s=10" alt="Model 2 smoky eye look"/>
+      <div class="model-overlay"></div>
+      <div class="model-info">
+        <div class="model-look-name">Plum Dusk</div>
+        <div class="model-look-tag">Warm Variation</div>
+      </div>
+    </div>
+    <div class="model-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfbm6pFBo6-CJzXUjeyEMzT8OLwPx_5KXJO1XfaflQow&s=10" alt="Model 3 smoky eye look"/>
+      <div class="model-overlay"></div>
+      <div class="model-info">
+        <div class="model-look-name">Bronze Ember</div>
+        <div class="model-look-tag">Golden Hour Edit</div>
+      </div>
+    </div>
+    <div class="model-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxQmCT5yCOjG9WTVLib3EVY3yUtIcsp5NsWpO9txx3_A&s=10" alt="Model 4 smoky eye look"/>
+      <div class="model-overlay"></div>
+      <div class="model-info">
+        <div class="model-look-name">Obsidian Veil</div>
+        <div class="model-look-tag">Avant-Garde</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLASH SALE BANNER -->
+<div class="flash-banner">
+  <div>
+    <div class="flash-eyebrow">Flash Sale · Beauty Edit</div>
+    <h2 class="flash-title">Summer Sale<br><span>Up to 40% Off</span></h2>
+    <p class="flash-sub">On selected beauty items — ends midnight Sunday</p>
+    <div class="countdown">
+      <div class="cd-block"><span class="cd-num" id="cd-days">02</span><span class="cd-label">Days</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">14</span><span class="cd-label">Hours</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">36</span><span class="cd-label">Mins</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">45</span><span class="cd-label">Secs</span></div>
+    </div>
+    <div class="flash-cta">
+      <button class="btn-gold">Shop Beauty Sale</button>
+      <button class="btn-ghost">View All Deals</button>
+    </div>
+  </div>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;">
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(200,169,110,0.25);padding:20px 24px;backdrop-filter:blur(8px);min-width:240px;">
+      <div style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Use Code</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:#fff;letter-spacing:0.1em;font-weight:300;">SMOKY25</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;">25% off your first beauty order</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(200,169,110,0.25);padding:16px 24px;backdrop-filter:blur(8px);">
+      <div style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Free Gift</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.75);">With orders over $75 — while stocks last</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-img">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPRMzS6yTQooKpgm6lMWuqPS31WwQaGJCFO7__pttzg&s=10" alt="Luxora beauty editorial"/>
+  </div>
+  <div class="newsletter-form-area">
+    <div class="section-eyebrow">Luxora Club</div>
+    <h2 class="section-title">Get 10% Off<br><em>Your First Order</em></h2>
+    <p class="look-desc">Join the Luxora Club for exclusive first access to new beauty drops, curated looks, and member-only offers delivered to your inbox.</p>
+    <div class="nl-input-row">
+      <input class="nl-input" type="email" placeholder="Enter your email address"/>
+      <button class="nl-btn">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+    <div class="nl-note">By subscribing you agree to our Privacy Policy. Unsubscribe anytime.</div>
+    <div class="nl-perks">
+      <div class="nl-perk">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Early access to drops</span>
+      </div>
+      <div class="nl-perk">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Members-only offers</span>
+      </div>
+      <div class="nl-perk">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Free beauty guides</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">✦ LUXORA</div>
+      <p class="footer-brand-desc">Timeless beauty and luxury fashion, curated for the modern you. Discover pieces that define elegance and individuality.</p>
+      <div class="footer-socials">
+        <a><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li>New In</li>
+        <li>Women</li>
+        <li>Men</li>
+        <li>Beauty</li>
+        <li>Accessories</li>
+        <li>Sale</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Help</h5>
+      <ul>
+        <li>Track Order</li>
+        <li>Returns</li>
+        <li>Shipping Info</li>
+        <li>Size Guide</li>
+        <li>Contact Us</li>
+        <li>FAQ</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>About</h5>
+      <ul>
+        <li>Our Story</li>
+        <li>Sustainability</li>
+        <li>Careers</li>
+        <li>Press</li>
+        <li>Affiliates</li>
+        <li>Privacy Policy</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Luxora. All rights reserved.</span>
+    <span>Made with care for the modern you.</span>
+    <span style="display:flex;gap:14px;align-items:center;">
+      <span>Visa</span><span>·</span><span>Mastercard</span><span>·</span><span>AmEx</span><span>·</span><span>PayPal</span>
+    </span>
+  </div>
+</footer>
+
+<script>
+  // Countdown timer
+  (function() {
+    let end = new Date();
+    end.setDate(end.getDate() + 2);
+    end.setHours(end.getHours() + 14, end.getMinutes() + 36, end.getSeconds() + 45);
+
+    function update() {
+      const now = new Date();
+      const diff = end - now;
+      if (diff <= 0) return;
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+    }
+    update();
+    setInterval(update, 1000);
+  })();
+
+  // Step hover interactions
+  document.querySelectorAll('.step').forEach(step => {
+    step.addEventListener('mouseenter', () => {
+      document.querySelectorAll('.step').forEach(s => s.style.opacity = '0.45');
+      step.style.opacity = '1';
+    });
+    step.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.step').forEach((s, i) => s.style.opacity = i === 0 ? '1' : '0.55');
+    });
+  });
+
+  // Tag toggle
+  document.querySelectorAll('.tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+    });
+  });
+
+  // Wishlist toggle
+  document.querySelectorAll('.product-wish').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const svg = btn.querySelector('svg');
+      const filled = btn.dataset.liked === '1';
+      svg.style.fill = filled ? 'none' : 'var(--gold)';
+      svg.style.stroke = filled ? 'var(--dark)' : 'var(--gold)';
+      btn.dataset.liked = filled ? '0' : '1';
+    });
+  });
+</script>
+</body>
+</html>
