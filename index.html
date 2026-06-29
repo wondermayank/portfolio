@@ -948,7 +948,7 @@
       <button class="modal-close" onclick="closeModal(null, true)" title="Close">✕</button>
     </div>
     <div class="modal-body">
-      <div class="modal-sec-label" id="modalSecLabel">Choose from 30 types below</div>
+      <div class="modal-sec-label" id="modalSecLabel">Choose from 15 types below</div>
       <div id="modalContent"></div>
     </div>
   </div>
@@ -1250,11 +1250,11 @@ function openModal(item, type = 'subtypes') {
         <a class="idea-modal-cta" href="https://wondermayank.github.io" target="_blank">Visit Wondermayank ↗</a>
       </div>`;
   } else {
-    document.getElementById('modalSecLabel').textContent = 'Choose from 30 types below';
+    document.getElementById('modalSecLabel').textContent = 'Choose from 15 types below';
     const subTypes = getSubTypes(item);
     const grid = document.createElement('div');
     grid.className = 'modal-grid';
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 15; i++) {
       const st = subTypes[(i - 1) % subTypes.length];
       const url = `https://wondermayank.github.io/portfolio/${item.title.toLowerCase().replace(/\s+/g, '-')}/${i}`;
       const card = document.createElement('a');
