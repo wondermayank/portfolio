@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAPOW! Beauty — Makeup That Pops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF2D8C;
+    --cyan:#00D4FF;
+    --yellow:#FFE000;
+    --red:#FF3B30;
+    --ink:#121212;
+    --paper:#FFF6E9;
+    --paper-dark:#F4E9D4;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+
+  /* halftone texture used as repeating background on several blocks */
+  .halftone{
+    background-image:radial-gradient(var(--ink) 1.4px, transparent 1.4px);
+    background-size:14px 14px;
+  }
+  .halftone-pink{
+    background-image:radial-gradient(var(--ink) 1.4px, transparent 1.4px);
+    background-size:14px 14px;
+    background-color:var(--pink);
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:-0.5px;
+    line-height:0.95;
+  }
+
+  .comic-title{
+    font-family:'Bangers', cursive;
+    letter-spacing:1px;
+  }
+
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- thick comic panel base ---------- */
+  .panel{
+    border:4px solid var(--ink);
+    box-shadow:8px 8px 0 var(--ink);
+    background:#fff;
+  }
+
+  /* ====================== NAV ====================== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--paper);
+    border-bottom:4px solid var(--ink);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:18px;
+    padding-bottom:18px;
+  }
+  .logo{
+    font-family:'Bangers', cursive;
+    font-size:2rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--ink);
+  }
+  .logo span{
+    background:var(--pink);
+    color:#fff;
+    padding:2px 10px;
+    border:3px solid var(--ink);
+    border-radius:50%;
+    transform:rotate(-6deg);
+    display:inline-block;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .nav-links{
+    display:flex;
+    gap:34px;
+    font-weight:700;
+    font-size:0.95rem;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a:after{
+    content:"";
+    position:absolute;
+    left:0;bottom:-2px;
+    width:0%;
+    height:4px;
+    background:var(--yellow);
+    border:2px solid var(--ink);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover:after{width:100%;}
+  .cart-btn{
+    background:var(--ink);
+    color:#fff;
+    border:3px solid var(--ink);
+    padding:10px 20px;
+    font-weight:700;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    box-shadow:4px 4px 0 var(--pink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cart-btn:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:6px 6px 0 var(--pink);
+  }
+
+  /* marquee strip */
+  .marquee{
+    background:var(--ink);
+    color:var(--yellow);
+    border-bottom:4px solid var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:10px 0;
+  }
+  .marquee-track{
+    display:inline-block;
+    animation:scroll 22s linear infinite;
+    font-family:'Bangers', cursive;
+    font-size:1.1rem;
+    letter-spacing:2px;
+  }
+  .marquee-track span{margin:0 22px;}
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ====================== HERO ====================== */
+  .hero{
+    position:relative;
+    padding:70px 0 90px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-block;
+    background:var(--yellow);
+    border:3px solid var(--ink);
+    padding:6px 16px;
+    font-weight:700;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    transform:rotate(-2deg);
+    box-shadow:4px 4px 0 var(--ink);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.6rem);
+    margin-bottom:22px;
+  }
+  .hero h1 .pop{
+    color:var(--pink);
+    -webkit-text-stroke:2px var(--ink);
+  }
+  .hero p.lede{
+    font-size:1.1rem;
+    max-width:460px;
+    margin-bottom:30px;
+    font-weight:500;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--pink);
+    color:#fff;
+    border:4px solid var(--ink);
+    padding:16px 30px;
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    font-size:0.95rem;
+    box-shadow:6px 6px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:9px 9px 0 var(--ink);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border:4px solid var(--ink);
+    padding:16px 30px;
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    font-size:0.95rem;
+  }
+  .btn-ghost:hover{background:var(--ink);color:#fff;}
+
+  .hero-art{
+    position:relative;
+  }
+  .hero-art .panel{
+    overflow:hidden;
+    transform:rotate(2deg);
+  }
+  .hero-art img{
+    width:100%;
+    height:560px;
+    object-fit:cover;
+    object-position:top center;
+    filter:saturate(1.25) contrast(1.05);
+  }
+  .burst{
+    position:absolute;
+    font-family:'Bangers', cursive;
+    color:var(--ink);
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .burst svg{position:absolute;inset:0;width:100%;height:100%;}
+  .burst-text{position:relative;z-index:2;}
+  .burst-1{
+    top:-30px; right:-30px;
+    width:140px;height:140px;
+    transform:rotate(8deg);
+  }
+  .burst-1 .burst-text{font-size:1.6rem; color:var(--ink);}
+  .burst-2{
+    bottom:30px; left:-36px;
+    width:120px;height:120px;
+    transform:rotate(-10deg);
+  }
+  .burst-2 .burst-text{font-size:1.15rem; color:#fff;}
+
+  /* ====================== SECTION HEADERS ====================== */
+  .section{
+    padding:90px 0;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:56px;
+  }
+  .section-head .tag{
+    display:inline-block;
+    font-family:'Bangers', cursive;
+    background:var(--cyan);
+    border:3px solid var(--ink);
+    padding:5px 18px;
+    font-size:1rem;
+    box-shadow:4px 4px 0 var(--ink);
+    transform:rotate(-3deg);
+    margin-bottom:18px;
+  }
+  .section-head h2{
+    font-size:clamp(2rem, 4vw, 3.2rem);
+  }
+  .section-head p{
+    max-width:540px;
+    margin:14px auto 0;
+    font-weight:500;
+    color:#3a3a3a;
+  }
+
+  /* ====================== PRODUCTS ====================== */
+  .products{
+    background-color:var(--paper-dark);
+    background-image:radial-gradient(var(--ink) 1.4px, transparent 1.4px);
+    background-size:16px 16px;
+    border-top:4px solid var(--ink);
+    border-bottom:4px solid var(--ink);
+  }
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:36px;
+  }
+  .product-card{
+    background:#fff;
+    position:relative;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .product-card:nth-child(1){transform:rotate(-1.3deg);}
+  .product-card:nth-child(2){transform:rotate(1deg);}
+  .product-card:nth-child(3){transform:rotate(-0.6deg);}
+  .product-card:hover{
+    transform:translate(-4px,-6px) rotate(0deg);
+    box-shadow:12px 12px 0 var(--ink);
+  }
+  .product-media{
+    border-bottom:4px solid var(--ink);
+    height:300px;
+    overflow:hidden;
+    position:relative;
+    background:#fff;
+  }
+  .product-media img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    padding:18px;
+  }
+  .product-badge{
+    position:absolute;
+    top:14px; left:14px;
+    background:var(--yellow);
+    border:3px solid var(--ink);
+    padding:4px 12px;
+    font-family:'Bangers', cursive;
+    font-size:0.85rem;
+    transform:rotate(-5deg);
+  }
+  .product-body{padding:22px 22px 26px;}
+  .product-cat{
+    font-size:0.72rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--pink);
+    margin-bottom:6px;
+  }
+  .product-body h3{
+    font-size:1.25rem;
+    margin-bottom:10px;
+  }
+  .product-body p{
+    font-size:0.9rem;
+    color:#555;
+    font-weight:500;
+    margin-bottom:18px;
+  }
+  .product-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .price{
+    font-family:'Archivo Black', sans-serif;
+    font-size:1.3rem;
+  }
+  .price .was{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.85rem;
+    color:#999;
+    text-decoration:line-through;
+    font-weight:500;
+    margin-left:8px;
+  }
+  .add-btn{
+    background:var(--ink);
+    color:#fff;
+    border:3px solid var(--ink);
+    padding:9px 16px;
+    font-weight:700;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    box-shadow:3px 3px 0 var(--pink);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .add-btn:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:5px 5px 0 var(--pink);
+    background:var(--pink);
+  }
+
+  /* ====================== PEOPLE / COMIC STRIP ====================== */
+  .people .section-head .tag{background:var(--yellow);}
+  .strip-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:36px;
+  }
+  .strip-panel{
+    background:#fff;
+    position:relative;
+  }
+  .strip-photo{
+    height:340px;
+    border-bottom:4px solid var(--ink);
+    overflow:hidden;
+  }
+  .strip-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:saturate(1.3) contrast(1.08);
+  }
+  .strip-panel:nth-child(2) .strip-photo img{object-position:top center;}
+  .speech{
+    margin:22px 22px 26px;
+    background:var(--paper);
+    border:3px solid var(--ink);
+    border-radius:20px;
+    padding:18px 20px;
+    position:relative;
+    font-weight:600;
+    font-size:0.95rem;
+  }
+  .speech:before{
+    content:"";
+    position:absolute;
+    top:-16px; left:32px;
+    width:0;height:0;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:16px solid var(--ink);
+  }
+  .speech:after{
+    content:"";
+    position:absolute;
+    top:-12px; left:34px;
+    width:0;height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:13px solid var(--paper);
+  }
+  .speech-name{
+    display:block;
+    margin-top:10px;
+    font-family:'Archivo Black', sans-serif;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    color:var(--pink);
+  }
+
+  /* ====================== CTA BANNER ====================== */
+  .cta-band{
+    background:var(--ink);
+    color:#fff;
+    border-top:4px solid var(--ink);
+    border-bottom:4px solid var(--ink);
+    padding:80px 0;
+  }
+  .cta-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+  }
+  .cta-inner h2{
+    color:#fff;
+    font-size:clamp(1.8rem, 3.6vw, 2.8rem);
+    max-width:520px;
+  }
+  .cta-inner h2 em{
+    font-style:normal;
+    color:var(--yellow);
+  }
+  .cta-form{
+    display:flex;
+    gap:0;
+    border:3px solid #fff;
+  }
+  .cta-form input{
+    background:transparent;
+    border:none;
+    padding:16px 18px;
+    color:#fff;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.95rem;
+    width:260px;
+  }
+  .cta-form input::placeholder{color:#bbb;}
+  .cta-form button{
+    background:var(--pink);
+    border:none;
+    border-left:3px solid #fff;
+    color:#fff;
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    padding:0 26px;
+    cursor:pointer;
+  }
+
+  /* ====================== FOOTER ====================== */
+  footer{
+    background:var(--paper);
+    padding:60px 0 30px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:40px;
+  }
+  .footer-grid h4{
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    margin-bottom:16px;
+    letter-spacing:1px;
+  }
+  .footer-grid ul li{margin-bottom:10px;}
+  .footer-grid ul a{
+    font-size:0.9rem;
+    font-weight:500;
+    color:#444;
+  }
+  .footer-grid ul a:hover{color:var(--pink);}
+  .footer-logo{
+    font-family:'Bangers', cursive;
+    font-size:1.8rem;
+    margin-bottom:14px;
+  }
+  .footer-grid p{
+    font-size:0.88rem;
+    color:#555;
+    max-width:280px;
+    font-weight:500;
+  }
+  .footer-bottom{
+    border-top:3px solid var(--ink);
+    padding-top:22px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:0.8rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  /* ====================== RESPONSIVE ====================== */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art img{height:420px;}
+    .product-grid, .strip-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    .nav-links{display:none;}
+    .product-grid, .strip-grid{grid-template-columns:1fr;}
+    .product-card, .strip-panel{transform:none !important;}
+    .cta-inner{flex-direction:column;align-items:flex-start;}
+    .cta-form{width:100%;}
+    .cta-form input{flex:1;width:auto;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+    *{transition:none !important;}
+  }
+
+  :focus-visible{
+    outline:3px solid var(--cyan);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="logo">KAPOW<span>!</span> Beauty</a>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#looks">Looks</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#join">Join</a></li>
+    </ul>
+    <a href="#shop" class="cart-btn">Cart (0)</a>
+  </nav>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>★ BOLD COLOR, NO APOLOGIES ★</span>
+    <span>★ CRUELTY-FREE, ALWAYS ★</span>
+    <span>★ FREE SHIPPING OVER ₹999 ★</span>
+    <span>★ MADE TO BE SEEN ★</span>
+    <span>★ BOLD COLOR, NO APOLOGIES ★</span>
+    <span>★ CRUELTY-FREE, ALWAYS ★</span>
+    <span>★ FREE SHIPPING OVER ₹999 ★</span>
+    <span>★ MADE TO BE SEEN ★</span>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">New Drop — Pop Collection</span>
+      <h1>MAKEUP THAT<br><span class="pop">POPS</span> OFF THE PAGE</h1>
+      <p class="lede">Saturated pigment, comic-book gloss, zero compromise. Built for faces that don't do quiet.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn-primary">Shop The Drop</a>
+        <a href="#looks" class="btn-ghost">See The Looks</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="panel">
+        <img src="https://m.media-amazon.com/images/I/61s+faICY6L.jpg" alt="Model wearing bold pop-art inspired makeup look">
+      </div>
+      <div class="burst burst-1">
+        <svg viewBox="0 0 100 100"><polygon points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35" fill="#FFE000" stroke="#121212" stroke-width="3"/></svg>
+        <span class="burst-text">NEW!</span>
+      </div>
+      <div class="burst burst-2">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FF2D8C" stroke="#121212" stroke-width="4"/></svg>
+        <span class="burst-text">-20%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="section products" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">The Lineup</span>
+      <h2>Pick Your Pigment</h2>
+      <p>Three hero pieces, built to layer, blend, and absolutely not blend in.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product-card panel">
+        <div class="product-media">
+          <span class="product-badge">Bestseller</span>
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQXGVfSgLfI8t-I6duM_sqgoEXtJaLfkrFmTb3Y5jGZgxUjxtJukpcG_oMOAZ6U1kWXexAqN-mFsf13N-BapdU9467bheYHpqULJ9y47QphtBuRe_ld_do1" alt="Pop Art liquid pigment palette">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Eyes</div>
+          <h3>Comic Pop Palette</h3>
+          <p>Twelve halftone-bright shades that go from wink to full panel in one swipe.</p>
+          <div class="product-foot">
+            <div class="price">₹1,499<span class="was">₹1,899</span></div>
+            <button class="add-btn">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card panel">
+        <div class="product-media">
+          <span class="product-badge">Limited</span>
+          <img src="https://m.media-amazon.com/images/I/51iTKUNQtcL._AC_UF1000,1000_QL80_.jpg" alt="Bold pop art lipstick set">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Lips</div>
+          <h3>Ben-Day Bullet Lip Trio</h3>
+          <p>Three high-pigment mattes that hold their shape and never fade by frame two.</p>
+          <div class="product-foot">
+            <div class="price">₹1,199</div>
+            <button class="add-btn">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card panel">
+        <div class="product-media">
+          <span class="product-badge">Just Dropped</span>
+          <img src="https://m.media-amazon.com/images/I/51cd4UH6jVL._AC_UF1000,1000_QL80_.jpg" alt="Pop art highlighter and blush duo">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Face</div>
+          <h3>Speech Bubble Glow Duo</h3>
+          <p>A blush-and-highlight combo loud enough to read from the back row.</p>
+          <div class="product-foot">
+            <div class="price">₹1,349</div>
+            <button class="add-btn">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PEOPLE / REVIEWS ================= -->
+<section class="section people" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Real Faces</span>
+      <h2>Worn By The Bold</h2>
+      <p>No filters, no fine print — just the lineup actually wearing it out loud.</p>
+    </div>
+
+    <div class="strip-grid">
+
+      <article class="strip-panel panel">
+        <div class="strip-photo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcSyP2FTBfdlSjhUAgnBCaKq-lSc_fzWjz7BbC3gfuh-cxp50xfnhttrab&s=10" alt="Customer wearing bold pop art makeup">
+        </div>
+        <div class="speech">
+          "I put this on for one party and now it's just how I do Tuesdays."
+          <span class="speech-name">— Riya, Mumbai</span>
+        </div>
+      </article>
+
+      <article class="strip-panel panel">
+        <div class="strip-photo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPGC4DYBgD1JtKXmXNPw_Sn7tMPK7FVyFmhQylQauiVX-zwztyqPwTM2hT&s=10" alt="Customer wearing bold pop art lip color">
+        </div>
+        <div class="speech">
+          "The pigment shows up like it means it. Zero touch-ups, all day."
+          <span class="speech-name">— Aisha, Bengaluru</span>
+        </div>
+      </article>
+
+      <article class="strip-panel panel">
+        <div class="strip-photo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlIetUuuse17ZY4C0I1C2FZ2Fy9c152JaPNHIBGVKyTSQMd03unISnTgY&s=10" alt="Customer wearing pop art inspired blush look">
+        </div>
+        <div class="speech">
+          "Finally makeup that matches my energy instead of toning it down."
+          <span class="speech-name">— Naina, Indore</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA / NEWSLETTER ================= -->
+<section class="cta-band" id="join">
+  <div class="wrap cta-inner">
+    <h2>Get the next drop before it <em>panels out</em>.</h2>
+    <form class="cta-form" onsubmit="event.preventDefault();">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Join</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">KAPOW! Beauty</div>
+        <p>Pop-art pigment for faces that refuse to whisper. Designed loud, worn proud.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Eyes</a></li>
+          <li><a href="#shop">Lips</a></li>
+          <li><a href="#shop">Face</a></li>
+          <li><a href="#shop">Sets</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Ingredients</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KAPOW! Beauty. All rights reserved.</span>
+      <span>Template by Wondermayank</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
