@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festival Makeup — Diwali Special | Shop the Look</title>
+<meta name="description" content="Diwali Special festival makeup edit — kohl eyes, gold dust highlight and bridal-bright lips. Shop the products behind the look, curated for the festival of lights.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A1410;
+    --maroon:#6B1530;
+    --maroon-deep:#3E0C1C;
+    --gold:#C9972A;
+    --gold-light:#EBD49A;
+    --marigold:#E2722A;
+    --cream:#FFF8EE;
+    --cream-soft:#FAEFDC;
+    --hairline: rgba(42,20,16,0.12);
+    --on-dark:#FFF7EC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+
+  h1,h2,h3{font-family:'Playfair Display', serif;font-weight:700;letter-spacing:-0.01em;}
+
+  .eyebrow{
+    font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--marigold); display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow svg{width:14px;height:14px;flex-shrink:0;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,248,238,0.88);
+    backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--hairline);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .logo{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;color:var(--maroon-deep);display:flex;align-items:center;gap:8px;}
+  .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--marigold);}
+  .nav-links{display:flex;gap:36px;font-size:14px;font-weight:600;color:var(--ink);}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--marigold);transition:width .25s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--maroon-deep);color:var(--on-dark);font-size:13px;font-weight:700;
+    padding:11px 22px;border-radius:999px;letter-spacing:0.4px;
+    box-shadow:0 4px 16px rgba(62,12,28,0.25);
+  }
+  .nav-cta:hover{background:var(--maroon);}
+  .burger{display:none;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;border:1px solid var(--hairline);background:var(--cream);}
+  .burger svg{width:18px;height:18px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(160deg,var(--maroon-deep) 0%, var(--maroon) 58%, #7C1F3B 100%);
+    overflow:hidden;
+    padding-top:64px;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(circle at 12% 18%, rgba(233,205,130,0.18), transparent 38%),
+                      radial-gradient(circle at 88% 78%, rgba(226,114,42,0.22), transparent 42%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:40px;
+    padding:64px 0 0;
+  }
+  .hero-copy .eyebrow{color:var(--gold-light);}
+  .hero-copy h1{
+    color:var(--on-dark);font-size:58px;line-height:1.04;margin:18px 0 22px;font-weight:700;
+  }
+  .hero-copy h1 em{font-style:italic;color:var(--gold-light);font-weight:500;}
+  .hero-copy p{color:rgba(255,247,236,0.82);font-size:17px;max-width:440px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--marigold);color:#fff;font-weight:700;font-size:15px;
+    padding:15px 30px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 10px 28px rgba(226,114,42,0.35);transition:transform .2s ease, background .2s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);background:#cf6320;}
+  .btn-primary:active{transform:scale(0.96);}
+  .btn-ghost{
+    border:1px solid rgba(255,247,236,0.4);color:var(--on-dark);font-weight:600;font-size:15px;
+    padding:15px 28px;border-radius:999px;
+  }
+  .btn-ghost:hover{border-color:var(--gold-light);color:var(--gold-light);}
+
+  .hero-stats{display:flex;gap:36px;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,247,236,0.18);}
+  .hero-stats div b{display:block;font-family:'Playfair Display',serif;font-size:26px;color:var(--gold-light);}
+  .hero-stats div span{font-size:12px;color:rgba(255,247,236,0.65);letter-spacing:0.5px;text-transform:uppercase;}
+
+  .hero-media{position:relative;z-index:2;}
+  .hero-media-frame{
+    position:relative;border-radius:28px 28px 4px 28px;overflow:hidden;
+    box-shadow:rgba(0,0,0,0.35) 6px 18px 50px;
+    aspect-ratio:4/5;
+  }
+  .hero-media-frame img{width:100%;height:100%;object-fit:cover;}
+  .hero-media-tag{
+    position:absolute;bottom:18px;left:18px;background:rgba(255,248,238,0.92);
+    border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.18);
+  }
+  .hero-media-tag .swatch{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--marigold));flex-shrink:0;}
+  .hero-media-tag b{display:block;font-size:13px;color:var(--ink);font-family:'DM Sans',sans-serif;}
+  .hero-media-tag span{font-size:11px;color:var(--maroon);font-weight:700;letter-spacing:0.3px;}
+
+  /* ---------- DIVIDER ---------- */
+  .scallop{height:26px;background:var(--cream);position:relative;}
+  .scallop svg{display:block;width:100%;height:100%;}
+
+  /* ---------- LOOK GALLERY ---------- */
+  .section{padding:96px 0;}
+  .section-head{max-width:560px;margin-bottom:52px;}
+  .section-head h2{font-size:38px;color:var(--maroon-deep);margin-top:14px;}
+  .section-head p{color:rgba(42,20,16,0.65);font-size:16px;margin-top:14px;}
+
+  .look-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .look-card{
+    position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;
+    border:1px solid var(--hairline);
+  }
+  .look-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .look-card:hover img{transform:scale(1.05);}
+  .look-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(62,12,28,0.78) 0%, rgba(62,12,28,0.05) 55%);
+  }
+  .look-card .label{
+    position:absolute;left:18px;bottom:18px;z-index:2;color:var(--on-dark);
+  }
+  .look-card .label .eyebrow{color:var(--gold-light);font-size:11px;margin-bottom:6px;}
+  .look-card .label h3{font-size:20px;color:#fff;}
+
+  /* ---------- SHOP THE LOOK ---------- */
+  .shop{background:var(--cream-soft);position:relative;}
+  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .product-card{
+    background:#fff;border:1px solid var(--hairline);border-radius:18px;overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .product-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(42,20,16,0.12);}
+  .product-img{
+    aspect-ratio:1/1;background:var(--cream);display:flex;align-items:center;justify-content:center;
+    padding:22px;border-bottom:1px solid var(--hairline);position:relative;
+  }
+  .product-img img{max-height:100%;width:auto;margin:0 auto;object-fit:contain;}
+  .product-badge{
+    position:absolute;top:12px;left:12px;background:var(--marigold);color:#fff;
+    font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;
+    padding:5px 10px;border-radius:999px;
+  }
+  .product-body{padding:18px 18px 20px;}
+  .product-cat{font-size:11px;font-weight:700;color:var(--marigold);letter-spacing:0.6px;text-transform:uppercase;}
+  .product-body h3{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin:8px 0 4px;line-height:1.35;}
+  .product-meta{display:flex;align-items:center;justify-content:space-between;margin-top:14px;}
+  .price{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--maroon-deep);}
+  .price span{font-size:12px;color:rgba(42,20,16,0.4);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:500;margin-left:6px;}
+  .add-btn{
+    width:38px;height:38px;border-radius:50%;background:var(--cream);border:1px solid var(--hairline);
+    display:flex;align-items:center;justify-content:center;transition:background .2s ease, border-color .2s ease;
+  }
+  .add-btn svg{width:16px;height:16px;color:var(--maroon-deep);}
+  .add-btn:hover{background:var(--marigold);border-color:var(--marigold);}
+  .add-btn:hover svg{color:#fff;}
+
+  .shop-cta{text-align:center;margin-top:48px;}
+
+  /* ---------- TESTIMONIALS / PEOPLE ---------- */
+  .people{background:var(--cream);}
+  .people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .people-card{
+    background:#fff;border:1px solid var(--hairline);border-radius:20px;padding:28px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .people-photo{width:56px;height:56px;border-radius:50%;overflow:hidden;border:2px solid var(--gold-light);}
+  .people-photo img{width:100%;height:100%;object-fit:cover;}
+  .people-card p{font-size:15.5px;color:var(--ink);font-style:italic;}
+  .people-name{display:flex;align-items:center;gap:12px;margin-top:auto;}
+  .people-name b{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;}
+  .people-name span{font-size:12px;color:rgba(42,20,16,0.5);}
+  .stars{display:flex;gap:2px;}
+  .stars svg{width:14px;height:14px;color:var(--marigold);}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:linear-gradient(135deg,var(--maroon-deep), var(--maroon));
+    padding:80px 0;text-align:center;position:relative;overflow:hidden;
+  }
+  .cta-band::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(circle at 80% 20%, rgba(226,114,42,0.25), transparent 40%);
+  }
+  .cta-band .eyebrow{justify-content:center;color:var(--gold-light);}
+  .cta-band h2{color:#fff;font-size:36px;margin:16px 0 14px;position:relative;z-index:2;}
+  .cta-band p{color:rgba(255,247,236,0.78);max-width:480px;margin:0 auto 30px;position:relative;z-index:2;}
+  .cta-band .btn-primary{position:relative;z-index:2;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--cream-soft);border-top:1px solid var(--hairline);padding:64px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--hairline);}
+  .footer-brand .logo{margin-bottom:14px;}
+  .footer-brand p{color:rgba(42,20,16,0.6);font-size:14px;max-width:260px;}
+  .footer-col h4{font-size:13px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--maroon-deep);margin-bottom:16px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .footer-col a{font-size:14px;color:rgba(42,20,16,0.68);}
+  .footer-col a:hover{color:var(--marigold);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:12.5px;color:rgba(42,20,16,0.5);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;padding-top:32px;}
+    .hero-media{order:-1;max-width:380px;margin:0 auto 8px;}
+    .hero-copy h1{font-size:42px;}
+    .look-grid{grid-template-columns:repeat(2,1fr);}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .people-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:28px;}
+    .nav-links{display:none;}
+    .burger{display:flex;}
+  }
+  @media (max-width:560px){
+    .hero-copy h1{font-size:34px;}
+    .hero-stats{flex-wrap:wrap;gap:24px;}
+    .look-grid{grid-template-columns:1fr;}
+    .product-grid{grid-template-columns:1fr;}
+    .section{padding:64px 0;}
+    .section-head h2{font-size:28px;}
+    .nav-cta{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="https://wondermayank.github.io/"><span class="dot"></span>wondermayank</a>
+    <div class="nav-links">
+      <a href="https://wondermayank.github.io/">Home</a>
+      <a href="https://wondermayank.github.io/portfolio">Portfolio</a>
+      <a href="#shop">Shop the Look</a>
+      <a href="https://wondermayank.github.io/contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="#shop">Shop Now</a>
+    <button class="burger" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c0 4-3 5-3 9a3 3 0 0 0 6 0c0-4-3-5-3-9z"/></svg>
+        Diwali Special Edit
+      </div>
+      <h1>Festival makeup, <em>lit</em> from within.</h1>
+      <p>Kohl-rimmed eyes, gold-dust glow and a lip that holds through every diya you light. The edit built for this Diwali — shop every product behind the look.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#shop">
+          Shop the Look
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn-ghost" href="https://wondermayank.github.io/portfolio/beauty-shopping/14">View Full Portfolio</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>4</b><span>Hero Products</span></div>
+        <div><b>3</b><span>Looks Styled</span></div>
+        <div><b>100%</b><span>Festival Ready</span></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-media-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkx6vXkdcMeSJ261pH83lZC9Iy6aCwYbmU0UcjCal_e5zrHNCyysf8GWdN&s=10" alt="Diwali festival makeup look — gold dust eyes and bold lip">
+        <div class="hero-media-tag">
+          <span class="swatch"></span>
+          <div>
+            <b>Marigold Glow</b>
+            <span>FEATURED LOOK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scallop">
+    <svg viewBox="0 0 1200 24" preserveAspectRatio="none"><path d="M0 24 Q15 0 30 24 T60 24 T90 24 T120 24 T150 24 T180 24 T210 24 T240 24 T270 24 T300 24 T330 24 T360 24 T390 24 T420 24 T450 24 T480 24 T510 24 T540 24 T570 24 T600 24 T630 24 T660 24 T690 24 T720 24 T750 24 T780 24 T810 24 T840 24 T870 24 T900 24 T930 24 T960 24 T990 24 T1020 24 T1050 24 T1080 24 T1110 24 T1140 24 T1170 24 T1200 24 V0 H0 Z" fill="var(--cream)"/></svg>
+  </div>
+</section>
+
+<!-- LOOK GALLERY -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+        The Edit
+      </div>
+      <h2>Three looks, one festival night.</h2>
+      <p>From puja-morning soft glam to late-night sangeet shimmer — styled and shot for the way Diwali actually unfolds.</p>
+    </div>
+    <div class="look-grid">
+      <div class="look-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQezCst7Z9B3YEXxujk2GVWpHoo_Mg4S_FKiYBxjnwv2Lj0bUZP4eLGITc&s=10" alt="Soft glam Diwali morning look">
+        <div class="label">
+          <div class="eyebrow">PUJA MORNING</div>
+          <h3>Soft Diya Glow</h3>
+        </div>
+      </div>
+      <div class="look-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf7HZUtfeC9l3T5prTcMAYzXnH6B7Xh5t2EhFHS4ooZp7Qn0QNRCXZpqU&s=10" alt="Bold kohl eye Diwali evening look">
+        <div class="label">
+          <div class="eyebrow">EVENING SANGEET</div>
+          <h3>Kohl & Copper</h3>
+        </div>
+      </div>
+      <div class="look-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQgUb3Jz155Sj4e2DiDB0k0c6Y4_IbX1gGlSZJ19cWHYnh_YWWmFz1oIA&s=10" alt="Bridal bright lip Diwali night look">
+        <div class="label">
+          <div class="eyebrow">FESTIVE NIGHT</div>
+          <h3>Marigold Lip</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP THE LOOK -->
+<section class="section shop" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+        Shop the Look
+      </div>
+      <h2>Everything in this edit.</h2>
+      <p>Four products, fully tested under string lights and sparkler smoke — built to last from aarti to last dance.</p>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">
+          <span class="product-badge">Bestseller</span>
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSrTKeeWp6dG5al0ILI2KRbEpmPhjZJsAGDCdGmOafMbZT1jhFCs_eCVBI_eJjDGaLYmyAyoEQ-hrWVuzkJcDe_Jf_Ji_9a_jfZqr5wXFmsDPgCeX533anaVA" alt="Festival gold dust eyeshadow palette">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Eyes</div>
+          <h3>Marigold Gold-Dust Eyeshadow Palette</h3>
+          <div class="product-meta">
+            <div class="price">₹899<span>₹1,199</span></div>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSfRyihGp3zFjZMmhtLq38NxqrK75ddA-SrPXCOerZg7iy3ca0ke7g3nUA7cS9gt4jCR5R8bEcE6Ju9e_JDMxfKMMi5rXrGB8kR0QkeGX-tcEQc3dCahI2HACw" alt="Long-wear kohl kajal eyeliner">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Eyes</div>
+          <h3>Smoke-Proof Kohl Kajal</h3>
+          <div class="product-meta">
+            <div class="price">₹349</div>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <span class="product-badge">New</span>
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSIOd-9tgj9xaUzU5uJM43DRdVc2ofaFxRFhXcpkqK2H02a109hI-XZER-OsGhQj8523kUvEayodSM_7fjWOhkRAzC6DtAldl3pCZLKEe6ZH6dJwftKu0tt" alt="Bold festive matte lipstick">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Lips</div>
+          <h3>Marigold Matte Lip Colour</h3>
+          <div class="product-meta">
+            <div class="price">₹649</div>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTSpUBG29fUQzSCZAIbiwhlCjry_sHG--SYR_gso_t-nnq3MeD5sf2qOx2eE2LrIISh6imO0ta0V7WN3ofAftDQOe1-RBPSp-buMAjHqXLVgb-ZZ6S59lT_" alt="Illuminating highlighter for festive glow">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Face</div>
+          <h3>Diya-Glow Liquid Highlighter</h3>
+          <div class="product-meta">
+            <div class="price">₹599</div>
+            <button class="add-btn" aria-label="Add to bag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shop-cta">
+      <a class="btn-primary" style="background:var(--maroon-deep)" href="https://wondermayank.github.io/portfolio/beauty-shopping/14">
+        View Full Look Breakdown
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE / TESTIMONIALS -->
+<section class="section people">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+        Tried & Loved
+      </div>
+      <h2>Worn at three different Diwalis.</h2>
+    </div>
+    <div class="people-grid">
+      <div class="people-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+        </div>
+        <p>"The kajal survived four hours of sparklers and zero crying-from-smoke moments. That's the real test."</p>
+        <div class="people-name">
+          <div class="people-photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQezCst7Z9B3YEXxujk2GVWpHoo_Mg4S_FKiYBxjnwv2Lj0bUZP4eLGITc&s=10" alt="Customer photo"></div>
+          <div>
+            <b>Riya M.</b>
+            <span>Indore</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="people-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+        </div>
+        <p>"The highlighter looks like it was made for diya light specifically. Photographs beautifully in low light."</p>
+        <div class="people-name">
+          <div class="people-photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf7HZUtfeC9l3T5prTcMAYzXnH6B7Xh5t2EhFHS4ooZp7Qn0QNRCXZpqU&s=10" alt="Customer photo"></div>
+          <div>
+            <b>Ananya S.</b>
+            <span>Bhopal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="people-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.5 4.7L18 21l-6-4-6 4 1.5-6.8L2 9.5 9 9z"/></svg>
+        </div>
+        <p>"Bought the whole edit for sangeet night. The lip colour didn't budge through dinner, that's a first."</p>
+        <div class="people-name">
+          <div class="people-photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQgUb3Jz155Sj4e2DiDB0k0c6Y4_IbX1gGlSZJ19cWHYnh_YWWmFz1oIA&s=10" alt="Customer photo"></div>
+          <div>
+            <b>Kavya P.</b>
+            <span>Ujjain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="eyebrow">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c0 4-3 5-3 9a3 3 0 0 0 6 0c0-4-3-5-3-9z"/></svg>
+      Limited Festival Run
+    </div>
+    <h2>Light up this Diwali, on purpose.</h2>
+    <p>The full edit, curated and ready before the diyas are lit. Free shipping on orders above ₹999.</p>
+    <a class="btn-primary" href="#shop">
+      Shop the Diwali Edit
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="https://wondermayank.github.io/"><span class="dot"></span>wondermayank</a>
+        <p>Beauty edits, portfolio shoots and shop-the-look pages built by an independent creator since 2018.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="https://wondermayank.github.io/">Home</a></li>
+          <li><a href="https://wondermayank.github.io/portfolio">Portfolio</a></li>
+          <li><a href="https://wondermayank.github.io/portfolio/beauty-shopping/14">Diwali Edit (Full)</a></li>
+          <li><a href="https://wondermayank.github.io/tools/">Tools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://wondermayank.github.io/contact">Contact</a></li>
+          <li><a href="https://wondermayank.github.io/mail">Mail</a></li>
+          <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+          <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 wondermayank · Festival Makeup Edit</span>
+      <span>Made in Indore, India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('.burger')?.addEventListener('click', function(){
+    const links = document.querySelector('.nav-links');
+    const visible = links.style.display === 'flex';
+    links.style.display = visible ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '76px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'var(--cream)';
+    links.style.padding = '20px 24px';
+    links.style.borderBottom = '1px solid var(--hairline)';
+    links.style.gap = '18px';
+  });
+</script>
+
+</body>
+</html>
