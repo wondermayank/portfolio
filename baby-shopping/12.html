@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Custom Bespoke</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--blue:#2b4570;--coral:#ff6b5b;--paper:#fbfaf7;--line:#d8dce3;--ink:#1a1f2c;--mute:#6b7280;--mint:#3fb88e}
+  body{font-family:'Space Grotesk',sans-serif;background:var(--paper);color:var(--ink)}
+  .grid-bg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px}
+  nav{padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--paper)}
+  .logo{font-weight:700;font-size:1.2rem;display:flex;align-items:center;gap:.5rem}
+  .logo .dot{width:8px;height:8px;background:var(--coral);border-radius:50%}
+  .nav-links a{text-decoration:none;color:var(--mute);font-size:.85rem;font-weight:500;margin-left:2rem}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-r{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--mute);background:#fff;border:1px solid var(--line);padding:.5rem 1rem;border-radius:6px}
+  .hero{padding:4.5rem 2.5rem 3rem;max-width:1300px;margin:0 auto}
+  .hero-top{text-align:center;margin-bottom:3.5rem}
+  .build-tag{display:inline-flex;align-items:center;gap:.5rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:1px;color:var(--coral);background:rgba(255,107,91,.08);border:1px solid rgba(255,107,91,.25);padding:.4rem 1rem;border-radius:50px;margin-bottom:1.5rem}
+  .hero-top h1{font-size:2.8rem;font-weight:700;line-height:1.2;margin-bottom:1rem;max-width:700px;margin-left:auto;margin-right:auto}
+  .hero-top h1 .hl{color:var(--coral)}
+  .hero-top p{color:var(--mute);font-size:1rem;max-width:480px;margin:0 auto;line-height:1.7}
+  .configurator{display:grid;grid-template-columns:340px 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+  .config-panel{background:#f7f6f2;padding:2.5rem;border-right:1px solid var(--line)}
+  .config-step{margin-bottom:2rem}
+  .config-step .step-label{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:1px;color:var(--mute);text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+  .config-step .step-label::before{content:'';width:18px;height:18px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem}
+  .step1 .step-label::before{content:'1'}
+  .step2 .step-label::before{content:'2'}
+  .step3 .step-label::before{content:'3'}
+  .swatches{display:flex;gap:.6rem}
+  .swatch{width:36px;height:36px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:.15s}
+  .swatch.active{border-color:var(--ink);transform:scale(1.08)}
+  .size-opts{display:flex;gap:.5rem;flex-wrap:wrap}
+  .size-opt{padding:.5rem 1rem;border:1px solid var(--line);border-radius:6px;font-size:.8rem;font-weight:500;cursor:pointer;background:#fff}
+  .size-opt.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .text-input{margin-top:.5rem}
+  .text-input input{width:100%;padding:.7rem 1rem;border:1px solid var(--line);border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:.85rem}
+  .config-summary{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+  .config-summary .price-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--mute);margin-bottom:.5rem}
+  .config-summary .total-row{display:flex;justify-content:space-between;font-weight:700;font-size:1.2rem;margin-top:1rem}
+  .add-bespoke{width:100%;background:var(--coral);color:#fff;border:none;padding:1rem;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:1.5rem;font-family:'Space Grotesk',sans-serif}
+  .add-bespoke:hover{background:#e8513f}
+  .preview-panel{padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+  .preview-panel img{max-width:100%;max-height:420px;border-radius:12px;object-fit:cover}
+  .preview-badge{position:absolute;top:1.5rem;right:1.5rem;background:var(--mint);color:#fff;font-size:.72rem;font-weight:600;padding:.4rem .9rem;border-radius:50px;font-family:'IBM Plex Mono',monospace}
+  .how-it-works{padding:4rem 2.5rem;background:var(--blue)}
+  .hiw-inner{max-width:1100px;margin:0 auto}
+  .hiw-inner h2{font-size:1.8rem;color:#fff;text-align:center;margin-bottom:3rem;font-weight:700}
+  .hiw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+  .hiw-item{text-align:center;color:#fff}
+  .hiw-item .step-num{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:.8rem}
+  .hiw-item .step-icon{font-size:2rem;margin-bottom:.8rem}
+  .hiw-item h4{font-size:.95rem;margin-bottom:.4rem}
+  .hiw-item p{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6}
+  .gallery{padding:4rem 2.5rem;max-width:1200px;margin:0 auto}
+  .gallery h2{font-size:1.7rem;font-weight:700;text-align:center;margin-bottom:.5rem}
+  .gallery .sub{text-align:center;color:var(--mute);margin-bottom:2.5rem;font-size:.92rem}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .gal-item{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+  .gal-item img{width:100%;height:190px;object-fit:cover}
+  .gal-info{padding:1rem}
+  .gal-info .gi-tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--coral);margin-bottom:.3rem}
+  .gal-info .gi-name{font-weight:600;font-size:.88rem;margin-bottom:.4rem}
+  .gal-info .gi-price{font-size:.85rem;color:var(--mute)}
+  footer{padding:2.5rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  footer .logo span{color:var(--coral)}
+  footer p{font-size:.8rem;color:var(--mute)}
+</style>
+</head>
+<body class="grid-bg">
+<nav>
+  <div class="logo"><span class="dot"></span>buildbaby</div>
+  <div class="nav-links">
+    <a href="#">Configurator</a><a href="#">Gallery</a><a href="#">How It Works</a><a href="#">Bulk Orders</a>
+  </div>
+  <div class="nav-r">{ }&nbsp;Cart · 0</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-top">
+    <div class="build-tag">◇ Design tool — live preview</div>
+    <h1>Design it. <span class="hl">We build it.</span> Just for your baby.</h1>
+    <p>Pick the fabric, the fit, the name on the tag. Every bespoke piece is made to order, just for your little one.</p>
+  </div>
+
+  <div class="configurator">
+    <div class="config-panel">
+      <div class="config-step step1">
+        <div class="step-label">Choose Fabric Colour</div>
+        <div class="swatches">
+          <div class="swatch active" style="background:#2b4570"></div>
+          <div class="swatch" style="background:#ff6b5b"></div>
+          <div class="swatch" style="background:#3fb88e"></div>
+          <div class="swatch" style="background:#e8c5b8"></div>
+          <div class="swatch" style="background:#1a1f2c"></div>
+        </div>
+      </div>
+      <div class="config-step step2">
+        <div class="step-label">Select Size</div>
+        <div class="size-opts">
+          <div class="size-opt">0–3m</div>
+          <div class="size-opt active">3–6m</div>
+          <div class="size-opt">6–9m</div>
+          <div class="size-opt">9–12m</div>
+        </div>
+      </div>
+      <div class="config-step step3">
+        <div class="step-label">Add Name / Initials</div>
+        <div class="text-input"><input type="text" placeholder="e.g. Aarav" maxlength="14"></div>
+      </div>
+      <div class="config-summary">
+        <div class="price-row"><span>Base romper</span><span>₹899</span></div>
+        <div class="price-row"><span>Embroidery</span><span>₹250</span></div>
+        <div class="total-row"><span>Total</span><span>₹1,149</span></div>
+        <button class="add-bespoke">Add Bespoke Piece to Cart</button>
+      </div>
+    </div>
+    <div class="preview-panel">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt="Custom preview">
+      <div class="preview-badge">● Live Preview</div>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="hiw-inner">
+    <h2>Bespoke in 4 simple steps</h2>
+    <div class="hiw-grid">
+      <div class="hiw-item"><div class="step-num">STEP 01</div><div class="step-icon">🎨</div><h4>Design</h4><p>Choose fabric, fit, and trims using our live configurator</p></div>
+      <div class="hiw-item"><div class="step-num">STEP 02</div><div class="step-icon">✍️</div><h4>Personalise</h4><p>Add your baby's name, initials, or a special message</p></div>
+      <div class="hiw-item"><div class="step-num">STEP 03</div><div class="step-icon">🧵</div><h4>We Stitch</h4><p>Each piece is cut and sewn to order, never mass-produced</p></div>
+      <div class="hiw-item"><div class="step-num">STEP 04</div><div class="step-icon">📦</div><h4>Delivered</h4><p>Arrives in 5–7 days, packed in keepsake box</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <h2>Recently Built by Parents</h2>
+  <p class="sub">Real bespoke pieces, designed by real families like yours</p>
+  <div class="gal-grid">
+    <div class="gal-item"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_55.jpg" alt=""><div class="gal-info"><div class="gi-tag">#0472 · Custom</div><div class="gi-name">Navy Romper "Anaya"</div><div class="gi-price">₹1,149</div></div></div>
+    <div class="gal-item"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_33.jpg" alt=""><div class="gal-info"><div class="gi-tag">#0471 · Custom</div><div class="gi-name">Coral Set "Vihaan"</div><div class="gi-price">₹1,249</div></div></div>
+    <div class="gal-item"><img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt=""><div class="gal-info"><div class="gi-tag">#0470 · Custom</div><div class="gi-name">Engraved Teether</div><div class="gi-price">₹699</div></div></div>
+    <div class="gal-item"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt=""><div class="gal-info"><div class="gi-tag">#0469 · Custom</div><div class="gi-name">Initial Crib Mobile</div><div class="gi-price">₹2,199</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo"><span class="dot"></span>build<span>baby</span></div>
+  <p>© 2025 buildbaby · Made to order, made for them.</p>
+</footer>
+</body>
+</html>

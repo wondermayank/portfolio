@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Fusion Indo-Western</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--indigo:#2e3192;--terracotta:#cc5c34;--white:#fff;--ivory:#faf7f2;--ink:#1b1a2e;--mute:#6e6a7c;--gold-line:#d4a843}
+  body{font-family:'Work Sans',sans-serif;background:var(--ivory);color:var(--ink)}
+  nav{padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:var(--white);border-bottom:1px solid #eee}
+  .logo{font-family:'Marcellus',serif;font-size:1.4rem;display:flex;align-items:center;gap:.4rem}
+  .logo .west{color:var(--indigo)}
+  .logo .east{color:var(--terracotta)}
+  .nav-links a{text-decoration:none;color:var(--mute);font-size:.85rem;font-weight:500;margin-left:2rem}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-r{font-size:.85rem;color:var(--mute);display:flex;gap:1.5rem}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;position:relative}
+  .hero-w,.hero-e{padding:5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .hero-w{background:var(--indigo);color:#fff}
+  .hero-e{background:var(--ivory)}
+  .seam{position:absolute;left:50%;top:0;bottom:0;width:1px;background:repeating-linear-gradient(to bottom,var(--gold-line) 0,var(--gold-line) 8px,transparent 8px,transparent 16px);z-index:10}
+  .paisley-line{position:absolute;top:-60px;right:-60px;width:280px;height:280px;opacity:.08}
+  .paisley-line svg{width:100%;height:100%}
+  .hero-tag-w{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.12);padding:.45rem 1.1rem;font-size:.74rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:2rem;width:fit-content;border:1px solid rgba(255,255,255,.2)}
+  .hero-w h1{font-family:'Marcellus',serif;font-size:2.6rem;line-height:1.3;margin-bottom:1.3rem}
+  .hero-w p{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.7);max-width:380px;margin-bottom:2.2rem}
+  .btn-w{background:#fff;color:var(--indigo);padding:.85rem 2rem;text-decoration:none;font-weight:600;font-size:.85rem;display:inline-block;transition:.2s}
+  .btn-w:hover{background:var(--gold-line);color:#fff}
+  .hero-tag-e{display:inline-flex;align-items:center;gap:.6rem;background:rgba(204,92,52,.1);color:var(--terracotta);padding:.45rem 1.1rem;font-size:.74rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:2rem;width:fit-content;border:1px solid rgba(204,92,52,.25)}
+  .hero-e h1{font-family:'Marcellus',serif;font-size:2.6rem;line-height:1.3;margin-bottom:1.3rem;color:var(--ink)}
+  .hero-e p{font-size:.9rem;line-height:1.8;color:var(--mute);max-width:380px;margin-bottom:2.2rem}
+  .btn-e{background:var(--terracotta);color:#fff;padding:.85rem 2rem;text-decoration:none;font-weight:600;font-size:.85rem;display:inline-block;transition:.2s}
+  .btn-e:hover{background:#a8451f}
+  .merge-banner{background:var(--ink);padding:1.3rem 2.5rem;display:flex;align-items:center;justify-content:center;gap:1rem}
+  .merge-banner p{color:var(--gold-line);font-size:.85rem;letter-spacing:1px;text-align:center}
+  .merge-banner strong{color:#fff}
+  .fusion-cats{padding:4rem 2.5rem;max-width:1200px;margin:0 auto}
+  .fc-header{text-align:center;margin-bottom:3rem}
+  .fc-header .kicker{font-size:.74rem;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);margin-bottom:.7rem}
+  .fc-header h2{font-family:'Marcellus',serif;font-size:2rem}
+  .fc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #e8e2d8}
+  .fc-item{padding:2.2rem 1.2rem;text-align:center;border-right:1px solid #e8e2d8;cursor:pointer;transition:.2s}
+  .fc-item:last-child{border-right:none}
+  .fc-item:hover{background:var(--white)}
+  .fc-item .fci{font-size:2rem;margin-bottom:.8rem}
+  .fc-item h3{font-family:'Marcellus',serif;font-size:1rem;margin-bottom:.3rem}
+  .fc-item p{font-size:.78rem;color:var(--mute)}
+  .products{padding:4rem 2.5rem;background:var(--white)}
+  .products-inner{max-width:1200px;margin:0 auto}
+  .ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+  .ph .kicker{font-size:.74rem;letter-spacing:3px;text-transform:uppercase;color:var(--indigo);margin-bottom:.7rem}
+  .ph h2{font-family:'Marcellus',serif;font-size:2rem}
+  .ph a{font-size:.82rem;color:var(--terracotta);text-decoration:none;font-weight:600}
+  .pg{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem}
+  .pc{border:1px solid #eee;overflow:hidden;transition:.2s;cursor:pointer}
+  .pc:hover{box-shadow:0 12px 36px rgba(46,49,146,.12);transform:translateY(-3px)}
+  .pc img{width:100%;height:200px;object-fit:cover}
+  .pc-body{padding:1.3rem}
+  .pc-body .ptag{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:.4rem}
+  .ptag.w{color:var(--indigo)}
+  .ptag.e{color:var(--terracotta)}
+  .pc-body .pname{font-family:'Marcellus',serif;font-size:1rem;margin-bottom:.6rem}
+  .pc-body .pprice{font-weight:700;font-size:1rem;color:var(--ink)}
+  .pc-body .pprice del{font-weight:400;color:#bbb;font-size:.85rem;margin-right:.3rem}
+  .pc-body .padd{display:block;width:100%;margin-top:.8rem;border:none;padding:.65rem;font-size:.82rem;cursor:pointer;font-family:'Work Sans',sans-serif;font-weight:600;color:#fff;transition:.2s}
+  .padd.w{background:var(--indigo)}
+  .padd.w:hover{background:#23266e}
+  .padd.e{background:var(--terracotta)}
+  .padd.e:hover{background:#a8451f}
+  .story-band{background:linear-gradient(90deg,var(--indigo) 50%,var(--terracotta) 50%);padding:4rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  .story-band .sb-left{color:#fff;padding-right:1.5rem}
+  .story-band .sb-right{color:#fff;padding-left:1.5rem}
+  .story-band h3{font-family:'Marcellus',serif;font-size:1.5rem;margin-bottom:.8rem}
+  .story-band p{font-size:.85rem;line-height:1.8;opacity:.85}
+  footer{background:var(--ink);padding:2.5rem;display:flex;justify-content:space-between;align-items:center}
+  footer .logo{color:#fff}
+  footer .west{color:var(--gold-line)}
+  footer .east{color:var(--terracotta)}
+  footer p{font-size:.8rem;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><span class="west">Indo</span><span class="east">Bébé</span></div>
+  <div class="nav-links">
+    <a href="#">East Collection</a><a href="#">West Collection</a><a href="#">Fusion Edit</a><a href="#">Gifting</a>
+  </div>
+  <div class="nav-r"><span>Search</span><span>Cart (0)</span></div>
+</nav>
+
+<section class="hero">
+  <div class="seam"></div>
+  <div class="hero-w">
+    <div class="paisley-line">
+      <svg viewBox="0 0 200 200"><path d="M100,20 C140,20 170,50 170,90 C170,130 140,160 100,170 C90,140 70,130 50,140 C30,150 20,130 30,110 C45,85 80,90 90,70 C95,55 80,40 65,45 C50,50 50,30 65,25 C80,18 95,15 100,20 Z" fill="#fff"/></svg>
+    </div>
+    <div class="hero-tag-w">The West Edit</div>
+    <h1>Modern minimal,<br>made for everyday.</h1>
+    <p>Clean silhouettes, breathable fabrics, contemporary cuts — for the days that move fast and need easy, comfortable basics.</p>
+    <a href="#" class="btn-w">Shop Western Edit</a>
+  </div>
+  <div class="hero-e">
+    <div class="hero-tag-e">The East Edit</div>
+    <h1>Heritage crafted,<br>worn with pride.</h1>
+    <p>Hand-block prints, traditional silhouettes, and motifs rooted in Indian craft — for the moments that call for something more.</p>
+    <a href="#" class="btn-e">Shop Heritage Edit</a>
+  </div>
+</section>
+
+<div class="merge-banner">
+  <p>Where <strong>East meets West</strong> — explore the Fusion Edit, pieces that blend both worlds in one</p>
+</div>
+
+<section class="fusion-cats">
+  <div class="fc-header">
+    <div class="kicker">Shop the Blend</div>
+    <h2>Two Worlds, One Wardrobe</h2>
+  </div>
+  <div class="fc-grid">
+    <div class="fc-item"><div class="fci">👕</div><h3>Western Basics</h3><p>Onesies, rompers, sleepwear</p></div>
+    <div class="fc-item"><div class="fci">🪷</div><h3>Heritage Wear</h3><p>Kurtas, dhotis, festive sets</p></div>
+    <div class="fc-item"><div class="fci">🧵</div><h3>Fusion Pieces</h3><p>Block-print + modern fit</p></div>
+    <div class="fc-item"><div class="fci">🎁</div><h3>Occasion Gifting</h3><p>For both worlds, one box</p></div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="products-inner">
+    <div class="ph">
+      <div><div class="kicker">Best of Both</div><h2>Top Picks From Each Edit</h2></div>
+      <a href="#">View Full Collection →</a>
+    </div>
+    <div class="pg">
+      <div class="pc"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt=""><div class="pc-body"><div class="ptag w">West · Basics</div><div class="pname">Organic Cotton Sleep Romper</div><div class="pprice"><del>₹799</del>₹599</div><button class="padd w">Add to Cart</button></div></div>
+      <div class="pc"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_157.jpg" alt=""><div class="pc-body"><div class="ptag e">East · Heritage</div><div class="pname">Block-Print Kurta Pyjama</div><div class="pprice"><del>₹1,599</del>₹1,199</div><button class="padd e">Add to Cart</button></div></div>
+      <div class="pc"><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt=""><div class="pc-body"><div class="ptag w">West · Nursery</div><div class="pname">Minimalist Crib Mobile</div><div class="pprice"><del>₹1,899</del>₹1,399</div><button class="padd w">Add to Cart</button></div></div>
+      <div class="pc"><img src="https://nubokind.com/cdn/shop/files/kiko_teether_baby_hand_green.jpg?v=1775462198&width=1000" alt=""><div class="pc-body"><div class="ptag e">Fusion · Care</div><div class="pname">Hand-carved Wood Teether</div><div class="pprice"><del>₹699</del>₹499</div><button class="padd e">Add to Cart</button></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="story-band">
+  <div class="sb-left">
+    <h3>Built on Western design discipline</h3>
+    <p>Our basics follow international safety standards and contemporary fits — tested for comfort, simplicity, and everyday wear.</p>
+  </div>
+  <div class="sb-right">
+    <h3>Rooted in Indian craft tradition</h3>
+    <p>Every heritage piece is made with techniques passed through generations of Indian artisans — preserving culture in every stitch.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="logo"><span class="west">Indo</span><span class="east">Bébé</span></div>
+  <p>© 2025 IndoBébé · Two traditions, one tiny wardrobe.</p>
+</footer>
+</body>
+</html>

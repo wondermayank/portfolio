@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shopping – Heritage Traditional</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=Mukta:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--maroon:#6b1a26;--maroon-dark:#4a1019;--gold:#c89b3c;--ivory:#fbf3e3;--cream:#fffaf0;--saffron:#d4811e;--text:#2e1a12;--mute:#7a5f4a}
+  body{font-family:'Mukta',sans-serif;background:var(--cream);color:var(--text)}
+  .jaali-border{height:14px;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 2px,transparent 2px,transparent 8px);background-color:var(--maroon)}
+  nav{background:var(--maroon);padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--gold)}
+  .logo{font-family:'Tiro Devanagari Hindi',serif;font-size:1.7rem;color:var(--gold)}
+  .logo .sub{font-family:'Mukta',sans-serif;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:rgba(251,243,227,.6);display:block;margin-top:.2rem;font-weight:400}
+  .nav-links a{text-decoration:none;color:rgba(251,243,227,.75);font-size:.85rem;font-weight:500;margin-left:2.2rem;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-r{color:var(--gold);font-size:.85rem;font-weight:500}
+  .hero{background:linear-gradient(160deg,var(--ivory) 0%,#f5e6c8 100%);padding:4.5rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;overflow:hidden}
+  .mandala-deco{position:absolute;top:-100px;right:-100px;width:350px;height:350px;border:2px solid rgba(200,155,60,.15);border-radius:50%}
+  .mandala-deco::before{content:'';position:absolute;inset:30px;border:2px solid rgba(200,155,60,.15);border-radius:50%}
+  .mandala-deco::after{content:'';position:absolute;inset:60px;border:2px solid rgba(200,155,60,.15);border-radius:50%}
+  .hero-left{position:relative;z-index:2}
+  .auspicious-tag{display:inline-flex;align-items:center;gap:.6rem;background:var(--maroon);color:var(--gold);padding:.5rem 1.3rem;font-size:.78rem;letter-spacing:1px;margin-bottom:2rem;border-radius:2px}
+  .auspicious-tag::before{content:'卐';font-size:.9rem}
+  .hero-left h1{font-family:'Cormorant',serif;font-size:3.3rem;font-weight:600;line-height:1.3;margin-bottom:1.5rem;color:var(--maroon-dark)}
+  .hero-left h1 em{font-style:italic;color:var(--saffron)}
+  .hero-left p{font-size:.95rem;line-height:1.9;color:var(--mute);max-width:420px;margin-bottom:2.5rem}
+  .htg-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-maroon{background:var(--maroon);color:var(--gold);padding:.95rem 2.3rem;text-decoration:none;font-weight:600;font-size:.9rem;border:1px solid var(--maroon);transition:.2s}
+  .btn-maroon:hover{background:var(--maroon-dark)}
+  .btn-gold-out{border:1px solid var(--maroon);color:var(--maroon);padding:.95rem 2.3rem;text-decoration:none;font-weight:600;font-size:.9rem;transition:.2s}
+  .btn-gold-out:hover{background:var(--maroon);color:var(--gold)}
+  .hero-right{position:relative;z-index:2}
+  .hero-frame{border:3px solid var(--gold);padding:.6rem;position:relative}
+  .hero-frame::before{content:'';position:absolute;inset:-12px;border:1px solid rgba(200,155,60,.4)}
+  .hero-frame img{width:100%;display:block}
+  .occasions{background:var(--maroon-dark);padding:2.5rem;display:flex;justify-content:space-around}
+  .occ-item{text-align:center;color:var(--ivory)}
+  .occ-item .oi{font-size:1.8rem;margin-bottom:.6rem}
+  .occ-item h4{font-family:'Cormorant',serif;font-size:1.05rem;color:var(--gold);font-weight:500;margin-bottom:.2rem}
+  .occ-item p{font-size:.75rem;color:rgba(251,243,227,.5)}
+  .collection{padding:4.5rem 2.5rem;max-width:1200px;margin:0 auto}
+  .col-head{text-align:center;margin-bottom:3rem}
+  .col-head .kicker{font-family:'Tiro Devanagari Hindi',serif;font-size:1.3rem;color:var(--saffron);margin-bottom:.5rem}
+  .col-head h2{font-family:'Cormorant',serif;font-size:2.2rem;font-weight:600;color:var(--maroon-dark)}
+  .col-head .divider-orn{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem}
+  .divider-orn .line{width:60px;height:1px;background:var(--gold)}
+  .divider-orn span{color:var(--gold);font-size:1rem}
+  .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .pc{background:#fff;border:1px solid #e8d9b8;overflow:hidden;transition:.2s;position:relative}
+  .pc:hover{box-shadow:0 14px 40px rgba(107,26,38,.15);transform:translateY(-3px)}
+  .pc .corner-orn{position:absolute;top:8px;left:8px;width:24px;height:24px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);z-index:2}
+  .pc img{width:100%;height:260px;object-fit:cover}
+  .pc-body{padding:1.6rem}
+  .pc-occ{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--saffron);font-weight:600;margin-bottom:.5rem}
+  .pc-name{font-family:'Cormorant',serif;font-size:1.25rem;font-weight:600;color:var(--maroon-dark);margin-bottom:.6rem}
+  .pc-desc{font-size:.82rem;color:var(--mute);line-height:1.6;margin-bottom:1.2rem}
+  .pc-foot{display:flex;align-items:center;justify-content:space-between}
+  .pc-price{font-weight:600;color:var(--maroon-dark);font-size:1.05rem}
+  .pc-price del{font-weight:400;color:#bbb;font-size:.85rem;margin-right:.4rem}
+  .pc-add{background:var(--maroon);color:var(--gold);border:none;padding:.6rem 1.3rem;font-size:.8rem;cursor:pointer;font-family:'Mukta',sans-serif;font-weight:600;transition:.2s}
+  .pc-add:hover{background:var(--maroon-dark)}
+  .blessing{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));padding:4rem 2.5rem;text-align:center;position:relative}
+  .blessing::before,.blessing::after{content:'❖';position:absolute;color:rgba(200,155,60,.3);font-size:1.5rem;top:2rem}
+  .blessing::before{left:3rem}
+  .blessing::after{right:3rem}
+  .blessing h2{font-family:'Cormorant',serif;font-size:2rem;color:var(--gold);font-weight:600;margin-bottom:1rem}
+  .blessing p{color:rgba(251,243,227,.7);max-width:550px;margin:0 auto 2rem;line-height:1.8;font-size:.92rem}
+  .blessing a{background:var(--gold);color:var(--maroon-dark);padding:.9rem 2.5rem;text-decoration:none;font-weight:700;font-size:.9rem}
+  footer{background:var(--maroon-dark);padding:2.5rem;text-align:center}
+  footer .fl{font-family:'Tiro Devanagari Hindi',serif;font-size:1.4rem;color:var(--gold);margin-bottom:.4rem}
+  footer p{font-size:.8rem;color:rgba(251,243,227,.4)}
+</style>
+</head>
+<body>
+<div class="jaali-border"></div>
+<nav>
+  <div class="logo">आशीर्वाद Baby
+    <span>Heritage Collection</span>
+  </div>
+  <div class="nav-links">
+    <a href="#">Naamkaran</a><a href="#">Mundan</a><a href="#">Festive</a><a href="#">Gifting</a>
+  </div>
+  <div class="nav-r">🛍 Cart (0)</div>
+</nav>
+
+<section class="hero">
+  <div class="mandala-deco"></div>
+  <div class="hero-left">
+    <div class="auspicious-tag">Blessed Beginnings Collection</div>
+    <h1>Traditions worn<br>with <em>tenderness.</em></h1>
+    <p>From Naamkaran to Mundan, dress your little one in heritage craftsmanship — handwoven fabrics and motifs passed down through generations of Indian artistry.</p>
+    <div class="htg-btns">
+      <a href="#" class="btn-maroon">Shop Heritage Wear</a>
+      <a href="#" class="btn-gold-out">Occasion Guide →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-frame">
+      <img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_160.jpg" alt="">
+    </div>
+  </div>
+</section>
+
+<div class="occasions">
+  <div class="occ-item"><div class="oi">🪔</div><h4>Naamkaran</h4><p>Naming ceremony wear</p></div>
+  <div class="occ-item"><div class="oi">✂️</div><h4>Mundan</h4><p>First haircut sets</p></div>
+  <div class="occ-item"><div class="oi">🎊</div><h4>Festive</h4><p>Diwali & Holi collections</p></div>
+  <div class="occ-item"><div class="oi">💍</div><h4>Annaprashan</h4><p>First-feed ceremony</p></div>
+</div>
+
+<section class="collection">
+  <div class="col-head">
+    <div class="kicker">परंपरा संग्रह</div>
+    <h2>The Heritage Edit</h2>
+    <div class="divider-orn"><div class="line"></div><span>❖</span><div class="line"></div></div>
+  </div>
+  <div class="pg">
+    <div class="pc"><div class="corner-orn"></div><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_17.jpg" alt=""><div class="pc-body"><div class="pc-occ">Naamkaran</div><div class="pc-name">Banarasi Silk Romper Set</div><div class="pc-desc">Hand-woven silk blend with traditional zari work</div><div class="pc-foot"><div class="pc-price"><del>₹2,499</del>₹1,799</div><button class="pc-add">Add to Cart</button></div></div></div>
+    <div class="pc"><div class="corner-orn"></div><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_146.jpg" alt=""><div class="pc-body"><div class="pc-occ">Mundan</div><div class="pc-name">Embroidered Dhoti Kurta</div><div class="pc-desc">Soft cotton with hand-block printed motifs</div><div class="pc-foot"><div class="pc-price"><del>₹1,899</del>₹1,349</div><button class="pc-add">Add to Cart</button></div></div></div>
+    <div class="pc"><div class="corner-orn"></div><img src="https://cdn.fcglcdn.com/brainbees/images/cattemplate/moas25_nonapp_desktop_page_081225_157.jpg" alt=""><div class="pc-body"><div class="pc-occ">Festive</div><div class="pc-name">Diwali Special Pyjama Set</div><div class="pc-desc">Gold thread detailing, breathable cotton</div><div class="pc-foot"><div class="pc-price"><del>₹1,599</del>₹1,099</div><button class="pc-add">Add to Cart</button></div></div></div>
+  </div>
+</section>
+
+<div class="blessing">
+  <h2>शुभकामनाएं — Crafted with Blessings</h2>
+  <p>Every piece is made by skilled artisan families who carry generations of textile tradition, ensuring your little one's first occasions are dressed in authenticity and warmth.</p>
+  <a href="#">Explore the Full Collection</a>
+</div>
+
+<footer>
+  <div class="fl">आशीर्वाद Baby</div>
+  <p>© 2025 Aashirwad Baby · Heritage Collection · Crafted with tradition.</p>
+</footer>
+</body>
+</html>
