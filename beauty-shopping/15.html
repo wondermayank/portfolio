@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arche — Clean Brow Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,440;0,9..144,560;1,9..144,440&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EDE6;
+    --paper-deep:#ECE3D8;
+    --ink:#241E1A;
+    --ink-soft:#5C534B;
+    --clay:#A9684F;
+    --clay-deep:#7E4A38;
+    --line:#D8CCBE;
+    --cream-card:#FAF7F2;
+    --olive:#6B6E50;
+
+    --display: 'Fraunces', serif;
+    --body: 'Inter', sans-serif;
+
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- Brow arc signature ---------- */
+  .arc{
+    display:block;
+    width:64px;
+    height:18px;
+  }
+  .arc path{
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2.4;
+    stroke-linecap:round;
+  }
+  .arc-divider{
+    width:100%;
+    height:28px;
+    margin:0 auto;
+    color:var(--clay);
+    opacity:.55;
+  }
+
+  /* ---------- Top announcement ---------- */
+  .announce{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    padding:9px 16px;
+    font-weight:500;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,237,230,.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:var(--display);
+    font-size:23px;
+    font-weight:560;
+    letter-spacing:.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .arc{color:var(--clay);}
+  .nav-links{
+    display:flex; gap:34px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a::after{
+    content:'';
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:1.5px; background:var(--clay);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-actions{display:flex; align-items:center; gap:18px;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line);
+    background:var(--cream-card);
+    cursor:pointer;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .icon-btn:hover{border-color:var(--clay); transform:translateY(-1px);}
+  .icon-btn svg{width:17px; height:17px; stroke:var(--ink);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px;
+    border-radius:30px;
+    font-size:13.5px; font-weight:600;
+    letter-spacing:.02em;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-dark{background:var(--ink); color:var(--paper);}
+  .btn-dark:hover{transform:translateY(-2px); background:var(--clay-deep);}
+  .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{transform:translateY(-2px); background:var(--ink); color:var(--paper);}
+  .btn-clay{background:var(--clay); color:var(--cream-card);}
+  .btn-clay:hover{transform:translateY(-2px); background:var(--clay-deep);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:78px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--clay-deep); font-weight:600;
+    margin-bottom:22px;
+  }
+  .eyebrow-tag .arc{width:30px; height:12px;}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:440;
+    font-size:clamp(40px, 5.4vw, 70px);
+    line-height:1.04;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:440;
+    color:var(--clay-deep);
+  }
+  .hero p.lede{
+    margin-top:24px;
+    font-size:17.5px;
+    color:var(--ink-soft);
+    max-width:440px;
+    line-height:1.65;
+  }
+  .hero-ctas{
+    margin-top:36px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .hero-meta{
+    margin-top:46px;
+    display:flex;
+    gap:38px;
+  }
+  .hero-meta div{font-size:13px; color:var(--ink-soft);}
+  .hero-meta strong{
+    display:block;
+    font-family:var(--display);
+    font-size:26px;
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  .hero-visual{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/5;
+    border-radius:28px;
+    overflow:hidden;
+    background:var(--paper-deep);
+    box-shadow:0 30px 60px -28px rgba(36,30,26,.35);
+  }
+  .hero-frame img{width:100%; height:100%; object-fit:cover;}
+  .floating-card{
+    position:absolute;
+    bottom:22px; left:22px;
+    background:var(--cream-card);
+    border-radius:16px;
+    padding:14px 18px;
+    box-shadow:0 18px 32px -16px rgba(36,30,26,.3);
+    display:flex; align-items:center; gap:12px;
+    max-width:240px;
+  }
+  .floating-card .dot{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--olive);
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .floating-card .dot svg{width:16px; height:16px; stroke:var(--cream-card);}
+  .floating-card span{font-size:12.5px; color:var(--ink-soft); line-height:1.4;}
+  .floating-card strong{display:block; font-size:13.5px; color:var(--ink);}
+
+  .ring-badge{
+    position:absolute;
+    top:-16px; right:-16px;
+    width:108px; height:108px;
+    background:var(--clay);
+    border-radius:50%;
+    color:var(--cream-card);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:var(--display);
+    font-size:13px;
+    line-height:1.3;
+    box-shadow:0 16px 30px -12px rgba(126,74,56,.55);
+  }
+
+  /* ---------- Section heading pattern ---------- */
+  .section-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 56px;
+  }
+  .section-head .eyebrow-tag{justify-content:center;}
+  .section-head h2{
+    font-family:var(--display);
+    font-weight:440;
+    font-size:clamp(30px, 4vw, 44px);
+    letter-spacing:-.01em;
+    margin-top:10px;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--ink-soft);
+    font-size:15.5px;
+  }
+  section{padding:96px 0;}
+  .section-alt{background:var(--paper-deep);}
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{
+    padding:30px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .trust-strip .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .trust-item{
+    display:flex; align-items:center; gap:10px;
+    font-size:13px; font-weight:500;
+    color:var(--ink-soft);
+    letter-spacing:.02em;
+  }
+  .trust-item svg{width:18px; height:18px; stroke:var(--clay-deep); flex-shrink:0;}
+
+  /* ---------- Products ---------- */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .product-card{
+    background:var(--cream-card);
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .3s ease, box-shadow .3s ease;
+    display:flex; flex-direction:column;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 26px 44px -24px rgba(36,30,26,.28);
+  }
+  .product-media{
+    position:relative;
+    aspect-ratio:1/1;
+    background:var(--paper-deep);
+    overflow:hidden;
+  }
+  .product-media img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .product-card:hover .product-media img{transform:scale(1.05);}
+  .product-badge{
+    position:absolute; top:14px; left:14px;
+    background:var(--ink);
+    color:var(--paper);
+    font-size:11px; font-weight:600; letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border-radius:20px;
+  }
+  .wishlist-btn{
+    position:absolute; top:14px; right:14px;
+    width:34px; height:34px; border-radius:50%;
+    background:rgba(250,247,242,.92);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .wishlist-btn svg{width:16px; height:16px; stroke:var(--clay-deep);}
+  .product-body{
+    padding:22px 22px 24px;
+    display:flex; flex-direction:column;
+    flex:1;
+  }
+  .product-kicker{
+    font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--clay-deep); font-weight:600;
+    margin-bottom:8px;
+  }
+  .product-body h3{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:19px;
+    margin-bottom:8px;
+  }
+  .product-body p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.55;
+    flex:1;
+  }
+  .product-footer{
+    margin-top:18px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .price{
+    font-family:var(--display);
+    font-size:20px;
+    font-weight:500;
+  }
+  .price small{
+    font-family:var(--body);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    font-weight:500;
+    text-decoration:line-through;
+    margin-left:6px;
+  }
+  .add-btn{
+    width:40px; height:40px; border-radius:50%;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .add-btn:hover{background:var(--clay-deep); transform:rotate(90deg);}
+  .add-btn svg{width:16px; height:16px; stroke:var(--paper);}
+
+  /* ---------- Ritual / how-to ---------- */
+  .ritual-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:40px;
+  }
+  .ritual-step{
+    text-align:left;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+  }
+  .ritual-num{
+    font-family:var(--display);
+    font-size:14px;
+    color:var(--clay-deep);
+    margin-bottom:14px;
+    display:block;
+  }
+  .ritual-step h3{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:21px;
+    margin-bottom:10px;
+  }
+  .ritual-step p{
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+
+  /* ---------- People / testimonials ---------- */
+  .people-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .people-card{
+    background:var(--cream-card);
+    border-radius:22px;
+    padding:30px 28px;
+    border:1px solid var(--line);
+  }
+  .people-stars{
+    display:flex; gap:3px; margin-bottom:18px; color:var(--clay);
+  }
+  .people-stars svg{width:15px; height:15px; fill:var(--clay); stroke:none;}
+  .people-card p.quote{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:17.5px;
+    font-weight:400;
+    line-height:1.5;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+  .people-who{
+    display:flex; align-items:center; gap:14px;
+  }
+  .people-who img{
+    width:46px; height:46px; border-radius:50%;
+    object-fit:cover;
+  }
+  .people-who strong{font-size:14px; display:block;}
+  .people-who span{font-size:12.5px; color:var(--ink-soft);}
+
+  /* ---------- Editorial split (ingredients honesty) ---------- */
+  .editorial{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .editorial-media{
+    border-radius:24px;
+    overflow:hidden;
+    aspect-ratio:3/4;
+  }
+  .editorial-media img{width:100%; height:100%; object-fit:cover;}
+  .editorial-content .eyebrow-tag{margin-bottom:18px;}
+  .editorial-content h2{
+    font-family:var(--display);
+    font-weight:440;
+    font-size:clamp(28px, 3.4vw, 40px);
+    line-height:1.12;
+    letter-spacing:-.01em;
+    margin-bottom:22px;
+  }
+  .editorial-content p{
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.7;
+    margin-bottom:28px;
+    max-width:480px;
+  }
+  .check-list{display:flex; flex-direction:column; gap:14px; margin-bottom:32px;}
+  .check-item{display:flex; align-items:flex-start; gap:12px; font-size:14.5px;}
+  .check-item svg{width:18px; height:18px; stroke:var(--olive); flex-shrink:0; margin-top:1px;}
+
+  /* ---------- Newsletter / CTA band ---------- */
+  .cta-band{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:32px;
+    padding:64px 56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+  }
+  .cta-band h2{
+    font-family:var(--display);
+    font-weight:440;
+    font-size:clamp(28px, 3.2vw, 38px);
+    max-width:420px;
+    line-height:1.15;
+  }
+  .cta-band .arc{color:var(--clay); margin-bottom:18px;}
+  .cta-form{
+    display:flex;
+    gap:0;
+    background:rgba(243,237,230,.08);
+    border:1px solid rgba(243,237,230,.25);
+    border-radius:30px;
+    padding:6px;
+    min-width:360px;
+  }
+  .cta-form input{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--paper);
+    font-family:var(--body);
+    font-size:14px;
+    padding:10px 16px;
+  }
+  .cta-form input::placeholder{color:rgba(243,237,230,.5);}
+  .cta-form button{
+    background:var(--clay);
+    color:var(--cream-card);
+    border:none;
+    border-radius:24px;
+    padding:11px 22px;
+    font-size:13.5px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .cta-form button:hover{background:#c17e62;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:72px 0 36px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:48px;
+    border-bottom:1px solid var(--line);
+  }
+  .footer-brand .logo{margin-bottom:16px;}
+  .footer-brand p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    max-width:260px;
+    line-height:1.6;
+  }
+  .footer-col h4{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink);
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .footer-col ul{display:flex; flex-direction:column; gap:11px;}
+  .footer-col a{font-size:13.5px; color:var(--ink-soft); transition:color .2s ease;}
+  .footer-col a:hover{color:var(--clay-deep);}
+  .footer-bottom{
+    padding-top:28px;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  .footer-bottom span{font-size:12.5px; color:var(--ink-soft);}
+  .social-row{display:flex; gap:12px;}
+  .social-row a{
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .social-row a svg{width:14px; height:14px; stroke:var(--ink-soft);}
+  .social-row a:hover{border-color:var(--clay);}
+  .social-row a:hover svg{stroke:var(--clay-deep);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .hero .wrap{grid-template-columns:1fr; gap:48px;}
+    .hero-visual{order:-1; max-width:420px; margin:0 auto;}
+    .nav-links{display:none;}
+    .product-grid, .people-grid, .ritual-grid{grid-template-columns:repeat(2, 1fr);}
+    .editorial{grid-template-columns:1fr; gap:36px;}
+    .editorial-media{max-width:420px; margin:0 auto;}
+    .footer-grid{grid-template-columns:1fr 1fr; gap:32px 24px;}
+    .cta-band{flex-direction:column; align-items:flex-start;}
+    .cta-form{width:100%; min-width:0;}
+  }
+  @media (max-width: 620px){
+    .wrap{padding:0 20px;}
+    .product-grid, .people-grid, .ritual-grid{grid-template-columns:1fr;}
+    .trust-strip .wrap{justify-content:flex-start;}
+    .hero-meta{flex-wrap:wrap; gap:24px;}
+    .cta-band{padding:44px 28px; border-radius:24px;}
+    .footer-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--clay-deep);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">FREE GLASS BROW SHIELD ON ORDERS OVER ₹999 &nbsp;·&nbsp; DERM-REVIEWED, ALWAYS</div>
+
+<header class="site">
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">
+        <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+        Arche
+      </a>
+      <div class="nav-links">
+        <a href="#shop">Shop</a>
+        <a href="#ritual">Ritual</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#people">Reviews</a>
+        <a href="#journal">Journal</a>
+      </div>
+      <div class="nav-actions">
+        <div class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <div class="icon-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.4a2 2 0 002 1.6h7.2a2 2 0 002-1.6L20 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg>
+        </div>
+        <a href="#shop" class="btn btn-dark">Shop Now</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow-tag">
+          <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+          Clean Brow Care, Distilled
+        </div>
+        <h1>Shape what<br>frames your <em>face.</em></h1>
+        <p class="lede">Eight ingredients or fewer. No fragrance, no fillers, no guesswork. Just precise tools and quiet formulas for brows that look like they were always meant to be this way.</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn-dark">Shop The Edit</a>
+          <a href="#ritual" class="btn btn-outline">See The Ritual</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>12k+</strong>Brows reshaped</div>
+          <div><strong>4.8/5</strong>From 2,300 reviews</div>
+          <div><strong>0%</strong>Synthetic fragrance</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop" alt="Close-up portrait highlighting natural, well-groomed eyebrows">
+          <div class="ring-badge">Derm<br>Reviewed<br>Formula</div>
+          <div class="floating-card">
+            <div class="dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <span><strong>Brow Razor Duo</strong>Added to 412 carts today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="wrap">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6l-8-4z"/></svg>
+        Dermatologist-tested
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+        Cruelty-free, always
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+        Free shipping over ₹999
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z"/><path d="M12 7v5l3 3"/></svg>
+        30-day easy returns
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow-tag">
+          <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+          The Edit
+        </div>
+        <h2>Tools and formulas, kept honest</h2>
+        <p>Every product earns its place by doing one thing well. Nothing in the range is there to pad a shelf.</p>
+      </div>
+
+      <div class="product-grid">
+
+        <div class="product-card">
+          <div class="product-media">
+            <span class="product-badge">Bestseller</span>
+            <div class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+            </div>
+            <img src="https://rukmini1.flixcart.com/image/1500/1500/xif0q/shaving-razor/p/o/a/reusable-face-eyebrow-razer-for-women-6-sirona-original-imahhgr4rzhgffpc.jpeg" alt="Reusable facial and eyebrow razor set, six pieces">
+          </div>
+          <div class="product-body">
+            <div class="product-kicker">Shaping Tool</div>
+            <h3>Precision Brow & Face Razor — Set of 6</h3>
+            <p>Surgical-grade stainless edges with a protective comb guard, for clean strokes along the brow line and peach fuzz without irritation.</p>
+            <div class="product-footer">
+              <div class="price">₹449 <small>₹599</small></div>
+              <div class="add-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-media">
+            <span class="product-badge">New</span>
+            <div class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+            </div>
+            <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=900&auto=format&fit=crop" alt="Minimal clean beauty serum bottle on neutral background">
+          </div>
+          <div class="product-body">
+            <div class="product-kicker">Conditioning Serum</div>
+            <h3>Brow Density Serum</h3>
+            <p>A six-ingredient peptide and castor blend that conditions sparse patches and locks moisture into each follicle overnight.</p>
+            <div class="product-footer">
+              <div class="price">₹899</div>
+              <div class="add-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-media">
+            <span class="product-badge">Limited</span>
+            <div class="wishlist-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+            </div>
+            <img src="https://images.unsplash.com/photo-1583209814683-c023dd293cc6?q=80&w=900&auto=format&fit=crop" alt="Brow grooming kit with brush and tweezers laid flat">
+          </div>
+          <div class="product-body">
+            <div class="product-kicker">Grooming Kit</div>
+            <h3>The Arch Kit — Brush + Tweezer</h3>
+            <p>A slant tweezer with a magnetic cap and a spoolie brush, balanced for control whether you tweeze daily or once a week.</p>
+            <div class="product-footer">
+              <div class="price">₹649</div>
+              <div class="add-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RITUAL -->
+  <section id="ritual" class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow-tag">
+          <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+          The Ritual
+        </div>
+        <h2>Three minutes, twice a week</h2>
+        <p>Brow care isn't a routine to perform. It's three short steps that quietly compound.</p>
+      </div>
+
+      <div class="ritual-grid">
+        <div class="ritual-step">
+          <span class="ritual-num">First</span>
+          <h3>Shape the line</h3>
+          <p>Glide the razor along the natural arch, against the grain, in short strokes. The comb guard keeps you from taking too much.</p>
+        </div>
+        <div class="ritual-step">
+          <span class="ritual-num">Then</span>
+          <h3>Tweeze the stragglers</h3>
+          <p>Catch what the razor couldn't reach. Pull in the direction of growth, close to the root, one hair at a time.</p>
+        </div>
+        <div class="ritual-step">
+          <span class="ritual-num">Finally</span>
+          <h3>Feed the follicle</h3>
+          <p>Pat the density serum along the brow bone before bed. Let it work while you sleep, not under makeup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL / INGREDIENTS -->
+  <section id="ingredients">
+    <div class="wrap">
+      <div class="editorial">
+        <div class="editorial-media">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=900&auto=format&fit=crop" alt="Natural skincare ingredients arranged minimally">
+        </div>
+        <div class="editorial-content">
+          <div class="eyebrow-tag">
+            <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+            What's Not Inside
+          </div>
+          <h2>We left out more than we put in</h2>
+          <p>Clean isn't a marketing word here, it's a constraint we design around. Every formula is built to a short list, and every line that didn't earn its place got cut.</p>
+          <div class="check-list">
+            <div class="check-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              No synthetic fragrance or dyes
+            </div>
+            <div class="check-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              No parabens, sulfates, or silicones
+            </div>
+            <div class="check-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Batch-tested for sensitive skin
+            </div>
+            <div class="check-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Recyclable glass and steel only
+            </div>
+          </div>
+          <a href="#shop" class="btn btn-clay">View Full Ingredient List</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEOPLE / REVIEWS -->
+  <section id="people" class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow-tag">
+          <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+          People, Not Models
+        </div>
+        <h2>Real brows, real routines</h2>
+        <p>No retouched arches here, just people who made room for three minutes, twice a week.</p>
+      </div>
+
+      <div class="people-grid">
+        <div class="people-card">
+          <div class="people-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+          </div>
+          <p class="quote">"The razor set replaced three other tools in my drawer. My brows finally look symmetrical without a salon visit."</p>
+          <div class="people-who">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Portrait of Anaya R., customer">
+            <div>
+              <strong>Anaya R.</strong>
+              <span>Verified Buyer · Mumbai</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="people-card">
+          <div class="people-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+          </div>
+          <p class="quote">"Sensitive skin and I still get along with this serum. No redness, no breakouts near the brow bone."</p>
+          <div class="people-who">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="Portrait of Kabir S., customer">
+            <div>
+              <strong>Kabir S.</strong>
+              <span>Verified Buyer · Pune</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="people-card">
+          <div class="people-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+          </div>
+          <p class="quote">"The Arch Kit tweezer actually grips fine hairs. Three minutes before bed and I'm done for the week."</p>
+          <div class="people-who">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop" alt="Portrait of Meher D., customer">
+            <div>
+              <strong>Meher D.</strong>
+              <span>Verified Buyer · Delhi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+          <h2>Get the three-minute ritual guide, free.</h2>
+        </div>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Send It</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="journal">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <svg class="arc" viewBox="0 0 64 18"><path d="M3 15C10 4 18 1 32 1C46 1 54 4 61 15"/></svg>
+          Arche
+        </a>
+        <p>Minimal brow care for people who'd rather own four good things than twelve forgettable ones.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Razors & Tools</a></li>
+          <li><a href="#shop">Serums</a></li>
+          <li><a href="#shop">Kits</a></li>
+          <li><a href="#shop">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="#ritual">The Ritual</a></li>
+          <li><a href="#ingredients">Ingredients</a></li>
+          <li><a href="#people">Reviews</a></li>
+          <li><a href="#">Brow Shape Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Arche Brow Co. All rights reserved.</span>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9 18c1-3 1.5-5.5 2-8.5M12 12a3 3 0 103-3"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
