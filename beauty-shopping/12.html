@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VITRÉ — Glass Skin Glow Ritual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pearl:#f5f1ec;
+    --pearl-deep:#ece4dc;
+    --glass-blue:#dbe7e4;
+    --ink:#232b27;
+    --ink-soft:#4d564f;
+    --dew:#7fa39b;
+    --dew-deep:#5d8079;
+    --gold:#d7a668;
+    --blush:#e7c5bd;
+    --white-glass: rgba(255,255,255,0.5);
+    --border-glass: rgba(255,255,255,0.65);
+    --max: 1180px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Outfit', sans-serif;
+    background:var(--pearl);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+
+  :focus-visible{ outline:2px solid var(--dew-deep); outline-offset:3px; }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--dew-deep);
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  em{ font-style:italic; font-weight:400; color:var(--dew-deep); }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(16px) saturate(140%);
+    background:rgba(245,241,236,0.72);
+    border-bottom:1px solid var(--border-glass);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .logo span{ color:var(--dew-deep); font-style:italic; font-weight:400; }
+  .nav-links{ display:flex; gap:34px; font-size:0.92rem; }
+  .nav-links a{ position:relative; transition:color .2s; }
+  .nav-links a:hover{ color:var(--dew-deep); }
+  .nav-right{ display:flex; align-items:center; gap:20px; }
+  .nav-cart{
+    width:38px; height:38px; border-radius:50%;
+    background:var(--white-glass);
+    border:1px solid var(--border-glass);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem;
+  }
+  .nav-toggle{ display:none; }
+
+  @media (max-width:780px){
+    .nav-links{ display:none; }
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; align-items:center;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-image:url('https://images-static.nykaa.com/contentmedia/scms-assets/uploads/2024/10/luminous-glass-skin-mkp-banner.jpg');
+    background-size:cover; background-position:center 30%;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(35,43,39,0.62) 10%, rgba(35,43,39,0.28) 50%, rgba(245,241,236,0.08) 85%);
+  }
+  .droplet{
+    position:absolute; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, rgba(255,255,255,0.85), rgba(255,255,255,0.05) 60%);
+    filter:blur(1px);
+    opacity:0.5;
+    animation:drift 14s ease-in-out infinite;
+  }
+  .d1{ width:18px; height:18px; top:18%; left:14%; animation-delay:0s; }
+  .d2{ width:10px; height:10px; top:32%; left:22%; animation-delay:2s; }
+  .d3{ width:26px; height:26px; top:60%; left:9%; animation-delay:4s; }
+  .d4{ width:14px; height:14px; top:70%; left:20%; animation-delay:1s; }
+  @keyframes drift{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-18px); }
+  }
+  @media (prefers-reduced-motion:reduce){ .droplet{ animation:none; } }
+
+  .hero-content{
+    position:relative; z-index:2;
+    max-width:var(--max); margin:0 auto;
+    padding:0 28px;
+    width:100%;
+  }
+  .hero-card{
+    max-width:560px;
+    color:#fff;
+  }
+  .hero-card h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.06;
+    color:#fff;
+    margin:18px 0 20px;
+  }
+  .hero-card p{
+    font-size:1.05rem;
+    color:rgba(255,255,255,0.86);
+    max-width:460px;
+    margin-bottom:30px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+    padding:15px 30px;
+    border-radius:100px;
+    font-size:0.92rem;
+    font-weight:500;
+    transition:transform .2s, background .2s;
+    display:inline-block;
+  }
+  .btn-primary:hover{ background:var(--dew-deep); transform:translateY(-2px); }
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.55);
+    color:#fff;
+    padding:15px 28px;
+    border-radius:100px;
+    font-size:0.92rem;
+    backdrop-filter:blur(6px);
+    transition:background .2s;
+  }
+  .btn-ghost:hover{ background:rgba(255,255,255,0.15); }
+
+  .stat-card{
+    position:absolute;
+    right:6%; bottom:9%;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(18px) saturate(160%);
+    border:1px solid var(--border-glass);
+    border-radius:20px;
+    padding:22px 26px;
+    max-width:230px;
+    box-shadow:0 20px 50px -20px rgba(35,43,39,0.35);
+  }
+  .stat-card .num{
+    font-family:'Fraunces', serif;
+    font-size:2.1rem;
+    color:var(--ink);
+    line-height:1;
+  }
+  .stat-card .label{
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .stat-card .fine{
+    font-size:0.66rem;
+    color:var(--ink-soft);
+    opacity:0.7;
+    margin-top:10px;
+    display:block;
+  }
+  @media (max-width:900px){
+    .stat-card{ position:static; margin-top:36px; }
+  }
+
+  /* ===== Section shared ===== */
+  section{ padding:96px 0; }
+  .section-head{ max-width:560px; margin-bottom:54px; }
+  .section-head h2{ font-size:clamp(1.9rem, 3.4vw, 2.6rem); margin-top:14px; }
+
+  /* ===== Trust strip ===== */
+  .trust{
+    background:var(--glass-blue);
+    padding:60px 0;
+  }
+  .trust-row{
+    display:flex; align-items:center; gap:40px; flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  .trust-text{ max-width:340px; }
+  .trust-text p{ color:var(--ink-soft); font-size:0.95rem; margin-top:8px; }
+  .avatars{ display:flex; gap:-10px; }
+  .avatar-stack{ display:flex; }
+  .avatar-stack img{
+    width:58px; height:58px; border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--glass-blue);
+    margin-left:-14px;
+  }
+  .avatar-stack img:first-child{ margin-left:0; }
+
+  /* ===== Products ===== */
+  .products-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+  }
+  @media (max-width:900px){ .products-grid{ grid-template-columns:1fr; } }
+
+  .product-card{
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid var(--border-glass);
+    border-radius:26px;
+    padding:30px 26px 28px;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 50px -22px rgba(35,43,39,0.25);
+  }
+  .droplet-frame{
+    width:140px; height:150px;
+    margin:0 auto 22px;
+    border-radius:46% 54% 52% 48% / 50% 46% 54% 50%;
+    overflow:hidden;
+    background:linear-gradient(160deg, rgba(255,255,255,0.7), rgba(127,163,155,0.15));
+    border:1px solid var(--border-glass);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.4);
+  }
+  .droplet-frame img{
+    width:78%; height:78%; object-fit:contain;
+    filter:drop-shadow(0 8px 14px rgba(35,43,39,0.18));
+  }
+  .product-step{
+    font-size:0.7rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--dew-deep);
+    font-weight:600;
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .product-card h3{
+    font-size:1.15rem;
+    text-align:center;
+    margin-bottom:6px;
+  }
+  .product-desc{
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-bottom:16px;
+    min-height:42px;
+  }
+  .stars{ text-align:center; color:var(--gold); font-size:0.85rem; margin-bottom:14px; letter-spacing:1px; }
+  .price-row{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:8px;
+  }
+  .price{ font-family:'Fraunces', serif; font-size:1.2rem; }
+  .price .was{ font-size:0.78rem; color:var(--ink-soft); text-decoration:line-through; margin-right:6px; font-family:'Outfit', sans-serif; }
+  .btn-add{
+    background:var(--ink);
+    color:#fff;
+    padding:10px 20px;
+    border-radius:100px;
+    font-size:0.82rem;
+    transition:background .2s;
+  }
+  .btn-add:hover{ background:var(--dew-deep); }
+
+  /* ===== Ritual / steps ===== */
+  .ritual{ background:var(--pearl-deep); }
+  .ritual-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:34px;
+  }
+  @media (max-width:900px){ .ritual-grid{ grid-template-columns:1fr; } }
+  .ritual-step{ position:relative; padding-top:10px; }
+  .ritual-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:2.6rem;
+    color:var(--dew);
+    line-height:1;
+    margin-bottom:14px;
+  }
+  .ritual-step h3{ font-size:1.2rem; margin-bottom:10px; }
+  .ritual-step p{ font-size:0.92rem; color:var(--ink-soft); max-width:300px; }
+
+  /* ===== Glow meter ===== */
+  .glow-meter{
+    background:linear-gradient(180deg, var(--pearl) 0%, var(--glass-blue) 100%);
+  }
+  .meter-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  @media (max-width:900px){ .meter-box{ grid-template-columns:1fr; } }
+  .meter-visual{
+    aspect-ratio:1/1;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9), rgba(127,163,155,0.25) 60%, rgba(215,166,104,0.18));
+    border:1px solid var(--border-glass);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    max-width:320px;
+    margin:0 auto;
+    transition:box-shadow .3s;
+  }
+  .meter-visual .core{
+    width:46%; height:46%;
+    border-radius:50%;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-family:'Fraunces', serif;
+    font-size:0.95rem;
+    padding:10px;
+    color:var(--ink);
+  }
+  .slider-wrap{ margin-top:30px; }
+  input[type="range"]{
+    width:100%;
+    -webkit-appearance:none;
+    height:6px;
+    border-radius:10px;
+    background:linear-gradient(90deg, var(--dew), var(--gold));
+    outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:22px; height:22px;
+    border-radius:50%;
+    background:#fff;
+    border:3px solid var(--dew-deep);
+    cursor:pointer;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:22px; height:22px;
+    border-radius:50%;
+    background:#fff;
+    border:3px solid var(--dew-deep);
+    cursor:pointer;
+  }
+  .meter-labels{
+    display:flex; justify-content:space-between;
+    font-size:0.74rem; color:var(--ink-soft);
+    margin-top:8px;
+    text-transform:uppercase; letter-spacing:0.08em;
+  }
+  .meter-result{ margin-top:26px; }
+  .meter-result .tag{
+    font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--dew-deep); font-weight:600;
+  }
+  .meter-result h3{ font-size:1.5rem; margin:8px 0 8px; }
+  .meter-result p{ color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ===== Testimonials ===== */
+  .stories-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  @media (max-width:900px){ .stories-grid{ grid-template-columns:1fr; } }
+  .story-card{
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(12px);
+    border:1px solid var(--border-glass);
+    border-radius:22px;
+    padding:28px;
+  }
+  .story-top{ display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+  .story-top img{
+    width:52px; height:52px; border-radius:50%; object-fit:cover;
+  }
+  .story-name{ font-weight:600; font-size:0.95rem; }
+  .story-tag{ font-size:0.76rem; color:var(--dew-deep); }
+  .story-card p.quote{ font-family:'Fraunces', serif; font-style:italic; font-size:1.02rem; color:var(--ink); line-height:1.5; }
+
+  /* ===== Newsletter / footer ===== */
+  footer{ background:var(--ink); color:rgba(245,241,236,0.85); padding:80px 0 36px; }
+  .footer-top{
+    display:flex; justify-content:space-between; gap:50px; flex-wrap:wrap;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+    padding-bottom:50px; margin-bottom:36px;
+  }
+  .footer-brand{ max-width:340px; }
+  .footer-brand .logo{ color:#fff; }
+  .footer-brand p{ font-size:0.88rem; color:rgba(245,241,236,0.6); margin-top:14px; }
+  .newsletter-form{
+    display:flex; gap:10px; margin-top:20px;
+    max-width:380px;
+  }
+  .newsletter-form input{
+    flex:1;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:100px;
+    padding:12px 18px;
+    color:#fff;
+    font-size:0.88rem;
+  }
+  .newsletter-form input::placeholder{ color:rgba(245,241,236,0.5); }
+  .newsletter-form button{
+    background:var(--gold);
+    color:var(--ink);
+    padding:12px 22px;
+    border-radius:100px;
+    font-size:0.85rem;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .footer-links{ display:flex; gap:60px; flex-wrap:wrap; }
+  .footer-col h4{ font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,241,236,0.5); margin-bottom:16px; font-weight:500; }
+  .footer-col a{ display:block; font-size:0.88rem; margin-bottom:10px; color:rgba(245,241,236,0.85); }
+  .footer-bottom{ display:flex; justify-content:space-between; font-size:0.78rem; color:rgba(245,241,236,0.45); flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">VITRÉ<span>.</span></div>
+    <nav class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#ritual">Rituals</a>
+      <a href="#glow">Glow Quiz</a>
+      <a href="#stories">Results</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-cart" aria-label="Cart">🛍</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="droplet d1"></span>
+    <span class="droplet d2"></span>
+    <span class="droplet d3"></span>
+    <span class="droplet d4"></span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-card">
+      <span class="eyebrow">The Glass Skin Ritual</span>
+      <h1>Skin that looks like <em>light through glass.</em></h1>
+      <p>A three-step layering ritual for translucent, dewy, second-skin glow — built for skin that wants to look lit from within, not coated in product.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn-primary">Shop the ritual</a>
+        <a href="#glow" class="btn-ghost">Take the glow quiz</a>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="num">92%</div>
+      <div class="label">saw visibly dewier skin in 14 days</div>
+      <span class="fine">*self-reported, 312-person consumer trial</span>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap trust-row">
+    <div class="trust-text">
+      <span class="eyebrow">Real skin, real light</span>
+      <p>No filters in this ritual. Just layering, patience, and skin that holds its own highlight.</p>
+    </div>
+    <div class="avatar-stack">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6omADoInkLDYPDRCjdfNiLNg41XgtCCRg9tgQfT008D-hmp2c4iiLAjlH&s=10" alt="Glow ritual member">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrCjQzKMwLO9N6bxCaA3Yq86lu_BKbsIHyCeai1n5bHh5eqvqSl6p5Rggs&s=10" alt="Glow ritual member">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_qYZa9IGKXE7YGitC3fswhon6_rFJBvb5MtRVTIa9bUpggcchKpnFRiM&s=10" alt="Glow ritual member">
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Edit</span>
+      <h2>Three layers, one glass-skin finish</h2>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <span class="product-step">Layer 01 — Prep</span>
+        <div class="droplet-frame">
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTUY44KGa6Nzi0Zbx-0Vv4cEtQjKilE0UCtdlw4VP3l3w0GXTEPWClfhYzQKXdrMgrUD4QBehMQPE5DbuDqQLXvYQTL9g4hErNwLZInJg8prhDbQR5eukGHug" alt="Dew Veil Essence">
+        </div>
+        <h3>Dew Veil Essence</h3>
+        <p class="product-desc">A featherweight first layer that softens texture and preps skin to hold every layer after it.</p>
+        <div class="stars">★★★★★ <span style="color:var(--ink-soft); font-size:0.78rem;">(1,204)</span></div>
+        <div class="price-row">
+          <div class="price"><span class="was">₹1,490</span>₹1,290</div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-step">Layer 02 — Hydrate</span>
+        <div class="droplet-frame">
+          <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSgQ7dHtQ5upO8blWaC_pj8RCIR3FQqeha1HuMy8jnQT7uEeAgl_9fIuyEPhAVqz3ORoDlkOUbQmaSgjGNq7yR7-pNdLiRnYsoO9qGQsbn92c6qQn6oY3fw" alt="Glass Layer Moisturizer">
+        </div>
+        <h3>Glass Layer Moisturizer</h3>
+        <p class="product-desc">A bouncy, water-gel finish that locks in moisture without ever sitting heavy on skin.</p>
+        <div class="stars">★★★★★ <span style="color:var(--ink-soft); font-size:0.78rem;">(2,038)</span></div>
+        <div class="price-row">
+          <div class="price"><span class="was">₹1,990</span>₹1,690</div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="product-step">Layer 03 — Seal</span>
+        <div class="droplet-frame">
+          <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAr-zqfyalsvgiyqg77hOjeTfaCY4uKcynQjxnVvDgilbaDA-aaHgibeJ9MyrHtIOJDMk4nw6Q4IcO37GAnCF8etP-ZMxw7R6zxKg89-lJtHJcjC4SJP9E-A" alt="Lit Glow Drops">
+        </div>
+        <h3>Lit Glow Drops</h3>
+        <p class="product-desc">A few drops mixed into your last layer for that lit-from-within sheen, no glitter required.</p>
+        <div class="stars">★★★★★ <span style="color:var(--ink-soft); font-size:0.78rem;">(876)</span></div>
+        <div class="price-row">
+          <div class="price">₹990</div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="ritual" class="ritual">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How to layer it</span>
+      <h2>The order matters more than the products</h2>
+    </div>
+    <div class="ritual-grid">
+      <div class="ritual-step">
+        <div class="ritual-num">01</div>
+        <h3>Cleanse & prep</h3>
+        <p>Start on damp skin. A clean, balanced base is what lets every layer after this actually absorb instead of sitting on top.</p>
+      </div>
+      <div class="ritual-step">
+        <div class="ritual-num">02</div>
+        <h3>Hydrate & veil</h3>
+        <p>Pat the essence in, then press — never rub — the moisturizer through. This is where the “glass” texture actually builds.</p>
+      </div>
+      <div class="ritual-step">
+        <div class="ritual-num">03</div>
+        <h3>Seal & glow</h3>
+        <p>Finish with a few drops while skin is still tacky. Lock the moisture in, let the light sit on the surface.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="glow" class="glow-meter">
+  <div class="wrap">
+    <div class="section-head" style="margin:0 auto 50px;">
+      <span class="eyebrow">Glow Quiz</span>
+      <h2>Find your glow level</h2>
+    </div>
+    <div class="meter-box">
+      <div class="meter-visual" id="meterVisual">
+        <div class="core" id="meterCore">Freshly cleansed</div>
+      </div>
+      <div>
+        <p style="color:var(--ink-soft); max-width:380px;">Drag the slider to where your skin feels right now — we’ll match you to the layer that gets you closer to glass.</p>
+        <div class="slider-wrap">
+          <input type="range" min="0" max="100" value="20" id="glowSlider" aria-label="Skin glow level">
+          <div class="meter-labels">
+            <span>Freshly cleansed</span>
+            <span>Dewy & soft</span>
+            <span>Lit from within</span>
+          </div>
+        </div>
+        <div class="meter-result">
+          <span class="tag">Recommended for you</span>
+          <h3 id="meterTitle">Dew Veil Essence</h3>
+          <p id="meterDesc">Your skin's still finding its hydration baseline — start with the essence to soften texture before layering anything heavier.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stories">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">In their words</span>
+      <h2>Skin that speaks for itself</h2>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="story-top">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6omADoInkLDYPDRCjdfNiLNg41XgtCCRg9tgQfT008D-hmp2c4iiLAjlH&s=10" alt="Glow journal member">
+          <div>
+            <div class="story-name">Aanya R.</div>
+            <div class="story-tag">Combination skin</div>
+          </div>
+        </div>
+        <p class="quote">"It's the first routine that's made my skin look lit, not just oily by 2pm."</p>
+      </div>
+      <div class="story-card">
+        <div class="story-top">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrCjQzKMwLO9N6bxCaA3Yq86lu_BKbsIHyCeai1n5bHh5eqvqSl6p5Rggs&s=10" alt="Glow journal member">
+          <div>
+            <div class="story-name">Priya M.</div>
+            <div class="story-tag">Dry, dehydrated skin</div>
+          </div>
+        </div>
+        <p class="quote">"Three weeks in and my makeup finally sits on top of my skin instead of soaking into it."</p>
+      </div>
+      <div class="story-card">
+        <div class="story-top">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_qYZa9IGKXE7YGitC3fswhon6_rFJBvb5MtRVTIa9bUpggcchKpnFRiM&s=10" alt="Glow journal member">
+          <div>
+            <div class="story-name">Diya K.</div>
+            <div class="story-tag">Sensitive skin</div>
+          </div>
+        </div>
+        <p class="quote">"Gentle enough that my skin didn't react, but I still woke up looking like I'd slept ten hours."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">VITRÉ<span>.</span></div>
+        <p>A glass-skin ritual brand. Three layers, one finish: skin that catches light instead of hiding from it.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email" aria-label="Email address">
+          <button type="submit">Join</button>
+        </form>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#shop">The Ritual</a>
+          <a href="#shop">Best Sellers</a>
+          <a href="#shop">New In</a>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <a href="#ritual">How To Layer</a>
+          <a href="#glow">Glow Quiz</a>
+          <a href="#stories">Results</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VITRÉ Skin. All rights reserved.</span>
+      <span>Made for skin that wants to look like light.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const slider = document.getElementById('glowSlider');
+  const core = document.getElementById('meterCore');
+  const visual = document.getElementById('meterVisual');
+  const title = document.getElementById('meterTitle');
+  const desc = document.getElementById('meterDesc');
+
+  function updateMeter(val){
+    let glow = val / 100;
+    visual.style.boxShadow = `0 0 ${20 + glow*60}px ${glow*18}px rgba(215,166,104,${0.15 + glow*0.35})`;
+
+    if(val < 34){
+      core.textContent = "Freshly cleansed";
+      title.textContent = "Dew Veil Essence";
+      desc.textContent = "Your skin's still finding its hydration baseline — start with the essence to soften texture before layering anything heavier.";
+    } else if(val < 67){
+      core.textContent = "Dewy & soft";
+      title.textContent = "Glass Layer Moisturizer";
+      desc.textContent = "You've got the base glow going — lock it in with the moisturizer so it holds through the day instead of fading by noon.";
+    } else {
+      core.textContent = "Lit from within";
+      title.textContent = "Lit Glow Drops";
+      desc.textContent = "Your skin's ready for the final layer — a few drops mixed in for that lit-from-within sheen on top of everything you've built.";
+    }
+  }
+
+  slider.addEventListener('input', (e) => updateMeter(Number(e.target.value)));
+  updateMeter(Number(slider.value));
+</script>
+
+</body>
+</html>
