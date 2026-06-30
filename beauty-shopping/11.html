@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIKLI — Traditional Bindi & Beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B1410;
+    --kumkum:#9C1F35;
+    --kumkum-deep:#6E1322;
+    --marigold:#C9952C;
+    --marigold-light:#E3BE6B;
+    --ivory:#FBF2E3;
+    --blush:#F3DAD7;
+    --paper:#FFFCF6;
+    --line:rgba(43,20,16,0.12);
+    --shadow: 0 18px 40px -20px rgba(43,20,16,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    color:var(--ink);
+    background:var(--ivory);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+    letter-spacing:0.2px;
+    margin:0;
+  }
+
+  .eyebrow{
+    font-family:'Poppins',sans-serif;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--kumkum);
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Bindi dot signature ---------- */
+  .dot{
+    display:inline-block;
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--kumkum);
+    box-shadow:0 0 0 2px rgba(156,31,53,0.18);
+  }
+  .dot.gold{background:var(--marigold);box-shadow:0 0 0 2px rgba(201,149,44,0.18);}
+
+  .dot-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .dot-rule{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, var(--line), transparent);
+  }
+
+  .dot-pattern{
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(var(--kumkum) 1.6px, transparent 1.6px);
+    background-size:26px 26px;
+    opacity:0.08;
+    pointer-events:none;
+  }
+
+  /* ---------- Announcement bar ---------- */
+  .announce{
+    background:var(--kumkum-deep);
+    color:var(--ivory);
+    text-align:center;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    padding:9px 16px;
+  }
+  .announce b{color:var(--marigold-light);font-weight:600;}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:0.04em;
+  }
+  .logo .dot{width:10px;height:10px;}
+
+  .nav-links{
+    display:flex;
+    gap:34px;
+    font-size:14px;
+    font-weight:500;
+  }
+  .nav-links a{
+    position:relative;
+    padding-bottom:4px;
+    transition:color .2s;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-2px;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--kumkum);
+    transform:translate(-50%,6px) scale(0);
+    transition:transform .2s;
+  }
+  .nav-links a:hover::after{transform:translate(-50%,6px) scale(1);}
+
+  .nav-actions{display:flex;align-items:center;gap:18px;}
+  .icon-btn{
+    width:38px;height:38px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);
+    background:transparent;
+    cursor:pointer;
+    transition:border-color .2s, background .2s;
+  }
+  .icon-btn:hover{border-color:var(--kumkum);background:var(--blush);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--kumkum);
+    color:var(--ivory);
+    border:none;
+    padding:14px 28px;
+    font-family:'Poppins',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .25s, transform .25s;
+  }
+  .btn:hover{background:var(--kumkum-deep);transform:translateY(-2px);}
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .btn.ghost:hover{background:var(--ink);color:var(--ivory);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(180deg, var(--blush) 0%, var(--ivory) 78%);
+  }
+  .hero-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:84px 32px 70px;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(40px, 5.2vw, 68px);
+    line-height:1.04;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--kumkum);
+  }
+  .hero p.lede{
+    font-size:16.5px;
+    line-height:1.75;
+    max-width:440px;
+    color:rgba(43,20,16,0.78);
+    margin-bottom:32px;
+  }
+  .hero-cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .hero-cta .link-cta{
+    font-size:13.5px;font-weight:600;letter-spacing:0.04em;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:3px;
+  }
+
+  .hero-figure{
+    position:relative;
+  }
+  .hero-figure .frame{
+    position:relative;
+    border-radius:4px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    aspect-ratio:4/5;
+  }
+  .hero-figure .frame img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .hero-figure .ring{
+    position:absolute;
+    top:-26px;right:-26px;
+    width:108px;height:108px;
+    border:1px dashed var(--marigold);
+    border-radius:50%;
+    z-index:1;
+  }
+  .hero-figure .tag{
+    position:absolute;
+    bottom:-22px;left:-22px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:14px 18px;
+    box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+  }
+  .hero-figure .tag strong{display:block;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;}
+
+  .hero-dots{
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(var(--marigold) 1.4px, transparent 1.4px);
+    background-size:34px 34px;
+    opacity:0.12;
+  }
+
+  /* ---------- Trust strip ---------- */
+  .trust{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .trust-row{
+    max-width:1180px;margin:0 auto;padding:26px 32px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  }
+  .trust-item{
+    display:flex;align-items:center;gap:12px;
+    font-size:13px;font-weight:500;color:rgba(43,20,16,0.75);
+  }
+  .trust-item .dot{flex-shrink:0;}
+
+  /* ---------- Section heading ---------- */
+  .section{padding:90px 0;}
+  .section-head{
+    max-width:620px;
+    margin-bottom:48px;
+  }
+  .section-head h2{
+    font-size:clamp(30px,3.4vw,42px);
+    margin-top:14px;
+  }
+  .section-head p{
+    font-size:15px;
+    line-height:1.7;
+    color:rgba(43,20,16,0.7);
+    margin-top:14px;
+    max-width:520px;
+  }
+  .section-head.center{margin:0 auto 56px;text-align:center;}
+  .section-head.center p{margin-left:auto;margin-right:auto;}
+
+  /* ---------- Products ---------- */
+  .products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .card-media{
+    position:relative;
+    aspect-ratio:1/1;
+    background:var(--blush);
+    overflow:hidden;
+  }
+  .card-media img{
+    width:100%;height:100%;object-fit:contain;
+    padding:28px;
+    transition:transform .5s;
+  }
+  .card:hover .card-media img{transform:scale(1.05);}
+  .card-badge{
+    position:absolute;top:14px;left:14px;
+    background:var(--kumkum);
+    color:var(--ivory);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-weight:600;
+    padding:5px 10px;
+    border-radius:2px;
+  }
+  .card-body{padding:22px 22px 26px;}
+  .card-body .eyebrow{margin-bottom:6px;}
+  .card-body h3{font-size:22px;font-weight:600;margin-bottom:8px;}
+  .card-body p{
+    font-size:13.5px;
+    line-height:1.6;
+    color:rgba(43,20,16,0.68);
+    margin-bottom:16px;
+  }
+  .card-foot{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:14px;border-top:1px solid var(--line);
+  }
+  .price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;}
+  .price .old{
+    font-family:'Poppins',sans-serif;
+    font-size:12px;color:rgba(43,20,16,0.4);
+    text-decoration:line-through;margin-left:8px;
+  }
+  .add-btn{
+    display:flex;align-items:center;gap:7px;
+    font-size:12.5px;font-weight:600;letter-spacing:0.03em;
+    text-transform:uppercase;
+    cursor:pointer;
+    background:none;border:none;color:var(--ink);
+    padding:6px 0;
+  }
+  .add-btn .dot{transition:transform .2s;}
+  .add-btn:hover .dot{transform:scale(1.6);}
+
+  /* ---------- Shop the look ---------- */
+  .look{background:var(--paper);}
+  .look-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border:1px solid var(--line);
+  }
+  .look-item{
+    position:relative;
+    aspect-ratio:3/4;
+    overflow:hidden;
+    border-right:1px solid var(--line);
+  }
+  .look-item:last-child{border-right:none;}
+  .look-item img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;
+    filter:saturate(1.04);
+  }
+  .look-item:hover img{transform:scale(1.06);}
+  .look-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 45%, rgba(43,20,16,0.78) 100%);
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:26px;
+  }
+  .look-overlay .eyebrow{color:var(--marigold-light);}
+  .look-overlay h3{
+    color:var(--ivory);
+    font-size:24px;
+    margin-top:6px;
+  }
+  .look-overlay p{
+    color:rgba(251,242,227,0.82);
+    font-size:13px;
+    margin-top:8px;
+    max-width:260px;
+    line-height:1.5;
+  }
+
+  /* ---------- Story / craft ---------- */
+  .story{
+    background:var(--blush);
+    position:relative;
+    overflow:hidden;
+  }
+  .story-inner{
+    max-width:1180px;margin:0 auto;padding:96px 32px;
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;
+    align-items:center;
+    position:relative;z-index:1;
+  }
+  .story-visual{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .story-visual .frame{
+    border-radius:4px;overflow:hidden;box-shadow:var(--shadow);
+  }
+  .story-visual .frame.tall{grid-row:span 2;aspect-ratio:2/3;}
+  .story-visual .frame.short{aspect-ratio:1/1;}
+  .story-visual img{width:100%;height:100%;object-fit:cover;}
+
+  .story-copy h2{font-size:clamp(28px,3vw,40px);margin-bottom:20px;}
+  .story-copy p{
+    font-size:15px;line-height:1.8;color:rgba(43,20,16,0.78);
+    margin-bottom:16px;max-width:480px;
+  }
+  .story-stats{
+    display:flex;gap:40px;margin-top:32px;
+  }
+  .story-stats div strong{
+    display:block;font-family:'Cormorant Garamond',serif;
+    font-size:34px;color:var(--kumkum);
+  }
+  .story-stats div span{
+    font-size:12px;letter-spacing:0.04em;
+    color:rgba(43,20,16,0.65);
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--ivory);}
+  .t-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  }
+  .t-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:32px 28px;
+  }
+  .t-card .stars{color:var(--marigold);font-size:13px;letter-spacing:2px;margin-bottom:14px;}
+  .t-card p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:18px;font-style:italic;line-height:1.6;
+    margin-bottom:20px;
+  }
+  .t-name{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;}
+  .t-name span.role{font-weight:400;color:rgba(43,20,16,0.55);}
+
+  /* ---------- Newsletter ---------- */
+  .news{
+    background:var(--kumkum-deep);
+    color:var(--ivory);
+    position:relative;
+    overflow:hidden;
+  }
+  .news .dot-pattern{background-image:radial-gradient(var(--marigold-light) 1.6px, transparent 1.6px);opacity:0.14;}
+  .news-inner{
+    max-width:680px;margin:0 auto;padding:84px 32px;
+    text-align:center;position:relative;z-index:1;
+  }
+  .news .eyebrow{color:var(--marigold-light);}
+  .news h2{color:var(--ivory);font-size:clamp(28px,3.4vw,40px);margin:14px 0 14px;}
+  .news p{font-size:14.5px;color:rgba(251,242,227,0.78);margin-bottom:30px;}
+  .news-form{
+    display:flex;gap:0;
+    border-bottom:1px solid rgba(251,242,227,0.4);
+    max-width:420px;margin:0 auto;
+  }
+  .news-form input{
+    flex:1;background:transparent;border:none;color:var(--ivory);
+    padding:14px 4px;font-family:'Poppins',sans-serif;font-size:14px;outline:none;
+  }
+  .news-form input::placeholder{color:rgba(251,242,227,0.5);}
+  .news-form button{
+    background:none;border:none;color:var(--marigold-light);
+    font-size:13px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+    cursor:pointer;padding:14px 4px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:var(--ivory);}
+  .foot-top{
+    max-width:1180px;margin:0 auto;padding:64px 32px 40px;
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+  }
+  .foot-brand .logo{color:var(--ivory);margin-bottom:14px;}
+  .foot-brand p{font-size:13.5px;line-height:1.7;color:rgba(251,242,227,0.62);max-width:280px;}
+  .foot-col h4{
+    font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:600;color:var(--marigold-light);margin-bottom:18px;
+  }
+  .foot-col a{
+    display:block;font-size:13.5px;color:rgba(251,242,227,0.72);
+    margin-bottom:11px;transition:color .2s;
+  }
+  .foot-col a:hover{color:var(--ivory);}
+  .foot-bottom{
+    border-top:1px solid rgba(251,242,227,0.12);
+    max-width:1180px;margin:0 auto;padding:22px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:rgba(251,242,227,0.5);
+  }
+  .foot-bottom .dot-row{max-width:160px;}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero-inner{grid-template-columns:1fr;padding-top:48px;}
+    .hero-figure{order:-1;max-width:380px;margin:0 auto;}
+    .products{grid-template-columns:repeat(2,1fr);}
+    .look-grid{grid-template-columns:1fr 1fr;}
+    .look-item:nth-child(3){display:none;}
+    .story-inner{grid-template-columns:1fr;}
+    .story-visual{max-width:420px;margin:0 auto;}
+    .t-grid{grid-template-columns:1fr;}
+    .foot-top{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .trust-row{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:600px){
+    .wrap, .nav, .hero-inner, .trust-row, .foot-top, .foot-bottom, .news-inner, .story-inner{padding-left:20px;padding-right:20px;}
+    .products{grid-template-columns:1fr;}
+    .look-grid{grid-template-columns:1fr;}
+    .look-item:nth-child(3){display:block;}
+    .foot-top{grid-template-columns:1fr;}
+    .foot-bottom{flex-direction:column;gap:14px;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="announce">
+    <b>Festive Edit Live</b> — Free shipping on orders above ₹499 · Use code <b>TIKLI10</b> for 10% off
+  </div>
+
+  <header>
+    <nav class="nav">
+      <a href="#" class="logo"><span class="dot"></span> TIKLI</a>
+      <div class="nav-links">
+        <a href="#shop">Shop Bindis</a>
+        <a href="#looks">Shop the Look</a>
+        <a href="#story">Our Craft</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Bag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-dots"></div>
+    <div class="hero-inner">
+      <div class="reveal in">
+        <span class="eyebrow">Traditional Bindi Collection</span>
+        <h1>The art of the<br><em>bindi</em>, made&nbsp;for&nbsp;today.</h1>
+        <p class="lede">Velvet kumkum, kundan stonework, and festive tiklis — handcrafted in small batches and designed to sit perfectly between the brows, from morning prayer to wedding mandap.</p>
+        <div class="hero-cta">
+          <a href="#shop" class="btn">Shop the Collection</a>
+          <a href="#looks" class="link-cta">See the looks &nbsp;→</a>
+        </div>
+      </div>
+      <div class="hero-figure reveal in">
+        <div class="ring"></div>
+        <div class="frame">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTqCQgOH28swub9BXktYtI7wJqFNsROY-ZBP6MJ4h_5IQWL5cVrYZE0AM&s=10" alt="Woman wearing a traditional red bindi">
+        </div>
+        <div class="tag">
+          <span class="dot"></span>
+          <div><strong>4.9 / 5</strong>2,300+ skin-safe wears</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="trust-row">
+      <div class="trust-item"><span class="dot gold"></span> Skin-safe adhesive</div>
+      <div class="trust-item"><span class="dot gold"></span> Handcrafted in India</div>
+      <div class="trust-item"><span class="dot gold"></span> Festival-ready in seconds</div>
+      <div class="trust-item"><span class="dot gold"></span> Free shipping over ₹499</div>
+    </div>
+  </section>
+
+  <section class="section" id="shop">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Bestsellers</span>
+        <h2>Bindis for every occasion</h2>
+        <p>From a quiet Tuesday pooja to your sister's sangeet — three sets that cover the whole calendar.</p>
+      </div>
+
+      <div class="products">
+        <div class="card reveal">
+          <div class="card-media">
+            <span class="card-badge">Everyday Edit</span>
+            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQxcELgSnb92EQkDNaRfGDMzGvR9CTcGdr21wpJf1rVWW57B9txK7jFMczvFg60Rcz3koO9z-b5xvaI0qzKWC7dxAETZ8IyaREjkz9uIHqRnp7u4PejI24IOJU" alt="Kumkum velvet bindi set">
+          </div>
+          <div class="card-body">
+            <span class="eyebrow">Velvet Kumkum</span>
+            <h3>Classic Velvet Bindi Set</h3>
+            <p>36 pieces in five sizes, deep kumkum-red velvet with a matte finish that holds through a full day.</p>
+            <div class="card-foot">
+              <div class="price">₹179 <span class="old">₹249</span></div>
+              <button class="add-btn"><span class="dot"></span> Add to bag</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-media">
+            <span class="card-badge">Bridal Edit</span>
+            <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRHbKGm6IyP9MDjMnk_kaEfsI_fZ9GBGoDEv0if1FR0Ni41fSRjKa_UShPcAf0L6LqCjWy4a7ZXcgR47A2aW6WTTd2QC76xAU5fa-RKStOSE294kOT0TF2LZOD4" alt="Stone and kundan bridal bindi collection">
+          </div>
+          <div class="card-body">
+            <span class="eyebrow">Kundan & Stonework</span>
+            <h3>Rajwadi Bridal Bindi Box</h3>
+            <p>Hand-set kundan and crystal bindis paired with maang tikka chains, boxed for the big day.</p>
+            <div class="card-foot">
+              <div class="price">₹549</div>
+              <button class="add-btn"><span class="dot"></span> Add to bag</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-media">
+            <span class="card-badge">Festival Edit</span>
+            <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRyurIm6hx78gbHOIy-18wcEx_vWLvAToeR9UQo8bmW855BebJHJABxC0sandV2Ov12vHrctaGZw0BfjgxdzX46vdn_CWCGCxYrd6aooLcWwZC0NFMVzqaYD0w" alt="Assorted festive tikli bindi pack">
+          </div>
+          <div class="card-body">
+            <span class="eyebrow">Mixed Tiklis</span>
+            <h3>Festive Tikli Variety Pack</h3>
+            <p>An assorted set of round, teardrop, and chand tiklis in gold and maroon for Diwali through Karwa Chauth.</p>
+            <div class="card-foot">
+              <div class="price">₹229</div>
+              <button class="add-btn"><span class="dot"></span> Add to bag</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="look" id="looks">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Shop the Look</span>
+        <h2>Three women, three bindis, one tradition</h2>
+        <p>See how the same dot changes character — from a soft daily round to a full bridal stone setting.</p>
+      </div>
+    </div>
+    <div class="look-grid reveal">
+      <div class="look-item">
+        <img src="https://i.pinimg.com/564x/d8/ff/ac/d8ffacbc2088b4eec6e806ba532a930e.jpg" alt="Everyday round bindi look">
+        <div class="look-overlay">
+          <span class="eyebrow">Look 01</span>
+          <h3>The Everyday Dot</h3>
+          <p>A single velvet round in classic red — easy to place, easy to live in.</p>
+        </div>
+      </div>
+      <div class="look-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtr5WCz8s4mbZiyRxteziyOt-PAlEnVSRLyJ4wAOwu1wtvFQjE_L24EEI&s=10" alt="Festive gold tikli look">
+        <div class="look-overlay">
+          <span class="eyebrow">Look 02</span>
+          <h3>The Festive Tikli</h3>
+          <p>Gold-edged and teardrop-shaped, worn for Karwa Chauth and family functions.</p>
+        </div>
+      </div>
+      <div class="look-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv9zP3DozdWkzb5mog_W5UEEWKZXmh9CZxNw6h6wIx9S9lZuEGK5L3cJh5&s=10" alt="Bridal kundan stone bindi look">
+        <div class="look-overlay">
+          <span class="eyebrow">Look 03</span>
+          <h3>The Bridal Stone</h3>
+          <p>Kundan-set and chain-linked, paired with a maang tikka for the wedding mandap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="dot-pattern"></div>
+    <div class="story-inner">
+      <div class="story-visual reveal">
+        <div class="frame tall">
+          <img src="https://i.pinimg.com/564x/d8/ff/ac/d8ffacbc2088b4eec6e806ba532a930e.jpg" alt="Artisan placing a traditional bindi">
+        </div>
+        <div class="frame short">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtr5WCz8s4mbZiyRxteziyOt-PAlEnVSRLyJ4wAOwu1wtvFQjE_L24EEI&s=10" alt="Close-up of bindi craftsmanship">
+        </div>
+        <div class="frame short">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv9zP3DozdWkzb5mog_W5UEEWKZXmh9CZxNw6h6wIx9S9lZuEGK5L3cJh5&s=10" alt="Bridal bindi detail"></div>
+      </div>
+      <div class="story-copy reveal">
+        <span class="eyebrow">Our Craft</span>
+        <h2>A dot with more meaning than its size suggests</h2>
+        <p>The bindi has marked the space between the brows for centuries — a mark of auspiciousness, of attention, of the third eye. We work with three family workshops in Jaipur and Surat who still cut velvet and set stone by hand.</p>
+        <p>Every batch is tested for skin-safe adhesive and humidity resistance, so it survives a Mumbai monsoon wedding as easily as a Delhi winter pooja.</p>
+        <div class="story-stats">
+          <div><strong>3</strong><span>Family workshops</span></div>
+          <div><strong>40+</strong><span>Bindi shapes &amp; sets</span></div>
+          <div><strong>12hrs</strong><span>Average wear time</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section testimonials" id="reviews">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">From the Community</span>
+        <h2>Worn at weddings, pooja rooms, and everything in between</h2>
+      </div>
+      <div class="t-grid">
+        <div class="t-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"The velvet set held through a 14-hour Sangeet without a single edge lifting. Genuinely the best bindi I've used."</p>
+          <div class="t-name">Anaya R. <span class="role">— Pune</span></div>
+        </div>
+        <div class="t-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Ordered the Rajwadi box for my own wedding. The kundan caught the light in every single photo."</p>
+          <div class="t-name">Sneha K. <span class="role">— Jaipur</span></div>
+        </div>
+        <div class="t-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>"My mother has worn the same brand for thirty years — she switched to Tikli after one box. That says enough."</p>
+          <div class="t-name">Priya M. <span class="role">— Indore</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="dot-pattern"></div>
+    <div class="news-inner">
+      <span class="eyebrow">Stay in the Loop</span>
+      <h2>Get 10% off your first box</h2>
+      <p>New shapes, festival edits, and the occasional bridal styling guide — straight to your inbox.</p>
+      <form class="news-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#" class="logo"><span class="dot gold"></span> TIKLI</a>
+        <p>Traditional bindis and festive beauty essentials, handcrafted across small workshops in India.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <a href="#shop">Velvet Bindis</a>
+        <a href="#shop">Bridal Sets</a>
+        <a href="#shop">Festive Tiklis</a>
+        <a href="#shop">Gift Boxes</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#story">Our Craft</a>
+        <a href="#looks">Shop the Look</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Size Guide</a>
+        <a href="#">FAQs</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tikli Beauty Co. All rights reserved.</span>
+      <div class="dot-row"><span class="dot gold"></span><span class="dot-rule"></span><span class="dot gold"></span></div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15});
+    reveals.forEach(el=>io.observe(el));
+
+    document.querySelector('.news-form')?.addEventListener('submit', function(e){
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      btn.textContent = 'Subscribed ✓';
+      this.querySelector('input').value = '';
+    });
+  </script>
+
+</body>
+</html>
