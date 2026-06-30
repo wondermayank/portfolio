@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contour & Sculpt Photoshoot — Shop the Look</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay:#C1694F;
+    --umber:#2E2117;
+    --bone:#F3EAE0;
+    --bronze:#A8794C;
+    --highlight:#EAD0AE;
+    --ink:#1B130E;
+    --line: rgba(46,33,23,0.18);
+    --serif: "Fraunces", serif;
+    --sans: "Sora", sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bone);
+    color:var(--ink);
+    font-family:var(--sans);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  /* ===== Topographic contour-line background, the signature motif ===== */
+  .contour-field{
+    position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  }
+  .contour-field svg{width:100%;height:100%;}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 6%;
+    background:linear-gradient(180deg, rgba(243,234,224,0.95), rgba(243,234,224,0));
+    backdrop-filter:blur(2px);
+  }
+  .logo{
+    font-family:var(--serif); font-weight:600; font-size:1.15rem;
+    letter-spacing:.04em;
+  }
+  .logo em{font-style:italic; font-weight:300; color:var(--clay);}
+  nav ul{display:flex; gap:34px; list-style:none;}
+  nav a{
+    font-size:.72rem; text-transform:uppercase; letter-spacing:.14em;
+    font-weight:600; color:var(--umber); position:relative; padding-bottom:4px;
+  }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--clay); transition:width .35s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer;}
+  .nav-toggle span{width:22px; height:1.5px; background:var(--ink);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items:stretch;
+    background:var(--umber);
+    color:var(--bone);
+    overflow:hidden;
+  }
+  .hero-copy{
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 6% 0 6%;
+    max-width:560px;
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:14px;
+    font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--highlight); margin-bottom:26px; font-weight:600;
+  }
+  .eyebrow .dash{width:34px; height:1px; background:var(--clay);}
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:340;
+    font-size:clamp(2.6rem, 6vw, 5.1rem);
+    line-height:1.02;
+    letter-spacing:-.01em;
+  }
+  .hero h1 .accent{
+    display:block; font-style:italic; font-weight:600; color:var(--clay);
+  }
+  .hero p.lede{
+    margin-top:26px; font-size:1rem; line-height:1.7; color:rgba(243,234,224,0.78);
+    max-width:430px;
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:42px; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 30px; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; border-radius:2px; transition:all .3s ease;
+  }
+  .btn-solid{background:var(--clay); color:var(--bone);}
+  .btn-solid:hover{background:var(--highlight); color:var(--ink);}
+  .btn-line{border:1px solid rgba(243,234,224,0.4); color:var(--bone);}
+  .btn-line:hover{border-color:var(--bone); background:rgba(243,234,224,0.08);}
+
+  .hero-stats{
+    display:flex; gap:36px; margin-top:58px;
+    border-top:1px solid rgba(243,234,224,0.18); padding-top:24px;
+  }
+  .hero-stats div{font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--bone);}
+  .hero-stats span{display:block; font-family:var(--sans); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(243,234,224,0.55); margin-top:4px; font-weight:500;}
+
+  .hero-visual{
+    position:relative; overflow:hidden;
+  }
+  .hero-visual img{
+    width:100%; height:100%; object-fit:cover; object-position:center 20%;
+    filter:saturate(1.05) contrast(1.03);
+  }
+  .hero-visual::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(100deg, var(--umber) 0%, rgba(46,33,23,0) 28%);
+  }
+  .contour-overlay{
+    position:absolute; inset:0; z-index:3; mix-blend-mode:screen; opacity:.9;
+  }
+  .contour-overlay svg{width:100%; height:100%;}
+  .contour-tag{
+    position:absolute; z-index:4;
+    font-family:var(--sans); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--bone); display:flex; align-items:center; gap:8px; font-weight:600;
+  }
+  .contour-tag .dot{width:6px; height:6px; border-radius:50%; background:var(--clay); box-shadow:0 0 0 4px rgba(193,105,79,0.25);}
+  .tag-highlight{top:18%; left:8%;}
+  .tag-shadow{top:46%; left:62%;}
+  .tag-blend{bottom:14%; left:20%;}
+
+  /* ===== marquee strip ===== */
+  .strip{
+    background:var(--clay); color:var(--bone); overflow:hidden; padding:14px 0;
+    white-space:nowrap; position:relative; z-index:2;
+  }
+  .strip-track{display:inline-flex; gap:60px; animation:scroll 26s linear infinite;}
+  .strip-track span{font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.02em;}
+  @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* ===== SECTION SHELL ===== */
+  section{position:relative; padding:120px 6%;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:70px; flex-wrap:wrap;
+  }
+  .section-head .label{
+    font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--clay);
+    font-weight:700; display:flex; align-items:center; gap:12px; margin-bottom:18px;
+  }
+  .section-head .label .dash{width:30px; height:1px; background:var(--clay);}
+  .section-head h2{
+    font-family:var(--serif); font-weight:340; font-size:clamp(2rem, 3.6vw, 3.1rem);
+    max-width:640px; line-height:1.1;
+  }
+  .section-head h2 em{font-style:italic; font-weight:600; color:var(--bronze);}
+  .section-head p{max-width:320px; color:rgba(27,19,14,0.62); font-size:.95rem; line-height:1.6;}
+
+  /* ===== THE TECHNIQUE (contour map diagram) ===== */
+  .technique{background:var(--bone);}
+  .technique-grid{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .map-frame{
+    position:relative; border:1px solid var(--line); border-radius:2px; padding:40px;
+    background:#fff;
+  }
+  .map-frame svg{width:100%; height:auto;}
+  .map-caption{
+    display:flex; justify-content:space-between; margin-top:18px;
+    font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(27,19,14,0.45);
+  }
+  .zone-list{display:flex; flex-direction:column; gap:26px;}
+  .zone{
+    display:grid; grid-template-columns:46px 1fr; gap:18px; padding-bottom:26px;
+    border-bottom:1px solid var(--line);
+  }
+  .zone:last-child{border-bottom:none;}
+  .zone .num{font-family:var(--serif); font-size:1.5rem; color:var(--clay); font-weight:300;}
+  .zone h3{font-family:var(--serif); font-size:1.2rem; font-weight:600; margin-bottom:6px;}
+  .zone p{font-size:.9rem; color:rgba(27,19,14,0.6); line-height:1.6;}
+
+  /* ===== FEATURED PRODUCT ===== */
+  .feature{background:var(--umber); color:var(--bone);}
+  .feature-grid{
+    display:grid; grid-template-columns: 0.95fr 1.05fr; gap:80px; align-items:center;
+  }
+  .feature-img{position:relative; border-radius:2px; overflow:hidden;}
+  .feature-img img{width:100%; height:560px; object-fit:cover;}
+  .feature-img .ribbon{
+    position:absolute; top:24px; left:0; background:var(--clay); color:var(--bone);
+    padding:9px 22px; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700;
+  }
+  .feature-copy .label{color:var(--highlight);}
+  .feature-copy .label .dash{background:var(--highlight);}
+  .feature h2{color:var(--bone);}
+  .feature h2 em{color:var(--clay);}
+  .feature p.desc{
+    margin-top:24px; color:rgba(243,234,224,0.72); font-size:.98rem; line-height:1.75; max-width:480px;
+  }
+  .shade-row{display:flex; gap:14px; margin-top:34px;}
+  .shade{
+    width:38px; height:38px; border-radius:50%; border:2px solid transparent; cursor:pointer;
+    transition:border-color .2s ease;
+  }
+  .shade.active{border-color:var(--bone);}
+  .price-row{display:flex; align-items:baseline; gap:14px; margin-top:38px;}
+  .price-row .price{font-family:var(--serif); font-size:2.1rem; font-weight:600;}
+  .price-row .old{text-decoration:line-through; color:rgba(243,234,224,0.4); font-size:1rem;}
+  .feature-actions{display:flex; gap:16px; margin-top:32px;}
+
+  /* ===== SHOP THE LOOK (products from gstatic) ===== */
+  .shop{background:var(--bone);}
+  .product-rail{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:30px;
+  }
+  .product-card{
+    background:#fff; border:1px solid var(--line); position:relative; transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .product-card:hover{transform:translateY(-8px); box-shadow:0 30px 50px -28px rgba(27,19,14,0.35);}
+  .product-thumb{
+    aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+    background:var(--highlight); overflow:hidden; padding:18px;
+  }
+  .product-thumb img{max-height:100%; object-fit:contain; mix-blend-mode:multiply;}
+  .product-info{padding:26px 26px 30px;}
+  .product-info .step{font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--clay); font-weight:700;}
+  .product-info h3{font-family:var(--serif); font-size:1.25rem; font-weight:600; margin:10px 0 8px;}
+  .product-info p{font-size:.85rem; color:rgba(27,19,14,0.6); line-height:1.55; margin-bottom:18px;}
+  .product-foot{display:flex; align-items:center; justify-content:space-between;}
+  .product-foot .amt{font-family:var(--serif); font-weight:600; font-size:1.15rem;}
+  .icon-btn{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    transition:background .25s ease, color .25s ease;
+  }
+  .icon-btn:hover{background:var(--ink); color:var(--bone);}
+
+  /* ===== EDITORIAL GALLERY ===== */
+  .gallery{background:var(--umber); color:var(--bone); padding-bottom:140px;}
+  .gallery .section-head h2{color:var(--bone);}
+  .gallery .section-head p{color:rgba(243,234,224,0.6);}
+  .gallery-grid{
+    display:grid; grid-template-columns: 1.2fr 0.8fr; gap:26px;
+  }
+  .gallery-grid img{width:100%; height:100%; object-fit:cover; border-radius:2px;}
+  .gallery-col{display:flex; flex-direction:column; gap:26px;}
+  .gallery-tall img{height:600px;}
+  .gallery-col img{height:287px;}
+  .gallery-note{
+    position:relative; padding:24px; border:1px solid rgba(243,234,224,0.18); font-family:var(--serif);
+    font-style:italic; font-size:1rem; line-height:1.5; display:flex; align-items:center; justify-content:center;
+    text-align:center; color:rgba(243,234,224,0.75);
+  }
+
+  /* ===== CTA / BOOK ===== */
+  .cta{
+    background:var(--clay); color:var(--bone); text-align:center;
+    padding:130px 6%;
+  }
+  .cta h2{
+    font-family:var(--serif); font-weight:340; font-size:clamp(2.2rem, 5vw, 4rem); line-height:1.05;
+  }
+  .cta h2 em{font-style:italic; font-weight:600;}
+  .cta p{margin:24px auto 40px; max-width:480px; color:rgba(243,234,224,0.85); font-size:1rem; line-height:1.6;}
+  .cta .btn-solid{background:var(--umber);}
+  .cta .btn-solid:hover{background:var(--bone); color:var(--ink);}
+  .cta .btn-line{border-color:rgba(243,234,224,0.5);}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--ink); color:rgba(243,234,224,0.55); padding:60px 6% 30px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px;
+  }
+  footer .logo{color:var(--bone);}
+  footer .cols{display:flex; gap:60px; flex-wrap:wrap;}
+  footer h4{font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--bone); margin-bottom:16px; font-weight:700;}
+  footer ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  footer a{font-size:.85rem;}
+  footer a:hover{color:var(--clay);}
+  .footer-bottom{
+    width:100%; margin-top:50px; padding-top:24px; border-top:1px solid rgba(243,234,224,0.1);
+    display:flex; justify-content:space-between; font-size:.75rem; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ===== reveal-on-scroll ===== */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .strip-track{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 980px){
+    .hero{grid-template-columns:1fr; min-height:auto;}
+    .hero-visual{height:60vh;}
+    .hero-copy{padding:170px 6% 70px;}
+    .technique-grid, .feature-grid{grid-template-columns:1fr; gap:46px;}
+    .feature-img img{height:420px;}
+    .product-rail{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-tall img{height:380px;}
+    .gallery-col{flex-direction:row;}
+    .gallery-col img{height:260px;}
+  }
+  @media (max-width: 680px){
+    nav ul{display:none;}
+    .nav-toggle{display:flex;}
+    .hero-stats{flex-wrap:wrap; gap:24px;}
+    .product-rail{grid-template-columns:1fr;}
+    section{padding:90px 6%;}
+    .section-head{margin-bottom:46px;}
+    .gallery-col{flex-direction:column;}
+    footer{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Mira & Bone <em>Studio</em></a>
+  <nav>
+    <ul>
+      <li><a href="#technique">Technique</a></li>
+      <li><a href="#feature">The Product</a></li>
+      <li><a href="#shop">Shop the Look</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#book">Book a Shoot</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" aria-label="menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero" style="padding:0;">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="dash"></span> Editorial Photoshoot · Vol. 13</div>
+    <h1>Contour<span class="accent">& Sculpt</span></h1>
+    <p class="lede">Bone structure isn't found — it's built. This shoot maps the light and shadow of the sculpted face, shade by shade, the way a sculptor reads a block of clay before the first cut.</p>
+    <div class="hero-actions">
+      <a href="#shop" class="btn btn-solid">Shop the Edit</a>
+      <a href="#technique" class="btn btn-line">See the Map</a>
+    </div>
+    <div class="hero-stats">
+      <div>03<span>Sculpt Zones</span></div>
+      <div>12<span>Look Variations</span></div>
+      <div>40<span>Min Application</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSALoJYoxJ92OWw3-SxZJyfttpozC7lGwtkF5nRoEDIRvgFvu9_UNnhJMkS&s=10" alt="Contour and sculpt editorial hero portrait">
+    <div class="contour-overlay">
+      <svg viewBox="0 0 600 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#EAD0AE" stroke-width="1" opacity="0.55">
+          <path d="M120,180 C220,140 380,150 460,230 C520,300 500,420 420,470 C340,520 220,500 170,420 C120,340 110,250 120,180 Z"/>
+          <path d="M150,210 C240,180 370,190 430,250 C480,310 460,400 400,440 C330,480 240,460 200,400 C160,340 150,270 150,210 Z"/>
+          <path d="M180,240 C250,220 350,230 400,275 C440,320 425,385 380,415 C325,450 260,430 230,385 C200,340 185,290 180,240 Z"/>
+        </g>
+        <g fill="none" stroke="#C1694F" stroke-width="1" opacity="0.6">
+          <path d="M260,520 C320,540 400,540 460,500 C510,465 520,400 490,360"/>
+          <path d="M280,560 C340,585 420,580 470,540"/>
+        </g>
+      </svg>
+    </div>
+    <div class="contour-tag tag-highlight"><span class="dot"></span>Highlight — brow bone</div>
+    <div class="contour-tag tag-shadow"><span class="dot"></span>Shadow — hollow</div>
+    <div class="contour-tag tag-blend"><span class="dot"></span>Blend line — jaw</div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>Sculpt the light.</span><span>Shape the shadow.</span><span>Blend the line.</span><span>Sculpt the light.</span><span>Shape the shadow.</span><span>Blend the line.</span><span>Sculpt the light.</span><span>Shape the shadow.</span><span>Blend the line.</span>
+  </div>
+</div>
+
+<!-- TECHNIQUE / CONTOUR MAP -->
+<section id="technique" class="technique">
+  <div class="section-head reveal">
+    <div>
+      <div class="label"><span class="dash"></span>The Technique</div>
+      <h2>A face read like a <em>topographic map</em></h2>
+    </div>
+    <p>Every shoot starts with the same three readings — where light naturally lands, where it naturally falls away, and where the two should meet.</p>
+  </div>
+  <div class="technique-grid">
+    <div class="map-frame reveal">
+      <svg viewBox="0 0 420 480" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="210" cy="240" rx="150" ry="195" fill="none" stroke="#2E2117" stroke-width="1.4" opacity="0.18"/>
+        <g fill="none" stroke="#A8794C" stroke-width="1.1">
+          <path d="M100,150 C150,120 270,120 320,150" opacity="0.7"/>
+          <path d="M95,170 C150,140 270,140 325,170" opacity="0.55"/>
+          <path d="M90,190 C150,160 270,160 330,190" opacity="0.4"/>
+        </g>
+        <g fill="none" stroke="#C1694F" stroke-width="1.2">
+          <path d="M105,300 C140,330 280,330 315,300" opacity="0.75"/>
+          <path d="M115,325 C150,350 270,350 305,325" opacity="0.55"/>
+          <path d="M125,348 C160,368 260,368 295,348" opacity="0.4"/>
+        </g>
+        <g fill="none" stroke="#2E2117" stroke-width="1" opacity="0.45">
+          <ellipse cx="150" cy="235" rx="22" ry="14"/>
+          <ellipse cx="270" cy="235" rx="22" ry="14"/>
+          <path d="M205,250 L195,300 L225,300 Z"/>
+        </g>
+        <circle cx="150" cy="190" r="4" fill="#C1694F"/>
+        <circle cx="270" cy="190" r="4" fill="#C1694F"/>
+        <circle cx="160" cy="330" r="4" fill="#A8794C"/>
+        <circle cx="260" cy="330" r="4" fill="#A8794C"/>
+        <circle cx="210" cy="380" r="4" fill="#A8794C"/>
+      </svg>
+      <div class="map-caption"><span>Fig. 01 — Contour Map</span><span>Elevation: Light → Shadow</span></div>
+    </div>
+    <div class="zone-list">
+      <div class="zone reveal">
+        <div class="num">01</div>
+        <div><h3>Elevate</h3><p>A pale, cool highlight along the brow bone, bridge, and cupid's bow lifts the plane of the face toward camera.</p></div>
+      </div>
+      <div class="zone reveal">
+        <div class="num">02</div>
+        <div><h3>Recede</h3><p>A warm contour traces the hollow of the cheek and the temple, pushing that plane back into shadow.</p></div>
+      </div>
+      <div class="zone reveal">
+        <div class="num">03</div>
+        <div><h3>Resolve</h3><p>A damp sponge dissolves the line between the two — the step most shoots skip, and the one that reads as bone, not paint.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCT -->
+<section id="feature" class="feature">
+  <div class="feature-grid">
+    <div class="feature-img reveal">
+      <span class="ribbon">Shoot Hero</span>
+      <img src="https://orianacosmetic.com/cdn/shop/files/Sculpt-_-Lift-Stick-Contour_Chogan-299540546.jpg?v=1759248669&width=1080" alt="Sculpt and Lift Stick Contour product">
+    </div>
+    <div class="feature-copy reveal">
+      <div class="label" style="display:flex;align-items:center;gap:12px;margin-bottom:18px;"><span class="dash" style="width:30px;height:1px;background:var(--highlight);display:inline-block;"></span>Featured Product</div>
+      <h2>Sculpt & Lift <em>Stick Contour</em></h2>
+      <p class="desc">A cream-to-powder stick built for the camera, not the bathroom mirror — it sets without sinking into texture, so the sculpted line holds through every reshoot and every flash.</p>
+      <div class="shade-row">
+        <span class="shade active" style="background:#D9A87A;"></span>
+        <span class="shade" style="background:#C1875A;"></span>
+        <span class="shade" style="background:#9C6740;"></span>
+        <span class="shade" style="background:#7A4C30;"></span>
+      </div>
+      <div class="price-row"><span class="price">₹1,299</span><span class="old">₹1,799</span></div>
+      <div class="feature-actions">
+        <a href="#shop" class="btn btn-solid">Add to Look</a>
+        <a href="#technique" class="btn btn-line">How to Apply</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP THE LOOK -->
+<section id="shop" class="shop">
+  <div class="section-head reveal">
+    <div>
+      <div class="label"><span class="dash"></span>Shop the Look</div>
+      <h2>Three steps, <em>one finished face</em></h2>
+    </div>
+    <p>The exact edit used on set — pick up the full sculpt in the order it was applied.</p>
+  </div>
+  <div class="product-rail">
+    <div class="product-card reveal">
+      <div class="product-thumb"><img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ6kH1sQ89hg9F7Lav0pAq3ADAhwsn-iDZ9dvJt6vCYK1RKrHfwFe1h7Ujoxe3tar5dbHJtVugbRsEFYI1z3kyfEsVQwPyKT0isR8uDa_CyuUF59Q1KjeTht3iY" alt="Step one contour product"></div>
+      <div class="product-info">
+        <span class="step">Step 01 — Shape</span>
+        <h3>Bronze Sculpt Stick</h3>
+        <p>Lays the shadow into the hollow of the cheek with a true matte finish that photographs without flattening.</p>
+        <div class="product-foot"><span class="amt">₹999</span><span class="icon-btn">+</span></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb"><img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTr6rZr34CJashHnwWtCJS0cHSyR5gv9mrgTjzJdB38JcsbzcMr4frAg3ltOMZHKIcAdrJq-Qmw0djmymvL3zP2nIiPwQBhI5Kyhg9EKi0ndogL3xIJ-uXg" alt="Step two highlight product"></div>
+      <div class="product-info">
+        <span class="step">Step 02 — Lift</span>
+        <h3>Pearl Highlight Duo</h3>
+        <p>A cool, fine-milled glow for the brow bone and bridge that lifts the plane without glitter fallout.</p>
+        <div class="product-foot"><span class="amt">₹1,149</span><span class="icon-btn">+</span></div>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb"><img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRTqRi6zZusRy7no9bKL7nLri2qolxSeskJiG58duiBFb7KsOHakkT_Sy8cysp9a6lQ0O7xmCpaYm32mWy6sOenAbzC6gCeWgPEdEKqtCS-k6HL1ztr4Zkzqw" alt="Step three blending tool"></div>
+      <div class="product-info">
+        <span class="step">Step 03 — Resolve</span>
+        <h3>Damp Blend Sponge Set</h3>
+        <p>The tool that dissolves every hard edge into skin — the difference between drawn-on and built bone structure.</p>
+        <div class="product-foot"><span class="amt">₹449</span><span class="icon-btn">+</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery">
+  <div class="section-head reveal">
+    <div>
+      <div class="label"><span class="dash"></span>From the Set</div>
+      <h2>Behind the <em>contour</em></h2>
+    </div>
+    <p>Stills from Vol. 13 — the sculpt under studio light, before retouching.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-tall reveal">
+      <img src="https://orianacosmetic.com/cdn/shop/files/Sculpt-_-Lift-Stick-Contour_Chogan-299540546.jpg?v=1759248669&width=1080" alt="Behind the scenes contour application">
+    </div>
+    <div class="gallery-col">
+      <div class="reveal"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRPicnHXtVxoG8TQvuKBUxcjc0s3ql7xo514zP1qMwPLo_HMcLNtffv-Wl&s=10" alt="Editorial contour photoshoot still"></div>
+      <div class="gallery-note reveal">"It isn't makeup until the light agrees with it." — Set Notes, Vol. 13</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="book" class="cta">
+  <h2 class="reveal">Bring this sculpt <em>to your shoot</em></h2>
+  <p class="reveal">Book the Contour & Sculpt edit for your next session, or order the full kit and recreate it at home.</p>
+  <div class="hero-actions" style="justify-content:center;">
+    <a href="#shop" class="btn btn-solid">Order the Kit</a>
+    <a href="#top" class="btn btn-line">Book the Photoshoot</a>
+  </div>
+</section>
+
+<footer>
+  <a class="logo" href="#top">Mira & Bone <em>Studio</em></a>
+  <div class="cols">
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#technique">Technique</a></li>
+        <li><a href="#feature">The Product</a></li>
+        <li><a href="#shop">Shop the Look</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#book">Book a Shoot</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Mira & Bone Studio — Beauty Shopping Edit Vol. 13</span>
+    <span>Contour & Sculpt Photoshoot</span>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const navList = document.querySelector('nav ul');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      navList.style.display = navList.style.display === 'flex' ? 'none' : 'flex';
+      navList.style.flexDirection = 'column';
+      navList.style.position = 'absolute';
+      navList.style.top = '64px';
+      navList.style.right = '6%';
+      navList.style.background = '#F3EAE0';
+      navList.style.padding = '20px 28px';
+      navList.style.gap = '16px';
+      navList.style.border = '1px solid rgba(46,33,23,0.18)';
+    });
+  }
+
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => io.observe(el));
+
+  // shade swatch active state
+  document.querySelectorAll('.shade').forEach(s => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.shade').forEach(x => x.classList.remove('active'));
+      s.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
