@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ombré Lips Trendy — The Blend Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF3EE;
+    --cream-deep:#F4E5DC;
+    --ink:#2B141C;
+    --berry:#7A2048;
+    --coral:#E8694B;
+    --mauve:#C9667D;
+    --gold:#C99A4A;
+    --line: rgba(43,20,28,0.12);
+    --gradient-lip: linear-gradient(90deg, #F2A65A 0%, #E8694B 28%, #C9667D 58%, #7A2048 100%);
+    --shadow: 0 30px 60px -30px rgba(122,32,72,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--berry);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:2px;
+    background:var(--gradient-lip);
+    display:inline-block;
+  }
+  .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  /* blend rule — signature element */
+  .blend-rule{
+    height:6px;
+    width:100%;
+    background:var(--gradient-lip);
+    border-radius:999px;
+  }
+  .blend-rule.thin{height:3px;}
+
+  /* nav */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,238,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1200px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    font-weight:600;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo-mark{
+    width:26px; height:26px; border-radius:50%;
+    background:var(--gradient-lip);
+  }
+  .nav-links{
+    display:flex; gap:34px; font-size:0.92rem; font-weight:600;
+  }
+  .nav-links a{opacity:0.75; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--ink); color:var(--cream);
+    padding:11px 22px; border-radius:999px;
+    font-size:0.85rem; font-weight:700;
+    letter-spacing:0.02em;
+  }
+  @media (max-width:860px){ .nav-links{display:none;} }
+
+  /* hero */
+  .hero{
+    padding:88px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:-220px; right:-180px;
+    width:560px; height:560px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(232,105,75,0.28), rgba(201,102,125,0.08) 60%, transparent 70%);
+    z-index:0;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:60px;
+    align-items:center;
+    position:relative; z-index:1;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.02;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic;
+    background:var(--gradient-lip);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:rgba(43,20,28,0.72);
+    max-width:480px;
+  }
+  .hero-cta-row{
+    margin-top:34px;
+    display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--berry);
+    color:#fff;
+    padding:16px 30px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.95rem;
+    box-shadow:var(--shadow);
+    transition:transform .25s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .price-tag{
+    font-size:0.9rem; font-weight:600; color:rgba(43,20,28,0.65);
+  }
+  .price-tag b{ font-family:'Fraunces',serif; font-size:1.3rem; color:var(--ink); font-weight:600; }
+
+  .hero-stats{
+    display:flex; gap:34px; margin-top:46px; padding-top:28px;
+    border-top:1px solid var(--line);
+    max-width:480px;
+  }
+  .stat b{
+    font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; display:block;
+  }
+  .stat span{ font-size:0.78rem; color:rgba(43,20,28,0.6); }
+
+  .hero-image{
+    position:relative;
+  }
+  .hero-image .frame{
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    position:relative;
+  }
+  .hero-image img{
+    width:100%; height:560px; object-fit:cover;
+  }
+  .hero-image .badge{
+    position:absolute; bottom:-26px; left:-26px;
+    background:#fff; border-radius:20px;
+    padding:18px 22px;
+    box-shadow:0 20px 40px -20px rgba(43,20,28,0.3);
+    display:flex; align-items:center; gap:14px;
+    max-width:230px;
+  }
+  .badge .swatch{
+    width:42px; height:42px; border-radius:50%;
+    background:var(--gradient-lip);
+    flex-shrink:0;
+  }
+  .badge p{ margin:0; font-size:0.78rem; font-weight:600; line-height:1.4; color:rgba(43,20,28,0.75); }
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-image img{ height:420px; }
+    .hero-image .badge{ left:16px; }
+  }
+
+  /* section heading */
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:30px; margin-bottom:48px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(2rem,3.4vw,2.7rem); margin-top:14px; max-width:560px; }
+  .section-head p{ max-width:340px; font-size:0.95rem; line-height:1.6; color:rgba(43,20,28,0.65); }
+
+  section{ padding:90px 0; }
+  .alt-bg{ background:var(--cream-deep); }
+
+  /* product grid */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .product-card{
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow);
+  }
+  .product-card .img-wrap{
+    background:linear-gradient(160deg, #fff, var(--cream-deep));
+    padding:36px;
+    height:280px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .product-card img{ max-height:210px; object-fit:contain; }
+  .product-card .info{ padding:22px 24px 26px; }
+  .product-card .info .tag{
+    font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mauve);
+  }
+  .product-card .info h3{
+    margin-top:8px; font-size:1.2rem; font-weight:600;
+  }
+  .product-card .info .desc{
+    margin-top:8px; font-size:0.88rem; line-height:1.55; color:rgba(43,20,28,0.62);
+  }
+  .product-card .info .price-row{
+    margin-top:18px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .product-card .price-row .price{ font-family:'Fraunces',serif; font-size:1.25rem; font-weight:600; }
+  .product-card .price-row .add{
+    width:40px; height:40px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; font-weight:600;
+    transition:background .2s;
+  }
+  .product-card .price-row .add:hover{ background:var(--berry); }
+  @media (max-width:900px){ .product-grid{ grid-template-columns:1fr; } }
+
+  /* blend steps */
+  .blend-steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    margin-top:10px;
+  }
+  .blend-step{
+    padding:30px 28px;
+    border-radius:20px;
+    background:#fff;
+    border:1px solid var(--line);
+  }
+  .blend-step .dot{
+    width:16px; height:16px; border-radius:50%;
+  }
+  .blend-step:nth-child(1) .dot{ background:#F2A65A; }
+  .blend-step:nth-child(2) .dot{ background:#C9667D; }
+  .blend-step:nth-child(3) .dot{ background:#7A2048; }
+  .blend-step h3{ margin-top:18px; font-size:1.15rem; font-weight:600; }
+  .blend-step p{ margin-top:10px; font-size:0.9rem; line-height:1.6; color:rgba(43,20,28,0.62); }
+  @media (max-width:900px){ .blend-steps{ grid-template-columns:1fr; } }
+
+  /* gallery on real lips */
+  .gallery{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap:22px;
+  }
+  .gallery .g-item{
+    border-radius:22px; overflow:hidden; position:relative;
+    box-shadow:0 18px 40px -25px rgba(43,20,28,0.4);
+  }
+  .gallery .g-item img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .gallery .g-item:nth-child(1){ grid-row:span 2; }
+  .gallery .g-item .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:18px 20px;
+    background:linear-gradient(to top, rgba(43,20,28,0.78), transparent);
+    color:#fff; font-size:0.8rem; font-weight:600;
+  }
+  @media (max-width:900px){
+    .gallery{ grid-template-columns:1fr 1fr; }
+    .gallery .g-item:nth-child(1){ grid-row:span 1; grid-column:span 2; height:320px; }
+    .gallery .g-item{ height:220px; }
+  }
+
+  /* testimonials */
+  .testi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .testi-card{
+    background:#fff;
+    border-radius:20px;
+    padding:30px 26px;
+    border:1px solid var(--line);
+  }
+  .stars{ color:var(--gold); letter-spacing:3px; font-size:0.95rem; }
+  .testi-card p{ margin-top:16px; font-size:0.93rem; line-height:1.65; color:rgba(43,20,28,0.72); }
+  .testi-card .who{
+    margin-top:20px; display:flex; align-items:center; gap:12px;
+  }
+  .testi-card .who .av{
+    width:38px; height:38px; border-radius:50%;
+    background:var(--gradient-lip);
+  }
+  .testi-card .who b{ font-size:0.85rem; display:block; }
+  .testi-card .who span{ font-size:0.75rem; color:rgba(43,20,28,0.55); }
+  @media (max-width:900px){ .testi-grid{ grid-template-columns:1fr; } }
+
+  /* CTA band */
+  .cta-band{
+    background:var(--ink);
+    border-radius:32px;
+    padding:64px 56px;
+    color:var(--cream);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:40px; flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band::after{
+    content:"";
+    position:absolute; right:-100px; top:-100px;
+    width:320px; height:320px; border-radius:50%;
+    background:radial-gradient(circle, rgba(232,105,75,0.35), transparent 70%);
+  }
+  .cta-band h2{ font-size:clamp(1.8rem,3vw,2.4rem); max-width:480px; position:relative; z-index:1; color:#fff; }
+  .cta-band p{ margin-top:12px; font-size:0.95rem; color:rgba(251,243,238,0.7); max-width:420px; position:relative; z-index:1;}
+  .cta-band .btn-primary{ background:var(--cream); color:var(--ink); position:relative; z-index:1; }
+
+  footer{
+    padding:56px 0 36px;
+    border-top:1px solid var(--line);
+    margin-top:20px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px;
+  }
+  .footer-grid .logo{ margin-bottom:14px; }
+  .footer-grid .col p{ font-size:0.85rem; color:rgba(43,20,28,0.6); max-width:260px; line-height:1.6; }
+  .footer-links{ display:flex; gap:50px; flex-wrap:wrap; }
+  .footer-links h4{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px; color:rgba(43,20,28,0.5); }
+  .footer-links ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .footer-links a{ font-size:0.88rem; font-weight:600; opacity:0.8; }
+  .footer-links a:hover{ opacity:1; }
+  .footer-bottom{
+    margin-top:50px; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; font-size:0.78rem; color:rgba(43,20,28,0.5);
+    flex-wrap:wrap; gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="logo-mark"></span>Ombré Edit</div>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#blend">How to Blend</a>
+      <a href="#gallery">Lip Looks</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <a href="#shop" class="nav-cta">Shop the Edit</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Trending Now</div>
+      <h1 style="margin-top:18px;">Two shades.<br>One <em>blended</em> stare.</h1>
+      <p class="lede">Ombré Lips Trendy is the gradient lip system built for the soft-to-bold fade — a deep core, a lit-from-within center, and a melt so seamless nobody can tell where one shade ends.</p>
+      <div class="hero-cta-row">
+        <a href="#shop" class="btn-primary">Shop the Blend Kit — ₹799</a>
+        <div class="price-tag">Rated <b>4.8/5</b> by 12,400+ blenders</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>6hr</b><span>Transfer-resist wear</span></div>
+        <div class="stat"><b>3-step</b><span>Blend system</span></div>
+        <div class="stat"><b>0</b><span>Hard lip lines</span></div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="frame">
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRCna5zCOSWVD951uEf21tzzy29hfNQKSPZ3zvGULTMdINmb165nmibf_wJksrrgdHLvMqnmrhxMu-eR0COlXaDhayO-QgwMQ" alt="Ombré Lips Trendy hero">
+      </div>
+      <div class="badge">
+        <span class="swatch"></span>
+        <p>Coral-to-Berry blend, the season's most requested fade</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:64px;">
+    <div class="blend-rule"></div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">The Blend Kit</div>
+        <h2>Everything to fade like you mean it.</h2>
+      </div>
+      <p>Three tools, one gradient. Pick the full kit or the single piece your routine is missing.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="img-wrap">
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSPDU3Emoj6tsBjqpC2V0gw0l3GqhDf7Hpp_-ptseYK_K00p8IhWxDpkTDGcPlrCS1YkQiSWPvV6cfwdednMHOtOMFzcO1XrMxfw-LZflsFa7JLVJd_oxa9NA" alt="Ombré Lips Trendy duo stick">
+        </div>
+        <div class="info">
+          <div class="tag">Core Shade</div>
+          <h3>Berry Core Stick</h3>
+          <p class="desc">The deep anchor shade — applied to the outer corners, this is what gives the fade its depth.</p>
+          <div class="price-row">
+            <span class="price">₹399</span>
+            <span class="add">+</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap">
+          <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRasYCqV6QI--DpEJTdl88xfy4N-qygxdO7bk9ilODNf23WQPhEBDl0JTV1lCU36hSguvIwFxCNdfQ-1-pC4mFC4EM8JJd7IO9fcdq-zznc94ZhF5FAbr8whA" alt="Ombré Lips Trendy blending brush set">
+        </div>
+        <div class="info">
+          <div class="tag">Blend Tool</div>
+          <h3>Soft-Melt Blending Brush</h3>
+          <p class="desc">A dense synthetic tip that diffuses the line between shades in under ten seconds, no patchiness.</p>
+          <div class="price-row">
+            <span class="price">₹249</span>
+            <span class="add">+</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-wrap">
+          <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRasYCqV6QI--DpEJTdl88xfy4N-qygxdO7bk9ilODNf23WQPhEBDl0JTV1lCU36hSguvIwFxCNdfQ-1-pC4mFC4EM8JJd7IO9fcdq-zznc94ZhF5FAbr8whA" alt="Ombré Lips Trendy complete kit">
+        </div>
+        <div class="info">
+          <div class="tag">Best Value</div>
+          <h3>Complete Blend Kit</h3>
+          <p class="desc">Core stick, center gloss, and blending brush — the full gradient system in one pouch.</p>
+          <div class="price-row">
+            <span class="price">₹799</span>
+            <span class="add">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg" id="blend">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">The Method</div>
+        <h2>From two products to one fade, in three moves.</h2>
+      </div>
+      <p>No lip liner precision needed — the system is built to forgive a shaky hand.</p>
+    </div>
+    <div class="blend-steps">
+      <div class="blend-step">
+        <span class="dot"></span>
+        <h3>Anchor the outline</h3>
+        <p>Trace the outer edge and corners of your lips with the Berry Core Stick. Keep it light — this is your depth, not your full coverage.</p>
+      </div>
+      <div class="blend-step">
+        <span class="dot"></span>
+        <h3>Light the center</h3>
+        <p>Pat the warmer center shade directly onto the middle of your lower lip, where light naturally catches.</p>
+      </div>
+      <div class="blend-step">
+        <span class="dot"></span>
+        <h3>Melt the line</h3>
+        <p>Run the Soft-Melt Brush outward from center to corner in small circles until the seam disappears.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">On Real Lips</div>
+        <h2>The fade looks different on everyone — that's the point.</h2>
+      </div>
+      <p>Tag @ombreedit to be featured in the next blend gallery.</p>
+    </div>
+    <div class="gallery">
+      <div class="g-item">
+        <img src="https://cdn2.stylecraze.com/wp-content/uploads/2013/02/1672-How-To-Get-Hot-Ombre-Lips-ss.jpg.webp" alt="Hot ombre lip look">
+        <div class="cap">Coral-to-wine, full glam fade</div>
+      </div>
+      <div class="g-item">
+        <img src="https://media6.ppl-media.com/mediafiles/blogs/9cf2e82a1754b390804cf9da130dfcea_55bb048da5.jpg" alt="Soft ombre lip everyday look">
+        <div class="cap">Soft everyday gradient</div>
+      </div>
+      <div class="g-item">
+        <img src="https://www.maybelline.com.au/-/media/project/loreal/brand-sites/mny/apac/au/tips-and-trends/articles_new/what-are-ombre-lips-and-how-can-you-get-the-look/what-are-ombr-lips-and-how-can-you-get-the-look/mny-lip-lifter-liner-combo-macro-step-2b-blur-peaking-isabella_2113-(1).jpg?rev=f834c815dcfc4b90992cab259066714a" alt="Ombre lip liner technique closeup">
+        <div class="cap">Liner-first technique, up close</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Verified Blenders</div>
+        <h2>12,400+ people stopped using one shade.</h2>
+      </div>
+      <p>Real reviews from the Ombré Edit community.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>The brush is what sold me — I could never blend with my finger without it looking smudged. This actually melts the line.</p>
+        <div class="who">
+          <span class="av"></span>
+          <div><b>Ritika M.</b><span>Verified buyer</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Wore it through a 7-hour shift, no touch-ups. The center shade stayed lit and the edges didn't bleed.</p>
+        <div class="who">
+          <span class="av"></span>
+          <div><b>Anaya S.</b><span>Verified buyer</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>I'm not a makeup person and even I got the fade right on the first try. The 3-step card inside the box helped a lot.</p>
+        <div class="who">
+          <span class="av"></span>
+          <div><b>Pooja R.</b><span>Verified buyer</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Your fade is one kit away.</h2>
+        <p>Free blending brush with every Complete Kit order this week.</p>
+      </div>
+      <a href="#shop" class="btn-primary">Shop the Blend Kit — ₹799</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="col">
+        <div class="logo"><span class="logo-mark"></span>Ombré Edit</div>
+        <p>A gradient lip system for the soft-to-bold fade. Built for blenders, not perfectionists.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#shop">Blend Kit</a></li>
+            <li><a href="#shop">Core Sticks</a></li>
+            <li><a href="#shop">Blending Brush</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="#blend">Blend Method</a></li>
+            <li><a href="#gallery">Lip Looks</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="blend-rule thin" style="margin-top:46px;"></div>
+    <div class="footer-bottom">
+      <span>© 2026 Ombré Edit. All rights reserved.</span>
+      <span>Cruelty-free · Dermatologically tested</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
