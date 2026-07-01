@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLE CRATE — Trendy 2025 Footwear Pick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F2EEE2;
+    --paper:#FBF9F3;
+    --ink:#16151A;
+    --lime:#C9F31D;
+    --clay:#D9603A;
+    --grey:#8B8579;
+    --line:#D9D2BE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+
+  .display{font-family:'Archivo Black', sans-serif; text-transform:uppercase; letter-spacing:-0.01em;}
+  .mono{font-family:'Space Mono', monospace;}
+
+  /* ===== Announcement ticker ===== */
+  .ticker{
+    background:var(--ink); color:var(--cream);
+    overflow:hidden; white-space:nowrap; padding:9px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  .ticker-track{display:inline-flex; animation:scroll 22s linear infinite;}
+  .ticker span{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.12em;
+    padding:0 26px; display:inline-flex; align-items:center; gap:26px;
+  }
+  .ticker span::after{content:"◆"; color:var(--lime); font-size:9px;}
+  @keyframes scroll{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:var(--cream);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    display:flex; align-items:baseline; gap:8px;
+    font-size:22px; font-weight:900;
+  }
+  .logo .dot{width:9px; height:9px; background:var(--clay); border-radius:50%; display:inline-block; transform:translateY(-2px);}
+  .logo .sub{font-family:'Space Mono',monospace; font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:0.14em;}
+  nav.links{display:flex; gap:36px; font-size:14px; font-weight:600;}
+  nav.links a{position:relative; padding:4px 0;}
+  nav.links a:hover{color:var(--clay);}
+  .nav-right{display:flex; align-items:center; gap:20px;}
+  .icon-btn{
+    width:38px; height:38px; border:1.5px solid var(--ink); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    transition:.2s;
+  }
+  .icon-btn:hover{background:var(--ink); color:var(--cream);}
+  .cart-count{
+    background:var(--clay); color:var(--paper); font-size:9px; font-weight:800;
+    width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    position:relative; top:-14px; left:-10px;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:64px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.16em;
+    color:var(--clay); text-transform:uppercase; margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:1.5px; background:var(--clay);}
+  .hero h1{
+    font-size:clamp(48px, 6.4vw, 92px); line-height:0.94; letter-spacing:-0.02em;
+  }
+  .hero h1 .outline{
+    -webkit-text-stroke:1.5px var(--ink); color:var(--cream);
+  }
+  .hero p.lede{
+    font-size:17px; color:#4b473d; max-width:420px; margin:26px 0 34px; line-height:1.6;
+  }
+  .hero-cta{display:flex; align-items:center; gap:22px;}
+  .btn{
+    background:var(--ink); color:var(--cream); padding:16px 30px;
+    border-radius:100px; font-weight:700; font-size:14px;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:.25s; border:1.5px solid var(--ink);
+  }
+  .btn:hover{background:var(--lime); color:var(--ink); border-color:var(--lime);}
+  .btn-ghost{
+    font-weight:700; font-size:14px; border-bottom:1.5px solid var(--ink); padding-bottom:3px;
+  }
+  .hero-stats{display:flex; gap:34px; margin-top:48px; padding-top:28px; border-top:1px solid var(--line);}
+  .hero-stats div b{display:block; font-family:'Archivo Black'; font-size:26px;}
+  .hero-stats div span{font-size:12px; color:var(--grey);}
+
+  .hero-visual{position:relative;}
+  .hero-tag{
+    position:absolute; top:18px; left:-6px; z-index:3;
+    background:var(--paper); border:1.5px dashed var(--ink);
+    padding:10px 14px; transform:rotate(-4deg);
+    font-family:'Space Mono',monospace; font-size:10.5px; line-height:1.6;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .hero-tag b{display:block; font-size:11px; letter-spacing:0.04em;}
+  .hero-img-frame{
+    background:var(--paper); border-radius:28px; overflow:hidden;
+    border:1px solid var(--line); position:relative;
+    box-shadow:0 30px 60px -20px rgba(22,21,26,0.25);
+  }
+  .hero-img-frame img{width:100%; height:520px; object-fit:cover;}
+  .hero-badge{
+    position:absolute; bottom:-24px; right:-18px; z-index:3;
+    background:var(--lime); color:var(--ink); width:112px; height:112px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Archivo Black'; font-size:13px; line-height:1.15; letter-spacing:-0.02em;
+    border:1.5px solid var(--ink); transform:rotate(6deg);
+  }
+
+  /* ===== Section heading ===== */
+  .section{padding:96px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:44px; gap:24px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(30px,3.6vw,46px); letter-spacing:-0.01em;}
+  .section-head p{color:var(--grey); font-size:14.5px; max-width:320px; line-height:1.55;}
+  .num-eyebrow{font-family:'Space Mono',monospace; font-size:12px; color:var(--clay); letter-spacing:0.14em; margin-bottom:10px; display:block;}
+
+  /* ===== Product grid ===== */
+  .grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;
+  }
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:20px;
+    overflow:hidden; position:relative; transition:.3s ease;
+  }
+  .card:hover{transform:translateY(-6px); box-shadow:0 24px 40px -18px rgba(22,21,26,0.25);}
+  .card-media{position:relative; aspect-ratio:4/3.1; overflow:hidden; background:#e9e3d2;}
+  .card-media img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
+  .card:hover .card-media img{transform:scale(1.06);}
+  .card-label{
+    position:absolute; top:12px; left:12px;
+    background:var(--paper); border:1px dashed var(--ink);
+    font-family:'Space Mono',monospace; font-size:9.5px; padding:6px 9px;
+    letter-spacing:0.03em; transform:rotate(-2deg);
+  }
+  .card-fav{
+    position:absolute; top:12px; right:12px; width:32px; height:32px;
+    background:var(--paper); border:1px solid var(--ink); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .card-body{padding:20px 20px 22px;}
+  .card-body .tag-row{display:flex; justify-content:space-between; font-family:'Space Mono',monospace; font-size:10.5px; color:var(--grey); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;}
+  .card-body h3{font-size:18px; font-weight:800; margin-bottom:6px;}
+  .card-body .desc{font-size:13px; color:var(--grey); margin-bottom:16px; line-height:1.5;}
+  .price-row{display:flex; align-items:center; justify-content:space-between;}
+  .price{font-family:'Archivo Black'; font-size:19px;}
+  .price small{font-family:'Inter'; font-weight:500; font-size:12px; color:var(--grey); text-decoration:line-through; margin-left:8px;}
+  .add-btn{
+    width:40px; height:40px; border-radius:50%; background:var(--ink); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-size:18px; transition:.2s;
+  }
+  .add-btn:hover{background:var(--clay);}
+
+  /* ===== Editorial split ===== */
+  .editorial{
+    background:var(--ink); color:var(--cream); border-radius:28px; overflow:hidden;
+    display:grid; grid-template-columns:1fr 1fr; align-items:stretch;
+  }
+  .editorial-media{position:relative; min-height:420px;}
+  .editorial-media img{width:100%; height:100%; object-fit:cover; position:absolute; inset:0;}
+  .editorial-content{padding:56px 52px; display:flex; flex-direction:column; justify-content:center;}
+  .editorial-content .num-eyebrow{color:var(--lime);}
+  .editorial-content h2{font-size:clamp(28px,3.4vw,42px); line-height:1.05; margin-bottom:20px;}
+  .editorial-content p{color:#c9c5b8; font-size:15px; line-height:1.7; margin-bottom:30px; max-width:420px;}
+  .editorial-content .btn{background:var(--lime); color:var(--ink); border-color:var(--lime); width:fit-content;}
+  .editorial-content .btn:hover{background:var(--cream);}
+
+  /* ===== Brand strip ===== */
+  .brand-strip{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:40px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    flex-wrap:wrap; gap:20px;
+  }
+  .brand-strip span{
+    font-family:'Archivo Black'; font-size:20px; color:var(--grey); opacity:.55;
+    letter-spacing:-0.01em;
+  }
+
+  /* ===== Newsletter ===== */
+  .newsletter{
+    background:var(--lime); border-radius:28px; padding:64px 56px;
+    display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center;
+  }
+  .newsletter h2{font-size:clamp(28px,3.4vw,40px); line-height:1.05; margin-bottom:14px;}
+  .newsletter p{font-size:14.5px; color:#33321a; max-width:380px;}
+  .newsletter form{display:flex; gap:10px;}
+  .newsletter input{
+    flex:1; padding:16px 20px; border-radius:100px; border:1.5px solid var(--ink);
+    background:var(--paper); font-family:'Inter'; font-size:14px;
+  }
+  .newsletter .btn{background:var(--ink); color:var(--cream); border-color:var(--ink); white-space:nowrap;}
+  .newsletter .btn:hover{background:var(--paper); color:var(--ink);}
+
+  /* ===== Footer ===== */
+  footer{padding:70px 0 34px;}
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:50px; border-bottom:1px solid var(--line);
+  }
+  .footer-grid h4{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey); margin-bottom:18px;}
+  .footer-grid ul{list-style:none;}
+  .footer-grid li{margin-bottom:11px; font-size:14px;}
+  .footer-grid li a:hover{color:var(--clay);}
+  .footer-brand p{color:var(--grey); font-size:13.5px; max-width:280px; margin-top:14px; line-height:1.6;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; padding-top:26px;
+    font-size:12.5px; color:var(--grey); flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-img-frame img{height:380px;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .editorial{grid-template-columns:1fr;}
+    .editorial-media{min-height:280px;}
+    .newsletter{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    nav.links{display:none;}
+  }
+  @media (max-width: 540px){
+    .grid{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+    .hero-stats{flex-wrap:wrap; row-gap:16px;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>NEW DROP LIVE — 2025 COLLECTION</span>
+      <span>FREE SHIPPING OVER ₹2,999</span>
+      <span>COD AVAILABLE PAN INDIA</span>
+      <span>LIMITED SIZES — RESTOCKED WEEKLY</span>
+      <span>NEW DROP LIVE — 2025 COLLECTION</span>
+      <span>FREE SHIPPING OVER ₹2,999</span>
+      <span>COD AVAILABLE PAN INDIA</span>
+      <span>LIMITED SIZES — RESTOCKED WEEKLY</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="logo">SOLE<span class="dot"></span>CRATE <span class="sub">EST. 2025</span></a>
+      <nav class="links">
+        <a href="#drop">New Drop</a>
+        <a href="#feature">Editor's Pick</a>
+        <a href="#brands">Brands</a>
+        <a href="#join">Journal</a>
+      </nav>
+      <div class="nav-right">
+        <div class="icon-btn" title="Search">⌕</div>
+        <div class="icon-btn" title="Wishlist">♡</div>
+        <a href="#" class="icon-btn" style="text-decoration:none;" title="Cart">
+          🛍
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">2025 Trend Report</div>
+        <h1 class="display">STEP<br>INTO<br><span class="outline">2025</span></h1>
+        <p class="lede">Chunky soles are out, clean silhouettes are in. Our trendy 2025 pick pairs archive-inspired uppers with tomorrow's colourways — curated weekly, sized honestly, shipped fast.</p>
+        <div class="hero-cta">
+          <a href="#drop" class="btn">Shop the Drop <span>→</span></a>
+          <a href="#feature" class="btn-ghost">See Editor's Pick</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>18K+</b><span>Pairs Shipped</span></div>
+          <div><b>4.8/5</b><span>Sneakerhead Rating</span></div>
+          <div><b>72 Hr</b><span>Restock Window</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-tag">
+          <b>SKU — TC/2025‑AF1</b>
+          SZ RUN 6–12<br>DROP 03.14.25
+        </div>
+        <div class="hero-img-frame">
+          <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="White and blue high-top sneaker, trendy 2025 pick">
+        </div>
+        <div class="hero-badge">TRENDING #01</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="drop">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="num-eyebrow">01 / THIS WEEK'S DROP</span>
+          <h2 class="display">Fresh On The Rack</h2>
+        </div>
+        <p>Six silhouettes, hand-picked for the season — from court classics to trail-ready runners.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-media">
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Black white and red retro high-top sneaker">
+            <span class="card-label">SKU TC‑JR1‑BWR</span>
+            <div class="card-fav">♡</div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>Retro High</span><span>Unisex</span></div>
+            <h3>Ember Retro '85</h3>
+            <p class="desc">Leather upper, rubber cupsole, heritage colourblock.</p>
+            <div class="price-row">
+              <div class="price">₹11,999 <small>₹14,499</small></div>
+              <div class="add-btn">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <img src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="White and red athletic running shoe">
+            <span class="card-label">SKU TC‑VLR‑WR</span>
+            <div class="card-fav">♡</div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>Runner</span><span>Men</span></div>
+            <h3>Velocity Runner</h3>
+            <p class="desc">Mesh knit, responsive foam, everyday training fit.</p>
+            <div class="price-row">
+              <div class="price">₹6,299</div>
+              <div class="add-btn">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="White high-top sneaker pair">
+            <span class="card-label">SKU TC‑CLS‑WHT</span>
+            <div class="card-fav">♡</div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>High Top</span><span>Unisex</span></div>
+            <h3>Cloud Step High</h3>
+            <p class="desc">Clean monochrome canvas, cushioned collar.</p>
+            <div class="price-row">
+              <div class="price">₹7,499</div>
+              <div class="add-btn">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="White low-top sneaker pair">
+            <span class="card-label">SKU TC‑AF1‑LOW</span>
+            <div class="card-fav">♡</div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>Court Low</span><span>Unisex</span></div>
+            <h3>Bone Low '25</h3>
+            <p class="desc">Minimal court silhouette, tumbled leather finish.</p>
+            <div class="price-row">
+              <div class="price">₹7,999</div>
+              <div class="add-btn">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <img src="https://images.unsplash.com/photo-1465453869711-7e174808ace9?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Grey and orange running shoe on floor">
+            <span class="card-label">SKU TC‑TRL‑990</span>
+            <div class="card-fav">♡</div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>Trail</span><span>Men</span></div>
+            <h3>Trail Encap 990</h3>
+            <p class="desc">ENCAP midsole, grip outsole, all-terrain build.</p>
+            <div class="price-row">
+              <div class="price">₹9,299</div>
+              <div class="add-btn">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Brown and white sneaker close up">
+            <span class="card-label">SKU TC‑UMB‑BRN</span>
+            <div class="card-fav">♡</div>
+          </div>
+          <div class="card-body">
+            <div class="tag-row"><span>Lifestyle</span><span>Unisex</span></div>
+            <h3>Umber Air Step</h3>
+            <p class="desc">Suede-mesh mix, visible air cushioning unit.</p>
+            <div class="price-row">
+              <div class="price">₹8,799</div>
+              <div class="add-btn">+</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="feature" style="padding-top:0;">
+    <div class="wrap">
+      <div class="editorial">
+        <div class="editorial-media">
+          <img src="https://images.unsplash.com/photo-1549298916-f52d724204b4?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Workwear collaboration sneaker, editor's pick">
+        </div>
+        <div class="editorial-content">
+          <span class="num-eyebrow">02 / EDITOR'S PICK</span>
+          <h2 class="display">The Workwear Collab Everyone's Talking About</h2>
+          <p>Ripstop panels meet a classic court base — built for commutes, campus, and everything after. Our editors call it the most-worn pair in the office this month.</p>
+          <a href="#" class="btn">Shop This Pair <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="brands">
+    <div class="brand-strip">
+      <span>STRIDEWORKS</span>
+      <span>URBANTRACK</span>
+      <span>FOOTFALL CO.</span>
+      <span>PACE &amp; CO.</span>
+      <span>GRIDIRON</span>
+      <span>NORTHSOLE</span>
+    </div>
+  </section>
+
+  <section class="section" id="join">
+    <div class="wrap">
+      <div class="newsletter">
+        <div>
+          <span class="num-eyebrow" style="color:#33321a;">03 / STAY LACED</span>
+          <h2 class="display">Get Next Week's Drop First</h2>
+          <p>Restock alerts, early access, and the odd secret discount code — straight to your inbox, no spam.</p>
+        </div>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="you@email.com" required>
+          <button class="btn" type="submit">Notify Me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">SOLE<span class="dot"></span>CRATE</a>
+          <p>An independent footwear store curating the season's most-wearable silhouettes, one drop at a time.</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#drop">New Drop</a></li>
+            <li><a href="#">Runners</a></li>
+            <li><a href="#">High Tops</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Journal</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Sole Crate. All rights reserved.</span>
+        <span>Made for sneakerheads, by sneakerheads.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
