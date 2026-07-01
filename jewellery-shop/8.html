@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURELIA — Fine Gold Bracelets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F7F1E6;
+    --espresso:#221B14;
+    --bark:#3A2E20;
+    --gold:#B6862C;
+    --gold-light:#D9B26A;
+    --emerald:#1E3B2E;
+    --line: rgba(34,27,20,0.14);
+    --card: #FFFDF8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--espresso);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:500;}
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,241,230,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;letter-spacing:0.08em;font-weight:600;
+  }
+  .logo span{color:var(--gold);}
+  .navlinks{display:flex;gap:36px;font-size:0.86rem;letter-spacing:0.04em;}
+  .navlinks a{position:relative;padding-bottom:4px;}
+  .navlinks a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .3s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navicons{display:flex;gap:18px;align-items:center;}
+  .searchbox{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 16px;font-size:0.82rem;background:var(--card);
+    min-width:200px;
+  }
+  .searchbox input{border:none;outline:none;background:transparent;font-family:'Jost';font-size:0.82rem;width:100%;color:var(--espresso);}
+  .icon-btn{width:20px;height:20px;cursor:pointer;opacity:0.85;}
+  .cart-count{
+    background:var(--gold);color:var(--ivory);border-radius:50%;
+    width:16px;height:16px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;
+    position:relative;top:-9px;left:-10px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1fr 1fr;align-items:center;
+    max-width:1180px;margin:0 auto;padding:64px 32px 40px;gap:48px;
+  }
+  .hero-copy .eyebrow{margin-bottom:18px;display:block;}
+  .hero-copy h1{
+    font-size:clamp(2.6rem,5vw,4.1rem);
+    line-height:1.05;
+    margin-bottom:22px;
+  }
+  .hero-copy h1 em{font-style:italic;color:var(--gold);}
+  .hero-copy p{
+    max-width:420px;font-size:1rem;line-height:1.7;color:var(--bark);margin-bottom:32px;
+  }
+  .btn-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--espresso);color:var(--ivory);
+    padding:15px 34px;border-radius:2px;font-size:0.82rem;
+    letter-spacing:0.12em;text-transform:uppercase;
+    border:1px solid var(--espresso);
+    transition:.25s ease;
+  }
+  .btn-primary:hover{background:transparent;color:var(--espresso);}
+  .btn-ghost{
+    font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;
+    border-bottom:1px solid var(--gold);padding-bottom:4px;
+  }
+  .hero-frame{
+    position:relative;border:1px solid var(--gold-light);
+    padding:14px;border-radius:2px;
+  }
+  .hero-frame img{
+    width:100%;height:560px;object-fit:cover;border-radius:1px;
+  }
+  .hero-badge{
+    position:absolute;bottom:-26px;left:-26px;
+    background:var(--emerald);color:var(--ivory);
+    width:110px;height:110px;border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;border:1px solid var(--gold-light);
+  }
+  .hero-badge b{font-family:'Cormorant Garamond';font-size:1.5rem;}
+  .hero-badge span{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.85;margin-top:2px;}
+
+  /* ---------- Marquee ---------- */
+  .marquee{
+    background:var(--espresso);color:var(--gold-light);
+    overflow:hidden;white-space:nowrap;padding:14px 0;margin-top:40px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .marquee-track{display:inline-block;animation:scroll 28s linear infinite;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;}
+  .marquee-track span{margin:0 34px;}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* ---------- Section heading ---------- */
+  .section{padding:96px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:48px;flex-wrap:wrap;gap:16px;
+  }
+  .section-head h2{font-size:2.6rem;}
+
+  /* ---------- Product grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    display:flex;flex-direction:column;
+  }
+  .card-img{position:relative;overflow:hidden;aspect-ratio:4/5;}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .card:hover .card-img img{transform:scale(1.06);}
+  .card-tag{
+    position:absolute;top:14px;left:14px;background:var(--ivory);
+    font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
+    padding:6px 12px;color:var(--espresso);
+  }
+  .card-body{padding:22px 22px 26px;}
+  .card-body .eyebrow{font-size:0.62rem;margin-bottom:6px;}
+  .card-body h3{font-size:1.5rem;margin-bottom:6px;}
+  .card-meta{
+    display:flex;justify-content:space-between;align-items:center;margin-top:16px;
+  }
+  .price{font-family:'Cormorant Garamond';font-size:1.3rem;color:var(--emerald);}
+  .price-old{
+    font-size:0.85rem;color:var(--bark);opacity:0.5;text-decoration:line-through;margin-right:8px;
+  }
+  .add-btn{
+    font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+    border:1px solid var(--espresso);padding:9px 16px;transition:.25s;
+  }
+  .add-btn:hover{background:var(--espresso);color:var(--ivory);}
+
+  /* ---------- Lookbook / story split ---------- */
+  .story{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;
+    background:var(--emerald);color:var(--ivory);
+  }
+  .story-img{height:100%;min-height:520px;}
+  .story-img img{width:100%;height:100%;object-fit:cover;}
+  .story-copy{padding:40px 48px 40px 0;}
+  .story-copy .eyebrow{color:var(--gold-light);}
+  .story-copy h2{font-size:2.4rem;margin:16px 0 20px;line-height:1.15;}
+  .story-copy p{line-height:1.8;color:#E8E2D3;max-width:460px;margin-bottom:16px;font-weight:300;}
+  .stat-row{display:flex;gap:40px;margin-top:32px;}
+  .stat-row div b{font-family:'Cormorant Garamond';font-size:2rem;display:block;color:var(--gold-light);}
+  .stat-row div span{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.8;}
+
+  /* ---------- Trust strip ---------- */
+  .trust{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .trust-item{
+    padding:34px 20px;text-align:center;border-right:1px solid var(--line);
+  }
+  .trust-item:last-child{border-right:none;}
+  .trust-item h4{font-family:'Cormorant Garamond';font-size:1.15rem;margin-bottom:6px;}
+  .trust-item p{font-size:0.78rem;color:var(--bark);opacity:0.75;}
+
+  /* ---------- Newsletter ---------- */
+  .newsletter{
+    text-align:center;padding:100px 32px;max-width:640px;margin:0 auto;
+  }
+  .newsletter h2{font-size:2.4rem;margin-bottom:14px;}
+  .newsletter p{color:var(--bark);margin-bottom:32px;}
+  .news-form{display:flex;gap:0;border-bottom:1px solid var(--espresso);max-width:420px;margin:0 auto;}
+  .news-form input{
+    flex:1;border:none;background:transparent;padding:12px 4px;
+    font-family:'Jost';font-size:0.9rem;outline:none;color:var(--espresso);
+  }
+  .news-form button{
+    background:none;border:none;font-size:0.78rem;letter-spacing:0.1em;
+    text-transform:uppercase;cursor:pointer;color:var(--gold);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--espresso);color:var(--ivory);padding:64px 32px 28px;}
+  .foot-grid{
+    max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;
+    padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .foot-grid .logo{color:var(--ivory);margin-bottom:14px;}
+  .foot-grid p{font-size:0.85rem;color:#C9C2B2;line-height:1.6;max-width:260px;}
+  .foot-col h5{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;}
+  .foot-col a{display:block;font-size:0.85rem;color:#D8D2C4;margin-bottom:10px;}
+  .foot-bottom{
+    max-width:1180px;margin:0 auto;padding-top:22px;
+    display:flex;justify-content:space-between;font-size:0.75rem;color:#8B8477;flex-wrap:wrap;gap:10px;
+  }
+
+  @media(max-width:900px){
+    .navlinks{display:none;}
+    .hero{grid-template-columns:1fr;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .story{grid-template-columns:1fr;}
+    .story-copy{padding:40px 32px;}
+    .trust{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .trust{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">AUR<span>É</span>LIA</div>
+    <div class="navlinks">
+      <a href="#collection">Collection</a>
+      <a href="#story">Craft</a>
+      <a href="#trust">Certification</a>
+      <a href="#newsletter">Journal</a>
+    </div>
+    <div class="navicons">
+      <div class="searchbox">
+        <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search bracelets…">
+      </div>
+      <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">22K &amp; 18K Solid Gold · Hallmarked</span>
+    <h1>Wear the <em>weight</em><br>of gold, lightly.</h1>
+    <p>Hand-finished bracelets cast in solid gold, each piece hallmark-certified and etched with its own carat mark. Built to be worn every day, passed on for generations.</p>
+    <div class="btn-row">
+      <a href="#collection" class="btn-primary">Shop the Collection</a>
+      <a href="#story" class="btn-ghost">Our Craft →</a>
+    </div>
+  </div>
+  <div class="hero-frame">
+    <img src="https://images.unsplash.com/photo-1633810543462-77c4a3b13f07?auto=format&fit=crop&w=1200&q=80" alt="Model wearing a fine gold bracelet, close up on the wrist">
+    <div class="hero-badge"><b>22K</b><span>Hallmarked</span></div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>BIS Hallmarked</span><span>·</span><span>Free Resizing</span><span>·</span><span>Lifetime Polish</span><span>·</span><span>Certified 22K &amp; 18K</span><span>·</span><span>Handcrafted in‑house</span><span>·</span>
+    <span>BIS Hallmarked</span><span>·</span><span>Free Resizing</span><span>·</span><span>Lifetime Polish</span><span>·</span><span>Certified 22K &amp; 18K</span><span>·</span><span>Handcrafted in‑house</span><span>·</span>
+  </div>
+</div>
+
+<section class="section" id="collection">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The Edit</span>
+        <h2>Bracelets, chosen<br>for the everyday.</h2>
+      </div>
+      <p style="max-width:320px;color:var(--bark);font-size:0.92rem;line-height:1.6;">Three silhouettes, one standard: solid gold, honest weight, a clasp that won't quit.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-img">
+          <span class="card-tag">Bestseller</span>
+          <img src="https://images.unsplash.com/photo-1602527428055-a2526fabdc9f?auto=format&fit=crop&w=800&q=80" alt="Woven gold and bead bracelet">
+        </div>
+        <div class="card-body">
+          <span class="eyebrow">18K Yellow Gold</span>
+          <h3>The Woven Cuff</h3>
+          <p style="font-size:0.85rem;color:var(--bark);">Hand-braided gold strands, finished with a hidden box clasp.</p>
+          <div class="card-meta">
+            <span class="price">₹1,84,900</span>
+            <a href="#" class="add-btn">Add to Bag</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <span class="card-tag">Heritage</span>
+          <img src="https://images.unsplash.com/photo-1603797539125-2a64d5f50f63?auto=format&fit=crop&w=800&q=80" alt="Stack of traditional gold bangles worn on the wrist">
+        </div>
+        <div class="card-body">
+          <span class="eyebrow">22K Gold</span>
+          <h3>Heritage Bangle Set</h3>
+          <p style="font-size:0.85rem;color:var(--bark);">A trio of temple-etched bangles, sold as a set of three.</p>
+          <div class="card-meta">
+            <span><span class="price-old">₹2,65,000</span><span class="price">₹2,38,500</span></span>
+            <a href="#" class="add-btn">Add to Bag</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <span class="card-tag">New</span>
+          <img src="https://images.unsplash.com/photo-1655255114527-d0a834d9a774?auto=format&fit=crop&w=800&q=80" alt="Minimalist thin gold chain bracelet close up">
+        </div>
+        <div class="card-body">
+          <span class="eyebrow">18K Gold</span>
+          <h3>Featherlink Chain</h3>
+          <p style="font-size:0.85rem;color:var(--bark);">A whisper-thin curb chain, made to be stacked or worn alone.</p>
+          <div class="card-meta">
+            <span class="price">₹96,200</span>
+            <a href="#" class="add-btn">Add to Bag</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-img">
+    <img src="https://images.unsplash.com/photo-1655255114527-d0a834d9a774?auto=format&fit=crop&w=1000&q=80" alt="Close-up detail of gold bracelet craftsmanship">
+  </div>
+  <div class="story-copy">
+    <span class="eyebrow">Since 1994</span>
+    <h2>Every link, set by hand in our Jaipur workshop.</h2>
+    <p>Our karigars cast, file, and polish each bracelet across four days — no shortcuts, no plating. What leaves the workshop is solid through and through, stamped with its purity and our maker's mark.</p>
+    <p>Bring in an heirloom piece and we'll rework it into something you'll actually wear.</p>
+    <div class="stat-row">
+      <div><b>30+</b><span>Years Crafting</span></div>
+      <div><b>12,000+</b><span>Pieces Delivered</span></div>
+      <div><b>4 Day</b><span>Hand Finish</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust" id="trust">
+  <div class="trust-item"><h4>BIS Hallmarked</h4><p>Every piece certified for purity, stamped and verifiable.</p></div>
+  <div class="trust-item"><h4>Lifetime Polish</h4><p>Free re-polishing and cleaning, for as long as you own it.</p></div>
+  <div class="trust-item"><h4>Buy-Back Value</h4><p>Trade in toward a new piece at prevailing gold rate.</p></div>
+  <div class="trust-item"><h4>Free Resizing</h4><p>One complimentary resize within the first year.</p></div>
+</div>
+
+<section class="newsletter" id="newsletter">
+  <span class="eyebrow">The Journal</span>
+  <h2>New drops, first look.</h2>
+  <p>Be first to see new collections and workshop stories — no spam, just gold.</p>
+  <div class="news-form">
+    <input type="email" placeholder="Enter your email">
+    <button>Subscribe →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="logo">AUR<span style="color:var(--gold-light);">É</span>LIA</div>
+      <p>Fine solid-gold bracelets, hand-finished in Jaipur and hallmark-certified for purity.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Shop</h5>
+      <a href="#">Bracelets</a>
+      <a href="#">Bangles</a>
+      <a href="#">Chains</a>
+      <a href="#">Gifting</a>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <a href="#">Our Craft</a>
+      <a href="#">Certification</a>
+      <a href="#">Store Locator</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h5>Support</h5>
+      <a href="#">Sizing Guide</a>
+      <a href="#">Resizing</a>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Aurélia Fine Jewellery. All rights reserved.</span>
+    <span>Prices inclusive of GST · Gold rate as of today</span>
+  </div>
+</footer>
+
+</body>
+</html>
