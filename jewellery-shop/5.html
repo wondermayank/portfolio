@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BULAKI — Traditional Nath & Nose Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F0E3;
+    --ivory-deep:#EFE6D2;
+    --maroon:#6E1423;
+    --maroon-deep:#4A0D18;
+    --gold:#C6A15B;
+    --gold-light:#E4CD98;
+    --ink:#2B2118;
+    --rose:#C9727A;
+    --line: rgba(43,33,24,0.14);
+    --shadow: 0 20px 50px rgba(43,20,15,0.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond', serif;}
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--maroon);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--gold-light);color:var(--maroon-deep);}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:26px 0;
+    transition:padding .35s ease, background .35s ease, box-shadow .35s ease;
+  }
+  header.scrolled{
+    padding:14px 0;
+    background:rgba(246,240,227,0.92);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 24px rgba(43,20,15,0.08);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Cinzel',serif;font-size:24px;letter-spacing:.18em;font-weight:600;color:var(--maroon);display:flex;align-items:center;gap:10px;}
+  .logo svg{width:26px;height:26px;}
+  .nav-links{display:flex;gap:38px;list-style:none;}
+  .nav-links a{
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:400;
+    position:relative;padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--maroon);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-icons{display:flex;align-items:center;gap:22px;}
+  .icon-btn{background:none;border:none;cursor:pointer;color:var(--ink);position:relative;display:flex;}
+  .icon-btn svg{width:20px;height:20px;stroke:var(--ink);}
+  .cart-count{
+    position:absolute;top:-8px;right:-9px;background:var(--maroon);color:var(--ivory);
+    font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Jost',sans-serif;
+  }
+  .burger{display:none;}
+
+  /* ---------- Search bar ---------- */
+  .search-panel{
+    max-height:0;overflow:hidden;transition:max-height .4s ease;
+    background:var(--ivory-deep);
+  }
+  .search-panel.open{max-height:90px;}
+  .search-inner{display:flex;align-items:center;gap:14px;padding:20px 0;}
+  .search-inner input{
+    flex:1;border:none;background:transparent;border-bottom:1px solid var(--line);
+    font-family:'Cormorant Garamond',serif;font-size:22px;padding:6px 2px;color:var(--ink);
+  }
+  .search-inner input:focus{outline:none;border-color:var(--maroon);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:flex-end;
+    background:linear-gradient(180deg, rgba(43,20,15,0.15), rgba(43,20,15,0.55)),
+      url('https://images.unsplash.com/photo-1631698532383-97ffe7c223c7?fm=jpg&q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero-inner{width:100%;padding:0 40px 90px;color:var(--ivory);}
+  .hero-eyebrow{
+    font-family:'Cinzel',serif;letter-spacing:.35em;font-size:12px;color:var(--gold-light);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(48px,8vw,104px);line-height:0.98;font-weight:500;
+    max-width:900px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold-light);}
+  .hero p{
+    max-width:440px;margin-top:26px;font-size:16px;line-height:1.7;color:rgba(246,240,227,0.85);
+  }
+  .hero-cta{display:flex;gap:18px;margin-top:38px;flex-wrap:wrap;}
+  .btn{
+    font-family:'Cinzel',serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    padding:17px 34px;border:1px solid var(--gold-light);color:var(--ivory);
+    display:inline-block;transition:background .3s ease,color .3s ease;background:transparent;cursor:pointer;
+  }
+  .btn:hover{background:var(--gold-light);color:var(--maroon-deep);}
+  .btn.solid{background:var(--maroon);border-color:var(--maroon);}
+  .btn.solid:hover{background:var(--maroon-deep);color:var(--ivory);}
+  .btn.dark{border-color:var(--maroon);color:var(--maroon);}
+  .btn.dark:hover{background:var(--maroon);color:var(--ivory);}
+
+  .scroll-cue{
+    position:absolute;right:44px;bottom:36px;writing-mode:vertical-rl;color:var(--ivory);
+    font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;display:flex;align-items:center;gap:10px;
+    opacity:.8;
+  }
+  .scroll-cue::after{content:"";width:1px;height:50px;background:var(--gold-light);display:block;}
+
+  /* ---------- Category strip ---------- */
+  .cats{padding:110px 0 40px;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px;}
+  .section-head h2{font-size:clamp(34px,4vw,50px);font-weight:500;}
+  .section-head p{max-width:360px;font-size:14px;line-height:1.7;color:#6b5f50;}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--line);}
+  .cat-card{
+    background:var(--ivory);padding:44px 22px;text-align:center;cursor:pointer;
+    transition:background .3s ease, transform .3s ease;
+  }
+  .cat-card:hover{background:var(--maroon);transform:translateY(-4px);}
+  .cat-card:hover svg{stroke:var(--gold-light);}
+  .cat-card:hover .cat-name{color:var(--ivory);}
+  .cat-card svg{width:38px;height:38px;stroke:var(--maroon);fill:none;stroke-width:1.1;margin:0 auto 18px;transition:stroke .3s ease;}
+  .cat-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:color .3s ease;}
+
+  /* ---------- Product grid ---------- */
+  .shop{padding:100px 0;}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:50px;}
+  .filter-chip{
+    font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    padding:11px 22px;border:1px solid var(--line);cursor:pointer;background:var(--ivory);transition:all .25s ease;
+  }
+  .filter-chip.active,.filter-chip:hover{background:var(--maroon);color:var(--ivory);border-color:var(--maroon);}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;}
+  .card{
+    background:var(--ivory-deep);position:relative;overflow:hidden;cursor:pointer;
+    display:flex;flex-direction:column;transition:box-shadow .35s ease, transform .35s ease;
+  }
+  .card:hover{box-shadow:var(--shadow);transform:translateY(-6px);}
+  .card-art{
+    aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 50% 40%, #fbf6ea 0%, var(--ivory-deep) 72%);
+    position:relative;
+  }
+  .card-art svg{width:56%;transition:transform .5s ease;}
+  .card:hover .card-art svg{transform:scale(1.08) rotate(-2deg);}
+  .tag{
+    position:absolute;top:16px;left:16px;background:var(--maroon);color:var(--ivory);
+    font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;padding:6px 12px;text-transform:uppercase;
+  }
+  .wish{
+    position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
+    background:rgba(246,240,227,0.85);display:flex;align-items:center;justify-content:center;
+    border:none;cursor:pointer;
+  }
+  .wish svg{width:16px;height:16px;stroke:var(--maroon);fill:none;}
+  .card-body{padding:22px 22px 26px;border-top:1px solid var(--line);}
+  .card-cat{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin-bottom:6px;}
+  .card-body h3{font-size:22px;font-weight:500;margin-bottom:8px;}
+  .card-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .price{font-family:'Cinzel',serif;font-size:15px;color:var(--maroon);}
+  .price .strike{color:#a89a86;text-decoration:line-through;font-size:12px;margin-right:8px;}
+  .add-btn{
+    background:none;border:1px solid var(--maroon);color:var(--maroon);
+    font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    padding:10px 16px;cursor:pointer;transition:all .25s ease;
+  }
+  .add-btn:hover{background:var(--maroon);color:var(--ivory);}
+
+  /* ---------- Story ---------- */
+  .story{
+    display:grid;grid-template-columns:1fr 1fr;align-items:stretch;margin:60px 0;
+  }
+  .story-img{
+    background:url('https://images.unsplash.com/photo-1688382654723-a7366006519b?fm=jpg&q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;
+    min-height:560px;
+  }
+  .story-copy{
+    background:var(--maroon);color:var(--ivory);padding:80px 70px;display:flex;flex-direction:column;justify-content:center;
+  }
+  .story-copy .eyebrow{color:var(--gold-light);}
+  .story-copy h2{font-size:clamp(32px,3.6vw,46px);font-weight:500;margin:20px 0 24px;line-height:1.15;}
+  .story-copy p{font-size:15px;line-height:1.85;color:rgba(246,240,227,0.82);margin-bottom:14px;max-width:440px;}
+  .story-stats{display:flex;gap:50px;margin-top:36px;}
+  .story-stats div strong{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold-light);}
+  .story-stats div span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,240,227,0.7);}
+
+  /* ---------- Size guide ---------- */
+  .guide{padding:110px 0;text-align:center;}
+  .guide-box{
+    max-width:760px;margin:0 auto;background:var(--ivory-deep);padding:60px 50px;border:1px solid var(--line);
+  }
+  .guide-visual{display:flex;justify-content:center;margin:34px 0 10px;}
+  .guide-visual svg{width:260px;}
+  .slider-row{display:flex;align-items:center;gap:18px;max-width:420px;margin:26px auto 6px;}
+  input[type=range]{
+    flex:1;-webkit-appearance:none;height:2px;background:var(--line);outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--maroon);cursor:pointer;
+  }
+  .size-readout{font-family:'Cinzel',serif;font-size:13px;color:var(--maroon);min-width:70px;}
+  .guide small{display:block;margin-top:18px;font-size:12px;color:#7a6c5a;letter-spacing:.02em;}
+
+  /* ---------- Trust bar ---------- */
+  .trust{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust-item{padding:38px 20px;text-align:center;border-right:1px solid var(--line);}
+  .trust-item:last-child{border-right:none;}
+  .trust-item svg{width:26px;height:26px;stroke:var(--maroon);fill:none;margin-bottom:12px;}
+  .trust-item p{font-size:12px;letter-spacing:.05em;color:#6b5f50;}
+
+  /* ---------- Testimonial ---------- */
+  .testi{padding:110px 0;text-align:center;}
+  .testi-quote{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,3vw,36px);
+    max-width:800px;margin:0 auto 26px;line-height:1.5;color:var(--maroon-deep);
+  }
+  .testi-name{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#7a6c5a;}
+
+  /* ---------- Newsletter ---------- */
+  .news{
+    background:var(--ink);color:var(--ivory);padding:90px 0;text-align:center;
+  }
+  .news h2{font-size:clamp(30px,4vw,44px);font-weight:500;margin-bottom:14px;}
+  .news p{color:rgba(246,240,227,.7);font-size:14px;margin-bottom:34px;}
+  .news-form{display:flex;max-width:440px;margin:0 auto;border-bottom:1px solid rgba(246,240,227,.4);}
+  .news-form input{flex:1;background:none;border:none;color:var(--ivory);padding:14px 4px;font-family:'Jost',sans-serif;font-size:14px;}
+  .news-form input:focus{outline:none;}
+  .news-form button{background:none;border:none;color:var(--gold-light);font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--maroon-deep);color:rgba(246,240,227,.75);padding:80px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:60px;}
+  .foot-logo{font-family:'Cinzel',serif;font-size:22px;letter-spacing:.16em;color:var(--ivory);margin-bottom:16px;}
+  .foot-grid p{font-size:13px;line-height:1.8;max-width:280px;}
+  .foot-grid h4{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:11px;font-size:13px;}
+  .foot-grid li a:hover{color:var(--gold-light);}
+  .foot-bottom{
+    border-top:1px solid rgba(246,240,227,.15);padding-top:26px;display:flex;justify-content:space-between;
+    font-size:11px;letter-spacing:.05em;color:rgba(246,240,227,.5);flex-wrap:wrap;gap:10px;
+  }
+
+  /* ---------- Cart drawer ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(43,20,15,.45);z-index:200;opacity:0;pointer-events:none;transition:opacity .35s ease;
+  }
+  .overlay.open{opacity:1;pointer-events:auto;}
+  .drawer{
+    position:fixed;top:0;right:0;height:100%;width:420px;max-width:90vw;background:var(--ivory);
+    z-index:201;transform:translateX(100%);transition:transform .4s cubic-bezier(.7,0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:30px 30px 20px;border-bottom:1px solid var(--line);}
+  .drawer-head h3{font-size:24px;}
+  .drawer-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--maroon);}
+  .drawer-items{flex:1;overflow-y:auto;padding:20px 30px;}
+  .drawer-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center;}
+  .drawer-item svg{width:52px;height:52px;flex-shrink:0;}
+  .drawer-item .info{flex:1;}
+  .drawer-item .info h5{font-size:16px;font-weight:500;font-family:'Cormorant Garamond',serif;}
+  .drawer-item .info span{font-size:12px;color:#8a7c68;}
+  .drawer-item .remove{background:none;border:none;color:var(--rose);cursor:pointer;font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-family:'Cinzel',serif;}
+  .drawer-empty{padding:60px 30px;text-align:center;color:#9a8c78;font-size:14px;}
+  .drawer-foot{padding:26px 30px 34px;border-top:1px solid var(--line);}
+  .drawer-total{display:flex;justify-content:space-between;margin-bottom:20px;font-family:'Cinzel',serif;font-size:14px;}
+
+  /* ---------- Quick view modal ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:210;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .35s ease;
+  }
+  .modal.open{opacity:1;pointer-events:auto;}
+  .modal-box{
+    background:var(--ivory);width:820px;max-width:92vw;max-height:86vh;overflow:auto;
+    display:grid;grid-template-columns:1fr 1fr;box-shadow:0 40px 90px rgba(0,0,0,.35);
+  }
+  .modal-art{background:radial-gradient(circle at 50% 40%,#fbf6ea,#EFE6D2 75%);display:flex;align-items:center;justify-content:center;padding:40px;}
+  .modal-art svg{width:70%;}
+  .modal-info{padding:44px;position:relative;}
+  .modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--maroon);}
+  .modal-info h3{font-size:32px;margin:8px 0 12px;}
+  .modal-info p.desc{font-size:14px;line-height:1.8;color:#6b5f50;margin-bottom:22px;}
+  .modal-info .price{font-size:20px;margin-bottom:26px;display:block;}
+
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--maroon);color:var(--ivory);padding:16px 28px;font-size:13px;letter-spacing:.05em;
+    z-index:300;opacity:0;transition:all .35s ease;font-family:'Cinzel',serif;text-transform:uppercase;font-size:11px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:1000px){
+    .cat-grid{grid-template-columns:repeat(3,1fr);}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .story{grid-template-columns:1fr;}
+    .story-img{min-height:340px;}
+    .story-copy{padding:56px 36px;}
+    .trust{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .modal-box{grid-template-columns:1fr;}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 22px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .grid{grid-template-columns:1fr;}
+    .hero-inner{padding:0 22px 60px;}
+    .trust{grid-template-columns:1fr;}
+    .trust-item{border-right:none;border-bottom:1px solid var(--line);}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20 6 C11 6 6 14 6 21 C6 29 12 34 20 34 C28 34 34 29 34 21"/><circle cx="20" cy="6" r="2.4" fill="currentColor" stroke="none"/></svg>
+        BULAKI
+      </a>
+      <ul class="nav-links">
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#bridal">Bridal</a></li>
+        <li><a href="#guide">Size Guide</a></li>
+        <li><a href="#story">Our Craft</a></li>
+      </ul>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="icon-btn" id="wishToggle" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 21s-7.5-4.7-10-9.3C.4 8.4 2 4.5 5.6 4c2.1-.3 4 .8 6.4 3.3C14.4 4.8 16.3 3.7 18.4 4c3.6.5 5.2 4.4 3.6 7.7C19.5 16.3 12 21 12 21z"/></svg>
+        </button>
+        <button class="icon-btn" id="cartToggle" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="icon-btn burger" id="burgerBtn" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div class="search-panel" id="searchPanel">
+    <div class="wrap search-inner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b5f50" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search naths, studs, kundan, pearl, bridal…">
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-inner wrap">
+    <div class="hero-eyebrow reveal">HANDCRAFTED · 22K GOLD · SINCE PARAMPARA</div>
+    <h1 class="reveal">The art of the<br><em>nath</em>, worn new.</h1>
+    <p class="reveal">Traditional nose rings — nath, laung, bulak and nathni — handcrafted by karigars across Rajasthan and reimagined for the modern bride and everyday wearer.</p>
+    <div class="hero-cta reveal">
+      <a href="#collection" class="btn solid">Shop the Collection</a>
+      <a href="#bridal" class="btn">Bridal Edit</a>
+    </div>
+  </div>
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="cats wrap">
+  <div class="section-head reveal">
+    <h2>Shop by style</h2>
+    <p>Every region of India wears the nath differently. Find the silhouette that speaks to yours.</p>
+  </div>
+  <div class="cat-grid reveal" id="catGrid"></div>
+</section>
+
+<!-- ================= SHOP GRID ================= -->
+<section class="shop wrap" id="collection">
+  <div class="section-head reveal">
+    <h2>The Collection</h2>
+    <p>Each piece hand-finished in 22K gold plating, kundan, and freshwater pearl.</p>
+  </div>
+  <div class="filters reveal" id="filters"></div>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="story reveal" id="story">
+  <div class="story-img"></div>
+  <div class="story-copy">
+    <div class="eyebrow">Our Craft</div>
+    <h2>Every nath carries a story older than the hands that made it.</h2>
+    <p>In the lanes of Jaipur and Jodhpur, our karigars still shape gold the way their grandfathers did — heating, hammering, setting kundan by eye, stringing pearls one at a time.</p>
+    <p>We work directly with three generational family workshops to keep that craft alive, piece by piece.</p>
+    <div class="story-stats">
+      <div><strong>120+</strong><span>Karigars</span></div>
+      <div><strong>18</strong><span>Years Craft</span></div>
+      <div><strong>9k+</strong><span>Brides Adorned</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIZE GUIDE ================= -->
+<section class="guide wrap" id="guide">
+  <div class="eyebrow reveal">Fit Guide</div>
+  <h2 class="reveal" style="font-size:clamp(30px,4vw,44px);font-weight:500;margin-top:14px;">Find your nath size</h2>
+  <div class="guide-box reveal">
+    <p style="font-size:14px;color:#6b5f50;line-height:1.8;">Drag to match the hoop diameter to your nostril-to-cheek measurement.</p>
+    <div class="guide-visual">
+      <svg id="guideSvg" viewBox="0 0 260 200" fill="none">
+        <path d="M60 170c0-70 30-130 70-130s70 60 70 130" stroke="#2B2118" stroke-width="1.2" opacity=".35"/>
+        <circle id="guideRing" cx="112" cy="100" r="20" stroke="#6E1423" stroke-width="2.4" fill="none"/>
+      </svg>
+    </div>
+    <div class="slider-row">
+      <span style="font-size:11px;letter-spacing:.1em;color:#8a7c68;">SMALL</span>
+      <input type="range" id="sizeSlider" min="8" max="26" value="16">
+      <span style="font-size:11px;letter-spacing:.1em;color:#8a7c68;">LARGE</span>
+    </div>
+    <div class="size-readout" id="sizeReadout" style="margin:0 auto;">16 mm</div>
+    <small>Unsure? Our stylists offer free fit consultations before your bridal order ships.</small>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section class="trust">
+  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-width="1.3"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4z"/></svg><p>Certified 22K Gold Plating</p></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-width="1.3"><path d="M3 12h18M3 6h18M3 18h18"/></svg><p>Handcrafted by Rajasthan Karigars</p></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-width="1.3"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg><p>Free Insured Shipping, PAN India</p></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" stroke-width="1.3"><path d="M20 6 9 17l-5-5"/></svg><p>7-Day Easy Returns</p></div>
+</section>
+
+<!-- ================= TESTIMONIAL ================= -->
+<section class="testi wrap">
+  <div class="eyebrow reveal" style="margin-bottom:20px;">Wearer Notes</div>
+  <p class="testi-quote reveal">"My wedding nath from Bulaki felt like it belonged to my grandmother's generation — and mine at once. The chain, the kundan work, all of it, flawless."</p>
+  <div class="testi-name reveal">— Ananya R., Jaipur</div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="news">
+  <div class="wrap">
+    <h2 class="reveal">Join the inner circle</h2>
+    <p class="reveal">New drops, bridal edits, and karigar stories — once a month, nothing more.</p>
+    <form class="news-form reveal" id="newsForm">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">BULAKI</div>
+        <p>Traditional nath, laung, bulak and nathni — handcrafted across Rajasthan for the modern wearer.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#collection">Bridal Nath</a></li>
+          <li><a href="#collection">Kundan Studs</a></li>
+          <li><a href="#collection">Pearl Laung</a></li>
+          <li><a href="#collection">Diamond Pins</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#guide">Size Guide</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Care Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#story">Our Craft</a></li>
+          <li><a href="#">Karigars</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Bulaki Jewels. All rights reserved.</span>
+      <span>Made with reverence for the karigar's hand.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Bag</h3>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Subtotal</span><span id="drawerSubtotal">₹0</span></div>
+    <button class="btn solid" style="width:100%;text-align:center;">Checkout</button>
+  </div>
+</div>
+
+<!-- ================= QUICK VIEW MODAL ================= -->
+<div class="modal" id="quickModal">
+  <div class="modal-box">
+    <div class="modal-art" id="modalArt"></div>
+    <div class="modal-info">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="eyebrow" id="modalCat">Category</div>
+      <h3 id="modalTitle">Product Name</h3>
+      <p class="desc" id="modalDesc">Description</p>
+      <span class="price" id="modalPrice">₹0</span>
+      <button class="btn dark" id="modalAdd">Add to Bag</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Added to bag</div>
+
+<script>
+/* ---------------- SVG art (signature line-drawn nath motifs) ---------------- */
+const svgHoopChain = `<svg viewBox="0 0 120 120" fill="none"><path d="M60 22c-19 0-33 15-33 34s14 34 33 34 33-15 33-34" stroke="#6E1423" stroke-width="2.4"/><circle cx="60" cy="22" r="4.5" fill="#C6A15B"/><path d="M60 22c8 6 14 16 14 30" stroke="#C6A15B" stroke-width="1.2" stroke-dasharray="2 3"/><circle cx="74" cy="52" r="2.4" fill="#C9727A"/></svg>`;
+const svgKundanStud = `<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="16" stroke="#6E1423" stroke-width="2.4"/><circle cx="60" cy="60" r="6" fill="#C6A15B"/><circle cx="60" cy="60" r="16" stroke="#C6A15B" stroke-width="1" stroke-dasharray="1 4"/></svg>`;
+const svgPearlDrop = `<svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="40" r="10" stroke="#6E1423" stroke-width="2.2"/><path d="M60 50v22" stroke="#6E1423" stroke-width="1.4"/><circle cx="60" cy="82" r="9" fill="#F6F0E3" stroke="#C6A15B" stroke-width="1.6"/></svg>`;
+const svgDiamondPin = `<svg viewBox="0 0 120 120" fill="none"><path d="M60 46 72 60 60 74 48 60z" stroke="#6E1423" stroke-width="2.2"/><path d="M60 46 72 60 60 74 48 60z" fill="#C6A15B" opacity=".25"/></svg>`;
+const svgBulakSeptum = `<svg viewBox="0 0 120 120" fill="none"><path d="M60 34 78 66 42 66z" stroke="#6E1423" stroke-width="2.2" stroke-linejoin="round"/><circle cx="60" cy="52" r="3" fill="#C9727A"/></svg>`;
+const svgNathni = `<svg viewBox="0 0 120 120" fill="none"><path d="M60 20c-22 0-38 17-38 38s16 38 38 38 38-17 38-38" stroke="#6E1423" stroke-width="2.4"/><path d="M60 20c10 8 17 22 17 38" stroke="#C6A15B" stroke-width="1" stroke-dasharray="2 3"/><circle cx="77" cy="58" r="2.2" fill="#F6F0E3" stroke="#C6A15B"/><circle cx="82" cy="70" r="2.2" fill="#F6F0E3" stroke="#C6A15B"/><circle cx="83" cy="83" r="2.2" fill="#F6F0E3" stroke="#C6A15B"/></svg>`;
+
+const categories = [
+  {name:"Bridal Nath", icon: svgHoopChain},
+  {name:"Kundan Studs", icon: svgKundanStud},
+  {name:"Pearl Laung", icon: svgPearlDrop},
+  {name:"Diamond Pins", icon: svgDiamondPin},
+  {name:"Bulak & Septum", icon: svgBulakSeptum},
+];
+
+const products = [
+  {id:1, name:"Rajwadi Bridal Nath", cat:"Bridal", price:6499, mrp:8999, art:svgHoopChain, tag:"Bestseller", desc:"A grand chain-supported nath in 22K gold plating with hand-set kundan, styled after Rajputana bridal jewellery."},
+  {id:2, name:"Meenakari Kundan Stud", cat:"Studs", price:1899, mrp:2499, art:svgKundanStud, tag:"New", desc:"A dainty everyday stud with hand-painted meenakari back and a single kundan stone."},
+  {id:3, name:"Moti Laung Drop", cat:"Pearl", price:2299, mrp:null, art:svgPearlDrop, tag:null, desc:"Freshwater pearl drop laung on a fine gold-plated pin, light enough for daily wear."},
+  {id:4, name:"Zircon Solitaire Pin", cat:"Studs", price:2799, mrp:3499, art:svgDiamondPin, tag:"Popular", desc:"A brilliant-cut zircon set in a claw mount — the modern reading of a classic nose pin."},
+  {id:5, name:"Pahadi Bulak Ring", cat:"Bulak", price:3199, mrp:null, art:svgBulakSeptum, tag:null, desc:"A triangular septum ornament inspired by Himachal and Garhwali silverwork."},
+  {id:6, name:"Chandni Nathni", cat:"Bridal", price:7999, mrp:10499, art:svgNathni, tag:"Bridal Edit", desc:"A cascading pearl-and-gold nathni with a hair-chain, worn by brides across North India."},
+  {id:7, name:"Antique Gold Laung", cat:"Pearl", price:1699, mrp:null, art:svgPearlDrop, tag:null, desc:"An antique-finish laung with a small ruby-red accent stone."},
+  {id:8, name:"Jaipuri Hoop Nath", cat:"Bridal", price:5299, mrp:6299, art:svgHoopChain, tag:null, desc:"A medium hoop nath with fine filigree work, ideal for engagements and sangeet."},
+];
+
+const filterList = ["All","Bridal","Studs","Pearl","Bulak"];
+
+/* ---------------- Render categories ---------------- */
+const catGrid = document.getElementById('catGrid');
+categories.forEach(c=>{
+  const el = document.createElement('div');
+  el.className='cat-card';
+  el.innerHTML = `${c.icon}<div class="cat-name">${c.name}</div>`;
+  el.addEventListener('click', ()=> document.getElementById('collection').scrollIntoView({behavior:'smooth'}));
+  catGrid.appendChild(el);
+});
+
+/* ---------------- Render filters ---------------- */
+const filtersEl = document.getElementById('filters');
+let activeFilter = "All";
+filterList.forEach(f=>{
+  const chip = document.createElement('button');
+  chip.className = 'filter-chip' + (f==="All" ? ' active' : '');
+  chip.textContent = f;
+  chip.addEventListener('click', ()=>{
+    activeFilter = f;
+    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    renderProducts();
+  });
+  filtersEl.appendChild(chip);
+});
+
+/* ---------------- Cart state ---------------- */
+let cart = [];
+const cartCountEl = document.getElementById('cartCount');
+const drawerItems = document.getElementById('drawerItems');
+const drawerSubtotal = document.getElementById('drawerSubtotal');
+
+function fmt(n){ return "₹" + n.toLocaleString('en-IN'); }
+
+function addToCart(product){
+  cart.push(product);
+  updateCart();
+  showToast(`${product.name} added to bag`);
+}
+function removeFromCart(index){
+  cart.splice(index,1);
+  updateCart();
+}
+function updateCart(){
+  cartCountEl.textContent = cart.length;
+  drawerItems.innerHTML = '';
+  if(cart.length===0){
+    drawerItems.innerHTML = '<div class="drawer-empty">Your bag is empty — the collection awaits.</div>';
+  } else {
+    cart.forEach((p,i)=>{
+      const row = document.createElement('div');
+      row.className='drawer-item';
+      row.innerHTML = `${p.art}<div class="info"><h5>${p.name}</h5><span>${fmt(p.price)}</span></div><button class="remove" data-i="${i}">Remove</button>`;
+      drawerItems.appendChild(row);
+    });
+    drawerItems.querySelectorAll('.remove').forEach(btn=>{
+      btn.addEventListener('click', e=> removeFromCart(parseInt(e.target.dataset.i)));
+    });
+  }
+  const total = cart.reduce((s,p)=> s+p.price, 0);
+  drawerSubtotal.textContent = fmt(total);
+}
+updateCart();
+
+/* ---------------- Render products ---------------- */
+const productGrid = document.getElementById('productGrid');
+function renderProducts(searchTerm=''){
+  productGrid.innerHTML = '';
+  const term = searchTerm.trim().toLowerCase();
+  const list = products.filter(p=>{
+    const matchFilter = activeFilter==="All" || p.cat===activeFilter;
+    const matchSearch = !term || p.name.toLowerCase().includes(term) || p.cat.toLowerCase().includes(term);
+    return matchFilter && matchSearch;
+  });
+  if(list.length===0){
+    productGrid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#9a8c78;padding:60px 0;">No pieces match your search — try "nath", "pearl" or "kundan".</p>';
+    return;
+  }
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML = `
+      <div class="card-art">
+        ${p.tag ? `<span class="tag">${p.tag}</span>`:''}
+        <button class="wish" aria-label="Wishlist"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 21s-7.5-4.7-10-9.3C.4 8.4 2 4.5 5.6 4c2.1-.3 4 .8 6.4 3.3C14.4 4.8 16.3 3.7 18.4 4c3.6.5 5.2 4.4 3.6 7.7C19.5 16.3 12 21 12 21z"/></svg></button>
+        ${p.art}
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${p.cat}</div>
+        <h3>${p.name}</h3>
+        <div class="card-meta">
+          <div class="price">${p.mrp ? `<span class="strike">${fmt(p.mrp)}</span>`:''}${fmt(p.price)}</div>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>`;
+    card.querySelector('.add-btn').addEventListener('click', e=>{ e.stopPropagation(); addToCart(p); });
+    card.querySelector('.wish').addEventListener('click', e=>{ e.stopPropagation(); e.currentTarget.querySelector('svg').setAttribute('fill','#6E1423'); });
+    card.addEventListener('click', ()=> openModal(p));
+    productGrid.appendChild(card);
+  });
+}
+renderProducts();
+
+/* ---------------- Search ---------------- */
+const searchPanel = document.getElementById('searchPanel');
+const searchInput = document.getElementById('searchInput');
+document.getElementById('searchToggle').addEventListener('click', ()=>{
+  searchPanel.classList.toggle('open');
+  if(searchPanel.classList.contains('open')) setTimeout(()=>searchInput.focus(),300);
+});
+searchInput.addEventListener('input', e=> renderProducts(e.target.value));
+
+/* ---------------- Quick view modal ---------------- */
+const quickModal = document.getElementById('quickModal');
+function openModal(p){
+  document.getElementById('modalArt').innerHTML = p.art;
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalPrice').textContent = fmt(p.price);
+  document.getElementById('modalAdd').onclick = ()=> addToCart(p);
+  quickModal.classList.add('open');
+}
+document.getElementById('modalClose').addEventListener('click', ()=> quickModal.classList.remove('open'));
+quickModal.addEventListener('click', e=>{ if(e.target===quickModal) quickModal.classList.remove('open'); });
+
+/* ---------------- Cart drawer ---------------- */
+const overlay = document.getElementById('overlay');
+const cartDrawer = document.getElementById('cartDrawer');
+function openDrawer(){ cartDrawer.classList.add('open'); overlay.classList.add('open'); }
+function closeDrawer(){ cartDrawer.classList.remove('open'); overlay.classList.remove('open'); }
+document.getElementById('cartToggle').addEventListener('click', openDrawer);
+document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+overlay.addEventListener('click', ()=>{ closeDrawer(); quickModal.classList.remove('open'); });
+
+/* ---------------- Toast ---------------- */
+const toast = document.getElementById('toast');
+let toastTimer;
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove('show'), 2200);
+}
+
+/* ---------------- Sticky header ---------------- */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ---------------- Size guide slider ---------------- */
+const sizeSlider = document.getElementById('sizeSlider');
+const guideRing = document.getElementById('guideRing');
+const sizeReadout = document.getElementById('sizeReadout');
+sizeSlider.addEventListener('input', e=>{
+  const v = parseInt(e.target.value);
+  guideRing.setAttribute('r', v);
+  sizeReadout.textContent = v + " mm";
+});
+
+/* ---------------- Newsletter ---------------- */
+document.getElementById('newsForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  showToast("You're on the list ✦");
+  e.target.reset();
+});
+
+/* ---------------- Scroll reveal ---------------- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in'); });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+</script>
+</body>
+</html>
