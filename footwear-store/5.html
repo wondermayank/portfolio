@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCUT — Statement Footwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --ink-soft:#161615;
+    --bone:#f2eee6;
+    --bone-dim:#dfd9cb;
+    --signal:#ff3b1f;
+    --acid:#d8ff3e;
+    --steel:#7a7a76;
+    --line: rgba(242,238,230,0.14);
+    --line-dark: rgba(10,10,10,0.12);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:0.01em;line-height:0.88;}
+  .mono{font-family:'Space Mono',monospace;}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 40px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  ::selection{background:var(--signal);color:var(--bone);}
+  :focus-visible{outline:3px solid var(--acid);outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(24px,3vw,30px);
+    letter-spacing:0.02em;
+  }
+  .logo span{color:var(--signal);}
+  nav.links{display:flex;gap:36px;}
+  nav.links a{
+    font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+    position:relative;padding-bottom:4px;
+    transition:color .2s ease;
+  }
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--signal);
+    transition:width .25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .cart-btn{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--line);padding:9px 16px;
+    font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    cursor:pointer;background:transparent;color:var(--bone);
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .cart-btn:hover{background:var(--bone);color:var(--ink);border-color:var(--bone);}
+  @media(max-width:860px){ nav.links{display:none;} }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background:var(--acid);
+    color:var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--ink);
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation:scroll 22s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    padding:10px 28px;
+    display:inline-flex;align-items:center;gap:28px;
+  }
+  .marquee-track span::after{content:"◆";font-size:9px;}
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:72px 0 0;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    align-items:center;
+    gap:40px;
+  }
+  .hero-copy .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--signal);font-weight:700;
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .hero-copy .eyebrow::before{content:"";width:26px;height:2px;background:var(--signal);display:inline-block;}
+  .hero-title{
+    font-size:clamp(58px,9vw,128px);
+    color:var(--bone);
+  }
+  .hero-title em{font-style:normal;color:var(--signal);}
+  .hero-title .outline{
+    -webkit-text-stroke:2px var(--bone);
+    color:transparent;
+  }
+  .hero-sub{
+    max-width:420px;color:var(--bone-dim);font-size:16px;line-height:1.65;
+    margin:26px 0 34px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;
+    font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    cursor:pointer;border:none;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .btn-primary{background:var(--signal);color:var(--bone);}
+  .btn-primary:hover{transform:translateY(-2px);background:#ff5233;}
+  .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--bone);}
+  .btn-ghost:hover{border-color:var(--bone);}
+
+  .hero-media{position:relative;padding:20px 0 60px;}
+  .hero-media .frame{
+    position:relative;
+    background:linear-gradient(160deg,#1c1c1a,#0a0a0a 70%);
+    border:1px solid var(--line);
+    aspect-ratio:4/5;
+    overflow:hidden;
+  }
+  .hero-media img{
+    width:100%;height:100%;object-fit:cover;
+    filter:contrast(1.05) saturate(1.05);
+  }
+  .stamp{
+    position:absolute;
+    background:var(--acid);color:var(--ink);
+    font-family:'Space Mono',monospace;font-weight:700;
+    padding:10px 16px;font-size:12px;letter-spacing:0.04em;
+    transform:rotate(-8deg);
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    border:1px solid var(--ink);
+  }
+  .stamp.top{top:-18px;left:-14px;}
+  .stamp.bottom{
+    bottom:-16px;right:-10px;
+    background:var(--ink);color:var(--bone);
+    border:1px solid var(--bone);
+    transform:rotate(6deg);
+  }
+  .hero-caption{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-top:18px;font-family:'Space Mono',monospace;font-size:12px;color:var(--steel);
+    text-transform:uppercase;letter-spacing:0.06em;
+  }
+
+  /* ---------- MANIFESTO ---------- */
+  .manifesto{
+    background:var(--bone);
+    color:var(--ink);
+    padding:110px 0;
+  }
+  .manifesto .wrap{display:grid;grid-template-columns:1fr 2.2fr;gap:60px;align-items:start;}
+  .manifesto .tag{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--signal);font-weight:700;
+  }
+  .manifesto blockquote{
+    font-family:'Anton',sans-serif;
+    text-transform:uppercase;
+    font-size:clamp(30px,4.4vw,54px);
+    line-height:1.08;
+  }
+  .manifesto blockquote span{color:var(--signal);}
+  .manifesto .sign{
+    margin-top:30px;font-family:'Space Mono',monospace;font-size:13px;color:var(--steel);
+  }
+  @media(max-width:860px){ .manifesto .wrap{grid-template-columns:1fr;} }
+
+  /* ---------- DROP GRID ---------- */
+  .drop{padding:110px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:56px;gap:24px;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:26px;
+  }
+  .section-head .tag{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--signal);font-weight:700;margin-bottom:14px;display:block;
+  }
+  .section-head h2{
+    font-size:clamp(36px,5vw,64px);
+  }
+  .section-head p{color:var(--steel);max-width:320px;font-size:14px;line-height:1.6;}
+
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media(max-width:900px){ .product-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .product-grid{grid-template-columns:1fr;} }
+
+  .product{
+    background:var(--ink);
+    position:relative;
+    padding:26px 26px 30px;
+    transition:background .25s ease;
+  }
+  .product:hover{background:var(--ink-soft);}
+  .product .idx{
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--steel);
+    display:flex;justify-content:space-between;margin-bottom:16px;
+  }
+  .product .flag{
+    background:var(--signal);color:var(--bone);
+    font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    padding:3px 8px;
+  }
+  .product .flag.sold{background:transparent;border:1px solid var(--steel);color:var(--steel);}
+  .product-img{
+    aspect-ratio:1/1;overflow:hidden;background:#141412;margin-bottom:18px;
+    border:1px solid var(--line);
+  }
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .product:hover .product-img img{transform:scale(1.06);}
+  .product h3{
+    font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:0.01em;
+    margin-bottom:6px;
+  }
+  .product .desc{color:var(--steel);font-size:13px;margin-bottom:16px;line-height:1.5;}
+  .product .foot{display:flex;justify-content:space-between;align-items:center;}
+  .product .price{font-family:'Space Mono',monospace;font-weight:700;font-size:16px;color:var(--acid);}
+  .product .add{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    border:1px solid var(--line);padding:7px 12px;cursor:pointer;background:transparent;color:var(--bone);
+    transition:all .2s ease;
+  }
+  .product .add:hover{background:var(--bone);color:var(--ink);border-color:var(--bone);}
+
+  /* ---------- LIFESTYLE BREAK ---------- */
+  .break{
+    position:relative;
+    height:70vh;min-height:460px;
+    display:flex;align-items:flex-end;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .break img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(0.35) contrast(1.1);
+  }
+  .break::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(10,10,10,0.92) 5%, rgba(10,10,10,0.15) 55%, rgba(10,10,10,0.05) 100%);
+  }
+  .break-content{position:relative;z-index:2;padding:0 0 60px;width:100%;}
+  .break-content .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;}
+  .break h2{
+    font-size:clamp(34px,6vw,84px);max-width:680px;
+  }
+  .break p{color:var(--bone-dim);max-width:300px;font-size:14px;line-height:1.6;}
+
+  /* ---------- EDITORIAL FEATURE ---------- */
+  .feature{padding:110px 0;border-bottom:1px solid var(--line);}
+  .feature .wrap{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:center;
+  }
+  .feature-img{
+    position:relative;aspect-ratio:5/6;overflow:hidden;border:1px solid var(--line);background:#141412;
+  }
+  .feature-img img{width:100%;height:100%;object-fit:cover;}
+  .feature-copy .tag{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--signal);font-weight:700;margin-bottom:18px;display:block;
+  }
+  .feature-copy h2{font-size:clamp(34px,5vw,60px);margin-bottom:22px;}
+  .feature-copy p{color:var(--bone-dim);font-size:16px;line-height:1.7;max-width:460px;margin-bottom:30px;}
+  .spec-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 30px;margin-bottom:36px;}
+  .spec-list div{border-top:1px solid var(--line);padding-top:12px;}
+  .spec-list .k{font-family:'Space Mono',monospace;font-size:11px;color:var(--steel);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+  .spec-list .v{font-weight:700;font-size:15px;}
+  @media(max-width:860px){ .feature .wrap{grid-template-columns:1fr;} }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:var(--signal);color:var(--ink);
+    padding:90px 0;text-align:center;
+  }
+  .cta-band h2{
+    font-size:clamp(36px,7vw,92px);margin-bottom:26px;color:var(--ink);
+  }
+  .cta-band p{font-size:15px;max-width:420px;margin:0 auto 34px;font-weight:600;}
+  .cta-form{display:flex;justify-content:center;gap:0;max-width:440px;margin:0 auto;border:2px solid var(--ink);}
+  .cta-form input{
+    flex:1;border:none;background:transparent;padding:16px 18px;font-size:14px;font-family:'Inter';color:var(--ink);
+  }
+  .cta-form input::placeholder{color:rgba(10,10,10,0.55);}
+  .cta-form button{
+    border:none;background:var(--ink);color:var(--bone);
+    padding:16px 26px;font-weight:700;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+  }
+  .cta-form button:hover{background:var(--ink-soft);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:80px 0 0;}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:70px;border-bottom:1px solid var(--line);}
+  .foot-brand .logo{margin-bottom:16px;}
+  .foot-brand p{color:var(--steel);font-size:13px;max-width:260px;line-height:1.6;}
+  .foot-col h4{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--steel);margin-bottom:18px;}
+  .foot-col a{display:block;font-size:14px;margin-bottom:12px;color:var(--bone-dim);transition:color .2s ease;}
+  .foot-col a:hover{color:var(--signal);}
+  @media(max-width:860px){ .foot-top{grid-template-columns:1fr 1fr;} }
+
+  .foot-bottom{
+    padding:34px 0;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+    font-family:'Space Mono',monospace;font-size:12px;color:var(--steel);
+  }
+  .wordmark{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(60px,14vw,220px);
+    color:var(--ink-soft);
+    line-height:0.8;
+    text-align:center;
+    letter-spacing:-0.01em;
+    padding:20px 0 0;
+    user-select:none;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">UNCUT<span>.</span></div>
+    <nav class="links">
+      <a href="#drop">Drops</a>
+      <a href="#feature">Archive</a>
+      <a href="#manifesto">Manifesto</a>
+      <a href="#stockists">Stockists</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cart-btn" aria-label="View cart, 0 items">Cart · 0</button>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>LIMITED RUN — 500 PAIRS ONLY</span>
+    <span>NO RESTOCK</span>
+    <span>FREE SHIPPING OVER ₹4000</span>
+    <span>DROP 014 LIVE NOW</span>
+    <span>LIMITED RUN — 500 PAIRS ONLY</span>
+    <span>NO RESTOCK</span>
+    <span>FREE SHIPPING OVER ₹4000</span>
+    <span>DROP 014 LIVE NOW</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Drop 014 / Unpaired Series</div>
+      <h1 class="hero-title display">
+        STEP<br>
+        <em>LOUD</em><br>
+        <span class="outline">OR STAY</span><br>
+        HOME.
+      </h1>
+      <p class="hero-sub">Footwear built for people who don't blend in. Loud colourways, honest materials, zero apology. Each pair numbered — nothing restocked, ever.</p>
+      <div class="hero-cta">
+        <a href="#drop" class="btn btn-primary">Shop The Drop</a>
+        <a href="#manifesto" class="btn btn-ghost">Read The Manifesto</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Single unpaired bold red sneaker shot against a dark background">
+        <div class="stamp top">001 / 500</div>
+        <div class="stamp bottom mono">₹9,999</div>
+      </div>
+      <div class="hero-caption">
+        <span>THE SIGNAL — Crimson</span>
+        <span>In Stock</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="wrap">
+    <div class="tag">// The Manifesto</div>
+    <div>
+      <blockquote>
+        We don't design shoes to <span>match your outfit.</span> We design shoes so your outfit matches your mood. Every pair is a small, wearable argument that quiet is optional.
+      </blockquote>
+      <div class="sign">— The UNCUT Design Table, Indore</div>
+    </div>
+  </div>
+</section>
+
+<!-- DROP GRID -->
+<section class="drop" id="drop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="tag">// Drop 014</span>
+        <h2 class="display">The Six</h2>
+      </div>
+      <p>Six colourways, one silhouette, no seconds. When a size is gone, it's gone — we don't reprint.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product">
+        <div class="idx"><span>THE 001</span><span class="flag">Limited</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1571601035754-5c927f2d7edc?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Red, white and black high-top sneaker, the Crimson colourway">
+        </div>
+        <h3>Crimson</h3>
+        <p class="desc">Full-grain leather, contrast stitch, statement sole unit.</p>
+        <div class="foot"><span class="price">₹8,499</span><button class="add">+ Add</button></div>
+      </article>
+
+      <article class="product">
+        <div class="idx"><span>THE 002</span><span class="flag">New</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1603787081207-362bcef7c144?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Blue and black high-top sneaker, the Midnight colourway">
+        </div>
+        <h3>Midnight</h3>
+        <p class="desc">Suede overlays, blacked-out hardware, glow trim.</p>
+        <div class="foot"><span class="price">₹8,999</span><button class="add">+ Add</button></div>
+      </article>
+
+      <article class="product">
+        <div class="idx"><span>THE 003</span><span class="flag">New</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="White and red athletic sneaker, the Signal colourway">
+        </div>
+        <h3>Signal</h3>
+        <p class="desc">Lightweight mesh upper, responsive foam midsole.</p>
+        <div class="foot"><span class="price">₹7,999</span><button class="add">+ Add</button></div>
+      </article>
+
+      <article class="product">
+        <div class="idx"><span>THE 004</span><span class="flag sold">Sold Out</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1588361861040-ac9b1018f6d5?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="White low-top sneaker, the Ghost colourway">
+        </div>
+        <h3>Ghost</h3>
+        <p class="desc">Clean canvas white-out. Wears in, never wears out.</p>
+        <div class="foot"><span class="price">₹7,499</span><button class="add">+ Add</button></div>
+      </article>
+
+      <article class="product">
+        <div class="idx"><span>THE 005</span><span class="flag">Limited</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Green and black athletic sneaker, the Toxic colourway">
+        </div>
+        <h3>Toxic</h3>
+        <p class="desc">High-vis green pop against blacked-out trim.</p>
+        <div class="foot"><span class="price">₹8,299</span><button class="add">+ Add</button></div>
+      </article>
+
+      <article class="product">
+        <div class="idx"><span>THE 006</span><span class="flag">New</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="White and blue high-top sneaker, the Arctic colourway">
+        </div>
+        <h3>Arctic</h3>
+        <p class="desc">Ice-blue overlays, padded collar, grip-heavy tread.</p>
+        <div class="foot"><span class="price">₹8,799</span><button class="add">+ Add</button></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE BREAK -->
+<section class="break">
+  <img src="https://images.unsplash.com/photo-1562424995-2efe650421dd?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Person wearing white statement sneakers walking outdoors in daylight">
+  <div class="break-content">
+    <div class="wrap">
+      <h2 class="display">Made to be seen<br>from across the street.</h2>
+      <p>Photographed on real streets, by real customers. Tag @uncut.footwear to be featured.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL FEATURE -->
+<section class="feature" id="feature">
+  <div class="wrap">
+    <div class="feature-img">
+      <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="Pair of white and orange sneakers displayed on a white box">
+    </div>
+    <div class="feature-copy">
+      <span class="tag">// From The Archive</span>
+      <h2 class="display">The Original 001, Reissued</h2>
+      <p>The silhouette that started it all — brought back for one final run, true to the 2019 mould, built on today's sole compound.</p>
+      <div class="spec-list mono">
+        <div><div class="k">Upper</div><div class="v">Full-grain leather</div></div>
+        <div><div class="k">Midsole</div><div class="v">Dual-density foam</div></div>
+        <div><div class="k">Run size</div><div class="v">300 pairs</div></div>
+        <div><div class="k">Ships</div><div class="v">3–5 working days</div></div>
+      </div>
+      <a href="#drop" class="btn btn-primary">Reserve Your Pair</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="display">Don't Miss<br>Drop 015.</h2>
+    <p>One email, sent only when new stock lands. No noise, no spam, no restocks to announce.</p>
+    <form class="cta-form" onsubmit="return false;">
+      <input type="email" placeholder="you@email.com" aria-label="Email address" required>
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="stockists">
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <div class="logo">UNCUT<span style="color:var(--signal);">.</span></div>
+      <p>Statement footwear, designed and numbered in Indore, India. Every pair limited. Nothing restocked.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#drop">Current Drop</a>
+      <a href="#feature">Archive</a>
+      <a href="#">Size Guide</a>
+      <a href="#">Gift Cards</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="#manifesto">Manifesto</a>
+      <a href="#">Stockists</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+  <div class="wordmark" aria-hidden="true">UNCUT</div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 UNCUT Footwear Co.</span>
+    <span>Privacy — Terms — Shipping</span>
+  </div>
+</footer>
+
+</body>
+</html>
