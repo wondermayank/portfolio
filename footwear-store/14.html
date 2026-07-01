@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCHI HOUSE — Heritage Traditional Footwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Yatra+One&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6ecd9;
+    --parchment:#efe1c4;
+    --maroon:#6b1e23;
+    --maroon-deep:#4a1418;
+    --gold:#b8862f;
+    --ink:#2a1810;
+    --teal:#1f3b34;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla', sans-serif;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  /* ---------- ornamental divider (signature element) ---------- */
+  .filigree{ display:flex; justify-content:center; padding:0; background:inherit; }
+  .filigree svg{ width:220px; height:34px; }
+
+  /* ---------- top ribbon ---------- */
+  .ribbon{
+    background:var(--maroon-deep); color:var(--parchment);
+    text-align:center; font-size:0.78rem; letter-spacing:0.1em;
+    padding:9px 0; text-transform:uppercase;
+    font-family:'Karla', sans-serif;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 6vw; border-bottom:1px solid rgba(107,30,35,0.18);
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif; font-weight:600; font-style:italic;
+    font-size:1.9rem; color:var(--maroon);
+  }
+  nav ul{ list-style:none; display:flex; gap:36px; }
+  nav a{
+    font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;
+    font-weight:500; color:var(--ink); opacity:0.8;
+  }
+  nav a:hover{ opacity:1; color:var(--maroon); }
+  .nav-cta{
+    border:1px solid var(--maroon); color:var(--maroon);
+    padding:9px 20px; border-radius:2px; font-size:0.78rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; padding:80px 6vw 0;
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  .hero-copy .eyebrow{
+    font-family:'Yatra One', cursive; color:var(--gold); font-size:1.05rem; margin-bottom:18px; display:block;
+  }
+  .hero-copy h1{
+    font-family:'Cormorant Garamond', serif; font-weight:600;
+    font-size:clamp(2.6rem, 4.6vw, 4rem); line-height:1.08; color:var(--maroon-deep);
+    margin-bottom:22px;
+  }
+  .hero-copy h1 i{ color:var(--gold); font-style:italic; }
+  .hero-copy p{
+    max-width:38ch; font-size:1.02rem; line-height:1.75; color:#4a3a2c; margin-bottom:32px;
+  }
+  .hero-btns{ display:flex; gap:18px; align-items:center; }
+  .btn-maroon{
+    background:var(--maroon); color:var(--cream); padding:15px 30px;
+    font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; border-radius:2px;
+  }
+  .btn-line{
+    font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase;
+    border-bottom:1px solid var(--ink); padding-bottom:3px; color:var(--ink);
+  }
+  .hero-media{ position:relative; }
+  .hero-media .frame{
+    position:relative; border:10px solid var(--cream);
+    outline:1px solid var(--gold); outline-offset:-6px;
+    border-radius:4px; overflow:hidden; height:520px;
+    box-shadow:0 30px 60px rgba(74,20,24,0.18);
+  }
+  .hero-media img{ width:100%; height:100%; object-fit:cover; }
+  .hero-badge{
+    position:absolute; bottom:-26px; left:-26px;
+    background:var(--maroon); color:var(--cream);
+    width:118px; height:118px; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; font-family:'Cormorant Garamond', serif;
+    border:1px dashed var(--gold);
+  }
+  .hero-badge b{ font-size:1.5rem; display:block; }
+  .hero-badge span{ font-size:0.62rem; text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ---------- section shell ---------- */
+  section{ padding:110px 6vw; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 64px; }
+  .section-head .eyebrow{
+    font-family:'Yatra One', cursive; color:var(--gold); font-size:1rem; display:block; margin-bottom:12px;
+  }
+  .section-head h2{
+    font-family:'Cormorant Garamond', serif; font-weight:600; color:var(--maroon-deep);
+    font-size:clamp(1.9rem, 3.2vw, 2.6rem); margin-bottom:16px;
+  }
+  .section-head p{ color:#5c4b3b; font-size:0.98rem; line-height:1.7; }
+
+  /* ---------- region cards ---------- */
+  .regions{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .region-card{
+    background:var(--parchment); border-radius:6px; overflow:hidden;
+    border:1px solid rgba(107,30,35,0.14);
+  }
+  .region-media{ height:260px; overflow:hidden; }
+  .region-media img{ width:100%; height:100%; object-fit:cover; transition:transform .5s;}
+  .region-card:hover .region-media img{ transform:scale(1.05); }
+  .region-body{ padding:26px 26px 30px; }
+  .region-body .place{ font-family:'Yatra One', cursive; color:var(--gold); font-size:0.85rem; margin-bottom:8px; display:block;}
+  .region-body h3{ font-family:'Cormorant Garamond', serif; font-size:1.5rem; color:var(--maroon-deep); margin-bottom:10px; font-weight:600;}
+  .region-body p{ font-size:0.88rem; color:#5c4b3b; line-height:1.6; margin-bottom:16px;}
+  .region-link{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.07em; border-bottom:1px solid var(--maroon); color:var(--maroon); padding-bottom:2px; }
+
+  /* ---------- product grid ---------- */
+  .grid-products{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .pcard{
+    background:var(--parchment); border-radius:6px; overflow:hidden;
+    border:1px solid rgba(107,30,35,0.14);
+  }
+  .pcard-media{ height:220px; overflow:hidden; position:relative;}
+  .pcard-media img{ width:100%; height:100%; object-fit:cover; }
+  .pcard-badge{
+    position:absolute; top:12px; left:12px; background:var(--maroon); color:var(--cream);
+    font-size:0.64rem; letter-spacing:0.06em; text-transform:uppercase; padding:5px 10px; border-radius:2px;
+  }
+  .pcard-body{ padding:20px; }
+  .pcard-body .pname{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.2rem; color:var(--maroon-deep); margin-bottom:4px;}
+  .pcard-body .pmeta{ font-size:0.78rem; color:#7a6650; margin-bottom:14px; font-style:italic; }
+  .pcard-foot{ display:flex; justify-content:space-between; align-items:center; border-top:1px dashed rgba(107,30,35,0.25); padding-top:14px;}
+  .price{ font-weight:600; font-size:1rem; color:var(--ink); }
+  .add-link{ font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--maroon); }
+
+  /* ---------- craft story ---------- */
+  .story{
+    background:var(--maroon-deep); color:var(--cream); border-radius:10px;
+    padding:70px 6vw; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  .story-media{ border-radius:6px; overflow:hidden; height:440px; }
+  .story-media img{ width:100%; height:100%; object-fit:cover; }
+  .story-copy .eyebrow{ font-family:'Yatra One', cursive; color:var(--gold); font-size:1rem; display:block; margin-bottom:16px;}
+  .story-copy h2{ font-family:'Cormorant Garamond', serif; font-size:clamp(1.9rem,3vw,2.5rem); margin-bottom:22px; font-weight:600;}
+  .story-copy p{ color:#e6d9c2; line-height:1.8; font-size:0.98rem; margin-bottom:16px; }
+  .story-stats{ display:flex; gap:44px; margin-top:32px; }
+  .sstat b{ font-family:'Cormorant Garamond', serif; font-size:2.1rem; color:var(--gold); display:block;}
+  .sstat span{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:#c9b899;}
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--ink); color:var(--parchment); padding:70px 6vw 30px; }
+  .foot-top{ display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:56px; }
+  .foot-top h4{ font-family:'Yatra One', cursive; font-size:0.95rem; color:var(--gold); margin-bottom:18px; font-weight:400;}
+  .foot-top ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .foot-top a{ font-size:0.9rem; color:#d8cbb6; }
+  .foot-top a:hover{ color:var(--cream); }
+  .foot-bottom{
+    border-top:1px solid rgba(246,236,217,0.15); padding-top:24px;
+    display:flex; justify-content:space-between; font-size:0.78rem; color:#a8977e; flex-wrap:wrap; gap:10px;
+  }
+
+  @media(max-width:900px){
+    .hero, .story, .foot-top{ grid-template-columns:1fr; }
+    .regions{ grid-template-columns:1fr; }
+    .grid-products{ grid-template-columns:repeat(2,1fr); }
+    nav ul{ display:none; }
+    .hero-media .frame{ height:360px; }
+    .story-media{ height:280px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon">Handcrafted in Punjab &amp; Rajasthan · Free shipping on orders above ₹2,999</div>
+
+<header>
+  <div class="logo">Mochi House</div>
+  <nav>
+    <ul>
+      <li><a href="#regions">Regions</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#story">Our Artisans</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="#shop" class="nav-cta">Visit Store</a>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">विरासत · Since 1962</span>
+    <h1>Footwear carried down <i>four generations</i> of mochis.</h1>
+    <p>Hand-stitched juttis and mojaris, tanned in kikar bark and embroidered with real zari — made the way Amritsar and Jodhpur have made them for two centuries.</p>
+    <div class="hero-btns">
+      <a href="#shop" class="btn-maroon">Shop The Collection</a>
+      <a href="#story" class="btn-line">Meet Our Artisans →</a>
+    </div>
+  </div>
+  <div class="hero-media">
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1563433337461-5b65f0834f3a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Handcrafted brown leather traditional shoe">
+    </div>
+    <div class="hero-badge"><b>64</b><span>Years of Craft</span></div>
+  </div>
+</section>
+
+<div class="filigree">
+  <svg viewBox="0 0 220 34" fill="none">
+    <path d="M0 17 H80" stroke="#b8862f" stroke-width="1"/>
+    <path d="M140 17 H220" stroke="#b8862f" stroke-width="1"/>
+    <circle cx="110" cy="17" r="9" stroke="#6b1e23" stroke-width="1.4"/>
+    <path d="M96 17 Q110 3 124 17 Q110 31 96 17 Z" stroke="#b8862f" stroke-width="1"/>
+    <circle cx="86" cy="17" r="2.4" fill="#6b1e23"/>
+    <circle cx="134" cy="17" r="2.4" fill="#6b1e23"/>
+  </svg>
+</div>
+
+<section id="regions">
+  <div class="section-head">
+    <span class="eyebrow">भूगोल · By Origin</span>
+    <h2>Three regions, three traditions.</h2>
+    <p>Each house of craft has its own toe, its own stitch, its own story — we work directly with artisan families in each.</p>
+  </div>
+  <div class="regions">
+    <div class="region-card">
+      <div class="region-media">
+        <img src="https://images.unsplash.com/photo-1637759292654-a12cb2be085e?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Handcrafted leather goods representing Punjab craft">
+      </div>
+      <div class="region-body">
+        <span class="place">Punjab</span>
+        <h3>The Amritsari Jutti</h3>
+        <p>Flat, rounded fronts, closed backs, tilla-thread worked in real gold and silver.</p>
+        <a href="#shop" class="region-link">Shop Punjab →</a>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-media">
+        <img src="https://images.unsplash.com/photo-1564842505181-8862a3b9b173?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Textured brown leather representing Rajasthan craft">
+      </div>
+      <div class="region-body">
+        <span class="place">Rajasthan</span>
+        <h3>The Jodhpur Mojari</h3>
+        <p>The curled upturned toe, the Nok — royal silhouette from the desert courts.</p>
+        <a href="#shop" class="region-link">Shop Rajasthan →</a>
+      </div>
+    </div>
+    <div class="region-card">
+      <div class="region-media">
+        <img src="https://images.unsplash.com/photo-1647502191516-68a4f8c74ed4?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Traditional leather-working tools representing Gujarat craft">
+      </div>
+      <div class="region-body">
+        <span class="place">Gujarat</span>
+        <h3>The Kutch Kolhapuri</h3>
+        <p>Soft leather, mirror work, pompoms — built for daily wear and festival alike.</p>
+        <a href="#shop" class="region-link">Shop Gujarat →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="filigree">
+  <svg viewBox="0 0 220 34" fill="none">
+    <path d="M0 17 H80" stroke="#b8862f" stroke-width="1"/>
+    <path d="M140 17 H220" stroke="#b8862f" stroke-width="1"/>
+    <circle cx="110" cy="17" r="9" stroke="#6b1e23" stroke-width="1.4"/>
+    <path d="M96 17 Q110 3 124 17 Q110 31 96 17 Z" stroke="#b8862f" stroke-width="1"/>
+    <circle cx="86" cy="17" r="2.4" fill="#6b1e23"/>
+    <circle cx="134" cy="17" r="2.4" fill="#6b1e23"/>
+  </svg>
+</div>
+
+<section id="shop">
+  <div class="section-head">
+    <span class="eyebrow">संग्रह · The Collection</span>
+    <h2>This season's handcrafted pairs.</h2>
+    <p>Every listing names the artisan family who stitched it — because a jutti is only as good as its mochi.</p>
+  </div>
+  <div class="grid-products">
+    <div class="pcard">
+      <div class="pcard-media">
+        <span class="pcard-badge">New Arrival</span>
+        <img src="https://images.unsplash.com/photo-1628483211662-9bcc692c46dc?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Handcrafted leather goods with artisan tools">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Zari Nawabi Jutti</div>
+        <div class="pmeta">Amritsar workshop · Men</div>
+        <div class="pcard-foot">
+          <div class="price">₹2,899</div>
+          <div class="add-link">Add to Bag</div>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-media">
+        <img src="https://images.unsplash.com/photo-1644258676710-ffb99d7d7a1b?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Leather-work tools on a table">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Meenakari Mojari</div>
+        <div class="pmeta">Jodhpur workshop · Women</div>
+        <div class="pcard-foot">
+          <div class="price">₹3,299</div>
+          <div class="add-link">Add to Bag</div>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-media">
+        <img src="https://images.unsplash.com/photo-1763674292700-317879c2038c?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Close up of leather stitching detail">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Kasuri Wedding Jutti</div>
+        <div class="pmeta">Amritsar workshop · Bridal</div>
+        <div class="pcard-foot">
+          <div class="price">₹4,599</div>
+          <div class="add-link">Add to Bag</div>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-media">
+        <span class="pcard-badge">Bestseller</span>
+        <img src="https://images.unsplash.com/photo-1568661062230-7420ca9353ba?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Close up of tanned leather">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Salim Shahi Nagra</div>
+        <div class="pmeta">Jaipur workshop · Unisex</div>
+        <div class="pcard-foot">
+          <div class="price">₹2,499</div>
+          <div class="add-link">Add to Bag</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="story">
+    <div class="story-media">
+      <img src="https://images.unsplash.com/photo-1647502191516-68a4f8c74ed4?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Traditional leather-crafting tools on a workshop table">
+    </div>
+    <div class="story-copy">
+      <span class="eyebrow">प्रक्रिया · The Making</span>
+      <h2>Every pair passes through three pairs of hands.</h2>
+      <p>The Chamar tans the hide with kikar bark until it turns supple. The Rangaar dyes and colours it by eye, matching shades passed down without a swatch book. The Mochi stitches the panna, sole, and chinkiya together entirely by hand.</p>
+      <p>No pair leaves Amritsar or Jodhpur until all three sign off on the work — a promise we've kept since 1962.</p>
+      <div class="story-stats">
+        <div class="sstat"><b>3</b><span>Artisan Hands / Pair</span></div>
+        <div class="sstat"><b>9 hrs</b><span>Avg. Hand-Stitch Time</span></div>
+        <div class="sstat"><b>64</b><span>Years in Business</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="foot-top">
+    <div>
+      <div class="logo" style="color:var(--gold); margin-bottom:14px;">Mochi House</div>
+      <p style="color:#c9b899; font-size:0.9rem; max-width:32ch; line-height:1.7;">Heritage-traditional footwear, handcrafted by artisan families in Punjab, Rajasthan, and Gujarat since 1962.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#shop">Juttis</a></li>
+        <li><a href="#shop">Mojaris</a></li>
+        <li><a href="#shop">Bridal Edit</a></li>
+        <li><a href="#shop">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Heritage</h4>
+      <ul>
+        <li><a href="#story">Our Artisans</a></li>
+        <li><a href="#regions">By Region</a></li>
+        <li><a href="#">Our History</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Care Instructions</a></li>
+        <li><a href="#">Track Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Mochi House Handcrafted Footwear</span>
+    <span>Amritsar · Jodhpur · Jaipur</span>
+  </div>
+</footer>
+
+</body>
+</html>
