@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anklet Silver — Jhankaar Payal | Chandi Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17;
+    --ivory:#f6f1e7;
+    --parchment:#efe6d3;
+    --silver:#cdd1d4;
+    --silver-dark:#8f959a;
+    --patina:#57654f;
+    --maroon:#7c1f2e;
+    --line: rgba(28,26,23,0.12);
+    --radius: 2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Marcellus', serif; font-weight:400;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  .eyebrow{
+    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--silver-dark); font-weight:500;
+  }
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,241,231,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:1240px; margin:0 auto;
+  }
+  .logo{font-family:'Marcellus', serif; font-size:22px; letter-spacing:0.06em;}
+  .logo span{color:var(--maroon);}
+  .navlinks{display:flex; gap:36px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink); opacity:0.75;}
+  .navlinks a:hover{opacity:1; color:var(--maroon);}
+  .navicons{display:flex; gap:20px; align-items:center; font-size:13px;}
+  .cart-dot{position:relative;}
+  .cart-dot::after{
+    content:'1'; position:absolute; top:-8px; right:-10px;
+    background:var(--maroon); color:var(--ivory); font-size:9px;
+    width:15px; height:15px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:860px){ .navlinks{display:none;} }
+
+  /* ---------- Breadcrumb ---------- */
+  .crumb{
+    max-width:1240px; margin:0 auto; padding:18px 32px 0;
+    font-size:12px; color:var(--silver-dark); letter-spacing:0.03em;
+  }
+  .crumb a:hover{color:var(--maroon);}
+
+  /* ---------- Product section ---------- */
+  .product{
+    max-width:1240px; margin:0 auto; padding:32px 32px 80px;
+    display:grid; grid-template-columns:1.05fr 0.85fr; gap:64px;
+  }
+  @media (max-width:960px){ .product{grid-template-columns:1fr; gap:36px;} }
+
+  /* gallery */
+  .gallery{display:grid; grid-template-columns:88px 1fr; gap:16px;}
+  @media (max-width:960px){ .gallery{grid-template-columns:1fr;} .thumbs{order:2; flex-direction:row !important; overflow-x:auto;} }
+  .thumbs{display:flex; flex-direction:column; gap:12px;}
+  .thumb{
+    aspect-ratio:1/1; border:1px solid var(--line); cursor:pointer; overflow:hidden;
+    opacity:0.55; transition:opacity .25s ease, border-color .25s ease; flex:0 0 auto; width:88px;
+  }
+  .thumb.active, .thumb:hover{opacity:1; border-color:var(--maroon);}
+  .stage{
+    position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--parchment);
+    border:1px solid var(--line);
+  }
+  .stage img{transition:transform .6s ease; }
+  .stage:hover img{transform:scale(1.045);}
+  .stage .tag{
+    position:absolute; top:18px; left:18px; background:var(--ink); color:var(--ivory);
+    font-size:10px; letter-spacing:0.2em; text-transform:uppercase; padding:7px 12px;
+  }
+  .stage .hallmark{
+    position:absolute; bottom:18px; right:18px;
+    width:76px; height:76px; border-radius:50%;
+    border:1px solid rgba(246,241,231,0.9);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:rgba(28,26,23,0.55); backdrop-filter:blur(2px);
+    color:var(--ivory); font-size:8.5px; letter-spacing:0.08em; text-transform:uppercase;
+    line-height:1.4; padding:6px; transform:rotate(-6deg);
+  }
+
+  /* info */
+  .info .eyebrow{margin-bottom:14px;}
+  .info h1{font-size:38px; line-height:1.15; margin-bottom:10px;}
+  .info .sub{font-size:14px; color:var(--silver-dark); font-style:italic; margin-bottom:22px;}
+  .rating{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--silver-dark); margin-bottom:24px;}
+  .stars{color:var(--maroon); letter-spacing:2px;}
+  .price-row{display:flex; align-items:baseline; gap:14px; margin-bottom:6px;}
+  .price{font-family:'Marcellus', serif; font-size:30px;}
+  .price-old{font-size:16px; color:var(--silver-dark); text-decoration:line-through;}
+  .price-save{font-size:12px; color:var(--patina); letter-spacing:0.04em;}
+  .price-note{font-size:12px; color:var(--silver-dark); margin-bottom:28px;}
+
+  .divider{height:1px; background:var(--line); margin:26px 0;}
+
+  .field-label{
+    font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink);
+    margin-bottom:12px; display:flex; justify-content:space-between;
+  }
+  .field-label a{font-size:11px; color:var(--maroon); text-decoration:underline; text-underline-offset:3px; text-transform:none; letter-spacing:0;}
+  .sizes{display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap;}
+  .size-pill{
+    border:1px solid var(--line); padding:10px 18px; font-size:13px; cursor:pointer;
+    background:transparent; transition:all .2s ease;
+  }
+  .size-pill.active, .size-pill:hover{border-color:var(--ink); background:var(--ink); color:var(--ivory);}
+
+  .qty-cart{display:flex; gap:14px; margin-bottom:20px;}
+  .qty{display:flex; align-items:center; border:1px solid var(--line);}
+  .qty button{
+    background:none; border:none; width:40px; height:48px; font-size:16px; cursor:pointer; color:var(--ink);
+  }
+  .qty span{width:32px; text-align:center; font-size:14px;}
+  .btn{
+    flex:1; height:48px; border:none; cursor:pointer;
+    font-family:'Jost',sans-serif; font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    background:var(--ink); color:var(--ivory); transition:background .2s ease, transform .1s ease;
+  }
+  .btn:hover{background:var(--maroon);}
+  .btn:active{transform:scale(0.98);}
+  .btn-outline{
+    width:100%; height:48px; background:transparent; border:1px solid var(--ink); color:var(--ink);
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; margin-bottom:28px;
+    transition:all .2s ease;
+  }
+  .btn-outline:hover{background:var(--ink); color:var(--ivory);}
+
+  .trust{display:flex; flex-direction:column; gap:12px; font-size:12.5px; color:var(--ink); margin-bottom:30px;}
+  .trust div{display:flex; gap:10px; align-items:flex-start;}
+  .trust .ic{color:var(--patina); font-family:'Marcellus',serif;}
+
+  /* accordion */
+  .acc-item{border-top:1px solid var(--line);}
+  .acc-item:last-child{border-bottom:1px solid var(--line);}
+  .acc-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 0; cursor:pointer; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .acc-head .plus{transition:transform .25s ease; font-size:16px; color:var(--maroon);}
+  .acc-item.open .plus{transform:rotate(45deg);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .acc-body p{font-size:13.5px; line-height:1.75; color:#494642; padding-bottom:18px;}
+  .acc-body ul{padding:0 0 18px 18px; font-size:13.5px; line-height:1.9; color:#494642;}
+
+  /* ---------- Lifestyle band ---------- */
+  .lifestyle{
+    position:relative; height:64vh; min-height:420px; overflow:hidden;
+  }
+  .lifestyle img{width:100%; height:100%; object-fit:cover; filter:brightness(0.72) saturate(0.95);}
+  .lifestyle .lscopy{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; color:var(--ivory); padding:0 24px;
+  }
+  .lifestyle .lscopy .eyebrow{color:var(--silver);}
+  .lifestyle .lscopy h2{font-size:clamp(28px,4vw,46px); max-width:720px; margin-top:14px; line-height:1.3;}
+
+  /* ---------- Related ---------- */
+  .related{max-width:1240px; margin:0 auto; padding:90px 32px;}
+  .related-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px;}
+  .related-head h2{font-size:28px;}
+  .related-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+  @media (max-width:960px){ .related-grid{grid-template-columns:repeat(2,1fr);} }
+  .rcard .rimg{aspect-ratio:3/4; overflow:hidden; background:var(--parchment); margin-bottom:14px;}
+  .rcard .rimg img{transition:transform .5s ease;}
+  .rcard:hover .rimg img{transform:scale(1.06);}
+  .rcard h3{font-size:15px; font-weight:400; margin-bottom:4px;}
+  .rcard .rprice{font-size:13px; color:var(--silver-dark);}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line); padding:56px 32px 30px; background:var(--parchment);}
+  .foot-grid{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:40px; margin-bottom:40px;}
+  .foot-grid h4{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px; color:var(--silver-dark);}
+  .foot-grid p, .foot-grid a{font-size:13px; line-height:2; color:var(--ink); opacity:0.8;}
+  .foot-grid a:hover{opacity:1; color:var(--maroon);}
+  .foot-bottom{max-width:1240px; margin:0 auto; border-top:1px solid var(--line); padding-top:22px; font-size:11.5px; color:var(--silver-dark); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* toast */
+  .toast{
+    position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--ivory); padding:14px 26px; font-size:13px;
+    letter-spacing:0.04em; opacity:0; pointer-events:none; transition:all .35s ease; z-index:100;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Chandi <span>Atelier</span></div>
+    <nav class="navlinks">
+      <a href="#">New Edit</a>
+      <a href="#">Anklets</a>
+      <a href="#">Necklaces</a>
+      <a href="#">Bridal</a>
+      <a href="#">Journal</a>
+    </nav>
+    <div class="navicons">
+      <span>Search</span>
+      <span class="cart-dot">Bag</span>
+    </div>
+  </div>
+</header>
+
+<div class="crumb">
+  <a href="#">Home</a> &nbsp;/&nbsp; <a href="#">Anklets</a> &nbsp;/&nbsp; Anklet Silver — Jhankaar Payal
+</div>
+
+<section class="product">
+  <div class="gallery">
+    <div class="thumbs" id="thumbs">
+      <div class="thumb active" data-img="https://images.unsplash.com/photo-1774978237834-237b7aa7bd6c?fm=jpg&q=80&w=800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1774978237834-237b7aa7bd6c?fm=jpg&q=60&w=200&auto=format&fit=crop" alt="Anklet display"></div>
+      <div class="thumb" data-img="https://images.unsplash.com/photo-1548790176-f46bb4d5ef7f?fm=jpg&q=80&w=800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1548790176-f46bb4d5ef7f?fm=jpg&q=60&w=200&auto=format&fit=crop" alt="Silver bracelet detail"></div>
+      <div class="thumb" data-img="https://images.unsplash.com/photo-1651395835317-d2868e8ebcac?fm=jpg&q=80&w=800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1651395835317-d2868e8ebcac?fm=jpg&q=60&w=200&auto=format&fit=crop" alt="Bracelet close up"></div>
+      <div class="thumb" data-img="https://images.unsplash.com/photo-1774978235450-ea6f52ba96ec?fm=jpg&q=80&w=800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1774978235450-ea6f52ba96ec?fm=jpg&q=60&w=200&auto=format&fit=crop" alt="Feet display row"></div>
+      <div class="thumb" data-img="https://images.unsplash.com/photo-1760163287823-8786a65fd269?fm=jpg&q=80&w=800&auto=format&fit=crop"><img src="https://images.unsplash.com/photo-1760163287823-8786a65fd269?fm=jpg&q=60&w=200&auto=format&fit=crop" alt="Anklet worn on foot"></div>
+    </div>
+    <div class="stage">
+      <span class="tag">Handloomed Silver</span>
+      <img id="stageImg" src="https://images.unsplash.com/photo-1774978237834-237b7aa7bd6c?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Anklet Silver — Jhankaar Payal">
+      <div class="hallmark">925<br>BIS<br>Hallmarked</div>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="eyebrow">Ghungroo Collection · No. 06</div>
+    <h1>Jhankaar — Silver Anklet</h1>
+    <p class="sub">Hand-finished sterling silver payal with oxidised ghungroo bells</p>
+    <div class="rating"><span class="stars">★★★★★</span> 4.9 (212 reviews) &nbsp;·&nbsp; 340 sold this month</div>
+
+    <div class="price-row">
+      <span class="price">₹4,850</span>
+      <span class="price-old">₹6,200</span>
+      <span class="price-save">You save 22%</span>
+    </div>
+    <div class="price-note">Inclusive of taxes · Purity 92.5% sterling silver</div>
+
+    <div class="divider"></div>
+
+    <div class="field-label"><span>Anklet Length</span> <a href="#sizing">Size guide</a></div>
+    <div class="sizes">
+      <div class="size-pill" data-size="9">9"</div>
+      <div class="size-pill active" data-size="10">10"</div>
+      <div class="size-pill" data-size="11">11"</div>
+      <div class="size-pill" data-size="12">12" (Adjustable)</div>
+    </div>
+
+    <div class="field-label">Finish</div>
+    <div class="sizes">
+      <div class="size-pill active">Oxidised Antique</div>
+      <div class="size-pill">Bright Polish</div>
+    </div>
+
+    <div class="qty-cart">
+      <div class="qty">
+        <button onclick="changeQty(-1)">−</button>
+        <span id="qtyVal">1</span>
+        <button onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn" onclick="showToast()">Add to Bag — ₹4,850</button>
+    </div>
+    <button class="btn-outline">Buy Now, Pay Later</button>
+
+    <div class="trust">
+      <div><span class="ic">✓</span> BIS Hallmarked 925 sterling silver, certificate included</div>
+      <div><span class="ic">✓</span> Free insured shipping across India, dispatched in 48 hrs</div>
+      <div><span class="ic">✓</span> 15-day exchange · Lifetime polishing service</div>
+    </div>
+
+    <div id="sizing">
+      <div class="acc-item open">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Description</span><span class="plus">+</span></div>
+        <div class="acc-body" style="max-height:200px;">
+          <p>Inspired by the rhythmic jhankaar of temple bells, this payal pairs a fine sterling silver chain with hand-set oxidised ghungroos that catch light with every step. Worn solo for everyday grace or layered for bridal ceremonies.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Purity &amp; Hallmark</span><span class="plus">+</span></div>
+        <div class="acc-body">
+          <ul>
+            <li>92.5% sterling silver, BIS hallmarked</li>
+            <li>Nickel-free, safe for sensitive skin</li>
+            <li>Adjustable hook-and-loop clasp</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Care Instructions</span><span class="plus">+</span></div>
+        <div class="acc-body">
+          <p>Store in the anti-tarnish pouch provided. Avoid contact with perfume and water. Use the included polishing cloth to restore shine between wears.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>Shipping &amp; Returns</span><span class="plus">+</span></div>
+        <div class="acc-body">
+          <p>Dispatched within 48 hours in tamper-proof, insured packaging. Free 15-day exchange on unworn pieces with tags intact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lifestyle">
+  <img src="https://images.unsplash.com/photo-1744722091259-ed1cf11ac97f?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Anklet worn on ankle with slipper">
+  <div class="lscopy">
+    <span class="eyebrow">Crafted in Rajasthan</span>
+    <h2 class="serif">Every ghungroo is set by hand,<br>the way it has been for generations.</h2>
+  </div>
+</div>
+
+<section class="related">
+  <div class="related-head">
+    <h2 class="serif">Pairs well with</h2>
+    <a href="#" style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; border-bottom:1px solid var(--ink);">View all anklets</a>
+  </div>
+  <div class="related-grid">
+    <div class="rcard">
+      <div class="rimg"><img src="https://images.unsplash.com/photo-1764420068424-9f28e8df9ca5?fm=jpg&q=70&w=500&auto=format&fit=crop" alt="Silver anklet worn on foot"></div>
+      <h3>Kinari Anklet</h3>
+      <div class="rprice">₹3,950</div>
+    </div>
+    <div class="rcard">
+      <div class="rimg"><img src="https://images.unsplash.com/photo-1635770607507-beb7d7972491?fm=jpg&q=70&w=500&auto=format&fit=crop" alt="Silver anklet detail black and white"></div>
+      <h3>Sanjhi Payal</h3>
+      <div class="rprice">₹5,400</div>
+    </div>
+    <div class="rcard">
+      <div class="rimg"><img src="https://images.unsplash.com/photo-1548790176-f46bb4d5ef7f?fm=jpg&q=70&w=500&auto=format&fit=crop" alt="Silver bracelet"></div>
+      <h3>Rimjhim Bracelet</h3>
+      <div class="rprice">₹4,200</div>
+    </div>
+    <div class="rcard">
+      <div class="rimg"><img src="https://images.unsplash.com/photo-1651395835317-d2868e8ebcac?fm=jpg&q=70&w=500&auto=format&fit=crop" alt="Silver bracelet close up"></div>
+      <h3>Chandni Cuff</h3>
+      <div class="rprice">₹6,100</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="logo" style="margin-bottom:14px;">Chandi <span>Atelier</span></div>
+      <p style="max-width:280px;">Sterling silver jewellery handcrafted in Rajasthan, hallmarked for purity and made to be worn every day.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <p><a href="#">Anklets</a></p>
+      <p><a href="#">Necklaces</a></p>
+      <p><a href="#">Bridal Edit</a></p>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <p><a href="#">Size Guide</a></p>
+      <p><a href="#">Shipping</a></p>
+      <p><a href="#">Care Guide</a></p>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <p><a href="#">Our Craft</a></p>
+      <p><a href="#">Journal</a></p>
+      <p><a href="#">Contact</a></p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Chandi Atelier. All rights reserved.</span>
+    <span>925 BIS Hallmarked Sterling Silver</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Added to bag — Jhankaar Silver Anklet</div>
+
+<script>
+  // gallery swap
+  document.querySelectorAll('.thumb').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('stageImg').src = t.dataset.img;
+    });
+  });
+
+  // size pills (scoped per group)
+  document.querySelectorAll('.sizes').forEach(group => {
+    group.querySelectorAll('.size-pill').forEach(p => {
+      p.addEventListener('click', () => {
+        group.querySelectorAll('.size-pill').forEach(x => x.classList.remove('active'));
+        p.classList.add('active');
+      });
+    });
+  });
+
+  // quantity
+  let qty = 1;
+  function changeQty(d){
+    qty = Math.max(1, qty + d);
+    document.getElementById('qtyVal').textContent = qty;
+  }
+
+  // accordion
+  function toggleAcc(head){
+    const item = head.parentElement;
+    const body = item.querySelector('.acc-body');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.acc-body').style.maxHeight = 0;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+
+  // toast
+  function showToast(){
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+</script>
+
+</body>
+</html>
