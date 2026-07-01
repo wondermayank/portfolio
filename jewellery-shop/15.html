@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bichiya — Sterling Silver Toe Rings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20242b;
+    --slate:#565f6b;
+    --silver:#c9ced6;
+    --silver-light:#eef0f2;
+    --paper:#f7f6f3;
+    --blush:#c99b93;
+    --blush-deep:#a86f66;
+    --line: rgba(32,36,43,0.12);
+    --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Sora',sans-serif; font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces',serif; font-weight:500; letter-spacing:-.01em; }
+  .eyebrow{ font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--blush-deep); font-weight:600; }
+  a{ text-decoration:none; color:inherit; }
+  img{ display:block; width:100%; height:100%; object-fit:cover; }
+  .wrap{ max-width:1280px; margin:0 auto; padding:0 44px; }
+
+  /* signature: ring-outline motif */
+  .ring-dot{ display:inline-block; width:8px; height:8px; border:1.4px solid var(--blush-deep); border-radius:50%; margin:0 10px; vertical-align:middle; }
+  .ring-divider{ display:flex; align-items:center; gap:12px; }
+  .ring-divider .bar{ height:1px; flex:1; background:var(--line); }
+
+  /* ---------- Header ---------- */
+  header{ background:var(--paper); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
+  .topbar{ background:var(--ink); color:var(--silver-light); text-align:center; font-size:.74rem; letter-spacing:.08em; padding:9px 0; }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:24px 44px; max-width:1280px; margin:0 auto; }
+  .brand{ font-family:'Fraunces',serif; font-size:1.7rem; font-weight:600; letter-spacing:.01em; }
+  .brand .dot{ color:var(--blush-deep); }
+  .nav-links{ display:flex; gap:38px; font-size:.86rem; color:var(--slate); }
+  .nav-links a{ transition:color .2s; }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-icons{ display:flex; align-items:center; gap:24px; }
+  .search-box{ display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line); padding:6px 2px; min-width:190px; }
+  .search-box input{ border:none; outline:none; background:transparent; font-family:'Sora'; font-size:.85rem; width:100%; color:var(--ink); }
+  .icon-btn{ position:relative; cursor:pointer; }
+  .cart-count{
+    position:absolute; top:-8px; right:-10px; background:var(--blush-deep); color:#fff;
+    font-size:.6rem; width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- Hero: asymmetric split ---------- */
+  .hero{ display:grid; grid-template-columns:1.05fr .95fr; min-height:88vh; }
+  .hero-copy{ display:flex; flex-direction:column; justify-content:center; padding:60px 60px 60px 44px; }
+  .hero-copy h1{ font-size:clamp(2.6rem,5vw,4.3rem); line-height:1.05; margin:22px 0 24px; font-weight:500; }
+  .hero-copy h1 i{ color:var(--blush-deep); font-style:italic; font-weight:400; }
+  .hero-copy p{ color:var(--slate); max-width:400px; line-height:1.75; margin-bottom:36px; font-size:1rem; }
+  .hero-actions{ display:flex; gap:16px; align-items:center; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; padding:16px 32px;
+    font-size:.82rem; letter-spacing:.05em; background:var(--ink); color:#fff; border:1px solid var(--ink);
+    cursor:pointer; transition:all .3s; font-family:'Sora'; font-weight:600;
+  }
+  .btn:hover{ background:transparent; color:var(--ink); }
+  .btn-outline{ background:transparent; color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:#fff; }
+  .hero-stats{ display:flex; gap:40px; margin-top:56px; }
+  .hero-stats div h3{ font-size:1.8rem; }
+  .hero-stats div span{ font-size:.76rem; color:var(--slate); letter-spacing:.04em; }
+  .hero-media{ position:relative; overflow:hidden; }
+  .hero-media img{ height:100%; }
+  .hero-media .float-card{
+    position:absolute; bottom:32px; left:32px; background:rgba(255,255,255,.92); backdrop-filter:blur(6px);
+    padding:18px 22px; display:flex; align-items:center; gap:14px; max-width:260px;
+  }
+  .float-card .ring-icon{ width:38px; height:38px; border:2px solid var(--blush-deep); border-radius:50%; flex-shrink:0; }
+  .float-card p{ font-size:.8rem; color:var(--slate); line-height:1.5; }
+
+  /* ---------- Marquee ---------- */
+  .strip{ background:var(--ink); overflow:hidden; padding:16px 0; }
+  .strip-track{ display:flex; gap:56px; white-space:nowrap; width:max-content; animation:scroll 24s linear infinite; }
+  .strip-track span{ color:var(--silver-light); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; display:flex; align-items:center; gap:16px; }
+  .strip-track span::after{ content:"○"; color:var(--blush-deep); font-size:.6rem; }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- Section ---------- */
+  .section{ padding:110px 0; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; gap:30px; flex-wrap:wrap; }
+  .section-head h2{ font-size:clamp(2rem,3.4vw,2.7rem); margin-top:14px; font-weight:500; }
+  .section-head p{ color:var(--slate); max-width:340px; font-size:.92rem; line-height:1.7; }
+
+  /* ---------- Style grid (categories) ---------- */
+  .style-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:var(--line); }
+  .style-card{ position:relative; height:320px; overflow:hidden; background:#fff; cursor:pointer; }
+  .style-card img{ transition:transform .7s ease; filter:saturate(.92); }
+  .style-card:hover img{ transform:scale(1.06); }
+  .style-tag{
+    position:absolute; left:18px; bottom:18px; background:#fff; padding:8px 16px;
+    font-size:.78rem; font-weight:600; letter-spacing:.02em;
+  }
+
+  /* ---------- Product grid ---------- */
+  .filter-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:48px; }
+  .filter-btn{
+    padding:10px 20px; border:1px solid var(--line); background:transparent; cursor:pointer;
+    font-size:.78rem; letter-spacing:.03em; font-family:'Sora'; transition:all .25s; color:var(--ink);
+  }
+  .filter-btn.active, .filter-btn:hover{ background:var(--ink); border-color:var(--ink); color:#fff; }
+
+  .product-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px 22px; }
+  .product-card{ cursor:pointer; }
+  .product-media{ position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--silver-light); margin-bottom:16px; }
+  .product-media img{ transition:transform .7s ease; }
+  .product-card:hover .product-media img{ transform:scale(1.06); }
+  .badge{
+    position:absolute; top:12px; left:12px; background:var(--ink); color:#fff;
+    font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; font-weight:600;
+  }
+  .wish-btn{
+    position:absolute; top:12px; right:12px; width:32px; height:32px; border-radius:50%;
+    background:rgba(255,255,255,.9); display:flex; align-items:center; justify-content:center; cursor:pointer;
+  }
+  .quick-add{
+    position:absolute; left:12px; right:12px; bottom:12px; background:var(--ink); color:#fff;
+    text-align:center; padding:11px; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    opacity:0; transform:translateY(8px); transition:all .3s; cursor:pointer; font-weight:600;
+  }
+  .product-card:hover .quick-add{ opacity:1; transform:translateY(0); }
+  .product-info h3{ font-size:1rem; font-family:'Sora'; font-weight:600; margin-bottom:6px; }
+  .product-info .eyebrow{ font-size:.66rem; margin-bottom:6px; display:block; }
+  .price-row{ display:flex; align-items:baseline; gap:8px; }
+  .price{ font-weight:700; font-size:.95rem; }
+  .price-old{ font-size:.8rem; color:var(--slate); text-decoration:line-through; }
+
+  /* ---------- Feature split ---------- */
+  .split{ display:grid; grid-template-columns:.9fr 1.1fr; }
+  .split-media{ position:relative; }
+  .split-media img{ height:100%; min-height:560px; }
+  .split-copy{ background:var(--ink); color:var(--silver-light); display:flex; flex-direction:column; justify-content:center; padding:70px 70px; }
+  .split-copy .eyebrow{ color:var(--blush); }
+  .split-copy h2{ color:#fff; font-size:clamp(1.9rem,3vw,2.5rem); margin:16px 0 22px; }
+  .split-copy p{ color:var(--silver); line-height:1.8; margin-bottom:16px; font-size:.94rem; }
+  .split-list{ margin-top:24px; display:flex; flex-direction:column; gap:16px; }
+  .split-list li{ list-style:none; display:flex; gap:14px; align-items:center; font-size:.88rem; color:var(--silver-light); }
+  .split-list .ring-icon{ width:22px; height:22px; border:1.5px solid var(--blush); border-radius:50%; flex-shrink:0; }
+
+  /* ---------- Reviews ---------- */
+  .review-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); }
+  .review-card{ background:var(--paper); padding:40px; }
+  .review-card .stars{ color:var(--blush-deep); letter-spacing:3px; margin-bottom:18px; font-size:.9rem; }
+  .review-card p{ font-family:'Fraunces',serif; font-style:italic; font-size:1.08rem; line-height:1.6; margin-bottom:22px; color:var(--ink); }
+  .review-card .who{ font-size:.8rem; color:var(--slate); font-weight:600; }
+
+  /* ---------- Newsletter ---------- */
+  .newsletter{ padding:110px 0; text-align:center; }
+  .newsletter .ring-divider{ max-width:120px; margin:0 auto 28px; }
+  .newsletter h2{ font-size:clamp(1.9rem,3vw,2.5rem); margin-bottom:16px; }
+  .newsletter p{ color:var(--slate); margin-bottom:32px; }
+  .nl-form{ display:flex; max-width:420px; margin:0 auto; border-bottom:2px solid var(--ink); }
+  .nl-form input{ flex:1; border:none; outline:none; padding:16px 4px; font-family:'Sora'; background:transparent; font-size:.92rem; }
+  .nl-form button{ background:none; border:none; font-family:'Sora'; font-weight:700; letter-spacing:.05em; text-transform:uppercase; font-size:.78rem; cursor:pointer; padding:0 10px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--ink); color:var(--silver); padding:70px 0 26px; }
+  .foot-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:40px; margin-bottom:56px; }
+  .foot-grid h4{ font-size:.76rem; letter-spacing:.12em; text-transform:uppercase; color:var(--blush); margin-bottom:20px; font-weight:700; }
+  .foot-grid ul{ list-style:none; display:flex; flex-direction:column; gap:11px; font-size:.86rem; }
+  .foot-grid ul a{ opacity:.8; transition:opacity .2s; }
+  .foot-grid ul a:hover{ opacity:1; color:#fff; }
+  .foot-brand{ font-family:'Fraunces',serif; font-size:1.6rem; color:#fff; margin-bottom:14px; font-weight:600; }
+  .foot-brand .dot{ color:var(--blush); }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:.76rem; opacity:.55; flex-wrap:wrap; gap:10px; }
+
+  /* ---------- Cart drawer ---------- */
+  .overlay{ position:fixed; inset:0; background:rgba(20,20,25,.45); z-index:90; opacity:0; pointer-events:none; transition:opacity .3s; }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .drawer{
+    position:fixed; top:0; right:-420px; width:400px; max-width:90vw; height:100%;
+    background:#fff; z-index:100; transition:right .4s cubic-bezier(.4,0,.2,1);
+    display:flex; flex-direction:column; box-shadow:-10px 0 40px rgba(0,0,0,.15);
+  }
+  .drawer.show{ right:0; }
+  .drawer-head{ display:flex; justify-content:space-between; align-items:center; padding:26px 28px; border-bottom:1px solid var(--line); }
+  .drawer-head h3{ font-size:1.3rem; }
+  .drawer-close{ cursor:pointer; font-size:1.4rem; background:none; border:none; color:var(--ink); }
+  .drawer-body{ flex:1; overflow-y:auto; padding:20px 28px; display:flex; flex-direction:column; gap:20px; }
+  .cart-item{ display:flex; gap:14px; }
+  .cart-item img{ width:70px; height:88px; object-fit:cover; }
+  .cart-item h4{ font-size:.86rem; font-weight:600; margin-bottom:6px; }
+  .cart-item .qty{ font-size:.74rem; color:var(--slate); margin-top:6px; }
+  .drawer-empty{ text-align:center; margin-top:60px; color:var(--slate); }
+  .drawer-foot{ padding:24px 28px; border-top:1px solid var(--line); }
+  .drawer-foot .total-row{ display:flex; justify-content:space-between; font-weight:700; margin-bottom:16px; }
+
+  .toast{
+    position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:#fff; padding:14px 26px; font-size:.8rem; letter-spacing:.02em;
+    z-index:200; opacity:0; transition:all .35s; pointer-events:none;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media(max-width:1050px){
+    .nav-links, .search-box{ display:none; }
+    .hero{ grid-template-columns:1fr; }
+    .hero-media{ height:420px; order:-1; }
+    .style-grid{ grid-template-columns:repeat(2,1fr); }
+    .product-grid{ grid-template-columns:repeat(2,1fr); }
+    .split{ grid-template-columns:1fr; }
+    .split-media img{ min-height:340px; }
+    .split-copy{ padding:60px 40px; }
+    .review-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media(max-width:600px){
+    .wrap, .nav{ padding-left:20px; padding-right:20px; }
+    .hero-copy{ padding:50px 24px; }
+    .style-grid, .product-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">Sterling Silver, Hallmarked 925 &nbsp;·&nbsp; Adjustable Fit &nbsp;·&nbsp; Ships in 48 Hours</div>
+
+<header>
+  <div class="nav">
+    <a href="#" class="brand">Bichiya<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#collection">Shop</a>
+      <a href="#craft">Silverwork</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#565f6b" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="siteSearch" type="text" placeholder="Search toe rings...">
+      </div>
+      <div class="icon-btn" title="Wishlist">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#20242b" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </div>
+      <div class="icon-btn" id="cartBtn" title="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#20242b" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Foot Jewellery, Refined</p>
+    <h1>Small silver.<br>Big <i>presence.</i></h1>
+    <p>Sterling silver toe rings, cast and polished by hand — adjustable, tarnish-resistant, made for bare feet and barefoot days alike.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn">Shop Toe Rings</a>
+      <a href="#craft" class="btn btn-outline">Our Silverwork</a>
+    </div>
+    <div class="hero-stats">
+      <div><h3>925</h3><span>Hallmarked Silver</span></div>
+      <div><h3>12k+</h3><span>Pairs Sold</span></div>
+      <div><h3>4.9★</h3><span>Average Rating</span></div>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="https://images.pexels.com/photos/10801143/pexels-photo-10801143.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Silver toe ring ceremony detail">
+    <div class="float-card">
+      <div class="ring-icon"></div>
+      <p>Adjustable band fits every toe size — no sizing chart needed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>925 Sterling Silver</span>
+    <span>Adjustable Fit</span>
+    <span>Oxidised & Polished Finish</span>
+    <span>Tarnish Resistant</span>
+    <span>Sold in Pairs</span>
+    <span>925 Sterling Silver</span>
+    <span>Adjustable Fit</span>
+    <span>Oxidised & Polished Finish</span>
+    <span>Tarnish Resistant</span>
+    <span>Sold in Pairs</span>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Shop By Style</p>
+        <h2>Find your finish</h2>
+      </div>
+      <p>From tribal oxidised bands to delicate bridal layers — every silhouette starts with 925 silver.</p>
+    </div>
+    <div class="style-grid">
+      <div class="style-card">
+        <img src="https://images.pexels.com/photos/7067963/pexels-photo-7067963.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Layered silver toe rings">
+        <div class="style-tag">Layered</div>
+      </div>
+      <div class="style-card">
+        <img src="https://images.pexels.com/photos/33339095/pexels-photo-33339095.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Minimal silver toe ring">
+        <div class="style-tag">Minimal Band</div>
+      </div>
+      <div class="style-card">
+        <img src="https://images.pexels.com/photos/37921297/pexels-photo-37921297.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Oxidised tribal toe ring">
+        <div class="style-tag">Oxidised</div>
+      </div>
+      <div class="style-card">
+        <img src="https://images.pexels.com/photos/28573578/pexels-photo-28573578.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Bridal silver toe ring">
+        <div class="style-tag">Bridal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="collection" style="background:#fff; padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">The Edit</p>
+        <h2>Silver Toe Rings</h2>
+      </div>
+      <p>Sold as pairs unless noted. Each ring is adjustable to fit most toe sizes comfortably.</p>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="minimal">Minimal</button>
+      <button class="filter-btn" data-filter="oxidised">Oxidised</button>
+      <button class="filter-btn" data-filter="bridal">Bridal</button>
+      <button class="filter-btn" data-filter="stone">Stone Studded</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="split" id="craft">
+  <div class="split-media">
+    <img src="https://images.pexels.com/photos/7067962/pexels-photo-7067962.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Silver toe rings craftsmanship detail">
+  </div>
+  <div class="split-copy">
+    <p class="eyebrow">Our Silverwork</p>
+    <h2>Cast in 925, finished by hand</h2>
+    <p>We work with silversmiths in Rajasthan who still hand-oxidise and polish every band — no two pieces catch the light quite the same way.</p>
+    <ul class="split-list">
+      <li><span class="ring-icon"></span> Hallmarked 925 sterling silver, nickel-free</li>
+      <li><span class="ring-icon"></span> Adjustable open band — one size fits most</li>
+      <li><span class="ring-icon"></span> Anti-tarnish coating, safe for daily &amp; water wear</li>
+      <li><span class="ring-icon"></span> Arrives in a reusable muslin pouch</li>
+    </ul>
+    <a href="#collection" class="btn" style="margin-top:32px; width:fit-content; background:var(--blush-deep); border-color:var(--blush-deep);">Shop The Edit</a>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Customer Love</p>
+        <h2>Worn daily, loved often</h2>
+      </div>
+    </div>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Wore these to my own toe-ring ceremony and they've barely left my feet since. The adjustable fit is genuinely comfortable."</p>
+      <div class="who">Priyanka M., Pune</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"The oxidised finish looks intentional and boho, not tarnished. Gets compliments every time I wear open sandals."</p>
+      <div class="who">Naomi D., Goa</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Bought the bridal layered pair for my wedding — light enough for all-day wear, still made a statement in photos."</p>
+      <div class="who">Ritika S., Jaipur</div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="wrap">
+    <div class="ring-divider"><div class="bar"></div><span class="ring-dot"></span><div class="bar"></div></div>
+    <h2>Join the Bichiya list</h2>
+    <p>New finishes, restocks and styling notes — straight to your inbox.</p>
+    <form class="nl-form" onsubmit="event.preventDefault(); showToast('You are on the list');">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Join →</button>
+    </form>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Bichiya<span class="dot">.</span></div>
+        <p style="font-size:.86rem; opacity:.75; line-height:1.7; max-width:280px;">Sterling silver toe rings, hand-finished by silversmiths in Rajasthan. Adjustable, tarnish-resistant, made for everyday feet.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#collection">Minimal Bands</a></li>
+          <li><a href="#collection">Oxidised</a></li>
+          <li><a href="#collection">Bridal</a></li>
+          <li><a href="#collection">Stone Studded</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Silver Care</a></li>
+          <li><a href="#">Returns & Exchange</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit Us</h4>
+        <ul>
+          <li>Silver Lane, Jaipur</li>
+          <li>Rajasthan, India</li>
+          <li>+91 91234 56780</li>
+          <li>hello@bichiya.shop</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Bichiya Silverworks. All rights reserved.</span>
+      <span>Small silver, made to last.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your Bag</h3>
+    <button class="drawer-close" id="drawerClose">&times;</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <div class="total-row"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <button class="btn" style="width:100%; justify-content:center;" onclick="showToast('Proceeding to secure checkout')">Checkout</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  { id:1, name:"Classic Adjustable Silver Toe Ring", cat:"minimal", price:899, old:1199, img:"https://images.pexels.com/photos/33339095/pexels-photo-33339095.jpeg?auto=compress&cs=tinysrgb&w=700", badge:"Bestseller" },
+  { id:2, name:"Oxidised Tribal Toe Ring Pair", cat:"oxidised", price:1099, old:null, img:"https://images.pexels.com/photos/37921297/pexels-photo-37921297.jpeg?auto=compress&cs=tinysrgb&w=700", badge:"New" },
+  { id:3, name:"Layered Chain Toe Ring", cat:"minimal", price:1299, old:null, img:"https://images.pexels.com/photos/7067963/pexels-photo-7067963.jpeg?auto=compress&cs=tinysrgb&w=700", badge:null },
+  { id:4, name:"CZ Studded Sparkle Toe Ring", cat:"stone", price:1599, old:1899, img:"https://images.pexels.com/photos/28573578/pexels-photo-28573578.jpeg?auto=compress&cs=tinysrgb&w=700", badge:"Sale" },
+  { id:5, name:"Bridal Layered Toe Ring Set", cat:"bridal", price:2399, old:2899, img:"https://images.pexels.com/photos/10801143/pexels-photo-10801143.jpeg?auto=compress&cs=tinysrgb&w=700", badge:"Editor's Pick" },
+  { id:6, name:"Beaded Boho Toe Ring", cat:"oxidised", price:999, old:null, img:"https://images.pexels.com/photos/16691245/pexels-photo-16691245.jpeg?auto=compress&cs=tinysrgb&w=700", badge:null },
+  { id:7, name:"Thin Wire Wrap Toe Ring", cat:"minimal", price:799, old:null, img:"https://images.pexels.com/photos/22863074/pexels-photo-22863074.jpeg?auto=compress&cs=tinysrgb&w=700", badge:null },
+  { id:8, name:"Floral Engraved Toe Ring", cat:"stone", price:1399, old:null, img:"https://images.pexels.com/photos/7067962/pexels-photo-7067962.jpeg?auto=compress&cs=tinysrgb&w=700", badge:null },
+];
+
+const grid = document.getElementById('productGrid');
+const fmt = n => "₹" + n.toLocaleString('en-IN');
+
+function renderProducts(list){
+  grid.innerHTML = list.map(p => `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-media">
+        ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+        <div class="wish-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#20242b" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+        <img src="${p.img}" alt="${p.name}">
+        <div class="quick-add" onclick="addToCart(${p.id})">Quick Add — ${fmt(p.price)}</div>
+      </div>
+      <div class="product-info">
+        <span class="eyebrow">${p.cat}</span>
+        <h3>${p.name}</h3>
+        <div class="price-row">
+          <span class="price">${fmt(p.price)}</span>
+          ${p.old ? `<span class="price-old">${fmt(p.old)}</span>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+renderProducts(products);
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    renderProducts(f === 'all' ? products : products.filter(p => p.cat === f));
+  });
+});
+
+document.getElementById('siteSearch').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  renderProducts(q ? products.filter(p => p.name.toLowerCase().includes(q) || p.cat.includes(q)) : products);
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+});
+
+// Cart
+let cart = [];
+function addToCart(id){
+  const p = products.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if(existing) existing.qty++;
+  else cart.push({...p, qty:1});
+  updateCart();
+  showToast(p.name + " added to your bag");
+}
+function updateCart(){
+  document.getElementById('cartCount').textContent = cart.reduce((a,c) => a+c.qty, 0);
+  const body = document.getElementById('drawerBody');
+  if(cart.length === 0){
+    body.innerHTML = `<div class="drawer-empty">Your bag is empty.<br>Start with a pair.</div>`;
+  } else {
+    body.innerHTML = cart.map(c => `
+      <div class="cart-item">
+        <img src="${c.img}" alt="${c.name}">
+        <div>
+          <h4>${c.name}</h4>
+          <div class="price">${fmt(c.price)}</div>
+          <div class="qty">Qty: ${c.qty}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+  const total = cart.reduce((a,c) => a + c.price*c.qty, 0);
+  document.getElementById('cartTotal').textContent = fmt(total);
+}
+updateCart();
+
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+document.getElementById('cartBtn').addEventListener('click', () => { drawer.classList.add('show'); overlay.classList.add('show'); });
+document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+function closeDrawer(){ drawer.classList.remove('show'); overlay.classList.remove('show'); }
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+</script>
+</body>
+</html>
