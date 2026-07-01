@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRIDE — Contemporary Footwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F3F0E7;
+    --ink:#15140F;
+    --cobalt:#2D46FF;
+    --lime:#D8FF3F;
+    --concrete:#E6E2D4;
+    --paper:#FBFAF6;
+    --line: rgba(21,20,15,0.14);
+    --line-strong: rgba(21,20,15,0.85);
+    --radius: 2px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bone);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .display{
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+    line-height:0.94;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%; height:auto;}
+  button{font-family:inherit; cursor:pointer;}
+
+  :focus-visible{
+    outline:3px solid var(--cobalt);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1280px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ============ TICKER ============ */
+  .ticker{
+    background:var(--ink);
+    color:var(--bone);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:9px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation: scroll-left 32s linear infinite;
+  }
+  .ticker-track span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    padding:0 28px;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ticker-track span::after{
+    content:"—";
+    color:var(--lime);
+  }
+  @keyframes scroll-left{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ============ NAV ============ */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--bone);
+    border-bottom:1px solid var(--line-strong);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size:24px;
+    text-transform:uppercase;
+    letter-spacing:-0.02em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{
+    width:9px; height:9px;
+    background:var(--cobalt);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    list-style:none;
+  }
+  .nav-links a{
+    font-size:14px;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    height:2px; width:0;
+    background:var(--cobalt);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .icon-btn{
+    width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-strong);
+    border-radius:50%;
+    position:relative;
+  }
+  .icon-btn svg{ width:17px; height:17px; }
+  .bag-count{
+    position:absolute;
+    top:-6px; right:-6px;
+    background:var(--cobalt);
+    color:var(--bone);
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    width:17px; height:17px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .nav-toggle{ display:none; }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:64px 0 0;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    background:var(--lime);
+    padding:6px 12px;
+    border-radius:20px;
+    margin-bottom:22px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--ink);
+    border-radius:50%;
+  }
+  .hero h1{
+    font-size:clamp(44px, 6.2vw, 92px);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--cobalt);
+  }
+  .hero-copy{
+    max-width:420px;
+    margin:26px 0 34px;
+    font-size:17px;
+    line-height:1.55;
+    color:rgba(21,20,15,0.72);
+  }
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    gap:22px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:16px 30px;
+    background:var(--ink);
+    color:var(--bone);
+    font-size:14px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    border:1px solid var(--ink);
+    border-radius:100px;
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn:hover{
+    background:var(--cobalt);
+    border-color:var(--cobalt);
+    transform:translateY(-2px);
+  }
+  .btn.ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--line-strong);
+  }
+  .btn.ghost:hover{
+    background:var(--ink);
+    color:var(--bone);
+  }
+  .link-underline{
+    font-size:14px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:3px;
+  }
+
+  .hero-visual{
+    position:relative;
+  }
+  .shoebox-frame{
+    position:relative;
+    background:var(--paper);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:26px;
+  }
+  .shoebox-frame img{
+    width:100%;
+    aspect-ratio: 4/3.1;
+    object-fit:cover;
+    border-radius:3px;
+  }
+  .shoebox-label{
+    position:absolute;
+    left:26px; bottom:26px;
+    background:var(--bone);
+    border:1px solid var(--line-strong);
+    padding:14px 16px;
+    display:grid;
+    grid-template-columns:auto auto;
+    gap:4px 22px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    max-width:230px;
+  }
+  .shoebox-label .k{ color:rgba(21,20,15,0.5); }
+  .shoebox-label .v{ font-weight:700; }
+  .perf{
+    position:absolute;
+    top:0; bottom:0;
+    left:-1px;
+    width:14px;
+    background-image: radial-gradient(circle, var(--bone) 3px, transparent 3.2px);
+    background-size:14px 16px;
+    background-position:center;
+  }
+  .swatch-row{
+    display:flex;
+    gap:8px;
+    margin-top:24px;
+  }
+  .swatch{
+    width:26px; height:26px;
+    border-radius:50%;
+    border:2px solid var(--paper);
+    box-shadow:0 0 0 1px var(--line-strong);
+  }
+
+  .hero-stats{
+    display:flex;
+    gap:44px;
+    margin-top:56px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+  }
+  .stat .num{
+    font-family:'Archivo Black', sans-serif;
+    font-size:30px;
+  }
+  .stat .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    color:rgba(21,20,15,0.55);
+    margin-top:4px;
+    letter-spacing:0.04em;
+  }
+
+  /* ============ SECTION HEADS ============ */
+  .section{
+    padding:96px 0;
+  }
+  .section.tight{ padding-top:0; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:44px;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--cobalt);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .kicker::before{
+    content:"";
+    width:24px; height:1px;
+    background:var(--cobalt);
+  }
+  .section-head h2{
+    font-size:clamp(32px, 3.6vw, 48px);
+  }
+  .section-head p{
+    max-width:340px;
+    font-size:15px;
+    color:rgba(21,20,15,0.65);
+    line-height:1.5;
+  }
+
+  /* ============ CATEGORY STRIP ============ */
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+  }
+  .cat-card{
+    position:relative;
+    border-radius:4px;
+    overflow:hidden;
+    aspect-ratio:3/4;
+    border:1px solid var(--line-strong);
+  }
+  .cat-card img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .cat-card:hover img{ transform:scale(1.07); }
+  .cat-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 45%, rgba(21,20,15,0.88) 100%);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:18px;
+    color:var(--bone);
+  }
+  .cat-overlay .code{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    opacity:0.7;
+    margin-bottom:6px;
+  }
+  .cat-overlay h3{
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    font-size:20px;
+  }
+
+  /* ============ PRODUCT GRID ============ */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:box-shadow .25s ease, transform .25s ease;
+  }
+  .card:hover{
+    box-shadow:8px 8px 0 var(--ink);
+    transform:translate(-4px,-4px);
+  }
+  .card-media{
+    position:relative;
+    aspect-ratio:1/0.82;
+    overflow:hidden;
+    border-bottom:1px dashed var(--line-strong);
+  }
+  .card-media img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .card:hover .card-media img{ transform:scale(1.05); }
+  .tag{
+    position:absolute;
+    top:12px; left:12px;
+    background:var(--lime);
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:5px 9px;
+    border-radius:20px;
+    font-weight:700;
+  }
+  .tag.new{ background:var(--cobalt); color:var(--bone); }
+  .wish{
+    position:absolute;
+    top:10px; right:10px;
+    width:32px; height:32px;
+    background:var(--bone);
+    border:1px solid var(--line-strong);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .wish svg{ width:15px; height:15px; }
+
+  .card-body{
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    flex:1;
+  }
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .card-name{
+    font-size:16px;
+    font-weight:700;
+  }
+  .card-sku{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    color:rgba(21,20,15,0.5);
+    margin-top:3px;
+  }
+  .card-price{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:15px;
+    white-space:nowrap;
+  }
+  .card-price .was{
+    text-decoration:line-through;
+    color:rgba(21,20,15,0.4);
+    font-weight:400;
+    margin-right:6px;
+    font-size:12px;
+  }
+
+  .size-run{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    border-top:1px dashed var(--line-strong);
+    padding-top:14px;
+  }
+  .size-run button{
+    width:34px; height:30px;
+    background:transparent;
+    border:1px solid var(--line-strong);
+    border-radius:3px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink);
+    transition:background .15s ease, color .15s ease;
+  }
+  .size-run button:hover{
+    background:var(--concrete);
+  }
+  .size-run button.selected{
+    background:var(--ink);
+    color:var(--bone);
+    border-color:var(--ink);
+  }
+  .size-run button.out{
+    color:rgba(21,20,15,0.28);
+    text-decoration:line-through;
+    cursor:not-allowed;
+  }
+
+  .card-cta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:2px;
+  }
+  .add-btn{
+    flex:1;
+    background:var(--ink);
+    color:var(--bone);
+    border:1px solid var(--ink);
+    border-radius:100px;
+    padding:11px 14px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    transition:background .2s ease;
+  }
+  .add-btn:hover{ background:var(--cobalt); border-color:var(--cobalt); }
+  .add-btn.added{ background:#1f8a4c; border-color:#1f8a4c; }
+
+  .grid-footer{
+    display:flex;
+    justify-content:center;
+    margin-top:44px;
+  }
+
+  /* ============ SIGNATURE / STORY ============ */
+  .story{
+    background:var(--ink);
+    color:var(--bone);
+    border-radius:6px;
+    padding:72px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .story-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--lime);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:18px;
+    display:block;
+  }
+  .story h2{
+    font-size:clamp(30px,3.4vw,44px);
+    margin-bottom:22px;
+  }
+  .story p{
+    font-size:15px;
+    line-height:1.65;
+    color:rgba(243,240,231,0.72);
+    max-width:440px;
+  }
+  .story-list{
+    list-style:none;
+    margin-top:28px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .story-list li{
+    display:flex;
+    gap:14px;
+    font-size:14px;
+    align-items:baseline;
+  }
+  .story-list .idx{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--lime);
+    font-size:12px;
+  }
+  .story-visual{
+    position:relative;
+    border:1px solid rgba(243,240,231,0.25);
+    border-radius:4px;
+    padding:20px;
+  }
+  .story-visual img{
+    width:100%;
+    border-radius:3px;
+    aspect-ratio:4/3.4;
+    object-fit:cover;
+  }
+  .barcode{
+    display:flex;
+    align-items:flex-end;
+    gap:2px;
+    height:34px;
+    margin-top:16px;
+  }
+  .barcode span{
+    display:block;
+    width:2px;
+    background:var(--bone);
+  }
+
+  /* ============ NEWSLETTER ============ */
+  .newsletter{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+    padding:56px 0;
+  }
+  .newsletter h3{
+    font-size:clamp(26px,2.8vw,36px);
+    max-width:480px;
+  }
+  .news-form{
+    display:flex;
+    gap:0;
+    border:1px solid var(--line-strong);
+    border-radius:100px;
+    overflow:hidden;
+    min-width:360px;
+  }
+  .news-form input{
+    flex:1;
+    border:none;
+    background:transparent;
+    padding:0 20px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:14px;
+    outline:none;
+  }
+  .news-form button{
+    background:var(--ink);
+    color:var(--bone);
+    border:none;
+    padding:16px 26px;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .news-form button:hover{ background:var(--cobalt); }
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding:64px 0 40px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr repeat(3, 1fr);
+    gap:40px;
+    margin-bottom:56px;
+  }
+  .footer-brand p{
+    font-size:14px;
+    color:rgba(21,20,15,0.6);
+    max-width:280px;
+    margin-top:14px;
+    line-height:1.55;
+  }
+  .footer-col h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:rgba(21,20,15,0.5);
+    margin-bottom:16px;
+  }
+  .footer-col ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .footer-col a{ font-size:14px; }
+  .footer-col a:hover{ color:var(--cobalt); }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:rgba(21,20,15,0.5);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .cat-grid{ grid-template-columns:repeat(2,1fr); }
+    .product-grid{ grid-template-columns:repeat(2,1fr); }
+    .story{ grid-template-columns:1fr; padding:44px 28px; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:680px){
+    .wrap{ padding:0 18px; }
+    .nav-links{ display:none; }
+    .cat-grid{ grid-template-columns:1fr 1fr; }
+    .product-grid{ grid-template-columns:1fr; }
+    .newsletter{ grid-template-columns:1fr; }
+    .news-form{ min-width:0; width:100%; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .hero-stats{ flex-wrap:wrap; gap:28px; }
+    .section{ padding:64px 0; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>NEW DROP — RIDGEWALKER 04</span>
+      <span>FREE EXCHANGES WITHIN 30 DAYS</span>
+      <span>MEMBERS SHIP FREE</span>
+      <span>PRE-ORDER THE WINTER RUN</span>
+      <span>NEW DROP — RIDGEWALKER 04</span>
+      <span>FREE EXCHANGES WITHIN 30 DAYS</span>
+      <span>MEMBERS SHIP FREE</span>
+      <span>PRE-ORDER THE WINTER RUN</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <nav>
+        <a href="#" class="logo"><span class="dot"></span>STRIDE</a>
+        <ul class="nav-links">
+          <li><a href="#new">New Arrivals</a></li>
+          <li><a href="#shop">Shop All</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#story">Craft</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="icon-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Bag, 2 items">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            <span class="bag-count">2</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div class="hero-copy-col">
+          <span class="hero-eyebrow">SS26 Collection — Now Live</span>
+          <h1 class="display">Built for<br>every <em>stride</em>.</h1>
+          <p class="hero-copy">Contemporary footwear engineered from the outsole up — running, court and street silhouettes designed in-house, tested on real pavement, shipped in a box worth keeping.</p>
+          <div class="hero-cta">
+            <a href="#shop" class="btn">Shop the drop
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#story" class="link-underline">How they're made</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="num display">128</div>
+              <div class="lbl">Active silhouettes</div>
+            </div>
+            <div class="stat">
+              <div class="num display">4.8</div>
+              <div class="lbl">Avg. review score</div>
+            </div>
+            <div class="stat">
+              <div class="num display">30d</div>
+              <div class="lbl">Wear-in returns</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="shoebox-frame">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1000&auto=format&fit=crop&q=80" alt="Blue and white high-top sneaker, side profile studio shot">
+            <div class="shoebox-label">
+              <span class="k">Model</span><span class="v">Air Ridge Hi</span>
+              <span class="k">Colorway</span><span class="v">Cobalt / Bone</span>
+              <span class="k">SKU</span><span class="v">STR-0142-CB</span>
+              <span class="k">Price</span><span class="v">$148</span>
+            </div>
+          </div>
+          <div class="swatch-row" aria-hidden="true">
+            <span class="swatch" style="background:#2D46FF"></span>
+            <span class="swatch" style="background:#15140F"></span>
+            <span class="swatch" style="background:#D8FF3E"></span>
+            <span class="swatch" style="background:#B33A2A"></span>
+            <span class="swatch" style="background:#F3F0E7"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CATEGORIES ============ -->
+    <section class="section" id="categories">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Shop by discipline</span>
+            <h2 class="display">Four lanes.<br>One outsole lab.</h2>
+          </div>
+          <p>Every silhouette starts life in one of four categories, each tuned for a different kind of ground.</p>
+        </div>
+
+        <div class="cat-grid">
+          <a href="#shop" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&auto=format&fit=crop&q=80" alt="Grey running shoe close-up">
+            <div class="cat-overlay">
+              <span class="code mono">01 / RUN</span>
+              <h3>Running</h3>
+            </div>
+          </a>
+          <a href="#shop" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600&auto=format&fit=crop&q=80" alt="Close up of brown and white court sneaker">
+            <div class="cat-overlay">
+              <span class="code mono">02 / COURT</span>
+              <h3>Basketball</h3>
+            </div>
+          </a>
+          <a href="#shop" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600&auto=format&fit=crop&q=80" alt="Person wearing low-top sneakers sitting on a ledge">
+            <div class="cat-overlay">
+              <span class="code mono">03 / ST</span>
+              <h3>Street</h3>
+            </div>
+          </a>
+          <a href="#shop" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1465453869711-7e174808ace9?w=600&auto=format&fit=crop&q=80" alt="Grey and orange trail shoes on floor">
+            <div class="cat-overlay">
+              <span class="code mono">04 / TR</span>
+              <h3>Trail</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCT GRID ============ -->
+    <section class="section tight" id="shop">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Featured drop</span>
+            <h2 class="display" id="new">In stock,<br>on your feet.</h2>
+          </div>
+          <p>Tap a size to check availability — pairs move fast on release week.</p>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+          <!-- Product cards injected by JS -->
+        </div>
+
+        <div class="grid-footer">
+          <a href="#" class="btn ghost">View all 128 styles</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STORY / SIGNATURE ============ -->
+    <section class="section" id="story">
+      <div class="wrap">
+        <div class="story">
+          <div>
+            <span class="story-label mono">The label on the box</span>
+            <h2 class="display">Every pair ships<br>with its own paper trail.</h2>
+            <p>We stamp the same four facts on the box that matter on the shelf: what it's made of, where the rubber was cured, who cut the upper, and the batch it came from. No mystery materials, no vague "vegan leather."</p>
+            <ul class="story-list">
+              <li><span class="idx mono">MAT</span> Regenerated EVA foam, mono-material knit uppers</li>
+              <li><span class="idx mono">SRC</span> Outsoles cured in-house, batch-tested for grip</li>
+              <li><span class="idx mono">FIT</span> True-to-size across the whole size run, no guessing</li>
+              <li><span class="idx mono">RET</span> 30-day wear-in period — worn pairs still returnable</li>
+            </ul>
+          </div>
+          <div class="story-visual">
+            <img src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?w=800&auto=format&fit=crop&q=80" alt="Close up of a red and white athletic shoe">
+            <div class="barcode" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="wrap">
+      <div class="newsletter">
+        <h3 class="display">Get next drop 48 hours early.</h3>
+        <form class="news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Added ✓';">
+          <input type="email" placeholder="you@email.com" aria-label="Email address" required>
+          <button type="submit">Notify me</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo"><span class="dot"></span>STRIDE</a>
+          <p>Contemporary footwear designed in small batches. Runs, courts and sidewalks — same obsession with the outsole.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Running</a></li>
+            <li><a href="#">Basketball</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Craft</a></li>
+            <li><a href="#">Stores</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 STRIDE Footwear Co.</span>
+        <span>Designed for pavement</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const products = [
+    {
+      name: "Air Jordan Rebound '85",
+      sku: "STR-0118-CHI",
+      price: "$182", was: "$210",
+      tag: "Restock",
+      img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700&auto=format&fit=crop&q=80",
+      alt: "Black, white and red high-top basketball sneaker",
+      sizes: [7,8,9,10,11,12],
+      out: [7]
+    },
+    {
+      name: "Air Force Low — Bone",
+      sku: "STR-0142-BN",
+      price: "$128",
+      tag: "New",
+      img: "https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=700&auto=format&fit=crop&q=80",
+      alt: "White low-top sneaker on light background",
+      sizes: [7,8,9,10,11,12],
+      out: [12]
+    },
+    {
+      name: "Ridgewalker Trail 04",
+      sku: "STR-0204-SL",
+      price: "$156",
+      tag: "New",
+      img: "https://images.unsplash.com/photo-1465453869711-7e174808ace9?w=700&auto=format&fit=crop&q=80",
+      alt: "Grey and orange trail running shoes",
+      sizes: [7,8,9,10,11,12],
+      out: []
+    },
+    {
+      name: "Court High — Blackout",
+      sku: "STR-0177-BK",
+      price: "$164",
+      tag: "Limited",
+      img: "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=700&auto=format&fit=crop&q=80",
+      alt: "White high-top sneakers pair",
+      sizes: [7,8,9,10,11,12],
+      out: [8,9]
+    },
+    {
+      name: "Runline Sprint — Red",
+      sku: "STR-0091-RD",
+      price: "$139",
+      tag: "New",
+      img: "https://images.unsplash.com/photo-1608667508764-33cf0726b13a?w=700&auto=format&fit=crop&q=80",
+      alt: "White and red athletic running shoe",
+      sizes: [7,8,9,10,11,12],
+      out: []
+    },
+    {
+      name: "Court High — Chicago",
+      sku: "STR-0177-CH",
+      price: "$164",
+      tag: "Limited",
+      img: "https://images.unsplash.com/photo-1597045566677-8cf032ed6634?w=700&auto=format&fit=crop&q=80",
+      alt: "Black, white and red high-top sneaker",
+      sizes: [7,8,9,10,11,12],
+      out: [7,12]
+    }
+  ];
+
+  const grid = document.getElementById('productGrid');
+
+  products.forEach((p, pi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-media">
+        <span class="tag ${p.tag === 'New' ? 'new' : ''}">${p.tag}</span>
+        <button class="wish" aria-label="Save ${p.name} to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-10-9.1C.6 8.4 2.2 5 5.6 5c2 0 3.3 1 4.4 2.4C11.1 6 12.4 5 14.4 5c3.4 0 5 3.4 3.6 6.9C19.5 16.4 12 21 12 21z"/></svg>
+        </button>
+        <img src="${p.img}" alt="${p.alt}">
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div>
+            <div class="card-name">${p.name}</div>
+            <div class="card-sku mono">${p.sku}</div>
+          </div>
+          <div class="card-price mono">${p.was ? `<span class="was">${p.was}</span>` : ''}${p.price}</div>
+        </div>
+        <div class="size-run" data-product="${pi}">
+          ${p.sizes.map(s => `<button type="button" class="${p.out.includes(s) ? 'out' : ''}" data-size="${s}" ${p.out.includes(s) ? 'disabled aria-label="Size '+s+' out of stock"' : 'aria-label="Select size '+s+'"'}>${s}</button>`).join('')}
+        </div>
+        <div class="card-cta">
+          <button type="button" class="add-btn">Select a size</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    const sizeButtons = card.querySelectorAll('.size-run button:not(.out)');
+    const addBtn = card.querySelector('.add-btn');
+    let selected = null;
+
+    sizeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeButtons.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selected = btn.dataset.size;
+        addBtn.textContent = `Add · US ${selected}`;
+        addBtn.classList.remove('added');
+      });
+    });
+
+    addBtn.addEventListener('click', () => {
+      if (!selected) {
+        addBtn.textContent = 'Pick a size first';
+        setTimeout(() => addBtn.textContent = 'Select a size', 1200);
+        return;
+      }
+      addBtn.textContent = 'Added to bag ✓';
+      addBtn.classList.add('added');
+    });
+  });
+
+  // Barcode generator for story section
+  const barcode = document.querySelector('.barcode');
+  if (barcode) {
+    for (let i = 0; i < 40; i++) {
+      const bar = document.createElement('span');
+      const h = Math.random() * 24 + 10;
+      bar.style.height = h + 'px';
+      bar.style.opacity = Math.random() > 0.3 ? '1' : '0.4';
+      barcode.appendChild(bar);
+    }
+  }
+</script>
+
+</body>
+</html>
