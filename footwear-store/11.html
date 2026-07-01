@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signature Exclusive — Footwear Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17130f;
+    --ink-soft:#2b241d;
+    --bone:#f4ede1;
+    --bone-dim:#e7ddca;
+    --brass:#b98d4b;
+    --brass-soft:#d8b784;
+    --boy:#3c5a73;
+    --boy-soft:#7f9baf;
+    --girl:#b4707a;
+    --girl-soft:#d9a7ad;
+    --line: rgba(244,237,225,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--brass); color:var(--ink); }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--brass-soft);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 6vw;
+    background:linear-gradient(180deg, rgba(23,19,15,0.92), rgba(23,19,15,0));
+    backdrop-filter:blur(2px);
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:20px;
+    letter-spacing:0.02em;
+  }
+  .logo span{ color:var(--brass); font-style:italic; }
+  .nav-links{ display:flex; gap:34px; font-size:13px; }
+  .nav-links a{
+    color:var(--bone-dim); text-decoration:none;
+    position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--brass); transition:width .35s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-links a:hover{ color:var(--bone); }
+  @media (max-width:720px){ .nav-links{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 6vw;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 78% 18%, rgba(185,141,75,0.16), transparent 55%),
+      radial-gradient(ellipse at 15% 85%, rgba(60,90,115,0.18), transparent 55%),
+      var(--ink);
+  }
+  .hero-kicker{ margin-bottom:26px; display:flex; align-items:center; gap:14px; }
+  .hero-kicker .rule{ width:44px; height:1px; background:var(--brass); }
+
+  h1.hero-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(48px, 9vw, 128px);
+    line-height:0.94;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+  }
+  h1.hero-title em{
+    font-style:italic; font-weight:500; color:var(--brass);
+  }
+
+  .hero-foot{
+    margin-top:52px;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:28px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .hero-desc{ max-width:38ch; color:var(--bone-dim); font-size:15px; line-height:1.65; }
+  .hero-stats{ display:flex; gap:40px; }
+  .hero-stats div{ text-align:left; }
+  .hero-stats .num{
+    font-family:'Fraunces', serif; font-size:30px; font-weight:500; color:var(--brass-soft);
+  }
+  .hero-stats .lbl{
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--bone-dim); margin-top:4px;
+  }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:6vw;
+    display:flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--bone-dim);
+  }
+  .scroll-cue .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--brass);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:.35; } 50%{ opacity:1; } }
+
+  /* ---------- LACE DIVIDER (signature element) ---------- */
+  .lace-divider{
+    position:relative; width:100%; height:120px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--ink);
+  }
+  .lace-divider svg{ width:min(1100px, 88vw); height:auto; display:block; }
+  .lace-divider .lace-label{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    background:var(--ink); padding:0 18px;
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--bone-dim); white-space:nowrap;
+  }
+
+  /* ---------- COLLECTION SECTIONS ---------- */
+  section.collection{
+    display:grid; grid-template-columns:1fr 1fr; min-height:92vh;
+    position:relative;
+  }
+  section.collection.reverse{ direction:rtl; }
+  section.collection.reverse > *{ direction:ltr; }
+
+  .col-media{ position:relative; overflow:hidden; }
+  .col-media img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:saturate(0.92) contrast(1.05);
+    transform:scale(1.02);
+    transition:transform 1.4s cubic-bezier(.16,1,.3,1), filter .6s ease;
+  }
+  section.collection:hover .col-media img{ transform:scale(1.08); filter:saturate(1.05) contrast(1.08); }
+  .col-media::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(23,19,15,0.05), rgba(23,19,15,0.55));
+  }
+  .col-tag{
+    position:absolute; top:32px; left:32px; z-index:2;
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.18em;
+    text-transform:uppercase; padding:8px 14px;
+    border:1px solid rgba(244,237,225,0.4); border-radius:100px;
+    backdrop-filter:blur(6px); background:rgba(23,19,15,0.35);
+  }
+  .col-frame{
+    position:absolute; bottom:32px; left:32px; right:32px; z-index:2;
+    font-family:'Fraunces', serif; font-style:italic; font-size:15px;
+    color:var(--bone-dim);
+  }
+
+  .col-copy{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:8vw 6vw;
+    position:relative;
+  }
+  .col-copy .idx{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    color:var(--accent-soft); margin-bottom:20px;
+  }
+  .col-copy h2{
+    font-family:'Fraunces', serif; font-weight:500; font-size:clamp(38px, 4.6vw, 64px);
+    line-height:1; margin-bottom:22px;
+  }
+  .col-copy h2 em{ font-style:italic; color:var(--accent); }
+  .col-copy p.lead{
+    color:var(--bone-dim); font-size:15.5px; line-height:1.75; max-width:38ch; margin-bottom:34px;
+  }
+
+  .spec-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px 28px; margin-bottom:36px; max-width:46ch;
+  }
+  .spec-grid .spec-lbl{
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--bone-dim); margin-bottom:5px;
+  }
+  .spec-grid .spec-val{ font-size:14px; color:var(--bone); }
+  .spec-grid{ border-top:1px solid var(--line); padding-top:24px; }
+
+  .col-cta{
+    display:inline-flex; align-items:center; gap:12px;
+    width:fit-content;
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--ink);
+    background:var(--accent);
+    padding:15px 26px; border-radius:2px;
+    text-decoration:none;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .col-cta:hover{ transform:translateY(-2px); box-shadow:0 14px 30px -12px var(--accent); }
+  .col-cta svg{ width:14px; height:14px; transition:transform .3s ease; }
+  .col-cta:hover svg{ transform:translateX(4px); }
+
+  section.collection.boy{ --accent:var(--boy-soft); --accent-soft:var(--boy-soft); }
+  section.collection.girl{ --accent:var(--girl-soft); --accent-soft:var(--girl-soft); }
+
+  @media (max-width:860px){
+    section.collection, section.collection.reverse{ grid-template-columns:1fr; direction:ltr; }
+    .col-media{ height:58vh; }
+    .col-copy{ padding:56px 7vw; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:70px 6vw 40px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
+  }
+  footer .fmark{
+    font-family:'Fraunces', serif; font-style:italic; font-size:22px; color:var(--brass-soft);
+  }
+  footer .fnote{
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--bone-dim);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Signature <span>Exclusive</span></div>
+  <div class="nav-links">
+    <a href="#boy">For Him</a>
+    <a href="#girl">For Her</a>
+    <a href="#">Editions</a>
+    <a href="#">Atelier</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-kicker">
+    <span class="rule"></span>
+    <span class="eyebrow">Footwear Atelier · Limited Runs</span>
+  </div>
+  <h1 class="hero-title">Two collections,<br>one <em>signature</em> craft.</h1>
+  <div class="hero-foot">
+    <p class="hero-desc">Every pair is numbered, hand-finished, and released in runs small enough to sell out — split into two exclusive lines, one cut for him, one cut for her.</p>
+    <div class="hero-stats">
+      <div><div class="num">02</div><div class="lbl">Collections</div></div>
+      <div><div class="num">240</div><div class="lbl">Pairs / Drop</div></div>
+      <div><div class="num">01</div><div class="lbl">Atelier</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="dot"></span> Scroll to explore</div>
+</header>
+
+<!-- Lace-stitch divider: signature motif tying the two collections together -->
+<div class="lace-divider">
+  <svg viewBox="0 0 1100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="20" y1="45" x2="1080" y2="45" stroke="rgba(244,237,225,0.18)" stroke-width="1"/>
+    <path d="M40 20 L100 70 M100 20 L40 70" stroke="#b98d4b" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="40" cy="20" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+    <circle cx="100" cy="20" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+    <circle cx="40" cy="70" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+    <circle cx="100" cy="70" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+
+    <path d="M180 20 L240 70 M240 20 L180 70" stroke="#7f9baf" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="180" cy="20" r="4" fill="none" stroke="#7f9baf" stroke-width="1.5"/>
+    <circle cx="240" cy="20" r="4" fill="none" stroke="#7f9baf" stroke-width="1.5"/>
+    <circle cx="180" cy="70" r="4" fill="none" stroke="#7f9baf" stroke-width="1.5"/>
+    <circle cx="240" cy="70" r="4" fill="none" stroke="#7f9baf" stroke-width="1.5"/>
+
+    <path d="M860 20 L920 70 M920 20 L860 70" stroke="#d9a7ad" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="860" cy="20" r="4" fill="none" stroke="#d9a7ad" stroke-width="1.5"/>
+    <circle cx="920" cy="20" r="4" fill="none" stroke="#d9a7ad" stroke-width="1.5"/>
+    <circle cx="860" cy="70" r="4" fill="none" stroke="#d9a7ad" stroke-width="1.5"/>
+    <circle cx="920" cy="70" r="4" fill="none" stroke="#d9a7ad" stroke-width="1.5"/>
+
+    <path d="M1000 20 L1060 70 M1060 20 L1000 70" stroke="#b98d4b" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="1000" cy="20" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+    <circle cx="1060" cy="20" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+    <circle cx="1000" cy="70" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+    <circle cx="1060" cy="70" r="4" fill="none" stroke="#b98d4b" stroke-width="1.5"/>
+  </svg>
+  <div class="lace-label">Laced Together · Est. Atelier</div>
+</div>
+
+<!-- ============ BOY / FOR HIM ============ -->
+<section class="collection boy" id="boy">
+  <div class="col-media">
+    <img src="https://images.pexels.com/photos/12031206/pexels-photo-12031206.jpeg?auto=compress&amp;w=1400&amp;h=1600&amp;dpr=1&amp;fit=crop" alt="Hands lacing a pair of brown leather dress shoes">
+    <div class="col-tag">Boy · Line I</div>
+    <div class="col-frame">Field &amp; formal, cut from full-grain leather.</div>
+  </div>
+  <div class="col-copy">
+    <div class="idx">01 / For Him</div>
+    <h2>The <em>Signature</em><br>Boy Edition</h2>
+    <p class="lead">Structured lasts, hand-burnished leather, and a low, confident heel. Built for pairs who move between the boardroom and the street without changing shoes.</p>
+    <div class="spec-grid">
+      <div><div class="spec-lbl">Upper</div><div class="spec-val">Full-grain leather</div></div>
+      <div><div class="spec-lbl">Sole</div><div class="spec-val">Stitched leather + rubber grip</div></div>
+      <div><div class="spec-lbl">Sizes</div><div class="spec-val">UK 6 – 12</div></div>
+      <div><div class="spec-lbl">Run</div><div class="spec-val">Numbered, 120 pairs</div></div>
+    </div>
+    <a href="#" class="col-cta">Explore the Boy Edition
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============ GIRL / FOR HER ============ -->
+<section class="collection girl reverse" id="girl">
+  <div class="col-media">
+    <img src="https://images.pexels.com/photos/134064/pexels-photo-134064.jpeg?auto=compress&amp;w=1400&amp;h=1600&amp;dpr=1&amp;fit=crop" alt="A pair of beige stiletto high heels with textured leather">
+    <div class="col-tag">Girl · Line II</div>
+    <div class="col-frame">Sculpted heels, finished in soft neutral leather.</div>
+  </div>
+  <div class="col-copy">
+    <div class="idx">02 / For Her</div>
+    <h2>The <em>Signature</em><br>Girl Edition</h2>
+    <p class="lead">A sculpted stiletto line balanced for all-day wear — soft leather linings, a reinforced arch, and a silhouette that carries from daylight meetings into evening.</p>
+    <div class="spec-grid">
+      <div><div class="spec-lbl">Upper</div><div class="spec-val">Nappa leather</div></div>
+      <div><div class="spec-lbl">Heel</div><div class="spec-val">85mm sculpted stiletto</div></div>
+      <div><div class="spec-lbl">Sizes</div><div class="spec-val">UK 3 – 8</div></div>
+      <div><div class="spec-lbl">Run</div><div class="spec-val">Numbered, 120 pairs</div></div>
+    </div>
+    <a href="#" class="col-cta">Explore the Girl Edition
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="fmark">Signature Exclusive</div>
+  <div class="fnote">Two lines · One atelier · Numbered pairs only</div>
+</footer>
+
+</body>
+</html>
