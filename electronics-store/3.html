@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelia — Where Innovation Meets Elegance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0A0A0A; --charcoal:#151414; --gold:#C9A227; --gold-soft:#E4C766;
+  --cream:#F5EFE6; --text:#F5EFE6; --text-muted:#B8AE9C; --border:rgba(201,162,39,.28);
+  --radius:2px;
+  --font-head:'Cormorant Garamond',serif; --font-body:'Jost',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-body);background:var(--black);color:var(--text);line-height:1.7;font-weight:300;}
+img{max-width:100%;display:block;object-fit:cover;background:#1a1a1a;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:1180px;margin:0 auto;padding:0 32px;}
+h1,h2,h3{font-family:var(--font-head);font-weight:600;letter-spacing:.3px;}
+:focus-visible{outline:1px solid var(--gold);outline-offset:4px;}
+
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:26px 32px;max-width:1180px;margin:0 auto;}
+.logo{font-family:var(--font-head);font-weight:600;font-size:28px;letter-spacing:2px;color:var(--gold-soft);}
+.nav-links{display:flex;gap:38px;list-style:none;font-size:13px;letter-spacing:1.8px;text-transform:uppercase;}
+.nav-links a{padding-bottom:4px;border-bottom:1px solid transparent;transition:.25s;}
+.nav-links a:hover{border-color:var(--gold);color:var(--gold-soft);}
+.nav-actions{display:flex;align-items:center;gap:22px;}
+.icon-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--cream);}
+.cart-count{position:absolute;top:-8px;right:-10px;background:var(--gold);color:#0A0A0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.menu-toggle{display:none;background:none;border:none;flex-direction:column;gap:5px;cursor:pointer;}
+.menu-toggle span{width:22px;height:1px;background:var(--gold-soft);}
+
+.hero{padding:100px 0 90px;border-bottom:1px solid var(--border);}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.eyebrow{display:block;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:26px;}
+.hero h1{font-size:58px;line-height:1.15;margin-bottom:24px;font-weight:500;}
+.hero h1 em{font-style:italic;color:var(--gold-soft);}
+.hero p{font-size:17px;color:var(--text-muted);max-width:420px;margin-bottom:36px;font-weight:300;}
+.hero-ctas{display:flex;gap:18px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:16px 34px;border-radius:var(--radius);font-weight:500;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:1px solid var(--gold);transition:.25s;}
+.btn-primary{background:var(--gold);color:#0A0A0A;}
+.btn-primary:hover{background:var(--gold-soft);}
+.btn-outline{background:transparent;color:var(--cream);}
+.btn-outline:hover{border-color:var(--cream);}
+.hero-media{position:relative;border:1px solid var(--border);padding:14px;}
+.hero-media::after{content:"";position:absolute;inset:6px;border:1px solid var(--border);pointer-events:none;}
+.hero-media img{filter:grayscale(15%) contrast(1.05);}
+
+section{padding:96px 0;}
+.section-head{text-align:center;max-width:560px;margin:0 auto 56px;}
+.section-head .kicker{color:var(--gold);font-weight:500;font-size:13px;letter-spacing:3px;text-transform:uppercase;}
+.section-head h2{font-size:38px;margin-top:14px;font-weight:500;}
+
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.cat-card{background:var(--black);padding:34px 12px;text-align:center;transition:background .25s;}
+.cat-card:hover{background:var(--charcoal);}
+.cat-card svg{color:var(--gold);margin-bottom:12px;}
+.cat-card span{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);}
+
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.prod-card{background:var(--black);transition:background .25s;}
+.prod-card:hover{background:var(--charcoal);}
+.prod-img{height:260px;position:relative;}
+.prod-img img{filter:grayscale(10%);}
+.prod-tag{position:absolute;top:16px;left:16px;border:1px solid var(--gold);color:var(--gold-soft);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;background:rgba(10,10,10,.7);}
+.prod-body{padding:28px 30px 32px;}
+.prod-cat{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;}
+.prod-body h3{font-size:22px;margin:10px 0 12px;font-weight:500;}
+.stars{color:var(--gold);font-size:13px;margin-bottom:16px;letter-spacing:2px;}
+.stars span{color:var(--text-muted);margin-left:6px;letter-spacing:normal;}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border);}
+.price{font-family:var(--font-head);font-weight:600;font-size:22px;color:var(--gold-soft);}
+.add-cart{background:transparent;border:1px solid var(--border);color:var(--cream);padding:10px 18px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.25s;}
+.add-cart:hover{border-color:var(--gold);color:var(--gold-soft);}
+.add-cart.added{border-color:var(--gold);background:var(--gold);color:#0A0A0A;}
+
+.promo{border:1px solid var(--border);padding:70px;text-align:center;position:relative;}
+.promo::before,.promo::after{content:"";position:absolute;width:26px;height:26px;border:1px solid var(--gold);}
+.promo::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+.promo::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+.promo h2{font-size:36px;margin-bottom:16px;}
+.promo p{color:var(--text-muted);max-width:480px;margin:0 auto 30px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.feat-card{background:var(--black);text-align:center;padding:36px 20px;}
+.feat-icon{width:44px;height:44px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.feat-card h3{font-size:16px;margin-bottom:8px;font-weight:500;letter-spacing:.5px;}
+.feat-card p{font-size:13px;color:var(--text-muted);}
+
+footer{border-top:1px solid var(--border);padding:64px 0 28px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px;margin-bottom:48px;}
+.foot-brand p{font-size:14px;color:var(--text-muted);max-width:280px;margin-top:16px;}
+footer h4{font-size:13px;margin-bottom:18px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-soft);font-weight:500;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--text-muted);}
+footer ul a:hover{color:var(--gold-soft);}
+.newsletter-form{display:flex;margin-top:12px;border:1px solid var(--border);}
+.newsletter-form input{flex:1;padding:14px;border:none;background:transparent;color:var(--cream);font-family:var(--font-body);}
+.newsletter-form button{background:var(--gold);color:#0A0A0A;border:none;padding:0 20px;font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.foot-bottom{border-top:1px solid var(--border);padding-top:26px;display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);letter-spacing:.5px;flex-wrap:wrap;gap:12px;}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-media{order:-1;}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .prod-grid{grid-template-columns:repeat(2,1fr);}
+  .feat-grid{grid-template-columns:repeat(2,1fr);}
+  .foot-grid{grid-template-columns:repeat(2,1fr);}
+  .promo{padding:48px 28px;}
+}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .menu-toggle{display:flex;}
+  .nav-links.is-open{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--black);flex-direction:column;padding:24px 32px;gap:20px;border-bottom:1px solid var(--border);}
+  .hero h1{font-size:38px;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .prod-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">AURELIA</a>
+    <nav><ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#shop">Collection</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#deals">Exclusives</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <button class="icon-btn" aria-label="Cart"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="cart-count">0</span></button>
+      <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="eyebrow">The 2026 Collection</span>
+      <h1>Technology,<br><em>curated to endure.</em></h1>
+      <p>Aurelia sources the finest electronics on earth — devices chosen not for spec sheets alone, but for craft, longevity, and quiet distinction.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-primary">Enter the Collection</a>
+        <a href="#deals" class="btn btn-outline">Book a Concierge</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://images.pexels.com/photos/5081914/pexels-photo-5081914.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A black smartwatch resting on a marble surface">
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Explore</span><h2>The Categories</h2></div>
+    <div class="cat-grid">
+      <a href="#shop" class="cat-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg><span>Laptops</span></a>
+      <a href="#shop" class="cat-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><span>Phones</span></a>
+      <a href="#shop" class="cat-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 14a9 9 0 0 1 18 0"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3v4Z"/><path d="M3 19a2 2 0 0 0 2 2h1v-6H3v4Z"/></svg><span>Audio</span></a>
+      <a href="#shop" class="cat-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="6" y="4" width="12" height="16" rx="3"/><path d="M10 8h4"/></svg><span>Timepieces</span></a>
+      <a href="#shop" class="cat-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/></svg><span>Cameras</span></a>
+      <a href="#shop" class="cat-card"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg><span>Home Cinema</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Signature Pieces</span><h2>Featured Selection</h2></div>
+    <div class="prod-grid">
+
+      <div class="prod-card"><div class="prod-img"><span class="prod-tag">Signature</span><img src="https://images.pexels.com/photos/265070/pexels-photo-265070.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A premium laptop resting on a tabletop"></div>
+        <div class="prod-body"><div class="prod-cat">Laptops</div><h3>Aurelia Régal 15 Laptop</h3>
+        <div class="stars">★★★★★<span>(410)</span></div>
+        <div class="prod-foot"><div class="price">₹1,84,999</div><button class="add-cart">Enquire</button></div></div></div>
+
+      <div class="prod-card"><div class="prod-img"><img src="https://images.pexels.com/photos/30428610/pexels-photo-30428610.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Elegant black studio headphones"></div>
+        <div class="prod-body"><div class="prod-cat">Audio</div><h3>Ètoile Noir Headphones</h3>
+        <div class="stars">★★★★★<span>(288)</span></div>
+        <div class="prod-foot"><div class="price">₹42,999</div><button class="add-cart">Enquire</button></div></div></div>
+
+      <div class="prod-card"><div class="prod-img"><span class="prod-tag">Limited</span><img src="https://images.pexels.com/photos/30758126/pexels-photo-30758126.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A sleek mirrorless camera"></div>
+        <div class="prod-body"><div class="prod-cat">Cameras</div><h3>Maison Optique Mirrorless</h3>
+        <div class="stars">★★★★★<span>(156)</span></div>
+        <div class="prod-foot"><div class="price">₹2,45,000</div><button class="add-cart">Enquire</button></div></div></div>
+
+      <div class="prod-card"><div class="prod-img"><img src="https://images.pexels.com/photos/12882853/pexels-photo-12882853.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Two premium smartphones on a light background"></div>
+        <div class="prod-body"><div class="prod-cat">Phones</div><h3>Aurelia Privé 5G</h3>
+        <div class="stars">★★★★★<span>(521)</span></div>
+        <div class="prod-foot"><div class="price">₹1,29,999</div><button class="add-cart">Enquire</button></div></div></div>
+
+      <div class="prod-card"><div class="prod-img"><img src="https://images.pexels.com/photos/18542239/pexels-photo-18542239.jpeg?auto=compress&cs=tinysrgb&w=800" alt="An artistic monochrome speaker"></div>
+        <div class="prod-body"><div class="prod-cat">Audio</div><h3>Résonance Table Speaker</h3>
+        <div class="stars">★★★★☆<span>(97)</span></div>
+        <div class="prod-foot"><div class="price">₹38,500</div><button class="add-cart">Enquire</button></div></div></div>
+
+      <div class="prod-card"><div class="prod-img"><span class="prod-tag">New Arrival</span><img src="https://images.pexels.com/photos/267469/pexels-photo-267469.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A minimalist black tablet"></div>
+        <div class="prod-body"><div class="prod-cat">Tablets</div><h3>Aurelia Codex Tablet</h3>
+        <div class="stars">★★★★★<span>(203)</span></div>
+        <div class="prod-foot"><div class="price">₹89,999</div><button class="add-cart">Enquire</button></div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<section id="deals">
+  <div class="container">
+    <div class="promo">
+      <span class="eyebrow" style="margin-bottom:14px;">By Invitation</span>
+      <h2>The Private Client Programme</h2>
+      <p>Members receive early access to limited releases, a dedicated concierge line, and complimentary white-glove delivery.</p>
+      <a href="#contact" class="btn btn-primary">Request an Invitation</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container feat-grid">
+    <div class="feat-card"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><h3>Lifetime Authentication</h3><p>Every piece certified genuine.</p></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h3>White-Glove Delivery</h3><p>Hand-delivered and unboxed for you.</p></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><h3>Personal Concierge</h3><p>One point of contact, always.</p></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3>Discreet Payment</h3><p>Private, secure settlement options.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo">AURELIA</a>
+        <p>An atelier of technology, for those who consider a device before they own it.</p>
+      </div>
+      <div><h4>Collection</h4><ul><li><a href="#">Laptops</a></li><li><a href="#">Phones</a></li><li><a href="#">Audio</a></li><li><a href="#">Cameras</a></li></ul></div>
+      <div><h4>Maison</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Ateliers</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div>
+        <h4>Correspondence</h4>
+        <p style="font-size:14px;color:var(--text-muted);">First word on new arrivals.</p>
+        <form class="newsletter-form"><input type="email" placeholder="Your email" required><button type="submit">Submit</button></form>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Aurelia. All rights reserved.</span><span>Crafted for the discerning</span></div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle=document.querySelector('.menu-toggle'),navLinks=document.querySelector('.nav-links');
+  menuToggle?.addEventListener('click',()=>{navLinks.classList.toggle('is-open');menuToggle.classList.toggle('is-active');});
+  let cartCount=0;const cartCountEl=document.querySelector('.cart-count');
+  document.querySelectorAll('.add-cart').forEach(btn=>{btn.addEventListener('click',()=>{cartCount++;if(cartCountEl)cartCountEl.textContent=cartCount;const o=btn.textContent;btn.textContent='Reserved ✓';btn.classList.add('added');setTimeout(()=>{btn.textContent=o;btn.classList.remove('added');},1400);});});
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});navLinks?.classList.remove('is-open');}});});
+  document.querySelector('.newsletter-form')?.addEventListener('submit',e=>{e.preventDefault();const b=e.target.querySelector('button');const o=b.textContent;b.textContent='Merci ✓';setTimeout(()=>{b.textContent=o;e.target.reset();},1800);});
+</script>
+</body>
+</html>
