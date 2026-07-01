@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexoTech — Technology, Refined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B1020; --surface:rgba(255,255,255,.05); --surface-solid:#131A2E;
+  --blue:#3B82F6; --cyan:#22D3EE; --text:#E9EDF7; --text-muted:#8B94AC;
+  --border:rgba(255,255,255,.1); --radius:18px;
+  --font-head:'Space Grotesk',sans-serif; --font-body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;background-image:radial-gradient(circle at 15% 0%,rgba(59,130,246,.18),transparent 45%),radial-gradient(circle at 85% 20%,rgba(34,211,238,.13),transparent 40%);background-attachment:fixed;}
+img{max-width:100%;display:block;object-fit:cover;background:#1B2338;}
+a{color:inherit;text-decoration:none;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+h1,h2,h3{font-family:var(--font-head);font-weight:600;}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
+.glass{background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(16px);border-radius:var(--radius);}
+
+header{position:sticky;top:0;z-index:50;background:rgba(11,16,32,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1200px;margin:0 auto;}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;font-size:22px;}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:16px;color:#081018;}
+.nav-links{display:flex;gap:30px;list-style:none;font-weight:500;font-size:15px;color:var(--text-muted);}
+.nav-links a:hover{color:var(--cyan);}
+.nav-actions{display:flex;align-items:center;gap:18px;}
+.icon-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--text);}
+.cart-count{position:absolute;top:-8px;right:-10px;background:var(--cyan);color:#081018;font-size:11px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.menu-toggle{display:none;background:none;border:none;flex-direction:column;gap:5px;cursor:pointer;}
+.menu-toggle span{width:24px;height:2px;background:var(--text);}
+
+.hero{padding:100px 0 80px;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--cyan);padding:6px 14px;border-radius:999px;margin-bottom:22px;}
+.hero h1{font-size:54px;line-height:1.08;margin-bottom:20px;background:linear-gradient(100deg,#fff,#AFC3F5);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero p{font-size:17px;color:var(--text-muted);max-width:440px;margin-bottom:34px;}
+.hero-ctas{display:flex;gap:14px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border-radius:12px;font-weight:600;font-family:var(--font-head);font-size:15px;cursor:pointer;border:1px solid transparent;transition:transform .15s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:linear-gradient(100deg,var(--blue),var(--cyan));color:#04101f;box-shadow:0 10px 30px rgba(59,130,246,.35);}
+.btn-outline{border-color:var(--border);color:var(--text);}
+.hero-media{position:relative;padding:20px;}
+.hero-media::before{content:"";position:absolute;inset:0;background:linear-gradient(140deg,rgba(59,130,246,.25),rgba(34,211,238,.1));border-radius:24px;filter:blur(30px);z-index:0;}
+.hero-media img{position:relative;border-radius:16px;z-index:1;box-shadow:0 30px 60px rgba(0,0,0,.5);}
+.float-chip{position:absolute;z-index:2;padding:14px 18px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;}
+.chip-1{top:24px;right:0;}
+.chip-2{bottom:8px;left:0;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+
+section{padding:60px 0;}
+.section-head{text-align:center;max-width:600px;margin:0 auto 44px;}
+.section-head .kicker{color:var(--cyan);font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;}
+.section-head h2{font-size:32px;margin-top:10px;}
+.section-head p{color:var(--text-muted);margin-top:10px;font-size:15px;}
+
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+.cat-card{padding:26px 12px;text-align:center;transition:transform .2s,border-color .2s;}
+.cat-card:hover{transform:translateY(-5px);border-color:var(--cyan);}
+.cat-card svg{color:var(--cyan);margin-bottom:10px;}
+.cat-card span{font-weight:500;font-size:14px;}
+
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.prod-card{overflow:hidden;transition:transform .2s,border-color .2s;}
+.prod-card:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.4);}
+.prod-img{height:210px;position:relative;}
+.prod-tag{position:absolute;top:12px;left:12px;background:rgba(8,16,31,.75);backdrop-filter:blur(6px);color:var(--cyan);font-size:11px;font-weight:600;padding:5px 12px;border-radius:999px;border:1px solid rgba(34,211,238,.3);}
+.prod-body{padding:20px 22px 22px;}
+.prod-cat{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
+.prod-body h3{font-size:17px;margin:6px 0 8px;}
+.stars{color:var(--cyan);font-size:13px;margin-bottom:12px;}
+.stars span{color:var(--text-muted);margin-left:4px;}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;}
+.price{font-family:var(--font-head);font-weight:700;font-size:20px;}
+.price small{font-size:13px;color:var(--text-muted);font-weight:400;text-decoration:line-through;margin-left:6px;}
+.add-cart{background:rgba(255,255,255,.08);border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:10px;font-weight:600;font-size:13px;cursor:pointer;transition:.2s;}
+.add-cart:hover{background:linear-gradient(100deg,var(--blue),var(--cyan));color:#04101f;border-color:transparent;}
+.add-cart.added{background:#1FAE6E;color:#fff;}
+
+.promo{background:linear-gradient(110deg,rgba(59,130,246,.18),rgba(34,211,238,.08));border:1px solid var(--border);border-radius:24px;padding:56px;display:flex;align-items:center;justify-content:space-between;gap:32px;}
+.promo h2{font-size:30px;margin-bottom:10px;}
+.promo p{color:var(--text-muted);max-width:420px;}
+.promo .btn-primary{margin-top:20px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.feat-card{text-align:center;padding:26px 16px;}
+.feat-icon{width:52px;height:52px;border-radius:14px;background:rgba(34,211,238,.1);color:var(--cyan);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+.feat-card h3{font-size:15px;margin-bottom:6px;}
+.feat-card p{font-size:13px;color:var(--text-muted);}
+
+footer{border-top:1px solid var(--border);padding:56px 0 24px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:40px;}
+.foot-brand p{font-size:14px;color:var(--text-muted);max-width:280px;margin-top:14px;line-height:1.7;}
+footer h4{font-size:15px;margin-bottom:16px;font-family:var(--font-head);}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--text-muted);}
+footer ul a:hover{color:var(--cyan);}
+.newsletter-form{display:flex;margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+.newsletter-form input{flex:1;padding:12px;border:none;background:rgba(255,255,255,.03);color:var(--text);font-family:var(--font-body);}
+.newsletter-form button{background:linear-gradient(100deg,var(--blue),var(--cyan));color:#04101f;border:none;padding:0 18px;font-weight:700;cursor:pointer;}
+.foot-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;font-size:13px;color:var(--text-muted);flex-wrap:wrap;gap:12px;}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-media{order:-1;}
+  .cat-grid{grid-template-columns:repeat(3,1fr);}
+  .prod-grid{grid-template-columns:repeat(2,1fr);}
+  .feat-grid{grid-template-columns:repeat(2,1fr);}
+  .foot-grid{grid-template-columns:repeat(2,1fr);}
+  .promo{flex-direction:column;text-align:center;}
+}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .menu-toggle{display:flex;}
+  .nav-links.is-open{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--surface-solid);flex-direction:column;padding:20px 24px;gap:18px;border-bottom:1px solid var(--border);}
+  .hero h1{font-size:34px;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .prod-grid{grid-template-columns:1fr;}
+  .promo{padding:32px 24px;}
+  .float-chip{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo"><span class="logo-mark">N</span>NexoTech</a>
+    <nav><ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#deals">Deals</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <button class="icon-btn" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="cart-count">0</span></button>
+      <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="eyebrow glass">● Now shipping 2026 lineup</span>
+      <h1>Technology, refined for how you actually live.</h1>
+      <p>Curated laptops, phones and audio — engineered for speed, tested for real life. NexoTech cuts the noise so you buy once and buy right.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-primary">Explore the Range</a>
+        <a href="#deals" class="btn btn-outline glass">See What's New</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="https://images.pexels.com/photos/12882853/pexels-photo-12882853.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Two sleek smartphones floating against a light background">
+      <div class="float-chip glass chip-1"><span class="dot"></span>Live inventory sync</div>
+      <div class="float-chip glass chip-2"><span class="dot"></span>4.9★ · 18,400 reviews</div>
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Catalogue</span><h2>Shop by category</h2></div>
+    <div class="cat-grid">
+      <a href="#shop" class="cat-card glass"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M2 20h20"/></svg><span>Laptops</span></a>
+      <a href="#shop" class="cat-card glass"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><span>Phones</span></a>
+      <a href="#shop" class="cat-card glass"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14a9 9 0 0 1 18 0"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3v4Z"/><path d="M3 19a2 2 0 0 0 2 2h1v-6H3v4Z"/></svg><span>Audio</span></a>
+      <a href="#shop" class="cat-card glass"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="4" width="12" height="16" rx="3"/><path d="M10 8h4"/></svg><span>Wearables</span></a>
+      <a href="#shop" class="cat-card glass"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/></svg><span>Cameras</span></a>
+      <a href="#shop" class="cat-card glass"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12h4l2-3 2 6 2-3h4"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Gaming</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Curated</span><h2>Featured drops</h2><p>Hand-picked by our product team, refreshed weekly.</p></div>
+    <div class="prod-grid">
+
+      <div class="prod-card glass"><div class="prod-img"><span class="prod-tag">Editor's pick</span><img src="https://images.pexels.com/photos/6893347/pexels-photo-6893347.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Modern minimalist laptop on white surface"></div>
+        <div class="prod-body"><div class="prod-cat">Laptops</div><h3>Aeris 14 Ultraslim Laptop</h3>
+        <div class="stars">★★★★★<span>(1,822)</span></div>
+        <div class="prod-foot"><div class="price">₹79,999<small>₹89,999</small></div><button class="add-cart">Add to Cart</button></div></div></div>
+
+      <div class="prod-card glass"><div class="prod-img"><img src="https://images.pexels.com/photos/5083212/pexels-photo-5083212.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Smartphone with a minimalist white screen"></div>
+        <div class="prod-body"><div class="prod-cat">Smartphones</div><h3>NexoPhone 5G Edge</h3>
+        <div class="stars">★★★★★<span>(3,104)</span></div>
+        <div class="prod-foot"><div class="price">₹46,999</div><button class="add-cart">Add to Cart</button></div></div></div>
+
+      <div class="prod-card glass"><div class="prod-img"><span class="prod-tag">Trending</span><img src="https://images.pexels.com/photos/30428610/pexels-photo-30428610.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Black studio headphones on a white background"></div>
+        <div class="prod-body"><div class="prod-cat">Audio</div><h3>DriftSound ANC Headphones</h3>
+        <div class="stars">★★★★☆<span>(967)</span></div>
+        <div class="prod-foot"><div class="price">₹11,499</div><button class="add-cart">Add to Cart</button></div></div></div>
+
+      <div class="prod-card glass"><div class="prod-img"><img src="https://images.pexels.com/photos/5081914/pexels-photo-5081914.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Black smartwatch on a marble background"></div>
+        <div class="prod-body"><div class="prod-cat">Wearables</div><h3>OrbitWatch GT Smartwatch</h3>
+        <div class="stars">★★★★★<span>(1,266)</span></div>
+        <div class="prod-foot"><div class="price">₹13,999</div><button class="add-cart">Add to Cart</button></div></div></div>
+
+      <div class="prod-card glass"><div class="prod-img"><img src="https://images.pexels.com/photos/30758126/pexels-photo-30758126.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mirrorless camera on a vibrant background"></div>
+        <div class="prod-body"><div class="prod-cat">Cameras</div><h3>FrameOne Mirrorless Kit</h3>
+        <div class="stars">★★★★★<span>(544)</span></div>
+        <div class="prod-foot"><div class="price">₹58,999</div><button class="add-cart">Add to Cart</button></div></div></div>
+
+      <div class="prod-card glass"><div class="prod-img"><span class="prod-tag">New</span><img src="https://images.pexels.com/photos/16311110/pexels-photo-16311110.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Modern game controller on a dark background"></div>
+        <div class="prod-body"><div class="prod-cat">Gaming</div><h3>PulseGrip Wireless Controller</h3>
+        <div class="stars">★★★★☆<span>(701)</span></div>
+        <div class="prod-foot"><div class="price">₹4,299</div><button class="add-cart">Add to Cart</button></div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<section id="deals">
+  <div class="promo glass">
+    <div>
+      <h2>The 2026 upgrade event</h2>
+      <p>Trade in any working device and save up to ₹8,000 instantly on your next laptop or phone.</p>
+      <a href="#shop" class="btn btn-primary">Check Trade-In Value</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container feat-grid">
+    <div class="feat-card glass"><div class="feat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h3>Same-day dispatch</h3><p>Order before 4pm, ships today.</p></div>
+    <div class="feat-card glass"><div class="feat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><h3>2-year cover</h3><p>Included free on every device.</p></div>
+    <div class="feat-card glass"><div class="feat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3>Flexible checkout</h3><p>Pay in 3 with zero interest.</p></div>
+    <div class="feat-card glass"><div class="feat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><h3>Live chat support</h3><p>Real specialists, no chatbots.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo"><span class="logo-mark">N</span>NexoTech</a>
+        <p>A modern electronics shop for people who'd rather read one honest spec sheet than ten ads.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="#">Laptops</a></li><li><a href="#">Smartphones</a></li><li><a href="#">Audio</a></li><li><a href="#">Wearables</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Journal</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div>
+        <h4>Get the drop first</h4>
+        <p style="font-size:14px;color:var(--text-muted);">Restocks, launches, and members-only pricing.</p>
+        <form class="newsletter-form"><input type="email" placeholder="Your email" required><button type="submit">Join</button></form>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 NexoTech. All rights reserved.</span><span>Made for people who upgrade on purpose.</span></div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle=document.querySelector('.menu-toggle'),navLinks=document.querySelector('.nav-links');
+  menuToggle?.addEventListener('click',()=>{navLinks.classList.toggle('is-open');menuToggle.classList.toggle('is-active');});
+  let cartCount=0;const cartCountEl=document.querySelector('.cart-count');
+  document.querySelectorAll('.add-cart').forEach(btn=>{btn.addEventListener('click',()=>{cartCount++;if(cartCountEl)cartCountEl.textContent=cartCount;const o=btn.textContent;btn.textContent='Added ✓';btn.classList.add('added');setTimeout(()=>{btn.textContent=o;btn.classList.remove('added');},1400);});});
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});navLinks?.classList.remove('is-open');}});});
+  document.querySelector('.newsletter-form')?.addEventListener('submit',e=>{e.preventDefault();const b=e.target.querySelector('button');const o=b.textContent;b.textContent='Subscribed ✓';setTimeout(()=>{b.textContent=o;e.target.reset();},1800);});
+</script>
+</body>
+</html>
