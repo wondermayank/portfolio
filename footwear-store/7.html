@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR — Footwear, Unapologetically</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,900;1,6..96,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0908;
+    --bg-elev: #121110;
+    --bg-card: #16140f;
+    --line: rgba(214,196,150,0.14);
+    --gold: #c9a24b;
+    --gold-bright: #e8c777;
+    --ember: #a8481f;
+    --cream: #ece6d8;
+    --muted: #8f877a;
+    --font-display: 'Bodoni Moda', serif;
+    --font-body: 'Manrope', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:var(--font-body);
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* grain overlay */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    z-index:999;
+    pointer-events:none;
+    opacity:0.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .vignette{
+    position:fixed; inset:0; z-index:998; pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%);
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 6vw;
+    background:linear-gradient(to bottom, rgba(10,9,8,0.9), transparent);
+    backdrop-filter:blur(6px);
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    letter-spacing:0.14em;
+    font-weight:700;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex; gap:2.4rem; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;}
+  .nav-links a{position:relative; opacity:0.85; transition:opacity .3s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-6px; width:0; height:1px;
+    background:var(--gold); transition:width .35s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid var(--line); padding:10px 22px; font-size:0.72rem;
+    letter-spacing:0.14em; text-transform:uppercase; transition:all .35s;
+  }
+  .nav-cta:hover{background:var(--gold); color:#161310; border-color:var(--gold);}
+  .burger{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding:0 6vw;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(105deg, rgba(10,9,8,0.97) 28%, rgba(10,9,8,0.55) 55%, rgba(10,9,8,0.15) 78%),
+      url('https://images.unsplash.com/photo-1755194757953-a9301005114b?fm=jpg&q=80&w=2200&auto=format&fit=crop') center 38% / cover no-repeat;
+    filter:saturate(0.85) contrast(1.08);
+  }
+  .hero-content{position:relative; z-index:2; max-width:640px; padding-top:40px;}
+  .hero-eyebrow{
+    display:flex; align-items:center; gap:14px;
+    font-size:0.72rem; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:28px;
+  }
+  .hero-eyebrow::before{content:""; width:36px; height:1px; background:var(--gold);}
+  .hero h1{
+    font-family:var(--font-display);
+    font-size:clamp(3.2rem, 7vw, 6.4rem);
+    line-height:0.95;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic; color:var(--gold-bright); font-weight:500;}
+  .hero p{
+    margin:32px 0 40px;
+    max-width:440px;
+    color:var(--muted);
+    font-size:1.02rem;
+    line-height:1.75;
+    font-weight:300;
+  }
+  .hero-actions{display:flex; gap:18px; align-items:center; flex-wrap:wrap;}
+  .btn-solid{
+    background:var(--gold); color:#161310; padding:16px 34px;
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;
+    border:1px solid var(--gold); transition:all .35s;
+  }
+  .btn-solid:hover{background:transparent; color:var(--gold-bright);}
+  .btn-ghost{
+    padding:16px 8px; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    border-bottom:1px solid var(--line); transition:border-color .35s;
+  }
+  .btn-ghost:hover{border-color:var(--gold);}
+
+  .hero-stats{
+    position:absolute; right:6vw; bottom:60px; z-index:2;
+    display:flex; gap:56px;
+  }
+  .hero-stats div{text-align:right;}
+  .hero-stats .num{font-family:var(--font-display); font-size:2.1rem; color:var(--gold-bright);}
+  .hero-stats .lbl{font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-top:4px;}
+
+  .scroll-cue{
+    position:absolute; bottom:36px; left:6vw; z-index:2;
+    display:flex; align-items:center; gap:10px;
+    font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted);
+  }
+  .scroll-cue .line{width:1px; height:40px; background:linear-gradient(var(--gold), transparent); animation:scrollpulse 2s ease-in-out infinite;}
+  @keyframes scrollpulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  /* ===== MARQUEE ===== */
+  .marquee-wrap{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:20px 0; overflow:hidden; background:var(--bg-elev);
+  }
+  .marquee{display:flex; gap:60px; white-space:nowrap; animation:scroll 28s linear infinite; width:max-content;}
+  .marquee span{
+    font-family:var(--font-display); font-style:italic; font-size:1.3rem; color:var(--muted);
+    display:flex; align-items:center; gap:60px;
+  }
+  .marquee span::after{content:"◆"; color:var(--gold); font-size:0.7rem; margin-left:60px;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ===== SECTION HEADS ===== */
+  .section{padding:130px 6vw;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:70px; flex-wrap:wrap; gap:24px;
+    border-bottom:1px solid var(--line); padding-bottom:32px;
+  }
+  .section-tag{
+    font-size:0.72rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; display:block;
+  }
+  .section-head h2{
+    font-family:var(--font-display); font-size:clamp(2.2rem,4vw,3.4rem); font-weight:500; max-width:600px;
+  }
+  .section-head p{color:var(--muted); max-width:320px; font-size:0.95rem; line-height:1.7; font-weight:300;}
+
+  /* ===== COLLECTION GRID ===== */
+  .grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+    background:var(--line);
+  }
+  .card{
+    background:var(--bg-card); position:relative; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .card-img{
+    height:340px; overflow:hidden; position:relative;
+  }
+  .card-img img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform 0.9s cubic-bezier(.16,1,.3,1), filter .6s;
+    filter:brightness(0.82) contrast(1.05);
+  }
+  .card:hover .card-img img{transform:scale(1.08); filter:brightness(0.95) contrast(1.08);}
+  .card-tag{
+    position:absolute; top:16px; left:16px; z-index:2;
+    font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase;
+    background:rgba(10,9,8,0.75); border:1px solid var(--line);
+    padding:6px 12px; color:var(--gold-bright);
+  }
+  .card-body{padding:26px 28px 30px; flex:1; display:flex; flex-direction:column;}
+  .card-body .cname{font-family:var(--font-display); font-size:1.35rem; margin-bottom:6px;}
+  .card-body .cdesc{color:var(--muted); font-size:0.85rem; line-height:1.6; margin-bottom:18px; font-weight:300;}
+  .card-foot{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:auto; padding-top:18px; border-top:1px solid var(--line);
+  }
+  .price{font-family:var(--font-display); font-size:1.15rem; color:var(--gold-bright);}
+  .add-btn{
+    width:38px; height:38px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    transition:all .3s; cursor:pointer;
+  }
+  .add-btn:hover{background:var(--gold); border-color:var(--gold); color:#161310; transform:rotate(90deg);}
+
+  /* ===== CRAFT / SPLIT SECTION ===== */
+  .split{
+    display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+  }
+  .split-img{
+    position:relative; aspect-ratio:4/5; overflow:hidden;
+  }
+  .split-img img{width:100%; height:100%; object-fit:cover; filter:brightness(0.8) saturate(0.9);}
+  .split-img::before{
+    content:""; position:absolute; inset:0; border:1px solid var(--gold); opacity:0.4;
+    transform:translate(18px,18px); z-index:-1;
+  }
+  .split-text .section-tag{margin-bottom:22px;}
+  .split-text h2{
+    font-family:var(--font-display); font-size:clamp(2rem,3.4vw,2.9rem); font-weight:500; line-height:1.15; margin-bottom:26px;
+  }
+  .split-text p{color:var(--muted); line-height:1.85; font-weight:300; margin-bottom:20px; font-size:1rem;}
+  .stat-row{display:flex; gap:50px; margin-top:40px;}
+  .stat-row .num{font-family:var(--font-display); font-size:2.4rem; color:var(--gold-bright);}
+  .stat-row .lbl{font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-top:6px;}
+
+  /* ===== BAND ===== */
+  .band{
+    background:linear-gradient(90deg, var(--ember), #6b2c11);
+    padding:70px 6vw; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;
+  }
+  .band h3{font-family:var(--font-display); font-size:clamp(1.6rem,3vw,2.4rem); font-weight:500; max-width:560px; color:#f2e6d8;}
+  .band .btn-solid{background:#161310; color:var(--gold-bright); border-color:#161310;}
+  .band .btn-solid:hover{background:transparent; color:#f2e6d8; border-color:#f2e6d8;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:90px 6vw 40px; border-top:1px solid var(--line);}
+  .foot-top{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:50px; margin-bottom:70px;
+  }
+  .foot-logo{font-family:var(--font-display); font-size:1.7rem; letter-spacing:0.1em; margin-bottom:18px;}
+  .foot-logo span{color:var(--gold);}
+  .foot-top p{color:var(--muted); font-size:0.88rem; line-height:1.7; max-width:280px; font-weight:300;}
+  .foot-col h4{font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;}
+  .foot-col a{display:block; color:var(--muted); font-size:0.88rem; margin-bottom:12px; transition:color .3s;}
+  .foot-col a:hover{color:var(--cream);}
+  .foot-form{display:flex; border-bottom:1px solid var(--line); padding-bottom:10px;}
+  .foot-form input{
+    background:transparent; border:none; outline:none; color:var(--cream);
+    font-family:var(--font-body); font-size:0.9rem; flex:1; padding:8px 0;
+  }
+  .foot-form input::placeholder{color:var(--muted);}
+  .foot-form button{background:none; border:none; color:var(--gold); font-size:1rem; cursor:pointer;}
+  .foot-bottom{
+    display:flex; justify-content:space-between; padding-top:30px; border-top:1px solid var(--line);
+    font-size:0.75rem; color:var(--muted); flex-wrap:wrap; gap:14px;
+  }
+
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .grid{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr; gap:40px;}
+    .split-img{order:-1;}
+    .foot-top{grid-template-columns:1fr 1fr; row-gap:40px;}
+    .hero-stats{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="vignette"></div>
+
+<nav>
+  <div class="logo">NO<span>I</span>R</div>
+  <div class="nav-links">
+    <a href="#collection">Collection</a>
+    <a href="#craft">Craft</a>
+    <a href="#lookbook">Lookbook</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#" class="nav-cta">Enquire</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Autumn / Winter Collection</div>
+    <h1>Step into<br>the <em>shadow.</em></h1>
+    <p>Hand-finished leather, sculpted soles, and a silhouette built for a room that goes quiet when you walk in. This is footwear as statement.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn-solid">Shop the Drop</a>
+      <a href="#craft" class="btn-ghost">Our Craft →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="num">120+</div><div class="lbl">Silhouettes</div></div>
+    <div><div class="num">18</div><div class="lbl">Countries</div></div>
+    <div><div class="num">4.9</div><div class="lbl">Rating</div></div>
+  </div>
+  <div class="scroll-cue"><div class="line"></div>Scroll</div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Limited Drops</span><span>Hand-Finished Leather</span><span>Free Global Shipping</span><span>Est. 2019</span>
+    <span>Limited Drops</span><span>Hand-Finished Leather</span><span>Free Global Shipping</span><span>Est. 2019</span>
+  </div>
+</div>
+
+<section class="section" id="collection">
+  <div class="section-head">
+    <div>
+      <span class="section-tag">The Collection</span>
+      <h2>Every pair earns its place on the shelf.</h2>
+    </div>
+    <p>Three families. One obsession with proportion, texture, and the weight of a good sole underfoot.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-img">
+        <span class="card-tag">Bestseller</span>
+        <img src="https://images.unsplash.com/photo-1755194757953-a9301005114b?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Low-profile leather sneaker on dark background">
+      </div>
+      <div class="card-body">
+        <div class="cname">The Umbra Low</div>
+        <div class="cdesc">Full-grain calfskin upper, matte gum sole, stitched by hand in small batches.</div>
+        <div class="card-foot"><span class="price">$268</span><span class="add-btn">+</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <span class="card-tag">New</span>
+        <img src="https://images.unsplash.com/photo-1731132198530-e4b2dc51d511?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="High-contrast sneaker on black studio background">
+      </div>
+      <div class="card-body">
+        <div class="cname">The Ember Runner</div>
+        <div class="cdesc">Technical mesh panels under a molded leather cage — built for city miles.</div>
+        <div class="card-foot"><span class="price">$312</span><span class="add-btn">+</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <span class="card-tag">Limited</span>
+        <img src="https://images.unsplash.com/photo-1616244916660-d135a013d1f8?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Brown leather lace-up boot">
+      </div>
+      <div class="card-body">
+        <div class="cname">The Foundry Boot</div>
+        <div class="cdesc">Waxed vegetable-tanned leather over a Goodyear-welted construction.</div>
+        <div class="card-foot"><span class="price">$398</span><span class="add-btn">+</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="craft">
+  <div class="split">
+    <div class="split-text">
+      <span class="section-tag">Our Craft</span>
+      <h2>Built on lasts that have outlived trends.</h2>
+      <p>Every silhouette begins on a wooden last, shaped by hand, refined over a decade of small corrections. We don't chase seasons — we chase the fit that makes you forget you're wearing shoes at all.</p>
+      <p>Leather is sourced from tanneries that have supplied the same families for three generations. Nothing is rushed. Nothing is outsourced to save a week.</p>
+      <div class="stat-row">
+        <div><div class="num">40+</div><div class="lbl">Hours per pair</div></div>
+        <div><div class="num">6</div><div class="lbl">Hand stitches / cm</div></div>
+        <div><div class="num">100%</div><div class="lbl">Full-grain leather</div></div>
+      </div>
+    </div>
+    <div class="split-img">
+      <img src="https://images.unsplash.com/photo-1616244916660-d135a013d1f8?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Close detail of hand-finished leather boot">
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <h3>Join the list. Get first access to the next drop before it sells out.</h3>
+  <a href="#" class="btn-solid">Join Waitlist</a>
+</div>
+
+<footer id="contact">
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">NO<span>I</span>R</div>
+      <p>An independent footwear house, designed in low light and built to last longer than the season it was made for.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#">Sneakers</a>
+      <a href="#">Boots</a>
+      <a href="#">New Arrivals</a>
+      <a href="#">Sale</a>
+    </div>
+    <div class="foot-col">
+      <h4>Studio</h4>
+      <a href="#">About</a>
+      <a href="#">Craft</a>
+      <a href="#">Journal</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="foot-col">
+      <h4>Stay Updated</h4>
+      <div class="foot-form">
+        <input type="email" placeholder="Your email address">
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Noir Footwear Co. All rights reserved.</span>
+    <span>Privacy · Terms · Shipping</span>
+  </div>
+</footer>
+
+</body>
+</html>
