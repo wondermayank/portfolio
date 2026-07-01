@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rang Mahal — Kundan & Bangles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#6b1220;
+    --maroon-dark:#3f0a12;
+    --cream:#fbf3e6;
+    --cream-2:#f3e4cd;
+    --gold:#c69a2e;
+    --gold-light:#e7c766;
+    --emerald:#0f5c46;
+    --rose:#d98a93;
+    --ink:#241a12;
+    --ink-soft:#5a4c3f;
+    --shadow: 0 18px 40px -18px rgba(60,20,10,.35);
+    --radius-arch: 200px 200px 8px 8px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:.01em;
+  }
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 28px;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none;}
+
+  /* ===== scallop divider — kundan stone-setting motif ===== */
+  .scallop{
+    height:22px;
+    width:100%;
+    background:
+      radial-gradient(circle at 11px 0, transparent 10px, var(--maroon) 11px) 0 -11px/22px 22px repeat-x;
+  }
+  .scallop.flip{ transform:rotate(180deg); }
+  .scallop.gold{
+    background:
+      radial-gradient(circle at 11px 0, transparent 10px, var(--gold) 11px) 0 -11px/22px 22px repeat-x;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,243,230,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(107,18,32,.12);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem; font-weight:700; color:var(--maroon);
+    letter-spacing:.06em;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .logo span{font-family:'Poppins',sans-serif; font-size:.6rem; letter-spacing:.3em; color:var(--gold); font-weight:600;}
+  .nav-links{display:flex; gap:34px; font-size:.87rem; font-weight:500; color:var(--ink-soft);}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a::after{content:"";position:absolute; left:0; bottom:-2px; width:0; height:1.5px; background:var(--gold); transition:width .25s;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a:hover{color:var(--maroon);}
+  .nav-actions{display:flex; align-items:center; gap:18px;}
+  .icon-btn{position:relative; width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:50%; color:var(--maroon); transition:background .2s;}
+  .icon-btn:hover{background:rgba(107,18,32,.08);}
+  .icon-btn svg{width:19px; height:19px;}
+  .bag-count{
+    position:absolute; top:-2px; right:-2px;
+    background:var(--maroon); color:var(--cream);
+    font-size:.62rem; font-weight:700;
+    width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hamburger{display:none;}
+
+  /* search overlay bar */
+  .search-bar{
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+    background:var(--cream-2); border-bottom:1px solid rgba(107,18,32,.12);
+  }
+  .search-bar.open{max-height:90px;}
+  .search-bar-inner{
+    max-width:1240px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .search-bar input{
+    flex:1; border:none; background:transparent;
+    font-family:'Cormorant Garamond', serif; font-size:1.25rem; font-style:italic;
+    color:var(--ink); outline:none;
+  }
+  .search-bar input::placeholder{color:#a89477;}
+  .search-bar svg{width:18px; height:18px; color:var(--maroon); flex-shrink:0;}
+  .search-close{font-size:.8rem; color:var(--ink-soft); font-weight:500;}
+
+  /* ===== HERO ===== */
+  .hero{padding:64px 0 40px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  }
+  .hero-copy h1{
+    font-size:clamp(2.6rem, 4.6vw, 4.1rem);
+    line-height:1.04; color:var(--maroon); font-style:italic; margin:14px 0 20px;
+  }
+  .hero-copy p{
+    font-size:1.02rem; color:var(--ink-soft); max-width:440px; line-height:1.7; margin-bottom:30px;
+  }
+  .btn-row{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--maroon); color:var(--cream);
+    padding:15px 30px; border-radius:2px; font-size:.85rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase;
+    transition:background .2s, transform .2s;
+    box-shadow:var(--shadow);
+  }
+  .btn-primary:hover{background:var(--maroon-dark); transform:translateY(-2px);}
+  .btn-ghost{
+    font-size:.85rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--maroon); border-bottom:1.5px solid var(--gold); padding-bottom:4px;
+  }
+  .stat-row{display:flex; gap:34px; margin-top:38px;}
+  .stat-row div{border-left:2px solid var(--gold); padding-left:14px;}
+  .stat-row strong{display:block; font-family:'Cormorant Garamond',serif; font-size:1.7rem; color:var(--maroon);}
+  .stat-row span{font-size:.72rem; color:var(--ink-soft); letter-spacing:.05em;}
+
+  .hero-visual{position:relative;}
+  .arch-frame{
+    position:relative;
+    border-radius:var(--radius-arch);
+    overflow:hidden;
+    height:560px;
+    border:7px double var(--gold);
+    box-shadow:var(--shadow);
+  }
+  .arch-frame img{height:100%;}
+  .floating-card{
+    position:absolute; left:-38px; bottom:38px;
+    background:var(--cream); padding:16px 20px;
+    border:1px solid rgba(107,18,32,.15);
+    border-radius:6px; box-shadow:var(--shadow);
+    max-width:220px;
+  }
+  .floating-card .display{font-size:1.1rem; color:var(--maroon); margin-bottom:2px;}
+  .floating-card p{font-size:.74rem; color:var(--ink-soft); line-height:1.5;}
+  .badge-ring{
+    position:absolute; top:-26px; right:20px;
+    width:92px; height:92px; border-radius:50%;
+    background:var(--maroon); color:var(--gold-light);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Cormorant Garamond',serif; font-size:.72rem; line-height:1.3;
+    border:2px solid var(--gold); box-shadow:var(--shadow);
+  }
+
+  /* ===== CATEGORY STRIP ===== */
+  .cat-section{padding:52px 0 20px;}
+  .cat-strip{display:flex; gap:30px; overflow-x:auto; padding-bottom:8px; scrollbar-width:none;}
+  .cat-strip::-webkit-scrollbar{display:none;}
+  .cat-item{flex:0 0 auto; text-align:center; cursor:pointer; transition:transform .2s;}
+  .cat-item:hover{transform:translateY(-4px);}
+  .cat-thumb{
+    width:104px; height:104px; border-radius:52% 52% 6px 6px;
+    overflow:hidden; border:3px solid var(--gold); margin:0 auto 10px;
+  }
+  .cat-item span{font-size:.78rem; font-weight:600; color:var(--ink-soft);}
+  .cat-item.active span{color:var(--maroon);}
+  .cat-item.active .cat-thumb{border-color:var(--maroon);}
+
+  /* ===== SECTION HEADERS ===== */
+  .section{padding:64px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:38px; gap:20px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(1.8rem,3vw,2.5rem); color:var(--maroon); font-style:italic;}
+  .section-head p{color:var(--ink-soft); font-size:.88rem; max-width:380px; margin-top:8px;}
+
+  /* ===== PRODUCT GRID ===== */
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:28px;
+  }
+  .card{
+    background:#fff; border-radius:6px; overflow:hidden;
+    box-shadow:0 10px 26px -16px rgba(60,20,10,.28);
+    transition:transform .28s, box-shadow .28s;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .card-img{
+    position:relative; height:260px; overflow:hidden;
+    border-radius:120px 120px 0 0;
+    margin:14px 14px 0;
+  }
+  .card-img img{transition:transform .5s;}
+  .card:hover .card-img img{transform:scale(1.07);}
+  .wish-btn{
+    position:absolute; top:10px; right:10px; width:34px; height:34px;
+    background:rgba(251,243,230,.9); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--maroon); z-index:2; transition:background .2s;
+  }
+  .wish-btn.active{color:var(--rose);}
+  .wish-btn svg{width:16px; height:16px;}
+  .card-tag{
+    position:absolute; top:10px; left:10px; background:var(--maroon); color:var(--gold-light);
+    font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:2px; z-index:2;
+  }
+  .card-body{padding:18px 20px 22px;}
+  .card-body .eyebrow{font-size:.62rem;}
+  .card-body h3{font-size:1.28rem; color:var(--ink); margin:5px 0 3px; font-style:italic;}
+  .card-body .price{font-size:.95rem; font-weight:600; color:var(--maroon); font-family:'Poppins',sans-serif;}
+  .card-body .price small{color:#a89477; font-weight:400; text-decoration:line-through; margin-left:8px; font-size:.8rem;}
+  .add-btn{
+    margin-top:14px; width:100%; padding:11px; border:1.5px solid var(--maroon);
+    color:var(--maroon); font-size:.76rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    border-radius:2px; transition:all .22s;
+  }
+  .add-btn:hover{background:var(--maroon); color:var(--cream);}
+  .no-results{display:none; text-align:center; padding:60px 20px; color:var(--ink-soft); font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-style:italic;}
+
+  /* ===== LOOKBOOK ===== */
+  .lookbook-strip{
+    display:flex; gap:22px; overflow-x:auto; padding-bottom:14px; scroll-snap-type:x mandatory;
+  }
+  .look-card{
+    flex:0 0 auto; width:270px; height:380px; scroll-snap-align:start;
+    position:relative; border-radius:135px 135px 8px 8px; overflow:hidden;
+    border:5px double var(--gold); box-shadow:var(--shadow);
+  }
+  .look-card::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(63,10,18,.85) 0%, rgba(63,10,18,0) 45%);
+  }
+  .look-caption{
+    position:absolute; bottom:20px; left:20px; right:20px; z-index:2; color:var(--cream);
+  }
+  .look-caption .eyebrow{color:var(--gold-light); font-size:.6rem;}
+  .look-caption h3{font-size:1.4rem; font-style:italic;}
+
+  /* ===== VALUES ===== */
+  .values{
+    background:var(--maroon); color:var(--cream);
+  }
+  .values-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:30px; padding:56px 0;
+  }
+  .value-item{text-align:center; padding:0 12px;}
+  .value-item svg{width:34px; height:34px; color:var(--gold-light); margin-bottom:14px;}
+  .value-item h3{font-size:1.15rem; font-style:italic; margin-bottom:6px;}
+  .value-item p{font-size:.8rem; color:#e7d3c0; line-height:1.6;}
+
+  /* ===== TESTIMONIALS ===== */
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .testi-card{
+    background:#fff; border-radius:6px; padding:28px; box-shadow:0 10px 26px -16px rgba(60,20,10,.25);
+  }
+  .testi-top{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .testi-avatar{width:50px; height:50px; border-radius:50%; overflow:hidden; border:2px solid var(--gold);}
+  .testi-name{font-weight:600; font-size:.9rem; color:var(--ink);}
+  .testi-loc{font-size:.72rem; color:var(--ink-soft);}
+  .testi-card p{font-size:.87rem; color:var(--ink-soft); line-height:1.7; font-style:italic;}
+  .stars{color:var(--gold); font-size:.8rem; margin-top:10px;}
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter{
+    background:var(--cream-2); border-radius:8px; padding:52px 40px; text-align:center;
+    border:1px solid rgba(107,18,32,.12);
+  }
+  .newsletter h2{font-size:2rem; color:var(--maroon); font-style:italic; margin-bottom:10px;}
+  .newsletter p{color:var(--ink-soft); font-size:.9rem; margin-bottom:26px;}
+  .newsletter form{display:flex; max-width:420px; margin:0 auto; gap:0; border:1.5px solid var(--maroon); border-radius:2px; overflow:hidden;}
+  .newsletter input{flex:1; border:none; padding:14px 16px; font-family:'Poppins',sans-serif; font-size:.85rem; outline:none; background:#fff;}
+  .newsletter button{background:var(--maroon); color:var(--cream); padding:0 26px; font-size:.78rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink); color:#cbbba4; padding:60px 0 30px; margin-top:70px;}
+  .foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:44px;}
+  .foot-grid h4{font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:16px; font-weight:600;}
+  .foot-grid p{font-size:.82rem; line-height:1.7; color:#a99b87; max-width:280px;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:9px; font-size:.82rem;}
+  .foot-grid a:hover{color:var(--gold-light);}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.1); padding-top:24px;
+    display:flex; justify-content:space-between; align-items:center; font-size:.74rem; color:#8a7c69; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ===== TOAST ===== */
+  .toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(120%);
+    background:var(--maroon); color:var(--cream); padding:14px 26px; border-radius:4px;
+    font-size:.84rem; font-weight:500; box-shadow:var(--shadow); z-index:999;
+    transition:transform .35s ease; display:flex; align-items:center; gap:10px;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast svg{width:16px; height:16px; color:var(--gold-light);}
+
+  @media(max-width:880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .arch-frame{height:400px;}
+    .nav-links{
+      position:fixed; top:73px; left:0; right:0; background:var(--cream);
+      flex-direction:column; padding:22px 28px; gap:18px;
+      transform:translateY(-130%); transition:transform .3s; border-bottom:1px solid rgba(107,18,32,.12);
+    }
+    .nav-links.open{transform:translateY(0);}
+    .hamburger{display:flex; width:34px; height:34px; align-items:center; justify-content:center; color:var(--maroon);}
+    .values-grid{grid-template-columns:1fr 1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .floating-card{left:12px; bottom:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a href="#top" class="logo">Rang Mahal <span>KUNDAN &amp; BANGLES</span></a>
+      <div class="nav-links">
+        <a href="#bangles">Bangles</a>
+        <a href="#kundan">Kundan Sets</a>
+        <a href="#earrings">Earrings</a>
+        <a href="#lookbook">Bridal Edit</a>
+        <a href="#values">Our Craft</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" onclick="toggleSearch()" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button class="icon-btn" onclick="toggleWish()" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.4 2 5 5.5 5c2 0 3.4 1.1 4.2 2.3C10.5 6.1 11.9 5 13.9 5 17.4 5 19 8.4 17.5 11.7 15 16.4 12 21 12 21z"/></svg>
+        </button>
+        <button class="icon-btn" onclick="addToBag(null,'Your Bag')" aria-label="Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="bag-count" id="bagCount">0</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div class="search-bar" id="searchBar">
+    <div class="search-bar-inner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Search kundan sets, bangles, earrings, pendants…" oninput="filterProducts(this.value)">
+      <button class="search-close" onclick="toggleSearch()">Close</button>
+    </div>
+  </div>
+</header>
+
+<div id="top"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Handset Kundan · Since Generations</p>
+      <h1>Jewels worn<br>the way a royal<br>wardrobe was.</h1>
+      <p>Rang Mahal brings the jharokha-window elegance of old Rajasthan and Lucknow to your celebrations — foiled kundan, hand-stacked bangles, and bridal sets set by third-generation artisans.</p>
+      <div class="btn-row">
+        <a href="#bangles" class="btn-primary">Shop The Bangle Edit</a>
+        <a href="#kundan" class="btn-ghost">Explore Kundan Sets</a>
+      </div>
+      <div class="stat-row">
+        <div><strong>40+</strong><span>Yrs of Kundan Craft</span></div>
+        <div><strong>1,800</strong><span>Handset Designs</span></div>
+        <div><strong>BIS</strong><span>Hallmark Certified</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="badge-ring">Free<br>Insured<br>Shipping</div>
+      <div class="arch-frame">
+        <img src="https://images.pexels.com/photos/16141929/pexels-photo-16141929.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Bride wearing ornate red sari and kundan jewellery">
+      </div>
+      <div class="floating-card">
+        <div class="display">The Rani Set</div>
+        <p>Featured in our Bridal Edit — 22kt gold-polish kundan with rose-cut polki.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="scallop"></div>
+
+<!-- CATEGORY STRIP -->
+<section class="cat-section">
+  <div class="wrap">
+    <div class="cat-strip">
+      <div class="cat-item active" onclick="scrollToCat('bangles', this)">
+        <div class="cat-thumb"><img src="https://images.unsplash.com/photo-1728381031272-ba3f537feadd?auto=format&fit=crop&w=300&q=80" alt="Bangles"></div>
+        <span>Bangles</span>
+      </div>
+      <div class="cat-item" onclick="scrollToCat('kundan', this)">
+        <div class="cat-thumb"><img src="https://images.pexels.com/photos/13595802/pexels-photo-13595802.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Kundan Sets"></div>
+        <span>Kundan Sets</span>
+      </div>
+      <div class="cat-item" onclick="scrollToCat('earrings', this)">
+        <div class="cat-thumb"><img src="https://images.pexels.com/photos/13595789/pexels-photo-13595789.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Earrings"></div>
+        <span>Earrings</span>
+      </div>
+      <div class="cat-item" onclick="scrollToCat('pendants', this)">
+        <div class="cat-thumb"><img src="https://images.pexels.com/photos/32780784/pexels-photo-32780784.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Pendants"></div>
+        <span>Pendants</span>
+      </div>
+      <div class="cat-item" onclick="scrollToCat('lookbook', this)">
+        <div class="cat-thumb"><img src="https://images.pexels.com/photos/29351977/pexels-photo-29351977.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Bridal Edit"></div>
+        <span>Bridal Edit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANGLES -->
+<section class="section" id="bangles">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">The Bangle Edit</p>
+        <h2>Stacks &amp; Kada</h2>
+        <p>Layer them, or let a single kada speak. Every piece hand-set with foiled kundan stones.</p>
+      </div>
+      <a href="#kundan" class="btn-ghost">View Kundan Sets →</a>
+    </div>
+    <div class="grid" id="grid-bangles">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</section>
+
+<div class="scallop gold"></div>
+
+<!-- KUNDAN SETS -->
+<section class="section" id="kundan">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Necklace &amp; Sets</p>
+        <h2>Kundan Haar Collection</h2>
+        <p>Rani-cut chokers to layered bridal haars, foiled in warm 22kt gold polish.</p>
+      </div>
+      <a href="#lookbook" class="btn-ghost">See Bridal Styling →</a>
+    </div>
+    <div class="grid" id="grid-kundan"></div>
+  </div>
+</section>
+
+<!-- EARRINGS + PENDANTS -->
+<section class="section" id="earrings" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Ears &amp; Neck</p>
+        <h2>Jhumka, Studs &amp; Pendants</h2>
+      </div>
+    </div>
+    <div class="grid" id="grid-earrings"></div>
+  </div>
+</section>
+
+<section id="pendants">
+  <div class="wrap">
+    <div class="grid" id="grid-pendants" style="margin-top:-6px;"></div>
+    <p class="no-results" id="noResults">No pieces match your search — try "kundan", "bangle" or "jhumka".</p>
+  </div>
+</section>
+
+<div class="scallop"></div>
+
+<!-- LOOKBOOK -->
+<section class="section" id="lookbook">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Styled By Rang Mahal</p>
+        <h2>The Bridal Edit</h2>
+        <p>Six real brides, six ways to wear kundan — from the maximalist Rani look to a modern minimal edit.</p>
+      </div>
+    </div>
+    <div class="lookbook-strip">
+      <div class="look-card"><img src="https://images.pexels.com/photos/31731761/pexels-photo-31731761.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Elegant bridal look"><div class="look-caption"><p class="eyebrow">Look 01</p><h3>The Rani Set</h3></div></div>
+      <div class="look-card"><img src="https://images.pexels.com/photos/29351977/pexels-photo-29351977.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Traditional bridal attire"><div class="look-caption"><p class="eyebrow">Look 02</p><h3>Temple Bride</h3></div></div>
+      <div class="look-card"><img src="https://images.pexels.com/photos/9419311/pexels-photo-9419311.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bridal jewellery"><div class="look-caption"><p class="eyebrow">Look 03</p><h3>Kundan Cascade</h3></div></div>
+      <div class="look-card"><img src="https://images.pexels.com/photos/25389117/pexels-photo-25389117.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Bride in red dress and jewellery"><div class="look-caption"><p class="eyebrow">Look 04</p><h3>Modern Minimal</h3></div></div>
+      <div class="look-card"><img src="https://images.pexels.com/photos/11784752/pexels-photo-11784752.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Woman in traditional jewellery"><div class="look-caption"><p class="eyebrow">Look 05</p><h3>Heritage Layers</h3></div></div>
+      <div class="look-card"><img src="https://images.pexels.com/photos/5814060/pexels-photo-5814060.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Elegant traditional accessories"><div class="look-caption"><p class="eyebrow">Look 06</p><h3>The Nath &amp; Kada</h3></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values" id="values">
+  <div class="wrap values-grid">
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <h3>Hand-set Kundan</h3>
+      <p>Every stone foiled and set by hand, exactly as it's been for generations.</p>
+    </div>
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z"/></svg>
+      <h3>BIS Hallmarked</h3>
+      <p>Certified purity on every gold-polish and gemstone piece we ship.</p>
+    </div>
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v8h8"/></svg>
+      <h3>7-Day Exchange</h3>
+      <p>Try it on for your event — easy exchanges within seven days.</p>
+    </div>
+    <div class="value-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h2l2.6 12.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+      <h3>Insured Shipping</h3>
+      <p>Every order travels fully insured, packed in a velvet Rang Mahal box.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">From Our Brides</p>
+        <h2>Worn On The Big Day</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-top">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/30572864/pexels-photo-30572864.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Customer"></div>
+          <div><div class="testi-name">Ishita R.</div><div class="testi-loc">Jaipur</div></div>
+        </div>
+        <p>"The Rani Kundan set carried my whole reception look — friends kept asking where it was from."</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-top">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/10773467/pexels-photo-10773467.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Customer"></div>
+          <div><div class="testi-name">Meher K.</div><div class="testi-loc">Lucknow</div></div>
+        </div>
+        <p>"Ordered the bridal chuda for my mehendi — the weight and finish felt like an heirloom, not a rental."</p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-top">
+          <div class="testi-avatar"><img src="https://images.pexels.com/photos/5814061/pexels-photo-5814061.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Customer"></div>
+          <div><div class="testi-name">Nandini S.</div><div class="testi-loc">Delhi</div></div>
+        </div>
+        <p>"The jhumkas were lighter than I expected for how detailed they are — wore them all night, no complaints."</p>
+        <div class="stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="newsletter">
+      <h2>Join the Rang Mahal Circle</h2>
+      <p>New kundan drops, festive edits and early bridal-season access — straight to your inbox.</p>
+      <form onsubmit="event.preventDefault(); showToast('Welcome to the circle — check your inbox.')">
+        <input type="email" placeholder="you@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Rang Mahal</h4>
+        <p>Handcrafted kundan and bangles from artisan families in Jaipur and Lucknow, made for every celebration on your calendar.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#bangles">Bangles</a></li>
+          <li><a href="#kundan">Kundan Sets</a></li>
+          <li><a href="#earrings">Earrings</a></li>
+          <li><a href="#lookbook">Bridal Edit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Size &amp; Fit Guide</a></li>
+          <li><a href="#">Exchanges</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>Johari Bazaar, Jaipur</li>
+          <li>Hazratganj, Lucknow</li>
+          <li>hello@rangmahal.example</li>
+          <li>+91 98XXX XXXXX</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Rang Mahal Kundan &amp; Bangles. All rights reserved.</span>
+      <span>Made with care for every rasm.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastText">Added to bag</span>
+</div>
+
+<script>
+/* ============ PRODUCT DATA ============ */
+const products = {
+  bangles: [
+    { name:"Meenakari Kada Pair", tag:"Bestseller", price:"₹18,500", mrp:"₹22,900", img:"https://images.unsplash.com/photo-1690175867343-2af70ea57537?auto=format&fit=crop&w=500&q=80", tags:"bangle kada meenakari" },
+    { name:"Antique Polki Bangles", tag:"New", price:"₹24,900", mrp:"", img:"https://images.unsplash.com/photo-1728381031272-ba3f537feadd?auto=format&fit=crop&w=500&q=80", tags:"bangle polki antique" },
+    { name:"Temple Stack Bangles", tag:"", price:"₹12,300", mrp:"", img:"https://images.unsplash.com/photo-1679156271456-d6068c543ee7?auto=format&fit=crop&w=500&q=80", tags:"bangle temple stack" },
+    { name:"Bridal Chuda Set", tag:"Bridal", price:"₹32,000", mrp:"₹38,500", img:"https://images.unsplash.com/photo-1679156272446-30738eb5c4e7?auto=format&fit=crop&w=500&q=80", tags:"bangle chuda bridal kada" },
+    { name:"Everyday Gold Kada", tag:"", price:"₹9,800", mrp:"", img:"https://images.unsplash.com/photo-1741071520904-37ef3c0fea09?auto=format&fit=crop&w=500&q=80", tags:"bangle kada daily" },
+    { name:"Layered Kangan Set", tag:"", price:"₹15,600", mrp:"", img:"https://images.unsplash.com/photo-1741071520895-47d81779c11e?auto=format&fit=crop&w=500&q=80", tags:"bangle kangan layered" },
+    { name:"Diamond-Dust Kundan Kada", tag:"Premium", price:"₹28,400", mrp:"", img:"https://images.unsplash.com/photo-1611598935678-c88dca238fce?auto=format&fit=crop&w=500&q=80", tags:"bangle kundan diamond kada" },
+  ],
+  kundan: [
+    { name:"Rani Kundan Choker Set", tag:"Bridal", price:"₹45,000", mrp:"₹52,000", img:"https://images.pexels.com/photos/33154729/pexels-photo-33154729.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"kundan necklace choker set" },
+    { name:"Nizam Kundan Set", tag:"Bestseller", price:"₹52,500", mrp:"", img:"https://images.pexels.com/photos/13595802/pexels-photo-13595802.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"kundan necklace set" },
+    { name:"Heritage Bridal Haar", tag:"Bridal", price:"₹68,000", mrp:"₹79,000", img:"https://images.pexels.com/photos/5043048/pexels-photo-5043048.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"kundan haar necklace bridal" },
+    { name:"Polki Emerald Rani Set", tag:"New", price:"₹58,900", mrp:"", img:"https://images.pexels.com/photos/13595451/pexels-photo-13595451.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"polki kundan necklace emerald" },
+  ],
+  earrings: [
+    { name:"Kundan Pearl Jhumka", tag:"Bestseller", price:"₹9,200", mrp:"", img:"https://images.pexels.com/photos/13595789/pexels-photo-13595789.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"jhumka earrings kundan pearl" },
+    { name:"Floral Kundan Studs", tag:"", price:"₹7,600", mrp:"", img:"https://images.pexels.com/photos/9808447/pexels-photo-9808447.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"studs earrings kundan floral" },
+    { name:"Blossom Drop Earrings", tag:"New", price:"₹8,400", mrp:"", img:"https://images.pexels.com/photos/13595690/pexels-photo-13595690.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"drop earrings kundan" },
+  ],
+  pendants: [
+    { name:"Suhana Gold Pendant", tag:"", price:"₹14,200", mrp:"", img:"https://images.pexels.com/photos/32780784/pexels-photo-32780784.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"pendant gold saree" },
+    { name:"Emerald Diamond Pendant Set", tag:"Premium", price:"₹36,700", mrp:"", img:"https://images.pexels.com/photos/29245554/pexels-photo-29245554.jpeg?auto=compress&cs=tinysrgb&w=500", tags:"pendant emerald diamond set" },
+  ]
+};
+
+function cardHTML(p, cat){
+  return `
+  <div class="card" data-name="${p.name.toLowerCase()}" data-tags="${p.tags} ${cat}">
+    <div class="card-img">
+      ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ''}
+      <button class="wish-btn" onclick="toggleHeart(this)" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.4 2 5 5.5 5c2 0 3.4 1.1 4.2 2.3C10.5 6.1 11.9 5 13.9 5 17.4 5 19 8.4 17.5 11.7 15 16.4 12 21 12 21z"/></svg>
+      </button>
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+    </div>
+    <div class="card-body">
+      <p class="eyebrow">${cat}</p>
+      <h3>${p.name}</h3>
+      <div class="price">${p.price} ${p.mrp ? `<small>${p.mrp}</small>` : ''}</div>
+      <button class="add-btn" onclick="addToBag('${p.name.replace(/'/g,"")}')">Add to Bag</button>
+    </div>
+  </div>`;
+}
+
+function renderAll(){
+  document.getElementById('grid-bangles').innerHTML = products.bangles.map(p=>cardHTML(p,'Bangles')).join('');
+  document.getElementById('grid-kundan').innerHTML = products.kundan.map(p=>cardHTML(p,'Kundan Set')).join('');
+  document.getElementById('grid-earrings').innerHTML = products.earrings.map(p=>cardHTML(p,'Earrings')).join('');
+  document.getElementById('grid-pendants').innerHTML = products.pendants.map(p=>cardHTML(p,'Pendant')).join('');
+}
+renderAll();
+
+/* ============ SEARCH ============ */
+function toggleSearch(){
+  const bar = document.getElementById('searchBar');
+  bar.classList.toggle('open');
+  if(bar.classList.contains('open')) setTimeout(()=>document.getElementById('searchInput').focus(),150);
+  else { document.getElementById('searchInput').value=''; filterProducts(''); }
+}
+
+function filterProducts(query){
+  const q = query.trim().toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let visible = 0;
+  cards.forEach(c=>{
+    const match = !q || c.dataset.name.includes(q) || c.dataset.tags.toLowerCase().includes(q);
+    c.style.display = match ? '' : 'none';
+    if(match) visible++;
+  });
+  document.getElementById('noResults').style.display = (q && visible===0) ? 'block' : 'none';
+}
+
+/* ============ CATEGORY SCROLL ============ */
+function scrollToCat(id, el){
+  document.querySelectorAll('.cat-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ============ BAG + WISHLIST ============ */
+let bagCount = 0;
+function addToBag(name, label){
+  if(name){
+    bagCount++;
+    document.getElementById('bagCount').textContent = bagCount;
+    showToast(`${name} added to your bag`);
+  } else {
+    showToast(bagCount ? `You have ${bagCount} item${bagCount>1?'s':''} in your bag` : 'Your bag is empty — start adding a few favourites');
+  }
+}
+function toggleHeart(btn){
+  btn.classList.toggle('active');
+}
+let wishOn = false;
+function toggleWish(){
+  wishOn = !wishOn;
+  showToast(wishOn ? 'Showing your wishlist filter (demo)' : 'Wishlist filter cleared');
+}
+
+function showToast(text){
+  const toast = document.getElementById('toast');
+  document.getElementById('toastText').textContent = text;
+  toast.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>toast.classList.remove('show'), 2600);
+}
+</script>
+</body>
+</html>
