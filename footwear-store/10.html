@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seasonal Limited — Footwear Store</title>
+<meta name="description" content="Seasonal Limited: a drop-based footwear store. Shop Boy's and Girl's limited edition sneaker collections.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0d0d;
+    --paper:#f3f1ea;
+    --paper-dim:#e7e3d8;
+    --acid:#d7ff3e;
+    --acid-dim:#a9c92f;
+    --blaze:#ff4b1f;
+    --line:rgba(13,13,13,0.14);
+    --line-strong:rgba(13,13,13,0.35);
+    --shadow-hard: 8px 8px 0 var(--ink);
+    --ff-display:'Anton', sans-serif;
+    --ff-body:'Work Sans', sans-serif;
+    --ff-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--ff-body);
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(13,13,13,0.07) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+
+  ::selection{background:var(--acid); color:var(--ink);}
+
+  /* ---------- Marquee strip ---------- */
+  .marquee{
+    background:var(--ink);
+    color:var(--paper);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:3px solid var(--ink);
+    position:relative;
+    z-index:40;
+  }
+  .marquee div{
+    display:inline-flex;
+    align-items:center;
+    animation: scroll 26s linear infinite;
+    font-family:var(--ff-mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:9px 0;
+  }
+  .marquee span{padding:0 26px; display:inline-flex; align-items:center; gap:10px;}
+  .marquee span::after{content:'◆'; color:var(--acid); font-size:9px;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:30;
+    background:var(--paper);
+    border-bottom:3px solid var(--ink);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1240px; margin:0 auto;
+  }
+  .logo{
+    font-family:var(--ff-display);
+    font-size:26px;
+    letter-spacing:0.01em;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .logo em{
+    font-style:normal; color:var(--paper);
+    background:var(--ink);
+    padding:1px 8px 3px;
+    transform:rotate(-3deg);
+    display:inline-block;
+  }
+  .navlinks{
+    display:flex; gap:34px;
+    font-family:var(--ff-mono);
+    font-size:12px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+  }
+  .navlinks a{position:relative; padding-bottom:3px;}
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--blaze); transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navcta{
+    font-family:var(--ff-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    border:2px solid var(--ink); padding:9px 16px;
+    background:var(--acid);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .navcta:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink);}
+  .burger{display:none; font-family:var(--ff-mono); font-size:12px; border:2px solid var(--ink); padding:8px 12px; background:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:74px 0 60px;
+    border-bottom:3px solid var(--ink);
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--ff-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    border:2px solid var(--ink); padding:6px 14px; margin-bottom:26px;
+    background:var(--paper);
+  }
+  .hero-tag i{width:7px; height:7px; border-radius:50%; background:var(--blaze); display:inline-block; animation:pulse 1.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+
+  .hero h1{
+    font-family:var(--ff-display);
+    font-size:clamp(52px, 10vw, 132px);
+    line-height:0.86;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+  }
+  .hero h1 .outline{
+    -webkit-text-stroke: 2px var(--ink);
+    color: transparent;
+  }
+  .hero h1 .hl{
+    background:var(--ink); color:var(--paper);
+    padding:0 14px; display:inline-block;
+  }
+  .hero-sub{
+    display:flex; flex-wrap:wrap; gap:40px; align-items:flex-end;
+    margin-top:34px;
+  }
+  .hero-copy{max-width:420px; font-size:15.5px; line-height:1.6; color:#302e28;}
+  .hero-stats{display:flex; gap:28px; font-family:var(--ff-mono);}
+  .stat b{display:block; font-family:var(--ff-display); font-size:30px;}
+  .stat span{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#5a584f;}
+  .hero-actions{display:flex; gap:14px; margin-top:30px;}
+  .btn{
+    font-family:var(--ff-mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase;
+    padding:15px 26px; border:2px solid var(--ink);
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .btn-solid{background:var(--ink); color:var(--paper); box-shadow:6px 6px 0 var(--acid);}
+  .btn-solid:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--acid);}
+  .btn-ghost{background:transparent; box-shadow:6px 6px 0 var(--ink);}
+  .btn-ghost:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink);}
+  .btn{transition:transform .15s ease, box-shadow .15s ease;}
+
+  .hero-deco{
+    position:absolute; right:-40px; top:30px; z-index:1;
+    font-family:var(--ff-display); font-size:220px; line-height:1;
+    color:transparent; -webkit-text-stroke:1.4px var(--line);
+    user-select:none; pointer-events:none;
+  }
+
+  /* ---------- Section frame ---------- */
+  .section{padding:76px 0; border-bottom:3px solid var(--ink); position:relative;}
+  .section.tight{padding:60px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+    margin-bottom:44px; flex-wrap:wrap;
+  }
+  .kicker{
+    font-family:var(--ff-mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--blaze); display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .kicker::before{content:''; width:26px; height:2px; background:var(--blaze);}
+  .section-title{
+    font-family:var(--ff-display);
+    font-size:clamp(34px, 5vw, 58px);
+    line-height:0.94;
+    text-transform:uppercase;
+    max-width:640px;
+  }
+  .section-note{max-width:280px; font-size:14px; line-height:1.6; color:#4c4a41; padding-bottom:6px;}
+
+  /* ---------- Section 02: Boy / Girl category split ---------- */
+  #shop-by{background:var(--ink); color:var(--paper);}
+  #shop-by .kicker{color:var(--acid);}
+  #shop-by .kicker::before{background:var(--acid);}
+  #shop-by .section-note{color:#c9c7bd;}
+
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
+    background:var(--paper);
+    border:2px solid var(--paper);
+  }
+  .cat-card{
+    position:relative;
+    aspect-ratio: 3 / 4;
+    overflow:hidden;
+    background:#141414;
+    isolation:isolate;
+  }
+  .cat-card img{
+    position:absolute; inset:0;
+    width:100%; height:100%; object-fit:cover;
+    object-position:center 18%;
+    filter:grayscale(65%) contrast(1.08);
+    transform:scale(1.02);
+    transition: transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+  }
+  .cat-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(13,13,13,0) 30%, rgba(13,13,13,.92) 100%);
+    z-index:1;
+  }
+  .cat-card:hover img{transform:scale(1.09); filter:grayscale(0%) contrast(1.05);}
+
+  .cat-index{
+    position:absolute; top:22px; left:22px; z-index:2;
+    font-family:var(--ff-mono); font-size:12px; letter-spacing:.1em;
+    color:var(--paper); display:flex; align-items:center; gap:8px;
+  }
+  .cat-index::before{content:''; width:6px; height:6px; background:var(--acid); display:inline-block;}
+
+  .cat-badge{
+    position:absolute; top:20px; right:20px; z-index:2;
+    font-family:var(--ff-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--acid); color:var(--ink);
+    padding:6px 11px;
+    transform:rotate(3deg);
+  }
+
+  .cat-body{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    padding:30px 28px 34px;
+  }
+  .cat-body h3{
+    font-family:var(--ff-display);
+    font-size:clamp(38px,4.2vw,58px);
+    line-height:0.9;
+    text-transform:uppercase;
+    color:var(--paper);
+  }
+  .cat-body h3 span{color:var(--acid);}
+  .cat-body p{
+    font-size:13.5px; color:#d8d6cc; max-width:280px; margin-top:10px; line-height:1.55;
+  }
+  .cat-link{
+    margin-top:18px;
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--ff-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--paper);
+    border-bottom:2px solid var(--acid);
+    padding-bottom:4px;
+  }
+  .cat-link .arrow{transition:transform .25s ease;}
+  .cat-card:hover .cat-link .arrow{transform:translateX(6px);}
+
+  @media (max-width:720px){
+    .split{grid-template-columns:1fr;}
+    .cat-card{aspect-ratio:4/5;}
+  }
+
+  /* ---------- Product grid ---------- */
+  .products{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:2px solid var(--ink); border-left:2px solid var(--ink);
+  }
+  .pcard{
+    border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);
+    padding:22px 20px 24px;
+    background:var(--paper);
+    transition:background .25s ease;
+    position:relative;
+  }
+  .pcard:hover{background:var(--paper-dim);}
+  .ptag{
+    font-family:var(--ff-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--blaze); margin-bottom:14px; display:block;
+  }
+  .pshoe{
+    width:100%; aspect-ratio:1/0.72;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .pshoe svg{width:100%; height:auto;}
+  .pcard h4{font-family:var(--ff-display); font-size:18px; text-transform:uppercase; letter-spacing:.01em;}
+  .pcard .pcat{font-family:var(--ff-mono); font-size:11px; color:#666; margin-top:4px;}
+  .prow{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
+  .price{font-family:var(--ff-mono); font-weight:500; font-size:14px;}
+  .price s{color:#999; font-weight:400; margin-right:6px;}
+  .addbtn{
+    width:34px; height:34px; border:2px solid var(--ink);
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+    background:var(--paper); transition:background .2s ease, color .2s ease;
+  }
+  .addbtn:hover{background:var(--ink); color:var(--acid);}
+
+  @media (max-width:900px){ .products{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .products{grid-template-columns:1fr;} }
+
+  /* ---------- Counter strip ---------- */
+  .counter-strip{
+    background:var(--acid);
+    border-bottom:3px solid var(--ink);
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .counter-strip div{
+    padding:26px 20px;
+    border-right:2px solid var(--ink);
+    text-align:center;
+  }
+  .counter-strip div:last-child{border-right:none;}
+  .counter-strip b{font-family:var(--ff-display); font-size:34px; display:block;}
+  .counter-strip span{font-family:var(--ff-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;}
+  @media (max-width:640px){ .counter-strip{grid-template-columns:repeat(2,1fr);} .counter-strip div:nth-child(2){border-right:none;} .counter-strip div:nth-child(n+3){border-top:2px solid var(--ink);} }
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:var(--paper); padding:60px 0 26px;}
+  .foot-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;
+    padding-bottom:44px; border-bottom:1px solid rgba(243,241,234,.18);
+  }
+  .foot-brand{font-family:var(--ff-display); font-size:30px; text-transform:uppercase; max-width:320px;}
+  .foot-brand span{color:var(--acid);}
+  .foot-cols{display:flex; gap:64px; flex-wrap:wrap;}
+  .foot-col h5{font-family:var(--ff-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#a9a79c; margin-bottom:14px;}
+  .foot-col a{display:block; font-size:14px; margin-bottom:9px; color:#e9e7de;}
+  .foot-col a:hover{color:var(--acid);}
+  .foot-bottom{display:flex; justify-content:space-between; padding-top:22px; font-family:var(--ff-mono); font-size:11px; color:#8b8a80; flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+
+  <div class="marquee">
+    <div>
+      <span>SEASONAL LIMITED — DROP 04</span>
+      <span>FREE SHIPPING OVER ₹1999</span>
+      <span>NEW BOY'S &amp; GIRL'S COLLECTIONS LIVE</span>
+      <span>ONLY 250 PAIRS PER STYLE</span>
+      <span>SEASONAL LIMITED — DROP 04</span>
+      <span>FREE SHIPPING OVER ₹1999</span>
+      <span>NEW BOY'S &amp; GIRL'S COLLECTIONS LIVE</span>
+      <span>ONLY 250 PAIRS PER STYLE</span>
+    </div>
+  </div>
+
+  <header>
+    <nav class="nav">
+      <div class="logo">SNKR<em>LTD</em></div>
+      <div class="navlinks">
+        <a href="#shop-by">Shop</a>
+        <a href="#drop">New Drop</a>
+        <a href="#counter">Stats</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#shop-by" class="navcta">Shop Now →</a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-deco">04</div>
+    <div class="wrap">
+      <div class="hero-tag"><i></i> SEASONAL LIMITED DROP — LIVE NOW</div>
+      <h1>STEP INTO<br><span class="outline">THE</span> <span class="hl">DROP</span></h1>
+      <div class="hero-sub">
+        <p class="hero-copy">A footwear capsule built for the season, not the shelf. Every pair is numbered, every colourway is capped — once it's gone, it's archived for good.</p>
+        <div class="hero-stats">
+          <div class="stat"><b>04</b><span>Drop No.</span></div>
+          <div class="stat"><b>250</b><span>Pairs / Style</span></div>
+          <div class="stat"><b>2</b><span>Collections</span></div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#shop-by" class="btn btn-solid">Shop The Drop ↓</a>
+        <a href="#drop" class="btn btn-ghost">View Lookbook</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 02 — SHOP BY: BOY / GIRL ================= -->
+  <section id="shop-by" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Section 02 — Shop By Collection</div>
+          <h2 class="section-title">Boy's &amp; Girl's<br>Seasonal Edit</h2>
+        </div>
+        <p class="section-note">Two capsule lines, one drop. Pick a lane and browse the limited colourways before size runs out.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <!-- BOY CARD -->
+      <a href="#drop" class="cat-card" aria-label="Shop the Boy's Collection">
+        <img src="https://images.pexels.com/photos/31674381/pexels-photo-31674381.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Boy's seasonal limited sneaker collection model" loading="lazy">
+        <div class="cat-index">01 / COLLECTION</div>
+        <div class="cat-badge">12 Styles</div>
+        <div class="cat-body">
+          <h3>Boy<span>'s</span></h3>
+          <p>Street-cut silhouettes, heavyweight soles, drop-only colourways made for movement.</p>
+          <span class="cat-link">Shop Boy's <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <!-- GIRL CARD -->
+      <a href="#drop" class="cat-card" aria-label="Shop the Girl's Collection">
+        <img src="https://images.pexels.com/photos/9514421/pexels-photo-9514421.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Girl's seasonal limited sneaker collection model" loading="lazy">
+        <div class="cat-index">02 / COLLECTION</div>
+        <div class="cat-badge">10 Styles</div>
+        <div class="cat-body">
+          <h3>Girl<span>'s</span></h3>
+          <p>Clean panelling, seasonal pastels and blaze accents built for everyday rotation.</p>
+          <span class="cat-link">Shop Girl's <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= COUNTER STRIP ================= -->
+  <div id="counter" class="counter-strip">
+    <div><b>03:12:47</b><span>Drop Ends In</span></div>
+    <div><b>78%</b><span>Sizes Claimed</span></div>
+    <div><b>4.9★</b><span>Rated By Buyers</span></div>
+    <div><b>22</b><span>Total Styles</span></div>
+  </div>
+
+  <!-- ================= PRODUCT GRID ================= -->
+  <section id="drop" class="section tight">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Section 03 — New Drop</div>
+          <h2 class="section-title">Pick Your Pair</h2>
+        </div>
+        <p class="section-note">A slice of Drop 04 — full boy's and girl's runs live on the product page.</p>
+      </div>
+    </div>
+
+    <div class="products">
+      <div class="pcard">
+        <span class="ptag">Boy's · New</span>
+        <div class="pshoe">
+          <svg viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 78 C10 60 28 52 46 50 L120 42 C140 40 150 30 168 26 C186 22 204 30 208 46 C210 56 206 66 194 70 L60 92 C34 96 10 92 10 78Z" fill="#0d0d0d"/>
+            <path d="M46 50 C58 40 70 32 84 30" stroke="#d7ff3e" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="170" cy="48" r="10" fill="#f3f1ea"/>
+          </svg>
+        </div>
+        <h4>Volt Runner</h4>
+        <div class="pcat">Boy's · Low Top</div>
+        <div class="prow"><span class="price"><s>₹4,499</s>₹3,199</span><span class="addbtn">+</span></div>
+      </div>
+
+      <div class="pcard">
+        <span class="ptag">Girl's · New</span>
+        <div class="pshoe">
+          <svg viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 80 C12 62 30 54 48 52 L118 44 C138 42 148 32 166 28 C184 24 202 32 206 48 C208 58 204 68 192 72 L58 94 C32 98 12 94 12 80Z" fill="#0d0d0d"/>
+            <path d="M48 52 C60 42 72 34 86 32" stroke="#ff4b1f" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="168" cy="50" r="10" fill="#f3f1ea"/>
+          </svg>
+        </div>
+        <h4>Blaze Court</h4>
+        <div class="pcat">Girl's · Mid Top</div>
+        <div class="prow"><span class="price"><s>₹4,199</s>₹2,999</span><span class="addbtn">+</span></div>
+      </div>
+
+      <div class="pcard">
+        <span class="ptag">Boy's · Restock</span>
+        <div class="pshoe">
+          <svg viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 78 C10 60 28 52 46 50 L120 42 C140 40 150 30 168 26 C186 22 204 30 208 46 C210 56 206 66 194 70 L60 92 C34 96 10 92 10 78Z" fill="#0d0d0d"/>
+            <path d="M46 50 C58 40 70 32 84 30" stroke="#f3f1ea" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="170" cy="48" r="10" fill="#d7ff3e"/>
+          </svg>
+        </div>
+        <h4>Kerb Trail</h4>
+        <div class="pcat">Boy's · Trail</div>
+        <div class="prow"><span class="price">₹3,799</span><span class="addbtn">+</span></div>
+      </div>
+
+      <div class="pcard">
+        <span class="ptag">Girl's · Restock</span>
+        <div class="pshoe">
+          <svg viewBox="0 0 220 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 80 C12 62 30 54 48 52 L118 44 C138 42 148 32 166 28 C184 24 202 32 206 48 C208 58 204 68 192 72 L58 94 C32 98 12 94 12 80Z" fill="#0d0d0d"/>
+            <path d="M48 52 C60 42 72 34 86 32" stroke="#f3f1ea" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="168" cy="50" r="10" fill="#ff4b1f"/>
+          </svg>
+        </div>
+        <h4>Pastel Glide</h4>
+        <div class="pcat">Girl's · Slip-on</div>
+        <div class="prow"><span class="price">₹2,899</span><span class="addbtn">+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">Built for the drop, not the shelf. <span>SNKR LTD.</span></div>
+        <div class="foot-cols">
+          <div class="foot-col">
+            <h5>Shop</h5>
+            <a href="#shop-by">Boy's Collection</a>
+            <a href="#shop-by">Girl's Collection</a>
+            <a href="#drop">New Drop</a>
+          </div>
+          <div class="foot-col">
+            <h5>Support</h5>
+            <a href="#">Size Guide</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+          </div>
+          <div class="foot-col">
+            <h5>Studio</h5>
+            <a href="#">About</a>
+            <a href="#">Lookbook</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© Seasonal Limited — Wondermayank Portfolio Project</span>
+        <span>Made for the footwear-store demo</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
