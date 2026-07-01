@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chāndni Bāli — Festive Gold Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#4A1229;
+    --maroon-deep:#32081B;
+    --gold:#C6952F;
+    --gold-light:#E7C374;
+    --ivory:#FBF3E6;
+    --ivory-2:#F3E6D2;
+    --emerald:#163C2C;
+    --kumkum:#A63A34;
+    --ink:#2A0F1A;
+    --muted:#8A6A56;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond', serif;}
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--gold); color:var(--maroon-deep);}
+
+  /* Announcement bar */
+  .ann{
+    background:var(--maroon-deep);
+    color:var(--gold-light);
+    text-align:center;
+    font-size:12.5px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:9px 12px;
+    font-weight:500;
+  }
+  .ann span{opacity:.55; margin:0 10px;}
+
+  /* Header */
+  header{
+    background:var(--ivory);
+    border-bottom:1px solid rgba(74,18,41,.12);
+    position:sticky; top:0; z-index:50;
+  }
+  .headbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+    gap:24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px; font-weight:600; letter-spacing:.5px;
+    color:var(--maroon-deep);
+    white-space:nowrap;
+  }
+  .logo svg{flex-shrink:0;}
+  .logo .sub{
+    display:block; font-family:'Jost',sans-serif;
+    font-size:9.5px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); font-weight:500; margin-top:-4px;
+  }
+  nav.mainnav{display:flex; gap:34px; font-size:14.5px; letter-spacing:.3px;}
+  nav.mainnav a{
+    position:relative; padding:4px 0; color:var(--ink); font-weight:400;
+    transition:color .2s;
+  }
+  nav.mainnav a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--gold); transition:width .25s ease;
+  }
+  nav.mainnav a:hover{color:var(--maroon-deep);}
+  nav.mainnav a:hover::after{width:100%;}
+
+  .head-actions{display:flex; align-items:center; gap:18px;}
+  .search-box{
+    display:flex; align-items:center; gap:8px;
+    background:#fff; border:1px solid rgba(74,18,41,.18);
+    border-radius:22px; padding:8px 16px; width:230px;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .search-box:focus-within{border-color:var(--gold); box-shadow:0 0 0 3px rgba(198,149,47,.15);}
+  .search-box input{border:none; outline:none; background:transparent; font-family:'Jost'; font-size:13.5px; width:100%; color:var(--ink);}
+  .search-box input::placeholder{color:#b79f8f;}
+  .icon-btn{
+    width:20px; height:20px; cursor:pointer; opacity:.85; flex-shrink:0;
+  }
+  .cart-wrap{position:relative; cursor:pointer;}
+  .cart-badge{
+    position:absolute; top:-8px; right:-9px; background:var(--kumkum); color:#fff;
+    font-size:10px; width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-weight:600;
+  }
+
+  /* Hero */
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg, var(--ivory) 0%, var(--ivory-2) 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr 1fr; align-items:center;
+    gap:40px; padding:70px 0 40px;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--kumkum); font-weight:500; margin-bottom:22px;
+  }
+  .hero-eyebrow::before{content:''; width:26px; height:1px; background:var(--kumkum);}
+  .hero h1{
+    font-size:clamp(40px,5.2vw,66px);
+    line-height:1.05; color:var(--maroon-deep); font-weight:600;
+    letter-spacing:.2px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--gold); font-weight:500;
+  }
+  .hero p.lead{
+    margin:26px 0 34px; font-size:16.5px; color:var(--muted);
+    max-width:440px; line-height:1.75;
+  }
+  .hero-ctas{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 30px; font-size:13.5px; letter-spacing:1.5px; text-transform:uppercase;
+    font-weight:500; border-radius:2px; cursor:pointer; border:1px solid transparent;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{background:var(--maroon-deep); color:var(--ivory);}
+  .btn-primary:hover{background:var(--maroon); transform:translateY(-2px); box-shadow:0 10px 24px rgba(50,8,27,.28);}
+  .btn-outline{border-color:var(--maroon-deep); color:var(--maroon-deep);}
+  .btn-outline:hover{background:var(--maroon-deep); color:var(--ivory); transform:translateY(-2px);}
+
+  .hero-stats{display:flex; gap:36px; margin-top:48px;}
+  .hero-stats div{border-left:1px solid rgba(74,18,41,.18); padding-left:16px;}
+  .hero-stats b{display:block; font-family:'Cormorant Garamond'; font-size:26px; color:var(--maroon-deep); font-weight:600;}
+  .hero-stats span{font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted);}
+
+  .hero-visual{position:relative; display:flex; justify-content:center; align-items:center; min-height:480px;}
+  .crescent-frame{
+    position:relative; width:420px; height:420px;
+  }
+  .crescent-frame img{
+    width:100%; height:100%; object-fit:cover;
+    clip-path: path('M420,210 C420,325.5 326.5,420 210,420 C154,420 103,398 65,362 C132,392 216,381 270,327 C324,273 335,189 305,122 C341,146 375,175 420,210 Z');
+  }
+  .crescent-frame::before{
+    content:''; position:absolute; inset:-14px;
+    border:1px solid var(--gold); opacity:.5;
+    clip-path: path('M420,210 C420,325.5 326.5,420 210,420 C154,420 103,398 65,362 C132,392 216,381 270,327 C324,273 335,189 305,122 C341,146 375,175 420,210 Z');
+    transform:scale(1.03);
+  }
+  .float-tag{
+    position:absolute; background:#fff; padding:14px 20px; border-radius:6px;
+    box-shadow:0 20px 40px rgba(50,8,27,.14); display:flex; align-items:center; gap:12px;
+  }
+  .float-tag.t1{bottom:14px; left:-10px;}
+  .float-tag.t2{top:22px; right:-14px;}
+  .float-tag .dot{width:8px; height:8px; border-radius:50%; background:var(--gold);}
+  .float-tag b{font-family:'Cormorant Garamond'; font-size:17px; color:var(--maroon-deep); display:block;}
+  .float-tag span{font-size:10.5px; color:var(--muted); letter-spacing:.5px;}
+
+  /* Ticker */
+  .ticker-strip{
+    background:var(--maroon-deep); color:var(--gold-light);
+    overflow:hidden; white-space:nowrap; padding:13px 0;
+    border-top:1px solid rgba(198,149,47,.25); border-bottom:1px solid rgba(198,149,47,.25);
+  }
+  .ticker-track{display:inline-block; animation:scroll 28s linear infinite; font-size:13px; letter-spacing:1.5px; text-transform:uppercase;}
+  .ticker-track span{margin:0 28px;}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* Section heading */
+  .sect{padding:96px 0;}
+  .sect-head{text-align:center; max-width:600px; margin:0 auto 56px;}
+  .sect-head .eyebrow{
+    font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--kumkum); font-weight:500;
+    display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px;
+  }
+  .sect-head .eyebrow::before, .sect-head .eyebrow::after{content:''; width:22px; height:1px; background:var(--kumkum);}
+  .sect-head h2{font-size:clamp(30px,3.6vw,42px); color:var(--maroon-deep); font-weight:600;}
+  .sect-head p{color:var(--muted); margin-top:14px; font-size:15px;}
+
+  /* Categories */
+  .cat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .cat-card{
+    position:relative; border-radius:8px; overflow:hidden; aspect-ratio:3/4;
+    cursor:pointer; isolation:isolate;
+  }
+  .cat-card img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
+  .cat-card:hover img{transform:scale(1.08);}
+  .cat-card::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(50,8,27,0) 40%, rgba(50,8,27,.82) 100%);
+  }
+  .cat-label{
+    position:absolute; left:18px; bottom:18px; z-index:2; color:#fff;
+  }
+  .cat-label b{font-family:'Cormorant Garamond'; font-size:22px; font-weight:600; display:block;}
+  .cat-label span{font-size:11px; letter-spacing:1px; color:var(--gold-light); text-transform:uppercase;}
+
+  /* Products */
+  .prod-bar{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:36px; gap:20px; flex-wrap:wrap;
+  }
+  .filter-pills{display:flex; gap:10px; flex-wrap:wrap;}
+  .pill{
+    padding:9px 20px; border:1px solid rgba(74,18,41,.22); border-radius:20px;
+    font-size:12.5px; letter-spacing:.5px; cursor:pointer; background:transparent;
+    transition:all .2s; color:var(--maroon-deep);
+  }
+  .pill.active, .pill:hover{background:var(--maroon-deep); color:var(--ivory); border-color:var(--maroon-deep);}
+
+  .prod-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+  .prod-card{
+    background:#fff; border-radius:8px; overflow:hidden; border:1px solid rgba(74,18,41,.08);
+    transition:box-shadow .25s ease, transform .25s ease;
+  }
+  .prod-card:hover{box-shadow:0 24px 40px rgba(50,8,27,.13); transform:translateY(-5px);}
+  .prod-img{position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--ivory-2);}
+  .prod-img img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .prod-card:hover .prod-img img{transform:scale(1.06);}
+  .badge{
+    position:absolute; top:12px; left:12px; background:var(--kumkum); color:#fff;
+    font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:5px 10px; border-radius:2px; font-weight:500;
+  }
+  .badge.new{background:var(--emerald);}
+  .wish-btn{
+    position:absolute; top:12px; right:12px; width:34px; height:34px; background:rgba(255,255,255,.92);
+    border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer;
+    opacity:0; transform:translateY(-6px); transition:all .25s ease;
+  }
+  .prod-card:hover .wish-btn{opacity:1; transform:translateY(0);}
+  .prod-info{padding:18px 18px 20px;}
+  .prod-info .cat{font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted);}
+  .prod-info h3{font-size:19px; font-weight:600; margin:6px 0 8px; color:var(--maroon-deep);}
+  .prod-price{display:flex; align-items:baseline; gap:10px;}
+  .prod-price b{font-size:17px; color:var(--ink);}
+  .prod-price s{font-size:13px; color:#b79f8f;}
+  .stars{color:var(--gold); font-size:12px; margin-bottom:4px; letter-spacing:1px;}
+  .no-results{
+    display:none; text-align:center; padding:60px 20px; color:var(--muted); font-size:15px;
+    grid-column:1/-1;
+  }
+
+  /* Spotlight banner */
+  .spotlight{
+    background:var(--maroon-deep); color:var(--ivory); position:relative; overflow:hidden;
+  }
+  .spotlight-grid{display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:60px; padding:100px 0;}
+  .spotlight-img{position:relative; border-radius:8px; overflow:hidden; aspect-ratio:4/5;}
+  .spotlight-img img{width:100%; height:100%; object-fit:cover;}
+  .spotlight-img::after{content:''; position:absolute; inset:0; border:1px solid rgba(198,149,47,.4); margin:14px; pointer-events:none;}
+  .spotlight-text .eyebrow{color:var(--gold-light); font-size:12px; letter-spacing:3px; text-transform:uppercase; margin-bottom:18px; display:block;}
+  .spotlight-text h2{font-size:clamp(32px,4vw,48px); font-weight:600; line-height:1.15; margin-bottom:20px;}
+  .spotlight-text p{color:#d8c3ae; font-size:15.5px; line-height:1.8; max-width:440px; margin-bottom:32px;}
+  .countdown{display:flex; gap:16px; margin-bottom:36px;}
+  .countdown div{text-align:center;}
+  .countdown b{
+    display:block; font-family:'Cormorant Garamond'; font-size:28px; font-weight:600; color:var(--gold);
+    border:1px solid rgba(198,149,47,.35); border-radius:6px; width:64px; padding:10px 0;
+  }
+  .countdown span{font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#b79f8f; margin-top:6px; display:block;}
+
+  /* Trust */
+  .trust-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  .trust-card{text-align:center; padding:20px;}
+  .trust-icon{
+    width:64px; height:64px; margin:0 auto 22px; border-radius:50%;
+    background:var(--ivory-2); display:flex; align-items:center; justify-content:center;
+  }
+  .trust-card h3{font-size:20px; color:var(--maroon-deep); margin-bottom:10px; font-weight:600;}
+  .trust-card p{font-size:14px; color:var(--muted); max-width:280px; margin:0 auto; line-height:1.7;}
+
+  /* Gallery */
+  .gallery-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:18px; height:520px;}
+  .gallery-grid img{width:100%; height:100%; object-fit:cover; border-radius:8px;}
+  .gallery-col{display:grid; grid-template-rows:1fr 1fr; gap:18px; height:100%;}
+
+  /* Newsletter */
+  .news-band{
+    background:var(--ivory-2); text-align:center; padding:80px 0;
+    border-top:1px solid rgba(74,18,41,.1); border-bottom:1px solid rgba(74,18,41,.1);
+  }
+  .news-band h2{font-size:clamp(28px,3.4vw,38px); color:var(--maroon-deep); margin-bottom:14px; font-weight:600;}
+  .news-band p{color:var(--muted); margin-bottom:32px; font-size:15px;}
+  .news-form{display:flex; justify-content:center; gap:0; max-width:440px; margin:0 auto;}
+  .news-form input{
+    flex:1; padding:16px 20px; border:1px solid rgba(74,18,41,.25); border-right:none;
+    font-family:'Jost'; font-size:14px; outline:none; background:#fff; color:var(--ink);
+  }
+  .news-form button{
+    padding:16px 30px; background:var(--maroon-deep); color:var(--ivory); border:none;
+    letter-spacing:1.5px; text-transform:uppercase; font-size:12.5px; cursor:pointer; transition:background .2s;
+  }
+  .news-form button:hover{background:var(--maroon);}
+
+  /* Footer */
+  footer{background:var(--maroon-deep); color:#d8c3ae; padding:70px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:50px; border-bottom:1px solid rgba(198,149,47,.2);}
+  .foot-logo{font-family:'Cormorant Garamond'; font-size:26px; color:var(--ivory); font-weight:600; margin-bottom:16px;}
+  .foot-grid p{font-size:13.5px; line-height:1.8; max-width:280px; color:#b79f8f;}
+  .foot-col h4{font-size:12.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold-light); margin-bottom:20px; font-weight:500;}
+  .foot-col a{display:block; font-size:13.5px; margin-bottom:12px; color:#d8c3ae; transition:color .2s;}
+  .foot-col a:hover{color:var(--gold);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; font-size:12px; color:#8a6a56; flex-wrap:wrap; gap:14px;}
+  .social-row{display:flex; gap:14px;}
+  .social-row a{width:34px; height:34px; border:1px solid rgba(198,149,47,.3); border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  .social-row a:hover{background:var(--gold); border-color:var(--gold);}
+
+  @media(max-width:980px){
+    nav.mainnav{display:none;}
+    .search-box{width:150px;}
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero-eyebrow{margin-left:auto; margin-right:auto;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-ctas{justify-content:center;}
+    .hero-stats{justify-content:center;}
+    .crescent-frame{width:300px; height:300px; margin-top:40px;}
+    .cat-grid,.prod-grid{grid-template-columns:repeat(2,1fr);}
+    .spotlight-grid,.trust-grid{grid-template-columns:1fr; gap:40px;}
+    .gallery-grid{grid-template-columns:1fr 1fr; height:auto;}
+    .foot-grid{grid-template-columns:1fr 1fr; gap:30px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ann">Festive Diwali Edit is live <span>|</span> Free insured shipping over ₹4,999 <span>|</span> BIS hallmark certified gold</div>
+
+<header>
+  <div class="wrap headbar">
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <path d="M27 17c0 7.2-5.4 13-13 11.4C20.4 26.4 24 22.1 24 17s-3.6-9.4-10-11.4C21.6 4 27 9.8 27 17z" fill="#C6952F"/>
+      </svg>
+      <span>Chāndni Bāli<span class="sub">Festive gold jewellery</span></span>
+    </div>
+    <nav class="mainnav">
+      <a href="#categories">Chandbali</a>
+      <a href="#products">Jhumka</a>
+      <a href="#products">Necklace sets</a>
+      <a href="#spotlight">Bridal edit</a>
+      <a href="#products">Sale</a>
+    </nav>
+    <div class="head-actions">
+      <div class="search-box">
+        <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="#4A1229" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="siteSearch" type="text" placeholder="Search chandbali, jhumka, sets…">
+      </div>
+      <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="#4A1229" stroke-width="1.6" style="cursor:pointer"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <div class="cart-wrap">
+        <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="#4A1229" stroke-width="1.6"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-badge">3</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Diwali & wedding season 2026</div>
+      <h1>Gold that catches<br>the <em>moon's</em> light</h1>
+      <p class="lead">Handcrafted chandbali earrings and festive gold jewellery, born from the crescent-earring tradition. Every piece BIS hallmark certified, made to be worn and passed down.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#products">Shop the festive edit</a>
+        <a class="btn btn-outline" href="#categories">Explore chandbali</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>18k/22k</b><span>Certified gold</span></div>
+        <div><b>4.8★</b><span>12,400+ reviews</span></div>
+        <div><b>7 days</b><span>Easy returns</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="crescent-frame">
+        <img src="https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=900&q=80&auto=format&fit=crop" alt="Golden chandbali jhumka earrings">
+      </div>
+      <div class="float-tag t1">
+        <div class="dot"></div>
+        <div><b>Chandbali Set</b><span>Starting ₹18,499</span></div>
+      </div>
+      <div class="float-tag t2">
+        <div class="dot"></div>
+        <div><b>Hallmark 916</b><span>Certified purity</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-strip">
+  <div class="ticker-track">
+    <span>✦ Diwali special — flat 12% off on chandbali sets</span>
+    <span>✦ Free resizing for 30 days</span>
+    <span>✦ BIS hallmark 916 gold</span>
+    <span>✦ Lifetime exchange policy</span>
+    <span>✦ Diwali special — flat 12% off on chandbali sets</span>
+    <span>✦ Free resizing for 30 days</span>
+    <span>✦ BIS hallmark 916 gold</span>
+    <span>✦ Lifetime exchange policy</span>
+  </div>
+</div>
+
+<section class="sect" id="categories">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="eyebrow">Shop by category</div>
+      <h2>Festive favourites</h2>
+      <p>From temple-inspired chandbalis to layered bridal sets — curated for every celebration.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=500&q=80&auto=format&fit=crop" alt="Chandbali earrings">
+        <div class="cat-label"><b>Chandbali</b><span>48 designs</span></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1605035184674-1ee3fa430b7e?w=500&q=80&auto=format&fit=crop" alt="Jhumka earrings">
+        <div class="cat-label"><b>Jhumka</b><span>36 designs</span></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?w=500&q=80&auto=format&fit=crop" alt="Necklace sets">
+        <div class="cat-label"><b>Necklace sets</b><span>29 designs</span></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1645856049138-bcb23afaeefb?w=500&q=80&auto=format&fit=crop" alt="Bridal sets">
+        <div class="cat-label"><b>Bridal edit</b><span>21 designs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="products" style="background:#fff; padding-top:0;">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="eyebrow">The collection</div>
+      <h2>Festive best sellers</h2>
+      <p>Search or filter to find your piece for this season.</p>
+    </div>
+    <div class="prod-bar">
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" data-cat="all">All</button>
+        <button class="pill" data-cat="chandbali">Chandbali</button>
+        <button class="pill" data-cat="jhumka">Jhumka</button>
+        <button class="pill" data-cat="necklace">Necklace</button>
+        <button class="pill" data-cat="bridal">Bridal</button>
+      </div>
+    </div>
+    <div class="prod-grid" id="prodGrid"></div>
+    <p class="no-results" id="noResults">No pieces match your search — try "chandbali" or "necklace".</p>
+  </div>
+</section>
+
+<section class="spotlight" id="spotlight">
+  <div class="wrap spotlight-grid">
+    <div class="spotlight-img">
+      <img src="https://images.unsplash.com/photo-1645856049138-bcb23afaeefb?w=800&q=80&auto=format&fit=crop" alt="Bride wearing festive gold jewellery">
+    </div>
+    <div class="spotlight-text">
+      <span class="eyebrow">Limited festive drop</span>
+      <h2>The Diwali<br>Bridal Edit</h2>
+      <p>Twelve exclusive chandbali and necklace sets, released once a year for the festive season. Hand-finished by our karigars in 22k gold.</p>
+      <div class="countdown">
+        <div><b>03</b><span>Days</span></div>
+        <div><b>14</b><span>Hours</span></div>
+        <div><b>52</b><span>Mins</span></div>
+        <div><b>09</b><span>Secs</span></div>
+      </div>
+      <a class="btn" style="background:var(--gold); color:var(--maroon-deep);" href="#products">View the edit</a>
+    </div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="eyebrow">Why Chāndni Bāli</div>
+      <h2>Crafted to be kept</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A63A34" stroke-width="1.6"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5z"/></svg>
+        </div>
+        <h3>Hallmark certified</h3>
+        <p>Every piece carries a BIS 916/750 hallmark, verified for purity before it reaches you.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A63A34" stroke-width="1.6"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>Handcrafted by karigars</h3>
+        <p>Each chandbali and jhumka is shaped by hand in small batches across our Hyderabad ateliers.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A63A34" stroke-width="1.6"><path d="M3 12l6 6L21 6"/></svg>
+        </div>
+        <h3>Lifetime exchange</h3>
+        <p>Trade in your piece anytime toward a new design, at prevailing gold rates — no questions asked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sect" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="eyebrow">Styled for the season</div>
+      <h2>From our brides</h2>
+    </div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=700&q=80&auto=format&fit=crop" alt="Chandbali earring close up">
+      <div class="gallery-col">
+        <img src="https://images.unsplash.com/photo-1605035184674-1ee3fa430b7e?w=500&q=80&auto=format&fit=crop" alt="Gold hoop earring worn">
+        <img src="https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?w=500&q=80&auto=format&fit=crop" alt="Gold necklace set displayed">
+      </div>
+      <div class="gallery-col">
+        <img src="https://images.unsplash.com/photo-1645856049138-bcb23afaeefb?w=500&q=80&auto=format&fit=crop" alt="Woman wearing festive gold set">
+        <img src="https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=500&q=80&auto=format&fit=crop&crop=bottom" alt="Chandbali earring detail">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="news-band">
+  <div class="wrap">
+    <h2>Get first access to the Diwali edit</h2>
+    <p>Join our list for early previews, festive offers, and karigar stories.</p>
+    <form class="news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed'; this.querySelector('button').style.background='#163C2C';">
+      <input type="email" required placeholder="your@email.com">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Chāndni Bāli</div>
+        <p>Festive and bridal gold jewellery, handcrafted with BIS hallmark certified gold. Based in Hyderabad, shipped across India.</p>
+        <div class="social-row" style="margin-top:24px;">
+          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#d8c3ae" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#d8c3ae" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#d8c3ae" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9 20l3-9 3 9M8 12a4 4 0 1 1 8 0c0 3-2 5-4 5"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <a href="#">Chandbali</a>
+        <a href="#">Jhumka</a>
+        <a href="#">Necklace sets</a>
+        <a href="#">Bridal edit</a>
+      </div>
+      <div class="foot-col">
+        <h4>Support</h4>
+        <a href="#">Track order</a>
+        <a href="#">Returns & exchange</a>
+        <a href="#">Size guide</a>
+        <a href="#">Contact us</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#">Our story</a>
+        <a href="#">Karigars</a>
+        <a href="#">Hallmark policy</a>
+        <a href="#">Store locator</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Chāndni Bāli Jewellers. All rights reserved.</span>
+      <span>Prices inclusive of GST · BIS hallmark 916/750</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const products = [
+  {name:"Meenakari Chandbali", cat:"chandbali", tag:"Best seller", price:"₹22,499", old:"₹25,999", img:"https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=500&q=80&auto=format&fit=crop"},
+  {name:"Antique Gold Chandbali", cat:"chandbali", tag:null, price:"₹18,999", old:null, img:"https://images.unsplash.com/photo-1605035184674-1ee3fa430b7e?w=500&q=80&auto=format&fit=crop"},
+  {name:"Kundan Chandbali Hoops", cat:"chandbali", tag:"New", price:"₹27,750", old:null, img:"https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=500&q=80&auto=format&fit=crop&crop=top"},
+  {name:"Temple Jhumka Danglers", cat:"jhumka", tag:null, price:"₹21,300", old:"₹23,900", img:"https://images.unsplash.com/photo-1605035184674-1ee3fa430b7e?w=500&q=80&auto=format&fit=crop&crop=bottom"},
+  {name:"Pearl Drop Jhumka", cat:"jhumka", tag:"New", price:"₹19,450", old:null, img:"https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=500&q=80&auto=format&fit=crop"},
+  {name:"Layered Rani Haar Set", cat:"necklace", tag:"Best seller", price:"₹58,900", old:"₹64,500", img:"https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?w=500&q=80&auto=format&fit=crop"},
+  {name:"Choker & Chandbali Set", cat:"necklace", tag:null, price:"₹45,200", old:null, img:"https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?w=500&q=80&auto=format&fit=crop&crop=top"},
+  {name:"Diwali Bridal Full Set", cat:"bridal", tag:"Limited", price:"₹1,24,000", old:"₹1,38,000", img:"https://images.unsplash.com/photo-1645856049138-bcb23afaeefb?w=500&q=80&auto=format&fit=crop"},
+  {name:"Kumkum Red Bridal Set", cat:"bridal", tag:null, price:"₹98,700", old:null, img:"https://images.unsplash.com/photo-1645856049138-bcb23afaeefb?w=500&q=80&auto=format&fit=crop&crop=top"},
+  {name:"Classic Gold Hoop Bali", cat:"chandbali", tag:null, price:"₹15,600", old:null, img:"https://images.unsplash.com/photo-1605035184674-1ee3fa430b7e?w=500&q=80&auto=format&fit=crop&crop=top"},
+  {name:"Ruby Studded Jhumka", cat:"jhumka", tag:null, price:"₹24,800", old:"₹27,000", img:"https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?w=500&q=80&auto=format&fit=crop&crop=bottom"},
+  {name:"Bridal Layered Necklace", cat:"necklace", tag:"New", price:"₹52,300", old:null, img:"https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?w=500&q=80&auto=format&fit=crop&crop=bottom"}
+];
+
+const grid = document.getElementById('prodGrid');
+const noResults = document.getElementById('noResults');
+
+function starRow(){
+  return "★★★★★";
+}
+
+function render(cat, query){
+  grid.innerHTML = "";
+  let shown = 0;
+  products.forEach(p=>{
+    const matchCat = cat === "all" || p.cat === cat;
+    const matchQuery = !query || p.name.toLowerCase().includes(query) || p.cat.includes(query);
+    if(matchCat && matchQuery){
+      shown++;
+      const card = document.createElement('div');
+      card.className = "prod-card";
+      card.innerHTML = `
+        <div class="prod-img">
+          ${p.tag ? `<span class="badge ${p.tag==='New'?'new':''}">${p.tag}</span>` : ""}
+          <div class="wish-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A63A34" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </div>
+          <img src="${p.img}" alt="${p.name}">
+        </div>
+        <div class="prod-info">
+          <span class="cat">${p.cat}</span>
+          <h3>${p.name}</h3>
+          <div class="stars">${starRow()}</div>
+          <div class="prod-price">
+            <b>${p.price}</b>
+            ${p.old ? `<s>${p.old}</s>` : ""}
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    }
+  });
+  noResults.style.display = shown === 0 ? "block" : "none";
+}
+
+let activeCat = "all";
+document.getElementById('filterPills').addEventListener('click', e=>{
+  if(e.target.classList.contains('pill')){
+    document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+    e.target.classList.add('active');
+    activeCat = e.target.dataset.cat;
+    render(activeCat, document.getElementById('siteSearch').value.trim().toLowerCase());
+  }
+});
+
+document.getElementById('siteSearch').addEventListener('input', e=>{
+  render(activeCat, e.target.value.trim().toLowerCase());
+});
+
+render("all", "");
+</script>
+
+</body>
+</html>
