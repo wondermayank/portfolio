@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEAM & SOLE — Fusion Indo-Western Footwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Yatra+One&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17151c;
+    --ivory:#f4ede1;
+    --rani:#c81d5c;
+    --marigold:#e8a33d;
+    --teal:#1fb6a0;
+    --line: rgba(244,237,225,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--ivory);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- stitched seam divider (signature element) ---------- */
+  .seam{
+    position:relative;
+    height:64px;
+    background:var(--ink);
+  }
+  .seam svg{width:100%; height:100%; display:block;}
+
+  /* ---------- nav ---------- */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 6vw;
+    position:relative; z-index:5;
+  }
+  .logo{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800; font-size:1.5rem; letter-spacing:0.02em;
+  }
+  .logo span{color:var(--marigold);}
+  nav ul{list-style:none; display:flex; gap:34px;}
+  nav a{
+    font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase;
+    font-weight:500; opacity:0.85; transition:opacity .2s, color .2s;
+  }
+  nav a:hover{opacity:1; color:var(--rani);}
+  .cart-pill{
+    border:1px solid var(--line); border-radius:999px;
+    padding:10px 20px; font-size:0.78rem; letter-spacing:0.08em;
+    text-transform:uppercase; display:flex; align-items:center; gap:8px;
+  }
+
+  /* ---------- hero: diagonal fusion split ---------- */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .hero-panel{ position:relative; overflow:hidden; }
+  .hero-left{
+    background:linear-gradient(155deg, #100e14 0%, #1a1620 55%, #241522 100%);
+    display:flex; flex-direction:column; justify-content:center;
+    padding:4vw 5vw 4vw 6vw;
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
+  }
+  .hero-right{
+    clip-path: polygon(88% 0, 100% 0, 100% 100%, 76% 100%);
+  }
+  .hero-right img{
+    width:100%; height:100%; object-fit:cover;
+    filter: saturate(1.08) contrast(1.05);
+  }
+  .eyebrow-dual{
+    display:flex; gap:14px; align-items:center; margin-bottom:26px;
+  }
+  .eyebrow-dual span{
+    font-family:'Yatra One', cursive; font-size:0.95rem;
+    padding:6px 16px; border-radius:999px;
+  }
+  .eb-street{ background:var(--teal); color:#08211d;}
+  .eb-royal{ background:var(--marigold); color:#2a1706;}
+  h1.headline{
+    font-family:'Bricolage Grotesque', sans-serif;
+    font-weight:800;
+    font-size:clamp(2.6rem, 5.4vw, 4.6rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  h1.headline em{
+    font-style:normal;
+    background:linear-gradient(100deg, var(--rani), var(--marigold));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{
+    margin-top:22px; max-width:38ch;
+    font-size:1.02rem; line-height:1.6; color:#cfc6da;
+  }
+  .hero-cta{ margin-top:36px; display:flex; gap:16px; align-items:center;}
+  .btn-primary{
+    background:var(--rani); color:#fff; padding:15px 30px; border-radius:4px;
+    font-weight:600; font-size:0.85rem; letter-spacing:0.05em; text-transform:uppercase;
+    box-shadow:0 8px 24px rgba(200,29,92,0.35);
+    transition:transform .2s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    font-size:0.85rem; letter-spacing:0.05em; text-transform:uppercase;
+    border-bottom:1px solid var(--ivory); padding-bottom:3px;
+  }
+  .hero-float-tag{
+    position:absolute; left:6vw; bottom:6vw;
+    font-family:'Yatra One', cursive; font-size:0.95rem;
+    color:#0c0a10; background:var(--ivory);
+    padding:10px 18px; border-radius:999px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--teal);}
+
+  /* ---------- marquee strip ---------- */
+  .marquee-strip{
+    background:var(--ivory); color:var(--ink);
+    padding:14px 0; overflow:hidden; white-space:nowrap;
+    border-top:1px solid #00000012; border-bottom:1px solid #00000012;
+  }
+  .marquee-track{
+    display:inline-flex; gap:48px; animation:scroll 22s linear infinite;
+    font-family:'Bricolage Grotesque', sans-serif; font-weight:600;
+    font-size:0.95rem; letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .marquee-track span{color:var(--rani);}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- section shell ---------- */
+  section{ padding:110px 6vw; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:56px; flex-wrap:wrap; gap:20px;
+  }
+  .section-tag{
+    font-family:'Yatra One', cursive; color:var(--marigold); font-size:1rem; margin-bottom:10px; display:block;
+  }
+  .section-title{
+    font-family:'Bricolage Grotesque', sans-serif; font-weight:800;
+    font-size:clamp(1.9rem, 3.2vw, 2.7rem); max-width:16ch; line-height:1.05;
+  }
+  .section-desc{ max-width:34ch; color:#cfc6da; font-size:0.95rem; line-height:1.6; }
+
+  /* ---------- category duo ---------- */
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .duo-card{
+    position:relative; border-radius:14px; overflow:hidden; height:460px;
+    display:flex; align-items:flex-end;
+  }
+  .duo-card img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .duo-card:hover img{ transform:scale(1.06); }
+  .duo-card::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(10,8,12,0.92) 0%, rgba(10,8,12,0.1) 55%);
+  }
+  .duo-inner{ position:relative; z-index:2; padding:30px; width:100%; }
+  .duo-inner .tag{
+    font-family:'Yatra One', cursive; font-size:0.85rem;
+    background:rgba(244,237,225,0.14); backdrop-filter:blur(6px);
+    padding:6px 14px; border-radius:999px; display:inline-block; margin-bottom:14px;
+  }
+  .duo-inner h3{ font-family:'Bricolage Grotesque',sans-serif; font-size:1.7rem; font-weight:800; margin-bottom:8px;}
+  .duo-inner p{ font-size:0.88rem; color:#d8d0e0; max-width:30ch; margin-bottom:16px;}
+  .duo-link{ font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; border-bottom:1px solid var(--marigold); color:var(--marigold); padding-bottom:2px; }
+
+  /* ---------- product grid ---------- */
+  .grid-products{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .pcard{
+    background:#1c1922; border-radius:12px; overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .3s ease, border-color .3s;
+  }
+  .pcard:hover{ transform:translateY(-6px); border-color:var(--rani); }
+  .pcard-media{ position:relative; height:230px; overflow:hidden; }
+  .pcard-media img{ width:100%; height:100%; object-fit:cover; }
+  .pcard-badge{
+    position:absolute; top:12px; left:12px;
+    background:var(--teal); color:#08211d; font-size:0.68rem; font-weight:600;
+    padding:4px 10px; border-radius:999px; letter-spacing:0.05em; text-transform:uppercase;
+  }
+  .pcard-body{ padding:18px 18px 22px; }
+  .pcard-body .pname{ font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:1.02rem; margin-bottom:4px;}
+  .pcard-body .pmeta{ font-size:0.78rem; color:#a99fb5; margin-bottom:14px;}
+  .pcard-foot{ display:flex; justify-content:space-between; align-items:center; }
+  .price{ font-weight:600; font-size:1rem; }
+  .price .old{ text-decoration:line-through; color:#7d7488; font-weight:400; font-size:0.82rem; margin-right:6px;}
+  .add-btn{
+    width:36px; height:36px; border-radius:50%; background:var(--rani);
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:#fff;
+  }
+
+  /* ---------- fusion story split ---------- */
+  .story{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;
+  }
+  .story-media{ position:relative; border-radius:16px; overflow:hidden; height:520px; }
+  .story-media img{ width:100%; height:100%; object-fit:cover; }
+  .story-media .ring{
+    position:absolute; bottom:24px; left:24px;
+    background:var(--ivory); color:var(--ink); border-radius:14px;
+    padding:16px 20px; max-width:220px;
+  }
+  .story-media .ring b{ font-family:'Bricolage Grotesque',sans-serif; font-size:1.4rem; display:block;}
+  .story-media .ring span{ font-size:0.76rem; color:#5a5264; }
+  .story-copy p{ color:#cfc6da; line-height:1.75; font-size:1rem; margin-bottom:18px; }
+  .story-copy .stat-row{ display:flex; gap:40px; margin-top:34px; }
+  .stat b{ font-family:'Bricolage Grotesque',sans-serif; font-size:2rem; display:block; color:var(--marigold);}
+  .stat span{ font-size:0.78rem; color:#a99fb5; text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* ---------- footer ---------- */
+  footer{ background:#0d0b10; padding:70px 6vw 30px; }
+  .foot-top{ display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; margin-bottom:60px; }
+  .foot-top h4{ font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--marigold); margin-bottom:18px;}
+  .foot-top ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .foot-top a{ font-size:0.9rem; color:#c8c0d4; }
+  .foot-top a:hover{ color:var(--ivory); }
+  .foot-bottom{
+    border-top:1px solid var(--line); padding-top:24px;
+    display:flex; justify-content:space-between; font-size:0.78rem; color:#8a8093; flex-wrap:wrap; gap:10px;
+  }
+
+  @media(max-width:900px){
+    .hero{ grid-template-columns:1fr; min-height:auto; }
+    .hero-left{ clip-path:none; padding:64px 6vw 40px; }
+    .hero-right{ clip-path:none; height:340px; }
+    .duo, .story, .foot-top{ grid-template-columns:1fr; }
+    .grid-products{ grid-template-columns:repeat(2,1fr); }
+    nav ul{ display:none; }
+    .story-media{ height:340px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SEAM<span>&</span>SOLE</div>
+  <nav>
+    <ul>
+      <li><a href="#new">New Drops</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#story">Craft Story</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="cart-pill">Bag · 0</div>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-panel hero-left">
+    <div class="eyebrow-dual">
+      <span class="eb-street">STREET</span>
+      <span class="eb-royal">ROYAL</span>
+    </div>
+    <h1 class="headline">Where the <em>sneaker</em> meets the <em>jutti</em>.</h1>
+    <p class="hero-sub">Hand-embroidered uppers stitched onto sport-grade soles. Fusion Indo-Western footwear built for sangeet floors and city streets alike.</p>
+    <div class="hero-cta">
+      <a href="#shop" class="btn-primary">Shop The Drop</a>
+      <a href="#story" class="btn-ghost">Our Craft →</a>
+    </div>
+  </div>
+  <div class="hero-panel hero-right">
+    <img src="https://images.unsplash.com/photo-1633464129147-777bdcc97c1d?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Wall display of fusion footwear">
+  </div>
+  <div class="hero-float-tag"><span class="dot"></span> Hand-stitched · Small-batch · Since 2019</div>
+</section>
+
+<div class="seam">
+  <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+    <line x1="0" y1="32" x2="1200" y2="32" stroke="#3a3444" stroke-width="1"/>
+    <line x1="0" y1="32" x2="1200" y2="32" stroke="#e8a33d" stroke-width="2" stroke-dasharray="10 12"/>
+  </svg>
+</div>
+
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Kolhapuri Kicks</span> • Zardozi Sneakers • <span>Mojari Runners</span> • Bandhani Hi-Tops • <span>Phulkari Trainers</span> • Kolhapuri Kicks • <span>Zardozi Sneakers</span> • Mojari Runners • <span>Bandhani Hi-Tops</span> • Phulkari Trainers •
+  </div>
+</div>
+
+<section id="new">
+  <div class="section-head">
+    <div>
+      <span class="section-tag">नमूने · The Line-Up</span>
+      <h2 class="section-title">Two worlds, one silhouette.</h2>
+    </div>
+    <p class="section-desc">Every fusion pair pairs a traditional embroidery house with a modern last — pick your world, or wear both.</p>
+  </div>
+  <div class="duo">
+    <div class="duo-card">
+      <img src="https://images.unsplash.com/photo-1687372673346-5e1c5a727a75?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Shelves of sneaker-style footwear">
+      <div class="duo-inner">
+        <span class="tag">STREET EDIT</span>
+        <h3>The Runway Runner</h3>
+        <p>Sport soles, zari-thread laces, dropped in limited colourways.</p>
+        <a href="#shop" class="duo-link">Explore Street →</a>
+      </div>
+    </div>
+    <div class="duo-card">
+      <img src="https://images.unsplash.com/photo-1708088641654-d096243830c1?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Display of paired footwear in gallery setting">
+      <div class="duo-inner">
+        <span class="tag">ROYAL EDIT</span>
+        <h3>The Durbar Slip-On</h3>
+        <p>Mojari curl toe re-engineered on a cushioned fusion sole.</p>
+        <a href="#shop" class="duo-link">Explore Royal →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="section-head">
+    <div>
+      <span class="section-tag">बेस्टसेलर · Fan Favourites</span>
+      <h2 class="section-title">This week's fusion drops.</h2>
+    </div>
+    <p class="section-desc">Restocked weekly. Once a colourway sells out, it's retired for good.</p>
+  </div>
+  <div class="grid-products">
+    <div class="pcard">
+      <div class="pcard-media">
+        <span class="pcard-badge">New</span>
+        <img src="https://images.unsplash.com/photo-1739138053507-0f312a938451?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Fusion sneaker product shot">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Zardozi Zephyr</div>
+        <div class="pmeta">Gold-thread · Unisex</div>
+        <div class="pcard-foot">
+          <div class="price">₹4,499</div>
+          <div class="add-btn">+</div>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-media">
+        <img src="https://images.unsplash.com/photo-1760302318631-a8d342cd4951?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Sneakers on shelves">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Bandhani Blitz</div>
+        <div class="pmeta">Tie-dye upper · Men</div>
+        <div class="pcard-foot">
+          <div class="price"><span class="old">₹3,999</span>₹3,299</div>
+          <div class="add-btn">+</div>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-media">
+        <span class="pcard-badge">Low Stock</span>
+        <img src="https://images.unsplash.com/photo-1761952199689-7bf870229d1e?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Colourful shoe boxes stacked">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Marigold Mule</div>
+        <div class="pmeta">Backless jutti-sole · Women</div>
+        <div class="pcard-foot">
+          <div class="price">₹3,799</div>
+          <div class="add-btn">+</div>
+        </div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-media">
+        <img src="https://images.unsplash.com/photo-1760302318620-261f5e4d1940?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Modern fusion footwear store interior">
+      </div>
+      <div class="pcard-body">
+        <div class="pname">Phulkari Flux</div>
+        <div class="pmeta">Embroidered canvas · Unisex</div>
+        <div class="pcard-foot">
+          <div class="price">₹4,199</div>
+          <div class="add-btn">+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="story">
+    <div class="story-media">
+      <img src="https://images.unsplash.com/photo-1563433337461-5b65f0834f3a?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Close up of hand-worked leather upper">
+      <div class="ring"><b>11 days</b><span>average hand-embroidery time per pair</span></div>
+    </div>
+    <div class="story-copy">
+      <span class="section-tag">कारीगरी · The Fusion Process</span>
+      <h2 class="section-title" style="margin-bottom:22px;">One shoe, two lineages.</h2>
+      <p>We pair Amritsar's tilla-embroidery ateliers with sneaker-grade sole engineers in the same production run — so the upper carries four centuries of thread-work, and the sole carries this decade's cushioning tech.</p>
+      <p>No pair leaves the workshop until both artisans sign off — the embroiderer on the panna, the cobbler on the flex. That's the fusion promise.</p>
+      <div class="stat-row">
+        <div class="stat"><b>38</b><span>Artisan Partners</span></div>
+        <div class="stat"><b>6</b><span>Cities Sourced From</span></div>
+        <div class="stat"><b>100%</b><span>Hand-Finished</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="foot-top">
+    <div>
+      <div class="logo" style="margin-bottom:14px;">SEAM<span>&</span>SOLE</div>
+      <p style="color:#a99fb5; font-size:0.88rem; max-width:32ch; line-height:1.6;">Fusion Indo-Western footwear, hand-stitched in Amritsar and Jodhpur, engineered for everyday wear.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#new">New Drops</a></li>
+        <li><a href="#shop">Street Edit</a></li>
+        <li><a href="#shop">Royal Edit</a></li>
+        <li><a href="#shop">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#story">Our Craft</a></li>
+        <li><a href="#story">Artisan Partners</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Track Order</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Seam & Sole Footwear Co.</span>
+    <span>Amritsar · Jodhpur · Mumbai</span>
+  </div>
+</footer>
+
+</body>
+</html>
