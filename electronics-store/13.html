@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trendy2025 Pick -- Electronics Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#0E0F1A; --surface:#171827; --text:#F2F3FF; --muted:#9A9CC4;
+    --primary:#7C5CFF; --accent:#38F2C8; --border:#262844;
+    --font-display:'Unbounded', sans-serif; --font-body:'Manrope', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05;}
+  nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);}
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 6vw;max-width:1180px;margin:0 auto;}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;}
+  .navlinks{display:flex;gap:2rem;font-size:.9rem;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .cart-btn{border:1px solid var(--border);padding:.5rem 1rem;border-radius:8px;font-size:.85rem;}
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:5rem 6vw;max-width:1180px;margin:0 auto;}
+  .badge{display:inline-block;font-size:.75rem;letter-spacing:.08em;color:var(--muted);margin-bottom:1.2rem;}
+  .hero h1{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:1.2rem;}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:46ch;margin-bottom:2rem;}
+  .btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;border-radius:10px;font-weight:600;font-size:.95rem;}
+  .hero-img{border-radius:16px;overflow:hidden;aspect-ratio:4/5;}
+  .hero-img img{width:100%;height:100%;object-fit:cover;}
+  section{padding:4rem 6vw;max-width:1180px;margin:0 auto;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.2rem;gap:1rem;}
+  .section-title{font-size:2rem;}
+  .section-sub{color:var(--muted);font-size:.95rem;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+  .card{background:var(--surface);border-radius:16px;padding:1rem;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .25s ease, box-shadow .25s ease;}
+  .card img{border-radius:12px;aspect-ratio:1/1;object-fit:cover;margin-bottom:1rem;}
+  .card h3{font-size:1rem;margin-bottom:.35rem;}
+  .card .price{color:var(--primary);font-weight:700;font-size:.95rem;}
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+  .cat{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;}
+  .cat img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .cat:hover img{transform:scale(1.06);}
+  .cat span{position:absolute;bottom:1rem;left:1rem;color:#fff;font-family:var(--font-display);font-weight:600;font-size:1.05rem;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .banner{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;}
+  .banner h2{font-size:1.7rem;max-width:30ch;}
+  footer{border-top:1px solid var(--border);padding:3rem 6vw;margin-top:2rem;}
+  .footer-grid{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;color:var(--muted);font-size:.9rem;}
+  .foot-col h4{color:var(--text);font-family:var(--font-body);font-weight:600;margin-bottom:.8rem;font-size:.9rem;}
+  .foot-col p, .foot-col a{display:block;margin-bottom:.5rem;}
+  .copyright{text-align:center;color:var(--muted);font-size:.8rem;margin-top:2.5rem;}
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding:3rem 6vw;}
+    .grid,.cats{grid-template-columns:repeat(2,1fr);}
+    .navlinks{display:none;}
+  }
+  
+body{background:radial-gradient(circle at 80% 0%, #221f3d 0%, var(--bg) 60%);}
+.card{background:rgba(255,255,255,.04);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);border-radius:20px;}
+.hero{background:rgba(255,255,255,.03);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:24px;}
+
+</style>
+</head>
+<body class="layout-trendy">
+
+<nav>
+  <div class="navbar">
+    <div class="logo">Trendy2025 Pick</div>
+    <div class="navlinks">
+      <a href="#new">New</a>
+      <a href="#shop">Shop</a>
+      <a href="#story">Story</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="cart-btn">Cart (0)</div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div>
+    <span class="badge">2025's MOST-WANTED</span>
+    <h1>What everyone's<br>adding to cart</h1>
+    <p>The list every group chat is sharing right now — trending gear, ranked live by what's actually selling.</p>
+    <a href="#shop" class="btn-primary">See the trend list</a>
+  </div>
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=1200&q=80" alt="Trendy2025 Pick hero"></div>
+</section>
+
+<section id="new">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">Shop by category</h2>
+      <p class="section-sub">Four ways into the collection.</p>
+    </div>
+  </div>
+  <div class="cats">
+    <div class="cat"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=1200&q=80" alt="Audio"><span>Audio</span></div>
+    <div class="cat"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80" alt="Computing"><span>Computing</span></div>
+    <div class="cat"><img src="https://images.unsplash.com/photo-1585298723682-7115561c51b7?auto=format&fit=crop&w=1200&q=80" alt="Wearables"><span>Wearables</span></div>
+    <div class="cat"><img src="https://images.unsplash.com/photo-1470309864661-68328b2cd0a5?auto=format&fit=crop&w=1200&q=80" alt="Home Tech"><span>Home Tech</span></div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">Best sellers</h2>
+      <p class="section-sub">The pieces our customers keep coming back for.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&w=1200&q=80" alt="Glow Ring Smart Light"><h3>Glow Ring Smart Light</h3><div class="price">₹2,199</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80" alt="AuraBuds Pro 2"><h3>AuraBuds Pro 2</h3><div class="price">₹8,999</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1585298723682-7115561c51b7?auto=format&fit=crop&w=1200&q=80" alt="NeoWatch GX"><h3>NeoWatch GX</h3><div class="price">₹13,499</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1470309864661-68328b2cd0a5?auto=format&fit=crop&w=1200&q=80" alt="PixelCam Instant"><h3>PixelCam Instant</h3><div class="price">₹9,299</div></div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="banner">
+    <div>
+      <h2>Ranked by what's actually selling</h2>
+      <p style="color:var(--muted);margin-top:.6rem;max-width:50ch;">Our trend list updates weekly, based on real carts, not guesses.</p>
+    </div>
+    <a href="#shop" class="btn-primary">See the trend list</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="foot-col">
+      <h4>Trendy2025 Pick</h4>
+      <p style="max-width:28ch;">2025's MOST-WANTED</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#">Audio</a>
+      <a href="#">Computing</a>
+      <a href="#">Wearables</a>
+    </div>
+    <div class="foot-col">
+      <h4>Support</h4>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">Warranty</a>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+      <a href="tel:+911234567890">+91 12345 67890</a>
+    </div>
+  </div>
+  <p class="copyright">(c) 2026 Trendy2025 Pick. All rights reserved.</p>
+</footer>
+</body>
+</html>
