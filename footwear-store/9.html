@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artisan & Awl — Handcrafted Footwear Store</title>
+<meta name="description" content="Small-batch, hand-stitched leather footwear made by artisan cobblers. Boots, loafers, sandals and juttis — built to last generations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --leather:#5a3825;
+    --leather-dark:#3c2416;
+    --tan:#c9a679;
+    --sand:#f4ead9;
+    --cream:#fbf6ee;
+    --ink:#2a1f17;
+    --forest:#3f4f3a;
+    --forest-dark:#2c3928;
+    --rust:#b5502e;
+    --line: rgba(42,31,23,0.12);
+    --radius: 3px;
+    --shadow: 0 18px 40px -20px rgba(42,31,23,0.35);
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Karla', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; color:var(--leather-dark);}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--tan); color:var(--leather-dark);}
+
+  /* ---------- Texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.035; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{background:var(--leather-dark); color:var(--sand); font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;}
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center; padding:9px 32px;}
+  .topbar span{opacity:0.85;}
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:500;
+    background:rgba(251,246,238,0.92); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.main{display:flex; align-items:center; justify-content:space-between; padding:18px 32px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:24px; font-weight:700; color:var(--leather-dark);}
+  .logo .mark{
+    width:38px; height:38px; border-radius:50%; background:var(--forest);
+    display:flex; align-items:center; justify-content:center; color:var(--cream); font-size:16px; flex-shrink:0;
+  }
+  .logo small{display:block; font-family:'Karla',sans-serif; font-size:9.5px; font-weight:600; letter-spacing:0.18em; color:var(--rust); text-transform:uppercase;}
+  .nav-links{display:flex; gap:34px; font-size:14.5px; font-weight:600;}
+  .nav-links a{position:relative; padding:4px 0; color:var(--leather-dark);}
+  .nav-links a::after{content:'';position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:var(--rust);transition:right .3s var(--ease);}
+  .nav-links a:hover::after{right:0;}
+  .nav-actions{display:flex; align-items:center; gap:20px;}
+  .icon-btn{position:relative; width:38px; height:38px; display:flex; align-items:center; justify-content:center; color:var(--leather-dark); transition:transform .2s var(--ease);}
+  .icon-btn:hover{transform:translateY(-2px);}
+  .icon-btn svg{width:21px; height:21px;}
+  .badge{
+    position:absolute; top:-2px; right:-2px; background:var(--rust); color:#fff; font-size:10px; font-weight:700;
+    width:17px; height:17px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative; overflow:hidden; padding:88px 0 100px;}
+  .hero::before{
+    content:''; position:absolute; top:-10%; right:-8%; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(181,80,46,0.14), transparent 70%); z-index:0;
+  }
+  .hero .wrap{display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center; position:relative; z-index:1;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--forest); margin-bottom:22px;}
+  .eyebrow::before{content:''; width:26px; height:1.5px; background:var(--forest);}
+  .hero h1{font-size:clamp(38px, 5vw, 62px); line-height:1.04; margin-bottom:22px;}
+  .hero h1 em{font-style:italic; color:var(--rust);}
+  .hero p.lead{font-size:17.5px; color:#5a4a3c; max-width:460px; margin-bottom:34px;}
+  .btn-row{display:flex; gap:16px; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; padding:15px 28px; border-radius:var(--radius);
+    font-weight:700; font-size:14px; letter-spacing:0.02em; transition:all .25s var(--ease);
+  }
+  .btn-primary{background:var(--leather-dark); color:var(--cream);}
+  .btn-primary:hover{background:var(--rust); transform:translateY(-2px); box-shadow:var(--shadow);}
+  .btn-ghost{color:var(--leather-dark); font-weight:700; border-bottom:1.5px solid var(--leather-dark); padding:15px 2px;}
+  .btn-ghost:hover{color:var(--rust); border-color:var(--rust);}
+  .hero-stats{display:flex; gap:36px; margin-top:44px;}
+  .hero-stats div strong{display:block; font-family:'Fraunces',serif; font-size:26px; color:var(--leather-dark);}
+  .hero-stats div span{font-size:12px; color:#7a6a5a; text-transform:uppercase; letter-spacing:0.08em;}
+  .hero-art{position:relative;}
+  .hero-art .frame{
+    border-radius:6px; overflow:hidden; box-shadow:var(--shadow); position:relative; aspect-ratio:4/4.6;
+  }
+  .hero-art .frame img{width:100%; height:100%; object-fit:cover;}
+  .hero-tag{
+    position:absolute; bottom:-26px; left:-30px; background:var(--cream); border:1px solid var(--line);
+    border-radius:6px; padding:16px 20px; box-shadow:var(--shadow); max-width:230px; display:flex; gap:12px; align-items:center;
+  }
+  .hero-tag .dot{width:10px; height:10px; border-radius:50%; background:var(--forest); flex-shrink:0;}
+  .hero-tag strong{display:block; font-size:13.5px; color:var(--leather-dark);}
+  .hero-tag span{font-size:11.5px; color:#8a7a6a;}
+
+  /* ---------- Marquee ---------- */
+  .marquee{background:var(--forest-dark); color:var(--sand); overflow:hidden; padding:13px 0;}
+  .marquee-track{display:flex; gap:48px; white-space:nowrap; animation:scroll 26s linear infinite; width:max-content;}
+  .marquee-track span{font-size:13px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; display:flex; align-items:center; gap:48px;}
+  .marquee-track span::after{content:'✦'; color:var(--tan); font-size:11px;}
+  @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+  /* ---------- Section heads ---------- */
+  .section{padding:100px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; gap:24px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(30px,3.4vw,42px);}
+  .section-head p{color:#7a6a5a; max-width:400px; font-size:15px;}
+
+  /* ---------- Filters ---------- */
+  .filters{display:flex; gap:10px; margin-bottom:40px; flex-wrap:wrap;}
+  .filter-btn{
+    padding:9px 20px; border:1.5px solid var(--line); border-radius:30px; font-size:13px; font-weight:700;
+    color:var(--leather-dark); transition:all .2s var(--ease);
+  }
+  .filter-btn:hover{border-color:var(--leather-dark);}
+  .filter-btn.active{background:var(--leather-dark); border-color:var(--leather-dark); color:var(--cream);}
+
+  /* ---------- Product Grid ---------- */
+  .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:34px;}
+  .card{position:relative; animation:rise .6s var(--ease) both;}
+  @keyframes rise{from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:translateY(0)}}
+  .card-img{
+    position:relative; border-radius:6px; overflow:hidden; aspect-ratio:1/1.12; background:var(--sand);
+    box-shadow:0 10px 24px -16px rgba(42,31,23,0.3);
+  }
+  .card-img img{width:100%; height:100%; object-fit:cover; transition:transform .55s var(--ease);}
+  .card:hover .card-img img{transform:scale(1.07);}
+  .card-tag{
+    position:absolute; top:14px; left:14px; background:var(--rust); color:#fff; font-size:10.5px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase; padding:5px 11px; border-radius:20px; z-index:2;
+  }
+  .wish-btn{
+    position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; background:rgba(251,246,238,0.92);
+    display:flex; align-items:center; justify-content:center; z-index:2; transition:transform .2s var(--ease);
+  }
+  .wish-btn:hover{transform:scale(1.1);}
+  .wish-btn svg{width:17px; height:17px; stroke:var(--leather-dark); fill:none; transition:all .2s;}
+  .wish-btn.active svg{fill:var(--rust); stroke:var(--rust);}
+  .card-actions{
+    position:absolute; left:0; right:0; bottom:0; padding:14px; display:flex; gap:8px;
+    transform:translateY(110%); transition:transform .3s var(--ease); z-index:2;
+  }
+  .card:hover .card-actions{transform:translateY(0);}
+  .quick-add{
+    flex:1; background:var(--leather-dark); color:var(--cream); font-size:12.5px; font-weight:700; letter-spacing:0.03em;
+    padding:11px; border-radius:4px; text-align:center; text-transform:uppercase; transition:background .2s;
+  }
+  .quick-add:hover{background:var(--rust);}
+  .card-body{padding:18px 2px 0;}
+  .card-cat{font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--forest); font-weight:700; margin-bottom:5px;}
+  .card-body h3{font-size:18px; margin-bottom:6px; font-weight:600;}
+  .card-meta{display:flex; justify-content:space-between; align-items:center;}
+  .price{font-family:'Fraunces',serif; font-weight:600; font-size:17px; color:var(--leather-dark);}
+  .price .old{font-family:'Karla',sans-serif; font-size:13px; color:#a99; text-decoration:line-through; margin-right:7px; font-weight:400;}
+  .stars{display:flex; align-items:center; gap:3px; font-size:11.5px; color:#9a8a7a;}
+  .stars svg{width:11px; height:11px; fill:#d9a441;}
+
+  /* ---------- Craft / Story ---------- */
+  .craft{background:var(--leather-dark); color:var(--sand); position:relative; overflow:hidden;}
+  .craft .wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;}
+  .craft-imgs{position:relative; height:460px;}
+  .craft-imgs img{position:absolute; border-radius:6px; object-fit:cover; box-shadow:0 24px 50px -20px rgba(0,0,0,0.5);}
+  .ci-1{width:66%; height:78%; top:0; left:0; z-index:2;}
+  .ci-2{width:52%; height:56%; bottom:0; right:0; border:6px solid var(--leather-dark); z-index:3;}
+  .craft h2{color:var(--cream); font-size:clamp(28px,3.4vw,40px); margin-bottom:20px;}
+  .craft p{color:#d8c9b8; font-size:15.5px; max-width:480px; margin-bottom:28px;}
+  .craft-list{display:grid; grid-template-columns:1fr 1fr; gap:22px 30px; margin-bottom:32px;}
+  .craft-list li{list-style:none; display:flex; gap:12px; align-items:flex-start; font-size:14px; color:#e6dbcd;}
+  .craft-list .num{
+    font-family:'Fraunces',serif; font-weight:700; color:var(--tan); font-size:20px; flex-shrink:0; width:30px;
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testi{background:var(--sand); text-align:center;}
+  .testi blockquote{
+    font-family:'Fraunces',serif; font-style:italic; font-size:clamp(22px,2.6vw,32px); max-width:760px; margin:0 auto 24px;
+    color:var(--leather-dark); line-height:1.4;
+  }
+  .testi cite{font-style:normal; font-size:13px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--forest);}
+  .testi .stars{justify-content:center; margin-bottom:22px;}
+  .testi .stars svg{width:16px; height:16px;}
+
+  /* ---------- Newsletter ---------- */
+  .news{padding:80px 0;}
+  .news .box{
+    background:var(--forest); border-radius:10px; padding:60px; display:flex; justify-content:space-between;
+    align-items:center; gap:40px; flex-wrap:wrap; color:var(--cream); position:relative; overflow:hidden;
+  }
+  .news .box::after{content:'✦'; position:absolute; right:40px; top:20px; font-size:80px; color:rgba(255,255,255,0.06);}
+  .news h2{color:var(--cream); font-size:28px; margin-bottom:8px;}
+  .news p{color:#cfe0cc; font-size:14.5px;}
+  .news form{display:flex; gap:0; background:var(--cream); border-radius:5px; overflow:hidden; min-width:340px;}
+  .news input{flex:1; border:none; padding:15px 16px; font-family:inherit; font-size:14px; outline:none; color:var(--ink);}
+  .news button{background:var(--rust); color:#fff; padding:15px 24px; font-weight:700; font-size:13.5px; text-transform:uppercase; letter-spacing:0.04em;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--leather-dark); color:#b8a996; padding:64px 0 24px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;}
+  .foot-grid h4{color:var(--cream); font-size:13px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:18px; font-family:'Karla',sans-serif; font-weight:700;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:11px; font-size:14px;}
+  .foot-grid a:hover{color:var(--tan);}
+  .foot-logo{font-family:'Fraunces',serif; font-size:22px; color:var(--cream); margin-bottom:14px; display:block;}
+  footer p.desc{font-size:13.5px; max-width:280px; margin-bottom:18px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.1); padding-top:22px; display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px;}
+
+  /* ---------- Drawer (Cart / Wishlist) ---------- */
+  .overlay{position:fixed; inset:0; background:rgba(42,31,23,0.5); opacity:0; pointer-events:none; transition:opacity .3s; z-index:900;}
+  .overlay.show{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:420px; max-width:92vw; background:var(--cream); z-index:901;
+    transform:translateX(100%); transition:transform .4s var(--ease); display:flex; flex-direction:column; box-shadow:-30px 0 60px rgba(0,0,0,0.2);
+  }
+  .drawer.show{transform:translateX(0);}
+  .drawer-head{padding:24px 26px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;}
+  .drawer-head h3{font-size:20px;}
+  .drawer-close{width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:background .2s;}
+  .drawer-close:hover{background:var(--sand);}
+  .drawer-body{flex:1; overflow-y:auto; padding:20px 26px;}
+  .d-item{display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--line);}
+  .d-item img{width:76px; height:86px; object-fit:cover; border-radius:4px; flex-shrink:0;}
+  .d-item-info{flex:1; display:flex; flex-direction:column;}
+  .d-item-info h4{font-size:14.5px; font-weight:600; margin-bottom:3px; font-family:'Karla',sans-serif; color:var(--leather-dark);}
+  .d-item-info .meta{font-size:12px; color:#8a7a6a; margin-bottom:8px;}
+  .qty-row{display:flex; align-items:center; gap:10px; margin-top:auto;}
+  .qty-btn{width:24px; height:24px; border:1px solid var(--line); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;}
+  .qty-btn:hover{background:var(--sand);}
+  .d-item-price{font-family:'Fraunces',serif; font-weight:600; font-size:14.5px; white-space:nowrap;}
+  .remove-x{font-size:11.5px; color:#a99; text-decoration:underline; margin-left:auto;}
+  .empty-state{text-align:center; padding:60px 20px; color:#9a8a7a;}
+  .empty-state svg{width:52px; height:52px; margin:0 auto 16px; opacity:0.4;}
+  .drawer-foot{padding:22px 26px; border-top:1px solid var(--line);}
+  .subtotal-row{display:flex; justify-content:space-between; font-size:15px; margin-bottom:16px; font-weight:700; color:var(--leather-dark);}
+  .subtotal-row span:last-child{font-family:'Fraunces',serif; font-size:20px;}
+  .checkout-btn{width:100%; background:var(--leather-dark); color:var(--cream); padding:16px; border-radius:5px; font-weight:700; font-size:14.5px; text-transform:uppercase; letter-spacing:0.03em; transition:background .2s;}
+  .checkout-btn:hover{background:var(--rust);}
+  .move-btn{width:100%; text-align:center; font-size:12.5px; color:var(--forest); font-weight:700; margin-top:12px;}
+
+  .toast{
+    position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--leather-dark); color:var(--cream);
+    padding:14px 24px; border-radius:30px; font-size:13.5px; font-weight:600; z-index:1000; opacity:0; pointer-events:none;
+    transition:all .35s var(--ease); display:flex; align-items:center; gap:10px; box-shadow:var(--shadow);
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .toast svg{width:16px; height:16px; stroke:var(--tan);}
+
+  @media(max-width:960px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{order:-1;}
+    .nav-links{display:none;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .craft .wrap{grid-template-columns:1fr;}
+    .craft-imgs{height:340px; margin-bottom:20px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:600px){
+    .grid{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+    .news .box{padding:36px 26px;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Free shipping on orders over ₹4,500</span>
+    <span>Handmade in small batches · Ships across India</span>
+  </div>
+</div>
+
+<header class="site">
+  <nav class="main wrap">
+    <a href="#" class="logo">
+      <span class="mark">A&amp;A</span>
+      <span>Artisan &amp; Awl<small>Handcrafted Footwear</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#craft">Our Craft</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="wishBtn" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.3 2.3 5 5.7 5c2 0 3.4 1 4.3 2.4C10.9 6 12.3 5 14.3 5c3.4 0 5.2 3.3 3.7 6.8C19.5 16.4 12 21 12 21Z"/></svg>
+        <span class="badge" id="wishCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="17" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Est. 2012 · One pair at a time</div>
+      <h1>Footwear cut, stitched &amp; finished <em>by hand</em>.</h1>
+      <p class="lead">No factories, no assembly lines — just master cobblers, full-grain leather, and techniques passed down three generations. Every pair is made to outlive its trend.</p>
+      <div class="btn-row">
+        <a href="#shop" class="btn btn-primary">
+          Shop the Collection
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#craft" class="btn-ghost">See how it's made</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>1,200+</strong><span>Pairs handmade</span></div>
+        <div><strong>12</strong><span>Master artisans</span></div>
+        <div><strong>4.9★</strong><span>Customer rating</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1477517787936-70ba786643fd?auto=format&fit=crop&w=900&q=80" alt="Artisan hand-carving a leather shoe last in the workshop">
+      </div>
+      <div class="hero-tag">
+        <span class="dot"></span>
+        <div><strong>Full-grain leather</strong><span>Vegetable-tanned, sourced ethically</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>The Collection</h2>
+        <p>Six silhouettes, endless character — each pair benched by a single craftsman from cut to sole.</p>
+      </div>
+      <a href="#" class="btn-ghost">View all 24 styles →</a>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="boots">Boots</button>
+      <button class="filter-btn" data-filter="loafers">Loafers</button>
+      <button class="filter-btn" data-filter="juttis">Juttis &amp; Mojaris</button>
+      <button class="filter-btn" data-filter="oxfords">Oxfords</button>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section class="craft" id="craft">
+  <div class="wrap">
+    <div class="craft-imgs">
+      <img class="ci-1" src="https://images.unsplash.com/photo-1768550005921-8782adcb798c?auto=format&fit=crop&w=700&q=80" alt="Cobbler working at a cluttered leather workbench">
+      <img class="ci-2" src="https://images.unsplash.com/photo-1769433810503-f66d3be882dc?auto=format&fit=crop&w=500&q=80" alt="Small shoe repair and craft workshop with tools">
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--tan)">Our Craft</div>
+      <h2>Four generations of bench-made technique.</h2>
+      <p>Every Artisan &amp; Awl pair passes through the hands of a single craftsman — from pattern cutting to hand-lasting to the final polish. We reject machine stitching wherever a hand-stitch will hold better and last longer.</p>
+      <ul class="craft-list">
+        <li><span class="num">01</span>Hand-selected, vegetable-tanned full-grain hides</li>
+        <li><span class="num">02</span>Hand-lasted uppers for a truer, longer-lasting fit</li>
+        <li><span class="num">03</span>Goodyear-welted soles, fully resoleable</li>
+        <li><span class="num">04</span>7–10 days of bench time per pair</li>
+      </ul>
+      <a href="#shop" class="btn btn-primary">Explore the Workshop</a>
+    </div>
+  </div>
+</section>
+
+<section class="testi" id="reviews">
+  <div class="wrap">
+    <div class="stars">
+      <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 15l-5.6 3 1.4-6.2L1 7.5l6.4-.6z"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 15l-5.6 3 1.4-6.2L1 7.5l6.4-.6z"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 15l-5.6 3 1.4-6.2L1 7.5l6.4-.6z"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 15l-5.6 3 1.4-6.2L1 7.5l6.4-.6z"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 15l-5.6 3 1.4-6.2L1 7.5l6.4-.6z"/></svg>
+    </div>
+    <blockquote>"Five years in and the welt still hasn't budged. My cobbler back home resoled them once — said he'd never seen stitching this clean on a first pair."</blockquote>
+    <cite>— Ananya R., Bengaluru</cite>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <h2>Get first look at new benches.</h2>
+        <p>New silhouettes drop in small runs — join the list so you don't miss one.</p>
+      </div>
+      <form onsubmit="event.preventDefault(); showToast('Subscribed — welcome to the workshop.');">
+        <input type="email" placeholder="you@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="foot-logo">Artisan &amp; Awl</span>
+        <p class="desc">Small-batch, hand-stitched leather footwear made by master cobblers. Built to be resoled, not replaced.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Boots</a></li>
+          <li><a href="#shop">Loafers</a></li>
+          <li><a href="#shop">Juttis &amp; Mojaris</a></li>
+          <li><a href="#shop">Oxfords</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#craft">Our Craft</a></li>
+          <li><a href="#">Workshop Visits</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care &amp; Resoling</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Artisan &amp; Awl. All rights reserved.</span>
+      <span>Made with care for feet everywhere.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Cart Drawer -->
+<div class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Bag</h3>
+    <button class="drawer-close" data-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</div>
+
+<!-- Wishlist Drawer -->
+<div class="drawer" id="wishDrawer">
+  <div class="drawer-head">
+    <h3>Wishlist</h3>
+    <button class="drawer-close" data-close><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="drawer-body" id="wishBody"></div>
+  <div class="drawer-foot" id="wishFoot" style="display:none;"></div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M4 12l5 5L20 6"/></svg>
+  <span id="toastMsg">Added to bag</span>
+</div>
+
+<script>
+/* ---------------- Product Data ---------------- */
+const PRODUCTS = [
+  {
+    id:'p1', cat:'loafers', name:'Cedar Penny Loafer', price:6499, oldPrice:7999, rating:4.9,
+    img:'https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=700&q=80',
+    tag:'Bestseller'
+  },
+  {
+    id:'p2', cat:'boots', name:'Highland Lace-Up Boot', price:8999, oldPrice:null, rating:4.8,
+    img:'https://images.unsplash.com/photo-1599012307605-23a0ebe4d321?auto=format&fit=crop&w=700&q=80',
+    tag:'New Bench'
+  },
+  {
+    id:'p3', cat:'juttis', name:'Zari-Embroidered Jutti', price:3999, oldPrice:4999, rating:5.0,
+    img:'https://images.unsplash.com/photo-1777980774794-33be806f3728?auto=format&fit=crop&w=700&q=80',
+    tag:'Handloom'
+  },
+  {
+    id:'p4', cat:'oxfords', name:'Forest Wingtip Oxford', price:9499, oldPrice:null, rating:4.7,
+    img:'https://images.unsplash.com/photo-1571859856639-d54ab2c18ba0?auto=format&fit=crop&w=700&q=80',
+    tag:null
+  },
+  {
+    id:'p5', cat:'juttis', name:'Ivory Pearl Mojari', price:4299, oldPrice:null, rating:4.9,
+    img:'https://images.unsplash.com/photo-1777980336120-f5d3dadbac1d?auto=format&fit=crop&w=700&q=80',
+    tag:'Limited Run'
+  },
+  {
+    id:'p6', cat:'boots', name:'Amber Chelsea Bootie', price:7799, oldPrice:8999, rating:4.8,
+    img:'https://images.unsplash.com/photo-1534233650908-b471f2350922?auto=format&fit=crop&w=700&q=80',
+    tag:null
+  }
+];
+
+const fmt = n => '₹' + n.toLocaleString('en-IN');
+
+/* ---------------- Render Products ---------------- */
+const grid = document.getElementById('productGrid');
+function renderProducts(filter='all'){
+  grid.innerHTML = '';
+  const list = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  list.forEach((p, i) => {
+    const wished = wishlist.includes(p.id);
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <div class="card-img">
+        ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ''}
+        <button class="wish-btn ${wished ? 'active':''}" data-id="${p.id}" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.3 2.3 5 5.7 5c2 0 3.4 1 4.3 2.4C10.9 6 12.3 5 14.3 5c3.4 0 5.2 3.3 3.7 6.8C19.5 16.4 12 21 12 21Z"/></svg>
+        </button>
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <div class="card-actions">
+          <button class="quick-add" data-id="${p.id}">Add to Bag</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${p.cat}</div>
+        <h3>${p.name}</h3>
+        <div class="card-meta">
+          <div class="price">${p.oldPrice ? `<span class="old">${fmt(p.oldPrice)}</span>`:''}${fmt(p.price)}</div>
+          <div class="stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 15l-5.6 3 1.4-6.2L1 7.5l6.4-.6z"/></svg>
+            ${p.rating}
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if(!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(btn.dataset.filter);
+});
+
+grid.addEventListener('click', e => {
+  const wishBtn = e.target.closest('.wish-btn');
+  const addBtn = e.target.closest('.quick-add');
+  if(wishBtn) toggleWishlist(wishBtn.dataset.id);
+  if(addBtn) addToCart(addBtn.dataset.id);
+});
+
+/* ---------------- Marquee ---------------- */
+const marqueeItems = ['Free Shipping ₹4,500+','Hand-Stitched Welts','7-Day Bench Time','Lifetime Resoling','Small-Batch Runs','Full-Grain Leather'];
+document.getElementById('marqueeTrack').innerHTML = [...marqueeItems, ...marqueeItems].map(t=>`<span>${t}</span>`).join('');
+
+/* ---------------- Cart & Wishlist State ---------------- */
+let cart = JSON.parse(localStorage.getItem('aa_cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('aa_wishlist') || '[]');
+
+function saveState(){
+  localStorage.setItem('aa_cart', JSON.stringify(cart));
+  localStorage.setItem('aa_wishlist', JSON.stringify(wishlist));
+  updateCounts();
+}
+
+function updateCounts(){
+  const cartCount = cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').textContent = cartCount;
+  document.getElementById('wishCount').textContent = wishlist.length;
+}
+
+function addToCart(id){
+  const existing = cart.find(i => i.id === id);
+  if(existing) existing.qty++;
+  else cart.push({id, qty:1});
+  saveState();
+  renderCart();
+  showToast('Added to your bag');
+  openDrawer('cartDrawer');
+}
+
+function toggleWishlist(id){
+  const idx = wishlist.indexOf(id);
+  if(idx > -1){ wishlist.splice(idx,1); showToast('Removed from wishlist'); }
+  else { wishlist.push(id); showToast('Added to wishlist'); }
+  saveState();
+  renderProducts(document.querySelector('.filter-btn.active').dataset.filter);
+  renderWishlist();
+}
+
+function changeQty(id, delta){
+  const item = cart.find(i => i.id === id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  saveState();
+  renderCart();
+}
+
+function removeFromCart(id){
+  cart = cart.filter(i => i.id !== id);
+  saveState();
+  renderCart();
+}
+
+/* ---------------- Render Cart ---------------- */
+function renderCart(){
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if(cart.length === 0){
+    body.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/></svg>
+      <p>Your bag is empty.</p>
+    </div>`;
+    foot.innerHTML = '';
+    return;
+  }
+  body.innerHTML = cart.map(item => {
+    const p = PRODUCTS.find(pr => pr.id === item.id);
+    return `
+      <div class="d-item">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="d-item-info">
+          <h4>${p.name}</h4>
+          <div class="meta">${p.cat}</div>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty('${p.id}',-1)">−</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty('${p.id}',1)">+</button>
+            <span class="d-item-price">${fmt(p.price * item.qty)}</span>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:right;margin-top:-10px;margin-bottom:4px;">
+        <button class="remove-x" onclick="removeFromCart('${p.id}')">Remove</button>
+      </div>
+    `;
+  }).join('');
+
+  const subtotal = cart.reduce((s,item) => {
+    const p = PRODUCTS.find(pr => pr.id === item.id);
+    return s + p.price * item.qty;
+  }, 0);
+
+  foot.innerHTML = `
+    <div class="subtotal-row"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
+    <button class="checkout-btn" onclick="showToast('This is a demo — checkout coming soon.')">Checkout</button>
+  `;
+}
+
+/* ---------------- Render Wishlist ---------------- */
+function renderWishlist(){
+  const body = document.getElementById('wishBody');
+  if(wishlist.length === 0){
+    body.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.3 2.3 5 5.7 5c2 0 3.4 1 4.3 2.4C10.9 6 12.3 5 14.3 5c3.4 0 5.2 3.3 3.7 6.8C19.5 16.4 12 21 12 21Z"/></svg>
+      <p>Nothing saved yet.</p>
+    </div>`;
+    return;
+  }
+  body.innerHTML = wishlist.map(id => {
+    const p = PRODUCTS.find(pr => pr.id === id);
+    if(!p) return '';
+    return `
+      <div class="d-item">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="d-item-info">
+          <h4>${p.name}</h4>
+          <div class="meta">${fmt(p.price)}</div>
+          <div class="qty-row">
+            <button class="quick-add" style="padding:8px 14px;font-size:11.5px;" onclick="addToCart('${p.id}')">Add to Bag</button>
+            <button class="remove-x" style="margin-left:auto;" onclick="toggleWishlist('${p.id}')">Remove</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ---------------- Drawers ---------------- */
+const overlay = document.getElementById('overlay');
+function openDrawer(idToOpen){
+  document.querySelectorAll('.drawer').forEach(d => d.classList.remove('show'));
+  document.getElementById(idToOpen).classList.add('show');
+  overlay.classList.add('show');
+}
+function closeDrawers(){
+  document.querySelectorAll('.drawer').forEach(d => d.classList.remove('show'));
+  overlay.classList.remove('show');
+}
+document.getElementById('cartBtn').addEventListener('click', () => { renderCart(); openDrawer('cartDrawer'); });
+document.getElementById('wishBtn').addEventListener('click', () => { renderWishlist(); openDrawer('wishDrawer'); });
+overlay.addEventListener('click', closeDrawers);
+document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeDrawers));
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDrawers(); });
+
+/* ---------------- Toast ---------------- */
+let toastTimer;
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+/* ---------------- Init ---------------- */
+renderProducts();
+renderCart();
+renderWishlist();
+updateCounts();
+</script>
+</body>
+</html>
