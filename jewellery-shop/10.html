@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhumka Classic — Handcrafted Temple Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#5C0E1E;
+    --maroon-dark:#3A0812;
+    --maroon-soft:#7A1C2C;
+    --gold:#C9A24B;
+    --gold-light:#EAD08D;
+    --ivory:#FBF3E4;
+    --ivory-deep:#F3E6CE;
+    --ink:#2A1810;
+    --teal:#123F3B;
+    --shadow: 0 18px 40px -20px rgba(42,24,16,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%;}
+  a{text-decoration:none;color:inherit;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--maroon-dark);}
+  .eyebrow{
+    font-family:'Cinzel',serif;
+    font-size:.68rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .container{max-width:1240px;margin:0 auto;padding:0 32px;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+  /* ---------- scalloped gopuram divider (signature element) ---------- */
+  .scallop{
+    width:100%;
+    height:26px;
+    display:block;
+  }
+  .scallop-ivory-on-maroon path{fill:var(--ivory);}
+  .scallop-maroon-on-ivory path{fill:var(--maroon-dark);}
+
+  /* ---------- top utility bar ---------- */
+  .utility-bar{
+    background:var(--maroon-dark);
+    color:var(--gold-light);
+    font-size:.72rem;
+    letter-spacing:.08em;
+    text-align:center;
+    padding:8px 12px;
+    font-family:'Jost',sans-serif;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,243,228,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(92,14,30,.12);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1240px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.7rem;font-weight:700;color:var(--maroon-dark);
+    letter-spacing:.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{
+    font-size:.85rem;letter-spacing:.04em;
+    color:var(--ink);position:relative;padding-bottom:4px;
+    transition:color .25s;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;
+    background:var(--gold);transition:width .3s ease;
+  }
+  .nav-links a:hover{color:var(--maroon);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-actions{display:flex;align-items:center;gap:20px;}
+  .icon-btn{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:transparent;color:var(--maroon-dark);
+    transition:background .25s, color .25s;
+    position:relative;
+  }
+  .icon-btn:hover{background:var(--maroon-dark);color:var(--ivory);}
+  .icon-btn svg{width:18px;height:18px;}
+  .cart-count{
+    position:absolute;top:-2px;right:-2px;
+    background:var(--gold);color:var(--maroon-dark);
+    font-size:.62rem;font-weight:700;
+    width:16px;height:16px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hamburger{display:none;}
+
+  /* search bar (collapsible) */
+  .search-panel{
+    max-height:0;overflow:hidden;transition:max-height .35s ease;
+    background:var(--ivory-deep);
+  }
+  .search-panel.open{max-height:90px;}
+  .search-inner{
+    max-width:1240px;margin:0 auto;padding:16px 32px;
+    display:flex;gap:12px;align-items:center;
+  }
+  .search-inner input{
+    flex:1;padding:12px 18px;border:1px solid rgba(92,14,30,.25);
+    background:var(--ivory);font-family:'Jost',sans-serif;font-size:.92rem;
+    border-radius:2px;color:var(--ink);
+  }
+  .search-inner input:focus{outline:none;border-color:var(--gold);}
+  .search-inner button{
+    background:var(--maroon-dark);color:var(--ivory);
+    padding:12px 22px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex;align-items:center;
+    overflow:hidden;
+    background:var(--maroon-dark);
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(180deg, rgba(58,8,18,.35) 0%, rgba(58,8,18,.78) 100%),
+      url('https://images.unsplash.com/photo-1762686130435-897de4b26aac?fm=jpg&q=80&w=2000&auto=format&fit=crop');
+    background-size:cover;background-position:center 30%;
+    animation:slowzoom 22s ease-in-out infinite alternate;
+  }
+  @keyframes slowzoom{from{transform:scale(1);}to{transform:scale(1.08);}}
+  .hero-content{
+    position:relative;z-index:2;
+    max-width:1240px;margin:0 auto;padding:0 32px;
+    color:var(--ivory);
+  }
+  .hero-content .eyebrow{color:var(--gold-light);margin-bottom:18px;display:inline-block;}
+  .hero-content h1{
+    font-size:clamp(3rem,7vw,5.6rem);
+    line-height:1;
+    color:var(--ivory);
+    margin-bottom:22px;
+    max-width:820px;
+  }
+  .hero-content h1 em{font-style:italic;color:var(--gold-light);}
+  .hero-content p{
+    max-width:480px;font-size:1.05rem;color:rgba(251,243,228,.85);
+    margin-bottom:34px;font-weight:300;
+  }
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--gold);color:var(--maroon-dark);
+    padding:16px 34px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+    font-weight:600;border-radius:1px;
+    transition:transform .25s, box-shadow .25s;
+    box-shadow:var(--shadow);
+  }
+  .btn-primary:hover{transform:translateY(-3px);}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid rgba(251,243,228,.5);color:var(--ivory);
+    padding:15px 32px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+    margin-left:16px;transition:border-color .25s, background .25s;
+  }
+  .btn-outline:hover{border-color:var(--gold);background:rgba(251,243,228,.08);}
+  .hero-stats{
+    position:relative;z-index:2;
+    display:flex;gap:50px;margin-top:64px;
+    padding-top:28px;border-top:1px solid rgba(251,243,228,.22);
+    max-width:640px;
+  }
+  .hero-stats div b{
+    display:block;font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold-light);
+  }
+  .hero-stats div span{font-size:.72rem;letter-spacing:.06em;color:rgba(251,243,228,.7);text-transform:uppercase;}
+  .hero-scallop{position:absolute;bottom:-1px;left:0;width:100%;z-index:3;}
+
+  /* ---------- marquee ---------- */
+  .marquee-band{
+    background:var(--ink);color:var(--gold-light);
+    overflow:hidden;white-space:nowrap;padding:14px 0;
+  }
+  .marquee-track{display:inline-block;padding-left:100%;animation:marquee 28s linear infinite;}
+  .marquee-track span{
+    font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.22em;
+    margin:0 28px;text-transform:uppercase;
+  }
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+
+  /* ---------- category strip ---------- */
+  .section{padding:96px 0;}
+  .section-head{
+    text-align:center;max-width:640px;margin:0 auto 56px;
+  }
+  .section-head .eyebrow{margin-bottom:14px;display:block;}
+  .section-head h2{font-size:clamp(2.1rem,4vw,2.9rem);}
+  .section-head p{color:#6b5346;margin-top:14px;font-weight:300;}
+
+  .cat-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+  }
+  .cat-card{
+    position:relative;text-align:center;cursor:pointer;
+  }
+  .cat-arch{
+    width:100%;aspect-ratio:3/4;
+    border-radius:130px 130px 8px 8px;
+    overflow:hidden;position:relative;
+    box-shadow:var(--shadow);
+    border:3px solid var(--ivory);
+    outline:1px solid rgba(92,14,30,.15);
+  }
+  .cat-arch img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .cat-card:hover .cat-arch img{transform:scale(1.09);}
+  .cat-arch::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 55%, rgba(42,24,16,.65) 100%);
+  }
+  .cat-label{
+    position:absolute;bottom:18px;left:0;right:0;z-index:2;
+    color:var(--ivory);font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;
+  }
+  .cat-count{
+    display:block;font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.1em;
+    color:var(--gold-light);text-transform:uppercase;margin-top:2px;
+  }
+
+  /* ---------- filters ---------- */
+  .filter-row{
+    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:48px;
+  }
+  .filter-btn{
+    padding:10px 24px;border:1px solid rgba(92,14,30,.3);
+    font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;
+    border-radius:30px;color:var(--maroon-dark);background:transparent;
+    transition:all .25s;
+  }
+  .filter-btn.active, .filter-btn:hover{
+    background:var(--maroon-dark);color:var(--ivory);border-color:var(--maroon-dark);
+  }
+
+  /* ---------- product grid ---------- */
+  .product-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:30px;
+  }
+  .product-card{
+    background:#fff;
+    box-shadow:0 10px 26px -18px rgba(42,24,16,.35);
+    transition:transform .3s ease, box-shadow .3s ease;
+    display:none;
+  }
+  .product-card.show{display:block;animation:fadein .5s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  .product-card:hover{transform:translateY(-6px);box-shadow:0 22px 34px -18px rgba(42,24,16,.45);}
+  .product-media{
+    position:relative;aspect-ratio:1/1.08;overflow:hidden;
+    border-top-left-radius:90px; border-top-right-radius:90px;
+  }
+  .product-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .product-card:hover .product-media img{transform:scale(1.07);}
+  .badge{
+    position:absolute;top:14px;left:14px;z-index:2;
+    background:var(--maroon-dark);color:var(--gold-light);
+    font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 12px;border-radius:20px;
+  }
+  .wish-btn{
+    position:absolute;top:12px;right:12px;z-index:2;
+    width:34px;height:34px;border-radius:50%;background:rgba(251,243,228,.92);
+    display:flex;align-items:center;justify-content:center;color:var(--maroon-dark);
+    transition:background .2s, color .2s;
+  }
+  .wish-btn:hover, .wish-btn.active{background:var(--maroon-dark);color:var(--gold-light);}
+  .wish-btn svg{width:16px;height:16px;}
+  .product-info{padding:20px 22px 26px;}
+  .product-info .cat-tag{
+    font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+    font-weight:600;
+  }
+  .product-info h3{
+    font-size:1.35rem;margin:6px 0 8px;color:var(--maroon-dark);
+  }
+  .stars{color:var(--gold);font-size:.75rem;letter-spacing:2px;margin-bottom:10px;}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;}
+  .price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--maroon-dark);}
+  .price .strike{
+    font-family:'Jost',sans-serif;font-size:.8rem;color:#9c8577;
+    text-decoration:line-through;margin-left:8px;font-weight:300;
+  }
+  .add-btn{
+    width:38px;height:38px;border-radius:50%;background:var(--ivory-deep);
+    color:var(--maroon-dark);display:flex;align-items:center;justify-content:center;
+    transition:background .25s,color .25s,transform .25s;
+  }
+  .add-btn:hover{background:var(--maroon-dark);color:var(--ivory);transform:rotate(90deg);}
+  .add-btn svg{width:16px;height:16px;}
+
+  .no-results{
+    text-align:center;grid-column:1/-1;padding:60px 20px;color:#8a7364;
+    font-family:'Cormorant Garamond',serif;font-size:1.4rem;display:none;
+  }
+
+  /* ---------- story split ---------- */
+  .story{
+    background:var(--maroon-dark);color:var(--ivory);position:relative;
+  }
+  .story-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;
+  }
+  .story-img{position:relative;min-height:560px;overflow:hidden;}
+  .story-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .story-text{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;}
+  .story-text .eyebrow{color:var(--gold-light);margin-bottom:18px;}
+  .story-text h2{color:var(--ivory);font-size:clamp(2rem,3.4vw,2.7rem);margin-bottom:22px;}
+  .story-text p{color:rgba(251,243,228,.78);font-weight:300;margin-bottom:16px;max-width:480px;}
+  .story-quote{
+    margin-top:26px;padding-left:22px;border-left:2px solid var(--gold);
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--gold-light);
+  }
+
+  /* ---------- testimonials ---------- */
+  .testi-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:30px;
+  }
+  .testi-card{
+    background:#fff;padding:36px 30px;position:relative;
+    box-shadow:0 10px 26px -18px rgba(42,24,16,.3);
+  }
+  .testi-card .quote-mark{
+    font-family:'Cormorant Garamond',serif;font-size:3.4rem;color:var(--gold-light);
+    line-height:1;display:block;margin-bottom:4px;
+  }
+  .testi-card p{color:#5c483c;font-weight:300;margin-bottom:20px;}
+  .testi-user{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--ivory-deep);color:var(--maroon-dark);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-weight:700;
+  }
+  .testi-user b{display:block;font-size:.88rem;color:var(--maroon-dark);}
+  .testi-user span{font-size:.72rem;color:#9c8577;}
+
+  /* ---------- newsletter ---------- */
+  .newsletter{
+    background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+    color:var(--ivory);text-align:center;padding:90px 32px;position:relative;
+  }
+  .newsletter h2{color:var(--ivory);font-size:clamp(2rem,4vw,2.8rem);margin-bottom:14px;}
+  .newsletter p{color:rgba(251,243,228,.75);margin-bottom:30px;font-weight:300;}
+  .newsletter-form{
+    display:flex;justify-content:center;gap:0;max-width:440px;margin:0 auto;
+  }
+  .newsletter-form input{
+    flex:1;padding:15px 20px;border:1px solid rgba(251,243,228,.3);
+    background:rgba(251,243,228,.06);color:var(--ivory);font-family:'Jost',sans-serif;
+  }
+  .newsletter-form input::placeholder{color:rgba(251,243,228,.5);}
+  .newsletter-form button{
+    background:var(--gold);color:var(--maroon-dark);padding:15px 26px;
+    font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:rgba(251,243,228,.65);padding:70px 0 30px;}
+  .footer-grid{
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:50px;margin-bottom:56px;
+  }
+  .footer-logo{
+    font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--ivory);margin-bottom:14px;
+  }
+  .footer-logo span{color:var(--gold);}
+  .footer-grid p{font-size:.85rem;font-weight:300;max-width:280px;color:rgba(251,243,228,.55);}
+  .footer-col h4{
+    font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold-light);margin-bottom:18px;
+  }
+  .footer-col ul{list-style:none;}
+  .footer-col li{margin-bottom:11px;font-size:.85rem;}
+  .footer-col a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    border-top:1px solid rgba(251,243,228,.12);padding-top:26px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:.75rem;color:rgba(251,243,228,.45);
+  }
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--maroon-dark);color:var(--gold-light);
+    padding:14px 28px;border-radius:4px;font-size:.85rem;letter-spacing:.03em;
+    box-shadow:var(--shadow);opacity:0;pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease;z-index:200;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:1024px){
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .story-grid{grid-template-columns:1fr;}
+    .story-img{min-height:340px;}
+    .story-text{padding:56px 36px;}
+    .testi-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:720px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .hero-stats{gap:30px;flex-wrap:wrap;}
+    .btn-outline{margin-left:0;margin-top:14px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);gap:16px;}
+    .product-grid{grid-template-columns:1fr 1fr;gap:16px;}
+    .section{padding:64px 0;}
+    .container{padding:0 20px;}
+    .footer-grid{grid-template-columns:1fr;gap:34px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">HANDCRAFTED IN INDIA &nbsp;·&nbsp; FREE SHIPPING OVER ₹2,999 &nbsp;·&nbsp; USE CODE <strong>JHUMKA10</strong> FOR 10% OFF</div>
+
+<header>
+  <nav>
+    <a href="#" class="logo">Jhumka<span>Classic</span></a>
+    <ul class="nav-links">
+      <li><a href="#collection">Jhumkas</a></li>
+      <li><a href="#collection">Necklace Sets</a></li>
+      <li><a href="#collection">Bridal Edit</a></li>
+      <li><a href="#story">Our Craft</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" title="Search products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn" title="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </button>
+      <button class="icon-btn" title="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="search-panel" id="searchPanel">
+    <div class="search-inner">
+      <input type="text" id="searchInput" placeholder="Search jhumkas, necklaces, bangles…">
+      <button id="searchGo">Search</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Chola-Era Temple Heritage · Est. Craft Since Generations</span>
+    <h1>The bell that <em>dances</em><br>with every step.</h1>
+    <p>Hand-finished jhumkas, temple necklaces and bridal sets — cast in antique gold, kundan and pearl, for the woman who carries tradition like a signature.</p>
+    <div>
+      <a href="#collection" class="btn-primary">
+        Shop The Collection
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#story" class="btn-outline">Our Craft</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>800+</b><span>Handcrafted Designs</span></div>
+      <div><b>40k+</b><span>Happy Customers</span></div>
+      <div><b>4.9★</b><span>Average Rating</span></div>
+    </div>
+  </div>
+  <svg class="hero-scallop scallop scallop-ivory-on-maroon" viewBox="0 0 400 26" preserveAspectRatio="none">
+    <path d="M0,26 L0,14 Q10,26 20,14 Q30,26 40,14 Q50,26 60,14 Q70,26 80,14 Q90,26 100,14 Q110,26 120,14 Q130,26 140,14 Q150,26 160,14 Q170,26 180,14 Q190,26 200,14 Q210,26 220,14 Q230,26 240,14 Q250,26 260,14 Q270,26 280,14 Q290,26 300,14 Q310,26 320,14 Q330,26 340,14 Q350,26 360,14 Q370,26 380,14 Q390,26 400,14 L400,26 Z"/>
+  </svg>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span>✦ Handcrafted Antique Gold</span>
+    <span>✦ Kundan &amp; Meenakari Work</span>
+    <span>✦ Temple Jewellery Heritage</span>
+    <span>✦ Bridal Collections</span>
+    <span>✦ Free Insured Shipping</span>
+    <span>✦ Handcrafted Antique Gold</span>
+    <span>✦ Kundan &amp; Meenakari Work</span>
+    <span>✦ Temple Jewellery Heritage</span>
+    <span>✦ Bridal Collections</span>
+    <span>✦ Free Insured Shipping</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Shop by Category</span>
+      <h2>Every Piece Tells a Story</h2>
+      <p>From everyday jhumkas to elaborate bridal harams — each collection is rooted in South Indian temple design.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="filterProducts('jhumka')">
+        <div class="cat-arch">
+          <img src="https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Jhumka earrings">
+        </div>
+        <div class="cat-label">Signature Jhumkas<span class="cat-count">240+ Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('necklace')">
+        <div class="cat-arch">
+          <img src="https://images.unsplash.com/photo-1600862754152-80a263dd564f?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Necklace set">
+        </div>
+        <div class="cat-label">Necklace Sets<span class="cat-count">180+ Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('bridal')">
+        <div class="cat-arch">
+          <img src="https://images.unsplash.com/photo-1778148046574-c1509f5a40d4?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Bridal jewellery">
+        </div>
+        <div class="cat-label">Bridal Edit<span class="cat-count">90+ Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterProducts('daily')">
+        <div class="cat-arch">
+          <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Everyday jewellery">
+        </div>
+        <div class="cat-label">Everyday Wear<span class="cat-count">150+ Designs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION / PRODUCT GRID -->
+<section class="section" id="collection" style="background:var(--ivory-deep);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Collection</span>
+      <h2>Bestselling Jhumkas &amp; Sets</h2>
+      <p>Curated favourites, loved for their intricate jaali work, delicate pearl drops and antique gold finish.</p>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('jhumka', this)">Jhumkas</button>
+      <button class="filter-btn" onclick="filterProducts('necklace', this)">Necklace Sets</button>
+      <button class="filter-btn" onclick="filterProducts('bridal', this)">Bridal</button>
+      <button class="filter-btn" onclick="filterProducts('daily', this)">Everyday</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <div class="product-card show" data-cat="jhumka" data-name="chandni silver jhumka">
+        <div class="product-media">
+          <span class="badge">Bestseller</span>
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1714733831162-0a6e849141be?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Chandni Silver Jhumka">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Signature Jhumka</span>
+          <h3>Chandni Silver Jhumka</h3>
+          <div class="stars">★★★★★</div>
+          <div class="price-row">
+            <span class="price">₹1,899 <span class="strike">₹2,499</span></span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="jhumka" data-name="meenakari peacock jhumka">
+        <div class="product-media">
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1648291531524-97afa1c2ac30?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Meenakari Peacock Jhumka">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Signature Jhumka</span>
+          <h3>Meenakari Peacock Jhumka</h3>
+          <div class="stars">★★★★★</div>
+          <div class="price-row">
+            <span class="price">₹2,340</span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="daily" data-name="kundan drop jhumka">
+        <div class="product-media">
+          <span class="badge">New</span>
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1597055952513-4e9bce9345c3?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Kundan Drop Jhumka">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Everyday Wear</span>
+          <h3>Kundan Drop Jhumka</h3>
+          <div class="stars">★★★★☆</div>
+          <div class="price-row">
+            <span class="price">₹1,450</span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="bridal" data-name="rani pearl jhumka">
+        <div class="product-media">
+          <span class="badge">Bridal</span>
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1763578590148-fbac0711f3b2?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Rani Pearl Jhumka">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Bridal Edit</span>
+          <h3>Rani Pearl Jhumka</h3>
+          <div class="stars">★★★★★</div>
+          <div class="price-row">
+            <span class="price">₹3,999 <span class="strike">₹4,999</span></span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="necklace" data-name="kempu kundan necklace set">
+        <div class="product-media">
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1722410180687-b05b50922362?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Kempu Kundan Necklace Set">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Necklace Set</span>
+          <h3>Kempu Kundan Set</h3>
+          <div class="stars">★★★★★</div>
+          <div class="price-row">
+            <span class="price">₹5,600</span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="necklace" data-name="meenakari choker">
+        <div class="product-media">
+          <span class="badge">Bestseller</span>
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1600862754152-80a263dd564f?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Meenakari Choker">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Necklace Set</span>
+          <h3>Meenakari Choker</h3>
+          <div class="stars">★★★★★</div>
+          <div class="price-row">
+            <span class="price">₹4,250</span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="bridal" data-name="antique temple haram">
+        <div class="product-media">
+          <span class="badge">Bridal</span>
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Antique Temple Haram">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Bridal Edit</span>
+          <h3>Antique Temple Haram</h3>
+          <div class="stars">★★★★★</div>
+          <div class="price-row">
+            <span class="price">₹8,900</span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card show" data-cat="daily" data-name="polki pendant set">
+        <div class="product-media">
+          <button class="wish-btn" onclick="toggleWish(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1569397288884-4d43d6738fbd?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Polki Pendant Set">
+        </div>
+        <div class="product-info">
+          <span class="cat-tag">Everyday Wear</span>
+          <h3>Polki Pendant Set</h3>
+          <div class="stars">★★★★☆</div>
+          <div class="price-row">
+            <span class="price">₹1,120</span>
+            <button class="add-btn" onclick="addToCart(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="no-results" id="noResults">No pieces found — try another search, sakhi.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-grid">
+    <div class="story-img">
+      <img src="https://images.unsplash.com/photo-1779475546066-742c9a580de1?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Artisan crafting jewellery">
+    </div>
+    <div class="story-text">
+      <span class="eyebrow">Our Craft</span>
+      <h2>Born of temple bells,<br>carried into everyday life.</h2>
+      <p>The jhumka traces its shape to the bell motifs carved into Chola-era temples — a jingle believed to ward off evil with every step of the dance. At Jhumka Classic, our artisans in Jaipur and Hyderabad still hand-set every kundan stone and hand-hammer every dome, the way it's been done for generations.</p>
+      <p>No two pieces are identical. That's not a flaw in production — it's the proof of a human hand behind it.</p>
+      <div class="story-quote">"Every jhumka should sound like the person wearing it — a little bold, a little musical."</div>
+    </div>
+  </div>
+  <svg class="scallop scallop-ivory-on-maroon" viewBox="0 0 400 26" preserveAspectRatio="none" style="transform:rotate(180deg)">
+    <path d="M0,26 L0,14 Q10,26 20,14 Q30,26 40,14 Q50,26 60,14 Q70,26 80,14 Q90,26 100,14 Q110,26 120,14 Q130,26 140,14 Q150,26 160,14 Q170,26 180,14 Q190,26 200,14 Q210,26 220,14 Q230,26 240,14 Q250,26 260,14 Q270,26 280,14 Q290,26 300,14 Q310,26 320,14 Q330,26 340,14 Q350,26 360,14 Q370,26 380,14 Q390,26 400,14 L400,26 Z"/>
+  </svg>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Kind Words</span>
+      <h2>Loved Across India</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <span class="quote-mark">“</span>
+        <p>Ordered the Meenakari Choker for my sister's wedding — arrived beautifully packed and the meenakari colours are so vivid in person.</p>
+        <div class="testi-user">
+          <div class="testi-avatar">P</div>
+          <div><b>Priya Nair</b><span>Kochi</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <span class="quote-mark">“</span>
+        <p>The Chandni Silver Jhumkas are my everyday go-to now. Light on the ears, and the finish hasn't dulled even after months.</p>
+        <div class="testi-user">
+          <div class="testi-avatar">A</div>
+          <div><b>Ananya Rao</b><span>Bengaluru</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <span class="quote-mark">“</span>
+        <p>Bought the Antique Temple Haram for my own wedding. It's the one piece in my trousseau everyone kept asking about.</p>
+        <div class="testi-user">
+          <div class="testi-avatar">S</div>
+          <div><b>Sneha Iyer</b><span>Chennai</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <span class="eyebrow" style="color:var(--gold-light)">Stay Adorned</span>
+  <h2>Get first access to new drops</h2>
+  <p>New jhumka designs, festive edits and 10% off your first order — straight to your inbox.</p>
+  <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thank you — check your inbox for 10% off!');">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Jhumka<span>Classic</span></div>
+        <p>Handcrafted temple jewellery, kundan sets and bridal collections rooted in South Indian heritage — designed for the modern woman.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#collection">Signature Jhumkas</a></li>
+          <li><a href="#collection">Necklace Sets</a></li>
+          <li><a href="#collection">Bridal Edit</a></li>
+          <li><a href="#collection">Everyday Wear</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Size &amp; Care Guide</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>hello@jhumkaclassic.in</li>
+          <li>+91 98765 43210</li>
+          <li>Jaipur · Hyderabad, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jhumka Classic. All rights reserved.</span>
+      <span>Handcrafted with ♥ for tradition.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // search panel toggle
+  const searchToggle = document.getElementById('searchToggle');
+  const searchPanel = document.getElementById('searchPanel');
+  const searchInput = document.getElementById('searchInput');
+  searchToggle.addEventListener('click', () => {
+    searchPanel.classList.toggle('open');
+    if(searchPanel.classList.contains('open')) searchInput.focus();
+  });
+  document.getElementById('searchGo').addEventListener('click', runSearch);
+  searchInput.addEventListener('keyup', (e) => { if(e.key === 'Enter') runSearch(); else runSearch(); });
+
+  function runSearch(){
+    const q = searchInput.value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.product-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const name = card.dataset.name;
+      const matches = q === '' || name.includes(q);
+      card.classList.toggle('show', matches);
+      if(matches) visible++;
+    });
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    // reset category filter buttons when free-text searching
+    if(q !== ''){
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    }
+  }
+
+  // category filter
+  function filterProducts(cat, btn){
+    const cards = document.querySelectorAll('.product-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const matches = cat === 'all' || card.dataset.cat === cat;
+      card.classList.toggle('show', matches);
+      if(matches) visible++;
+    });
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    if(btn){
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    document.getElementById('collection').scrollIntoView({behavior:'smooth', block:'start'});
+    searchInput.value = '';
+  }
+
+  // wishlist toggle
+  function toggleWish(btn){
+    btn.classList.toggle('active');
+    showToast(btn.classList.contains('active') ? 'Added to wishlist' : 'Removed from wishlist');
+  }
+
+  // cart
+  let cartCount = 0;
+  function addToCart(btn){
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+    const name = btn.closest('.product-card').querySelector('h3').textContent;
+    showToast(name + ' added to bag');
+  }
+
+  // toast
+  let toastTimer;
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+</script>
+
+</body>
+</html>
