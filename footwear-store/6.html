@@ -162,7 +162,7 @@
     content:""; position:absolute; inset:14px; border-radius:calc(var(--radius-lg) - 10px);
     border:1.5px dashed rgba(255,255,255,0.6);
   }
-  .hero-shoe{ width:78%; transform:rotate(-8deg); filter:drop-shadow(0 25px 25px rgba(120,90,80,0.25)); }
+  .hero-shoe{ width:82%; height:82%; object-fit:cover; border-radius:20px; box-shadow:0 25px 40px -12px rgba(120,90,80,0.35); }
   .float-chip{
     position:absolute; background:var(--paper); border-radius:18px; padding:12px 16px;
     box-shadow:var(--shadow-tiny); display:flex; align-items:center; gap:10px;
@@ -212,8 +212,8 @@
     border-radius:18px; aspect-ratio:1/0.9; display:flex; align-items:center; justify-content:center;
     position:relative; overflow:hidden; margin-bottom:16px;
   }
-  .card-media svg{ width:72%; transition:transform .4s ease; }
-  .card:hover .card-media svg{ transform:scale(1.06) rotate(-3deg); }
+  .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .card:hover .card-media img{ transform:scale(1.08); }
   .wishlist{
     position:absolute; top:12px; right:12px; width:34px; height:34px; border-radius:50%;
     background:rgba(255,255,255,0.85); display:flex; align-items:center; justify-content:center;
@@ -255,7 +255,7 @@
   .promo h2{ font-size:clamp(1.8rem,3.4vw,2.6rem); margin-bottom:14px; position:relative; z-index:1;}
   .promo p{ color:#5c5050; max-width:420px; margin-bottom:24px; position:relative; z-index:1;}
   .promo-visual{ display:flex; justify-content:center; position:relative; z-index:1;}
-  .promo-visual svg{ width:220px; filter:drop-shadow(0 20px 20px rgba(90,70,60,0.25)); transform:rotate(6deg);}
+  .promo-visual img{ width:280px; height:280px; object-fit:cover; border-radius:24px; box-shadow:0 20px 40px -12px rgba(90,70,60,0.35); transform:rotate(3deg); border:6px solid var(--paper);}
 
   /* ---------- testimonials ---------- */
   .testi-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
@@ -388,15 +388,7 @@
   </div>
   <div class="hero-visual">
     <div class="hero-card">
-      <svg class="hero-shoe" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 85 C15 70 30 65 45 62 L100 50 C115 46 128 40 138 30 C144 24 152 22 158 27 C168 35 176 48 182 58 C186 66 188 76 184 84 C180 92 168 95 156 95 L28 95 C20 95 15 91 15 85Z" fill="var(--peach)" stroke="var(--ink)" stroke-width="2"/>
-        <path d="M45 62 L52 40 C54 35 58 33 63 34 L95 42" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M28 95 C28 88 34 84 42 84 L150 84 C158 84 164 88 164 95" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
-        <circle cx="70" cy="48" r="3" fill="var(--ink)"/>
-        <circle cx="83" cy="44" r="3" fill="var(--ink)"/>
-        <circle cx="96" cy="41" r="3" fill="var(--ink)"/>
-        <path d="M64 52 76 46 M78 48 90 42" stroke="var(--lavender-deep)" stroke-width="2" stroke-linecap="round"/>
-      </svg>
+      <img class="hero-shoe" src="https://images.pexels.com/photos/1161529/pexels-photo-1161529.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pink Nike sneaker on stone surrounded by flowers">
       <div class="float-chip chip-price">🍑 $128.00</div>
       <div class="float-chip chip-rating"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.8 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18l1.4-6.3L1 7.4l6.4-.6z"/></svg> 4.9 (2.1k)</div>
     </div>
@@ -465,12 +457,7 @@
       <a href="#shop" class="btn btn-primary">Shop the Edit</a>
     </div>
     <div class="promo-visual">
-      <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 85 C15 70 30 65 45 62 L100 50 C115 46 128 40 138 30 C144 24 152 22 158 27 C168 35 176 48 182 58 C186 66 188 76 184 84 C180 92 168 95 156 95 L28 95 C20 95 15 91 15 85Z" fill="var(--mint)" stroke="var(--ink)" stroke-width="2"/>
-        <path d="M45 62 L52 40 C54 35 58 33 63 34 L95 42" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M28 95 C28 88 34 84 42 84 L150 84 C158 84 164 88 164 95" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
-        <circle cx="70" cy="48" r="3" fill="var(--ink)"/><circle cx="83" cy="44" r="3" fill="var(--ink)"/><circle cx="96" cy="41" r="3" fill="var(--ink)"/>
-      </svg>
+      <img src="https://images.pexels.com/photos/17825341/pexels-photo-17825341.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nike Air Force 1 in pastel green">
     </div>
   </div>
 </section>
@@ -601,22 +588,19 @@
 <script>
   // ---- product data ----
   const products = [
-    { name:"Cloudpeach Runner", cat:"Running", price:128, old:150, rating:4.9, reviews:214, color:"peach", tone:"var(--peach)", badge:"New" },
-    { name:"Lilac Drift Slip-on", cat:"Sneakers", price:104, old:null, rating:4.8, reviews:132, color:"lavender", tone:"var(--lavender)", badge:null },
-    { name:"Mint Breeze Slide", cat:"Sandals", price:68, old:82, rating:4.7, reviews:98, color:"mint", tone:"var(--mint)", badge:"Sale" },
-    { name:"Sky Court Classic", cat:"Sneakers", price:118, old:null, rating:4.9, reviews:301, color:"sky", tone:"var(--sky)", badge:"Bestseller" },
-    { name:"Blush Trail Boot", cat:"Boots", price:156, old:null, rating:4.6, reviews:76, color:"blush", tone:"var(--blush)", badge:null },
-    { name:"Butter Step Loafer", cat:"Casual", price:96, old:120, rating:4.8, reviews:145, color:"butter", tone:"var(--butter)", badge:"Sale" },
+    { name:"Cloudpeach Runner", cat:"Running", price:128, old:150, rating:4.9, reviews:214, tone:"var(--peach)", badge:"New",
+      img:"https://images.pexels.com/photos/12740485/pexels-photo-12740485.jpeg?auto=compress&cs=tinysrgb&w=600" },
+    { name:"Pastel Mint Air Step", cat:"Sneakers", price:132, old:null, rating:4.8, reviews:132, tone:"var(--mint)", badge:null,
+      img:"https://images.pexels.com/photos/17825341/pexels-photo-17825341.jpeg?auto=compress&cs=tinysrgb&w=600" },
+    { name:"Lilac Jordan Drift", cat:"Sneakers", price:158, old:180, rating:4.7, reviews:98, tone:"var(--lavender)", badge:"Sale",
+      img:"https://images.pexels.com/photos/15632277/pexels-photo-15632277.jpeg?auto=compress&cs=tinysrgb&w=600" },
+    { name:"Sky Court Classic", cat:"Sneakers", price:118, old:null, rating:4.9, reviews:301, tone:"var(--sky)", badge:"Bestseller",
+      img:"https://images.pexels.com/photos/2529158/pexels-photo-2529158.jpeg?auto=compress&cs=tinysrgb&w=600" },
+    { name:"Blush Trail Runner", cat:"Running", price:112, old:null, rating:4.6, reviews:76, tone:"var(--blush)", badge:null,
+      img:"https://images.pexels.com/photos/9813525/pexels-photo-9813525.jpeg?auto=compress&cs=tinysrgb&w=600" },
+    { name:"Butter Step High-top", cat:"Casual", price:96, old:120, rating:4.8, reviews:145, tone:"var(--butter)", badge:"Sale",
+      img:"https://images.pexels.com/photos/2351858/pexels-photo-2351858.jpeg?auto=compress&cs=tinysrgb&w=600" },
   ];
-
-  function shoeSVG(tone){
-    return `<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 85 C15 70 30 65 45 62 L100 50 C115 46 128 40 138 30 C144 24 152 22 158 27 C168 35 176 48 182 58 C186 66 188 76 184 84 C180 92 168 95 156 95 L28 95 C20 95 15 91 15 85Z" fill="${tone}" stroke="var(--ink)" stroke-width="2"/>
-      <path d="M45 62 L52 40 C54 35 58 33 63 34 L95 42" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
-      <path d="M28 95 C28 88 34 84 42 84 L150 84 C158 84 164 88 164 95" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
-      <circle cx="70" cy="48" r="2.6" fill="var(--ink)"/><circle cx="83" cy="44" r="2.6" fill="var(--ink)"/><circle cx="96" cy="41" r="2.6" fill="var(--ink)"/>
-    </svg>`;
-  }
   function starSVG(){
     return `<svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.8 6.4.6-4.8 4.3 1.4 6.3L10 14.9 4.4 18l1.4-6.3L1 7.4l6.4-.6z"/></svg>`;
   }
@@ -629,7 +613,7 @@
       <div class="card-media" style="background:linear-gradient(160deg, ${p.tone} 0%, var(--paper) 120%);">
         ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
         <button class="wishlist" aria-label="Wishlist"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9.5-9C.8 7.6 2.6 4 6.2 4 8.4 4 10 5.2 12 7.5 14 5.2 15.6 4 17.8 4 21.4 4 23.2 7.6 21.5 11c-2.5 4.5-9.5 9-9.5 9Z"/></svg></button>
-        ${shoeSVG(p.tone)}
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
       </div>
       <div class="card-body">
         <span class="card-cat">${p.cat}</span>
