@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Solitaire — Round Brilliant Finger Ring | Augustine &amp; Co.</title>
+<meta name="description" content="A single round-brilliant diamond, set in platinum. The Solitaire — Augustine &amp; Co.'s signature engagement ring, GIA certified, made to order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#121012;
+    --ink-2:#1c1719;
+    --ivory:#f7f3ec;
+    --parchment:#efe7d8;
+    --gold:#b08d57;
+    --gold-bright:#d8b273;
+    --gold-pale:#e9dcc0;
+    --graphite:#2b2620;
+    --graphite-soft:#6b6255;
+    --cream:#f3ecdd;
+    --hairline:#ded2b8;
+    --hairline-dark:rgba(243,236,221,0.14);
+    --shadow-soft:0 20px 60px rgba(20,15,8,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--graphite);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:500;letter-spacing:0;}
+  .eyebrow{
+    font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:3.5px;
+    text-transform:uppercase;color:var(--gold);
+  }
+  .eyebrow.on-light{color:var(--gold);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--gold-pale);color:var(--graphite);}
+
+  /* ---------- utility bar ---------- */
+  .utility-bar{background:var(--ink);color:var(--cream);font-size:12px;letter-spacing:1.2px;}
+  .utility-bar .wrap{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;}
+  .utility-bar span{opacity:.78;}
+
+  /* ---------- nav ---------- */
+  nav{
+    background:var(--ivory);
+    border-bottom:1px solid var(--hairline);
+    position:sticky;top:0;z-index:50;
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:2px;font-weight:600;}
+  .logo em{font-style:italic;color:var(--gold);}
+  .nav-links{display:flex;gap:36px;font-size:13px;letter-spacing:.6px;}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width .3s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .icon-btn{width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
+  .cart-count{position:relative;}
+  .cart-count::after{
+    content:"1";position:absolute;top:-8px;right:-9px;background:var(--gold);color:#fff;
+    font-size:9px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--ink);color:var(--cream);overflow:hidden;}
+  .hero .wrap{
+    display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:48px;
+    padding-top:76px;padding-bottom:76px;min-height:640px;
+  }
+  .hero-copy .eyebrow{color:var(--gold-bright);margin-bottom:22px;display:block;}
+  .hero-copy h1{
+    font-size:64px;line-height:1.02;margin:0 0 26px;font-weight:500;
+    max-width:520px;
+  }
+  .hero-copy h1 .i{font-style:italic;color:var(--gold-bright);font-weight:400;}
+  .hero-copy p{font-size:16px;line-height:1.75;color:#c9c2b4;max-width:420px;margin:0 0 34px;font-weight:300;}
+  .hero-cta{display:flex;gap:16px;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:16px 32px;border-radius:999px;font-size:13px;letter-spacing:1.6px;
+    text-transform:uppercase;font-weight:600;border:1px solid transparent;
+    transition:transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .btn:active{transform:scale(.96);}
+  .btn-gold{background:var(--gold);color:#1a1408;}
+  .btn-gold:hover{background:var(--gold-bright);}
+  .btn-outline-dark{border-color:rgba(243,236,221,0.4);color:var(--cream);background:transparent;}
+  .btn-outline-dark:hover{border-color:var(--gold-bright);color:var(--gold-bright);}
+  .btn-outline-light{border-color:var(--hairline-strong,#cabb95);color:var(--graphite);background:transparent;}
+  .btn-outline-light:hover{border-color:var(--gold);color:var(--gold);}
+  .btn-block{width:100%;}
+
+  .hero-visual{position:relative;}
+  .hero-frame{
+    position:relative;border-radius:4px;overflow:hidden;
+    box-shadow:rgba(0,0,0,0.45) 3px 5px 40px;
+  }
+  .hero-frame img{width:100%;height:560px;object-fit:cover;filter:saturate(1.02) contrast(1.02);}
+  .spec-float{
+    position:absolute;left:-34px;bottom:34px;background:var(--ivory);color:var(--graphite);
+    padding:20px 24px;border-radius:6px;box-shadow:var(--shadow-soft);
+    display:flex;gap:24px;min-width:280px;
+  }
+  .spec-float .item{display:flex;flex-direction:column;gap:3px;}
+  .spec-float .item span{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--graphite-soft);}
+  .spec-float .item b{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;}
+
+  /* ---------- product section ---------- */
+  .product{padding:110px 0;background:var(--ivory);}
+  .product .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;}
+  .gallery-main{border-radius:6px;overflow:hidden;background:var(--parchment);aspect-ratio:1/1.05;}
+  .gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .gallery-main:hover img{transform:scale(1.045);}
+  .thumb-row{display:flex;gap:14px;margin-top:14px;}
+  .thumb{
+    width:88px;height:88px;border-radius:6px;overflow:hidden;cursor:pointer;
+    border:2px solid transparent;flex-shrink:0;
+  }
+  .thumb.active{border-color:var(--gold);}
+  .thumb img{width:100%;height:100%;object-fit:cover;}
+
+  .purchase .eyebrow{margin-bottom:14px;display:block;}
+  .purchase h2{font-size:40px;margin:0 0 10px;font-weight:500;}
+  .rating-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+  .stars{color:var(--gold);font-size:14px;letter-spacing:2px;}
+  .rating-row span{font-size:13px;color:var(--graphite-soft);}
+  .price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:28px;}
+  .price{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--graphite);}
+  .price-old{font-size:16px;color:var(--graphite-soft);text-decoration:line-through;}
+  .price-note{font-size:12px;color:var(--graphite-soft);}
+
+  .option-block{margin-bottom:28px;}
+  .option-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
+  .option-label span:first-child{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--graphite);font-weight:600;}
+  .option-label span.sel{font-size:13px;color:var(--graphite-soft);font-style:italic;font-family:'Cormorant Garamond',serif;}
+  .metal-row{display:flex;gap:12px;}
+  .metal-swatch{
+    width:38px;height:38px;border-radius:50%;cursor:pointer;border:2px solid transparent;
+    padding:2px;display:flex;align-items:center;justify-content:center;
+  }
+  .metal-swatch .dot{width:100%;height:100%;border-radius:50%;}
+  .metal-swatch.active{border-color:var(--graphite);}
+  .m-platinum .dot{background:linear-gradient(145deg,#e9e9ea,#b9bcc0);}
+  .m-yellow .dot{background:linear-gradient(145deg,#f4dc9d,#c9a34a);}
+  .m-rose .dot{background:linear-gradient(145deg,#f0c8ba,#c98a72);}
+  .m-white .dot{background:linear-gradient(145deg,#fbfbfa,#d7d7d2);}
+
+  .size-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .size-chip{
+    min-width:44px;height:44px;padding:0 6px;border-radius:999px;border:1px solid var(--hairline);
+    display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;background:transparent;
+    color:var(--graphite);transition:all .2s ease;
+  }
+  .size-chip.active{background:var(--graphite);color:var(--ivory);border-color:var(--graphite);}
+  .size-guide-link{font-size:12px;color:var(--gold);text-decoration:underline;margin-top:10px;display:inline-block;}
+
+  .qty-cta-row{display:flex;gap:14px;margin-top:34px;}
+  .qty-box{
+    display:flex;align-items:center;border:1px solid var(--hairline);border-radius:999px;overflow:hidden;
+  }
+  .qty-box button{background:none;border:none;width:40px;height:52px;font-size:16px;color:var(--graphite);}
+  .qty-box span{width:34px;text-align:center;font-size:14px;}
+  .add-cart-btn{flex:1;}
+
+  .trust-row{display:flex;gap:26px;margin-top:34px;padding-top:28px;border-top:1px solid var(--hairline);flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--graphite-soft);max-width:150px;}
+  .trust-item svg{flex-shrink:0;color:var(--gold);}
+
+  /* ---------- diamond report / signature ---------- */
+  .report{background:var(--ink);color:var(--cream);padding:120px 0;overflow:hidden;}
+  .report-head{text-align:center;max-width:640px;margin:0 auto 76px;}
+  .report-head .eyebrow{color:var(--gold-bright);}
+  .report-head h2{font-size:44px;margin:18px 0 0;font-weight:500;}
+  .report-grid{display:grid;grid-template-columns:340px 1fr;gap:70px;align-items:center;}
+  .diamond-svg{width:100%;max-width:340px;justify-self:center;}
+  .facet{transform-origin:170px 170px;animation:glint 7s ease-in-out infinite;}
+  @keyframes glint{
+    0%,100%{opacity:.55;}
+    50%{opacity:1;}
+  }
+  .cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline-dark);}
+  .cc-item{background:var(--ink);padding:30px 34px;}
+  .cc-item .cc-label{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:10px;}
+  .cc-item .cc-value{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin-bottom:8px;}
+  .cc-item p{font-size:13.5px;line-height:1.7;color:#b9b1a0;margin:0;font-weight:300;}
+
+  /* ---------- craft section ---------- */
+  .craft{background:var(--parchment);padding:120px 0;}
+  .craft .wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
+  .craft-img{border-radius:6px;overflow:hidden;aspect-ratio:4/5;}
+  .craft-img img{width:100%;height:100%;object-fit:cover;}
+  .craft-copy .eyebrow{margin-bottom:18px;display:block;}
+  .craft-copy h2{font-size:42px;line-height:1.1;margin:0 0 22px;font-weight:500;max-width:460px;}
+  .craft-copy p{font-size:16px;line-height:1.8;color:var(--graphite-soft);max-width:460px;margin:0 0 18px;}
+  .craft-list{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-direction:column;gap:16px;}
+  .craft-list li{display:flex;gap:14px;font-size:14.5px;color:var(--graphite);align-items:flex-start;}
+  .craft-list svg{flex-shrink:0;color:var(--gold);margin-top:2px;}
+
+  /* ---------- sizing ---------- */
+  .sizing{background:var(--ivory);padding:120px 0;}
+  .sizing .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .sizing-copy .eyebrow{margin-bottom:18px;display:block;}
+  .sizing-copy h2{font-size:42px;margin:0 0 22px;font-weight:500;max-width:440px;}
+  .accordion-item{border-top:1px solid var(--hairline);}
+  .accordion-item:last-child{border-bottom:1px solid var(--hairline);}
+  .accordion-head{
+    display:flex;justify-content:space-between;align-items:center;padding:22px 0;cursor:pointer;
+    font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:600;
+  }
+  .accordion-head .plus{font-size:20px;color:var(--gold);transition:transform .3s ease;}
+  .accordion-item.open .plus{transform:rotate(45deg);}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .accordion-item.open .accordion-body{max-height:200px;}
+  .accordion-body p{font-size:14.5px;line-height:1.75;color:var(--graphite-soft);margin:0 0 22px;font-weight:300;}
+
+  .ruler-visual{background:var(--parchment);border-radius:6px;padding:48px 40px;}
+  .ruler-visual svg{width:100%;height:auto;}
+  .ruler-caption{text-align:center;font-size:12px;color:var(--graphite-soft);margin-top:18px;letter-spacing:.5px;}
+
+  /* ---------- reviews ---------- */
+  .reviews{background:var(--parchment);padding:110px 0;}
+  .reviews-head{text-align:center;margin-bottom:60px;}
+  .reviews-head .eyebrow{display:block;margin-bottom:16px;}
+  .reviews-head h2{font-size:40px;margin:0;font-weight:500;}
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline);}
+  .review-card{background:var(--parchment);padding:36px 34px;}
+  .review-card .stars{margin-bottom:16px;display:block;}
+  .review-card p{font-size:15px;line-height:1.75;color:var(--graphite);font-style:italic;font-family:'Cormorant Garamond',serif;margin:0 0 20px;}
+  .review-name{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--graphite-soft);}
+
+  /* ---------- CTA ---------- */
+  .cta-band{background:var(--ink);color:var(--cream);padding:100px 0;text-align:center;}
+  .cta-band .eyebrow{color:var(--gold-bright);display:block;margin-bottom:20px;}
+  .cta-band h2{font-size:46px;margin:0 0 30px;font-weight:500;max-width:600px;margin-left:auto;margin-right:auto;}
+  .cta-band-actions{display:flex;gap:16px;justify-content:center;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--parchment);padding:80px 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;}
+  .footer-brand .logo{margin-bottom:16px;display:inline-block;}
+  .footer-brand p{font-size:14px;color:var(--graphite-soft);line-height:1.7;max-width:280px;margin:0;}
+  .footer-col h4{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;margin:0 0 20px;color:var(--graphite);}
+  .footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;}
+  .footer-col a{font-size:14px;color:var(--graphite-soft);}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-bottom{
+    border-top:1px solid var(--hairline);padding-top:26px;display:flex;justify-content:space-between;
+    font-size:12px;color:var(--graphite-soft);flex-wrap:wrap;gap:10px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .hero .wrap,.product .wrap,.report-grid,.craft .wrap,.sizing .wrap{grid-template-columns:1fr;}
+    .hero .wrap{padding-top:50px;}
+    .hero-copy h1{font-size:44px;}
+    .spec-float{position:static;margin-top:20px;left:0;}
+    .hero-frame img{height:400px;}
+    .review-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    .footer-grid{grid-template-columns:1fr;}
+    .cc-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="wrap">
+    <span>GIA Certified · Complimentary Resizing Within 60 Days</span>
+    <span>Portfolio Piece No. 07 — Jewellery Shop Series</span>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">AUGUSTINE <em>&amp;</em> CO.</a>
+    <div class="nav-links">
+      <a href="#gallery">The Ring</a>
+      <a href="#report">The Diamond</a>
+      <a href="#craft">Craftsmanship</a>
+      <a href="#sizing">Sizing</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn cart-count" aria-label="Cart, 1 item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Solitaire Collection — No. VII</span>
+      <h1>One stone.<br><span class="i">No distraction.</span></h1>
+      <p>The Solitaire holds a single round-brilliant diamond aloft on a four-claw platinum setting — nothing to compete with the light, nothing between the stone and the hand it's chosen for.</p>
+      <div class="hero-cta">
+        <a href="#gallery" class="btn btn-gold">View The Ring</a>
+        <a href="#report" class="btn btn-outline-dark">Read The Report</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-frame">
+        <img src="https://images.unsplash.com/photo-1564919783135-b9b75825aced?auto=format&fit=crop&w=1200&q=80" alt="The Solitaire round-brilliant diamond ring worn on the hand">
+      </div>
+      <div class="spec-float">
+        <div class="item"><span>Carat</span><b>0.92 ct</b></div>
+        <div class="item"><span>Cut</span><b>Round</b></div>
+        <div class="item"><span>Clarity</span><b>VS1</b></div>
+        <div class="item"><span>Metal</span><b>Pt950</b></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="product" id="gallery">
+  <div class="wrap">
+    <div class="gallery-col">
+      <div class="gallery-main">
+        <img id="mainImg" src="https://images.unsplash.com/photo-1564919783135-b9b75825aced?auto=format&fit=crop&w=1000&q=80" alt="The Solitaire ring, primary product view">
+      </div>
+      <div class="thumb-row">
+        <div class="thumb active" data-img="https://images.unsplash.com/photo-1564919783135-b9b75825aced?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1564919783135-b9b75825aced?auto=format&fit=crop&w=200&q=80" alt="Worn on hand view">
+        </div>
+        <div class="thumb" data-img="https://images.unsplash.com/photo-1677045419454-e8b201856472?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1677045419454-e8b201856472?auto=format&fit=crop&w=200&q=80" alt="Presented in signature case">
+        </div>
+        <div class="thumb" data-img="https://images.unsplash.com/photo-1734640547704-98a4b882f1ba?auto=format&fit=crop&w=1000&q=80">
+          <img src="https://images.unsplash.com/photo-1734640547704-98a4b882f1ba?auto=format&fit=crop&w=200&q=80" alt="Detail view on hand, natural light">
+        </div>
+      </div>
+    </div>
+
+    <div class="purchase">
+      <span class="eyebrow">Finger Ring · Solitaire</span>
+      <h2>The Solitaire</h2>
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span>4.9 from 214 private viewings</span>
+      </div>
+      <div class="price-row">
+        <span class="price">₹1,84,000</span>
+        <span class="price-old">₹2,10,000</span>
+        <span class="price-note">Inclusive of GIA certification</span>
+      </div>
+
+      <div class="option-block">
+        <div class="option-label"><span>Metal</span><span class="sel" id="metalSel">Platinum</span></div>
+        <div class="metal-row">
+          <div class="metal-swatch m-platinum active" data-metal="Platinum"><div class="dot"></div></div>
+          <div class="metal-swatch m-yellow" data-metal="18K Yellow Gold"><div class="dot"></div></div>
+          <div class="metal-swatch m-rose" data-metal="18K Rose Gold"><div class="dot"></div></div>
+          <div class="metal-swatch m-white" data-metal="18K White Gold"><div class="dot"></div></div>
+        </div>
+      </div>
+
+      <div class="option-block">
+        <div class="option-label"><span>Ring Size (US)</span><span class="sel" id="sizeSel">6</span></div>
+        <div class="size-row">
+          <div class="size-chip" data-size="4">4</div>
+          <div class="size-chip" data-size="5">5</div>
+          <div class="size-chip active" data-size="6">6</div>
+          <div class="size-chip" data-size="7">7</div>
+          <div class="size-chip" data-size="8">8</div>
+          <div class="size-chip" data-size="9">9</div>
+        </div>
+        <a class="size-guide-link" href="#sizing">Find your size →</a>
+      </div>
+
+      <div class="qty-cta-row">
+        <div class="qty-box">
+          <button id="qtyMinus" aria-label="Decrease quantity">−</button>
+          <span id="qtyVal">1</span>
+          <button id="qtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="btn btn-gold add-cart-btn">Add to Cart</button>
+      </div>
+      <a href="#" class="size-guide-link" style="margin-top:16px;">Book a private viewing instead →</a>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+          GIA-certified diamond, report included
+        </div>
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13l4 4v6h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+          Insured, signature-required shipping
+        </div>
+        <div class="trust-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          Free resizing within 60 days
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="report" id="report">
+  <div class="wrap">
+    <div class="report-head">
+      <span class="eyebrow">The Grading Report</span>
+      <h2>Read like a jeweller does</h2>
+    </div>
+    <div class="report-grid">
+      <svg class="diamond-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="170" cy="170" r="150" fill="none" stroke="rgba(216,178,115,0.25)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="110" fill="none" stroke="rgba(216,178,115,0.18)" stroke-width="1"/>
+        <g class="facet" stroke="#d8b273" stroke-width="1.1" fill="none" opacity="0.85">
+          <polygon points="170,50 220,110 170,140 120,110"/>
+          <polygon points="170,140 220,110 250,170 170,190"/>
+          <polygon points="170,190 250,170 220,230 170,240"/>
+          <polygon points="170,240 220,230 170,290 120,230"/>
+          <polygon points="170,240 120,230 90,170 170,190"/>
+          <polygon points="170,190 90,170 120,110 170,140"/>
+        </g>
+        <polygon points="170,140 220,110 250,170 220,230 170,240 120,230 90,170 120,110" fill="rgba(216,178,115,0.06)" stroke="#d8b273" stroke-width="1.3"/>
+        <circle cx="170" cy="170" r="34" fill="rgba(216,178,115,0.12)" stroke="#d8b273" stroke-width="1.2"/>
+        <text x="170" y="176" text-anchor="middle" fill="#d8b273" font-family="Cormorant Garamond, serif" font-size="18" font-style="italic">0.92</text>
+      </svg>
+
+      <div class="cc-grid">
+        <div class="cc-item">
+          <div class="cc-label">Carat</div>
+          <div class="cc-value">0.92</div>
+          <p>A single stone, weighed rather than assembled — carat measures the diamond alone, not the setting around it.</p>
+        </div>
+        <div class="cc-item">
+          <div class="cc-label">Cut</div>
+          <div class="cc-value">Excellent</div>
+          <p>57 facets in the standard round-brilliant arrangement, angled to return the maximum light back through the crown.</p>
+        </div>
+        <div class="cc-item">
+          <div class="cc-label">Colour</div>
+          <div class="cc-value">F</div>
+          <p>Graded on the GIA D-to-Z scale — F sits within the "colourless" range, indistinguishable to the eye from D.</p>
+        </div>
+        <div class="cc-item">
+          <div class="cc-label">Clarity</div>
+          <div class="cc-value">VS1</div>
+          <p>Very Slightly Included — inclusions are present but invisible without 10x magnification under a loupe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="craft" id="craft">
+  <div class="wrap">
+    <div class="craft-img">
+      <img src="https://images.unsplash.com/photo-1677045419454-e8b201856472?auto=format&fit=crop&w=800&q=80" alt="The Solitaire ring presented in its signature case">
+    </div>
+    <div class="craft-copy">
+      <span class="eyebrow">Craftsmanship</span>
+      <h2>Set by hand, in Jaipur</h2>
+      <p>Each Solitaire passes through four hands before it leaves the bench: one to cut the claws, one to seat the stone, one to polish the shank, and one to check it under magnification before it's ever photographed.</p>
+      <p>The four-claw setting is deliberately minimal — enough metal to hold the diamond secure through decades of wear, and not a milligram more.</p>
+      <ul class="craft-list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg> Platinum 950 or 18K gold, cast and finished in-house</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg> Conflict-free stones, traceable to origin</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg> Hand-engraved with a private serial inside the band</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sizing" id="sizing">
+  <div class="wrap">
+    <div class="sizing-copy">
+      <span class="eyebrow">Sizing &amp; Care</span>
+      <h2>Getting the fit right</h2>
+
+      <div class="accordion-item open">
+        <div class="accordion-head"><span>How do I find my ring size?</span><span class="plus">+</span></div>
+        <div class="accordion-body"><p>Wrap a strip of paper around the base of your finger, mark where it overlaps, and match the length in millimetres to our size chart — or visit any local jeweller for a free measurement.</p></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head"><span>Can I resize it later?</span><span class="plus">+</span></div>
+        <div class="accordion-body"><p>Yes. Every Solitaire includes one complimentary resizing within 60 days of delivery, up or down by two half-sizes.</p></div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-head"><span>How should I care for the setting?</span><span class="plus">+</span></div>
+        <div class="accordion-body"><p>Remove it before swimming or heavy lifting, clean it monthly with warm water and a soft brush, and have the claws checked once a year.</p></div>
+      </div>
+    </div>
+
+    <div class="ruler-visual">
+      <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="80" x2="380" y2="80" stroke="#b08d57" stroke-width="1.5"/>
+        <g stroke="#6b6255" stroke-width="1">
+          <line x1="40" y1="70" x2="40" y2="90"/>
+          <line x1="100" y1="65" x2="100" y2="95"/>
+          <line x1="160" y1="70" x2="160" y2="90"/>
+          <line x1="220" y1="65" x2="220" y2="95"/>
+          <line x1="280" y1="70" x2="280" y2="90"/>
+          <line x1="340" y1="65" x2="340" y2="95"/>
+        </g>
+        <g font-family="Jost, sans-serif" font-size="11" fill="#6b6255" text-anchor="middle">
+          <text x="40" y="112">US 4</text>
+          <text x="100" y="112">US 5</text>
+          <text x="160" y="112">US 6</text>
+          <text x="220" y="112">US 7</text>
+          <text x="280" y="112">US 8</text>
+          <text x="340" y="112">US 9</text>
+        </g>
+        <circle cx="160" cy="80" r="7" fill="none" stroke="#b08d57" stroke-width="2"/>
+      </svg>
+      <p class="ruler-caption">Diameter in millimetres, US ring sizing — this piece is shown at US 6 / 16.5mm</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <span class="eyebrow">From Private Viewings</span>
+      <h2>What people notice first</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"Under the shop light it looked good — under morning sun on the balcony it looked unbelievable. That's when I knew."</p>
+        <div class="review-name">Ananya R. — Bengaluru</div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"The claw setting is so low-profile my partner didn't catch it on a scarf once in eight months."</p>
+        <div class="review-name">Kabir M. — Delhi</div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>"Resizing was done in five days and it came back in the same case, cleaned, like new."</p>
+        <div class="review-name">Priya S. — Pune</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="eyebrow">Ready When You Are</span>
+    <h2>The Solitaire is made to order, not to shelf.</h2>
+    <div class="cta-band-actions">
+      <a href="#gallery" class="btn btn-gold">Add to Cart — ₹1,84,000</a>
+      <a href="#" class="btn btn-outline-dark">Speak to a Jeweller</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#">AUGUSTINE <em>&amp;</em> CO.</a>
+        <p>A concept storefront for the Solitaire finger ring — portfolio piece No. 07 in the Jewellery Shop series, designed and built by wondermayank.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#gallery">The Solitaire</a></li>
+          <li><a href="#report">Diamond Report</a></li>
+          <li><a href="#craft">Craftsmanship</a></li>
+          <li><a href="#sizing">Size Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <ul>
+          <li><a href="https://wondermayank.github.io/">wondermayank.github.io</a></li>
+          <li><a href="https://wondermayank.github.io/portfolio">Full Portfolio</a></li>
+          <li><a href="https://wondermayank.github.io/portfolio/jewellery-shop/6">← Previous Piece</a></li>
+          <li><a href="https://wondermayank.github.io/portfolio/jewellery-shop/8">Next Piece →</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+          <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+          <li><a href="https://wondermayank.github.io/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Augustine &amp; Co. — a concept design by wondermayank</span>
+      <span>Product photography via Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Gallery thumbnail swap
+  document.querySelectorAll('.thumb').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('mainImg').src = t.dataset.img;
+    });
+  });
+
+  // Metal swatch selection
+  document.querySelectorAll('.metal-swatch').forEach(m=>{
+    m.addEventListener('click',()=>{
+      document.querySelectorAll('.metal-swatch').forEach(x=>x.classList.remove('active'));
+      m.classList.add('active');
+      document.getElementById('metalSel').textContent = m.dataset.metal;
+    });
+  });
+
+  // Size chip selection
+  document.querySelectorAll('.size-chip').forEach(s=>{
+    s.addEventListener('click',()=>{
+      document.querySelectorAll('.size-chip').forEach(x=>x.classList.remove('active'));
+      s.classList.add('active');
+      document.getElementById('sizeSel').textContent = s.dataset.size;
+    });
+  });
+
+  // Quantity stepper
+  let qty = 1;
+  const qtyVal = document.getElementById('qtyVal');
+  document.getElementById('qtyPlus').addEventListener('click',()=>{
+    qty = Math.min(qty+1, 5);
+    qtyVal.textContent = qty;
+  });
+  document.getElementById('qtyMinus').addEventListener('click',()=>{
+    qty = Math.max(qty-1, 1);
+    qtyVal.textContent = qty;
+  });
+
+  // Accordion
+  document.querySelectorAll('.accordion-head').forEach(h=>{
+    h.addEventListener('click',()=>{
+      const item = h.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
