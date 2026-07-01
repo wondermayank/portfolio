@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rani Jaali — Polki Choker House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF3E6;
+    --ivory-deep:#F3E7D4;
+    --oxblood:#5B1220;
+    --oxblood-deep:#3E0C16;
+    --gold:#B8892E;
+    --gold-light:#E8C77B;
+    --gold-pale:#F1DFB0;
+    --ink:#2A1712;
+    --emerald:#1F4739;
+    --line: rgba(91,18,32,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:11px;
+    color:var(--gold);
+    font-weight:500;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  /* ---------- Jaali motif (signature element) ---------- */
+  .jaali-divider{
+    width:100%;
+    height:28px;
+    display:block;
+  }
+  .jaali-divider svg{width:100%; height:100%;}
+  .jaali-corner{
+    position:absolute; width:34px; height:34px; pointer-events:none;
+  }
+  .jaali-corner.tl{top:8px; left:8px;}
+  .jaali-corner.br{bottom:8px; right:8px; transform:rotate(180deg);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,243,230,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1280px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; gap:24px;
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px; font-weight:600; color:var(--oxblood);
+    letter-spacing:0.03em;
+    white-space:nowrap;
+  }
+  .brand span{color:var(--gold);}
+  .nav-links{
+    display:flex; gap:32px; list-style:none;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase; font-weight:500;
+    color:var(--ink);
+  }
+  .nav-links a{position:relative; padding-bottom:4px; opacity:0.85;}
+  .nav-links a:hover{opacity:1; color:var(--oxblood);}
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0%; height:1px;
+    background:var(--gold); transition:width 0.3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .search-wrap{
+    display:flex; align-items:center; flex:1; max-width:360px;
+    border:1px solid var(--line); border-radius:100px;
+    background:#fff; padding:9px 16px; gap:10px;
+  }
+  .search-wrap:focus-within{border-color:var(--gold);}
+  .search-wrap input{
+    border:none; outline:none; background:transparent; width:100%;
+    font-family:'Jost'; font-size:14px; color:var(--ink);
+  }
+  .search-wrap svg{flex-shrink:0; opacity:0.55;}
+  .nav-icons{display:flex; gap:18px; align-items:center;}
+  .nav-icons svg{cursor:pointer; opacity:0.8;}
+  .nav-icons svg:hover{opacity:1;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:1280px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr;
+    align-items:center; gap:56px;
+    padding:72px 32px 60px;
+  }
+  .hero-copy h1{
+    font-size:58px; line-height:1.05; color:var(--oxblood-deep);
+    margin:18px 0 22px;
+  }
+  .hero-copy h1 em{font-style:italic; color:var(--gold);}
+  .hero-copy p{
+    font-size:16px; line-height:1.7; color:rgba(42,23,18,0.75);
+    max-width:420px; margin-bottom:32px;
+  }
+  .btn-row{display:flex; gap:16px; align-items:center;}
+  .btn-primary{
+    background:var(--oxblood); color:var(--ivory);
+    padding:15px 32px; border-radius:2px; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.12em; font-weight:500;
+    border:1px solid var(--oxblood);
+    transition:all 0.25s ease;
+  }
+  .btn-primary:hover{background:var(--oxblood-deep); border-color:var(--oxblood-deep);}
+  .btn-ghost{
+    font-size:13px; text-transform:uppercase; letter-spacing:0.12em; font-weight:500;
+    color:var(--oxblood); border-bottom:1px solid var(--gold); padding-bottom:3px;
+  }
+  .hero-visual{
+    position:relative;
+    border:1px solid var(--line);
+    padding:18px;
+  }
+  .hero-visual .frame{
+    position:relative; overflow:hidden;
+  }
+  .hero-visual img{
+    width:100%; height:560px; object-fit:cover; object-position:top center;
+  }
+  .hero-tag{
+    position:absolute; bottom:26px; left:26px;
+    background:rgba(251,243,230,0.95);
+    padding:14px 20px; border:1px solid var(--gold);
+    max-width:220px;
+  }
+  .hero-tag .eyebrow{margin-bottom:4px;}
+  .hero-tag strong{font-family:'Cormorant Garamond'; font-size:19px; color:var(--oxblood-deep); display:block;}
+
+  /* ---------- Filter / Search strip ---------- */
+  .filter-strip{
+    max-width:1280px; margin:0 auto;
+    padding:0 32px 40px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    gap:20px;
+  }
+  .filter-pills{display:flex; gap:10px; flex-wrap:wrap;}
+  .pill{
+    border:1px solid var(--line); background:#fff;
+    padding:9px 20px; border-radius:100px; font-size:12.5px;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--ink);
+    cursor:pointer; transition:all 0.2s ease; font-weight:500;
+  }
+  .pill.active, .pill:hover{
+    background:var(--oxblood); color:var(--ivory); border-color:var(--oxblood);
+  }
+  .result-count{font-size:13px; color:rgba(42,23,18,0.55); letter-spacing:0.03em;}
+
+  /* ---------- Product grid ---------- */
+  .section-head{
+    max-width:1280px; margin:0 auto; padding:0 32px; text-align:center;
+    margin-bottom:44px;
+  }
+  .section-head h2{font-size:42px; color:var(--oxblood-deep); margin-top:10px;}
+
+  .grid{
+    max-width:1280px; margin:0 auto; padding:0 32px 100px;
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:28px;
+  }
+  .card{
+    background:#fff; border:1px solid var(--line);
+    display:flex; flex-direction:column;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px -18px rgba(91,18,32,0.28);
+  }
+  .card-media{position:relative; overflow:hidden; aspect-ratio:4/5; background:var(--ivory-deep);}
+  .card-media img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform 0.6s ease;
+  }
+  .card:hover .card-media img{transform:scale(1.07);}
+  .foil-sweep{
+    position:absolute; inset:0;
+    background:linear-gradient(115deg, transparent 30%, rgba(232,199,123,0.35) 45%, transparent 60%);
+    transform:translateX(-120%);
+    transition:transform 0.7s ease;
+    pointer-events:none;
+  }
+  .card:hover .foil-sweep{transform:translateX(120%);}
+  .card-tag{
+    position:absolute; top:12px; left:12px;
+    background:var(--oxblood); color:var(--ivory);
+    font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    padding:5px 10px; font-weight:500;
+  }
+  .card-body{padding:20px 20px 22px; display:flex; flex-direction:column; gap:6px; flex:1;}
+  .card-body .eyebrow{font-size:10px;}
+  .card-body h3{font-size:21px; color:var(--ink); line-height:1.25;}
+  .card-footer{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:10px; padding-top:12px; border-top:1px solid var(--line);
+  }
+  .price{font-family:'Cormorant Garamond'; font-size:20px; color:var(--oxblood); font-weight:600;}
+  .price .old{
+    font-size:14px; color:rgba(42,23,18,0.4); text-decoration:line-through; margin-right:8px; font-weight:400;
+  }
+  .add-btn{
+    width:36px; height:36px; border:1px solid var(--gold); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:all 0.2s ease; flex-shrink:0;
+  }
+  .add-btn:hover{background:var(--gold); }
+  .add-btn:hover svg path{stroke:#fff;}
+  .no-results{
+    grid-column:1/-1; text-align:center; padding:80px 20px; color:rgba(42,23,18,0.5);
+  }
+  .no-results h3{font-family:'Cormorant Garamond'; font-size:28px; color:var(--oxblood); margin-bottom:8px;}
+
+  /* ---------- Craft strip ---------- */
+  .craft{
+    background:var(--oxblood-deep); color:var(--ivory);
+    padding:90px 32px; position:relative; overflow:hidden;
+  }
+  .craft-inner{
+    max-width:1280px; margin:0 auto;
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .craft h2{font-size:38px; color:var(--gold-pale); margin-bottom:20px;}
+  .craft p{font-size:15.5px; line-height:1.85; color:rgba(251,243,230,0.75); max-width:460px;}
+  .craft-stats{display:flex; gap:48px; margin-top:36px;}
+  .craft-stats div strong{
+    display:block; font-family:'Cormorant Garamond'; font-size:34px; color:var(--gold-light);
+  }
+  .craft-stats div span{font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:rgba(251,243,230,0.6);}
+  .craft-gallery{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .craft-gallery img{width:100%; height:230px; object-fit:cover; border:1px solid rgba(232,199,123,0.3);}
+  .craft-gallery img:nth-child(2){margin-top:36px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--oxblood); color:rgba(251,243,230,0.85); padding:64px 32px 28px;}
+  .footer-inner{
+    max-width:1280px; margin:0 auto;
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:48px;
+    padding-bottom:44px; border-bottom:1px solid rgba(251,243,230,0.15);
+  }
+  .footer-inner h4{
+    font-size:12px; text-transform:uppercase; letter-spacing:0.12em;
+    color:var(--gold-light); margin-bottom:18px; font-weight:500; font-family:'Jost';
+  }
+  .footer-inner .brand{color:var(--gold-light); margin-bottom:14px;}
+  .footer-inner p{font-size:13.5px; line-height:1.8; color:rgba(251,243,230,0.65); max-width:280px;}
+  .footer-inner ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .footer-inner ul a{font-size:13.5px; color:rgba(251,243,230,0.7);}
+  .footer-inner ul a:hover{color:var(--gold-light);}
+  .bottom-bar{
+    max-width:1280px; margin:0 auto; padding-top:22px;
+    display:flex; justify-content:space-between; font-size:12px; color:rgba(251,243,230,0.45);
+  }
+
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .hero-copy h1{font-size:40px;}
+    .nav-links{display:none;}
+    .search-wrap{max-width:none;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .craft-inner{grid-template-columns:1fr;}
+    .footer-inner{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .nav-inner{flex-wrap:wrap;}
+    .hero-visual img{height:400px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header>
+  <div class="nav-inner">
+    <div class="brand">RANI <span>JAALI</span></div>
+    <ul class="nav-links">
+      <li><a href="#shop">Chokers</a></li>
+      <li><a href="#craft">Our Craft</a></li>
+      <li><a href="#shop">Bridal Edit</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul>
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#5B1220" stroke-width="1.6"/><path d="M20 20L16.5 16.5" stroke="#5B1220" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="searchInput" type="text" placeholder="Search polki chokers, colours, motifs...">
+    </div>
+    <div class="nav-icons">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.2C.4 8 2 4 6 4c2.2 0 3.7 1.2 6 3.6C14.3 5.2 15.8 4 18 4c4 0 5.6 4 4 7.8-2.5 4.6-10 9.2-10 9.2z" stroke="#5B1220" stroke-width="1.5"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7L6 8z" stroke="#5B1220" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 016 0v2" stroke="#5B1220" stroke-width="1.5"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Jadau &amp; Uncut Diamond Edit</div>
+    <h1>Chokers cut<br>from <em>old-world</em><br>light.</h1>
+    <p>Hand-set uncut polki stones on gold-finish silver, framed the way court jewellers once did — for brides, sangeets, and every night you want your collarbone to catch candlelight.</p>
+    <div class="btn-row">
+      <a href="#shop" class="btn-primary">Shop Chokers</a>
+      <a href="#craft" class="btn-ghost">How Polki Is Made</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="frame">
+      <img src="https://www.paisleypopshop.com/cdn/shop/files/PP_27Jan26_shot0334.jpg?v=1770714985&width=1080" alt="Chandrika temple polki choker on model">
+      <div class="hero-tag">
+        <div class="eyebrow">Bestseller</div>
+        <strong>Chandrika Temple Choker</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="jaali-divider">
+  <svg viewBox="0 0 1200 28" preserveAspectRatio="none">
+    <defs>
+      <pattern id="jaaliPattern" width="60" height="28" patternUnits="userSpaceOnUse">
+        <path d="M0 14 L15 0 L30 14 L15 28 Z" fill="none" stroke="#B8892E" stroke-width="1"/>
+        <circle cx="30" cy="14" r="3" fill="#B8892E"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="28" fill="url(#jaaliPattern)"/>
+  </svg>
+</div>
+
+<!-- ===== FILTER / SEARCH STRIP ===== -->
+<section class="filter-strip">
+  <div class="filter-pills" id="filterPills">
+    <div class="pill active" data-filter="all">All Chokers</div>
+    <div class="pill" data-filter="green">Emerald &amp; Mint</div>
+    <div class="pill" data-filter="pink">Pink &amp; Rani</div>
+    <div class="pill" data-filter="blue">Blue &amp; Turquoise</div>
+    <div class="pill" data-filter="temple">Temple &amp; Victorian</div>
+  </div>
+  <div class="result-count" id="resultCount">14 pieces</div>
+</section>
+
+<!-- ===== PRODUCT GRID ===== -->
+<div class="section-head" id="shop">
+  <div class="eyebrow">The Collection</div>
+  <h2>Every Choker, Hand-Set</h2>
+</div>
+
+<section class="grid" id="productGrid"></section>
+
+<!-- ===== CRAFT SECTION ===== -->
+<section class="craft" id="craft">
+  <div class="craft-inner">
+    <div>
+      <div class="eyebrow" style="color:var(--gold-light)">The Jadau Technique</div>
+      <h2>Set stone by stone,<br>the way it's done<br>in the old katras.</h2>
+      <p>Each polki is an uncut, natural diamond — never faceted, only polished — pressed into a bed of lac and foiled in 24k gold before setting. No two chokers catch the light quite the same way.</p>
+      <div class="craft-stats">
+        <div><strong>60+</strong><span>Hrs per Choker</span></div>
+        <div><strong>3</strong><span>Generations of Karigars</span></div>
+        <div><strong>100%</strong><span>Hand-Set Stones</span></div>
+      </div>
+    </div>
+    <div class="craft-gallery">
+      <img src="https://www.paisleypopshop.com/cdn/shop/files/DSC3904.jpg?v=1771313838&width=1000" alt="Temple necklace set detail">
+      <img src="https://www.paisleypopshop.com/cdn/shop/files/IMGL6893_7836887b-ae21-4807-8f92-f9d264119e65.jpg?v=1739188237&width=1000" alt="Green polki choker close-up">
+    </div>
+  </div>
+</section>
+
+<div class="jaali-divider" style="background:var(--oxblood)">
+  <svg viewBox="0 0 1200 28" preserveAspectRatio="none">
+    <rect width="1200" height="28" fill="url(#jaaliPattern)"/>
+  </svg>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="brand">RANI <span style="color:#E8C77B">JAALI</span></div>
+      <p>A small atelier of karigars keeping jadau and polki setting alive, one choker at a time. Based out of Jaipur, shipped worldwide.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Polki Chokers</a></li>
+        <li><a href="#">Bridal Sets</a></li>
+        <li><a href="#">Earrings</a></li>
+        <li><a href="#">Maang Tikkas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>House</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Care Guide</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Stay Updated</h4>
+      <p>New drops, trunk shows, and the occasional story from the workshop floor.</p>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span>© 2026 Rani Jaali Jewels</span>
+    <span>Handcrafted in Jaipur</span>
+  </div>
+</footer>
+
+<script>
+  const products = [
+    {name:"Indiana Green Polki Necklace Set", tag:"New", color:"green", price:24999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/17-01-250358_6de27a00-ed1a-4750-9ce7-769b23c49039.jpg?v=1739355236&width=1080"},
+    {name:"Anahita Mint Polki Necklace Set", tag:"Bridal", color:"green", price:23999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PaisleyPop_13July25_shot0255.jpg?v=1755501321&width=1080"},
+    {name:"Azus Mint Victorian Polki Set", tag:null, color:"temple", price:16999, old:19999,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/06-08-240749.jpg?v=1724668522&width=1080"},
+    {name:"Zuha Emerald Green Polki Set", tag:"Bestseller", color:"green", price:33999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/Paisleypop_11thjuly25_shot0080_a773c549-da87-4180-bbd7-f512606f0d66.jpg?v=1765264611&width=1080"},
+    {name:"Yuti Pink Polki Necklace Set", tag:null, color:"pink", price:24999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/06-08-241249.jpg?v=1724758208&width=1080"},
+    {name:"Jivika Turquoise Polki Necklace Set", tag:"New", color:"blue", price:29799, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_11Dec25_shot0205.jpg?v=1767950288&width=1080"},
+    {name:"Teva Blue Polki Choker", tag:null, color:"blue", price:9999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_1Mar26_shot00579.jpg?v=1773751013&width=1080"},
+    {name:"Malini Pink Polki Necklace Set", tag:null, color:"pink", price:18999, old:22999,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_1Mar26_shot00895.jpg?v=1774079225&width=1080"},
+    {name:"Saira Mint Choker Necklace", tag:null, color:"green", price:8999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_163178.jpg?v=1723007622&width=1080"},
+    {name:"Meera Green Polki Necklace Set", tag:"Bridal", color:"green", price:19999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_161870.jpg?v=1721900515&width=1080"},
+    {name:"Vasaki Victorian Polki Set", tag:null, color:"temple", price:13999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/products/1.117.jpg?v=1671084389&width=1080"},
+    {name:"Amaira Mint Polki Necklace Set", tag:"New", color:"green", price:28999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_162377.jpg?v=1722886619&width=1080"},
+    {name:"Mira Pink Polki Necklace", tag:null, color:"pink", price:7499, old:9499,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/PP_161459.jpg?v=1723043322&width=1080"},
+    {name:"Shanaya Victorian Polki Set", tag:null, color:"temple", price:12999, old:null,
+      img:"https://www.paisleypopshop.com/cdn/shop/files/Paiselypop_2ndSep_shot034812copy.jpg?v=1695728987&width=1080"},
+  ];
+
+  const grid = document.getElementById('productGrid');
+  const searchInput = document.getElementById('searchInput');
+  const pills = document.querySelectorAll('.pill');
+  const resultCount = document.getElementById('resultCount');
+  let activeFilter = 'all';
+
+  function money(n){ return '₹' + n.toLocaleString('en-IN'); }
+
+  function render(){
+    const q = searchInput.value.trim().toLowerCase();
+    const filtered = products.filter(p => {
+      const matchesQuery = p.name.toLowerCase().includes(q) || p.color.includes(q);
+      const matchesFilter = activeFilter === 'all' || p.color === activeFilter;
+      return matchesQuery && matchesFilter;
+    });
+
+    resultCount.textContent = filtered.length + (filtered.length === 1 ? ' piece' : ' pieces');
+
+    if(filtered.length === 0){
+      grid.innerHTML = '<div class="no-results"><h3>No chokers match that search</h3><p>Try "emerald", "temple", or clear your filters.</p></div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(p => `
+      <div class="card">
+        <div class="card-media">
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          <div class="foil-sweep"></div>
+          ${p.tag ? `<div class="card-tag">${p.tag}</div>` : ''}
+        </div>
+        <div class="card-body">
+          <div class="eyebrow">Polki &middot; Kundan Set</div>
+          <h3>${p.name}</h3>
+          <div class="card-footer">
+            <div class="price">${p.old ? `<span class="old">${money(p.old)}</span>` : ''}${money(p.price)}</div>
+            <div class="add-btn" title="Add to bag">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#5B1220" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  searchInput.addEventListener('input', render);
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeFilter = pill.dataset.filter;
+      render();
+    });
+  });
+
+  render();
+</script>
+
+</body>
+</html>
