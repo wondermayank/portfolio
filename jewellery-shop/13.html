@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hath Phool — Hand-Crafted Bridal Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#5C0E1E;
+    --maroon-deep:#33070F;
+    --gold:#C9A24B;
+    --gold-light:#E8D5A3;
+    --ivory:#FBF3E8;
+    --ivory-2:#F3E7D6;
+    --ink:#2A1610;
+    --blush:#E7C9C0;
+    --emerald:#123C31;
+    --line: rgba(42,22,16,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  a{color:inherit; text-decoration:none;}
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--maroon);
+  }
+  h1,h2,h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    line-height:1.05;
+    color:var(--maroon-deep);
+  }
+  .wrap{max-width:1220px; margin:0 auto; padding:0 40px;}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background:var(--maroon-deep);
+    color:var(--gold-light);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:8px 0;
+  }
+  .marquee span{
+    display:inline-block;
+    padding-left:100%;
+    animation:scroll 26s linear infinite;
+    font-family:'Cinzel', serif;
+    font-size:11px;
+    letter-spacing:0.28em;
+  }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,232,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px;
+    max-width:1220px; margin:0 auto;
+    gap:24px;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px;
+    letter-spacing:0.04em;
+    color:var(--maroon-deep);
+    white-space:nowrap;
+  }
+  .logo em{font-style:italic; color:var(--gold);}
+  .navlinks{display:flex; gap:34px; font-size:13px; letter-spacing:0.05em;}
+  .navlinks a{position:relative; padding-bottom:3px; color:var(--ink);}
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .searchbox{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 16px;
+    background:#fff;
+    flex:1; max-width:320px;
+    min-width:160px;
+  }
+  .searchbox input{
+    border:none; outline:none; background:transparent;
+    font-family:'Jost'; font-size:13px; width:100%; color:var(--ink);
+  }
+  .searchbox svg{flex-shrink:0; opacity:0.6;}
+  .cart-btn{
+    display:flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:0.08em;
+    border:1px solid var(--maroon-deep);
+    padding:9px 18px; border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid; grid-template-columns:1.05fr 0.95fr;
+    align-items:stretch;
+    min-height:88vh;
+  }
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:60px 6vw;
+    position:relative;
+  }
+  .hero-text h1{
+    font-size:clamp(46px, 6vw, 78px);
+    margin:18px 0 22px;
+    max-width:560px;
+  }
+  .hero-text h1 i{color:var(--gold); font-style:italic;}
+  .hero-text p{
+    max-width:420px; font-size:16px; line-height:1.7; color:#4a2f26;
+    margin-bottom:34px;
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--maroon-deep); color:var(--ivory);
+    padding:15px 34px; border-radius:999px;
+    font-size:13px; letter-spacing:0.08em;
+    display:inline-block;
+    transition:background .25s;
+  }
+  .btn-primary:hover{background:var(--maroon);}
+  .btn-outline{
+    border:1px solid var(--maroon-deep); padding:15px 30px; border-radius:999px;
+    font-size:13px; letter-spacing:0.08em;
+  }
+  .hero-img{
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-img img{
+    filter:saturate(1.05) contrast(1.02);
+  }
+  .hero-img::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(51,7,15,0) 45%, rgba(51,7,15,0.55) 100%);
+  }
+  .hero-badge{
+    position:absolute; left:36px; bottom:36px; z-index:2;
+    color:var(--ivory);
+    font-family:'Cinzel', serif; font-size:11px; letter-spacing:0.24em;
+    border:1px solid rgba(255,255,255,0.5); padding:10px 16px; border-radius:999px;
+  }
+
+  /* ---------- ANATOMY (signature element) ---------- */
+  .anatomy{
+    padding:120px 0 100px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,162,75,0.10), transparent 40%),
+      var(--ivory-2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .anatomy .head{text-align:center; margin-bottom:70px;}
+  .anatomy .head h2{font-size:clamp(32px,4vw,48px); margin-top:14px;}
+  .anatomy-grid{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;
+  }
+  .anatomy-svg-wrap{position:relative;}
+  .anatomy-svg-wrap svg{width:100%; height:auto; overflow:visible;}
+  .anatomy-dot{cursor:pointer;}
+  .anatomy-dot circle{fill:var(--gold); stroke:var(--ivory-2); stroke-width:4; transition:r .2s;}
+  .anatomy-dot:hover circle{fill:var(--maroon);}
+  .anatomy-list{display:flex; flex-direction:column; gap:0;}
+  .anatomy-item{
+    padding:22px 0; border-bottom:1px solid var(--line);
+    cursor:default; transition:padding-left .2s;
+    display:flex; gap:20px; align-items:baseline;
+  }
+  .anatomy-item.active{padding-left:14px; border-color:var(--gold);}
+  .anatomy-item .num{font-family:'Cinzel'; font-size:11px; color:var(--gold); letter-spacing:0.1em;}
+  .anatomy-item h4{font-family:'Cormorant Garamond'; font-size:24px; color:var(--maroon-deep); font-weight:600;}
+  .anatomy-item p{font-size:13.5px; color:#5a3b30; margin-top:4px; max-width:420px; line-height:1.6;}
+
+  /* ---------- COLLECTIONS ---------- */
+  .collections{padding:110px 0 60px;}
+  .col-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:30px;
+    margin-bottom:44px; flex-wrap:wrap;
+  }
+  .col-head h2{font-size:clamp(32px,4vw,46px);}
+  .chips{display:flex; gap:10px; flex-wrap:wrap;}
+  .chip{
+    font-size:12px; letter-spacing:0.05em;
+    border:1px solid var(--line); padding:9px 18px; border-radius:999px;
+    background:#fff; cursor:pointer; transition:all .2s;
+  }
+  .chip.active, .chip:hover{background:var(--maroon-deep); color:var(--ivory); border-color:var(--maroon-deep);}
+
+  .grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:26px;
+  }
+  .card{
+    background:#fff; border:1px solid var(--line); overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover{transform:translateY(-6px); box-shadow:0 22px 40px -20px rgba(51,7,15,0.25);}
+  .card-img{aspect-ratio:4/5; position:relative; overflow:hidden;}
+  .card-img img{transition:transform .5s ease;}
+  .card:hover .card-img img{transform:scale(1.06);}
+  .card-tag{
+    position:absolute; top:12px; left:12px;
+    background:rgba(251,243,232,0.92); color:var(--maroon-deep);
+    font-size:10px; letter-spacing:0.08em; padding:5px 10px; border-radius:999px;
+    font-family:'Cinzel';
+  }
+  .card-body{padding:18px 18px 20px; display:flex; flex-direction:column; gap:6px; flex:1;}
+  .card-body h3{font-size:20px; font-weight:600;}
+  .card-body .meta{font-size:11.5px; color:#8a6b5c; letter-spacing:0.03em;}
+  .card-foot{
+    margin-top:auto; display:flex; align-items:center; justify-content:space-between;
+    padding-top:10px;
+  }
+  .price{font-family:'Cormorant Garamond'; font-size:20px; color:var(--maroon-deep);}
+  .price s{color:#a99; font-size:14px; margin-right:6px; font-weight:400;}
+  .add-btn{
+    font-size:11px; letter-spacing:0.06em; border:1px solid var(--maroon-deep);
+    padding:8px 14px; border-radius:999px; transition:all .2s;
+  }
+  .add-btn:hover{background:var(--maroon-deep); color:var(--ivory);}
+  .empty-state{
+    grid-column:1/-1; text-align:center; padding:80px 20px; color:#8a6b5c;
+    font-family:'Cormorant Garamond'; font-size:22px; font-style:italic; display:none;
+  }
+
+  /* ---------- LOOKBOOK ---------- */
+  .lookbook{padding:110px 0; background:var(--maroon-deep); color:var(--ivory);}
+  .lookbook .col-head h2{color:var(--ivory);}
+  .lookbook .eyebrow{color:var(--gold-light);}
+  .look-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:24px; margin-top:50px;}
+  .look-img{position:relative; overflow:hidden; min-height:420px;}
+  .look-img img{position:absolute; inset:0;}
+  .look-cap{
+    position:absolute; left:24px; bottom:24px; z-index:2;
+    font-family:'Cormorant Garamond'; font-size:24px; font-style:italic;
+    color:#fff;
+  }
+  .look-img::before{
+    content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.55) 100%);
+  }
+  .look-col{display:flex; flex-direction:column; gap:24px;}
+  .look-col .look-img{flex:1; min-height:198px;}
+
+  /* ---------- STORY STRIP ---------- */
+  .story{
+    padding:100px 40px; text-align:center; max-width:760px; margin:0 auto;
+  }
+  .story .eyebrow{display:block; margin-bottom:20px;}
+  .story h2{font-size:clamp(28px,3.6vw,40px); font-style:italic; line-height:1.4;}
+  .story-sig{margin-top:26px; font-family:'Cinzel'; font-size:12px; letter-spacing:0.15em; color:#8a6b5c;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ivory-2); border-top:1px solid var(--line); padding:70px 0 30px;}
+  .foot-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px;
+    padding-bottom:50px; border-bottom:1px solid var(--line);
+  }
+  .foot-grid h4{font-family:'Cinzel'; font-size:11px; letter-spacing:0.18em; margin-bottom:18px; color:var(--maroon-deep);}
+  .foot-grid p, .foot-grid a{font-size:13.5px; color:#5a3b30; line-height:2;}
+  .foot-grid .logo{margin-bottom:14px;}
+  .newsletter{display:flex; margin-top:14px; border:1px solid var(--line); border-radius:999px; overflow:hidden; background:#fff;}
+  .newsletter input{flex:1; border:none; outline:none; padding:12px 16px; font-family:'Jost'; font-size:13px;}
+  .newsletter button{background:var(--maroon-deep); color:#fff; border:none; padding:0 20px; font-size:12px; letter-spacing:0.05em; cursor:pointer;}
+  .bottom-bar{
+    display:flex; justify-content:space-between; padding-top:26px; font-size:11.5px; color:#8a6b5c; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 980px){
+    .navlinks{display:none;}
+    .hero{grid-template-columns:1fr;}
+    .hero-img{min-height:52vh;}
+    .anatomy-grid{grid-template-columns:1fr;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .look-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 560px){
+    .wrap, .navbar{padding-left:20px; padding-right:20px;}
+    .grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="marquee"><span>SOLAH SHRINGAR FOR YOUR HANDS &nbsp;·&nbsp; HAND-CRAFTED IN JAIPUR &nbsp;·&nbsp; FREE BRIDAL CONSULTATION &nbsp;·&nbsp; KUNDAN · POLKI · JADAU &nbsp;·&nbsp; SOLAH SHRINGAR FOR YOUR HANDS &nbsp;·&nbsp; HAND-CRAFTED IN JAIPUR &nbsp;·&nbsp; FREE BRIDAL CONSULTATION &nbsp;·&nbsp; KUNDAN · POLKI · JADAU</span></div>
+
+  <nav>
+    <div class="navbar">
+      <div class="logo">Hath <em>Phool</em></div>
+      <div class="navlinks">
+        <a href="#anatomy">The Craft</a>
+        <a href="#shop">Shop</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#story">Our Story</a>
+      </div>
+      <div class="searchbox">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="searchInput" type="text" placeholder="Search haath phool, kundan, silver…">
+      </div>
+      <a class="cart-btn" href="#shop">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        Cart (0)
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Bridal Hand Jewellery, Since Generations</span>
+      <h1>The flower <i>your hand</i> was always meant to wear.</h1>
+      <p>Hath Phool crafts the hand harness — kundan, polki and silver — that completes a bride's solah shringar. Every chain, ring and medallion made by hand in Jaipur.</p>
+      <div class="btn-row">
+        <a href="#shop" class="btn-primary">Shop Bridal Edit</a>
+        <a href="#anatomy" class="btn-outline">Learn the Craft</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jewelry_for_Indian_Wedding.jpg" alt="Indian bridal jewellery">
+      <div class="hero-badge">Est. Jaipur · Solah Shringar No. 09</div>
+    </div>
+  </section>
+
+  <!-- ANATOMY / SIGNATURE ELEMENT -->
+  <section class="anatomy" id="anatomy">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Know Your Ornament</span>
+        <h2>The Anatomy of a Hath Phool</h2>
+      </div>
+      <div class="anatomy-grid">
+        <div class="anatomy-svg-wrap">
+          <svg viewBox="0 0 420 480" xmlns="http://www.w3.org/2000/svg">
+            <!-- simple stylised open hand outline -->
+            <path d="M150 460 C120 440 108 400 108 360 L108 230 C108 218 118 210 128 210 C138 210 146 218 146 230 L146 300"
+                  fill="none" stroke="#B99A7A" stroke-width="2.4"/>
+            <path d="M146 300 L146 180 C146 166 156 156 168 156 C180 156 190 166 190 180 L190 290"
+                  fill="none" stroke="#B99A7A" stroke-width="2.4"/>
+            <path d="M190 290 L190 150 C190 136 200 126 212 126 C224 126 234 136 234 150 L234 290"
+                  fill="none" stroke="#B99A7A" stroke-width="2.4"/>
+            <path d="M234 290 L234 168 C234 154 244 144 256 144 C268 144 278 154 278 168 L278 300"
+                  fill="none" stroke="#B99A7A" stroke-width="2.4"/>
+            <path d="M278 300 L278 210 C278 198 288 190 298 190 C310 190 320 200 320 214 L316 300"
+                  fill="none" stroke="#B99A7A" stroke-width="2.4"/>
+            <path d="M108 360 C108 320 320 320 316 300 C330 340 320 420 280 452 C240 478 180 480 150 460 Z"
+                  fill="none" stroke="#B99A7A" stroke-width="2.4"/>
+
+            <!-- bracelet / kada -->
+            <ellipse cx="196" cy="410" rx="72" ry="16" fill="none" stroke="var(--gold)" stroke-width="4"/>
+            <!-- phool medallion -->
+            <circle cx="196" cy="330" r="20" fill="var(--gold-light)" stroke="var(--gold)" stroke-width="3"/>
+            <!-- chains -->
+            <path d="M182 320 L146 250" stroke="var(--gold)" stroke-width="2" stroke-dasharray="2 4"/>
+            <path d="M196 312 L212 200" stroke="var(--gold)" stroke-width="2" stroke-dasharray="2 4"/>
+            <path d="M210 320 L256 200" stroke="var(--gold)" stroke-width="2" stroke-dasharray="2 4"/>
+            <path d="M196 350 L196 400" stroke="var(--gold)" stroke-width="2" stroke-dasharray="2 4"/>
+            <!-- aarsi mirror ring -->
+            <circle cx="212" cy="182" r="8" fill="#fff" stroke="var(--gold)" stroke-width="3"/>
+
+            <!-- interactive dots -->
+            <g class="anatomy-dot" data-target="0"><circle cx="196" cy="410" r="9"/></g>
+            <g class="anatomy-dot" data-target="1"><circle cx="196" cy="330" r="9"/></g>
+            <g class="anatomy-dot" data-target="2"><circle cx="146" cy="250" r="9"/></g>
+            <g class="anatomy-dot" data-target="3"><circle cx="212" cy="182" r="9"/></g>
+          </svg>
+        </div>
+        <div class="anatomy-list" id="anatomyList">
+          <div class="anatomy-item active" data-idx="0">
+            <span class="num">01</span>
+            <div><h4>Kada — The Wrist Bracelet</h4><p>The anchor of the piece, worn snug at the wrist. Ours are hinged for an easy clasp under bridal sleeves.</p></div>
+          </div>
+          <div class="anatomy-item" data-idx="1">
+            <span class="num">02</span>
+            <div><h4>Phool — The Palm Medallion</h4><p>The "flower" that rests on the back of the hand, usually the most heavily worked piece in kundan or polki.</p></div>
+          </div>
+          <div class="anatomy-item" data-idx="2">
+            <span class="num">03</span>
+            <div><h4>Zanjeer — The Finger Chains</h4><p>Delicate strands that run from the medallion to each finger ring, said to represent protection extended to the bride.</p></div>
+          </div>
+          <div class="anatomy-item" data-idx="3">
+            <span class="num">04</span>
+            <div><h4>Aarsi — The Mirror Ring</h4><p>A small mirrored ring on the index finger, once used by brides to catch a first glimpse of the groom.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section class="collections" id="shop">
+    <div class="wrap">
+      <div class="col-head">
+        <div>
+          <span class="eyebrow">The Bridal Edit</span>
+          <h2>Shop Hath Phool</h2>
+        </div>
+        <div class="chips" id="chipRow">
+          <div class="chip active" data-filter="all">All</div>
+          <div class="chip" data-filter="kundan">Kundan</div>
+          <div class="chip" data-filter="polki">Polki</div>
+          <div class="chip" data-filter="silver">Silver Oxidised</div>
+          <div class="chip" data-filter="pearl">Pearl</div>
+          <div class="chip" data-filter="floral">Floral</div>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState">No pieces match your search — try "kundan" or "silver".</div>
+    </div>
+  </section>
+
+  <!-- LOOKBOOK -->
+  <section class="lookbook" id="lookbook">
+    <div class="wrap">
+      <div class="col-head">
+        <div>
+          <span class="eyebrow">On The Bride</span>
+          <h2>Lookbook</h2>
+        </div>
+      </div>
+      <div class="look-grid">
+        <div class="look-img">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Happy_bride_with_Indian_bridal_jewellery_IMG_3589.jpg" alt="Bride wearing bridal jewellery">
+          <span class="look-cap">The full solah shringar</span>
+        </div>
+        <div class="look-col">
+          <div class="look-img">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Happy_bride_with_Indian_bridal_jewellery_IMG_3597.jpg" alt="Bride portrait with jewellery">
+          </div>
+          <div class="look-img">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bride_with_Indian_bridal_jewellery_IMG_3584.jpg" alt="Bride with hand jewellery detail">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <span class="eyebrow">Our Story</span>
+    <h2>"A hath phool is the only ornament that moves with the bride — through every hasta mudra, every hand held in blessing, every photograph she keeps."</h2>
+    <div class="story-sig">— Founded 2014, Johari Bazaar, Jaipur</div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="logo">Hath <em>Phool</em></div>
+          <p>Hand harness jewellery, kundan to silver oxidised, made by hand in Jaipur for the modern Indian bride.</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <p><a href="#shop">Kundan</a></p>
+          <p><a href="#shop">Polki</a></p>
+          <p><a href="#shop">Silver Oxidised</a></p>
+          <p><a href="#shop">Pearl</a></p>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <p><a href="#story">Our Story</a></p>
+          <p><a href="#anatomy">The Craft</a></p>
+          <p><a href="#">Bridal Booking</a></p>
+          <p><a href="#">Care Guide</a></p>
+        </div>
+        <div>
+          <h4>Stay in the Loop</h4>
+          <p>New designs, trunk shows, and bridal offers — once a month, nothing more.</p>
+          <form class="newsletter" onsubmit="event.preventDefault(); this.querySelector('input').value='Thank you ✿';">
+            <input type="email" placeholder="Your email" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <span>© 2026 Hath Phool Jewellery Studio, Jaipur.</span>
+        <span>Product photography sourced from Wikimedia Commons for demonstration.</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const products = [
+    {
+      name:"Rani Kundan Hath Phool",
+      cat:"kundan",
+      tag:"Bestseller",
+      price:6499, mrp:8999,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Jewelry_for_Indian_Wedding.jpg"
+    },
+    {
+      name:"Meera Polki Hand Harness",
+      cat:"polki",
+      tag:"New",
+      price:9200, mrp:12500,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/An_array_of_jewellery_being_sold_at_Rishikesh.jpg"
+    },
+    {
+      name:"Chandni Silver Oxidised Panja",
+      cat:"silver",
+      tag:"Festive",
+      price:2799, mrp:3600,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Happy_Bride_IMG_3602_1.jpg"
+    },
+    {
+      name:"Moti Pearl Hathphool",
+      cat:"pearl",
+      tag:null,
+      price:4100, mrp:5400,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Floral_diva.jpg"
+    },
+    {
+      name:"Gulnaar Floral Wire Hath Phool",
+      cat:"floral",
+      tag:"Lightweight",
+      price:2350, mrp:2999,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Chuda_and_kalire_ceremony.jpg"
+    },
+    {
+      name:"Zoya Jadau Kundan Set",
+      cat:"kundan",
+      tag:null,
+      price:7800, mrp:10200,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Happy_bride_with_Indian_bridal_jewellery_IMG_3589.jpg"
+    },
+    {
+      name:"Anaya Polki Chand Panja",
+      cat:"polki",
+      tag:"Bridal",
+      price:11500, mrp:14999,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Happy_bride_with_Indian_bridal_jewellery_IMG_3597.jpg"
+    },
+    {
+      name:"Rupali Silver Ghungroo Hathphool",
+      cat:"silver",
+      tag:null,
+      price:1999, mrp:2799,
+      img:"https://commons.wikimedia.org/wiki/Special:FilePath/Bride_with_Indian_bridal_jewellery_IMG_3584.jpg"
+    }
+  ];
+
+  const grid = document.getElementById('productGrid');
+  const empty = document.getElementById('emptyState');
+  const catLabel = {kundan:"Kundan", polki:"Polki", silver:"Silver Oxidised", pearl:"Pearl", floral:"Floral Wire"};
+
+  function inr(n){ return "₹" + n.toLocaleString('en-IN'); }
+
+  function render(list){
+    grid.innerHTML = "";
+    if(list.length === 0){ empty.style.display = "block"; return; }
+    empty.style.display = "none";
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-img">
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ""}
+        </div>
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <div class="meta">${catLabel[p.cat]} · Adjustable Fit</div>
+          <div class="card-foot">
+            <div class="price"><s>${inr(p.mrp)}</s>${inr(p.price)}</div>
+            <div class="add-btn">Add to Bag</div>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  let activeFilter = "all";
+  let query = "";
+
+  function applyFilters(){
+    let list = products.filter(p => activeFilter === "all" || p.cat === activeFilter);
+    if(query.trim() !== ""){
+      const q = query.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q) || p.cat.includes(q) || catLabel[p.cat].toLowerCase().includes(q));
+    }
+    render(list);
+  }
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    query = e.target.value;
+    applyFilters();
+  });
+
+  render(products);
+
+  // Anatomy interactivity
+  const items = document.querySelectorAll('.anatomy-item');
+  const dots = document.querySelectorAll('.anatomy-dot');
+  function setActive(idx){
+    items.forEach(i => i.classList.toggle('active', i.dataset.idx == idx));
+  }
+  dots.forEach(dot => dot.addEventListener('mouseenter', () => setActive(dot.dataset.target)));
+  items.forEach(item => item.addEventListener('mouseenter', () => setActive(item.dataset.idx)));
+</script>
+</body>
+</html>
