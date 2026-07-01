@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAST & CO. — Footwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F3;
+    --card:#FFFDF8;
+    --ink:#17160F;
+    --ink-soft:#4A483E;
+    --stamp:#C23616;
+    --sole:#8C8577;
+    --line:#DED7C4;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,248,243,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size:20px; letter-spacing:-0.02em;
+  }
+  .logo span{ color:var(--stamp); }
+  .nav-links{ display:flex; gap:36px; list-style:none; }
+  .nav-links a{
+    color:var(--ink); text-decoration:none; font-size:13px;
+    font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+    position:relative; padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--stamp); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:20px; }
+  .cart-btn{
+    display:flex; align-items:center; gap:8px;
+    background:none; border:1px solid var(--ink); color:var(--ink);
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    padding:9px 14px; border-radius:var(--radius); cursor:pointer;
+    letter-spacing:0.04em;
+  }
+  .cart-btn:hover{ background:var(--ink); color:var(--paper); }
+  #cart-count{ color:var(--stamp); font-weight:600; }
+  .cart-btn:hover #cart-count{ color:#ffb199; }
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:72px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--stamp);
+    border:1px dashed var(--stamp); padding:5px 10px; border-radius:20px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{ content:"●"; font-size:8px; }
+  h1{
+    font-family:'Archivo Black', sans-serif;
+    font-size:clamp(38px, 5.2vw, 64px);
+    line-height:0.98; letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  h1 em{ font-style:normal; color:var(--stamp); }
+  .hero p{
+    font-size:16px; color:var(--ink-soft); max-width:420px; line-height:1.65;
+    margin-bottom:32px;
+  }
+  .hero-ctas{ display:flex; gap:14px; align-items:center; }
+  .btn-primary{
+    background:var(--ink); color:var(--paper); border:none;
+    font-weight:700; font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+    padding:16px 28px; border-radius:var(--radius); cursor:pointer;
+  }
+  .btn-primary:hover{ background:var(--stamp); }
+  .btn-ghost{
+    color:var(--ink); font-weight:700; font-size:13px; text-decoration:none;
+    text-transform:uppercase; letter-spacing:0.04em;
+    border-bottom:1px solid var(--ink); padding-bottom:3px;
+  }
+  .hero-visual{ position:relative; }
+  .hero-visual img{
+    width:100%; aspect-ratio:1/1; object-fit:cover;
+    border-radius:var(--radius);
+    filter:sepia(4%) contrast(1.02);
+  }
+  .crop-frame{
+    position:absolute; inset:14px; border:1px dashed rgba(23,22,15,0.35);
+    pointer-events:none;
+  }
+  .stamp-badge{
+    position:absolute; top:-14px; right:-14px;
+    width:92px; height:92px; border-radius:50%;
+    border:2px solid var(--stamp); color:var(--stamp);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:10px; font-weight:600;
+    letter-spacing:0.06em; transform:rotate(12deg);
+    background:var(--paper);
+  }
+
+  /* ===== Category strip ===== */
+  .cat-strip{
+    display:flex; gap:12px; flex-wrap:wrap;
+    padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .cat-pill{
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    padding:9px 16px; border:1px solid var(--line); border-radius:20px;
+    cursor:pointer; background:var(--card); color:var(--ink-soft);
+    transition:all .2s ease;
+  }
+  .cat-pill.active, .cat-pill:hover{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+
+  /* ===== Products ===== */
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding:48px 0 28px;
+  }
+  .section-head h2{
+    font-family:'Archivo Black', sans-serif; font-size:28px; letter-spacing:-0.01em;
+  }
+  .section-head span{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--sole);
+  }
+  .grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:26px;
+    padding-bottom:70px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    position:relative;
+    overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 14px 28px rgba(23,22,15,0.08); }
+  .card::before{ /* die-cut notch */
+    content:""; position:absolute; top:-10px; right:16px;
+    width:20px; height:20px; background:var(--paper);
+    border:1px solid var(--line); border-radius:50%;
+    z-index:2;
+  }
+  .card-tag{
+    position:absolute; top:12px; left:12px; z-index:3;
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.06em;
+    background:var(--stamp); color:#fff; padding:4px 9px; border-radius:20px;
+    text-transform:uppercase;
+  }
+  .card-img{ position:relative; aspect-ratio:1/1; overflow:hidden; border-bottom:1px dashed var(--line); }
+  .card-img img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .card:hover .card-img img{ transform:scale(1.06); }
+  .card-body{ padding:18px 18px 20px; }
+  .card-name{ font-size:15px; font-weight:700; margin-bottom:4px; }
+  .card-meta{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--sole);
+    display:flex; gap:10px; margin-bottom:14px; letter-spacing:0.02em;
+  }
+  .card-foot{ display:flex; align-items:center; justify-content:space-between; }
+  .card-price{ font-family:'IBM Plex Mono', monospace; font-size:15px; font-weight:600; }
+  .add-btn{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase;
+    background:none; border:1.5px solid var(--stamp); color:var(--stamp);
+    padding:8px 12px; border-radius:20px; cursor:pointer;
+    transform:rotate(-2deg);
+  }
+  .add-btn:hover{ background:var(--stamp); color:#fff; }
+  .barcode{
+    height:22px; margin-top:14px;
+    background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 9px);
+    opacity:0.65;
+  }
+
+  /* ===== Craft strip ===== */
+  .craft{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:52px 0;
+  }
+  .craft-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:40px;
+  }
+  .craft-item .num{
+    font-family:'IBM Plex Mono', monospace; color:var(--stamp); font-size:12px;
+    margin-bottom:10px; letter-spacing:0.06em;
+  }
+  .craft-item h3{ font-size:16px; margin-bottom:8px; font-weight:700; }
+  .craft-item p{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+
+  /* ===== Footer ===== */
+  footer{ padding:54px 0 40px; }
+  .foot-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:36px; border-bottom:1px solid var(--line);
+  }
+  .foot-grid h4{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--sole); margin-bottom:16px;
+  }
+  .foot-grid ul{ list-style:none; }
+  .foot-grid li{ margin-bottom:10px; }
+  .foot-grid a{ color:var(--ink-soft); text-decoration:none; font-size:13.5px; }
+  .foot-grid a:hover{ color:var(--stamp); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:22px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--sole);
+  }
+
+  @media (max-width: 920px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; }
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    .craft-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; row-gap:28px; }
+  }
+  @media (max-width: 600px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:block; }
+    .grid{ grid-template-columns:1fr 1fr; gap:14px; }
+    .wrap{ padding:0 18px; }
+    .foot-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">LAST <span>&</span> CO.</div>
+    <ul class="nav-links">
+      <li><a href="#new">New</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#craft">Craft</a></li>
+      <li><a href="#">Sale</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="return false;">BAG <span id="cart-count">0</span></button>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="new">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono">Autumn Drop — Ref. 026</div>
+      <h1>Built on the<br><em>last</em>, worn<br>for years.</h1>
+      <p>Full-grain leather, vulcanized soles, and stitching that outlasts the trend cycle. Every pair stamped, numbered, and shipped in three days.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary">Shop the Drop</button>
+        <a class="btn-ghost" href="#craft">How they're made</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="crop-frame"></div>
+      <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80" alt="Featured leather boot">
+      <div class="stamp-badge">NEW<br>ARRIVAL<br>26/06</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cat-strip">
+    <div class="cat-pill active">All</div>
+    <div class="cat-pill">Sneakers</div>
+    <div class="cat-pill">Boots</div>
+    <div class="cat-pill">Loafers</div>
+    <div class="cat-pill">Sandals</div>
+  </div>
+</div>
+
+<section class="wrap" id="shop">
+  <div class="section-head">
+    <h2>The Shelf</h2>
+    <span class="mono">08 STYLES / IN STOCK</span>
+  </div>
+
+  <div class="grid">
+
+    <article class="card">
+      <span class="card-tag">Bestseller</span>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Low-top canvas sneaker">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Fieldrunner Low</div>
+        <div class="card-meta mono"><span>CANVAS</span><span>·</span><span>SKU 0142</span></div>
+        <div class="card-foot">
+          <span class="card-price">$118</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=600&q=80" alt="White leather sneaker">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Court Standard</div>
+        <div class="card-meta mono"><span>LEATHER</span><span>·</span><span>SKU 0198</span></div>
+        <div class="card-foot">
+          <span class="card-price">$142</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <span class="card-tag">Limited</span>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80" alt="Brown leather chelsea boot">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Chelsea No. 4</div>
+        <div class="card-meta mono"><span>SUEDE</span><span>·</span><span>SKU 0071</span></div>
+        <div class="card-foot">
+          <span class="card-price">$210</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80" alt="Red high-top sneaker">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Highline Red</div>
+        <div class="card-meta mono"><span>CANVAS</span><span>·</span><span>SKU 0233</span></div>
+        <div class="card-foot">
+          <span class="card-price">$128</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?auto=format&fit=crop&w=600&q=80" alt="Grey running sneaker">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Trail Grey</div>
+        <div class="card-meta mono"><span>MESH</span><span>·</span><span>SKU 0305</span></div>
+        <div class="card-foot">
+          <span class="card-price">$134</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <span class="card-tag">Restocked</span>
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" alt="Tan leather loafer">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Penny Loafer</div>
+        <div class="card-meta mono"><span>LEATHER</span><span>·</span><span>SKU 0060</span></div>
+        <div class="card-foot">
+          <span class="card-price">$168</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=600&q=80" alt="Black sneaker pair">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Midnight Runner</div>
+        <div class="card-meta mono"><span>KNIT</span><span>·</span><span>SKU 0412</span></div>
+        <div class="card-foot">
+          <span class="card-price">$150</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80" alt="Beige suede sneaker">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Dune Suede</div>
+        <div class="card-meta mono"><span>SUEDE</span><span>·</span><span>SKU 0288</span></div>
+        <div class="card-foot">
+          <span class="card-price">$156</span>
+          <button class="add-btn" onclick="addToCart(this)">+ Add</button>
+        </div>
+        <div class="barcode"></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="craft" id="craft">
+  <div class="wrap craft-grid">
+    <div class="craft-item">
+      <div class="num mono">01 / UPPER</div>
+      <h3>Full-grain leather</h3>
+      <p>Sourced from tanneries we've worked with since 2019, cut and stitched by hand before it ever reaches a last.</p>
+    </div>
+    <div class="craft-item">
+      <div class="num mono">02 / SOLE</div>
+      <h3>Vulcanized rubber</h3>
+      <p>Heat-bonded to the upper for a seam that won't split, with a tread built for pavement and trail alike.</p>
+    </div>
+    <div class="craft-item">
+      <div class="num mono">03 / FINISH</div>
+      <h3>Numbered & stamped</h3>
+      <p>Every pair carries a stamped batch number on the insole — a small record of where and when it was made.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">LAST <span>&</span> CO.</div>
+        <p style="color:var(--ink-soft); font-size:13.5px; line-height:1.6; max-width:260px;">Footwear made to be resoled, not replaced. Based in Indore, shipped everywhere.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Sneakers</a></li>
+          <li><a href="#">Boots</a></li>
+          <li><a href="#">Loafers</a></li>
+          <li><a href="#">Sandals</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Size Chart</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Resole Program</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#">Our Craft</a></li>
+          <li><a href="#">Journal</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LAST & CO. — ALL RIGHTS RESERVED</span>
+      <span>MADE ON A LAST, NOT A TEMPLATE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let count = 0;
+  function addToCart(btn){
+    count++;
+    document.getElementById('cart-count').textContent = count;
+    btn.textContent = "Added ✓";
+    btn.style.background = "var(--stamp)";
+    btn.style.color = "#fff";
+    setTimeout(()=>{ btn.textContent = "+ Add"; btn.style.background="none"; btn.style.color="var(--stamp)"; }, 1200);
+  }
+  document.querySelectorAll('.cat-pill').forEach(pill=>{
+    pill.addEventListener('click', ()=>{
+      document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
