@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHROMASOLE — Vibrant Footwear Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff2f92;
+    --orange:#ff7a1a;
+    --yellow:#ffd60a;
+    --lime:#a6ff3c;
+    --cyan:#22e0d0;
+    --purple:#8b5cf6;
+    --ink:#12101a;
+    --ink-2:#1c1926;
+    --paper:#fff9f0;
+    --line: rgba(255,255,255,0.12);
+    --radius: 26px;
+    --shadow-hard: 8px 8px 0px rgba(18,16,26,0.9);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Manrope',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Unbounded',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  /* Background texture */
+  .noise-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,47,146,0.25), transparent 40%),
+      radial-gradient(circle at 88% 15%, rgba(34,224,208,0.2), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(255,214,10,0.15), transparent 40%);
+  }
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 5%;
+    background:rgba(18,16,26,0.75);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:'Unbounded',sans-serif; font-weight:900; font-size:1.5rem;
+    letter-spacing:-0.02em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span.dot{
+    width:12px;height:12px;border-radius:50%;
+    background:conic-gradient(var(--pink),var(--orange),var(--yellow),var(--lime),var(--cyan),var(--purple),var(--pink));
+    display:inline-block;
+  }
+  nav ul{display:flex; gap:34px; font-weight:700; font-size:0.92rem;}
+  nav ul li a{position:relative; padding-bottom:4px; opacity:0.85; transition:opacity .2s;}
+  nav ul li a:hover{opacity:1;}
+  nav ul li a::after{
+    content:''; position:absolute; left:0; bottom:0; height:3px; width:0%;
+    background:linear-gradient(90deg,var(--pink),var(--yellow)); transition:width .25s ease;
+    border-radius:3px;
+  }
+  nav ul li a:hover::after{width:100%;}
+  .nav-right{display:flex; align-items:center; gap:18px;}
+  .cart-btn{
+    position:relative; display:flex; align-items:center; gap:8px;
+    background:var(--paper); color:var(--ink); font-weight:800;
+    padding:11px 18px; border-radius:100px; font-size:0.85rem;
+    box-shadow: 4px 4px 0 rgba(255,47,146,0.9);
+    transition: transform .15s ease;
+  }
+  .cart-btn:active{transform:translate(2px,2px); box-shadow:2px 2px 0 rgba(255,47,146,0.9);}
+  .cart-count{
+    background:var(--pink); color:#fff; font-size:0.72rem; font-weight:900;
+    width:20px;height:20px;border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
+  .menu-toggle{display:none; font-size:1.6rem; background:none; color:var(--paper);}
+
+  /* MARQUEE */
+  .marquee{
+    background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--lime),var(--cyan),var(--purple));
+    color:var(--ink); font-family:'Unbounded'; font-weight:800; font-size:0.85rem;
+    padding:10px 0; overflow:hidden; white-space:nowrap; position:relative; z-index:5;
+  }
+  .marquee-track{display:inline-block; padding-left:100%; animation:scroll 22s linear infinite;}
+  .marquee-track span{margin-right:48px;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+  /* HERO */
+  .hero{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.05fr 0.95fr;
+    align-items:center; gap:40px;
+    padding:70px 5% 90px;
+    max-width:1400px; margin:0 auto;
+  }
+  .hero-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.08); border:1px solid var(--line);
+    padding:8px 16px; border-radius:100px; font-size:0.78rem; font-weight:700;
+    margin-bottom:22px;
+  }
+  .hero-tag .pulse{width:8px;height:8px;border-radius:50%;background:var(--lime); box-shadow:0 0 0 0 rgba(166,255,60,0.7); animation:pulse 1.6s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(166,255,60,0.6);}
+    70%{box-shadow:0 0 0 10px rgba(166,255,60,0);}
+    100%{box-shadow:0 0 0 0 rgba(166,255,60,0);}
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.2vw, 4.6rem);
+    font-weight:900; line-height:1.02; letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--pink),var(--orange) 35%,var(--yellow) 60%,var(--lime));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p{font-size:1.08rem; opacity:0.75; max-width:480px; margin-bottom:34px; line-height:1.6;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--pink); color:#fff; font-weight:800; padding:16px 30px;
+    border-radius:100px; font-size:0.95rem;
+    box-shadow: var(--shadow-hard);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{transform:translate(-2px,-2px); box-shadow:10px 10px 0 rgba(18,16,26,0.9);}
+  .btn-primary:active{transform:translate(2px,2px); box-shadow:3px 3px 0 rgba(18,16,26,0.9);}
+  .btn-outline{
+    border:2px solid var(--paper); color:var(--paper); font-weight:800;
+    padding:14px 28px; border-radius:100px; font-size:0.95rem;
+    transition:.2s;
+  }
+  .btn-outline:hover{background:var(--paper); color:var(--ink);}
+  .hero-stats{display:flex; gap:36px; margin-top:46px;}
+  .hero-stats div strong{display:block; font-family:'Unbounded'; font-size:1.5rem;}
+  .hero-stats div span{font-size:0.78rem; opacity:0.65;}
+
+  .hero-visual{position:relative;}
+  .blob{
+    position:absolute; width:420px; height:420px; border-radius:50%;
+    background:conic-gradient(var(--pink),var(--orange),var(--yellow),var(--lime),var(--cyan),var(--purple),var(--pink));
+    filter:blur(70px); opacity:0.5; top:-60px; right:-60px; z-index:0;
+    animation:spin 14s linear infinite;
+  }
+  @keyframes spin{ to{transform:rotate(360deg);} }
+  .hero-card{
+    position:relative; z-index:2;
+    background:var(--paper); border-radius:32px; padding:26px;
+    transform:rotate(-3deg);
+    box-shadow: 14px 14px 0 rgba(255,122,26,0.5);
+  }
+  .hero-card img{border-radius:20px; width:100%; height:340px; object-fit:cover;}
+  .hero-card-tag{
+    position:absolute; top:-18px; left:26px; background:var(--lime); color:var(--ink);
+    font-family:'Unbounded'; font-weight:800; font-size:0.8rem;
+    padding:8px 16px; border-radius:100px; transform:rotate(-3deg);
+    box-shadow:4px 4px 0 rgba(18,16,26,0.9);
+  }
+  .hero-price-float{
+    position:absolute; bottom:-22px; right:6px; background:var(--ink);
+    color:var(--paper); border-radius:20px; padding:14px 18px;
+    box-shadow:6px 6px 0 var(--pink); z-index:3;
+  }
+  .hero-price-float .old{opacity:0.5; text-decoration:line-through; font-size:0.75rem;}
+  .hero-price-float .new{font-family:'Unbounded'; font-size:1.3rem; font-weight:800; color:var(--yellow);}
+
+  /* CATEGORY CHIPS */
+  .categories{
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+    padding:0 5% 60px; position:relative; z-index:2;
+  }
+  .chip{
+    padding:12px 24px; border-radius:100px; font-weight:700; font-size:0.88rem;
+    border:1px solid var(--line); background:var(--ink-2);
+    transition: all .2s ease; cursor:pointer;
+  }
+  .chip.active, .chip:hover{
+    background:linear-gradient(90deg,var(--pink),var(--purple));
+    border-color:transparent; color:#fff;
+  }
+
+  /* SECTION TITLES */
+  .section-head{text-align:center; max-width:640px; margin:0 auto 50px; position:relative; z-index:2;}
+  .section-head .kicker{
+    font-weight:800; color:var(--lime); letter-spacing:0.12em; text-transform:uppercase; font-size:0.78rem;
+  }
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.8rem); font-weight:800; margin-top:10px;}
+
+  /* PRODUCT GRID */
+  .shop{padding:20px 5% 90px; position:relative; z-index:2;}
+  .grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+    max-width:1300px; margin:0 auto;
+  }
+  .card{
+    background:var(--ink-2); border-radius:var(--radius); padding:20px;
+    border:1px solid var(--line); position:relative; overflow:hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover{transform:translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4);}
+  .card .badge{
+    position:absolute; top:18px; left:18px; z-index:3;
+    font-family:'Unbounded'; font-size:0.68rem; font-weight:800;
+    padding:6px 12px; border-radius:100px; color:var(--ink);
+  }
+  .card .fav{
+    position:absolute; top:16px; right:16px; z-index:3;
+    width:38px; height:38px; border-radius:50%; background:rgba(255,249,240,0.12);
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    transition:.2s;
+  }
+  .card .fav:hover{background:var(--pink);}
+  .card-img{
+    border-radius:18px; overflow:hidden; height:230px; margin-bottom:18px;
+    background:#0e0c14;
+  }
+  .card-img img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .card:hover .card-img img{transform:scale(1.08);}
+  .card h3{font-size:1.05rem; font-weight:700; margin-bottom:6px; font-family:'Manrope';}
+  .card .cat{font-size:0.78rem; opacity:0.55; margin-bottom:14px;}
+  .swatches{display:flex; gap:7px; margin-bottom:16px;}
+  .swatches span{width:16px; height:16px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); cursor:pointer;}
+  .card-footer{display:flex; align-items:center; justify-content:space-between;}
+  .price{font-family:'Unbounded'; font-weight:700; font-size:1.15rem;}
+  .price .old{font-size:0.78rem; opacity:0.45; text-decoration:line-through; margin-right:6px; font-family:'Manrope';}
+  .add-btn{
+    width:44px; height:44px; border-radius:50%; background:var(--paper); color:var(--ink);
+    font-size:1.3rem; font-weight:800; display:flex; align-items:center; justify-content:center;
+    transition: all .2s ease;
+  }
+  .add-btn:hover{background:var(--lime); transform:rotate(90deg);}
+
+  /* FEATURES */
+  .features{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+    max-width:1300px; margin:0 auto; padding:0 5% 100px; position:relative; z-index:2;
+  }
+  .feature{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:22px; padding:28px 22px;
+    text-align:center; transition:.25s;
+  }
+  .feature:hover{border-color:var(--pink); transform:translateY(-6px);}
+  .feature .icon{font-size:2rem; margin-bottom:14px;}
+  .feature h4{font-size:1rem; margin-bottom:8px;}
+  .feature p{font-size:0.85rem; opacity:0.6; line-height:1.5;}
+
+  /* NEWSLETTER */
+  .newsletter{
+    max-width:1300px; margin:0 auto 100px; padding:60px 6%;
+    background:linear-gradient(120deg,var(--pink),var(--purple));
+    border-radius:36px; text-align:center; position:relative; z-index:2; overflow:hidden;
+  }
+  .newsletter::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%);
+  }
+  .newsletter h2{font-size:clamp(1.7rem,3vw,2.4rem); margin-bottom:12px; position:relative;}
+  .newsletter p{opacity:0.9; margin-bottom:30px; position:relative;}
+  .news-form{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; position:relative;}
+  .news-form input{
+    padding:16px 22px; border-radius:100px; border:none; width:320px; max-width:80vw;
+    font-family:inherit; font-size:0.9rem;
+  }
+  .news-form button{
+    padding:16px 30px; border-radius:100px; background:var(--ink); color:var(--yellow);
+    font-weight:800; font-size:0.9rem;
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--ink-2); padding:70px 5% 30px; position:relative; z-index:2;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
+    max-width:1300px; margin:0 auto 50px;
+  }
+  .footer-grid h5{font-size:0.85rem; margin-bottom:18px; opacity:0.55; text-transform:uppercase; letter-spacing:0.08em;}
+  .footer-grid ul li{margin-bottom:12px; font-size:0.9rem; opacity:0.8;}
+  .footer-grid ul li a:hover{color:var(--yellow);}
+  .footer-brand p{opacity:0.6; font-size:0.9rem; margin:16px 0 20px; max-width:280px; line-height:1.6;}
+  .social{display:flex; gap:12px;}
+  .social a{
+    width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center; font-size:1rem; transition:.2s;
+  }
+  .social a:hover{background:var(--pink);}
+  .footer-bottom{
+    max-width:1300px; margin:0 auto; padding-top:26px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    font-size:0.82rem; opacity:0.55;
+  }
+
+  /* TOAST */
+  .toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(30px);
+    background:var(--paper); color:var(--ink); padding:16px 26px; border-radius:100px;
+    font-weight:800; font-size:0.9rem; box-shadow:6px 6px 0 var(--lime);
+    opacity:0; pointer-events:none; transition: all .35s cubic-bezier(.2,.9,.3,1.3); z-index:999;
+    display:flex; align-items:center; gap:10px;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  @media (max-width:900px){
+    nav, .nav-right .cart-btn span.label{display:none;}
+    .menu-toggle{display:block;}
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .hero-visual{order:-1;}
+    .blob{width:280px;height:280px; top:-30px; right:0;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-stats{flex-wrap:wrap; gap:22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="noise-bg"></div>
+
+<header>
+  <div class="logo"><span class="dot"></span>CHROMASOLE</div>
+  <nav id="mainNav">
+    <ul>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#features">Why Us</a></li>
+      <li><a href="#newsletter">Drops</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right">
+    <button class="cart-btn" id="cartBtn">🛒 <span class="label">Cart</span> <span class="cart-count" id="cartCount">0</span></button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>🔥 NEW COLORWAYS DROPPING WEEKLY</span>
+    <span>🚚 FREE SHIPPING OVER $60</span>
+    <span>🌈 VIBRANT COLORS, EVERY SIZE</span>
+    <span>↩️ 30-DAY EASY RETURNS</span>
+    <span>🔥 NEW COLORWAYS DROPPING WEEKLY</span>
+    <span>🚚 FREE SHIPPING OVER $60</span>
+    <span>🌈 VIBRANT COLORS, EVERY SIZE</span>
+    <span>↩️ 30-DAY EASY RETURNS</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-tag"><span class="pulse"></span> New Season Colour Drop is Live</div>
+    <h1>Step into<br><span class="grad">Loud Colour.</span></h1>
+    <p>Handpicked sneakers in colours that don't whisper. Bold uppers, comfy soles, and drops made to be seen from a mile away.</p>
+    <div class="hero-actions">
+      <a href="#shop" class="btn-primary">Shop the Drop →</a>
+      <a href="#features" class="btn-outline">Why Chromasole</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>120+</strong><span>Colourways</span></div>
+      <div><strong>48K</strong><span>Happy Steppers</span></div>
+      <div><strong>4.9★</strong><span>Avg. Rating</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="blob"></div>
+    <div class="hero-card">
+      <div class="hero-card-tag">BEST SELLER</div>
+      <img src="https://images.unsplash.com/photo-1562613521-6b5293e5b0ea?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Multicolour running sneaker">
+      <div class="hero-price-float"><div class="old">$149</div><div class="new">$99</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="categories">
+  <div class="chip active">All</div>
+  <div class="chip">Running</div>
+  <div class="chip">Lifestyle</div>
+  <div class="chip">Basketball</div>
+  <div class="chip">Trail</div>
+  <div class="chip">Skate</div>
+</div>
+
+<section class="shop" id="shop">
+  <div class="section-head">
+    <div class="kicker">The Collection</div>
+    <h2>Colour-drenched kicks, ready to ship</h2>
+  </div>
+  <div class="grid" id="productGrid">
+
+    <div class="card" data-name="Air Prism Multicolour" data-price="99">
+      <div class="badge" style="background:var(--lime);">-33%</div>
+      <div class="fav">♡</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1679581987371-1e537cbe7fbe?fm=jpg&q=70&w=700&auto=format&fit=crop" alt="Colourful Nike Air Max sneaker close up"></div>
+      <h3>Air Prism Multicolour</h3>
+      <div class="cat">Lifestyle Sneaker</div>
+      <div class="swatches">
+        <span style="background:var(--pink);"></span><span style="background:var(--yellow);"></span><span style="background:var(--cyan);"></span>
+      </div>
+      <div class="card-footer">
+        <div class="price"><span class="old">$149</span>$99</div>
+        <button class="add-btn">+</button>
+      </div>
+    </div>
+
+    <div class="card" data-name="Volt Skool Yellow" data-price="79">
+      <div class="badge" style="background:var(--yellow);">NEW</div>
+      <div class="fav">♡</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1562362258-46de36d55cef?fm=jpg&q=70&w=700&auto=format&fit=crop" alt="Yellow low-top skate sneaker"></div>
+      <h3>Volt Skool Yellow</h3>
+      <div class="cat">Skate Sneaker</div>
+      <div class="swatches">
+        <span style="background:var(--yellow);"></span><span style="background:#111;"></span><span style="background:var(--lime);"></span>
+      </div>
+      <div class="card-footer">
+        <div class="price">$79</div>
+        <button class="add-btn">+</button>
+      </div>
+    </div>
+
+    <div class="card" data-name="Cobalt Lace Runner" data-price="89">
+      <div class="badge" style="background:var(--cyan);">HOT</div>
+      <div class="fav">♡</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1680204101678-01741d4d4a2a?fm=jpg&q=70&w=700&auto=format&fit=crop" alt="Blue sneaker with white laces"></div>
+      <h3>Cobalt Lace Runner</h3>
+      <div class="cat">Running Sneaker</div>
+      <div class="swatches">
+        <span style="background:var(--cyan);"></span><span style="background:#fff;"></span><span style="background:var(--purple);"></span>
+      </div>
+      <div class="card-footer">
+        <div class="price">$89</div>
+        <button class="add-btn">+</button>
+      </div>
+    </div>
+
+    <div class="card" data-name="Blush Fade Trainer" data-price="94">
+      <div class="badge" style="background:var(--pink);">TRENDING</div>
+      <div class="fav">♡</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1587835872179-72b9398ef4a0?fm=jpg&q=70&w=700&auto=format&fit=crop" alt="Grey and pink trainer"></div>
+      <h3>Blush Fade Trainer</h3>
+      <div class="cat">Lifestyle Sneaker</div>
+      <div class="swatches">
+        <span style="background:var(--pink);"></span><span style="background:#9aa0a6;"></span><span style="background:#fff;"></span>
+      </div>
+      <div class="card-footer">
+        <div class="price">$94</div>
+        <button class="add-btn">+</button>
+      </div>
+    </div>
+
+    <div class="card" data-name="Ember Court Orange" data-price="109">
+      <div class="badge" style="background:var(--orange);">-20%</div>
+      <div class="fav">♡</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1631542204051-7927ce32b94e?fm=jpg&q=70&w=700&auto=format&fit=crop" alt="Sneaker on vivid orange background"></div>
+      <h3>Ember Court Orange</h3>
+      <div class="cat">Basketball Sneaker</div>
+      <div class="swatches">
+        <span style="background:var(--orange);"></span><span style="background:#111;"></span><span style="background:var(--yellow);"></span>
+      </div>
+      <div class="card-footer">
+        <div class="price"><span class="old">$135</span>$109</div>
+        <button class="add-btn">+</button>
+      </div>
+    </div>
+
+    <div class="card" data-name="Solar Air Runner" data-price="119">
+      <div class="badge" style="background:var(--purple); color:#fff;">LIMITED</div>
+      <div class="fav">♡</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1562613521-6b5293e5b0ea?fm=jpg&q=70&w=700&auto=format&fit=crop" alt="Multicolour running sneaker pair"></div>
+      <h3>Solar Air Runner</h3>
+      <div class="cat">Running Sneaker</div>
+      <div class="swatches">
+        <span style="background:var(--purple);"></span><span style="background:var(--pink);"></span><span style="background:var(--lime);"></span>
+      </div>
+      <div class="card-footer">
+        <div class="price">$119</div>
+        <button class="add-btn">+</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="feature">
+    <div class="icon">🚚</div>
+    <h4>Free Fast Shipping</h4>
+    <p>Free delivery on every order over $60, shipped within 48 hours.</p>
+  </div>
+  <div class="feature">
+    <div class="icon">↩️</div>
+    <h4>30-Day Returns</h4>
+    <p>Not the right vibe? Send it back, no questions asked.</p>
+  </div>
+  <div class="feature">
+    <div class="icon">🌈</div>
+    <h4>120+ Colourways</h4>
+    <p>The widest range of loud, vibrant sneaker colours around.</p>
+  </div>
+  <div class="feature">
+    <div class="icon">🔒</div>
+    <h4>Secure Checkout</h4>
+    <p>Encrypted payments and buyer protection on every order.</p>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <h2>Never miss a drop</h2>
+  <p>Get first access to new colourways and exclusive discounts.</p>
+  <form class="news-form" id="newsForm">
+    <input type="email" placeholder="you@email.com" required>
+    <button type="submit">Notify Me</button>
+  </form>
+</section>
+
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><span class="dot"></span>CHROMASOLE</div>
+      <p>A footwear store obsessed with colour. Bold sneakers for people who don't blend in.</p>
+      <div class="social">
+        <a href="#">𝕏</a><a href="#">◎</a><a href="#">in</a><a href="#">▶</a>
+      </div>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#shop">Running</a></li>
+        <li><a href="#shop">Lifestyle</a></li>
+        <li><a href="#shop">Basketball</a></li>
+        <li><a href="#shop">Trail</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Chromasole. All rights reserved.</div>
+    <div>Made with colour, for people who wear it loud.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">✓ Added to cart</div>
+
+<script>
+  let cartCount = 0;
+  const cartCountEl = document.getElementById('cartCount');
+  const toast = document.getElementById('toast');
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(window._t);
+    window._t = setTimeout(()=> toast.classList.remove('show'), 1800);
+  }
+
+  document.querySelectorAll('.add-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const card = e.target.closest('.card');
+      const name = card.dataset.name;
+      cartCount++;
+      cartCountEl.textContent = cartCount;
+      showToast('✓ Added "' + name + '" to cart');
+    });
+  });
+
+  document.querySelectorAll('.fav').forEach(f=>{
+    f.addEventListener('click', ()=>{
+      f.textContent = f.textContent === '♡' ? '❤' : '♡';
+      f.style.background = f.textContent === '❤' ? 'var(--pink)' : 'rgba(255,249,240,0.12)';
+    });
+  });
+
+  document.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  document.getElementById('cartBtn').addEventListener('click', ()=>{
+    showToast(cartCount === 0 ? 'Your cart is empty' : cartCount + ' item(s) in cart');
+  });
+
+  document.getElementById('newsForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    showToast('🎉 You are on the list!');
+    e.target.reset();
+  });
+
+  document.getElementById('menuToggle').addEventListener('click', ()=>{
+    const nav = document.getElementById('mainNav');
+    nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+  });
+</script>
+
+</body>
+</html>
