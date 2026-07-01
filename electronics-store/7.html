@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkMoody -- Electronics Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#0A0C10; --surface:#12151B; --text:#E7E9EE; --muted:#7C8697;
+    --primary:#5B8CFF; --accent:#8B6CFF; --border:#1E2229;
+    --font-display:'Cormorant Garamond', serif; --font-body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05;}
+  nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);}
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 6vw;max-width:1180px;margin:0 auto;}
+  .logo{font-family:var(--font-display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;}
+  .navlinks{display:flex;gap:2rem;font-size:.9rem;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .cart-btn{border:1px solid var(--border);padding:.5rem 1rem;border-radius:8px;font-size:.85rem;}
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:5rem 6vw;max-width:1180px;margin:0 auto;}
+  .badge{display:inline-block;font-size:.75rem;letter-spacing:.08em;color:var(--muted);margin-bottom:1.2rem;}
+  .hero h1{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:1.2rem;}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:46ch;margin-bottom:2rem;}
+  .btn-primary{display:inline-block;background:var(--primary);color:#fff;padding:.9rem 1.8rem;border-radius:10px;font-weight:600;font-size:.95rem;}
+  .hero-img{border-radius:16px;overflow:hidden;aspect-ratio:4/5;}
+  .hero-img img{width:100%;height:100%;object-fit:cover;}
+  section{padding:4rem 6vw;max-width:1180px;margin:0 auto;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.2rem;gap:1rem;}
+  .section-title{font-size:2rem;}
+  .section-sub{color:var(--muted);font-size:.95rem;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+  .card{background:var(--surface);border-radius:16px;padding:1rem;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:transform .25s ease, box-shadow .25s ease;}
+  .card img{border-radius:12px;aspect-ratio:1/1;object-fit:cover;margin-bottom:1rem;}
+  .card h3{font-size:1rem;margin-bottom:.35rem;}
+  .card .price{color:var(--primary);font-weight:700;font-size:.95rem;}
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+  .cat{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4;}
+  .cat img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .cat:hover img{transform:scale(1.06);}
+  .cat span{position:absolute;bottom:1rem;left:1rem;color:#fff;font-family:var(--font-display);font-weight:600;font-size:1.05rem;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .banner{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;}
+  .banner h2{font-size:1.7rem;max-width:30ch;}
+  footer{border-top:1px solid var(--border);padding:3rem 6vw;margin-top:2rem;}
+  .footer-grid{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;color:var(--muted);font-size:.9rem;}
+  .foot-col h4{color:var(--text);font-family:var(--font-body);font-weight:600;margin-bottom:.8rem;font-size:.9rem;}
+  .foot-col p, .foot-col a{display:block;margin-bottom:.5rem;}
+  .copyright{text-align:center;color:var(--muted);font-size:.8rem;margin-top:2.5rem;}
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding:3rem 6vw;}
+    .grid,.cats{grid-template-columns:repeat(2,1fr);}
+    .navlinks{display:none;}
+  }
+  
+body{background:radial-gradient(circle at 20% 0%, #161a24 0%, var(--bg) 55%);}
+.hero{border:1px solid var(--border);border-radius:18px;box-shadow:0 0 80px -20px rgba(91,140,255,.25) inset;}
+.card{background:var(--surface);border:1px solid var(--border);}
+.card:hover{box-shadow:0 0 30px -6px var(--primary);}
+h1,.section-title{font-style:italic;}
+
+</style>
+</head>
+<body class="layout-dark">
+
+<nav>
+  <div class="navbar">
+    <div class="logo">DarkMoody</div>
+    <div class="navlinks">
+      <a href="#new">New</a>
+      <a href="#shop">Shop</a>
+      <a href="#story">Story</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="cart-btn">Cart (0)</div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div>
+    <span class="badge">AFTER HOURS TECH</span>
+    <h1>Built for the<br>quiet hours</h1>
+    <p>Devices for late nights and low light — engineered with restraint, finished in shadow.</p>
+    <a href="#shop" class="btn-primary">Enter the dark</a>
+  </div>
+  <div class="hero-img"><img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80" alt="DarkMoody hero"></div>
+</section>
+
+<section id="new">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">Shop by category</h2>
+      <p class="section-sub">Four ways into the collection.</p>
+    </div>
+  </div>
+  <div class="cats">
+    <div class="cat"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80" alt="Audio"><span>Audio</span></div>
+    <div class="cat"><img src="https://images.unsplash.com/photo-1470309864661-68328b2cd0a5?auto=format&fit=crop&w=1200&q=80" alt="Computing"><span>Computing</span></div>
+    <div class="cat"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80" alt="Wearables"><span>Wearables</span></div>
+    <div class="cat"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Home Tech"><span>Home Tech</span></div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">Best sellers</h2>
+      <p class="section-sub">The pieces our customers keep coming back for.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80" alt="Obsidian Noise-Cancel Headphones"><h3>Obsidian Noise-Cancel Headphones</h3><div class="price">₹24,999</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1470309864661-68328b2cd0a5?auto=format&fit=crop&w=1200&q=80" alt="Eclipse OLED Monitor"><h3>Eclipse OLED Monitor</h3><div class="price">₹41,500</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80" alt="Nocturne Mechanical Keyboard"><h3>Nocturne Mechanical Keyboard</h3><div class="price">₹11,999</div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Wraith Portable SSD 2TB"><h3>Wraith Portable SSD 2TB</h3><div class="price">₹14,299</div></div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="banner">
+    <div>
+      <h2>Designed to disappear into the dark</h2>
+      <p style="color:var(--muted);margin-top:.6rem;max-width:50ch;">Matte finishes, dimmed indicators, and interfaces that respect a dark room.</p>
+    </div>
+    <a href="#shop" class="btn-primary">Enter the dark</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="foot-col">
+      <h4>DarkMoody</h4>
+      <p style="max-width:28ch;">AFTER HOURS TECH</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#">Audio</a>
+      <a href="#">Computing</a>
+      <a href="#">Wearables</a>
+    </div>
+    <div class="foot-col">
+      <h4>Support</h4>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">Warranty</a>
+    </div>
+    <div class="foot-col">
+      <h4>Get in touch</h4>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+      <a href="tel:+911234567890">+91 12345 67890</a>
+    </div>
+  </div>
+  <p class="copyright">(c) 2026 DarkMoody. All rights reserved.</p>
+</footer>
+</body>
+</html>
