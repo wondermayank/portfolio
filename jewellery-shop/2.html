@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière — Diamond Earrings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#191512;
+    --ink-soft:#4a423c;
+    --ivory:#f6f1e6;
+    --paper:#efe7d8;
+    --gold:#b9975b;
+    --gold-bright:#d4b479;
+    --blush:#e9d7c9;
+    --line:rgba(25,21,18,0.14);
+    --line-soft:rgba(246,241,230,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; font-weight:400; letter-spacing:-0.01em; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  .wrap{ max-width:1280px; margin:0 auto; padding:0 40px; }
+  ::selection{ background:var(--gold); color:var(--ivory); }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,241,230,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:84px;
+  }
+  .logo{ font-size:24px; letter-spacing:0.04em; }
+  .logo span{ color:var(--gold); }
+  .nav-links{ display:flex; gap:36px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; }
+  .nav-links a{ position:relative; padding-bottom:4px; color:var(--ink-soft); transition:color .25s; }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:var(--gold); transform:scaleX(0); transform-origin:right;
+    transition:transform .3s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); transform-origin:left; }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+  .icon-btn{ display:flex; align-items:center; gap:6px; font-size:13px; cursor:pointer; background:none; border:none; color:var(--ink); font-family:inherit; }
+  .bag-count{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:18px; height:18px; border-radius:50%; background:var(--ink);
+    color:var(--ivory); font-size:10px; padding:0 4px;
+  }
+  .search-toggle{ cursor:pointer; background:none; border:none; padding:6px; color:var(--ink); }
+
+  /* search overlay */
+  .search-overlay{
+    position:fixed; inset:0; background:rgba(25,21,18,0.92);
+    z-index:100; display:flex; align-items:flex-start; justify-content:center;
+    padding-top:14vh;
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .search-overlay.open{ opacity:1; pointer-events:auto; }
+  .search-box{ width:min(640px, 88vw); }
+  .search-box input{
+    width:100%; background:none; border:none; border-bottom:1px solid var(--line-soft);
+    color:var(--ivory); font-family:'Fraunces', serif; font-size:34px; padding:10px 0;
+  }
+  .search-box input::placeholder{ color:rgba(246,241,230,0.4); }
+  .search-box input:focus{ outline:none; border-color:var(--gold); }
+  .search-hint{ color:rgba(246,241,230,0.5); font-size:12px; margin-top:14px; letter-spacing:0.05em; text-transform:uppercase; }
+  .search-close{
+    position:absolute; top:34px; right:40px; background:none; border:none;
+    color:var(--ivory); font-size:14px; letter-spacing:0.08em; cursor:pointer; text-transform:uppercase;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:stretch;
+    min-height:82vh;
+  }
+  .hero-copy{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:60px 6vw 60px 40px;
+    max-width:640px;
+  }
+  .eyebrow{
+    font-size:12px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:24px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:var(--gold); display:inline-block; }
+  .hero-copy h1{
+    font-size:clamp(42px, 5.4vw, 76px); line-height:1.02; margin-bottom:26px;
+  }
+  .hero-copy h1 em{ font-style:italic; color:var(--gold); }
+  .hero-copy p{
+    font-size:17px; line-height:1.7; color:var(--ink-soft); max-width:460px; margin-bottom:36px;
+  }
+  .hero-cta{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 30px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    border-radius:2px; cursor:pointer; transition:all .3s ease; border:1px solid var(--ink);
+  }
+  .btn-primary{ background:var(--ink); color:var(--ivory); }
+  .btn-primary:hover{ background:var(--gold); border-color:var(--gold); color:var(--ink); }
+  .btn-ghost{ background:none; color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--ivory); }
+
+  .hero-visual{
+    position:relative; overflow:hidden;
+    background:var(--ink);
+  }
+  .hero-visual img{
+    width:100%; height:100%; object-fit:cover; opacity:0.92;
+    transform:scale(1.02);
+  }
+  .hero-visual .frame-label{
+    position:absolute; left:28px; bottom:28px; color:var(--ivory);
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .hero-visual .frame-label b{ font-family:'Fraunces', serif; font-size:20px; font-weight:400; letter-spacing:0; text-transform:none; }
+  .hero-visual .carat-tag{
+    position:absolute; top:28px; right:28px; text-align:right;
+    color:var(--ivory); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    border:1px solid rgba(246,241,230,0.4); padding:10px 14px;
+  }
+
+  /* ---------- TICKER (signature element) ---------- */
+  .ticker{
+    background:var(--ink); color:var(--ivory);
+    overflow:hidden; white-space:nowrap; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);
+    padding:16px 0;
+  }
+  .ticker-track{
+    display:inline-flex; gap:56px; animation:scroll 32s linear infinite;
+  }
+  .ticker-track span{
+    font-family:'Fraunces', serif; font-style:italic; font-size:16px; letter-spacing:0.02em;
+    color:rgba(246,241,230,0.85); display:inline-flex; align-items:center; gap:56px;
+  }
+  .ticker-track span b{ color:var(--gold); font-style:normal; font-family:'Inter',sans-serif; letter-spacing:0.14em; font-size:11px; text-transform:uppercase; margin-right:6px;}
+  @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ---------- SECTION HEAD ---------- */
+  .section{ padding:120px 0; }
+  .section.tight{ padding:90px 0; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:56px; gap:24px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(30px, 3.4vw, 48px); }
+  .section-head .num{ font-size:12px; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:10px; display:block;}
+  .section-head p{ max-width:340px; color:var(--ink-soft); font-size:14.5px; line-height:1.7; }
+
+  /* ---------- COLLECTIONS ---------- */
+  .collections{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    background:var(--line);
+  }
+  .collection-card{
+    position:relative; background:var(--ivory); overflow:hidden;
+    aspect-ratio:3/4; cursor:pointer;
+  }
+  .collection-card img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    filter:grayscale(20%);
+  }
+  .collection-card:hover img{ transform:scale(1.07); filter:grayscale(0%); }
+  .collection-overlay{
+    position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end;
+    padding:28px; background:linear-gradient(0deg, rgba(15,12,10,0.78) 0%, rgba(15,12,10,0.05) 55%);
+    color:var(--ivory);
+  }
+  .collection-overlay .tag{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:8px; }
+  .collection-overlay h3{ font-size:26px; margin-bottom:6px; }
+  .collection-overlay .count{ font-size:12.5px; color:rgba(246,241,230,0.75); }
+
+  /* ---------- EDITORIAL / DIAMOND STANDARD ---------- */
+  .editorial{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; align-items:center;
+    background:var(--paper);
+  }
+  .editorial-img{ height:100%; min-height:520px; overflow:hidden; }
+  .editorial-img img{ width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+  .editorial-copy{ padding:60px 64px; max-width:560px; }
+  .editorial-copy .num{ font-size:12px; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-bottom:18px; display:block; }
+  .editorial-copy h2{ font-size:clamp(28px,3vw,42px); margin-bottom:24px; line-height:1.12; }
+  .editorial-copy p{ color:var(--ink-soft); line-height:1.75; font-size:15px; margin-bottom:20px; }
+  .four-cs{ display:grid; grid-template-columns:1fr 1fr; gap:20px 30px; margin-top:34px; }
+  .four-cs div{ border-top:1px solid var(--line); padding-top:12px; }
+  .four-cs b{ display:block; font-family:'Fraunces', serif; font-size:19px; margin-bottom:4px; }
+  .four-cs span{ font-size:12.5px; color:var(--ink-soft); }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .filter-row{ display:flex; gap:10px; margin-bottom:44px; flex-wrap:wrap; }
+  .filter-pill{
+    padding:9px 18px; border:1px solid var(--line); border-radius:30px;
+    font-size:12.5px; letter-spacing:0.04em; cursor:pointer; background:none; color:var(--ink-soft);
+    transition:all .25s ease; font-family:inherit;
+  }
+  .filter-pill.active, .filter-pill:hover{ background:var(--ink); color:var(--ivory); border-color:var(--ink); }
+
+  .product-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:34px 26px; }
+  .product-card{ cursor:pointer; }
+  .product-thumb{
+    position:relative; aspect-ratio:1/1.15; overflow:hidden; background:var(--paper);
+    margin-bottom:16px;
+  }
+  .product-thumb img{ width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+  .product-card:hover .product-thumb img{ transform:scale(1.06); }
+  .product-badge{
+    position:absolute; top:12px; left:12px; background:var(--ivory); color:var(--ink);
+    font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; padding:5px 10px;
+  }
+  .product-quickadd{
+    position:absolute; left:12px; right:12px; bottom:12px;
+    background:var(--ink); color:var(--ivory); text-align:center; padding:12px;
+    font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    opacity:0; transform:translateY(8px); transition:all .3s ease; border:none; width:calc(100% - 24px); cursor:pointer; font-family:inherit;
+  }
+  .product-card:hover .product-quickadd{ opacity:1; transform:translateY(0); }
+  .product-info h4{ font-family:'Fraunces', serif; font-size:17px; font-weight:400; margin-bottom:6px; }
+  .product-info .meta{ font-size:12px; color:var(--ink-soft); margin-bottom:8px; }
+  .product-info .price{ font-size:14px; letter-spacing:0.02em; }
+  .product-info .price .was{ text-decoration:line-through; color:#a99f92; margin-right:8px; font-size:12.5px; }
+
+  /* ---------- BAND / TRUST ---------- */
+  .trust-band{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .trust-item{ padding:32px 30px; text-align:left; border-left:1px solid var(--line); }
+  .trust-item:first-child{ border-left:none; }
+  .trust-item b{ font-family:'Fraunces', serif; display:block; font-size:16px; margin-bottom:6px; }
+  .trust-item span{ font-size:12.5px; color:var(--ink-soft); line-height:1.6; display:block; }
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{ background:var(--ink); color:var(--ivory); padding:110px 0; text-align:center; }
+  .newsletter h2{ font-size:clamp(28px,3.4vw,44px); margin-bottom:16px; }
+  .newsletter p{ color:rgba(246,241,230,0.65); max-width:440px; margin:0 auto 34px; font-size:14.5px; line-height:1.7; }
+  .newsletter-form{ display:flex; max-width:420px; margin:0 auto; border-bottom:1px solid rgba(246,241,230,0.35); padding-bottom:12px; gap:12px; }
+  .newsletter-form input{
+    flex:1; background:none; border:none; color:var(--ivory); font-size:15px; font-family:inherit;
+  }
+  .newsletter-form input::placeholder{ color:rgba(246,241,230,0.4); }
+  .newsletter-form input:focus{ outline:none; }
+  .newsletter-form button{
+    background:none; border:none; color:var(--gold-bright); font-size:12.5px;
+    letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; font-family:inherit;
+  }
+  .newsletter-note{ margin-top:16px; font-size:12px; color:var(--gold-bright); opacity:0; transition:opacity .3s; }
+  .newsletter-note.show{ opacity:1; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ivory); padding:70px 0 30px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:60px; }
+  .footer-grid .logo{ margin-bottom:14px; }
+  .footer-grid p{ color:var(--ink-soft); font-size:13.5px; line-height:1.7; max-width:280px; }
+  .footer-col h5{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:18px; color:var(--ink-soft); }
+  .footer-col a{ display:block; font-size:13.5px; margin-bottom:12px; color:var(--ink); transition:color .2s; }
+  .footer-col a:hover{ color:var(--gold); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; padding-top:26px; border-top:1px solid var(--line);
+    font-size:12px; color:var(--ink-soft); flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    .wrap{ padding:0 24px; }
+    .nav-links{ display:none; }
+    .hero{ grid-template-columns:1fr; }
+    .hero-visual{ min-height:46vh; order:-1; }
+    .hero-copy{ padding:48px 24px; }
+    .collections{ grid-template-columns:1fr; }
+    .editorial{ grid-template-columns:1fr; }
+    .editorial-img{ min-height:340px; }
+    .editorial-copy{ padding:44px 24px; }
+    .product-grid{ grid-template-columns:repeat(2,1fr); }
+    .trust-band{ grid-template-columns:1fr 1fr; }
+    .trust-item:nth-child(3){ border-left:none; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">LUMI<span>È</span>RE</a>
+    <div class="nav-links">
+      <a href="#collections">Studs</a>
+      <a href="#collections">Hoops</a>
+      <a href="#shop">Signature</a>
+      <a href="#standard">The 4Cs</a>
+      <a href="#footer">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn search-toggle" id="searchToggle" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn" id="bagBtn">
+        Bag <span class="bag-count" id="bagCount">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- search overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <button class="search-close" id="searchClose">Close ✕</button>
+  <div class="search-box">
+    <input type="text" placeholder="Search “diamond hoops”, “studs”, “gift”…" id="searchInput" autocomplete="off">
+    <div class="search-hint">Press Enter to search the collection</div>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <span class="eyebrow">Fine Earrings · Certified Diamonds</span>
+    <h1>Light,<br>held in <em>orbit</em>.</h1>
+    <p>Each pair is set by hand from GIA‑certified round brilliants, so every angle of your ear catches its own small fire. Explore the Lumière earring collection — studs, hoops, and drops built to last a lifetime.</p>
+    <div class="hero-cta">
+      <a href="#shop" class="btn btn-primary">Shop Earrings</a>
+      <a href="#standard" class="btn btn-ghost">Our Diamond Standard</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://images.unsplash.com/photo-1687253946687-a3713aa25b2f?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="A pair of diamond earrings resting on a soft violet surface, catching the light">
+    <div class="carat-tag">1.20 ctw · VS1 · Round Brilliant</div>
+    <div class="frame-label">Featured Piece<b>The Solstice Studs</b></div>
+  </div>
+</section>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span><b>Cut</b>Excellent<b>Clarity</b>VS1–VVS2<b>Carat</b>0.5–2.4 ctw<b>Colour</b>D–G<b>Setting</b>14k &amp; 18k Gold, Platinum<b>Cut</b>Excellent<b>Clarity</b>VS1–VVS2<b>Carat</b>0.5–2.4 ctw<b>Colour</b>D–G<b>Setting</b>14k &amp; 18k Gold, Platinum</span>
+  </div>
+</div>
+
+<!-- ================= COLLECTIONS ================= -->
+<section class="section" id="collections">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="num">Shop by Silhouette</span>
+        <h2>Three ways to wear<br>diamond light.</h2>
+      </div>
+      <p>Every silhouette is cut from the same standard of stone — only the setting changes how it moves.</p>
+    </div>
+  </div>
+  <div class="collections wrap" style="padding:0 40px;">
+    <div class="collection-card reveal" data-filter="studs">
+      <img src="https://images.unsplash.com/photo-1638734205377-f21045bf6ebe?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Diamond stud earrings on a white background">
+      <div class="collection-overlay">
+        <span class="tag">Everyday</span>
+        <h3>Diamond Studs</h3>
+        <span class="count">18 designs</span>
+      </div>
+    </div>
+    <div class="collection-card reveal" data-filter="hoops">
+      <img src="https://images.unsplash.com/photo-1677913842001-3941986ca979?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A pair of diamond-set hoop earrings on a white background">
+      <div class="collection-overlay">
+        <span class="tag">Statement</span>
+        <h3>Diamond Hoops</h3>
+        <span class="count">11 designs</span>
+      </div>
+    </div>
+    <div class="collection-card reveal" data-filter="edit">
+      <img src="https://images.unsplash.com/photo-1616121341778-0dd435d03d23?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="A model wearing a diamond stud earring">
+      <div class="collection-overlay">
+        <span class="tag">Editorial</span>
+        <h3>As Worn</h3>
+        <span class="count">Styling guide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDITORIAL / STANDARD ================= -->
+<section id="standard">
+  <div class="editorial">
+    <div class="editorial-img reveal">
+      <img src="https://images.unsplash.com/photo-1616121341778-0dd435d03d23?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Close up of a woman wearing a diamond stud earring">
+    </div>
+    <div class="editorial-copy reveal">
+      <span class="num">The Lumière Standard</span>
+      <h2>We grade what<br>you'll actually see.</h2>
+      <p>Most jewellers sell you a certificate. We start with the stone under a loupe, in daylight, on skin — because that's where your earrings will actually live. Every diamond above 0.30 ct ships with independent GIA or IGI documentation.</p>
+      <p>Settings are cast in recycled 14k and 18k gold or platinum, then hand-finished and hallmarked in-house before a single stone is set.</p>
+      <div class="four-cs">
+        <div><b>Cut</b><span>Excellent to Ideal only — no compromise on brilliance.</span></div>
+        <div><b>Clarity</b><span>VS1–VVS2, eye-clean at conversational distance.</span></div>
+        <div><b>Carat</b><span>Sized from a delicate 0.50 up to a 2.40 ctw statement.</span></div>
+        <div><b>Colour</b><span>D–G range, indistinguishable from colourless to the eye.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCT GRID ================= -->
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="num">Full Collection</span>
+        <h2>Earrings, edited.</h2>
+      </div>
+      <p>Filter by silhouette. All prices in USD, taxes calculated at checkout.</p>
+    </div>
+
+    <div class="filter-row reveal">
+      <button class="filter-pill active" data-filter="all">All Earrings</button>
+      <button class="filter-pill" data-filter="studs">Studs</button>
+      <button class="filter-pill" data-filter="hoops">Hoops</button>
+      <button class="filter-pill" data-filter="edit">Signature</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST BAND ================= -->
+<section class="trust-band">
+  <div class="trust-item reveal">
+    <b>Lifetime Resizing</b>
+    <span>Free resizing and rhodium refinishing for as long as you own the piece.</span>
+  </div>
+  <div class="trust-item reveal">
+    <b>Insured Shipping</b>
+    <span>Every order is fully insured door-to-door, signature required.</span>
+  </div>
+  <div class="trust-item reveal">
+    <b>30-Day Returns</b>
+    <span>Try it on at home. Unworn pieces refunded in full within 30 days.</span>
+  </div>
+  <div class="trust-item reveal">
+    <b>Conflict-Free</b>
+    <span>Sourced under the Kimberley Process, traceable to origin.</span>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="newsletter">
+  <div class="wrap">
+    <h2>Be first to new settings.</h2>
+    <p>One email a season — new drops, restocks, and a standing 10% off your first pair.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="your@email.com" required id="newsletterInput">
+      <button type="submit">Subscribe →</button>
+    </form>
+    <div class="newsletter-note" id="newsletterNote">Thank you — check your inbox for 10% off.</div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="logo">LUMI<span style="color:var(--gold)">È</span>RE</a>
+        <p>Diamond earrings, designed in-studio and set by hand. Founded on the belief that fine jewellery should be worn daily, not saved for someday.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <a href="#shop">Studs</a>
+        <a href="#shop">Hoops</a>
+        <a href="#shop">Signature</a>
+        <a href="#shop">Gift Cards</a>
+      </div>
+      <div class="footer-col">
+        <h5>Care</h5>
+        <a href="#standard">The 4Cs</a>
+        <a href="#">Sizing Guide</a>
+        <a href="#">Cleaning &amp; Care</a>
+        <a href="#">Returns</a>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="#">Our Story</a>
+        <a href="#">Sourcing</a>
+        <a href="#">Contact</a>
+        <a href="#">Book a Fitting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lumière Fine Jewellery. All rights reserved.</span>
+      <span>Product imagery via Unsplash · used for demonstration</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------------- Product data ----------------
+  const products = [
+    { name:"Solstice Round Studs", cat:"studs", tag:"Bestseller", carat:"0.50 ctw · 14k Gold", price:"$890", was:null,
+      img:"https://images.unsplash.com/photo-1638734205377-f21045bf6ebe?fm=jpg&q=75&w=800&auto=format&fit=crop" },
+    { name:"Meridian Hoops", cat:"hoops", tag:"New", carat:"0.80 ctw · Platinum", price:"$1,640", was:null,
+      img:"https://images.unsplash.com/photo-1677913842001-3941986ca979?fm=jpg&q=75&w=800&auto=format&fit=crop" },
+    { name:"Aurora Signature Studs", cat:"edit", tag:"Editor's Pick", carat:"1.20 ctw · 18k Gold", price:"$2,980", was:"$3,400",
+      img:"https://images.unsplash.com/photo-1687253946687-a3713aa25b2f?fm=jpg&q=75&w=800&auto=format&fit=crop" },
+    { name:"As-Worn Petite Studs", cat:"studs", tag:null, carat:"0.35 ctw · 14k Gold", price:"$620", was:null,
+      img:"https://images.unsplash.com/photo-1616121341778-0dd435d03d23?fm=jpg&q=75&w=800&auto=format&fit=crop" },
+    { name:"Halo Round Studs", cat:"studs", tag:null, carat:"0.65 ctw · White Gold", price:"$1,120", was:null,
+      img:"https://images.unsplash.com/photo-1638734205377-f21045bf6ebe?fm=jpg&q=75&w=800&auto=format&fit=crop&sat=-15" },
+    { name:"Orbit Slim Hoops", cat:"hoops", tag:"New", carat:"0.42 ctw · 14k Gold", price:"$780", was:null,
+      img:"https://images.unsplash.com/photo-1677913842001-3941986ca979?fm=jpg&q=75&w=800&auto=format&fit=crop&sat=-10" },
+    { name:"Voile Drop Studs", cat:"edit", tag:null, carat:"0.95 ctw · Platinum", price:"$2,140", was:null,
+      img:"https://images.unsplash.com/photo-1687253946687-a3713aa25b2f?fm=jpg&q=75&w=800&auto=format&fit=crop&sat=-10" },
+    { name:"Classic Two-Prong Studs", cat:"studs", tag:"Bestseller", carat:"1.00 ctw · 18k Gold", price:"$1,980", was:"$2,250",
+      img:"https://images.unsplash.com/photo-1638734205377-f21045bf6ebe?fm=jpg&q=75&w=800&auto=format&fit=crop&fit=crop&crop=entropy" },
+  ];
+
+  const grid = document.getElementById('productGrid');
+  let bagCount = 0;
+
+  function renderProducts(filter){
+    grid.innerHTML = '';
+    const list = filter === 'all' ? products : products.filter(p => p.cat === filter);
+    list.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'product-card reveal';
+      card.innerHTML = `
+        <div class="product-thumb">
+          ${p.tag ? `<span class="product-badge">${p.tag}</span>` : ''}
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          <button class="product-quickadd" data-name="${p.name}">Add to Bag</button>
+        </div>
+        <div class="product-info">
+          <h4>${p.name}</h4>
+          <div class="meta">${p.carat}</div>
+          <div class="price">${p.was ? `<span class="was">${p.was}</span>` : ''}${p.price}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+      requestAnimationFrame(() => setTimeout(() => card.classList.add('in'), i * 50));
+    });
+
+    grid.querySelectorAll('.product-quickadd').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        bagCount++;
+        document.getElementById('bagCount').textContent = bagCount;
+        btn.textContent = 'Added ✓';
+        setTimeout(() => btn.textContent = 'Add to Bag', 1200);
+      });
+    });
+  }
+  renderProducts('all');
+
+  // filter pills
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts(btn.dataset.filter);
+    });
+  });
+
+  // collection cards also filter + scroll to shop
+  document.querySelectorAll('.collection-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const f = card.dataset.filter;
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+      renderProducts(f);
+      document.getElementById('shop').scrollIntoView({ behavior:'smooth' });
+    });
+  });
+
+  // search overlay
+  const overlay = document.getElementById('searchOverlay');
+  const input = document.getElementById('searchInput');
+  document.getElementById('searchToggle').addEventListener('click', () => {
+    overlay.classList.add('open');
+    setTimeout(() => input.focus(), 300);
+  });
+  document.getElementById('searchClose').addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') overlay.classList.remove('open'); });
+  input.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const q = input.value.toLowerCase();
+      overlay.classList.remove('open');
+      const match = ['stud','hoop','edit','signature'].find(k => q.includes(k));
+      const filterMap = { stud:'studs', hoop:'hoops', edit:'edit', signature:'edit' };
+      const f = match ? filterMap[match] : 'all';
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+      renderProducts(f);
+      document.getElementById('shop').scrollIntoView({ behavior:'smooth' });
+      input.value = '';
+    }
+  });
+
+  // newsletter
+  document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('newsletterNote').classList.add('show');
+    document.getElementById('newsletterInput').value = '';
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('in'); });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
