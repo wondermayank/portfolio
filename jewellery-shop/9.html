@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PendantnChain — Fine Pendants & Chains, Handcrafted</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110D;
+    --ivory:#F7F1E5;
+    --ivory-2:#EFE6D2;
+    --gold:#B4863A;
+    --gold-light:#E4C77A;
+    --gold-dim: rgba(180,134,58,0.35);
+    --wine:#521B22;
+    --stone:#7C7264;
+    --line: rgba(21,17,13,0.12);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block; max-width:100%; height:auto;}
+  a{color:inherit; text-decoration:none;}
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.7rem;
+    font-weight:500;
+    color:var(--gold);
+  }
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    line-height:1.08;
+    letter-spacing:0.01em;
+  }
+  .wrap{max-width:1240px; margin:0 auto; padding:0 40px;}
+
+  /* ---------- Chain divider signature element ---------- */
+  .chain-divider{
+    width:100%;
+    display:flex; align-items:center; justify-content:center;
+    padding:38px 0;
+    background:inherit;
+  }
+  .chain-divider svg{ width:min(360px, 70%); height:16px; opacity:0.6; }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,241,229,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px;
+    max-width:1240px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem;
+    letter-spacing:0.04em;
+    display:flex; align-items:baseline; gap:6px;
+  }
+  .logo .n{ color:var(--gold); font-style:italic; font-size:1.1rem; }
+  .nav-links{ display:flex; gap:38px; list-style:none; }
+  .nav-links a{
+    font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; font-weight:500;
+    position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width .35s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:22px; }
+  .icon-btn{
+    width:38px; height:38px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:border-color .3s, background .3s;
+  }
+  .icon-btn:hover{ border-color:var(--gold); background:var(--ivory-2); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 26px;
+    font-size:0.78rem; text-transform:uppercase; letter-spacing:0.16em; font-weight:500;
+    border:1px solid var(--ink); cursor:pointer; background:transparent; color:var(--ink);
+    transition:all .35s ease;
+  }
+  .btn:hover{ background:var(--ink); color:var(--ivory); }
+  .btn-gold{
+    border-color:var(--gold); background:var(--gold); color:var(--ink);
+  }
+  .btn-gold:hover{ background:transparent; color:var(--gold); }
+  .hamburger{ display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .hamburger span{ width:24px; height:1px; background:var(--ink); }
+
+  /* ---------- Search overlay ---------- */
+  .search-overlay{
+    position:fixed; inset:0; background:rgba(21,17,13,0.96);
+    z-index:200; display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding-top:12vh;
+    opacity:0; pointer-events:none; transition:opacity .4s ease;
+  }
+  .search-overlay.active{ opacity:1; pointer-events:all; }
+  .search-overlay .close-search{
+    position:absolute; top:32px; right:40px; color:var(--ivory);
+    font-size:0.8rem; text-transform:uppercase; letter-spacing:0.18em; cursor:pointer;
+  }
+  .search-box{ width:min(680px, 88%); }
+  .search-box .eyebrow{ color:var(--gold-light); }
+  .search-box input{
+    width:100%; background:transparent; border:none; border-bottom:1px solid var(--gold-dim);
+    color:var(--ivory); font-family:'Cormorant Garamond', serif; font-size:2.4rem; font-style:italic;
+    padding:14px 0; outline:none;
+  }
+  .search-box input::placeholder{ color:rgba(247,241,229,0.35); }
+  .search-results{ margin-top:36px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .search-results .sr-item{
+    display:flex; gap:14px; align-items:center; padding:10px; cursor:pointer;
+    border:1px solid transparent; transition:border-color .3s;
+  }
+  .search-results .sr-item:hover{ border-color:var(--gold-dim); }
+  .search-results img{ width:56px; height:56px; object-fit:cover; border-radius:50%; }
+  .search-results .sr-name{ color:var(--ivory); font-size:0.9rem; }
+  .search-results .sr-price{ color:var(--gold-light); font-size:0.78rem; }
+  .search-empty{ color:rgba(247,241,229,0.5); margin-top:30px; font-style:italic; font-family:'Cormorant Garamond', serif; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid; grid-template-columns:1.05fr 1fr; align-items:center;
+    max-width:1240px; margin:0 auto; padding:70px 40px 40px;
+    gap:60px;
+  }
+  .hero-copy .eyebrow{ margin-bottom:22px; display:block; }
+  .hero-copy h1{
+    font-size:clamp(2.6rem, 5vw, 4.4rem);
+    margin-bottom:26px;
+  }
+  .hero-copy h1 em{ color:var(--gold); font-style:italic; }
+  .hero-copy p{
+    max-width:440px; color:var(--stone); font-size:1.02rem; margin-bottom:34px;
+  }
+  .hero-actions{ display:flex; gap:16px; align-items:center; margin-bottom:44px; }
+  .hero-stats{ display:flex; gap:44px; }
+  .hero-stats div{ border-left:1px solid var(--line); padding-left:16px; }
+  .hero-stats strong{ font-family:'Cormorant Garamond', serif; font-size:1.7rem; display:block; color:var(--ink); }
+  .hero-stats span{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--stone); }
+
+  .hero-visual{ position:relative; }
+  .hero-frame{
+    position:relative; border:1px solid var(--gold-dim); padding:14px;
+  }
+  .hero-frame img{ width:100%; height:560px; object-fit:cover; filter:saturate(1.02);}
+  .hero-frame::before, .hero-frame::after{
+    content:''; position:absolute; width:26px; height:26px; border:1px solid var(--gold);
+  }
+  .hero-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .hero-frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+  .hero-tag{
+    position:absolute; left:-30px; bottom:44px;
+    background:var(--ivory); border:1px solid var(--line);
+    padding:18px 22px; width:220px;
+    box-shadow:0 18px 40px rgba(21,17,13,0.12);
+  }
+  .hero-tag .eyebrow{ margin-bottom:8px; }
+  .hero-tag p{ font-family:'Cormorant Garamond', serif; font-size:1.05rem; font-style:italic; color:var(--ink); }
+
+  /* ---------- Marquee ---------- */
+  .marquee-band{
+    background:var(--ink); color:var(--ivory);
+    overflow:hidden; padding:16px 0; white-space:nowrap;
+  }
+  .marquee-track{ display:inline-flex; animation:scroll 26s linear infinite; }
+  .marquee-track span{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.15rem;
+    padding:0 34px; color:var(--ivory);
+    display:inline-flex; align-items:center; gap:34px;
+  }
+  .marquee-track span::after{ content:'✦'; color:var(--gold); font-style:normal; font-size:0.9rem;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- Section heading ---------- */
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:44px; gap:24px; flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(2rem, 3.4vw, 2.9rem); }
+  .section-head .sub{ max-width:360px; color:var(--stone); font-size:0.95rem; }
+
+  section{ padding:90px 0; }
+
+  /* ---------- Collections ---------- */
+  .collections{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .collection-card{
+    position:relative; height:460px; overflow:hidden; cursor:pointer;
+    border:1px solid var(--line);
+  }
+  .collection-card img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform 1s cubic-bezier(.2,.8,.2,1), filter .6s ease;
+  }
+  .collection-card:hover img{ transform:scale(1.08); }
+  .collection-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(21,17,13,0.78) 0%, rgba(21,17,13,0.05) 55%);
+    display:flex; flex-direction:column; justify-content:flex-end; padding:34px;
+  }
+  .collection-overlay .eyebrow{ color:var(--gold-light); margin-bottom:10px; }
+  .collection-overlay h3{ color:var(--ivory); font-size:2.2rem; margin-bottom:10px; }
+  .collection-overlay .cta-line{
+    color:var(--ivory); font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:8px; opacity:0.85;
+  }
+  .collection-overlay .cta-line svg{ width:14px; transition:transform .3s; }
+  .collection-card:hover .cta-line svg{ transform:translateX(6px); }
+
+  /* ---------- Product grid ---------- */
+  .filter-row{ display:flex; gap:10px; margin-bottom:40px; flex-wrap:wrap; }
+  .filter-chip{
+    padding:9px 20px; border:1px solid var(--line); font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:0.1em; cursor:pointer; background:transparent;
+    transition:all .3s ease;
+  }
+  .filter-chip.active, .filter-chip:hover{ border-color:var(--gold); background:var(--gold); color:var(--ink); }
+
+  .product-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:34px 28px;
+  }
+  .product-card{ cursor:pointer; }
+  .product-media{
+    position:relative; aspect-ratio:1/1.08; overflow:hidden; background:var(--ivory-2);
+    border:1px solid var(--line); margin-bottom:18px;
+  }
+  .product-media img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .7s cubic-bezier(.2,.8,.2,1), rotate .7s ease;
+    transform-origin:top center;
+  }
+  .product-card:hover .product-media img{ transform:scale(1.05) rotate(1.2deg); }
+  .product-badge{
+    position:absolute; top:14px; left:14px;
+    background:var(--wine); color:var(--ivory);
+    font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase;
+    padding:6px 10px;
+  }
+  .product-wish{
+    position:absolute; top:14px; right:14px; width:34px; height:34px;
+    background:rgba(247,241,229,0.9); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:translateY(-6px); transition:all .3s ease;
+  }
+  .product-card:hover .product-wish{ opacity:1; transform:translateY(0); }
+  .product-info{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .product-name{ font-family:'Cormorant Garamond', serif; font-size:1.28rem; margin-bottom:4px; }
+  .product-meta{ font-size:0.76rem; color:var(--stone); text-transform:uppercase; letter-spacing:0.06em; }
+  .product-price{ font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--gold); white-space:nowrap; }
+
+  .grid-more{ text-align:center; margin-top:56px; }
+
+  /* ---------- Craft / About ---------- */
+  .craft{
+    background:var(--ink); color:var(--ivory);
+  }
+  .craft .wrap{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .craft-media{ position:relative; }
+  .craft-media img{ width:100%; height:520px; object-fit:cover; }
+  .craft-media::after{
+    content:''; position:absolute; top:20px; left:20px; right:-20px; bottom:-20px;
+    border:1px solid var(--gold-dim); z-index:-1;
+  }
+  .craft-copy .eyebrow{ color:var(--gold-light); margin-bottom:20px; display:block; }
+  .craft-copy h2{ font-size:clamp(2.1rem, 3.6vw, 3rem); color:var(--ivory); margin-bottom:22px; }
+  .craft-copy p{ color:rgba(247,241,229,0.65); max-width:480px; margin-bottom:36px; }
+  .craft-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .craft-stats div{ border-top:1px solid var(--gold-dim); padding-top:14px; }
+  .craft-stats strong{ font-family:'Cormorant Garamond', serif; font-size:2rem; color:var(--gold-light); display:block; }
+  .craft-stats span{ font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(247,241,229,0.55); }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{ text-align:center; }
+  .quote-mark{ font-family:'Cormorant Garamond', serif; font-size:4rem; color:var(--gold); line-height:0.6; margin-bottom:10px; }
+  .testimonial-text{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:clamp(1.4rem, 2.4vw, 2rem);
+    max-width:760px; margin:0 auto 26px; color:var(--ink);
+  }
+  .testimonial-name{ font-size:0.8rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--stone); }
+  .testimonial-dots{ display:flex; gap:8px; justify-content:center; margin-top:34px; }
+  .testimonial-dots span{ width:6px; height:6px; border-radius:50%; background:var(--line); }
+  .testimonial-dots span.active{ background:var(--gold); }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--wine), #6b2530 60%, var(--wine));
+    color:var(--ivory); padding:80px 0; text-align:center;
+  }
+  .cta-band h2{ font-size:clamp(2rem, 4vw, 3rem); margin-bottom:16px; color:var(--ivory); }
+  .cta-band p{ color:rgba(247,241,229,0.75); margin-bottom:34px; }
+  .cta-form{ display:flex; justify-content:center; gap:0; max-width:440px; margin:0 auto; }
+  .cta-form input{
+    flex:1; padding:15px 18px; border:1px solid rgba(247,241,229,0.35); background:transparent;
+    color:var(--ivory); font-family:'Jost'; font-size:0.9rem; outline:none;
+  }
+  .cta-form input::placeholder{ color:rgba(247,241,229,0.5); }
+  .cta-form button{
+    padding:15px 26px; background:var(--gold-light); border:1px solid var(--gold-light);
+    color:var(--ink); text-transform:uppercase; font-size:0.76rem; letter-spacing:0.12em; cursor:pointer;
+    font-weight:600;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--ink); color:rgba(247,241,229,0.7); padding-top:70px; }
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:50px; padding-bottom:60px;
+    border-bottom:1px solid rgba(247,241,229,0.12);
+  }
+  .footer-logo{ color:var(--ivory); font-family:'Cormorant Garamond', serif; font-size:1.5rem; margin-bottom:16px; }
+  .footer-logo .n{ color:var(--gold); font-style:italic; }
+  .footer-grid p{ font-size:0.88rem; max-width:260px; }
+  .footer-col h4{
+    font-family:'Jost'; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.14em;
+    color:var(--ivory); margin-bottom:18px; font-weight:500;
+  }
+  .footer-col ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+  .footer-col a{ font-size:0.9rem; transition:color .3s; }
+  .footer-col a:hover{ color:var(--gold-light); }
+  .footer-social{ display:flex; gap:12px; margin-top:20px; }
+  .footer-social a{
+    width:36px; height:36px; border:1px solid rgba(247,241,229,0.2); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; transition:border-color .3s;
+  }
+  .footer-social a:hover{ border-color:var(--gold-light); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; padding:24px 0; font-size:0.78rem;
+    color:rgba(247,241,229,0.45); flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .nav-links{ display:none; }
+    .hamburger{ display:flex; }
+    .hero{ grid-template-columns:1fr; }
+    .hero-tag{ display:none; }
+    .collections{ grid-template-columns:1fr; }
+    .product-grid{ grid-template-columns:repeat(2,1fr); }
+    .craft .wrap{ grid-template-columns:1fr; }
+    .craft-media img{ height:360px; }
+    .craft-stats{ grid-template-columns:repeat(2,1fr); }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .search-results{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 560px){
+    .wrap, .nav{ padding-left:22px; padding-right:22px; }
+    .hero{ padding:40px 22px 20px; }
+    .product-grid{ grid-template-columns:1fr; }
+    .hero-stats{ gap:26px; flex-wrap:wrap; }
+    .cta-form{ flex-direction:column; }
+    .footer-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <nav class="nav">
+    <div class="logo">PENDANT<span class="n">n</span>CHAIN</div>
+    <ul class="nav-links">
+      <li><a href="#collections">Pendants</a></li>
+      <li><a href="#bestsellers">Chains</a></li>
+      <li><a href="#craft">Craftsmanship</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Visit Us</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="icon-btn" id="openSearch" title="Search jewellery">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <a href="#bestsellers" class="btn btn-gold">Shop Now</a>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+</header>
+
+<!-- ===================== SEARCH OVERLAY ===================== -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="close-search" id="closeSearch">Close ✕</div>
+  <div class="search-box">
+    <span class="eyebrow">Find a piece</span>
+    <input type="text" id="searchInput" placeholder="Search pendants, chains, gifting…" autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+    <div class="search-empty" id="searchEmpty" style="display:none;">No pieces match that search — try “pendant”, “chain” or “gold”.</div>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Handcrafted · 18K Gold · BIS Hallmarked</span>
+    <h1>Every chain<br>tells a story.<br><em>Every pendant</em><br>holds one.</h1>
+    <p>PendantnChain is a family atelier crafting fine pendants and chains you'll pass down, not just wear out. Each piece is cast, set, and polished by hand.</p>
+    <div class="hero-actions">
+      <a href="#bestsellers" class="btn btn-gold">Explore Collection</a>
+      <a href="#craft" class="btn">Our Craft</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>27+</strong><span>Years Crafting</span></div>
+      <div><strong>12K</strong><span>Pieces Delivered</span></div>
+      <div><strong>100%</strong><span>Hallmarked Gold</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-frame">
+      <img src="https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Woman wearing a fine gold pendant necklace from PendantnChain">
+    </div>
+    <div class="hero-tag">
+      <span class="eyebrow">Featured Piece</span>
+      <p>“The Aria Pendant” — 18K gold, hand-set stone, ₹34,900</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span>Handcrafted in 18K Gold<span></span>BIS Hallmark Certified<span></span>Lifetime Free Polishing<span></span>Old Gold Exchange Available<span></span>Handcrafted in 18K Gold<span></span>BIS Hallmark Certified<span></span>Lifetime Free Polishing<span></span>Old Gold Exchange Available<span></span></span>
+  </div>
+</div>
+
+<!-- ===================== CHAIN DIVIDER ===================== -->
+<div class="chain-divider">
+  <svg viewBox="0 0 400 16" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#B4863A" stroke-width="1.4">
+      <ellipse cx="10" cy="8" rx="8" ry="5"/>
+      <ellipse cx="26" cy="8" rx="8" ry="5"/>
+      <ellipse cx="42" cy="8" rx="8" ry="5"/>
+      <ellipse cx="58" cy="8" rx="8" ry="5"/>
+      <ellipse cx="74" cy="8" rx="8" ry="5"/>
+      <ellipse cx="90" cy="8" rx="8" ry="5"/>
+      <ellipse cx="106" cy="8" rx="8" ry="5"/>
+      <ellipse cx="122" cy="8" rx="8" ry="5"/>
+      <ellipse cx="138" cy="8" rx="8" ry="5"/>
+      <ellipse cx="154" cy="8" rx="8" ry="5"/>
+      <ellipse cx="170" cy="8" rx="8" ry="5"/>
+      <ellipse cx="186" cy="8" rx="8" ry="5"/>
+      <ellipse cx="202" cy="8" rx="8" ry="5"/>
+      <ellipse cx="218" cy="8" rx="8" ry="5"/>
+      <ellipse cx="234" cy="8" rx="8" ry="5"/>
+      <ellipse cx="250" cy="8" rx="8" ry="5"/>
+      <ellipse cx="266" cy="8" rx="8" ry="5"/>
+      <ellipse cx="282" cy="8" rx="8" ry="5"/>
+      <ellipse cx="298" cy="8" rx="8" ry="5"/>
+      <ellipse cx="314" cy="8" rx="8" ry="5"/>
+      <ellipse cx="330" cy="8" rx="8" ry="5"/>
+      <ellipse cx="346" cy="8" rx="8" ry="5"/>
+      <ellipse cx="362" cy="8" rx="8" ry="5"/>
+      <ellipse cx="378" cy="8" rx="8" ry="5"/>
+      <ellipse cx="390" cy="8" rx="8" ry="5"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ===================== COLLECTIONS ===================== -->
+<section id="collections">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Shop by Collection</h2>
+      <p class="sub">Two houses, one atelier — pendants set stone by stone, and chains built link by link.</p>
+    </div>
+    <div class="collections">
+      <div class="collection-card">
+        <img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Gold and silver pendant necklace collection">
+        <div class="collection-overlay">
+          <span class="eyebrow">The Pendant House</span>
+          <h3>Pendants</h3>
+          <span class="cta-line">View 84 designs
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="collection-card">
+        <img src="https://images.unsplash.com/photo-1585711715631-1e6bf224f092?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Gold chain necklace macro shot">
+        <div class="collection-overlay">
+          <span class="eyebrow">The Chain House</span>
+          <h3>Chains</h3>
+          <span class="cta-line">View 61 designs
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BESTSELLERS ===================== -->
+<section id="bestsellers">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Bestsellers</h2>
+      <p class="sub">Our most-gifted pieces this season, each finished by hand in our Guna workshop.</p>
+    </div>
+    <div class="filter-row">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="pendant">Pendants</button>
+      <button class="filter-chip" data-filter="chain">Chains</button>
+      <button class="filter-chip" data-filter="set">Sets</button>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <div class="product-card" data-category="pendant" data-name="Aria Solitaire Pendant" data-price="₹34,900">
+        <div class="product-media">
+          <span class="product-badge">Bestseller</span>
+          <div class="product-wish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Aria Solitaire gold pendant">
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Aria Solitaire</div>
+            <div class="product-meta">18K Gold · Pendant</div>
+          </div>
+          <div class="product-price">₹34,900</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="chain" data-name="Meridian Cable Chain" data-price="₹28,500">
+        <div class="product-media">
+          <div class="product-wish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1611107683227-e9060eccd846?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Meridian gold cable chain necklace">
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Meridian Cable</div>
+            <div class="product-meta">22K Gold · Chain</div>
+          </div>
+          <div class="product-price">₹28,500</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="set" data-name="Belle Layered Set" data-price="₹41,200">
+        <div class="product-media">
+          <span class="product-badge">New</span>
+          <div class="product-wish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1633934542430-0905ccb5f050?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Layered gold rings and necklace set">
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Belle Layered Set</div>
+            <div class="product-meta">18K Gold · Ring + Chain</div>
+          </div>
+          <div class="product-price">₹41,200</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="pendant" data-name="Heirloom Locket" data-price="₹22,750">
+        <div class="product-media">
+          <div class="product-wish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Heirloom gold locket pendant worn on neck">
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Heirloom Locket</div>
+            <div class="product-meta">18K Gold · Pendant</div>
+          </div>
+          <div class="product-price">₹22,750</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="chain" data-name="Vintage Rope Chain" data-price="₹31,000">
+        <div class="product-media">
+          <div class="product-wish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1585711715631-1e6bf224f092?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Vintage rope gold chain macro">
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Vintage Rope</div>
+            <div class="product-meta">22K Gold · Chain</div>
+          </div>
+          <div class="product-price">₹31,000</div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="set" data-name="Duet Chain & Earring Set" data-price="₹38,400">
+        <div class="product-media">
+          <span class="product-badge">Gifting</span>
+          <div class="product-wish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 4.5 7 4.5c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.15-9.5 8.5-9.5 8.5z"/></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1545839539-88eac4c475d5?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Gold chain and earring gift set">
+        </div>
+        <div class="product-info">
+          <div>
+            <div class="product-name">Duet Set</div>
+            <div class="product-meta">18K Gold · Chain + Earrings</div>
+          </div>
+          <div class="product-price">₹38,400</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid-more">
+      <a href="#" class="btn">View Full Catalogue</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CRAFT / ABOUT ===================== -->
+<section id="craft" class="craft">
+  <div class="wrap">
+    <div class="craft-media">
+      <img src="https://images.unsplash.com/photo-1633934542430-0905ccb5f050?fm=jpg&q=80&w=1100&auto=format&fit=crop" alt="Close up of hand-finished gold jewellery">
+    </div>
+    <div class="craft-copy">
+      <span class="eyebrow">Since 1998</span>
+      <h2>Cast, set, and polished by the same hands, every time.</h2>
+      <p>Three generations of goldsmiths run our Guna workshop. Every pendant is wax-cast in-house, every chain link soldered by hand, and every finished piece hallmark-tested before it leaves our bench.</p>
+      <a href="#contact" class="btn" style="border-color:#E4C77A; color:#F7F1E5;">Visit The Workshop</a>
+      <div class="craft-stats" style="margin-top:44px;">
+        <div><strong>27+</strong><span>Years of Craft</span></div>
+        <div><strong>40</strong><span>In-House Artisans</span></div>
+        <div><strong>100%</strong><span>BIS Hallmarked</span></div>
+        <div><strong>Free</strong><span>Lifetime Polish</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section id="testimonials" class="testimonials">
+  <div class="wrap">
+    <div class="quote-mark">“</div>
+    <p class="testimonial-text">The chain I bought for my mother's 60th birthday still looks brand new two years on — and their polishing service is genuinely free, no fine print.</p>
+    <div class="testimonial-name">— Priya Sharma, Bhopal</div>
+    <div class="testimonial-dots">
+      <span class="active"></span><span></span><span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Join The Inner Circle</h2>
+    <p>New designs, workshop stories, and early access to limited pieces — straight to your inbox.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="Your email address">
+      <button type="button">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">PENDANT<span class="n">n</span>CHAIN</div>
+        <p>A family goldsmithing atelier in Guna, Madhya Pradesh — handcrafting pendants and chains since 1998.</p>
+        <div class="footer-social">
+          <a href="#" title="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" title="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+          <a href="#" title="Pinterest"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9.5 17c1-3.5 1.5-5.5 1.5-5.5m3-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#collections">Pendants</a></li>
+          <li><a href="#bestsellers">Chains</a></li>
+          <li><a href="#bestsellers">Gift Sets</a></li>
+          <li><a href="#bestsellers">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#craft">Our Craft</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#">Hallmark Certificate</a></li>
+          <li><a href="#">Care Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit The Workshop</h4>
+        <ul>
+          <li>Station Road, Guna,<br>Madhya Pradesh, India</li>
+          <li>+91 98XXX XXXXX</li>
+          <li>hello@pendantnchain.in</li>
+          <li>Mon – Sat, 10am – 8pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PendantnChain. All rights reserved.</span>
+      <span>Handcrafted in Guna, India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile hamburger (basic show/hide of nav links)
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    const visible = navLinks.style.display === 'flex';
+    navLinks.style.display = visible ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '68px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = '#F7F1E5';
+    navLinks.style.padding = '24px 40px';
+    navLinks.style.gap = '18px';
+    navLinks.style.borderBottom = '1px solid rgba(21,17,13,0.12)';
+  });
+
+  // Product filter chips
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.product-card');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+
+  // Search overlay with live product search
+  const openSearch = document.getElementById('openSearch');
+  const closeSearch = document.getElementById('closeSearch');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const searchEmpty = document.getElementById('searchEmpty');
+
+  const productData = Array.from(cards).map(card => ({
+    name: card.dataset.name,
+    price: card.dataset.price,
+    category: card.dataset.category,
+    img: card.querySelector('img').src
+  }));
+
+  function renderResults(query){
+    searchResults.innerHTML = '';
+    const q = query.trim().toLowerCase();
+    if(!q){ searchEmpty.style.display = 'none'; return; }
+    const matches = productData.filter(p =>
+      p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)
+    );
+    if(matches.length === 0){
+      searchEmpty.style.display = 'block';
+      return;
+    }
+    searchEmpty.style.display = 'none';
+    matches.forEach(p => {
+      const item = document.createElement('div');
+      item.className = 'sr-item';
+      item.innerHTML = `<img src="${p.img}" alt="${p.name}"><div><div class="sr-name">${p.name}</div><div class="sr-price">${p.price}</div></div>`;
+      item.addEventListener('click', () => {
+        searchOverlay.classList.remove('active');
+        document.getElementById('bestsellers').scrollIntoView({behavior:'smooth'});
+      });
+      searchResults.appendChild(item);
+    });
+  }
+
+  openSearch.addEventListener('click', () => {
+    searchOverlay.classList.add('active');
+    searchInput.focus();
+    renderResults('');
+  });
+  closeSearch.addEventListener('click', () => searchOverlay.classList.remove('active'));
+  searchOverlay.addEventListener('click', (e) => { if(e.target === searchOverlay) searchOverlay.classList.remove('active'); });
+  searchInput.addEventListener('input', (e) => renderResults(e.target.value));
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') searchOverlay.classList.remove('active'); });
+</script>
+
+</body>
+</html>
