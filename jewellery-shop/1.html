@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suvarna — Necklace Set Gold | Fine Gold Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a0a0e;
+    --maroon:#33111c;
+    --maroon-light:#48192a;
+    --maroon-lighter:#5c2033;
+    --gold:#d4af61;
+    --gold-soft:#e6cd93;
+    --gold-deep:#a5772a;
+    --gold-pale:#f3e3b8;
+    --ivory:#faf5ea;
+    --ivory-dim:#efe6d3;
+    --emerald:#1f5c46;
+    --ruby:#7a1b2b;
+    --ink-text:#241014;
+    --shadow:0 20px 50px -20px rgba(0,0,0,.5);
+    --radius:2px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--ink-text);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
+  .label{font-family:'Cinzel',serif;letter-spacing:.16em;text-transform:uppercase;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  ul{list-style:none;}
+  input{font-family:inherit;}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(26,10,14,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(212,175,97,.25);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,48px);color:var(--ivory);}
+  .logo{font-family:'Cinzel',serif;font-size:1.5rem;letter-spacing:.22em;color:var(--gold-soft);font-weight:600;}
+  .logo span{color:var(--gold);}
+  nav.links{display:flex;gap:36px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;}
+  nav.links a{position:relative;padding-bottom:4px;color:var(--ivory-dim);transition:color .25s;}
+  nav.links a:hover,nav.links a:focus-visible{color:var(--gold);}
+  nav.links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+  nav.links a:hover::after{width:100%;}
+  .nav-icons{display:flex;align-items:center;gap:20px;}
+  .nav-icons button{color:var(--ivory);opacity:.9;transition:opacity .2s, transform .2s;position:relative;}
+  .nav-icons button:hover{opacity:1;transform:translateY(-1px);color:var(--gold);}
+  .bag-count{position:absolute;top:-7px;right:-9px;background:var(--gold);color:var(--ink);font-size:.62rem;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Jost';font-weight:600;}
+  .menu-toggle{display:none;}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--gold);color:var(--ink);overflow:hidden;white-space:nowrap;}
+  .marquee-track{display:inline-flex;gap:56px;padding:9px 0;animation:scroll 26s linear infinite;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.14em;}
+  .marquee-track span{display:inline-flex;align-items:center;gap:10px;}
+  .marquee-track span::before{content:'✦';font-size:.6rem;}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(ellipse at 75% 30%, var(--maroon-lighter), var(--ink) 68%);
+    color:var(--ivory);
+    padding:clamp(60px,9vw,110px) 0 clamp(60px,7vw,90px);
+    overflow:hidden;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+  .eyebrow{color:var(--gold);font-size:.72rem;margin-bottom:20px;display:inline-flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);}
+  .hero h1{font-size:clamp(3rem,6vw,4.6rem);font-weight:600;font-style:italic;line-height:1.02;color:var(--ivory);letter-spacing:.005em;}
+  .hero h1 em{color:var(--gold-soft);font-style:italic;}
+  .hero p.desc{margin-top:22px;max-width:440px;color:var(--ivory-dim);font-size:1.02rem;font-weight:300;}
+  .price-row{display:flex;align-items:baseline;gap:14px;margin-top:28px;}
+  .price{font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--gold-soft);font-weight:600;}
+  .price-old{font-size:1rem;color:rgba(250,245,234,.45);text-decoration:line-through;}
+  .purity-badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--gold-deep);color:var(--gold-soft);padding:5px 12px;font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:.12em;margin-top:6px;}
+  .cta-row{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+  .btn{padding:15px 34px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transition:all .3s;border:1px solid var(--gold);}
+  .btn-solid{background:var(--gold);color:var(--ink);}
+  .btn-solid:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 12px 28px -10px rgba(212,175,97,.6);}
+  .btn-outline{background:transparent;color:var(--gold-soft);}
+  .btn-outline:hover{background:rgba(212,175,97,.1);}
+  .hero-art{position:relative;display:flex;align-items:center;justify-content:center;}
+  .hero-glow{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,97,.28),transparent 70%);filter:blur(6px);}
+  .hero-ring{position:absolute;width:380px;height:380px;border:1px solid rgba(212,175,97,.25);border-radius:50%;}
+  .sparkle{position:absolute;color:var(--gold-soft);animation:pulse 2.6s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.1)}}
+  @media(prefers-reduced-motion:reduce){.sparkle,.marquee-track{animation:none;}}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{padding:clamp(64px,8vw,96px) 0;}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;gap:24px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:600;font-style:italic;color:var(--ink-text);}
+  .section-head p{max-width:360px;color:#6b5a5f;font-size:.92rem;}
+  .eyebrow-dark{color:var(--gold-deep);}
+  .eyebrow-dark::before{background:var(--gold-deep);}
+
+  /* ---------- CATEGORIES ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;}
+  .cat-card{background:var(--maroon);border:1px solid var(--gold-deep);padding:28px 12px;text-align:center;transition:transform .3s, background .3s;}
+  .cat-card:hover{transform:translateY(-6px);background:var(--maroon-light);}
+  .cat-card svg{margin:0 auto 14px;color:var(--gold-soft);}
+  .cat-card span{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-dim);}
+
+  /* ---------- PRODUCT GRID ---------- */
+  .bg-alt{background:var(--ivory-dim);}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .prod-card{background:var(--ivory);border:1px solid rgba(51,17,28,.1);position:relative;overflow:hidden;transition:box-shadow .35s, transform .35s;}
+  .prod-card:hover{box-shadow:var(--shadow);transform:translateY(-6px);}
+  .prod-media{background:linear-gradient(160deg,var(--maroon) 0%,var(--ink) 100%);position:relative;aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .prod-media::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%);transform:translateX(-120%);transition:transform .8s;}
+  .prod-card:hover .prod-media::after{transform:translateX(120%);}
+  .wish-btn{position:absolute;top:14px;right:14px;background:rgba(26,10,14,.55);color:var(--ivory);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:2;}
+  .wish-btn:hover{background:var(--gold);color:var(--ink);}
+  .wish-btn.active svg{fill:var(--ruby);stroke:var(--ruby);}
+  .tag{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--ink);font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;padding:5px 10px;z-index:2;}
+  .prod-body{padding:22px 20px 24px;}
+  .prod-body .cat-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;color:var(--gold-deep);text-transform:uppercase;}
+  .prod-body h3{font-size:1.4rem;font-weight:600;margin:6px 0 8px;}
+  .stars{display:flex;gap:2px;color:var(--gold);margin-bottom:10px;}
+  .prod-footer{display:flex;align-items:center;justify-content:space-between;margin-top:6px;}
+  .prod-price{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--maroon);}
+  .add-mini{border:1px solid var(--maroon);color:var(--maroon);padding:8px 16px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;transition:.25s;}
+  .add-mini:hover{background:var(--maroon);color:var(--ivory);}
+
+  /* ---------- SPOTLIGHT ---------- */
+  .spotlight{background:var(--maroon);color:var(--ivory);}
+  .spot-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .spot-media{background:radial-gradient(ellipse at 50% 35%,var(--maroon-lighter),var(--ink) 75%);border:1px solid rgba(212,175,97,.3);padding:30px;display:flex;align-items:center;justify-content:center;}
+  .spot-tabs{display:flex;gap:28px;border-bottom:1px solid rgba(212,175,97,.25);margin:26px 0 22px;}
+  .spot-tabs span{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding-bottom:12px;color:var(--ivory-dim);position:relative;}
+  .spot-tabs span.active{color:var(--gold);}
+  .spot-tabs span.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--gold);}
+  .spec-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;font-size:.88rem;color:var(--ivory-dim);margin-bottom:26px;}
+  .spec-list div span{display:block;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--gold-deep);text-transform:uppercase;margin-bottom:4px;}
+  .size-row{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap;}
+  .size-row label{border:1px solid rgba(212,175,97,.4);padding:9px 16px;font-size:.8rem;cursor:pointer;transition:.2s;}
+  .size-row input{display:none;}
+  .size-row input:checked + span{background:var(--gold);color:var(--ink);}
+  .size-row label:has(input:checked){background:var(--gold);border-color:var(--gold);}
+  .size-row label span{color:inherit;}
+  .qty-row{display:flex;align-items:center;gap:18px;margin-bottom:28px;}
+  .qty-box{display:flex;align-items:center;border:1px solid rgba(212,175,97,.4);}
+  .qty-box button{width:34px;height:38px;color:var(--gold-soft);font-size:1.1rem;}
+  .qty-box span{width:36px;text-align:center;font-size:.9rem;}
+  .trust-row{display:flex;gap:26px;margin-top:32px;flex-wrap:wrap;}
+  .trust-row div{display:flex;align-items:center;gap:9px;font-size:.78rem;color:var(--ivory-dim);}
+  .trust-row svg{color:var(--gold);}
+
+  /* ---------- CRAFT STORY ---------- */
+  .craft{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .craft h2{font-size:clamp(2rem,3.2vw,2.6rem);font-style:italic;font-weight:600;margin-bottom:20px;}
+  .craft p{color:#6b5a5f;margin-bottom:16px;max-width:460px;}
+  .divider-motif{display:flex;align-items:center;justify-content:center;height:100%;}
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{background:var(--ink);color:var(--ivory);text-align:center;padding:70px 20px;}
+  .newsletter h2{font-size:clamp(1.8rem,3vw,2.4rem);font-style:italic;margin-bottom:10px;color:var(--gold-soft);}
+  .newsletter p{color:var(--ivory-dim);margin-bottom:30px;}
+  .sub-form{display:flex;justify-content:center;gap:0;max-width:440px;margin:0 auto;border:1px solid var(--gold-deep);}
+  .sub-form input{flex:1;background:transparent;border:none;padding:15px 18px;color:var(--ivory);font-size:.9rem;}
+  .sub-form input::placeholder{color:rgba(250,245,234,.45);}
+  .sub-form button{background:var(--gold);color:var(--ink);padding:0 26px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:var(--ivory-dim);border-top:1px solid rgba(212,175,97,.2);padding:64px 0 28px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;}
+  .foot-grid h4{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:var(--gold-soft);text-transform:uppercase;margin-bottom:18px;}
+  .foot-grid ul li{margin-bottom:11px;font-size:.86rem;}
+  .foot-grid ul li a:hover{color:var(--gold);}
+  .foot-brand p{font-size:.85rem;color:var(--ivory-dim);margin:14px 0 20px;max-width:280px;}
+  .foot-social{display:flex;gap:14px;}
+  .foot-social a{width:34px;height:34px;border:1px solid var(--gold-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .foot-social a:hover{background:var(--gold);color:var(--ink);}
+  .foot-bottom{border-top:1px solid rgba(212,175,97,.15);padding-top:22px;display:flex;justify-content:space-between;font-size:.74rem;color:rgba(250,245,234,.45);flex-wrap:wrap;gap:10px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:980px){
+    nav.links{display:none;}
+    .cat-grid{grid-template-columns:repeat(3,1fr);}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .hero .wrap{grid-template-columns:1fr;text-align:center;}
+    .eyebrow{margin-inline:auto;}
+    .hero p.desc{margin-inline:auto;}
+    .cta-row{justify-content:center;}
+    .spot-grid{grid-template-columns:1fr;}
+    .craft{grid-template-columns:1fr;text-align:center;}
+    .craft p{margin-inline:auto;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:600px){
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .prod-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .spec-list{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a href="#top" class="logo">SUVARNA<span>.</span></a>
+    <nav class="links" aria-label="Primary">
+      <a href="#collection">Collections</a>
+      <a href="#necklace-set-gold">Necklace Set Gold</a>
+      <a href="#craft">Craftsmanship</a>
+      <a href="#footer">Contact</a>
+    </nav>
+    <div class="nav-icons">
+      <button aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+      </button>
+      <button aria-label="Wishlist">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg>
+      </button>
+      <button aria-label="Shopping bag, 2 items">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="bag-count">2</span>
+      </button>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>BIS HALLMARKED 22K GOLD</span><span>CERTIFIED CRAFTSMANSHIP</span><span>FREE INSURED SHIPPING</span><span>LIFETIME EXCHANGE PROMISE</span>
+      <span>BIS HALLMARKED 22K GOLD</span><span>CERTIFIED CRAFTSMANSHIP</span><span>FREE INSURED SHIPPING</span><span>LIFETIME EXCHANGE PROMISE</span>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">The Bridal Gold Edit</span>
+        <h1>Necklace Set<br><em>Gold</em></h1>
+        <p class="desc">A graduated 22K gold necklace set with a hand-set kemp pendant, finished in antique temple style by karigars in Coimbatore. Comes complete with matching jhumka earrings.</p>
+        <div class="price-row">
+          <span class="price">₹1,28,500</span>
+          <span class="price-old">₹1,42,800</span>
+        </div>
+        <div class="purity-badge">✦ 22K &nbsp;·&nbsp; 38.2g &nbsp;·&nbsp; BIS 916</div>
+        <div class="cta-row">
+          <button class="btn btn-solid" id="hero-add">Add to Bag</button>
+          <a href="#necklace-set-gold" class="btn btn-outline">View Details</a>
+        </div>
+      </div>
+
+      <div class="hero-art" role="img" aria-label="Illustration of a layered gold necklace with a ruby-red temple-style pendant">
+        <div class="hero-glow"></div>
+        <div class="hero-ring"></div>
+        <svg width="480" height="380" viewBox="0 0 600 420">
+          <defs>
+            <radialGradient id="beadGold" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#f6e2ab"/>
+              <stop offset="55%" stop-color="#d4af61"/>
+              <stop offset="100%" stop-color="#9c6b1f"/>
+            </radialGradient>
+            <linearGradient id="chainGold" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#a5772a"/>
+              <stop offset="50%" stop-color="#e6cd93"/>
+              <stop offset="100%" stop-color="#a5772a"/>
+            </linearGradient>
+            <radialGradient id="rubyGem" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#c94f5f"/>
+              <stop offset="60%" stop-color="#7a1b2b"/>
+              <stop offset="100%" stop-color="#4a0f18"/>
+            </radialGradient>
+          </defs>
+
+          <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="2" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+
+          <g>
+            <circle cx="60" cy="60" r="5" fill="url(#beadGold)"/>
+            <circle cx="93" cy="112" r="6" fill="url(#beadGold)"/>
+            <circle cx="130" cy="163" r="7" fill="url(#beadGold)"/>
+            <circle cx="172" cy="208" r="7.5" fill="url(#beadGold)"/>
+            <circle cx="218" cy="245" r="8" fill="url(#beadGold)"/>
+            <circle cx="262" cy="270" r="8.5" fill="url(#beadGold)"/>
+
+            <circle cx="540" cy="60" r="5" fill="url(#beadGold)"/>
+            <circle cx="507" cy="112" r="6" fill="url(#beadGold)"/>
+            <circle cx="470" cy="163" r="7" fill="url(#beadGold)"/>
+            <circle cx="428" cy="208" r="7.5" fill="url(#beadGold)"/>
+            <circle cx="382" cy="245" r="8" fill="url(#beadGold)"/>
+            <circle cx="338" cy="270" r="8.5" fill="url(#beadGold)"/>
+          </g>
+
+          <!-- pendant -->
+          <g>
+            <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+            <ellipse cx="300" cy="308" rx="17" ry="21" fill="url(#rubyGem)"/>
+            <ellipse cx="294" cy="298" rx="5" ry="7" fill="#f3cdd2" opacity="0.55"/>
+            <path d="M292,340 L300,362 L308,340" fill="none" stroke="url(#chainGold)" stroke-width="2"/>
+            <circle cx="300" cy="366" r="4.5" fill="url(#beadGold)"/>
+          </g>
+
+          <!-- sparkles -->
+          <g class="sparkle" style="animation-delay:.2s">
+            <path d="M255,235 l3,-9 3,9 9,3 -9,3 -3,9 -3,-9 -9,-3 z" fill="#f3e3b8"/>
+          </g>
+          <g class="sparkle" style="animation-delay:1s">
+            <path d="M355,215 l2.5,-7 2.5,7 7,2.5 -7,2.5 -2.5,7 -2.5,-7 -7,-2.5 z" fill="#f3e3b8"/>
+          </g>
+          <g class="sparkle" style="animation-delay:1.6s">
+            <path d="M470,90 l2,-6 2,6 6,2 -6,2 -2,6 -2,-6 -6,-2 z" fill="#f3e3b8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="collection">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow eyebrow-dark">Shop by Category</span>
+          <h2>Every piece, in its place.</h2>
+        </div>
+        <p>From everyday gold to bridal statement sets — curated by category, crafted by hand.</p>
+      </div>
+
+      <div class="cat-grid">
+        <a class="cat-card" href="#">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 5c3 6 5 9 8 9s5-3 8-9"/><circle cx="12" cy="15" r="2"/></svg>
+          <span>Necklaces</span>
+        </a>
+        <a class="cat-card" href="#">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 4v3"/><path d="M8 10a4 4 0 0 1 8 0c0 4-4 6-4 10-0 -4-4-6-4-10z"/></svg>
+          <span>Earrings</span>
+        </a>
+        <a class="cat-card" href="#">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>
+          <span>Bangles</span>
+        </a>
+        <a class="cat-card" href="#">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="15" r="6"/><path d="M9 9l3-5 3 5"/></svg>
+          <span>Rings</span>
+        </a>
+        <a class="cat-card" href="#">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3c-3 4-3 6 0 8s3 4 0 8"/></svg>
+          <span>Maang Tikka</span>
+        </a>
+        <a class="cat-card" href="#">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><ellipse cx="12" cy="12" rx="9" ry="4"/></svg>
+          <span>Anklets</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT GRID -->
+  <section class="section bg-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow eyebrow-dark">Featured Sets</span>
+          <h2>The gold, edited.</h2>
+        </div>
+        <p>Six sets from this season's temple and antique-finish collection.</p>
+      </div>
+
+      <div class="prod-grid">
+
+        <!-- card 1 -->
+        <article class="prod-card" id="necklace-set-gold">
+          <div class="prod-media">
+            <span class="tag">Bestseller</span>
+            <button class="wish-btn" aria-label="Add Necklace Set Gold to wishlist" onclick="toggleWish(this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></button>
+            <svg width="170" height="140" viewBox="0 0 600 420">
+              <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+              <circle cx="90" cy="105" r="7" fill="url(#beadGold)"/><circle cx="150" cy="180" r="8" fill="url(#beadGold)"/><circle cx="220" cy="245" r="9" fill="url(#beadGold)"/>
+              <circle cx="510" cy="105" r="7" fill="url(#beadGold)"/><circle cx="450" cy="180" r="8" fill="url(#beadGold)"/><circle cx="380" cy="245" r="9" fill="url(#beadGold)"/>
+              <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+              <ellipse cx="300" cy="308" rx="17" ry="21" fill="url(#rubyGem)"/>
+            </svg>
+          </div>
+          <div class="prod-body">
+            <span class="cat-label">Temple Antique Finish</span>
+            <h3>Necklace Set Gold</h3>
+            <div class="stars">★★★★★</div>
+            <div class="prod-footer">
+              <span class="prod-price">₹1,28,500</span>
+              <button class="add-mini">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="prod-card">
+          <div class="prod-media">
+            <button class="wish-btn" aria-label="Add Kundan Bridal Choker to wishlist" onclick="toggleWish(this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></button>
+            <svg width="170" height="140" viewBox="0 0 600 420">
+              <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+              <circle cx="90" cy="105" r="7" fill="url(#beadGold)"/><circle cx="150" cy="180" r="8" fill="url(#beadGold)"/><circle cx="220" cy="245" r="9" fill="url(#beadGold)"/>
+              <circle cx="510" cy="105" r="7" fill="url(#beadGold)"/><circle cx="450" cy="180" r="8" fill="url(#beadGold)"/><circle cx="380" cy="245" r="9" fill="url(#beadGold)"/>
+              <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+              <ellipse cx="300" cy="308" rx="17" ry="21" fill="#1f5c46"/>
+            </svg>
+          </div>
+          <div class="prod-body">
+            <span class="cat-label">Kundan Bridal</span>
+            <h3>Kundan Bridal Choker</h3>
+            <div class="stars">★★★★★</div>
+            <div class="prod-footer">
+              <span class="prod-price">₹1,84,200</span>
+              <button class="add-mini">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="prod-card">
+          <div class="prod-media">
+            <button class="wish-btn" aria-label="Add Temple Antique Necklace to wishlist" onclick="toggleWish(this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></button>
+            <svg width="170" height="140" viewBox="0 0 600 420">
+              <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+              <circle cx="90" cy="105" r="7" fill="url(#beadGold)"/><circle cx="150" cy="180" r="8" fill="url(#beadGold)"/><circle cx="220" cy="245" r="9" fill="url(#beadGold)"/>
+              <circle cx="510" cy="105" r="7" fill="url(#beadGold)"/><circle cx="450" cy="180" r="8" fill="url(#beadGold)"/><circle cx="380" cy="245" r="9" fill="url(#beadGold)"/>
+              <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+              <ellipse cx="300" cy="308" rx="17" ry="21" fill="url(#rubyGem)"/>
+            </svg>
+          </div>
+          <div class="prod-body">
+            <span class="cat-label">Temple Antique</span>
+            <h3>Rani Padakkam Set</h3>
+            <div class="stars">★★★★☆</div>
+            <div class="prod-footer">
+              <span class="prod-price">₹96,750</span>
+              <button class="add-mini">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 4 -->
+        <article class="prod-card">
+          <div class="prod-media">
+            <button class="wish-btn" aria-label="Add Pearl Drop Gold Set to wishlist" onclick="toggleWish(this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></button>
+            <svg width="170" height="140" viewBox="0 0 600 420">
+              <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+              <circle cx="90" cy="105" r="7" fill="url(#beadGold)"/><circle cx="150" cy="180" r="8" fill="url(#beadGold)"/><circle cx="220" cy="245" r="9" fill="url(#beadGold)"/>
+              <circle cx="510" cy="105" r="7" fill="url(#beadGold)"/><circle cx="450" cy="180" r="8" fill="url(#beadGold)"/><circle cx="380" cy="245" r="9" fill="url(#beadGold)"/>
+              <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+              <ellipse cx="300" cy="308" rx="17" ry="21" fill="#ede6d6"/>
+            </svg>
+          </div>
+          <div class="prod-body">
+            <span class="cat-label">Pearl Edit</span>
+            <h3>Pearl Drop Gold Set</h3>
+            <div class="stars">★★★★☆</div>
+            <div class="prod-footer">
+              <span class="prod-price">₹72,300</span>
+              <button class="add-mini">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 5 -->
+        <article class="prod-card">
+          <div class="prod-media">
+            <button class="wish-btn" aria-label="Add Meenakari Layered Set to wishlist" onclick="toggleWish(this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></button>
+            <svg width="170" height="140" viewBox="0 0 600 420">
+              <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+              <circle cx="90" cy="105" r="7" fill="url(#beadGold)"/><circle cx="150" cy="180" r="8" fill="url(#beadGold)"/><circle cx="220" cy="245" r="9" fill="url(#beadGold)"/>
+              <circle cx="510" cy="105" r="7" fill="url(#beadGold)"/><circle cx="450" cy="180" r="8" fill="url(#beadGold)"/><circle cx="380" cy="245" r="9" fill="url(#beadGold)"/>
+              <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+              <ellipse cx="300" cy="308" rx="17" ry="21" fill="#1f3b5c"/>
+            </svg>
+          </div>
+          <div class="prod-body">
+            <span class="cat-label">Meenakari Enamel</span>
+            <h3>Meenakari Layered Set</h3>
+            <div class="stars">★★★★★</div>
+            <div class="prod-footer">
+              <span class="prod-price">₹1,12,900</span>
+              <button class="add-mini">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 6 -->
+        <article class="prod-card">
+          <div class="prod-media">
+            <span class="tag">New</span>
+            <button class="wish-btn" aria-label="Add Rani Haar Long Set to wishlist" onclick="toggleWish(this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.1C.4 8.6 2 5 5.6 5c2 0 3.4 1 4.4 2.6C11 5.9 12.4 5 14.4 5 18 5 19.6 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></button>
+            <svg width="170" height="140" viewBox="0 0 600 420">
+              <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="3" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.85"/>
+              <circle cx="90" cy="105" r="7" fill="url(#beadGold)"/><circle cx="150" cy="180" r="8" fill="url(#beadGold)"/><circle cx="220" cy="245" r="9" fill="url(#beadGold)"/>
+              <circle cx="510" cy="105" r="7" fill="url(#beadGold)"/><circle cx="450" cy="180" r="8" fill="url(#beadGold)"/><circle cx="380" cy="245" r="9" fill="url(#beadGold)"/>
+              <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+              <ellipse cx="300" cy="308" rx="17" ry="21" fill="#1f5c46"/>
+            </svg>
+          </div>
+          <div class="prod-body">
+            <span class="cat-label">Long Haar</span>
+            <h3>Rani Haar Long Set</h3>
+            <div class="stars">★★★★★</div>
+            <div class="prod-footer">
+              <span class="prod-price">₹2,45,000</span>
+              <button class="add-mini">Add</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SPOTLIGHT / PRODUCT DETAIL -->
+  <section class="section spotlight">
+    <div class="wrap spot-grid">
+      <div class="spot-media">
+        <svg width="420" height="360" viewBox="0 0 600 420" role="img" aria-label="Detailed illustration of the Necklace Set Gold with graduated gold beads and a ruby pendant">
+          <path d="M60,60 C120,150 180,230 300,290 C420,230 480,150 540,60" fill="none" stroke="url(#chainGold)" stroke-width="2.5" stroke-dasharray="1 13" stroke-linecap="round" opacity="0.9"/>
+          <circle cx="60" cy="60" r="5" fill="url(#beadGold)"/><circle cx="93" cy="112" r="6" fill="url(#beadGold)"/><circle cx="130" cy="163" r="7" fill="url(#beadGold)"/><circle cx="172" cy="208" r="7.5" fill="url(#beadGold)"/><circle cx="218" cy="245" r="8" fill="url(#beadGold)"/><circle cx="262" cy="270" r="8.5" fill="url(#beadGold)"/>
+          <circle cx="540" cy="60" r="5" fill="url(#beadGold)"/><circle cx="507" cy="112" r="6" fill="url(#beadGold)"/><circle cx="470" cy="163" r="7" fill="url(#beadGold)"/><circle cx="428" cy="208" r="7.5" fill="url(#beadGold)"/><circle cx="382" cy="245" r="8" fill="url(#beadGold)"/><circle cx="338" cy="270" r="8.5" fill="url(#beadGold)"/>
+          <path d="M300,268 L332,296 L318,340 L282,340 L268,296 Z" fill="url(#beadGold)" stroke="#7a5417" stroke-width="1.5"/>
+          <ellipse cx="300" cy="308" rx="17" ry="21" fill="url(#rubyGem)"/>
+          <ellipse cx="294" cy="298" rx="5" ry="7" fill="#f3cdd2" opacity="0.55"/>
+          <path d="M292,340 L300,362 L308,340" fill="none" stroke="url(#chainGold)" stroke-width="2"/>
+          <circle cx="300" cy="366" r="4.5" fill="url(#beadGold)"/>
+        </svg>
+      </div>
+
+      <div>
+        <span class="eyebrow">Product Details</span>
+        <h2 class="serif" style="font-size:2.2rem;font-style:italic;font-weight:600;color:var(--gold-soft);">Necklace Set Gold</h2>
+
+        <div class="spot-tabs">
+          <span class="active">Description</span>
+          <span>Specifications</span>
+          <span>Care</span>
+        </div>
+
+        <p style="color:var(--ivory-dim);font-size:.95rem;max-width:440px;margin-bottom:22px;">
+          Hand-finished in Coimbatore by third-generation karigars, this graduated necklace pairs a temple-style kemp pendant with matching jhumka earrings. Every bead is individually shaped and hallmark-stamped.
+        </p>
+
+        <div class="spec-list">
+          <div><span>Purity</span>22K Gold · BIS 916</div>
+          <div><span>Weight</span>38.2 grams</div>
+          <div><span>Finish</span>Antique Temple</div>
+          <div><span>Stone</span>Kemp (Ruby-red)</div>
+        </div>
+
+        <div>
+          <span class="label" style="font-size:.62rem;color:var(--gold-deep);display:block;margin-bottom:10px;">Choose Length</span>
+          <div class="size-row">
+            <label><input type="radio" name="size" checked><span>Choker · 14"</span></label>
+            <label><input type="radio" name="size"><span>Classic · 16"</span></label>
+            <label><input type="radio" name="size"><span>Rani Haar · 30"</span></label>
+          </div>
+        </div>
+
+        <div class="qty-row">
+          <span class="label" style="font-size:.62rem;color:var(--gold-deep);">Quantity</span>
+          <div class="qty-box">
+            <button onclick="stepQty(-1)" aria-label="Decrease quantity">–</button>
+            <span id="qty">1</span>
+            <button onclick="stepQty(1)" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn btn-solid" id="spot-add">Add to Bag — ₹1,28,500</button>
+          <button class="btn btn-outline">Buy Now</button>
+        </div>
+
+        <div class="trust-row">
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>Hallmark Certified</div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Insured Shipping</div>
+          <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg>30-Day Exchange</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAFT STORY -->
+  <section class="section" id="craft">
+    <div class="wrap craft">
+      <div>
+        <span class="eyebrow eyebrow-dark">Our Craftsmanship</span>
+        <h2>Every bead, shaped by hand.</h2>
+        <p>Our karigars trained under three generations of goldsmiths, using techniques passed down since the workshop opened in 1958. No two pieces are cast from the same mould.</p>
+        <p>Each necklace passes through eleven pairs of hands before it reaches you — from wax carving to hallmark stamping — and every gram is weighed and certified in front of you at pickup.</p>
+      </div>
+      <div class="divider-motif">
+        <svg width="220" height="220" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#d4af61" stroke-width="1" opacity=".5"/>
+          <circle cx="100" cy="100" r="64" fill="none" stroke="#a5772a" stroke-width="1" opacity=".6"/>
+          <path d="M100,36 L112,84 L160,88 L120,116 L134,164 L100,136 L66,164 L80,116 L40,88 L88,84 Z" fill="none" stroke="#d4af61" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="10" fill="#7a1b2b"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <h2>Be the first to know.</h2>
+    <p>New collections, festive editions, and karigar stories — once a month, no spam.</p>
+    <form class="sub-form" onsubmit="return handleSubscribe(event)">
+      <input type="email" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+</main>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo" style="font-size:1.3rem;">SUVARNA<span>.</span></a>
+        <p>Fine 22K gold jewellery, hand-finished by karigars in Coimbatore since 1958.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 17c2-4 1-9 3-9s2 3 1 5c2 0 4-1 4-4"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.4-4A8 8 0 1 1 9 19l-5 1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Necklaces</a></li>
+          <li><a href="#">Earrings</a></li>
+          <li><a href="#">Bangles</a></li>
+          <li><a href="#">Bridal Edit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#craft">Craftsmanship</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Store Locator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns &amp; Exchange</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Suvarna Jewels. All rights reserved.</span>
+      <span>BIS Hallmarked · GST Invoice on every order</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleWish(btn){
+    btn.classList.toggle('active');
+    const pressed = btn.classList.contains('active');
+    btn.setAttribute('aria-pressed', pressed);
+  }
+  function stepQty(delta){
+    const el = document.getElementById('qty');
+    let val = parseInt(el.textContent) + delta;
+    if(val < 1) val = 1;
+    if(val > 9) val = 9;
+    el.textContent = val;
+  }
+  function flashAdded(btn, original){
+    const prev = btn.textContent;
+    btn.textContent = 'Added ✓';
+    setTimeout(()=> btn.textContent = original || prev, 1600);
+  }
+  document.getElementById('hero-add').addEventListener('click', function(){ flashAdded(this, 'Add to Bag'); });
+  document.getElementById('spot-add').addEventListener('click', function(){ flashAdded(this, 'Add to Bag — ₹1,28,500'); });
+  document.querySelectorAll('.add-mini').forEach(b=> b.addEventListener('click', function(){ flashAdded(this, 'Add'); }));
+
+  function handleSubscribe(e){
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Subscribed ✓';
+    setTimeout(()=> btn.textContent = 'Subscribe', 2000);
+    return false;
+  }
+</script>
+
+</body>
+</html>
