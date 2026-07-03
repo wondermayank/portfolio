@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marigold Decor Festive — Flowers for Every Celebration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marigold: #E8871E;
+    --marigold-deep: #C9660F;
+    --saffron: #F2A93B;
+    --diya-red: #B23A2E;
+    --leaf: #5C7A3A;
+    --cream: #FFF6E6;
+    --cream-2: #FFEACB;
+    --ink: #3B1F0F;
+    --ink-soft: #6B4A2E;
+    --white: #FFFDF8;
+    --shadow: 0 20px 40px -20px rgba(178,58,46,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Poppins', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+  }
+
+  a{text-decoration:none; color:inherit;}
+  img{display:block; max-width:100%;}
+  ul{list-style:none;}
+
+  /* ---------- Scallop / garland divider (signature element) ---------- */
+  .garland-divider{
+    height:34px;
+    width:100%;
+    background:
+      radial-gradient(circle at 10px 0, transparent 12px, var(--marigold) 13px) top left/28px 28px repeat-x,
+      var(--cream);
+    position:relative;
+  }
+  .garland-divider.flip{ transform: rotate(180deg); }
+  .garland-divider.red{
+    background:
+      radial-gradient(circle at 10px 0, transparent 12px, var(--diya-red) 13px) top left/28px 28px repeat-x,
+      var(--cream);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 6%;
+    background:var(--white);
+    position:sticky;
+    top:0;
+    z-index:100;
+    border-bottom:1px solid var(--cream-2);
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.5rem;
+    color:var(--diya-red);
+  }
+  .logo span{color:var(--marigold-deep);}
+  .logo .mark{
+    width:38px;height:38px;border-radius:50%;
+    background:conic-gradient(from 0deg, var(--marigold), var(--saffron), var(--diya-red), var(--marigold));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white); font-size:1.1rem;
+  }
+  nav ul{display:flex; gap:34px;}
+  nav a{
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    position:relative;
+    transition:color .25s;
+  }
+  nav a:hover{color:var(--diya-red);}
+  nav a::after{
+    content:'';
+    position:absolute; left:0; bottom:-6px;
+    width:0%; height:2px;
+    background:var(--marigold);
+    transition:width .25s;
+  }
+  nav a:hover::after{width:100%;}
+  .cta-btn{
+    background:var(--diya-red);
+    color:var(--white);
+    padding:10px 22px;
+    border-radius:30px;
+    font-weight:600;
+    font-size:0.9rem;
+    box-shadow:0 8px 18px -6px rgba(178,58,46,.6);
+    border:none;
+    cursor:pointer;
+    transition:transform .2s, background .2s;
+  }
+  .cta-btn:hover{ transform:translateY(-2px); background:var(--marigold-deep); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(135deg, var(--cream) 0%, var(--cream-2) 60%);
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    align-items:center;
+    gap:40px;
+    padding:60px 6%;
+    width:100%;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--white);
+    border:1px solid var(--saffron);
+    color:var(--diya-red);
+    padding:6px 16px;
+    border-radius:30px;
+    font-size:0.78rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.2rem);
+    line-height:1.05;
+    color:var(--ink);
+    font-weight:700;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--diya-red);
+    font-weight:600;
+  }
+  .hero p{
+    margin-top:22px;
+    max-width:480px;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .btn-outline{
+    padding:12px 26px;
+    border:1.5px solid var(--ink);
+    border-radius:30px;
+    font-weight:600;
+    font-size:0.9rem;
+    transition:.25s;
+  }
+  .btn-outline:hover{background:var(--ink); color:var(--white);}
+
+  .hero-visual{
+    position:relative;
+  }
+  .hero-visual .frame-main{
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transform:rotate(-2deg);
+    border:6px solid var(--white);
+  }
+  .hero-visual .frame-main img{
+    width:100%;
+    height:460px;
+    object-fit:cover;
+  }
+  .hero-visual .frame-float{
+    position:absolute;
+    bottom:-40px;
+    left:-50px;
+    width:190px;
+    border-radius:18px;
+    overflow:hidden;
+    border:5px solid var(--white);
+    box-shadow:var(--shadow);
+    transform:rotate(5deg);
+  }
+  .hero-visual .frame-float img{
+    height:150px;
+    object-fit:cover;
+  }
+  .petal-badge{
+    position:absolute;
+    top:-24px;
+    right:10px;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:var(--diya-red);
+    color:var(--white);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    box-shadow:0 10px 25px -8px rgba(178,58,46,.6);
+    transform:rotate(8deg);
+  }
+  .petal-badge small{
+    font-family:'Poppins', sans-serif;
+    font-weight:500;
+    font-size:0.6rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:90px 6%; }
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 50px;
+  }
+  .section-head .eyebrow{ margin-bottom:16px; }
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+    color:var(--ink);
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    margin-top:14px;
+  }
+
+  /* ---------- About strip ---------- */
+  .about{
+    background:var(--white);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .about-card{
+    background:var(--cream);
+    border-radius:18px;
+    padding:34px 28px;
+    border:1px solid var(--cream-2);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .about-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+  .about-card .icon{
+    width:52px; height:52px;
+    border-radius:14px;
+    background:var(--marigold);
+    color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+    margin-bottom:18px;
+  }
+  .about-card h3{ font-size:1.15rem; margin-bottom:8px; color:var(--diya-red); }
+  .about-card p{ color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ---------- Shop / search ---------- */
+  .shop{
+    background:var(--cream);
+  }
+  .search-bar{
+    max-width:520px;
+    margin:0 auto 46px;
+    position:relative;
+  }
+  .search-bar input{
+    width:100%;
+    padding:16px 52px 16px 22px;
+    border-radius:40px;
+    border:1.5px solid var(--saffron);
+    background:var(--white);
+    font-family:'Poppins', sans-serif;
+    font-size:0.95rem;
+    color:var(--ink);
+    outline:none;
+    transition:box-shadow .25s, border-color .25s;
+  }
+  .search-bar input:focus{
+    border-color:var(--diya-red);
+    box-shadow:0 0 0 4px rgba(232,135,30,.18);
+  }
+  .search-bar .search-icon{
+    position:absolute;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--marigold-deep);
+    font-size:1.1rem;
+    pointer-events:none;
+  }
+  .filter-row{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:44px;
+  }
+  .chip{
+    padding:8px 18px;
+    border-radius:30px;
+    background:var(--white);
+    border:1px solid var(--cream-2);
+    font-size:0.85rem;
+    font-weight:500;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:.2s;
+  }
+  .chip.active, .chip:hover{
+    background:var(--marigold);
+    color:var(--white);
+    border-color:var(--marigold);
+  }
+
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:30px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .product-card{
+    background:var(--white);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px -18px rgba(59,31,15,.35);
+    transition:transform .3s, box-shadow .3s;
+  }
+  .product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+  }
+  .product-card .thumb{
+    position:relative;
+    height:220px;
+    overflow:hidden;
+  }
+  .product-card .thumb img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .5s;
+  }
+  .product-card:hover .thumb img{ transform:scale(1.08); }
+  .tag{
+    position:absolute;
+    top:14px; left:14px;
+    background:var(--diya-red);
+    color:var(--white);
+    font-size:0.7rem;
+    font-weight:600;
+    padding:5px 12px;
+    border-radius:20px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .product-body{ padding:22px 22px 26px; }
+  .product-body h3{ font-size:1.15rem; color:var(--ink); margin-bottom:6px; }
+  .product-body p{ font-size:0.85rem; color:var(--ink-soft); margin-bottom:16px; }
+  .product-footer{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .price{ font-family:'Fraunces', serif; font-weight:700; color:var(--diya-red); font-size:1.15rem; }
+  .add-btn{
+    background:var(--cream);
+    border:1px solid var(--saffron);
+    color:var(--marigold-deep);
+    padding:8px 16px;
+    border-radius:24px;
+    font-size:0.8rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .add-btn:hover{ background:var(--marigold); color:var(--white); }
+
+  .no-results{
+    text-align:center;
+    color:var(--ink-soft);
+    padding:60px 20px;
+    display:none;
+  }
+
+  /* ---------- Festive banner ---------- */
+  .festive-banner{
+    background:linear-gradient(135deg, var(--diya-red), var(--marigold-deep));
+    color:var(--white);
+    border-radius:28px;
+    max-width:1200px;
+    margin:0 auto;
+    padding:60px 6%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .festive-banner::before{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 90% 10%, rgba(255,255,255,.18), transparent 40%);
+  }
+  .festive-banner h2{ font-size:clamp(1.8rem,3vw,2.5rem); margin-bottom:16px; }
+  .festive-banner p{ opacity:.92; max-width:420px; margin-bottom:24px; }
+  .festive-banner .btn-outline{ border-color:var(--white); color:var(--white); }
+  .festive-banner .btn-outline:hover{ background:var(--white); color:var(--diya-red); }
+  .festive-img{
+    border-radius:20px;
+    overflow:hidden;
+    height:280px;
+    box-shadow:0 20px 40px -10px rgba(0,0,0,.35);
+  }
+  .festive-img img{ width:100%; height:100%; object-fit:cover; }
+
+  /* ---------- Gallery strip ---------- */
+  .gallery{
+    background:var(--white);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .gallery-grid img{
+    width:100%; height:220px; object-fit:cover;
+    border-radius:16px;
+    transition:transform .4s;
+  }
+  .gallery-grid a{ overflow:hidden; border-radius:16px; display:block; }
+  .gallery-grid a:hover img{ transform:scale(1.06); }
+  .gallery-grid a:nth-child(1){ grid-row: span 2; }
+  .gallery-grid a:nth-child(1) img{ height:100%; }
+
+  /* ---------- Testimonial ---------- */
+  .testimonials{
+    background:var(--cream);
+    text-align:center;
+  }
+  .quote-mark{ font-family:'Fraunces', serif; font-size:4rem; color:var(--saffron); line-height:0; }
+  .testimonials p.quote{
+    max-width:640px;
+    margin:10px auto 20px;
+    font-size:1.2rem;
+    color:var(--ink);
+    font-style:italic;
+  }
+  .testimonials .who{ color:var(--ink-soft); font-weight:600; font-size:0.9rem; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--cream-2);
+    padding:60px 6% 30px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    max-width:1200px;
+    margin:0 auto 40px;
+  }
+  .footer-grid h4{
+    color:var(--saffron);
+    font-family:'Fraunces', serif;
+    margin-bottom:16px;
+    font-size:1rem;
+  }
+  .footer-grid ul li{ margin-bottom:10px; font-size:0.88rem; opacity:.85; }
+  .footer-grid ul li a:hover{ color:var(--saffron); }
+  .footer-logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--cream);
+    margin-bottom:14px;
+  }
+  .footer-logo span{ color:var(--saffron); }
+  footer .tagline{ font-size:0.88rem; opacity:.75; max-width:280px; }
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:22px;
+    text-align:center;
+    font-size:0.8rem;
+    opacity:.65;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; }
+    nav{ display:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .festive-banner{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .gallery-grid a:nth-child(1){ grid-row:span 1; }
+    .gallery-grid a:nth-child(1) img{ height:220px; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="topbar">
+    <div class="logo"><span class="mark">🌼</span>Marigold <span>Decor</span></div>
+    <nav>
+      <ul>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#festive">Festive</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="cta-btn">Order Now</button>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">🌼 Freshly Picked Daily</span>
+        <h1>Bloom your <em>festival</em><br>with Marigold Decor</h1>
+        <p>Handpicked marigolds, roses and festive garlands crafted for weddings, pujas, and every joyful occasion — delivered fresh to your doorstep.</p>
+        <div class="hero-actions">
+          <button class="cta-btn">Shop Flowers</button>
+          <a href="#shop" class="btn-outline">Browse Collection</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="petal-badge">100%<br><small>Fresh Cut</small></div>
+        <div class="frame-main">
+          <img src="https://images.unsplash.com/photo-1574267498814-ebfb802ec01e?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Close up of vibrant orange marigold flower">
+        </div>
+        <div class="frame-float">
+          <img src="https://images.unsplash.com/photo-1549262046-e64e9d430218?fm=jpg&q=80&w=500&auto=format&fit=crop" alt="Yellow marigold flower bloom">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="garland-divider"></div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about">
+    <div class="section-head">
+      <span class="eyebrow">Why Marigold Decor</span>
+      <h2>Petals picked with purpose</h2>
+      <p>Every garland, bouquet and centerpiece is made fresh in-house on the morning of your order.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">🌸</div>
+        <h3>Farm Fresh Marigolds</h3>
+        <p>Sourced daily from local growers so every strand of your garland stays vivid and fragrant.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🎉</div>
+        <h3>Festive Ready</h3>
+        <p>Diwali torans, wedding mandaps, puja thalis and housewarming decor — all made to order.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🚚</div>
+        <h3>Same-Day Delivery</h3>
+        <p>Order before noon and have your flowers arrive fresh the very same evening.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SHOP / SEARCH ============ -->
+  <section class="shop" id="shop">
+    <div class="section-head">
+      <span class="eyebrow">The Shop</span>
+      <h2>Find your perfect bloom</h2>
+      <p>Search or filter our collection of marigold garlands, bouquets and festive arrangements.</p>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search flowers, garlands, bouquets...">
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <div class="filter-row" id="filterRow">
+      <div class="chip active" data-filter="all">All</div>
+      <div class="chip" data-filter="marigold">Marigold</div>
+      <div class="chip" data-filter="rose">Roses</div>
+      <div class="chip" data-filter="garland">Garlands</div>
+      <div class="chip" data-filter="festive">Festive Decor</div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <div class="product-card" data-category="marigold" data-name="classic marigold garland">
+        <div class="thumb">
+          <span class="tag">Bestseller</span>
+          <img src="https://images.unsplash.com/photo-1574267498814-ebfb802ec01e?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Classic marigold garland close up">
+        </div>
+        <div class="product-body">
+          <h3>Classic Marigold Garland</h3>
+          <p>A vibrant strand of fresh orange marigolds, perfect for doorways and pujas.</p>
+          <div class="product-footer">
+            <span class="price">₹149</span>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="marigold festive" data-name="golden bloom bunch">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1549262046-e64e9d430218?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Yellow marigold flower bunch">
+        </div>
+        <div class="product-body">
+          <h3>Golden Bloom Bunch</h3>
+          <p>Sunny yellow marigolds bundled for altars, rangoli, and festive tables.</p>
+          <div class="product-footer">
+            <span class="price">₹199</span>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rose" data-name="ivory rose bouquet">
+        <div class="thumb">
+          <span class="tag">New</span>
+          <img src="https://images.unsplash.com/photo-1775138386053-5766c8c10e85?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Bouquet of white roses">
+        </div>
+        <div class="product-body">
+          <h3>Ivory Rose Bouquet</h3>
+          <p>Soft white roses wrapped in kraft paper — elegant for gifting or décor.</p>
+          <div class="product-footer">
+            <span class="price">₹349</span>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="garland festive" data-name="festive door toran">
+        <div class="thumb">
+          <span class="tag">Festive</span>
+          <img src="https://images.unsplash.com/photo-1549262046-e64e9d430218?fm=jpg&q=80&w=700&auto=format&fit=crop&crop=entropy" alt="Marigold toran style flowers">
+        </div>
+        <div class="product-body">
+          <h3>Festive Door Toran</h3>
+          <p>Handstrung marigold and mango-leaf toran to welcome guests in style.</p>
+          <div class="product-footer">
+            <span class="price">₹399</span>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="marigold garland" data-name="mala string set">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1574267498814-ebfb802ec01e?fm=jpg&q=80&w=700&auto=format&fit=crop&crop=faces" alt="Marigold mala string flowers">
+        </div>
+        <div class="product-body">
+          <h3>Mala String Set (Pack of 5)</h3>
+          <p>Five long marigold strings, ideal for large-scale wedding and venue decor.</p>
+          <div class="product-footer">
+            <span class="price">₹599</span>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="rose festive" data-name="rose and marigold centerpiece">
+        <div class="thumb">
+          <img src="https://images.unsplash.com/photo-1775138386053-5766c8c10e85?fm=jpg&q=80&w=700&auto=format&fit=crop&crop=top" alt="Rose flower centerpiece arrangement">
+        </div>
+        <div class="product-body">
+          <h3>Rose & Marigold Centerpiece</h3>
+          <p>A rich table arrangement blending roses and marigolds for festive dinners.</p>
+          <div class="product-footer">
+            <span class="price">₹449</span>
+            <button class="add-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="no-results" id="noResults">No flowers found — try a different search term 🌼</p>
+  </section>
+
+  <div class="garland-divider red"></div>
+
+  <!-- ============ FESTIVE BANNER ============ -->
+  <section id="festive">
+    <div class="festive-banner">
+      <div>
+        <span class="eyebrow" style="background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.4); color:#fff;">Limited Time</span>
+        <h2>Festive Season Decor, Sorted.</h2>
+        <p>From Diwali torans to wedding mandaps — book your festive flower package early and save 15% on bulk marigold orders.</p>
+        <a href="#contact" class="btn-outline">Book a Package</a>
+      </div>
+      <div class="festive-img">
+        <img src="https://images.unsplash.com/photo-1549262046-e64e9d430218?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Festive marigold flower decoration">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="gallery" id="gallery">
+    <div class="section-head">
+      <span class="eyebrow">Our Work</span>
+      <h2>Recent decor moments</h2>
+    </div>
+    <div class="gallery-grid">
+      <a href="#"><img src="https://images.unsplash.com/photo-1574267498814-ebfb802ec01e?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Marigold flower decor closeup"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1549262046-e64e9d430218?fm=jpg&q=80&w=600&auto=format&fit=crop" alt="Marigold flower gallery photo"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1775138386053-5766c8c10e85?fm=jpg&q=80&w=600&auto=format&fit=crop" alt="White rose bouquet gallery photo"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1549262046-e64e9d430218?fm=jpg&q=80&w=600&auto=format&fit=crop&crop=bottom" alt="Yellow marigold decor gallery photo"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1574267498814-ebfb802ec01e?fm=jpg&q=80&w=600&auto=format&fit=crop&crop=left" alt="Orange marigold festive decor"></a>
+      <a href="#"><img src="https://images.unsplash.com/photo-1775138386053-5766c8c10e85?fm=jpg&q=80&w=600&auto=format&fit=crop&crop=right" alt="Rose flower shop decor"></a>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL ============ -->
+  <section class="testimonials">
+    <div class="quote-mark">"</div>
+    <p class="quote">Marigold Decor made our housewarming feel like a true celebration — the torans and garlands were fresh, fragrant and exactly on time.</p>
+    <p class="who">— Priya Sharma, Guna</p>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Marigold <span>Decor</span></div>
+        <p class="tagline">Festive flowers and garlands, freshly arranged for every celebration.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Marigold</a></li>
+          <li><a href="#shop">Roses</a></li>
+          <li><a href="#shop">Garlands</a></li>
+          <li><a href="#festive">Festive Packages</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>hello@marigolddecor.in</li>
+          <li>+91 98765 43210</li>
+          <li>Guna, Madhya Pradesh</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Marigold Decor Festive. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const productGrid = document.getElementById('productGrid');
+    const cards = Array.from(productGrid.getElementsByClassName('product-card'));
+    const noResults = document.getElementById('noResults');
+    const chips = document.querySelectorAll('.chip');
+    let activeFilter = 'all';
+
+    function applyFilters(){
+      const term = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const category = card.dataset.category.toLowerCase();
+        const matchesSearch = name.includes(term);
+        const matchesFilter = activeFilter === 'all' || category.includes(activeFilter);
+
+        if(matchesSearch && matchesFilter){
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilter = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+  </script>
+
+</body>
+</html>
