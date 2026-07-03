@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petal & Vow — Bridal Bouquet Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6F0;
+    --paper:#FFFDFB;
+    --blush:#F2D9DE;
+    --blush-soft:#F8E9EC;
+    --rose:#C97B8C;
+    --wine:#6E2A3B;
+    --sage:#8B9574;
+    --sage-deep:#5F6B4C;
+    --gold:#BFA06A;
+    --ink:#2E2622;
+    --ink-soft:#6b5f58;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    letter-spacing:.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:.68rem;
+    color:var(--wine);
+    font-weight:500;
+  }
+  ::selection{background:var(--blush);color:var(--wine);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 5%;
+    background:rgba(251,246,240,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(110,42,59,.08);
+    transition:padding .3s ease;
+  }
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--wine);
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo svg{width:22px;height:22px;}
+  nav{display:flex;gap:38px;align-items:center;}
+  nav a{
+    font-size:.82rem;
+    letter-spacing:.05em;
+    color:var(--ink);
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav a::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+    background:var(--wine);transition:width .3s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--wine);color:var(--paper)!important;
+    padding:10px 22px;border-radius:2px;
+    font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background:var(--sage-deep);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;align-items:flex-end;
+    padding:0 5% 90px;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background-image:url('https://loremflickr.com/1600/1000/bridal,bouquet,wedding');
+    background-size:cover;background-position:center 30%;
+  }
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(46,38,34,.15) 0%, rgba(46,38,34,.08) 40%, rgba(46,38,34,.72) 100%);
+  }
+  .hero-content{position:relative;z-index:2;max-width:640px;color:var(--paper);}
+  .hero .eyebrow{color:var(--blush);margin-bottom:18px;display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.6rem,6vw,5rem);
+    line-height:1.02;
+    font-style:italic;
+    font-weight:500;
+    margin-bottom:22px;
+    text-shadow:0 2px 24px rgba(0,0,0,.25);
+  }
+  .hero p{
+    font-size:1.02rem;font-weight:300;line-height:1.7;
+    max-width:460px;margin-bottom:34px;color:#f2e9e4;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 30px;
+    font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+    border-radius:2px;
+    transition:all .3s ease;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--paper);color:var(--wine);}
+  .btn-primary:hover{background:var(--blush);}
+  .btn-ghost{border-color:rgba(255,255,255,.6);color:var(--paper);}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);}
+
+  .scroll-cue{
+    position:absolute;bottom:30px;right:5%;z-index:2;
+    color:var(--paper);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+  }
+  .scroll-cue .line{width:32px;height:1px;background:rgba(255,255,255,.6);
+    animation:pulse 2s infinite ease-in-out;}
+  @keyframes pulse{0%,100%{opacity:.4;width:20px;}50%{opacity:1;width:40px;}}
+
+  /* ---------- Section shell ---------- */
+  section{padding:110px 5%;}
+  .section-head{
+    text-align:center;max-width:640px;margin:0 auto 60px;
+  }
+  .section-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-top:14px;font-style:italic;color:var(--wine);}
+  .section-head p{color:var(--ink-soft);margin-top:16px;font-size:1rem;line-height:1.7;}
+
+  /* ---------- Intro / About ---------- */
+  .intro{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;
+    background:var(--paper);
+  }
+  .intro-media{position:relative;}
+  .intro-media img{
+    width:100%;height:520px;object-fit:cover;
+    clip-path:polygon(0% 3%,97% 0%,100% 96%,3% 100%);
+  }
+  .intro-media .tag{
+    position:absolute;bottom:-28px;left:-28px;
+    background:var(--wine);color:var(--paper);
+    padding:20px 26px;
+    max-width:220px;
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;
+    box-shadow:0 20px 40px rgba(110,42,59,.25);
+  }
+  .intro-text .eyebrow{margin-bottom:16px;display:block;}
+  .intro-text h2{font-size:clamp(1.9rem,3.4vw,2.6rem);font-style:italic;color:var(--wine);margin-bottom:22px;line-height:1.15;}
+  .intro-text p{color:var(--ink-soft);line-height:1.85;margin-bottom:18px;font-size:1rem;}
+  .intro-stats{display:flex;gap:44px;margin-top:34px;}
+  .intro-stats div{border-left:2px solid var(--blush);padding-left:16px;}
+  .intro-stats b{display:block;font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--wine);font-weight:600;}
+  .intro-stats span{font-size:.78rem;color:var(--ink-soft);letter-spacing:.03em;}
+
+  /* ---------- Gallery / Search ---------- */
+  .gallery-section{background:var(--blush-soft);}
+  .gallery-toolbar{
+    max-width:760px;margin:0 auto 50px;
+    display:flex;flex-direction:column;gap:22px;align-items:center;
+  }
+  .search-wrap{
+    width:100%;position:relative;
+  }
+  .search-wrap input{
+    width:100%;padding:16px 50px 16px 22px;
+    border:1px solid rgba(110,42,59,.2);
+    background:var(--paper);
+    border-radius:30px;
+    font-family:'Jost',sans-serif;font-size:.92rem;color:var(--ink);
+    outline:none;transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .search-wrap input:focus{border-color:var(--wine);box-shadow:0 0 0 4px rgba(110,42,59,.08);}
+  .search-wrap input::placeholder{color:#b8a9a3;}
+  .search-wrap svg{
+    position:absolute;right:20px;top:50%;transform:translateY(-50%);
+    width:18px;height:18px;color:var(--wine);pointer-events:none;
+  }
+  .filter-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .chip{
+    padding:9px 20px;border:1px solid rgba(110,42,59,.25);
+    border-radius:30px;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;
+    cursor:pointer;background:transparent;color:var(--wine);
+    transition:all .25s ease;
+  }
+  .chip.active,.chip:hover{background:var(--wine);color:var(--paper);border-color:var(--wine);}
+  .result-count{font-size:.78rem;color:var(--ink-soft);letter-spacing:.03em;}
+
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+    max-width:1300px;margin:0 auto;
+  }
+  .bouquet-card{
+    background:var(--paper);
+    padding:14px 14px 22px;
+    box-shadow:0 10px 30px rgba(110,42,59,.06);
+    transition:transform .35s ease, box-shadow .35s ease;
+    opacity:1;
+  }
+  .bouquet-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(110,42,59,.16);}
+  .bouquet-card .thumb{
+    position:relative;overflow:hidden;height:230px;margin-bottom:16px;
+    clip-path:polygon(6% 0%,100% 2%,94% 100%,0% 98%);
+  }
+  .bouquet-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .bouquet-card:hover .thumb img{transform:scale(1.08);}
+  .bouquet-card .price-tag{
+    position:absolute;top:10px;right:10px;
+    background:var(--wine);color:var(--paper);
+    font-size:.72rem;letter-spacing:.03em;
+    padding:5px 12px;border-radius:20px;
+  }
+  .bouquet-card h3{font-size:1.35rem;font-style:italic;color:var(--wine);margin-bottom:6px;padding:0 8px;}
+  .bouquet-card .meta{
+    padding:0 8px;display:flex;justify-content:space-between;align-items:center;
+  }
+  .bouquet-card .cat{font-size:.72rem;color:var(--sage-deep);text-transform:uppercase;letter-spacing:.06em;}
+  .bouquet-card .heart{
+    width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(110,42,59,.2);cursor:pointer;
+    transition:all .25s ease;color:var(--wine);
+  }
+  .bouquet-card .heart:hover{background:var(--blush);}
+  .bouquet-card .heart svg{width:14px;height:14px;}
+  .no-results{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-soft);
+    font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;
+  }
+
+  /* ---------- Process ---------- */
+  .process{background:var(--paper);}
+  .process-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:40px;
+    max-width:1100px;margin:0 auto;
+  }
+  .process-step{text-align:center;position:relative;padding:0 20px;}
+  .process-step .num{
+    font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--gold);
+    letter-spacing:.2em;margin-bottom:18px;display:block;
+  }
+  .process-step h3{font-size:1.5rem;font-style:italic;color:var(--wine);margin-bottom:12px;}
+  .process-step p{color:var(--ink-soft);font-size:.92rem;line-height:1.75;}
+  .process-grid .process-step:not(:last-child)::after{
+    content:'';position:absolute;top:6px;right:-20px;width:1px;height:60px;
+    background:var(--blush);
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial{
+    background:var(--wine);color:var(--paper);
+    text-align:center;position:relative;overflow:hidden;
+  }
+  .testimonial::before{
+    content:'“';position:absolute;top:10px;left:50%;transform:translateX(-50%);
+    font-family:'Cormorant Garamond',serif;font-size:14rem;color:rgba(255,255,255,.06);
+    line-height:1;
+  }
+  .testimonial-inner{max-width:720px;margin:0 auto;position:relative;z-index:1;}
+  .testimonial p{
+    font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.6vw,2rem);
+    font-style:italic;line-height:1.5;margin-bottom:28px;
+  }
+  .testimonial .who{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blush);}
+
+  /* ---------- CTA ---------- */
+  .cta-band{
+    background:var(--sage);color:var(--paper);
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:24px;
+  }
+  .cta-band h2{font-size:clamp(1.8rem,3vw,2.4rem);font-style:italic;}
+  .cta-band .btn-primary{color:var(--sage-deep);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:#251C19;color:#cbb9b0;
+    padding:70px 5% 30px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+    max-width:1300px;margin:0 auto 50px;
+  }
+  .footer-grid .logo{color:var(--blush);margin-bottom:14px;}
+  .footer-grid p{font-size:.88rem;line-height:1.7;color:#a8968d;max-width:280px;}
+  .footer-grid h4{
+    font-family:'Jost',sans-serif;font-size:.75rem;text-transform:uppercase;
+    letter-spacing:.12em;color:var(--gold);margin-bottom:18px;font-weight:500;
+  }
+  .footer-grid a{display:block;font-size:.88rem;color:#cbb9b0;margin-bottom:12px;transition:color .2s;}
+  .footer-grid a:hover{color:var(--paper);}
+  .footer-bottom{
+    max-width:1300px;margin:0 auto;padding-top:26px;border-top:1px solid rgba(255,255,255,.08);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:.76rem;color:#8a7a72;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:980px){
+    nav{display:none;}
+    .intro{grid-template-columns:1fr;gap:50px;}
+    .intro-media img{height:380px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:1fr;gap:50px;}
+    .process-grid .process-step::after{display:none;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .gallery-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.4rem;}
+    .cta-band{flex-direction:column;text-align:center;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C9 4 8 7 12 10C16 7 15 4 12 2Z"/><path d="M12 10C9 12 6 12 4 9C6 12 8 15 12 10Z"/><path d="M12 10C15 12 18 12 20 9C18 12 16 15 12 10Z"/><path d="M12 10V22"/></svg>
+    Petal & Vow
+  </a>
+  <nav>
+    <a href="#gallery">Bouquets</a>
+    <a href="#process">Our Process</a>
+    <a href="#about">Studio</a>
+    <a href="#contact" class="nav-cta">Book a Consult</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Bridal Floral Studio · Est. Indore</span>
+    <h1>Flowers held,<br>vows spoken.</h1>
+    <p>Hand-tied bridal bouquets, cascading arrangements and heirloom-inspired florals — designed around your gown, your colours, your day.</p>
+    <div class="hero-actions">
+      <a href="#gallery" class="btn btn-primary">Browse Bouquets</a>
+      <a href="#contact" class="btn btn-ghost">Book a Consultation</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section class="intro" id="about">
+  <div class="intro-media">
+    <img src="https://loremflickr.com/700/900/roses,bouquet,flowers" alt="Rose bridal bouquet">
+    <div class="tag">"Every bouquet is a small garden, tied once, for one day."</div>
+  </div>
+  <div class="intro-text">
+    <span class="eyebrow">The Studio</span>
+    <h2>Bouquets designed to<br>match your story.</h2>
+    <p>Petal & Vow began as a single flower cart and grew into a full bridal atelier. We work with seasonal roses, peonies, garden hydrangea and dried botanicals sourced fresh each week, hand-tied the morning of your wedding so every bloom is at its best.</p>
+    <p>From the first sketch to the final ribbon, every bouquet is built around your gown silhouette, your venue and the colours that mean something to you.</p>
+    <div class="intro-stats">
+      <div><b>640+</b><span>Bouquets Delivered</span></div>
+      <div><b>9</b><span>Years Designing</span></div>
+      <div><b>100%</b><span>Fresh, Same-Day Cut</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="section-head">
+    <span class="eyebrow">The Collection</span>
+    <h2>Find your bouquet</h2>
+    <p>Search by flower, style or colour palette — every arrangement can be resized or re-toned to match your wedding.</p>
+  </div>
+
+  <div class="gallery-toolbar">
+    <div class="search-wrap">
+      <input type="text" id="bouquetSearch" placeholder="Search roses, peonies, cascade, blush…">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </div>
+    <div class="filter-chips" id="chipRow">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="rose">Rose</button>
+      <button class="chip" data-filter="peony">Peony</button>
+      <button class="chip" data-filter="wildflower">Wildflower</button>
+      <button class="chip" data-filter="cascade">Cascade</button>
+      <button class="chip" data-filter="dried">Dried & Boho</button>
+    </div>
+    <span class="result-count" id="resultCount"></span>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+
+    <div class="bouquet-card" data-name="Ivory Rose Cascade" data-cat="rose cascade">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/rose,bouquet,wedding" alt="Ivory Rose Cascade bouquet">
+        <span class="price-tag">₹4,200</span>
+      </div>
+      <h3>Ivory Rose Cascade</h3>
+      <div class="meta">
+        <span class="cat">Rose · Cascade</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Blush Peony Posy" data-cat="peony">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/peony,bouquet,pink" alt="Blush Peony Posy bouquet">
+        <span class="price-tag">₹3,600</span>
+      </div>
+      <h3>Blush Peony Posy</h3>
+      <div class="meta">
+        <span class="cat">Peony · Round</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Wild Meadow Bunch" data-cat="wildflower">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/wildflower,bouquet,rustic" alt="Wild Meadow Bunch bouquet">
+        <span class="price-tag">₹2,900</span>
+      </div>
+      <h3>Wild Meadow Bunch</h3>
+      <div class="meta">
+        <span class="cat">Wildflower</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Dried Boho Trail" data-cat="dried boho">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/dried,flowers,boho" alt="Dried Boho Trail bouquet">
+        <span class="price-tag">₹3,100</span>
+      </div>
+      <h3>Dried Boho Trail</h3>
+      <div class="meta">
+        <span class="cat">Dried · Boho</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Crimson Rose Hand-tie" data-cat="rose">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/red,rose,bouquet" alt="Crimson Rose Hand-tie bouquet">
+        <span class="price-tag">₹3,900</span>
+      </div>
+      <h3>Crimson Rose Hand-tie</h3>
+      <div class="meta">
+        <span class="cat">Rose · Classic</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Garden Peony Cascade" data-cat="peony cascade">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/peony,cascade,bouquet" alt="Garden Peony Cascade bouquet">
+        <span class="price-tag">₹5,100</span>
+      </div>
+      <h3>Garden Peony Cascade</h3>
+      <div class="meta">
+        <span class="cat">Peony · Cascade</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Sage & Lily Wildbunch" data-cat="wildflower sage">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/wildflower,lily,greenery" alt="Sage and Lily Wildbunch bouquet">
+        <span class="price-tag">₹3,300</span>
+      </div>
+      <h3>Sage & Lily Wildbunch</h3>
+      <div class="meta">
+        <span class="cat">Wildflower · Greenery</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+    <div class="bouquet-card" data-name="Golden Pampas Drift" data-cat="dried boho">
+      <div class="thumb">
+        <img src="https://loremflickr.com/500/500/pampas,bouquet,dried" alt="Golden Pampas Drift bouquet">
+        <span class="price-tag">₹2,750</span>
+      </div>
+      <h3>Golden Pampas Drift</h3>
+      <div class="meta">
+        <span class="cat">Dried · Pampas</span>
+        <span class="heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.6 8 2 4 6 4c2 0 3.5 1.2 4 2 0.5-0.8 2-2 4-2 4 0 5.4 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-head">
+    <span class="eyebrow">How It Works</span>
+    <h2>From sketch to "I do"</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <span class="num">STEP ONE</span>
+      <h3>Consultation</h3>
+      <p>We talk gown, palette, venue and season — then sketch two or three bouquet directions built for you.</p>
+    </div>
+    <div class="process-step">
+      <span class="num">STEP TWO</span>
+      <h3>Design & Trial</h3>
+      <p>A trial bouquet is hand-tied so you can see and hold the exact blooms before the wedding week.</p>
+    </div>
+    <div class="process-step">
+      <span class="num">STEP THREE</span>
+      <h3>Wedding-Day Delivery</h3>
+      <p>Cut, conditioned and tied the morning of, delivered fresh to you and your bridal party on time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="testimonial-inner">
+    <p>They matched my bouquet to a photo of my grandmother's garden. Nine months later, everyone at the wedding was still talking about the flowers.</p>
+    <div class="who">— Ananya R., Bride, March Wedding</div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Ready to design your bouquet?</h2>
+  <a href="#top" class="btn btn-primary">Book a Free Consultation</a>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <a href="#top" class="logo">Petal & Vow</a>
+      <p>A bridal floral studio designing hand-tied bouquets, centerpieces and wedding florals, one season at a time.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="#gallery">Bouquet Collection</a>
+      <a href="#process">Our Process</a>
+      <a href="#about">The Studio</a>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <a href="#">Bridal Bouquets</a>
+      <a href="#">Bridesmaid Posies</a>
+      <a href="#">Centerpieces</a>
+      <a href="#">Boutonnieres</a>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <a href="#">Indore, Madhya Pradesh</a>
+      <a href="mailto:hello@petalandvow.in">hello@petalandvow.in</a>
+      <a href="#">+91 98765 43210</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Petal & Vow Bridal Studio. All blooms reserved.</span>
+    <span>Design UI Concept — HTML/CSS only</span>
+  </div>
+</footer>
+
+<script>
+  const search = document.getElementById('bouquetSearch');
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.bouquet-card');
+  const grid = document.getElementById('galleryGrid');
+  const resultCount = document.getElementById('resultCount');
+  let activeFilter = 'all';
+
+  function applyFilters(){
+    const term = search.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(card => {
+      const name = card.dataset.name.toLowerCase();
+      const cat = card.dataset.cat.toLowerCase();
+      const matchesFilter = activeFilter === 'all' || cat.includes(activeFilter);
+      const matchesSearch = term === '' || name.includes(term) || cat.includes(term);
+      const show = matchesFilter && matchesSearch;
+      card.style.display = show ? '' : 'none';
+      if(show) visible++;
+    });
+    document.getElementById('noResults')?.remove();
+    if(visible === 0){
+      const div = document.createElement('div');
+      div.className = 'no-results';
+      div.id = 'noResults';
+      div.textContent = 'No bouquets match your search — try “rose”, “peony” or “dried”.';
+      grid.appendChild(div);
+    }
+    resultCount.textContent = visible + (visible === 1 ? ' bouquet found' : ' bouquets found');
+  }
+
+  search.addEventListener('input', applyFilters);
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  applyFilters();
+</script>
+
+</body>
+</html>
