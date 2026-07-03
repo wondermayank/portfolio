@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everbloom — Dried Flower Art & Home Decor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6efe4;
+    --paper:#fbf6ee;
+    --dusty-rose:#c98d84;
+    --dusty-rose-deep:#a86a63;
+    --terracotta:#bc6a45;
+    --terracotta-deep:#9c5334;
+    --sage:#8a9873;
+    --sage-deep:#6d7d57;
+    --mauve:#8b6a72;
+    --bark:#4a3a2f;
+    --bark-soft:#6b5747;
+    --line:rgba(74,58,47,0.14);
+    --shadow-soft: 0 20px 50px -20px rgba(74,44,26,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--bark);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1220px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--terracotta);color:var(--paper);}
+
+  /* ---------- texture backdrop ---------- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      radial-gradient(circle at 8% 12%, rgba(188,106,69,0.10), transparent 40%),
+      radial-gradient(circle at 92% 6%, rgba(138,152,115,0.14), transparent 38%),
+      radial-gradient(circle at 85% 80%, rgba(201,141,132,0.12), transparent 42%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ---------- announcement bar ---------- */
+  .announce{
+    background:var(--bark);
+    color:var(--cream);
+    text-align:center;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    padding:9px 12px;
+    font-weight:500;
+  }
+  .announce span{opacity:0.65;margin:0 10px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,239,228,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1220px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:26px;font-weight:600;
+    display:flex;align-items:center;gap:8px;
+    letter-spacing:-0.01em;
+  }
+  .logo svg{width:26px;height:26px;}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:500;}
+  .nav-links a{position:relative;padding-bottom:4px;transition:color .25s;}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--terracotta-deep);transition:width .3s;
+  }
+  .nav-links a:hover{color:var(--terracotta-deep);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-icons{display:flex;align-items:center;gap:20px;}
+  .icon-btn{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);cursor:pointer;background:transparent;
+    transition:all .25s;position:relative;
+  }
+  .icon-btn:hover{background:var(--bark);border-color:var(--bark);}
+  .icon-btn:hover svg{stroke:var(--cream);}
+  .icon-btn svg{width:17px;height:17px;stroke:var(--bark);transition:stroke .25s;}
+  .cart-count{
+    position:absolute;top:-6px;right:-6px;
+    background:var(--terracotta);color:var(--paper);
+    font-size:10px;font-weight:600;
+    width:17px;height:17px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* search flyout */
+  .search-flyout{
+    position:absolute;top:100%;right:32px;margin-top:12px;
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;box-shadow:var(--shadow-soft);
+    width:320px;padding:14px;
+    display:none;gap:10px;flex-direction:column;
+  }
+  .search-flyout.open{display:flex;}
+  .search-flyout input{
+    width:100%;border:1px solid var(--line);border-radius:9px;
+    padding:11px 14px;font-family:'Work Sans';font-size:14px;
+    background:var(--cream);color:var(--bark);outline:none;
+  }
+  .search-flyout input:focus{border-color:var(--terracotta);}
+  .search-hint{font-size:12px;color:var(--bark-soft);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.05fr 1fr;
+    align-items:center;gap:20px;
+    max-width:1220px;margin:0 auto;padding:70px 32px 90px;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--terracotta-deep);font-weight:600;margin-bottom:22px;
+  }
+  .hero-eyebrow::before{content:"";width:22px;height:1px;background:var(--terracotta-deep);}
+  .hero h1{
+    font-size:clamp(40px,5.4vw,68px);
+    line-height:1.02;
+    color:var(--bark);
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--dusty-rose-deep);
+    font-weight:500;
+  }
+  .hero p{
+    font-size:17px;line-height:1.7;color:var(--bark-soft);
+    max-width:440px;margin:26px 0 34px;
+  }
+  .hero-cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;border-radius:100px;
+    font-size:14.5px;font-weight:600;letter-spacing:0.01em;
+    cursor:pointer;border:1px solid transparent;transition:all .3s;
+  }
+  .btn-primary{background:var(--bark);color:var(--cream);}
+  .btn-primary:hover{background:var(--terracotta-deep);transform:translateY(-2px);}
+  .btn-ghost{border-color:var(--bark);color:var(--bark);}
+  .btn-ghost:hover{background:var(--bark);color:var(--cream);}
+
+  .hero-stats{display:flex;gap:34px;margin-top:48px;}
+  .hero-stats div strong{display:block;font-family:'Fraunces';font-size:26px;color:var(--terracotta-deep);}
+  .hero-stats div span{font-size:12.5px;color:var(--bark-soft);text-transform:uppercase;letter-spacing:0.08em;}
+
+  .hero-visual{position:relative;}
+  .hero-img-frame{
+    position:relative;border-radius:22px;overflow:hidden;
+    box-shadow:var(--shadow-soft);
+    aspect-ratio:4/5;
+  }
+  .hero-img-frame img{width:100%;height:100%;object-fit:cover;}
+  .hero-badge{
+    position:absolute;bottom:-26px;left:-26px;
+    background:var(--paper);border-radius:16px;padding:18px 20px;
+    box-shadow:var(--shadow-soft);
+    display:flex;align-items:center;gap:12px;
+    max-width:230px;
+    border:1px solid var(--line);
+  }
+  .hero-badge .dot{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--sage);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-badge .dot svg{width:20px;height:20px;stroke:var(--paper);}
+  .hero-badge p{margin:0;font-size:12.5px;line-height:1.5;color:var(--bark-soft);}
+  .hero-badge strong{display:block;font-family:'Fraunces';font-size:14.5px;color:var(--bark);margin-bottom:2px;}
+  .hero-ring{
+    position:absolute;top:-30px;right:-30px;
+    width:120px;height:120px;border-radius:50%;
+    border:1.5px dashed var(--dusty-rose);
+    display:flex;align-items:center;justify-content:center;
+    animation:spin 22s linear infinite;
+  }
+  .hero-ring span{
+    font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--dusty-rose-deep);font-weight:600;text-align:center;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ---------- marquee ---------- */
+  .marquee{
+    background:var(--bark);color:var(--cream);
+    padding:16px 0;overflow:hidden;white-space:nowrap;
+    position:relative;z-index:1;
+  }
+  .marquee-track{display:inline-flex;animation:scroll 32s linear infinite;}
+  .marquee-track span{
+    font-family:'Fraunces';font-style:italic;font-size:19px;
+    padding:0 34px;display:inline-flex;align-items:center;gap:34px;
+    color:var(--cream);opacity:0.9;
+  }
+  .marquee-track span::after{content:"✦";color:var(--dusty-rose);opacity:1;font-style:normal;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section heading ---------- */
+  .section{padding:100px 0;position:relative;z-index:1;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:52px;gap:24px;flex-wrap:wrap;
+  }
+  .section-head .tag{
+    font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--sage-deep);font-weight:600;margin-bottom:12px;display:block;
+  }
+  .section-head h2{font-size:clamp(30px,3.6vw,44px);color:var(--bark);max-width:560px;}
+  .section-head p{color:var(--bark-soft);font-size:15px;max-width:340px;line-height:1.7;}
+
+  /* ---------- products ---------- */
+  .products-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  }
+  .product-card{
+    background:var(--paper);border-radius:20px;overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .35s, box-shadow .35s;
+    cursor:pointer;
+  }
+  .product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-soft);}
+  .product-img{
+    position:relative;aspect-ratio:3/3.6;overflow:hidden;
+  }
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+  .product-card:hover .product-img img{transform:scale(1.08);}
+  .product-tag{
+    position:absolute;top:14px;left:14px;
+    background:var(--paper);color:var(--bark);
+    font-size:10.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+    padding:6px 12px;border-radius:100px;
+  }
+  .fav-btn{
+    position:absolute;top:12px;right:12px;
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(251,246,238,0.9);
+    display:flex;align-items:center;justify-content:center;
+    border:none;cursor:pointer;transition:all .25s;
+  }
+  .fav-btn svg{width:16px;height:16px;stroke:var(--bark);fill:none;transition:all .2s;}
+  .fav-btn.active svg{fill:var(--terracotta);stroke:var(--terracotta);}
+  .product-body{padding:20px 20px 22px;}
+  .product-body .cat{font-size:11.5px;color:var(--sage-deep);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
+  .product-body h3{font-family:'Fraunces';font-size:19px;margin:6px 0 8px;color:var(--bark);}
+  .product-body .desc{font-size:13px;color:var(--bark-soft);line-height:1.5;margin-bottom:14px;}
+  .product-foot{display:flex;align-items:center;justify-content:space-between;}
+  .price{font-family:'Fraunces';font-size:18px;color:var(--terracotta-deep);font-weight:600;}
+  .add-btn{
+    width:36px;height:36px;border-radius:50%;background:var(--bark);
+    border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .25s;
+  }
+  .add-btn:hover{background:var(--terracotta-deep);}
+  .add-btn svg{width:15px;height:15px;stroke:var(--cream);}
+
+  /* ---------- story ---------- */
+  .story{
+    display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:center;
+  }
+  .story-img{position:relative;}
+  .story-img img{border-radius:20px;width:100%;aspect-ratio:4/4.7;object-fit:cover;box-shadow:var(--shadow-soft);}
+  .story-img .patch{
+    position:absolute;bottom:-24px;right:-24px;
+    background:var(--sage);color:var(--paper);
+    padding:22px;border-radius:18px;width:150px;
+    font-family:'Fraunces';font-size:14px;line-height:1.4;
+    box-shadow:var(--shadow-soft);
+  }
+  .story-text .tag{font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta-deep);font-weight:600;margin-bottom:16px;display:block;}
+  .story-text h2{font-size:clamp(28px,3.4vw,42px);line-height:1.15;margin-bottom:22px;color:var(--bark);}
+  .story-text p{font-size:15.5px;line-height:1.85;color:var(--bark-soft);margin-bottom:18px;max-width:520px;}
+  .story-list{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:16px;}
+  .story-list li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--bark);}
+  .story-list li .num{
+    font-family:'Fraunces';font-style:italic;color:var(--terracotta-deep);
+    font-size:16px;flex-shrink:0;width:26px;
+  }
+
+  /* ---------- features ---------- */
+  .features{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+    background:var(--line);border-radius:20px;overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .feature{
+    background:var(--paper);padding:34px 28px;
+  }
+  .feature .icon-wrap{
+    width:46px;height:46px;border-radius:50%;
+    background:var(--cream);display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .feature .icon-wrap svg{width:20px;height:20px;stroke:var(--terracotta-deep);}
+  .feature h3{font-family:'Fraunces';font-size:17px;margin-bottom:8px;color:var(--bark);}
+  .feature p{font-size:13.5px;color:var(--bark-soft);line-height:1.6;margin:0;}
+
+  /* ---------- gallery banner ---------- */
+  .gallery-banner{
+    position:relative;border-radius:24px;overflow:hidden;
+    min-height:380px;display:flex;align-items:center;
+  }
+  .gallery-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .gallery-banner::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(74,58,47,0.72) 0%, rgba(74,58,47,0.3) 55%, rgba(74,58,47,0.05) 100%);
+  }
+  .gallery-content{position:relative;z-index:2;padding:60px;max-width:460px;color:var(--cream);}
+  .gallery-content .tag{font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dusty-rose);font-weight:600;margin-bottom:16px;display:block;}
+  .gallery-content h2{font-size:clamp(28px,3.4vw,40px);line-height:1.15;margin-bottom:18px;}
+  .gallery-content p{font-size:15px;line-height:1.75;opacity:0.85;margin-bottom:28px;}
+
+  /* ---------- testimonials ---------- */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .testi-card{
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:20px;padding:32px;
+  }
+  .stars{display:flex;gap:3px;margin-bottom:18px;}
+  .stars svg{width:15px;height:15px;fill:var(--terracotta);stroke:none;}
+  .testi-card p{font-size:14.5px;line-height:1.75;color:var(--bark);margin-bottom:24px;font-style:italic;font-family:'Fraunces';font-weight:400;}
+  .testi-person{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--sage);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces';font-size:15px;font-weight:600;flex-shrink:0;
+  }
+  .testi-person strong{display:block;font-size:13.5px;color:var(--bark);}
+  .testi-person span{font-size:12px;color:var(--bark-soft);}
+
+  /* ---------- newsletter ---------- */
+  .newsletter{
+    background:var(--bark);border-radius:26px;
+    padding:70px 60px;position:relative;overflow:hidden;
+    display:flex;justify-content:space-between;align-items:center;gap:40px;
+  }
+  .newsletter::before{
+    content:"✦";position:absolute;font-size:220px;font-family:'Fraunces';
+    color:rgba(246,239,228,0.04);top:-70px;right:-20px;pointer-events:none;
+  }
+  .newsletter-text{max-width:420px;position:relative;z-index:1;}
+  .newsletter-text span.tag{font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dusty-rose);font-weight:600;margin-bottom:14px;display:block;}
+  .newsletter-text h2{color:var(--cream);font-size:clamp(26px,3vw,36px);line-height:1.2;margin-bottom:14px;}
+  .newsletter-text p{color:rgba(246,239,228,0.65);font-size:14.5px;line-height:1.7;}
+  .newsletter-form{display:flex;gap:10px;position:relative;z-index:1;flex-shrink:0;}
+  .newsletter-form input{
+    padding:15px 20px;border-radius:100px;border:1px solid rgba(246,239,228,0.25);
+    background:rgba(246,239,228,0.08);color:var(--cream);width:260px;
+    font-family:'Work Sans';font-size:14px;outline:none;
+  }
+  .newsletter-form input::placeholder{color:rgba(246,239,228,0.5);}
+  .newsletter-form input:focus{border-color:var(--dusty-rose);}
+  .newsletter-form button{
+    padding:15px 26px;border-radius:100px;border:none;
+    background:var(--dusty-rose);color:var(--bark);font-weight:600;
+    cursor:pointer;font-size:14px;transition:all .25s;white-space:nowrap;
+  }
+  .newsletter-form button:hover{background:var(--cream);}
+
+  /* ---------- footer ---------- */
+  footer{position:relative;z-index:1;padding:80px 0 30px;}
+  .footer-top{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+    padding-bottom:60px;border-bottom:1px solid var(--line);
+  }
+  .footer-logo{font-family:'Fraunces';font-size:24px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .footer-top p{font-size:13.5px;color:var(--bark-soft);line-height:1.7;max-width:280px;}
+  .footer-col h4{font-size:13px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;color:var(--bark);}
+  .footer-col ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+  .footer-col a{font-size:13.5px;color:var(--bark-soft);transition:color .2s;}
+  .footer-col a:hover{color:var(--terracotta-deep);}
+  .footer-social{display:flex;gap:10px;margin-top:20px;}
+  .footer-social a{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .footer-social a:hover{background:var(--bark);border-color:var(--bark);}
+  .footer-social a:hover svg{stroke:var(--cream);}
+  .footer-social svg{width:14px;height:14px;stroke:var(--bark);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;padding-top:26px;
+    font-size:12.5px;color:var(--bark-soft);flex-wrap:wrap;gap:10px;
+  }
+
+  /* toast */
+  .toast{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(120%);
+    background:var(--bark);color:var(--cream);padding:15px 26px;border-radius:100px;
+    font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:10px;
+    box-shadow:var(--shadow-soft);z-index:200;transition:transform .4s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast svg{width:15px;height:15px;stroke:var(--sage);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1000px){
+    .products-grid{grid-template-columns:repeat(2,1fr);}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:1fr;}
+    .hero{grid-template-columns:1fr;padding-top:40px;}
+    .hero-visual{order:-1;max-width:420px;margin:0 auto;}
+    .story{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .newsletter{flex-direction:column;align-items:flex-start;}
+    .newsletter-form{width:100%;}
+    .newsletter-form input{width:100%;}
+  }
+  @media (max-width:620px){
+    .products-grid{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+    nav{padding:16px 20px;}
+    .section{padding:70px 0;}
+    .gallery-content{padding:36px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">Free dried-flower care card with every order <span>·</span> Handmade in small batches <span>·</span> Ships worldwide</div>
+
+<header>
+  <nav>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" fill="var(--dusty-rose)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(72 12 12)" fill="var(--terracotta)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(144 12 12)" fill="var(--sage)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(216 12 12)" fill="var(--dusty-rose)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(288 12 12)" fill="var(--terracotta)" stroke="none"/><circle cx="12" cy="12" r="2" fill="var(--bark)" stroke="none"/></svg>
+      Everbloom
+    </div>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#gallery">In The Home</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-icons" style="position:relative;">
+      <button class="icon-btn" id="searchToggle" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <div class="search-flyout" id="searchFlyout">
+        <input type="text" id="searchInput" placeholder="Search dried bouquets, wreaths, vases…">
+        <span class="search-hint">Try “pampas”, “wreath”, “terracotta”, “rose”</span>
+      </div>
+      <button class="icon-btn" id="favToggle" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.6 4.1c2-.2 3.7.8 4.9 2.4C11.7 4.9 13.4 3.9 15.4 4.1c3.6.4 5.2 3.9 3.6 7.6C16.5 16.4 12 21 12 21z"/></svg>
+      </button>
+      <button class="icon-btn" id="cartToggle" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Dried Flower Art & Home Decor</span>
+    <h1>Everlasting blooms, <em>gathered</em> for your home.</h1>
+    <p>Hand-picked, naturally dried florals arranged into bouquets, wreaths and wall art that never wilt — just soft, sun-faded color that lasts for years.</p>
+    <div class="hero-cta">
+      <a href="#shop" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Shop The Collection
+      </a>
+      <a href="#story" class="btn btn-ghost">Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>4.9</strong><span>Avg. Rating</span></div>
+      <div><strong>12k+</strong><span>Bouquets Sent</span></div>
+      <div><strong>3 yrs+</strong><span>Bloom Lifespan</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-ring"><span>Handmade<br>Small Batch</span></div>
+    <div class="hero-img-frame">
+      <img src="https://images.unsplash.com/photo-1543251797-8e64fcebcb4a?auto=format&fit=crop&w=900&q=80" alt="Assortment of dried flowers in soft neutral tones">
+    </div>
+    <div class="hero-badge">
+      <div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <p><strong>100% Real Botanicals</strong>No fakes, no plastic — every stem was once alive.</p>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Dried Pampas Grass</span>
+    <span>Preserved Lavender</span>
+    <span>Bunny Tail Grass</span>
+    <span>Everlasting Roses</span>
+    <span>Wheat & Wildgrass</span>
+    <span>Boho Wall Art</span>
+    <span>Dried Pampas Grass</span>
+    <span>Preserved Lavender</span>
+    <span>Bunny Tail Grass</span>
+    <span>Everlasting Roses</span>
+    <span>Wheat & Wildgrass</span>
+    <span>Boho Wall Art</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="section" id="shop">
+    <div class="section-head">
+      <div>
+        <span class="tag">Shop the Edit</span>
+        <h2>Best-selling dried arrangements</h2>
+      </div>
+      <p>Each piece is cut, dried and styled by hand in our studio — no two bouquets are exactly alike.</p>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Product 1 -->
+      <article class="product-card" data-name="dusk rose bouquet" data-cat="bouquets">
+        <div class="product-img">
+          <span class="product-tag">Bestseller</span>
+          <button class="fav-btn"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.6 4.1c2-.2 3.7.8 4.9 2.4C11.7 4.9 13.4 3.9 15.4 4.1c3.6.4 5.2 3.9 3.6 7.6C16.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1533802228923-3e6de1b76779?auto=format&fit=crop&w=700&q=80" alt="Dusk Rose dried flower bouquet against a brick wall">
+        </div>
+        <div class="product-body">
+          <span class="cat">Bouquets</span>
+          <h3>Dusk Rose Bouquet</h3>
+          <p class="desc">Blush roses, bunny-tail grass and dusty pink limonium, hand-tied with linen twine.</p>
+          <div class="product-foot">
+            <span class="price">$48</span>
+            <button class="add-btn" data-add><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="product-card" data-name="golden pampas vase set" data-cat="vases">
+        <div class="product-img">
+          <span class="product-tag">New</span>
+          <button class="fav-btn"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.6 4.1c2-.2 3.7.8 4.9 2.4C11.7 4.9 13.4 3.9 15.4 4.1c3.6.4 5.2 3.9 3.6 7.6C16.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1645743713331-a13caa92d1a0?auto=format&fit=crop&w=700&q=80" alt="Vase with dried pampas grass in golden sunlight">
+        </div>
+        <div class="product-body">
+          <span class="cat">Vase Arrangements</span>
+          <h3>Golden Hour Pampas</h3>
+          <p class="desc">Fluffed cream pampas plumes styled in a stoneware vase — instant warmth for any room.</p>
+          <div class="product-foot">
+            <span class="price">$62</span>
+            <button class="add-btn" data-add><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 3 -->
+      <article class="product-card" data-name="midnight bloom wreath" data-cat="wreaths">
+        <div class="product-img">
+          <span class="product-tag">Limited</span>
+          <button class="fav-btn"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.6 4.1c2-.2 3.7.8 4.9 2.4C11.7 4.9 13.4 3.9 15.4 4.1c3.6.4 5.2 3.9 3.6 7.6C16.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1503656554812-ef734ee0f9f8?auto=format&fit=crop&w=700&q=80" alt="Dried flower wreath wall art">
+        </div>
+        <div class="product-body">
+          <span class="cat">Wreaths & Wall Art</span>
+          <h3>Midnight Bloom Wreath</h3>
+          <p class="desc">A moody ring of dried florals and foliage, perfect for doors, mirrors or a gallery wall.</p>
+          <div class="product-foot">
+            <span class="price">$56</span>
+            <button class="add-btn" data-add><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 4 -->
+      <article class="product-card" data-name="eternal wedding bunch" data-cat="bouquets">
+        <div class="product-img">
+          <span class="product-tag">Editor's Pick</span>
+          <button class="fav-btn"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.6 4.1c2-.2 3.7.8 4.9 2.4C11.7 4.9 13.4 3.9 15.4 4.1c3.6.4 5.2 3.9 3.6 7.6C16.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://images.unsplash.com/photo-1543251797-8e64fcebcb4a?auto=format&fit=crop&w=700&q=80" alt="Eternal dried flower bunch">
+        </div>
+        <div class="product-body">
+          <span class="cat">Bouquets</span>
+          <h3>Eternal Wedding Bunch</h3>
+          <p class="desc">A romantic, full-bodied gathering of dried blooms that keeps its color for seasons.</p>
+          <div class="product-foot">
+            <span class="price">$72</span>
+            <button class="add-btn" data-add><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="story">
+    <div class="story">
+      <div class="story-img">
+        <img src="https://images.unsplash.com/photo-1533802228923-3e6de1b76779?auto=format&fit=crop&w=800&q=80" alt="Dried flower bouquet, romantic styling">
+        <div class="patch">"They keep every bit of the season they were cut in."</div>
+      </div>
+      <div class="story-text">
+        <span class="tag">Our Story</span>
+        <h2>Grown slow. Dried by hand. Styled to last.</h2>
+        <p>Everbloom started on a windowsill full of flowers we couldn't bear to throw away. We began hang-drying leftover stems, and within a season, friends were asking us to make arrangements for their own homes.</p>
+        <p>Today every bouquet, wreath and vase arrangement is still dried and styled entirely by hand in small batches — never mass-produced, never artificial.</p>
+        <ul class="story-list">
+          <li><span class="num">01</span> Ethically sourced from local growers and our own cutting garden.</li>
+          <li><span class="num">02</span> Air-dried slowly over 2–3 weeks to hold natural color and shape.</li>
+          <li><span class="num">03</span> Hand-finished and packed in reusable, compostable wrap.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <span class="tag">Why Everbloom</span>
+        <h2>Decor that doesn't ask for water</h2>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg></div>
+        <h3>Lasts for Years</h3>
+        <p>No sunlight fade tricks — proper drying keeps color and shape for 2–3+ years with zero care.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z"/><circle cx="12" cy="9" r="2.4"/></svg></div>
+        <h3>Locally Sourced</h3>
+        <p>Stems come from small regional growers and our own garden — nothing flown in from overseas.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7h-9M14 17H5M17 3v8M7 13v8"/><circle cx="17" cy="7" r="2.5"/><circle cx="7" cy="17" r="2.5"/></svg></div>
+        <h3>Made to Order</h3>
+        <p>Every arrangement is styled after you order — freshly dried stems, not warehouse stock.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg></div>
+        <h3>Gift-Ready Packaging</h3>
+        <p>Wrapped in kraft paper and dried botanicals — ready to hand over or ship straight to a friend.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="gallery-banner">
+      <img src="https://images.unsplash.com/photo-1645743713331-a13caa92d1a0?auto=format&fit=crop&w=1400&q=80" alt="Dried pampas grass styled in a warm, sunlit home interior">
+      <div class="gallery-content">
+        <span class="tag">In The Home</span>
+        <h2>Warmth, texture, and a little bit of wild.</h2>
+        <p>See how our arrangements settle into real homes — from sunlit reading corners to entryway consoles.</p>
+        <a href="#shop" class="btn btn-primary" style="background:var(--dusty-rose); color:var(--bark);">Shop This Look</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="section-head">
+      <div>
+        <span class="tag">Reviews</span>
+        <h2>Loved by plant killers everywhere</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <p>"Nine months in and the Dusk Rose Bouquet still looks like the day it arrived. Genuinely the best decor purchase I've made."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">M</div>
+          <div><strong>Meera K.</strong><span>Verified Buyer</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <p>"The pampas vase set filled my whole living room with warmth. Packaging was so lovely I kept the box."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">A</div>
+          <div><strong>Aarav S.</strong><span>Verified Buyer</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <p>"Bought the Midnight Bloom Wreath as a gift and ended up ordering one for myself. Worth every rupee."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">S</div>
+          <div><strong>Simran D.</strong><span>Verified Buyer</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" style="padding-top:0;">
+    <div class="newsletter">
+      <div class="newsletter-text">
+        <span class="tag">Stay in Bloom</span>
+        <h2>Get 10% off your first order</h2>
+        <p>New arrangements, care tips and early access to limited drops — straight to your inbox, roughly twice a month.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="you@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" fill="var(--dusty-rose)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(72 12 12)" fill="var(--terracotta)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(144 12 12)" fill="var(--sage)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(216 12 12)" fill="var(--dusty-rose)" stroke="none"/><path d="M12 2c1.5 2 1.5 4.5 0 6.5C10.5 6.5 10.5 4 12 2z" transform="rotate(288 12 12)" fill="var(--terracotta)" stroke="none"/><circle cx="12" cy="12" r="2" fill="var(--bark)" stroke="none"/></svg>
+          Everbloom
+        </div>
+        <p>Dried flower art & home decor, hand-styled in small batches. Blooms that outlast the season they were cut in.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9 17c1.5-3 2-6 2-8a2.5 2.5 0 0 1 5 0c0 2-1 4-3 4"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4h-2a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Bouquets</a></li>
+          <li><a href="#shop">Wreaths & Wall Art</a></li>
+          <li><a href="#shop">Vase Arrangements</a></li>
+          <li><a href="#shop">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#gallery">In The Home</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Flower Care Guide</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Everbloom Dried Flower Co. All rights reserved.</span>
+      <span>Made with care for slow, lasting decor.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toastText">Added to cart</span>
+</div>
+
+<script>
+  // ---- search flyout ----
+  const searchToggle = document.getElementById('searchToggle');
+  const searchFlyout = document.getElementById('searchFlyout');
+  const searchInput = document.getElementById('searchInput');
+
+  searchToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    searchFlyout.classList.toggle('open');
+    if (searchFlyout.classList.contains('open')) searchInput.focus();
+  });
+  document.addEventListener('click', (e) => {
+    if (!searchFlyout.contains(e.target) && e.target !== searchToggle) {
+      searchFlyout.classList.remove('open');
+    }
+  });
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    document.querySelectorAll('.product-card').forEach(card => {
+      const match = card.dataset.name.includes(q) || card.dataset.cat.includes(q);
+      card.style.display = (q === '' || match) ? '' : 'none';
+    });
+  });
+
+  // ---- favorites ----
+  let favCount = 0;
+  document.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      btn.classList.toggle('active');
+      showToast(btn.classList.contains('active') ? 'Added to wishlist ♥' : 'Removed from wishlist');
+    });
+  });
+
+  // ---- cart ----
+  let cartCount = 0;
+  const cartCountEl = document.getElementById('cartCount');
+  document.querySelectorAll('[data-add]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cartCount++;
+      cartCountEl.textContent = cartCount;
+      const name = btn.closest('.product-card').querySelector('h3').textContent;
+      showToast(name + ' added to cart');
+    });
+  });
+
+  // ---- toast ----
+  const toast = document.getElementById('toast');
+  const toastText = document.getElementById('toastText');
+  let toastTimer;
+  function showToast(msg){
+    toastText.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  // ---- newsletter ----
+  document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    showToast('You are on the list 🌾');
+    e.target.reset();
+  });
+</script>
+
+</body>
+</html>
