@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petal & Henna — Mehndi, Decor, Flowers & Ceremony</title>
+<style>
+  :root{
+    --marigold:#F4A340;
+    --marigold-deep:#E8832B;
+    --magenta:#D6478E;
+    --magenta-soft:#F3A6C6;
+    --mehndi-green:#5C7A4A;
+    --ivory:#FFF8EE;
+    --cream:#FFF1DC;
+    --text-dark:#3B2A22;
+    --text-soft:#7A6355;
+    --white:#ffffff;
+    --shadow:0 10px 30px rgba(216,90,58,0.15);
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:linear-gradient(180deg,var(--ivory) 0%, var(--cream) 100%);
+    color:var(--text-dark);
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+
+  /* Loading screen */
+  #loader{
+    position:fixed;inset:0;z-index:9999;
+    background:radial-gradient(circle at 50% 40%,var(--magenta-soft),var(--marigold) 120%);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+    transition:opacity .6s ease, visibility .6s ease;
+  }
+  #loader svg{width:70px;height:70px;animation:spin 1.4s linear infinite;}
+  #loader span{color:var(--white);font-weight:600;letter-spacing:1px;font-size:15px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  #loader.hide{opacity:0;visibility:hidden;}
+
+  /* Navbar */
+  header{
+    position:sticky;top:0;z-index:500;
+    background:rgba(255,248,238,0.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(214,71,142,0.12);
+  }
+  nav{
+    max-width:1200px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;color:var(--magenta);}
+  .logo svg{width:30px;height:30px;}
+  .nav-links{display:flex;gap:30px;font-weight:600;font-size:15px;color:var(--text-soft);}
+  .nav-links a{transition:color .25s;}
+  .nav-links a:hover{color:var(--magenta);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--white);display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow);border:none;cursor:pointer;color:var(--magenta);
+    transition:transform .25s;
+  }
+  .icon-btn:hover{transform:translateY(-3px);}
+  .cta-btn{
+    background:linear-gradient(135deg,var(--magenta),var(--marigold-deep));
+    color:#fff;padding:11px 22px;border-radius:30px;font-weight:700;font-size:14px;
+    box-shadow:var(--shadow);border:none;cursor:pointer;
+  }
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--magenta);}
+
+  /* Hero */
+  .hero{
+    max-width:1200px;margin:0 auto;padding:60px 24px 40px;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;background:var(--white);
+    padding:8px 16px;border-radius:30px;font-size:13px;font-weight:700;color:var(--marigold-deep);
+    box-shadow:var(--shadow);margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:48px;line-height:1.15;font-weight:800;color:var(--text-dark);margin-bottom:18px;
+  }
+  .hero h1 span{color:var(--magenta);}
+  .hero p{color:var(--text-soft);font-size:16px;line-height:1.7;margin-bottom:28px;max-width:480px;}
+  .hero-btns{display:flex;gap:14px;}
+  .btn-outline{
+    padding:13px 26px;border-radius:30px;font-weight:700;font-size:14px;
+    border:2px solid var(--magenta);color:var(--magenta);background:transparent;cursor:pointer;
+  }
+  .hero-img-wrap{position:relative;}
+  .hero-img-wrap img{
+    width:100%;height:420px;object-fit:cover;border-radius:32px;box-shadow:var(--shadow);
+  }
+  .float-card{
+    position:absolute;background:var(--white);padding:14px 18px;border-radius:16px;
+    box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;
+  }
+  .float-card.c1{top:-18px;left:-18px;color:var(--marigold-deep);}
+  .float-card.c2{bottom:-18px;right:-18px;color:var(--magenta);}
+  .float-card svg{width:22px;height:22px;}
+
+  /* Search bar */
+  .search-section{max-width:1200px;margin:0 auto;padding:0 24px 50px;}
+  .search-box{
+    background:var(--white);border-radius:40px;box-shadow:var(--shadow);
+    padding:8px 8px 8px 22px;display:flex;align-items:center;gap:12px;max-width:640px;margin:0 auto;
+  }
+  .search-box svg{width:20px;height:20px;color:var(--text-soft);flex-shrink:0;}
+  .search-box input{
+    border:none;outline:none;flex:1;font-size:15px;padding:10px 0;background:transparent;color:var(--text-dark);
+  }
+  .search-box button{
+    background:linear-gradient(135deg,var(--magenta),var(--marigold-deep));
+    color:#fff;border:none;padding:12px 24px;border-radius:32px;font-weight:700;font-size:14px;cursor:pointer;
+  }
+  .search-tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+  .search-tags span{
+    background:var(--white);padding:6px 14px;border-radius:20px;font-size:12.5px;font-weight:600;
+    color:var(--text-soft);box-shadow:0 3px 10px rgba(0,0,0,0.05);cursor:pointer;
+  }
+
+  /* Section heading */
+  .section{max-width:1200px;margin:0 auto;padding:60px 24px;}
+  .section-head{text-align:center;margin-bottom:44px;}
+  .section-head .tag{
+    color:var(--magenta);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  }
+  .section-head h2{font-size:34px;font-weight:800;margin-top:8px;color:var(--text-dark);}
+  .section-head p{color:var(--text-soft);margin-top:10px;font-size:15px;}
+
+  /* Category cards */
+  .categories{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .cat-card{
+    position:relative;border-radius:var(--radius);overflow:hidden;height:260px;
+    box-shadow:var(--shadow);cursor:pointer;
+  }
+  .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .cat-card:hover img{transform:scale(1.08);}
+  .cat-overlay{
+    position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(59,42,34,0.75) 100%);
+    display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;
+  }
+  .cat-overlay .icon{
+    width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.25);
+    display:flex;align-items:center;justify-content:center;margin-bottom:10px;
+    backdrop-filter:blur(6px);
+  }
+  .cat-overlay .icon svg{width:18px;height:18px;}
+  .cat-overlay h3{font-size:19px;font-weight:800;}
+  .cat-overlay p{font-size:12.5px;opacity:.85;margin-top:2px;}
+
+  /* Product / gallery grid */
+  .filter-bar{display:flex;gap:10px;justify-content:center;margin-bottom:36px;flex-wrap:wrap;}
+  .filter-bar button{
+    background:var(--white);border:none;padding:10px 20px;border-radius:24px;font-weight:700;
+    font-size:13.5px;color:var(--text-soft);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.05);
+    transition:.25s;
+  }
+  .filter-bar button.active, .filter-bar button:hover{
+    background:linear-gradient(135deg,var(--magenta),var(--marigold-deep));color:#fff;
+  }
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .product-card{
+    background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+    transition:transform .35s ease;
+  }
+  .product-card:hover{transform:translateY(-8px);}
+  .product-img{position:relative;height:210px;overflow:hidden;}
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+  .product-card:hover .product-img img{transform:scale(1.1);}
+  .wish-btn{
+    position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.12);cursor:pointer;color:var(--magenta);border:none;
+  }
+  .badge{
+    position:absolute;top:12px;left:12px;background:var(--mehndi-green);color:#fff;font-size:11px;
+    font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:.5px;
+  }
+  .product-body{padding:18px 20px 20px;}
+  .product-body .cat-label{font-size:11.5px;color:var(--marigold-deep);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+  .product-body h4{font-size:17px;font-weight:800;margin:6px 0 6px;color:var(--text-dark);}
+  .product-body p{font-size:13px;color:var(--text-soft);margin-bottom:14px;line-height:1.5;}
+  .product-footer{display:flex;align-items:center;justify-content:space-between;}
+  .price{font-size:18px;font-weight:800;color:var(--magenta);}
+  .price small{font-size:12px;color:var(--text-soft);font-weight:500;text-decoration:line-through;margin-left:6px;}
+  .add-btn{
+    background:linear-gradient(135deg,var(--magenta),var(--marigold-deep));
+    color:#fff;border:none;width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);
+  }
+
+  /* Ceremony banner */
+  .ceremony-banner{
+    max-width:1200px;margin:20px auto 0;padding:0 24px;
+  }
+  .banner-inner{
+    background:linear-gradient(135deg,var(--magenta) 0%, var(--marigold-deep) 100%);
+    border-radius:32px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;
+    overflow:hidden;position:relative;box-shadow:var(--shadow);
+  }
+  .banner-inner::before{
+    content:'';position:absolute;width:260px;height:260px;background:rgba(255,255,255,0.12);
+    border-radius:50%;top:-100px;right:-60px;
+  }
+  .banner-text{color:#fff;z-index:1;}
+  .banner-text .tag{background:rgba(255,255,255,0.2);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:14px;}
+  .banner-text h2{font-size:30px;font-weight:800;margin-bottom:12px;}
+  .banner-text p{font-size:14.5px;opacity:.9;margin-bottom:22px;line-height:1.6;}
+  .banner-text button{
+    background:#fff;color:var(--magenta);border:none;padding:13px 26px;border-radius:30px;font-weight:800;
+    font-size:14px;cursor:pointer;
+  }
+  .banner-img{display:flex;gap:14px;z-index:1;}
+  .banner-img img{width:100%;height:280px;object-fit:cover;border-radius:20px;box-shadow:0 15px 30px rgba(0,0,0,0.2);}
+
+  /* Testimonials */
+  .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .t-card{background:var(--white);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);}
+  .t-stars{color:var(--marigold-deep);font-size:14px;margin-bottom:12px;}
+  .t-card p{font-size:14px;color:var(--text-soft);line-height:1.7;margin-bottom:18px;}
+  .t-user{display:flex;align-items:center;gap:12px;}
+  .t-user img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+  .t-user h5{font-size:14px;font-weight:700;color:var(--text-dark);}
+  .t-user span{font-size:12px;color:var(--text-soft);}
+
+  /* Newsletter */
+  .newsletter{
+    max-width:1200px;margin:20px auto;padding:0 24px;
+  }
+  .news-inner{
+    background:var(--white);border-radius:32px;padding:46px;text-align:center;box-shadow:var(--shadow);
+  }
+  .news-inner .icon-wrap{
+    width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--magenta-soft),var(--marigold));
+    display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#fff;
+  }
+  .news-inner h3{font-size:24px;font-weight:800;margin-bottom:8px;}
+  .news-inner p{color:var(--text-soft);font-size:14px;margin-bottom:22px;}
+  .news-form{display:flex;gap:10px;max-width:440px;margin:0 auto;}
+  .news-form input{
+    flex:1;padding:13px 18px;border-radius:30px;border:2px solid var(--cream);outline:none;font-size:14px;
+  }
+  .news-form button{
+    background:linear-gradient(135deg,var(--magenta),var(--marigold-deep));color:#fff;border:none;
+    padding:13px 24px;border-radius:30px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;
+  }
+
+  /* Footer */
+  footer{background:var(--text-dark);color:#f4e8dd;margin-top:40px;}
+  .footer-inner{
+    max-width:1200px;margin:0 auto;padding:60px 24px 30px;
+    display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;
+  }
+  .footer-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;color:var(--magenta-soft);margin-bottom:14px;}
+  .footer-logo svg{width:26px;height:26px;}
+  .footer-inner p{font-size:13.5px;color:#cbb6a8;line-height:1.7;margin-bottom:18px;}
+  .social-row{display:flex;gap:10px;}
+  .social-row a{
+    width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;color:#f4e8dd;
+  }
+  .footer-col h4{font-size:14px;font-weight:700;margin-bottom:16px;color:#fff;}
+  .footer-col a{display:block;font-size:13.5px;color:#cbb6a8;margin-bottom:10px;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.08);padding:20px 24px;text-align:center;
+    font-size:12.5px;color:#a68d7c;
+  }
+
+  /* Toast */
+  #toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--text-dark);color:#fff;padding:14px 26px;border-radius:30px;
+    display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);opacity:0;visibility:hidden;transition:.35s ease;z-index:2000;
+  }
+  #toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+  #toast svg{width:18px;height:18px;color:var(--marigold);}
+
+  @media(max-width:1000px){
+    .hero{grid-template-columns:1fr;}
+    .categories{grid-template-columns:repeat(2,1fr);}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .banner-inner{grid-template-columns:1fr;}
+    .testimonials{grid-template-columns:1fr;}
+    .footer-inner{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+  }
+  @media(max-width:600px){
+    .hero h1{font-size:32px;}
+    .categories{grid-template-columns:1fr;}
+    .grid{grid-template-columns:1fr;}
+    .banner-img{flex-direction:column;}
+    .footer-inner{grid-template-columns:1fr;}
+    .news-form{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <svg viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="20" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="90 60"/></svg>
+  <span>Blooming your page...</span>
+</div>
+
+<header>
+  <nav>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><path d="M12 16c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><path d="M2 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0z"/><path d="M16 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0z"/><circle cx="12" cy="12" r="2.4"/></svg>
+      Petal &amp; Henna
+    </div>
+    <div class="nav-links">
+      <a href="#categories">Categories</a>
+      <a href="#mehndi">Mehndi</a>
+      <a href="#decor">Decor</a>
+      <a href="#ceremony">Ceremony</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" title="Wishlist" onclick="showToast('Added to your wishlist')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </button>
+      <button class="icon-btn" title="Cart" onclick="showToast('Cart updated')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      </button>
+      <button class="cta-btn" onclick="showToast('Booking request sent!')">Book Now</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21l2.3-7.2-6-4.4h7.6z"/></svg>
+      Trusted by 2,000+ celebrations
+    </div>
+    <h1>Mehndi, Decor &amp; <span>Flowers</span> for Every Ceremony</h1>
+    <p>From marigold backdrops to jasmine garlands and henna-ready stages — we craft the full look for your haldi, mehndi, and wedding ceremonies.</p>
+    <div class="hero-btns">
+      <button class="cta-btn" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Explore Collections</button>
+      <button class="btn-outline" onclick="showToast('Opening consultation form')">Get Free Consultation</button>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="https://images.unsplash.com/photo-1600091166971-7f9faad6c1e2?w=900&q=80" alt="Mehndi ceremony flower decor" onerror="this.src='https://picsum.photos/seed/mehndi1/900/700'">
+    <div class="float-card c1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><circle cx="12" cy="12" r="2"/></svg>
+      100% Fresh Flowers
+    </div>
+    <div class="float-card c2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      Same-Day Setup
+    </div>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input id="searchInput" type="text" placeholder="Search marigold backdrops, jasmine garlands, mehndi thrones...">
+    <button onclick="runSearch()">Search</button>
+  </div>
+  <div class="search-tags">
+    <span onclick="quickSearch('Marigold')">Marigold</span>
+    <span onclick="quickSearch('Jasmine Garland')">Jasmine Garland</span>
+    <span onclick="quickSearch('Mehndi Thali')">Mehndi Thali</span>
+    <span onclick="quickSearch('Floral Backdrop')">Floral Backdrop</span>
+    <span onclick="quickSearch('Haldi Decor')">Haldi Decor</span>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="section-head">
+    <div class="tag">Browse</div>
+    <h2>Shop by Category</h2>
+    <p>Everything you need for a picture-perfect ceremony, in one place.</p>
+  </div>
+  <div class="categories">
+    <a class="cat-card" id="mehndi" onclick="showToast('Opening Mehndi collection')">
+      <img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=500&q=80" alt="Mehndi henna" onerror="this.src='https://picsum.photos/seed/mehndicat/500/600'">
+      <div class="cat-overlay">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
+        <h3>Mehndi</h3>
+        <p>Henna cones, thalis &amp; stage props</p>
+      </div>
+    </a>
+    <a class="cat-card" id="decor" onclick="showToast('Opening Decor collection')">
+      <img src="https://images.unsplash.com/photo-1478146059778-26028b07395a?w=500&q=80" alt="Ceremony decor" onerror="this.src='https://picsum.photos/seed/decorcat/500/600'">
+      <div class="cat-overlay">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3>Decor</h3>
+        <p>Backdrops, drapes &amp; string lights</p>
+      </div>
+    </a>
+    <a class="cat-card" onclick="showToast('Opening Flowers collection')">
+      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&q=80" alt="Fresh flowers" onerror="this.src='https://picsum.photos/seed/flowercat/500/600'">
+      <div class="cat-overlay">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2c1.8 2.3 1.8 4.7 0 7-1.8-2.3-1.8-4.7 0-7zM12 15c1.8 2.3 1.8 4.7 0 7-1.8-2.3-1.8-4.7 0-7z"/></svg></div>
+        <h3>Flowers</h3>
+        <p>Fresh bouquets &amp; garlands</p>
+      </div>
+    </a>
+    <a class="cat-card" id="ceremony" onclick="showToast('Opening Ceremony collection')">
+      <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&q=80" alt="Wedding ceremony setup" onerror="this.src='https://picsum.photos/seed/ceremonycat/500/600'">
+      <div class="cat-overlay">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l3 7h7l-5.6 4.3L18 21l-6-4.5L6 21l1.6-7.7L2 9h7z"/></svg></div>
+        <h3>Ceremony</h3>
+        <p>Full setups for haldi &amp; wedding</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <div class="tag">Best Sellers</div>
+    <h2>Popular Picks for Your Ceremony</h2>
+    <p>Handpicked florals and decor pieces loved by our customers.</p>
+  </div>
+  <div class="filter-bar">
+    <button class="active" onclick="filterProducts('all', this)">All</button>
+    <button onclick="filterProducts('mehndi', this)">Mehndi</button>
+    <button onclick="filterProducts('decor', this)">Decor</button>
+    <button onclick="filterProducts('flowers', this)">Flowers</button>
+    <button onclick="filterProducts('ceremony', this)">Ceremony</button>
+  </div>
+  <div class="grid" id="productGrid">
+
+    <div class="product-card" data-cat="mehndi">
+      <div class="product-img">
+        <span class="badge">Bestseller</span>
+        <button class="wish-btn" onclick="showToast('Saved to wishlist')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1600091166971-7f9faad6c1e2?w=500&q=80" alt="Marigold mehndi throne" onerror="this.src='https://picsum.photos/seed/p1/500/400'">
+      </div>
+      <div class="product-body">
+        <div class="cat-label">Mehndi Setup</div>
+        <h4>Marigold Mehndi Throne</h4>
+        <p>Chair backdrop woven with fresh marigold and roses for the bride.</p>
+        <div class="product-footer">
+          <div class="price">₹6,499 <small>₹7,999</small></div>
+          <button class="add-btn" onclick="showToast('Added to cart')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="flowers">
+      <div class="product-img">
+        <button class="wish-btn" onclick="showToast('Saved to wishlist')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=500&q=80" alt="Jasmine flower garland" onerror="this.src='https://picsum.photos/seed/p2/500/400'">
+      </div>
+      <div class="product-body">
+        <div class="cat-label">Fresh Flowers</div>
+        <h4>Jasmine &amp; Rose Garland</h4>
+        <p>Hand-strung jasmine gajra with rose accents, made fresh to order.</p>
+        <div class="product-footer">
+          <div class="price">₹899</div>
+          <button class="add-btn" onclick="showToast('Added to cart')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="decor">
+      <div class="product-img">
+        <span class="badge">New</span>
+        <button class="wish-btn" onclick="showToast('Saved to wishlist')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1478146059778-26028b07395a?w=500&q=80" alt="Floral backdrop decor" onerror="this.src='https://picsum.photos/seed/p3/500/400'">
+      </div>
+      <div class="product-body">
+        <div class="cat-label">Decor</div>
+        <h4>Floral Wall Backdrop</h4>
+        <p>Layered pink and marigold panel backdrop, 8ft x 8ft, easy install.</p>
+        <div class="product-footer">
+          <div class="price">₹4,299</div>
+          <button class="add-btn" onclick="showToast('Added to cart')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="ceremony">
+      <div class="product-img">
+        <button class="wish-btn" onclick="showToast('Saved to wishlist')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&q=80" alt="Haldi ceremony flower setup" onerror="this.src='https://picsum.photos/seed/p4/500/400'">
+      </div>
+      <div class="product-body">
+        <div class="cat-label">Ceremony</div>
+        <h4>Haldi Ceremony Full Setup</h4>
+        <p>Complete marigold canopy, floor seating &amp; floral thali arrangement.</p>
+        <div class="product-footer">
+          <div class="price">₹12,999</div>
+          <button class="add-btn" onclick="showToast('Added to cart')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="mehndi">
+      <div class="product-img">
+        <button class="wish-btn" onclick="showToast('Saved to wishlist')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=500&q=80" alt="Henna mehndi cones" onerror="this.src='https://picsum.photos/seed/p5/500/400'">
+      </div>
+      <div class="product-body">
+        <div class="cat-label">Mehndi</div>
+        <h4>Premium Henna Cone Set</h4>
+        <p>Pack of 12 organic henna cones with deep, long-lasting stain.</p>
+        <div class="product-footer">
+          <div class="price">₹499</div>
+          <button class="add-btn" onclick="showToast('Added to cart')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="flowers">
+      <div class="product-img">
+        <button class="wish-btn" onclick="showToast('Saved to wishlist')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="https://images.unsplash.com/photo-1502977249166-824b3a8b4b8f?w=500&q=80" alt="Pastel flower bouquet" onerror="this.src='https://picsum.photos/seed/p6/500/400'">
+      </div>
+      <div class="product-body">
+        <div class="cat-label">Fresh Flowers</div>
+        <h4>Pastel Bridal Bouquet</h4>
+        <p>Soft pink and cream blooms styled for the bridal entry moment.</p>
+        <div class="product-footer">
+          <div class="price">₹1,899</div>
+          <button class="add-btn" onclick="showToast('Added to cart')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="ceremony-banner">
+  <div class="banner-inner">
+    <div class="banner-text">
+      <div class="tag">Full-Service Package</div>
+      <h2>Complete Mehndi &amp; Ceremony Styling</h2>
+      <p>Book our all-in-one package — marigold decor, fresh flower arrangements, henna artists and stage styling — planned and set up for your big day.</p>
+      <button onclick="showToast('Package details sent to your inbox')">Request Package Quote</button>
+    </div>
+    <div class="banner-img">
+      <img src="https://images.unsplash.com/photo-1509721434272-b79147e0e708?w=500&q=80" alt="Yellow marigold ceremony flowers" onerror="this.src='https://picsum.photos/seed/banner1/500/600'">
+      <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?w=500&q=80" alt="Pink ceremony flowers" onerror="this.src='https://picsum.photos/seed/banner2/500/600'">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="section-head">
+    <div class="tag">Testimonials</div>
+    <h2>Loved By Our Customers</h2>
+    <p>Real feedback from real ceremonies we've styled.</p>
+  </div>
+  <div class="testimonials">
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p>"The marigold backdrop for my sister's mehndi was breathtaking. Everyone kept asking who did the decor!"</p>
+      <div class="t-user">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Customer" onerror="this.src='https://picsum.photos/seed/u1/100/100'">
+        <div><h5>Ananya R.</h5><span>Mehndi Ceremony, Jaipur</span></div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p>"Fresh jasmine garlands delivered right on time, beautifully packed. Fragrance filled the entire hall."</p>
+      <div class="t-user">
+        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=100&q=80" alt="Customer" onerror="this.src='https://picsum.photos/seed/u2/100/100'">
+        <div><h5>Priya M.</h5><span>Haldi Ceremony, Indore</span></div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p>"The full ceremony package saved us so much stress. Decor, flowers and henna artists all in one booking."</p>
+      <div class="t-user">
+        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80" alt="Customer" onerror="this.src='https://picsum.photos/seed/u3/100/100'">
+        <div><h5>Kavya S.</h5><span>Wedding Ceremony, Guna</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="news-inner">
+    <div class="icon-wrap">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>
+    </div>
+    <h3>Get Ceremony Styling Ideas In Your Inbox</h3>
+    <p>Seasonal flower guides, mehndi trends and exclusive festive offers.</p>
+    <div class="news-form">
+      <input type="email" placeholder="Enter your email address">
+      <button onclick="showToast('Subscribed successfully!')">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><path d="M12 16c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6z"/><path d="M2 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0z"/><path d="M16 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0z"/><circle cx="12" cy="12" r="2.4"/></svg>
+        Petal &amp; Henna
+      </div>
+      <p>Fresh flowers, mehndi styling and full ceremony decor — crafted with care for every celebration.</p>
+      <div class="social-row">
+        <a href="#" title="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" title="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 21l3-11M12 10a3 3 0 1 0 3 3"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#mehndi">Mehndi</a>
+      <a href="#decor">Decor</a>
+      <a href="#" onclick="return false;">Flowers</a>
+      <a href="#ceremony">Ceremony</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#" onclick="return false;">About Us</a>
+      <a href="#" onclick="return false;">Portfolio</a>
+      <a href="#" onclick="return false;">Careers</a>
+      <a href="#" onclick="return false;">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#" onclick="return false;">Booking Policy</a>
+      <a href="#" onclick="return false;">Terms of Service</a>
+      <a href="#" onclick="return false;">Privacy Policy</a>
+      <a href="#" onclick="return false;">Support Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Petal &amp; Henna — Wondermayank. All rights reserved.</div>
+</footer>
+
+<div id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toastMsg">Done</span>
+</div>
+
+<script>
+  // Loading screen
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('hide'), 500);
+  });
+
+  // Toast
+  let toastTimer;
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  // Search
+  function runSearch(){
+    const val = document.getElementById('searchInput').value.trim();
+    showToast(val ? `Searching for "${val}"...` : 'Type something to search');
+  }
+  function quickSearch(term){
+    document.getElementById('searchInput').value = term;
+    runSearch();
+  }
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if(e.key === 'Enter') runSearch();
+  });
+
+  // Filter products
+  function filterProducts(cat, btn){
+    document.querySelectorAll('.filter-bar button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
