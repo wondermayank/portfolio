@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exotic Orchid Display — Rare Bloom Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void-plum:#2a1830;
+    --plum-deep:#3a2242;
+    --orchid:#b25cc9;
+    --orchid-soft:#d199e0;
+    --blush:#f3a6c4;
+    --ivory:#fbf6f0;
+    --ivory-dim:#f3ebe3;
+    --moss:#5c7a5e;
+    --moss-soft:#a9c2ab;
+    --ink:#2a2130;
+    --ink-soft:#5f5468;
+    --gold:#e8b84b;
+    --line:#e4d8db;
+    --shadow: 0 20px 50px -25px rgba(42,24,48,0.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  .display{font-family:'Fraunces', serif;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--moss);
+    font-weight:500;
+  }
+
+  a{color:inherit;}
+  button{font-family:inherit; cursor:pointer;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px clamp(20px,5vw,64px);
+    background:rgba(251,246,240,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; gap:10px;}
+  .logo svg{width:30px; height:30px; flex-shrink:0;}
+  .logo-text{display:flex; flex-direction:column; line-height:1.1;}
+  .logo-text .name{font-family:'Fraunces', serif; font-weight:600; font-size:18px;}
+  .logo-text .tag{font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.12em; color:var(--ink-soft); text-transform:uppercase;}
+
+  nav{display:flex; align-items:center; gap:34px;}
+  nav .links{display:flex; gap:28px; font-size:14px; font-weight:500;}
+  nav .links a{text-decoration:none; color:var(--ink-soft); position:relative; padding-bottom:4px;}
+  nav .links a:hover{color:var(--ink);}
+  nav .links a::after{content:''; position:absolute; left:0; bottom:0; height:1.5px; width:0; background:var(--orchid); transition:width .25s ease;}
+  nav .links a:hover::after{width:100%;}
+
+  @media (max-width: 780px){ nav .links{display:none;} }
+
+  .cart-btn{
+    position:relative;
+    display:flex; align-items:center; gap:8px;
+    background:var(--void-plum); color:var(--ivory);
+    border:none; border-radius:100px;
+    padding:10px 18px 10px 14px;
+    font-size:13px; font-weight:600;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cart-btn:hover{transform:translateY(-1px); box-shadow:var(--shadow);}
+  .cart-btn svg{width:17px; height:17px;}
+  .cart-count{
+    background:var(--blush); color:var(--void-plum);
+    font-family:'JetBrains Mono', monospace;
+    border-radius:100px; min-width:19px; height:19px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; padding:0 4px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 140% at 82% 8%, var(--plum-deep) 0%, var(--void-plum) 55%, #241228 100%);
+    color:var(--ivory);
+    padding:clamp(56px,9vw,110px) clamp(20px,5vw,64px) clamp(70px,8vw,100px);
+    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; gap:40px;
+    overflow:hidden;
+  }
+  @media (max-width:900px){ .hero{grid-template-columns:1fr; text-align:left;} }
+
+  .hero-copy .eyebrow{color:var(--blush);}
+  .hero h1{
+    font-size:clamp(40px,6vw,72px);
+    font-weight:600;
+    line-height:1.02;
+    margin:16px 0 20px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic; font-weight:500; color:var(--orchid-soft);}
+  .hero p{
+    max-width:460px;
+    color:#d9cbdc;
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:32px;
+  }
+
+  .search-row{
+    display:flex; gap:10px; max-width:480px; flex-wrap:wrap;
+  }
+  .search-field{
+    flex:1; min-width:220px;
+    display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:100px;
+    padding:13px 20px;
+  }
+  .search-field svg{width:17px; height:17px; opacity:0.7; flex-shrink:0;}
+  .search-field input{
+    background:none; border:none; outline:none;
+    color:var(--ivory); font-family:'Manrope',sans-serif; font-size:14px;
+    width:100%;
+  }
+  .search-field input::placeholder{color:#c3b3c6;}
+  .search-hint{
+    width:100%;
+    font-size:12px; color:#a998ad; margin-top:10px;
+    font-family:'JetBrains Mono', monospace; letter-spacing:0.02em;
+  }
+
+  .hero-art{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    min-height:320px;
+  }
+  .hero-art svg{width:min(420px,88%); height:auto; filter:drop-shadow(0 30px 60px rgba(0,0,0,0.35));}
+  .hero-art .ring{
+    position:absolute; inset:0; margin:auto;
+    width:min(430px,90%); aspect-ratio:1;
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:50%;
+  }
+
+  /* ---------- Filter bar ---------- */
+  .filter-bar{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    padding:26px clamp(20px,5vw,64px);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:73px; z-index:40;
+    background:var(--ivory);
+  }
+  .chip{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:100px;
+    padding:9px 17px;
+    font-size:13px; font-weight:600;
+    color:var(--ink-soft);
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .chip:hover{border-color:var(--orchid);}
+  .chip.active{
+    background:var(--void-plum); color:var(--ivory); border-color:var(--void-plum);
+  }
+  .result-count{
+    margin-left:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  @media (max-width:700px){ .result-count{width:100%; margin-left:0; order:10; padding-top:6px;} }
+
+  /* ---------- Grid ---------- */
+  main{padding:48px clamp(20px,5vw,64px) 100px;}
+  .section-head{margin-bottom:34px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px); font-weight:600;}
+  .section-head p{color:var(--ink-soft); font-size:14px; margin-top:6px;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(272px, 1fr));
+    gap:26px;
+  }
+
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease;
+    opacity:0; transform:translateY(14px);
+    animation:riseIn .5s ease forwards;
+  }
+  .card:hover{transform:translateY(-5px); box-shadow:var(--shadow);}
+  @keyframes riseIn{ to{opacity:1; transform:translateY(0);} }
+
+  .card-art{
+    aspect-ratio:1/0.85;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .card-art svg{width:64%; height:64%; filter:drop-shadow(0 12px 18px rgba(42,24,48,0.14));}
+
+  .card-body{padding:20px 22px 22px; display:flex; flex-direction:column; gap:10px; flex:1;}
+  .card-eyebrow{font-family:'Fraunces', serif; font-style:italic; font-size:13px; color:var(--ink-soft);}
+  .card-name{font-family:'Fraunces', serif; font-size:21px; font-weight:600; line-height:1.15;}
+  .card-desc{font-size:13.5px; color:var(--ink-soft); line-height:1.5; flex:1;}
+
+  .difficulty{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--moss); font-weight:600;}
+  .difficulty .dots{display:flex; gap:3px;}
+  .difficulty .dot{width:7px; height:7px; border-radius:50%; background:var(--ivory-dim); border:1.4px solid var(--moss-soft);}
+  .difficulty .dot.on{background:var(--moss); border-color:var(--moss);}
+
+  .card-footer{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:12px; margin-top:4px; border-top:1px dashed var(--line);
+  }
+  .price{font-family:'JetBrains Mono', monospace; font-size:16px; font-weight:500;}
+  .price span{font-size:11px; color:var(--ink-soft); display:block; font-weight:400;}
+
+  .add-btn{
+    background:var(--orchid); color:#fff; border:none; border-radius:100px;
+    padding:10px 16px; font-size:12.5px; font-weight:700;
+    display:flex; align-items:center; gap:6px;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .add-btn:hover{background:#9a44b3;}
+  .add-btn:active{transform:scale(0.94);}
+  .add-btn svg{width:13px; height:13px;}
+
+  .empty-state{
+    grid-column:1/-1;
+    text-align:center;
+    padding:70px 20px;
+    color:var(--ink-soft);
+  }
+  .empty-state svg{width:46px; height:46px; margin-bottom:14px; opacity:0.5;}
+  .empty-state h3{font-family:'Fraunces',serif; font-size:20px; color:var(--ink); margin-bottom:6px;}
+
+  /* ---------- Cart drawer ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(42,24,48,0.4);
+    opacity:0; pointer-events:none; transition:opacity .3s ease; z-index:90;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:min(400px,92vw);
+    background:var(--ivory); z-index:100;
+    transform:translateX(100%); transition:transform .35s cubic-bezier(.2,.8,.2,1);
+    display:flex; flex-direction:column;
+    box-shadow:-20px 0 50px rgba(0,0,0,0.15);
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 24px; border-bottom:1px solid var(--line);
+  }
+  .drawer-head h3{font-family:'Fraunces',serif; font-size:20px; font-weight:600;}
+  .drawer-close{background:none; border:none; font-size:20px; color:var(--ink-soft); line-height:1;}
+  .drawer-items{flex:1; overflow-y:auto; padding:10px 24px;}
+  .drawer-empty{padding:60px 10px; text-align:center; color:var(--ink-soft); font-size:14px;}
+  .drawer-item{
+    display:flex; gap:14px; align-items:center;
+    padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .drawer-item .thumb{width:50px; height:50px; border-radius:12px; background:var(--ivory-dim); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .drawer-item .thumb svg{width:70%; height:70%;}
+  .drawer-item .info{flex:1;}
+  .drawer-item .info .n{font-weight:700; font-size:14px;}
+  .drawer-item .info .p{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-soft);}
+  .qty-ctrl{display:flex; align-items:center; gap:8px;}
+  .qty-ctrl button{width:22px; height:22px; border-radius:50%; border:1px solid var(--line); background:#fff; font-size:13px; display:flex; align-items:center; justify-content:center;}
+  .qty-ctrl span{font-family:'JetBrains Mono',monospace; font-size:13px; min-width:14px; text-align:center;}
+
+  .drawer-foot{padding:20px 24px 26px; border-top:1px solid var(--line);}
+  .drawer-total{display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:14px; margin-bottom:14px;}
+  .checkout-btn{
+    width:100%; background:var(--void-plum); color:var(--ivory); border:none;
+    padding:15px; border-radius:100px; font-weight:700; font-size:14px;
+  }
+  .checkout-btn:hover{background:#211126;}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--void-plum); color:var(--ivory);
+    padding:13px 22px; border-radius:100px; font-size:13px; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+    opacity:0; pointer-events:none; transition:all .3s ease; z-index:110;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .toast svg{width:15px; height:15px; color:var(--blush);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--void-plum); color:#cbb9ce;
+    padding:50px clamp(20px,5vw,64px) 30px;
+  }
+  .vine{width:100%; height:24px; opacity:0.5; margin-bottom:36px;}
+  .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; margin-bottom:34px;}
+  .foot-grid h4{font-family:'Fraunces',serif; color:var(--ivory); font-size:16px; margin-bottom:12px;}
+  .foot-grid p, .foot-grid a{font-size:13px; line-height:1.9; color:#b6a4b9; text-decoration:none; display:block;}
+  .foot-grid a:hover{color:var(--blush);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    padding-top:22px; border-top:1px solid rgba(255,255,255,0.1);
+    font-size:12px; font-family:'JetBrains Mono',monospace; color:#8d7c91;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#b25cc9" stroke-width="1.4"/><path d="M20 10c4 3 4 9 0 12-4-3-4-9 0-12Z" fill="#b25cc9"/><path d="M20 30c-4-3-4-9 0-12 4 3 4 9 0 12Z" fill="#5c7a5e" opacity="0.6"/></svg>
+    <div class="logo-text">
+      <span class="name">Orchid Display</span>
+      <span class="tag">Exotic Collection</span>
+    </div>
+  </div>
+  <nav>
+    <div class="links">
+      <a href="#collection">Collection</a>
+      <a href="#care">Care Notes</a>
+      <a href="#about">About</a>
+    </div>
+    <button class="cart-btn" id="cartOpenBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg>
+      <span>Bouquet</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Rare Blooms · Grown Slow</span>
+    <h1 class="display">Exotic orchids,<br><em>displayed</em> to be found.</h1>
+    <p>A small-batch collection of orchid varieties sourced from six growers across three continents — each bloom photographed as itself, no two petals styled the same. Search by name, or filter by how much attention it asks of you.</p>
+    <div class="search-row">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Search “Vanda”, “pink”, “easy care”…" autocomplete="off">
+      </div>
+      <span class="search-hint" id="searchHint">6 varieties in bloom right now</span>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="ring"></div>
+    <svg viewBox="0 0 220 220" id="heroBloom"></svg>
+  </div>
+</section>
+
+<div class="filter-bar" id="filterBar">
+  <!-- chips injected by JS -->
+</div>
+
+<main id="collection">
+  <div class="section-head">
+    <h2 class="display">Today's display</h2>
+    <p>Every plant ships in its growing pot, with a care card matched to its difficulty rating.</p>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</main>
+
+<footer id="about">
+  <svg class="vine" viewBox="0 0 800 24" preserveAspectRatio="none"><path d="M0 12 Q 50 0 100 12 T 200 12 T 300 12 T 400 12 T 500 12 T 600 12 T 700 12 T 800 12" stroke="#b25cc9" stroke-width="1.4" fill="none"/></svg>
+  <div class="foot-grid">
+    <div>
+      <h4>Orchid Display</h4>
+      <p style="max-width:260px;">An exotic-orchid boutique built as a display collection —<br>every bloom rendered, not photographed.</p>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <a href="#collection">Collection</a>
+      <a href="#care">Care notes</a>
+      <a href="#about">Our growers</a>
+    </div>
+    <div>
+      <h4 id="care">Care Level Key</h4>
+      <p>● Easy — weekly water, indirect light</p>
+      <p>●● Moderate — humidity tray recommended</p>
+      <p>●●● Expert — greenhouse conditions</p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Orchid Display — a wondermayank project</span>
+    <span>Made for people who kill one plant before keeping the next alive</span>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your bouquet</h3>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Subtotal</span><span id="drawerTotal">$0.00</span></div>
+    <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2l9.6-9.6z"/></svg>
+  <span id="toastText">Added to your bouquet</span>
+</div>
+
+<script>
+/* ---------------- Data ---------------- */
+const ORCHIDS = [
+  { id:1, name:"Moon Orchid", latin:"Phalaenopsis amabilis", category:"Phalaenopsis",
+    desc:"Broad ivory petals with a soft blush edge — the easiest exotic to keep alive on a windowsill.",
+    price:34, difficulty:1,
+    colors:{ petal:"#fbeef4", petalEdge:"#f3a6c4", lip:"#e8b84b", lipDark:"#c98f2f" } },
+  { id:2, name:"Sapphire Sky", latin:"Vanda coerulea", category:"Vanda",
+    desc:"Netted blue-violet petals that deepen with bright, humid light. Roots grow open-air, bare.",
+    price:58, difficulty:3,
+    colors:{ petal:"#7c4fbf", petalEdge:"#5b3e8e", lip:"#efe1f5", lipDark:"#b490d6" } },
+  { id:3, name:"Royal Velvet", latin:"Cattleya labiata", category:"Cattleya",
+    desc:"Deep magenta ruffled petals around a golden, frilled lip. The classic corsage orchid.",
+    price:46, difficulty:2,
+    colors:{ petal:"#b25cc9", petalEdge:"#8a3fa0", lip:"#f2c14e", lipDark:"#b25cc9" } },
+  { id:4, name:"Pink Fire", latin:"Dendrobium kingianum", category:"Dendrobium",
+    desc:"Clustered hot-pink blooms on wiry canes — forgiving, fast-spreading, blooms twice a year.",
+    price:28, difficulty:1,
+    colors:{ petal:"#e85d9e", petalEdge:"#c93f80", lip:"#fff4f8", lipDark:"#e85d9e" } },
+  { id:5, name:"Dancing Lady", latin:"Oncidium sphacelatum", category:"Oncidium",
+    desc:"Sprays of small golden blooms speckled brown, said to look like tiny skirted dancers.",
+    price:32, difficulty:2,
+    colors:{ petal:"#e8b84b", petalEdge:"#a97a26", lip:"#6b4423", lipDark:"#4a2e18" } },
+  { id:6, name:"Jade Whisper", latin:"Cymbidium ensifolium", category:"Cymbidium",
+    desc:"Waxy sage-green petals around a deep burgundy lip. Cool nights coax out the fragrance.",
+    price:52, difficulty:3,
+    colors:{ petal:"#a9c2ab", petalEdge:"#5c7a5e", lip:"#7a2e3d", lipDark:"#4f1c26" } },
+];
+
+const CATEGORIES = ["All", ...new Set(ORCHIDS.map(o=>o.category))];
+
+/* ---------------- SVG bloom generator ---------------- */
+function petalPath(){
+  return "M100,100 C 76,74 74,32 100,12 C 126,32 124,74 100,100 Z";
+}
+function bloomSVG(c, size=220){
+  const petalAngles = [0, 130, -130, 55, -55]; // top sepal, 2 lateral sepals, 2 lateral petals
+  let petals = petalAngles.map(a =>
+    `<path d="${petalPath()}" fill="${c.petal}" stroke="${c.petalEdge}" stroke-width="1.5" transform="rotate(${a} 100 100)" opacity="0.96"/>`
+  ).join("");
+  const lip = `
+    <g transform="rotate(180 100 100)">
+      <path d="M100,100 C 82,78 78,40 100,18 C 122,40 118,78 100,100 Z" fill="${c.lip}" stroke="${c.lipDark}" stroke-width="1.5"/>
+      <path d="M100,90 C 90,78 90,58 100,48 C 110,58 110,78 100,90 Z" fill="${c.lipDark}" opacity="0.55"/>
+    </g>`;
+  const center = `<circle cx="100" cy="100" r="6.5" fill="${c.lipDark}"/><circle cx="100" cy="97" r="2.6" fill="#f2c14e"/>`;
+  return `<g>${petals}${lip}${center}</g>`;
+}
+
+/* ---------------- Render ---------------- */
+const grid = document.getElementById('productGrid');
+const filterBar = document.getElementById('filterBar');
+const searchInput = document.getElementById('searchInput');
+const searchHint = document.getElementById('searchHint');
+let activeCategory = "All";
+
+function difficultyLabel(n){ return n===1?"Easy care":n===2?"Moderate care":"Expert care"; }
+function difficultyDots(n){
+  let dots = "";
+  for(let i=1;i<=3;i++){ dots += `<span class="dot ${i<=n?'on':''}"></span>`; }
+  return dots;
+}
+
+function renderChips(){
+  filterBar.innerHTML = CATEGORIES.map(cat =>
+    `<button class="chip ${cat===activeCategory?'active':''}" data-cat="${cat}">${cat}</button>`
+  ).join("") + `<span class="result-count" id="resultCount"></span>`;
+
+  filterBar.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      activeCategory = chip.dataset.cat;
+      renderChips();
+      renderGrid();
+    });
+  });
+}
+
+function renderGrid(){
+  const q = searchInput.value.trim().toLowerCase();
+  const difficultyWords = {easy:1, moderate:2, medium:2, hard:3, expert:3};
+
+  const filtered = ORCHIDS.filter(o=>{
+    const matchesCat = activeCategory === "All" || o.category === activeCategory;
+    if(!matchesCat) return false;
+    if(!q) return true;
+    const hay = `${o.name} ${o.latin} ${o.category} ${o.desc}`.toLowerCase();
+    const diffMatch = Object.keys(difficultyWords).some(w => q.includes(w) && difficultyWords[w] === o.difficulty);
+    return hay.includes(q) || diffMatch;
+  });
+
+  document.getElementById('resultCount').textContent = `${filtered.length} of ${ORCHIDS.length} varieties`;
+  searchHint.textContent = q ? `${filtered.length} match “${searchInput.value.trim()}”` : `${ORCHIDS.length} varieties in bloom right now`;
+
+  if(filtered.length === 0){
+    grid.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <h3>No blooms match that</h3>
+        <p>Try a variety name, a colour, or a care level like "easy".</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((o,i)=>`
+    <article class="card" style="animation-delay:${i*0.05}s; background:linear-gradient(180deg, ${o.colors.petal}14, #fff 40%)">
+      <div class="card-art"><svg viewBox="0 0 200 200">${bloomSVG(o.colors)}</svg></div>
+      <div class="card-body">
+        <span class="card-eyebrow">${o.latin}</span>
+        <h3 class="card-name">${o.name}</h3>
+        <p class="card-desc">${o.desc}</p>
+        <div class="difficulty"><span class="dots">${difficultyDots(o.difficulty)}</span> ${difficultyLabel(o.difficulty)}</div>
+        <div class="card-footer">
+          <div class="price">$${o.price.toFixed(2)}<span>per plant</span></div>
+          <button class="add-btn" data-id="${o.id}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  grid.querySelectorAll('.add-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> addToCart(parseInt(btn.dataset.id)));
+  });
+}
+
+document.getElementById('heroBloom').innerHTML = bloomSVG(ORCHIDS[2].colors, 220);
+searchInput.addEventListener('input', renderGrid);
+
+/* ---------------- Cart ---------------- */
+let cart = {}; // id -> qty
+const cartCountEl = document.getElementById('cartCount');
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+const drawerItems = document.getElementById('drawerItems');
+const drawerTotal = document.getElementById('drawerTotal');
+const toast = document.getElementById('toast');
+const toastText = document.getElementById('toastText');
+
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  updateCartUI();
+  const o = ORCHIDS.find(x=>x.id===id);
+  showToast(`${o.name} added to your bouquet`);
+}
+function changeQty(id, delta){
+  cart[id] = (cart[id]||0) + delta;
+  if(cart[id] <= 0) delete cart[id];
+  updateCartUI();
+}
+function cartTotalCount(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+function cartTotalPrice(){
+  return Object.entries(cart).reduce((sum,[id,qty])=>{
+    const o = ORCHIDS.find(x=>x.id===parseInt(id));
+    return sum + o.price*qty;
+  },0);
+}
+function updateCartUI(){
+  cartCountEl.textContent = cartTotalCount();
+  drawerTotal.innerHTML = `<span>Subtotal</span><span>$${cartTotalPrice().toFixed(2)}</span>`;
+
+  const ids = Object.keys(cart);
+  if(ids.length === 0){
+    drawerItems.innerHTML = `<div class="drawer-empty">Your bouquet is empty.<br>Add a bloom from the collection.</div>`;
+    return;
+  }
+  drawerItems.innerHTML = ids.map(id=>{
+    const o = ORCHIDS.find(x=>x.id===parseInt(id));
+    const qty = cart[id];
+    return `
+      <div class="drawer-item">
+        <div class="thumb"><svg viewBox="0 0 200 200">${bloomSVG(o.colors)}</svg></div>
+        <div class="info">
+          <div class="n">${o.name}</div>
+          <div class="p">$${o.price.toFixed(2)}</div>
+        </div>
+        <div class="qty-ctrl">
+          <button data-id="${id}" data-d="-1">–</button>
+          <span>${qty}</span>
+          <button data-id="${id}" data-d="1">+</button>
+        </div>
+      </div>`;
+  }).join("");
+
+  drawerItems.querySelectorAll('.qty-ctrl button').forEach(b=>{
+    b.addEventListener('click', ()=> changeQty(parseInt(b.dataset.id), parseInt(b.dataset.d)));
+  });
+}
+
+function showToast(msg){
+  toastText.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=> toast.classList.remove('show'), 2200);
+}
+
+function openDrawer(){ drawer.classList.add('open'); overlay.classList.add('open'); }
+function closeDrawer(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
+
+document.getElementById('cartOpenBtn').addEventListener('click', openDrawer);
+document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+document.getElementById('checkoutBtn').addEventListener('click', ()=>{
+  if(cartTotalCount() === 0){ showToast("Your bouquet is empty"); return; }
+  showToast("Order request sent — a grower will confirm shipping");
+  cart = {};
+  updateCartUI();
+  setTimeout(closeDrawer, 900);
+});
+
+/* ---------------- Init ---------------- */
+renderChips();
+renderGrid();
+updateCartUI();
+</script>
+</body>
+</html>
