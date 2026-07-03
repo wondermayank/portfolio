@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom & Twine — Hanging Floral Decor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF5EE;
+    --cream-deep:#F3E7DA;
+    --blush:#E9B7C4;
+    --rose:#C1577B;
+    --rose-deep:#9C3F5F;
+    --sage:#8FA07A;
+    --sage-deep:#5F7350;
+    --plum:#3E2A36;
+    --gold:#D2A057;
+    --line: rgba(62,42,54,0.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--cream);
+    color:var(--plum);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-size:12.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--rose-deep);
+    font-weight:500;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,245,238,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:78px;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px;font-weight:600;
+    color:var(--rose-deep);
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo svg{width:24px;height:24px;}
+  .nav-links{display:flex;gap:36px;font-size:14.5px;letter-spacing:0.03em;}
+  .nav-links a{position:relative;padding:6px 0;color:var(--plum);opacity:0.85;transition:opacity .25s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+    background:var(--rose);transition:width .3s;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .cart-btn{
+    display:flex;align-items:center;gap:8px;
+    font-size:14px;letter-spacing:0.03em;
+    border:1px solid var(--plum);
+    padding:9px 18px;border-radius:999px;
+    background:transparent;cursor:pointer;color:var(--plum);
+    transition:all .25s;
+  }
+  .cart-btn:hover{background:var(--plum);color:var(--cream);}
+  .cart-count{
+    background:var(--rose-deep);color:#fff;
+    font-size:11px;min-width:18px;height:18px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    padding:0 4px;
+  }
+
+  /* ---------- GARLAND (signature element) ---------- */
+  .garland{
+    position:relative;
+    height:64px;
+    background:var(--cream-deep);
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .garland-string{
+    position:absolute;top:8px;left:0;width:100%;height:2px;
+  }
+  .bloom-string{
+    position:absolute;top:8px;
+    width:2px;
+    background:linear-gradient(var(--sage-deep), var(--sage));
+    transform-origin:top center;
+    animation:sway 4.2s ease-in-out infinite;
+  }
+  .bloom{
+    position:absolute;left:50%;transform:translateX(-50%);
+    border-radius:50%;
+  }
+  @keyframes sway{
+    0%,100%{transform:rotate(-3deg);}
+    50%{transform:rotate(3deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bloom-string{animation:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    height:88vh;min-height:560px;
+    display:flex;align-items:flex-end;
+  }
+  .hero-media{position:absolute;inset:0;}
+  .hero-media img{filter:saturate(1.05);}
+  .hero-media::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(62,42,54,0.15) 0%, rgba(62,42,54,0.15) 40%, rgba(30,18,24,0.72) 100%);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    color:var(--cream);
+    padding:0 32px 64px;
+    max-width:1180px;margin:0 auto;width:100%;
+  }
+  .hero-content .eyebrow{color:var(--blush);}
+  .hero-content h1{
+    font-size:clamp(42px, 7vw, 82px);
+    line-height:1.02;
+    margin:14px 0 20px;
+    max-width:780px;
+  }
+  .hero-content p{
+    font-size:17px;line-height:1.6;
+    max-width:460px;color:rgba(251,245,238,0.88);
+    margin-bottom:32px;
+    font-weight:300;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--rose);color:#fff;
+    padding:15px 32px;border-radius:999px;
+    font-size:14px;letter-spacing:0.04em;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:background .25s, transform .25s;
+    border:1px solid var(--rose);
+  }
+  .btn-primary:hover{background:var(--rose-deep);border-color:var(--rose-deep);transform:translateY(-2px);}
+  .btn-ghost{
+    padding:15px 30px;border-radius:999px;
+    border:1px solid rgba(251,245,238,0.6);
+    color:var(--cream);font-size:14px;letter-spacing:0.04em;
+    transition:all .25s;
+  }
+  .btn-ghost:hover{background:rgba(251,245,238,0.15);}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{padding:110px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:56px;gap:24px;flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:10px;}
+  .section-head p{max-width:340px;font-size:14.5px;line-height:1.6;color:rgba(62,42,54,0.65);font-weight:300;}
+
+  /* ---------- PRODUCT GRID ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:36px 28px;
+  }
+  .card{
+    position:relative;
+  }
+  .card-media{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:4px;
+    overflow:hidden;
+    background:var(--cream-deep);
+  }
+  .card-media img{transition:transform .7s cubic-bezier(.2,.7,.2,1);}
+  .card:hover .card-media img{transform:scale(1.07);}
+  .card-tag{
+    position:absolute;top:14px;left:14px;
+    background:var(--cream);color:var(--rose-deep);
+    font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;font-weight:500;
+  }
+  .quick-add{
+    position:absolute;bottom:14px;left:14px;right:14px;
+    background:rgba(251,245,238,0.94);
+    color:var(--plum);
+    text-align:center;padding:12px;border-radius:4px;
+    font-size:13px;letter-spacing:0.05em;
+    opacity:0;transform:translateY(10px);
+    transition:all .3s;cursor:pointer;border:none;
+    font-family:'Jost',sans-serif;
+  }
+  .card:hover .quick-add{opacity:1;transform:translateY(0);}
+  .card-info{padding-top:16px;display:flex;justify-content:space-between;align-items:flex-start;}
+  .card-info h3{font-size:20px;font-weight:500;margin-bottom:4px;}
+  .card-info .meta{font-size:12.5px;color:rgba(62,42,54,0.55);letter-spacing:0.02em;}
+  .price{font-family:'Jost',sans-serif;font-size:15px;color:var(--rose-deep);font-weight:500;white-space:nowrap;}
+
+  /* ---------- STORY SPLIT ---------- */
+  .story{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:0;align-items:stretch;
+    background:var(--cream-deep);
+  }
+  .story-media{position:relative;min-height:520px;}
+  .story-text{
+    padding:80px 64px;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .story-text h2{font-size:clamp(28px,3.6vw,40px);margin:12px 0 22px;line-height:1.15;}
+  .story-text p{font-size:15.5px;line-height:1.75;color:rgba(62,42,54,0.72);font-weight:300;max-width:440px;margin-bottom:16px;}
+  .story-stats{display:flex;gap:40px;margin-top:32px;}
+  .story-stats div strong{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--rose-deep);}
+  .story-stats div span{font-size:12px;letter-spacing:0.05em;color:rgba(62,42,54,0.55);text-transform:uppercase;}
+
+  /* ---------- GALLERY STRIP ---------- */
+  .strip{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px;
+    padding:0 32px;max-width:1180px;margin:0 auto;
+  }
+  .strip-item{border-radius:4px;overflow:hidden;position:relative;aspect-ratio:1/1;}
+  .strip-item:first-child{aspect-ratio:auto;}
+  .strip-item img{transition:transform .6s;}
+  .strip-item:hover img{transform:scale(1.05);}
+  .strip-caption{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:20px;
+    background:linear-gradient(0deg, rgba(62,42,54,0.75), transparent);
+    color:var(--cream);font-size:14px;letter-spacing:0.03em;
+  }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial{
+    background:var(--plum);color:var(--cream);
+    padding:100px 0;text-align:center;
+    position:relative;
+  }
+  .testimonial::before{
+    content:'❀';
+    font-size:32px;color:var(--gold);display:block;margin-bottom:24px;
+  }
+  .testimonial blockquote{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-size:clamp(24px,3.4vw,36px);
+    max-width:760px;margin:0 auto 26px;line-height:1.35;
+    font-weight:500;
+  }
+  .testimonial cite{font-style:normal;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blush);}
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{
+    padding:90px 0;text-align:center;
+  }
+  .newsletter h2{font-size:clamp(28px,3.6vw,42px);margin:12px 0 14px;}
+  .newsletter p{max-width:420px;margin:0 auto 32px;color:rgba(62,42,54,0.65);font-size:14.5px;font-weight:300;}
+  .nform{
+    display:flex;max-width:420px;margin:0 auto;
+    border:1px solid var(--plum);border-radius:999px;overflow:hidden;
+  }
+  .nform input{
+    flex:1;border:none;background:transparent;padding:15px 22px;
+    font-family:'Jost',sans-serif;font-size:14px;outline:none;color:var(--plum);
+  }
+  .nform button{
+    background:var(--plum);color:var(--cream);border:none;
+    padding:0 26px;font-size:13px;letter-spacing:0.05em;cursor:pointer;
+    transition:background .25s;
+  }
+  .nform button:hover{background:var(--rose-deep);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--cream-deep);
+    border-top:1px solid var(--line);
+    padding:64px 0 28px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+    margin-bottom:56px;
+  }
+  .footer-grid h4{font-size:13px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;color:var(--rose-deep);}
+  .footer-grid a{display:block;font-size:14px;color:rgba(62,42,54,0.7);margin-bottom:11px;transition:color .2s;}
+  .footer-grid a:hover{color:var(--rose-deep);}
+  .footer-brand .logo{margin-bottom:14px;}
+  .footer-brand p{font-size:13.5px;color:rgba(62,42,54,0.6);line-height:1.6;max-width:260px;font-weight:300;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:24px;border-top:1px solid var(--line);
+    font-size:12.5px;color:rgba(62,42,54,0.5);flex-wrap:wrap;gap:12px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .story{grid-template-columns:1fr;}
+    .story-media{min-height:340px;order:-1;}
+    .story-text{padding:56px 32px;}
+    .strip{grid-template-columns:1fr;}
+    .strip-item:first-child{aspect-ratio:16/10;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C9 2 7 5 8.5 8C6 7 3 8.5 3 11.5C3 14 5.5 15 8 14.5C6.5 17 8 20 11 20C11 17.5 12 15.5 12 15.5C12 15.5 13 17.5 13 20C16 20 17.5 17 16 14.5C18.5 15 21 14 21 11.5C21 8.5 18 7 15.5 8C17 5 15 2 12 2Z" fill="#C1577B"/></svg>
+      Bloom &amp; Twine
+    </a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn">
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Signature garland divider -->
+<div class="garland" id="garland" aria-hidden="true"></div>
+
+<section class="hero" id="top">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1706890364388-34bad5d8004d?w=1600&q=80" alt="Hanging planter filled with pink flowers and greenery">
+  </div>
+  <div class="hero-content">
+    <span class="eyebrow">Hanging Floral Decor · New Collection</span>
+    <h1>Let your ceilings<br>bloom.</h1>
+    <p>Handwoven macramé hangers, iron rings and trailing garlands — each piece cascades real and preserved blooms into your space, no vase required.</p>
+    <div class="hero-ctas">
+      <a href="#shop" class="btn-primary">Shop the Collection →</a>
+      <a href="#story" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The Edit</span>
+        <h2>Hanging arrangements,<br>made to dangle beautifully.</h2>
+      </div>
+      <p>Every piece is finished by hand in small batches and shipped with its own hanging hardware — ready above a doorway, window or table.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-media">
+          <span class="card-tag">Bestseller</span>
+          <img src="https://images.unsplash.com/photo-1706890364388-34bad5d8004d?w=800&q=80" alt="Ceiling Bloom Cascade hanging planter">
+          <button class="quick-add" onclick="addToCart(this)">+ Add to Cart</button>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Ceiling Bloom Cascade</h3>
+            <div class="meta">Macramé · Trailing greenery + peony</div>
+          </div>
+          <span class="price">₹2,450</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-media">
+          <span class="card-tag">Limited</span>
+          <img src="https://images.unsplash.com/photo-1684849838063-98b89b69af8b?w=800&q=80" alt="Blush Wall Basket hanging pink flowers">
+          <button class="quick-add" onclick="addToCart(this)">+ Add to Cart</button>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Blush Wall Basket</h3>
+            <div class="meta">Woven rattan · Wall-mount</div>
+          </div>
+          <span class="price">₹1,890</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1713693734422-3ab986b29472?w=800&q=80" alt="Trailing Green Veil hanging from ceiling">
+          <button class="quick-add" onclick="addToCart(this)">+ Add to Cart</button>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Trailing Green Veil</h3>
+            <div class="meta">Preserved fern · Long drop</div>
+          </div>
+          <span class="price">₹1,650</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1610553305377-f9a33ac73951?w=800&q=80" alt="Iron Frame Petal Curtain pink and white flowers">
+          <button class="quick-add" onclick="addToCart(this)">+ Add to Cart</button>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Iron Frame Petal Curtain</h3>
+            <div class="meta">Steel ring · Window display</div>
+          </div>
+          <span class="price">₹3,200</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-media">
+          <span class="card-tag">New</span>
+          <img src="https://images.unsplash.com/photo-1706890364395-92c236173d68?w=800&q=80" alt="Rosette Hanging Planter with pink flowers">
+          <button class="quick-add" onclick="addToCart(this)">+ Add to Cart</button>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Rosette Hanging Planter</h3>
+            <div class="meta">Terracotta cradle · Rope tie</div>
+          </div>
+          <span class="price">₹2,100</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1629988056081-2b70a8f63745?w=800&q=80" alt="Wildflower Garden Swing colourful hanging flowers">
+          <button class="quick-add" onclick="addToCart(this)">+ Add to Cart</button>
+        </div>
+        <div class="card-info">
+          <div>
+            <h3>Wildflower Garden Swing</h3>
+            <div class="meta">Mixed bloom · Garden swing hanger</div>
+          </div>
+          <span class="price">₹2,750</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-media">
+    <img src="https://images.unsplash.com/photo-1512995738062-2d4ab94caf74?w=1000&q=80" alt="White and pink petaled flowers close up">
+  </div>
+  <div class="story-text">
+    <span class="eyebrow">Since 2019</span>
+    <h2>Every stem is knotted, not stuffed into foam.</h2>
+    <p>Bloom &amp; Twine started on a balcony with three hooks and a bundle of dried statice. Today our florists still hand-tie every hanger the same way — natural fibre cord, a breathable frame, and blooms chosen to dry gracefully instead of wilting.</p>
+    <p>Because nothing is glued or foam-set, most pieces last 8–14 months and only get more textured with age.</p>
+    <div class="story-stats">
+      <div><strong>6,200+</strong><span>Hangers Shipped</span></div>
+      <div><strong>40+</strong><span>Bloom Varieties</span></div>
+      <div><strong>4.9★</strong><span>Average Rating</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">In the Wild</span>
+        <h2>Styled by our customers.</h2>
+      </div>
+      <p>Tag @bloomandtwine to be featured — we restock the pieces you love most.</p>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="strip-item">
+      <img src="https://images.unsplash.com/photo-1598903089501-0a89e4a43d16?w=1000&q=80" alt="Pink and white hanging flowers in tilt shift lens">
+      <div class="strip-caption">Entryway hanger, Indore home</div>
+    </div>
+    <div class="strip-item">
+      <img src="https://images.unsplash.com/photo-1527838048236-da8e20ec4fd4?w=700&q=80" alt="White petal flower close up">
+      <div class="strip-caption">Single bloom detail</div>
+    </div>
+    <div class="strip-item">
+      <img src="https://images.unsplash.com/photo-1684849838063-98b89b69af8b?w=700&q=80" alt="Basket of pink flowers hanging on wall">
+      <div class="strip-caption">Café wall installation</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial" id="reviews">
+  <div class="wrap">
+    <blockquote>"It arrived smelling like a garden. Three months on and it still looks styled, not dried out — genuinely the best thing I've hung in my home."</blockquote>
+    <cite>— Ananya R., Repeat Customer</cite>
+  </div>
+</section>
+
+<section class="newsletter" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Stay in Bloom</span>
+    <h2>First look at new drops, monthly.</h2>
+    <p>One email a month. New hangers, restock alerts, and care tips for keeping blooms alive longer.</p>
+    <form class="nform" onsubmit="return subscribe(event)">
+      <input type="email" placeholder="you@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#top">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C9 2 7 5 8.5 8C6 7 3 8.5 3 11.5C3 14 5.5 15 8 14.5C6.5 17 8 20 11 20C11 17.5 12 15.5 12 15.5C12 15.5 13 17.5 13 20C16 20 17.5 17 16 14.5C18.5 15 21 14 21 11.5C21 8.5 18 7 15.5 8C17 5 15 2 12 2Z" fill="#C1577B"/></svg>
+          Bloom &amp; Twine
+        </a>
+        <p>Hand-tied hanging floral decor, made in small batches and shipped across India.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#shop">Hanging Planters</a>
+        <a href="#shop">Wall Baskets</a>
+        <a href="#shop">Garlands</a>
+        <a href="#shop">Gift Sets</a>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <a href="#story">Our Story</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Care Guide</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@bloomandtwine.in">hello@bloomandtwine.in</a>
+        <a href="tel:+910000000000">+91 00000 00000</a>
+        <a href="#">Indore, India</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Bloom &amp; Twine. All rights reserved.</span>
+      <span>Made with care, one knot at a time.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Build the swaying garland signature element
+  (function(){
+    const garland = document.getElementById('garland');
+    const colors = ['#E9B7C4','#C1577B','#D2A057','#8FA07A','#F3E7DA'];
+    const count = Math.max(14, Math.floor(window.innerWidth / 60));
+    const width = garland.offsetWidth || window.innerWidth;
+    for(let i=0;i<count;i++){
+      const x = (width/count)*i + (width/count)/2;
+      const len = 18 + Math.random()*20;
+      const string = document.createElement('div');
+      string.className = 'bloom-string';
+      string.style.left = x+'px';
+      string.style.height = len+'px';
+      string.style.animationDelay = (Math.random()*3)+'s';
+      string.style.animationDuration = (3.4 + Math.random()*2)+'s';
+
+      const bloom = document.createElement('div');
+      bloom.className = 'bloom';
+      const size = 8 + Math.random()*7;
+      bloom.style.width = size+'px';
+      bloom.style.height = size+'px';
+      bloom.style.top = len+'px';
+      bloom.style.background = colors[Math.floor(Math.random()*colors.length)];
+      string.appendChild(bloom);
+      garland.appendChild(string);
+    }
+  })();
+
+  // Cart interactivity
+  let cartCount = 0;
+  const cartCountEl = document.getElementById('cartCount');
+  function addToCart(btn){
+    cartCount++;
+    cartCountEl.textContent = cartCount;
+    const original = btn.textContent;
+    btn.textContent = 'Added ✓';
+    setTimeout(()=>{ btn.textContent = original; }, 1200);
+  }
+  document.getElementById('cartBtn').addEventListener('click', ()=>{
+    alert(cartCount === 0 ? 'Your cart is empty — add a hanging arrangement above!' : `You have ${cartCount} item(s) in your cart.`);
+  });
+  function subscribe(e){
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const original = btn.textContent;
+    btn.textContent = 'Subscribed ✓';
+    e.target.querySelector('input').value = '';
+    setTimeout(()=>{ btn.textContent = original; }, 1600);
+    return false;
+  }
+</script>
+
+</body>
+</html>
