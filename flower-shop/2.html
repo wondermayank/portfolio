@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sunflower Bunch — Bright Sunflower Bouquets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sun-500:#F5A623;
+    --sun-600:#E08E0B;
+    --sun-700:#B96E05;
+    --amber-deep:#8A4B0F;
+    --sky:#3E7C8C;
+    --sky-deep:#2C5C68;
+    --leaf:#5C7A3E;
+    --leaf-dark:#3E5A2A;
+    --cream:#FFF8E9;
+    --paper:#FFFDF7;
+    --ink:#2E2410;
+    --ink-soft:#6B5D42;
+    --line:rgba(46,36,16,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',serif;margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  .ticker{
+    background:var(--sky-deep);color:#FDEFC9;
+    font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+    padding:8px 0;text-align:center;font-weight:500;
+  }
+
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,248,233,0.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:var(--amber-deep);}
+  .logo svg{width:28px;height:28px;flex:none;}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:500;}
+  .nav-links a{position:relative;padding:4px 0;color:var(--ink);}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--sun-600);transition:width .25s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:18px;}
+
+  .search-box{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 16px;min-width:230px;}
+  .search-box input{border:none;outline:none;background:transparent;font-family:'Inter',sans-serif;font-size:14px;width:100%;color:var(--ink);}
+  .search-box input::placeholder{color:#a9946f;}
+  .search-box svg{flex:none;color:var(--sun-600);}
+
+  .cart-btn{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;}
+  .cart-btn svg{color:var(--amber-deep);}
+  .cart-count{position:absolute;top:-5px;right:-5px;background:var(--sun-600);color:#fff;font-size:10.5px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;}
+
+  /* ---------- Hero ---------- */
+  .hero{display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:0;max-width:1180px;margin:0 auto;padding:64px 32px 40px;}
+  .hero-copy .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-700);font-weight:600;margin-bottom:22px;}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--sun-700);display:inline-block;}
+  .hero-copy h1{font-size:clamp(40px,5.2vw,64px);line-height:1.03;font-weight:600;color:var(--ink);}
+  .hero-copy h1 em{font-style:italic;color:var(--sun-600);}
+  .hero-copy p{margin-top:22px;font-size:16.5px;line-height:1.65;color:var(--ink-soft);max-width:420px;}
+  .hero-actions{display:flex;gap:14px;margin-top:34px;align-items:center;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-size:14.5px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:transform .18s ease, background .2s ease;}
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--sun-600);color:#fff;}
+  .btn-primary:hover{background:var(--sun-700);}
+  .btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);}
+  .hero-stats{display:flex;gap:30px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);max-width:420px;}
+  .hero-stats div b{display:block;font-family:'Fraunces',serif;font-size:24px;color:var(--amber-deep);}
+  .hero-stats div span{font-size:12.5px;color:var(--ink-soft);}
+
+  .hero-visual{position:relative;}
+  .hero-visual .frame{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 60px -25px rgba(184,110,5,0.35);}
+  .hero-visual img{width:100%;height:100%;object-fit:cover;}
+  .price-tag{position:absolute;bottom:22px;left:-26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:16px 20px 16px 26px;display:flex;align-items:center;gap:14px;box-shadow:0 18px 34px -18px rgba(46,36,16,0.28);}
+  .price-tag::before{content:"";position:absolute;left:8px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:var(--cream);border:1px solid var(--line);}
+  .price-tag .p-name{font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;}
+  .price-tag .p-val{font-family:'Fraunces',serif;font-size:22px;color:var(--amber-deep);font-weight:700;}
+  .hero-badge{position:absolute;top:20px;right:20px;background:var(--sky-deep);color:#FDEFC9;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:8px 14px;border-radius:999px;}
+
+  /* ---------- Petal divider (signature) ---------- */
+  .petal-divider{display:flex;align-items:center;justify-content:center;gap:6px;max-width:1180px;margin:10px auto 6px;padding:0 32px;}
+  .petal-divider .seed{width:6px;height:6px;border-radius:50%;background:var(--amber-deep);opacity:.35;}
+  .petal-divider .seed:nth-child(3n){opacity:.7;}
+  .petal-divider .seed:nth-child(5n){opacity:1;background:var(--sun-600);}
+
+  .section{padding:70px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:20px;}
+  .section-head .eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-700);font-weight:600;display:block;margin-bottom:10px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,38px);font-weight:600;}
+  .section-head p{color:var(--ink-soft);font-size:14.5px;max-width:340px;}
+  .no-results{display:none;text-align:center;padding:60px 20px;color:var(--ink-soft);font-size:15px;}
+  .no-results.show{display:block;}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease, box-shadow .25s ease;}
+  .card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(46,36,16,0.28);}
+  .card-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:#FCEBBE;}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .card:hover .card-img img{transform:scale(1.06);}
+  .tag-best{position:absolute;top:12px;left:12px;background:var(--sun-600);color:#fff;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 10px;border-radius:999px;}
+  .wish-btn{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,253,247,0.9);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .wish-btn svg{width:15px;height:15px;color:var(--sun-700);}
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-stems{font-size:11.5px;color:var(--leaf-dark);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+  .card-body h3{font-size:17px;font-weight:600;line-height:1.3;}
+  .card-body .desc{font-size:13px;color:var(--ink-soft);line-height:1.5;flex:1;}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+  .card-price{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--amber-deep);}
+  .card-price span{font-size:12px;color:#b7a687;text-decoration:line-through;font-family:'Inter',sans-serif;margin-left:6px;}
+  .add-btn{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--cream);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease, transform .2s ease;}
+  .add-btn:hover{background:var(--sun-600);}
+  .add-btn.added{background:var(--leaf-dark);}
+
+  /* ---------- Featured ---------- */
+  .featured{background:var(--amber-deep);border-radius:16px;display:grid;grid-template-columns:0.9fr 1.1fr;overflow:hidden;color:#FDEFC9;}
+  .featured-img{position:relative;min-height:420px;}
+  .featured-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .featured-body{padding:52px 56px;display:flex;flex-direction:column;justify-content:center;gap:20px;}
+  .featured .eyebrow{color:#F6D48A;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;}
+  .featured h2{font-size:clamp(28px,3.2vw,36px);color:#fff;font-weight:600;}
+  .featured p.desc{color:#F6D48A;font-size:15px;line-height:1.7;max-width:440px;}
+  .stem-select{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .stem-opt{padding:9px 16px;border-radius:999px;border:1px solid rgba(246,212,138,0.45);font-size:13.5px;font-weight:600;cursor:pointer;color:#F6D48A;transition:all .18s ease;background:transparent;}
+  .stem-opt.active,.stem-opt:hover{background:#F6D48A;color:var(--amber-deep);border-color:#F6D48A;}
+  .featured-foot{display:flex;align-items:center;gap:24px;margin-top:10px;flex-wrap:wrap;}
+  .featured-price span{font-size:13px;color:#F6D48A;font-family:'Inter',sans-serif;display:block;font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
+  .btn-cream{background:var(--cream);color:var(--amber-deep);}
+  .btn-cream:hover{background:#fff;}
+
+  .care{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .care-item{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;gap:16px;align-items:flex-start;}
+  .care-item svg{flex:none;color:var(--sun-700);margin-top:2px;}
+  .care-item h4{font-size:15px;font-weight:600;margin-bottom:6px;}
+  .care-item p{font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0;}
+
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:100;box-shadow:0 20px 40px -18px rgba(0,0,0,0.4);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast svg{color:var(--sun-500);}
+
+  footer{background:var(--ink);color:#D9C79E;padding:56px 0 24px;margin-top:40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-grid .logo{color:#fff;margin-bottom:14px;}
+  .footer-grid p{font-size:13.5px;line-height:1.6;color:#B7A47A;max-width:260px;}
+  .footer-grid h5{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;}
+  .footer-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+  .footer-grid a{font-size:13.5px;color:#D9C79E;}
+  .footer-grid a:hover{color:#fff;}
+  .footer-bottom{padding-top:22px;display:flex;justify-content:space-between;font-size:12.5px;color:#9C8B62;flex-wrap:wrap;gap:10px;}
+
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr;}
+    .hero-visual{margin-top:40px;}
+    .price-tag{left:16px;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .featured{grid-template-columns:1fr;}
+    .featured-img{min-height:280px;}
+    .care{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .search-box{min-width:150px;}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero{padding-top:36px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">Cut at first light, delivered by noon &nbsp;•&nbsp; Free delivery over ₹999 &nbsp;•&nbsp; Est. Indore, since 2018</div>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="3.4" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M12 3v3.4"/><path d="M12 17.6V21"/><path d="M3 12h3.4"/><path d="M17.6 12H21"/>
+          <path d="M5.6 5.6l2.4 2.4"/><path d="M16 16l2.4 2.4"/><path d="M18.4 5.6L16 8"/><path d="M8 16l-2.4 2.4"/>
+        </g>
+      </svg>
+      The Sunflower Bunch
+    </a>
+    <nav class="nav-links">
+      <a href="#shop">Bunches</a>
+      <a href="#featured">Sunflower Bunch</a>
+      <a href="#care">Flower Care</a>
+      <a href="#">Occasions</a>
+    </nav>
+    <div class="nav-right">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="Search sunflower bunches...">
+      </div>
+      <button class="cart-btn" onclick="bumpCart(0)" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Signature Collection</span>
+    <h1>Sunflowers,<br><em>bright as noon.</em></h1>
+    <p>A full, sunny hand-tied bunch of premium sunflowers, wrapped in natural kraft and twine. Big open faces, deep golden petals — the kind of bouquet that makes a whole room feel like summer.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="addToCart('Sunflower Bunch', 999, this)">
+        Add Sunflower Bunch — ₹999
+      </button>
+      <a href="#shop" class="btn btn-ghost">Browse all bunches</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>40+</b><span>Bunches tied fresh daily</span></div>
+      <div><b>1–2 hr</b><span>Same-day delivery window</span></div>
+      <div><b>10 day</b><span>Freshness guarantee</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-badge">Bestseller</div>
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1543409777-30250849aa3e?auto=format&fit=crop&w=900&q=80" alt="Bright bunch of sunflowers wrapped in kraft paper">
+    </div>
+    <div class="price-tag">
+      <div>
+        <div class="p-name">Sunflower Bunch</div>
+        <div class="p-val">₹999</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="petal-divider">
+  <div class="seed"></div><div class="seed"></div><div class="seed"></div><div class="seed"></div><div class="seed"></div>
+  <div class="seed"></div><div class="seed"></div><div class="seed"></div><div class="seed"></div><div class="seed"></div>
+  <div class="seed"></div><div class="seed"></div><div class="seed"></div><div class="seed"></div><div class="seed"></div>
+</div>
+
+<!-- SHOP GRID -->
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The Sunflower Edit</span>
+        <h2>Bright bunches, by the stem.</h2>
+      </div>
+      <p>Every arrangement below is built from the same premium sunflower, styled for a different moment.</p>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+    <div class="no-results" id="noResults">No bunches match your search — try "sunflower", "vase" or "single".</div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section" id="featured">
+  <div class="wrap">
+    <div class="featured">
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1718312275779-99010e78b2ce?auto=format&fit=crop&w=900&q=80" alt="Close up of a hand-tied sunflower bunch">
+      </div>
+      <div class="featured-body">
+        <span class="eyebrow">Product spotlight</span>
+        <h2>Sunflower Bunch</h2>
+        <p class="desc">Our most-ordered bunch: a full, open-faced arrangement of premium sunflowers, finished with rustic twine, kraft wrap and a sprig of greenery. Choose your stem count below.</p>
+        <div class="stem-select" id="stemSelect">
+          <button class="stem-opt" data-stems="3" data-price="399">3 stems · ₹399</button>
+          <button class="stem-opt active" data-stems="6" data-price="999">6 stems · ₹999</button>
+          <button class="stem-opt" data-stems="12" data-price="1799">12 stems · ₹1,799</button>
+          <button class="stem-opt" data-stems="20" data-price="2899">20 stems · ₹2,899</button>
+        </div>
+        <div class="featured-foot">
+          <div class="featured-price"><span>Price</span><span id="featPrice" style="font-size:32px;color:#fff;font-family:'Fraunces',serif;font-weight:700;">₹999</span></div>
+          <button class="btn btn-cream" onclick="addFeaturedToCart()">Add to bunch cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARE -->
+<section class="section" id="care">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">After they arrive</span>
+        <h2>Keeping your sunflowers bright.</h2>
+      </div>
+    </div>
+    <div class="care">
+      <div class="care-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg>
+        <div><h4>Trim the thick stems</h4><p>Cut 2–3cm off each hollow stem at an angle, and re-trim every 2 days for the best water uptake.</p></div>
+      </div>
+      <div class="care-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        <div><h4>Give them real light</h4><p>Unlike most cut flowers, sunflowers like bright rooms — just keep them off a hot windowsill.</p></div>
+      </div>
+      <div class="care-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        <div><h4>Change the water often</h4><p>Sunflowers drink a lot — top up and refresh the water every 1–2 days with the enclosed flower food.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3.4" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M12 3v3.4"/><path d="M12 17.6V21"/><path d="M3 12h3.4"/><path d="M17.6 12H21"/>
+              <path d="M5.6 5.6l2.4 2.4"/><path d="M16 16l2.4 2.4"/><path d="M18.4 5.6L16 8"/><path d="M8 16l-2.4 2.4"/>
+            </g>
+          </svg>
+          The Sunflower Bunch
+        </a>
+        <p>Hand-tied sunflower bunches, cut fresh and delivered the same day. A small flower studio doing one bright thing very well.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul><li><a href="#shop">All bunches</a></li><li><a href="#featured">Sunflower Bunch</a></li><li><a href="#care">Flower care</a></li></ul>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <ul><li><a href="#">Our story</a></li><li><a href="#">Delivery areas</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 The Sunflower Bunch Flower Studio</span>
+      <span>UI concept — demo only, no real checkout</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toastMsg">Added to cart</span>
+</div>
+
+<script>
+  const products = [
+    {
+      name: "Sunflower Bunch",
+      stems: "6 stems",
+      desc: "The classic bright bunch, hand-tied with kraft wrap and rustic twine.",
+      price: 999, oldPrice: 1199,
+      img: "https://images.unsplash.com/photo-1718312275779-99010e78b2ce?auto=format&fit=crop&w=700&q=80",
+      best: true
+    },
+    {
+      name: "Sunflowers in Glass Vase",
+      stems: "3 stems",
+      desc: "Arranged in a clear glass vase, ready to place — no scissors needed.",
+      price: 799, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1757681843238-dd02aee97906?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Golden Hour Hand-Tie",
+      stems: "8 stems",
+      desc: "A relaxed, garden-style bunch for gifting or a Sunday table.",
+      price: 1299, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1701743808328-0b9ad02ac4b7?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Sunflower & Wildflower Mix",
+      stems: "10 stems",
+      desc: "Sunflowers loosened up with seasonal daisies and honeybee-friendly blooms.",
+      price: 1499, oldPrice: 1699,
+      img: "https://images.unsplash.com/photo-1696650501950-bba0d00af92d?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Single Sunflower Stem",
+      stems: "1 stem",
+      desc: "One giant open-faced sunflower, wrapped simply. Small gesture, big smile.",
+      price: 179, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1663267028525-3a70bcc64b8b?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Sunflower Petal Detail Jar",
+      stems: "2 stems",
+      desc: "A pair of sunflowers in a short jar — bright, low, and easy to place anywhere.",
+      price: 549, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1758545692745-5ecb5c0d8316?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Sunflower Bouquet, Deluxe",
+      stems: "15 stems",
+      desc: "An oversized bunch of premium sunflowers, for big rooms and big moments.",
+      price: 2199, oldPrice: 2499,
+      img: "https://images.unsplash.com/photo-1543409777-30250849aa3e?auto=format&fit=crop&w=700&q=80",
+      best: false
+    }
+  ];
+
+  let cartTotal = 0;
+  const grid = document.getElementById('productGrid');
+
+  function fmt(n){ return '₹' + n.toLocaleString('en-IN'); }
+
+  function renderGrid(list){
+    grid.innerHTML = '';
+    document.getElementById('noResults').classList.toggle('show', list.length === 0);
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-img">
+          ${p.best ? '<span class="tag-best">Bestseller</span>' : ''}
+          <button class="wish-btn" aria-label="Save">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+          </button>
+          <img src="${p.img}" alt="${p.name}">
+        </div>
+        <div class="card-body">
+          <span class="card-stems">${p.stems}</span>
+          <h3>${p.name}</h3>
+          <p class="desc">${p.desc}</p>
+          <div class="card-foot">
+            <div class="card-price">${fmt(p.price)}${p.oldPrice ? `<span>${fmt(p.oldPrice)}</span>` : ''}</div>
+            <button class="add-btn" title="Add to cart">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>`;
+      card.querySelector('.add-btn').addEventListener('click', (e) => addToCart(p.name, p.price, e.currentTarget));
+      grid.appendChild(card);
+    });
+  }
+  renderGrid(products);
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q) ||
+      p.stems.toLowerCase().includes(q)
+    );
+    renderGrid(filtered);
+  });
+
+  function bumpCart(n){
+    cartTotal += n;
+    document.getElementById('cartCount').textContent = cartTotal;
+  }
+
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function addToCart(name, price, btnEl){
+    bumpCart(1);
+    showToast(`${name} added — ${fmt(price)}`);
+    if(btnEl){
+      btnEl.classList.add('added');
+      setTimeout(() => btnEl.classList.remove('added'), 700);
+    }
+  }
+
+  let featuredPrice = 999;
+  document.querySelectorAll('.stem-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.stem-opt').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      featuredPrice = Number(btn.dataset.price);
+      document.getElementById('featPrice').textContent = fmt(featuredPrice);
+    });
+  });
+  function addFeaturedToCart(){
+    const stems = document.querySelector('.stem-opt.active').dataset.stems;
+    addToCart(`Sunflower Bunch (${stems} stems)`, featuredPrice, null);
+  }
+</script>
+
+</body>
+</html>
