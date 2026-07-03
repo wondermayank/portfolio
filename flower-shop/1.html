@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom & Thorn — Red Rose Bouquets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241512;
+    --rose-900:#6E1423;
+    --rose-700:#8C1C13;
+    --rose-500:#B23A2E;
+    --rose-300:#E8A796;
+    --blush:#FBEAE4;
+    --cream:#FAF5EF;
+    --leaf:#3A5A45;
+    --leaf-dark:#26402F;
+    --paper:#FFFDFB;
+    --line:rgba(36,21,18,0.12);
+    --gold:#B4863C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Playfair Display',serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- Ticker ---------- */
+  .ticker{
+    background:var(--rose-900);
+    color:var(--blush);
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:8px 0;
+    text-align:center;
+    font-weight:500;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,245,239,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Playfair Display',serif;font-weight:700;font-size:22px;
+    color:var(--rose-900);
+  }
+  .logo svg{width:26px;height:26px;flex:none;}
+  .nav-links{display:flex;gap:36px;font-size:14.5px;font-weight:500;}
+  .nav-links a{position:relative;padding:4px 0;color:var(--ink);}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;
+    background:var(--rose-700);transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:18px;}
+
+  .search-box{
+    display:flex;align-items:center;gap:8px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 16px;
+    min-width:230px;
+  }
+  .search-box input{
+    border:none;outline:none;background:transparent;
+    font-family:'Inter',sans-serif;font-size:14px;width:100%;color:var(--ink);
+  }
+  .search-box input::placeholder{color:#9c8b85;}
+  .search-box svg{flex:none;color:var(--rose-700);}
+
+  .cart-btn{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line);background:var(--paper);cursor:pointer;
+  }
+  .cart-btn svg{color:var(--rose-900);}
+  .cart-count{
+    position:absolute;top:-5px;right:-5px;
+    background:var(--rose-700);color:#fff;
+    font-size:10.5px;font-weight:700;
+    min-width:18px;height:18px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    padding:0 3px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.05fr 0.95fr;
+    align-items:center;gap:0;
+    max-width:1180px;margin:0 auto;padding:64px 32px 40px;
+  }
+  .hero-copy .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--rose-700);font-weight:600;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--rose-700);display:inline-block;}
+  .hero-copy h1{
+    font-size:clamp(40px,5.2vw,64px);
+    line-height:1.03;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .hero-copy h1 em{font-style:italic;color:var(--rose-700);}
+  .hero-copy p{
+    margin-top:22px;font-size:16.5px;line-height:1.65;
+    color:#5b4b46;max-width:420px;
+  }
+  .hero-actions{display:flex;gap:14px;margin-top:34px;align-items:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:999px;
+    font-size:14.5px;font-weight:600;cursor:pointer;border:1px solid transparent;
+    transition:transform .18s ease, background .2s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--rose-700);color:#fff;}
+  .btn-primary:hover{background:var(--rose-900);}
+  .btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);}
+
+  .hero-stats{display:flex;gap:30px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);max-width:420px;}
+  .hero-stats div b{display:block;font-family:'Playfair Display',serif;font-size:24px;color:var(--rose-900);}
+  .hero-stats div span{font-size:12.5px;color:#7a6a64;}
+
+  .hero-visual{position:relative;}
+  .hero-visual .frame{
+    position:relative;border-radius:6px;overflow:hidden;
+    aspect-ratio:4/5;
+    box-shadow:0 30px 60px -25px rgba(110,20,35,0.35);
+  }
+  .hero-visual img{width:100%;height:100%;object-fit:cover;}
+  .price-tag{
+    position:absolute;bottom:22px;left:-26px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px 20px 16px 26px;
+    display:flex;align-items:center;gap:14px;
+    box-shadow:0 18px 34px -18px rgba(36,21,18,0.28);
+  }
+  .price-tag::before{
+    content:"";position:absolute;left:8px;top:50%;transform:translateY(-50%);
+    width:8px;height:8px;border-radius:50%;background:var(--cream);border:1px solid var(--line);
+  }
+  .price-tag .p-name{font-size:12px;color:#7a6a64;text-transform:uppercase;letter-spacing:.06em;}
+  .price-tag .p-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--rose-900);font-weight:700;}
+  .hero-badge{
+    position:absolute;top:20px;right:20px;
+    background:var(--leaf-dark);color:#fff;
+    font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+    padding:8px 14px;border-radius:999px;
+  }
+
+  /* ---------- Divider ---------- */
+  .thorn-divider{display:flex;align-items:center;gap:16px;max-width:1180px;margin:10px auto 6px;padding:0 32px;}
+  .thorn-divider .line{flex:1;height:1px;background:var(--line);}
+  .thorn-divider svg{color:var(--rose-700);}
+
+  /* ---------- Section heading ---------- */
+  .section{padding:70px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:40px;flex-wrap:wrap;gap:20px;
+  }
+  .section-head .eyebrow{
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-700);font-weight:600;
+    display:block;margin-bottom:10px;
+  }
+  .section-head h2{font-size:clamp(28px,3.4vw,38px);font-weight:600;}
+  .section-head p{color:#7a6a64;font-size:14.5px;max-width:340px;}
+
+  .no-results{display:none;text-align:center;padding:60px 20px;color:#7a6a64;font-size:15px;}
+  .no-results.show{display:block;}
+
+  /* ---------- Product grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(36,21,18,0.28);}
+  .card-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--blush);}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .card:hover .card-img img{transform:scale(1.06);}
+  .tag-best{
+    position:absolute;top:12px;left:12px;
+    background:var(--rose-700);color:#fff;font-size:10.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.05em;
+    padding:5px 10px;border-radius:999px;
+  }
+  .wish-btn{
+    position:absolute;top:10px;right:10px;
+    width:32px;height:32px;border-radius:50%;
+    background:rgba(255,253,251,0.9);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+  }
+  .wish-btn svg{width:15px;height:15px;color:var(--rose-700);}
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-stems{font-size:11.5px;color:var(--leaf-dark);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+  .card-body h3{font-size:17px;font-weight:600;line-height:1.3;}
+  .card-body .desc{font-size:13px;color:#8a7a74;line-height:1.5;flex:1;}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px;}
+  .card-price{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--rose-900);}
+  .card-price span{font-size:12px;color:#a89a94;text-decoration:line-through;font-family:'Inter',sans-serif;margin-left:6px;}
+  .add-btn{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--ink);color:var(--cream);border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .add-btn:hover{background:var(--rose-700);}
+  .add-btn.added{background:var(--leaf-dark);}
+
+  /* ---------- Featured product ---------- */
+  .featured{
+    background:var(--rose-900);
+    border-radius:16px;
+    display:grid;grid-template-columns:0.9fr 1.1fr;
+    overflow:hidden;
+    color:var(--blush);
+  }
+  .featured-img{position:relative;min-height:420px;}
+  .featured-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .featured-body{padding:52px 56px;display:flex;flex-direction:column;justify-content:center;gap:20px;}
+  .featured .eyebrow{color:var(--rose-300);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;}
+  .featured h2{font-size:clamp(28px,3.2vw,36px);color:#fff;font-weight:600;}
+  .featured p.desc{color:var(--rose-300);font-size:15px;line-height:1.7;max-width:440px;}
+  .stem-select{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .stem-opt{
+    padding:9px 16px;border-radius:999px;border:1px solid rgba(232,167,150,0.4);
+    font-size:13.5px;font-weight:600;cursor:pointer;color:var(--rose-300);
+    transition:all .18s ease;background:transparent;
+  }
+  .stem-opt.active,.stem-opt:hover{background:var(--rose-300);color:var(--rose-900);border-color:var(--rose-300);}
+  .featured-foot{display:flex;align-items:center;gap:24px;margin-top:10px;flex-wrap:wrap;}
+  .featured-price{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;}
+  .featured-price span{font-size:13px;color:var(--rose-300);font-family:'Inter',sans-serif;display:block;font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
+  .btn-cream{background:var(--cream);color:var(--rose-900);}
+  .btn-cream:hover{background:#fff;}
+
+  /* ---------- Care strip ---------- */
+  .care{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .care-item{
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    padding:28px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .care-item svg{flex:none;color:var(--rose-700);margin-top:2px;}
+  .care-item h4{font-size:15px;font-weight:600;margin-bottom:6px;}
+  .care-item p{font-size:13px;color:#8a7a74;line-height:1.55;margin:0;}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;
+    font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:10px;
+    opacity:0;pointer-events:none;transition:all .3s ease;z-index:100;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,0.4);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast svg{color:var(--rose-300);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#cbb8b2;padding:56px 0 24px;margin-top:40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-grid .logo{color:#fff;margin-bottom:14px;}
+  .footer-grid p{font-size:13.5px;line-height:1.6;color:#a99189;max-width:260px;}
+  .footer-grid h5{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;}
+  .footer-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+  .footer-grid a{font-size:13.5px;color:#cbb8b2;}
+  .footer-grid a:hover{color:#fff;}
+  .footer-bottom{padding-top:22px;display:flex;justify-content:space-between;font-size:12.5px;color:#8a7169;flex-wrap:wrap;gap:10px;}
+
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr;}
+    .hero-visual{margin-top:40px;}
+    .price-tag{left:16px;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .featured{grid-template-columns:1fr;}
+    .featured-img{min-height:280px;}
+    .care{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .search-box{min-width:150px;}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero{padding-top:36px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">Free same-day delivery on orders before 2 PM &nbsp;•&nbsp; Freshly cut every morning &nbsp;•&nbsp; Est. Indore, since 2018</div>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 15.5 4 9.8C4 6.6 6.5 4.5 9 4.5C10.5 4.5 11.5 5.2 12 6C12.5 5.2 13.5 4.5 15 4.5C17.5 4.5 20 6.6 20 9.8C20 15.5 12 21 12 21Z" fill="currentColor"/></svg>
+      Bloom & Thorn
+    </a>
+    <nav class="nav-links">
+      <a href="#shop">Bouquets</a>
+      <a href="#featured">Rose Bouquet</a>
+      <a href="#care">Flower Care</a>
+      <a href="#">Occasions</a>
+    </nav>
+    <div class="nav-right">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="Search rose bouquets...">
+      </div>
+      <button class="cart-btn" onclick="bumpCart(0)" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Signature Collection</span>
+    <h1>Red roses,<br><em>cut this morning.</em></h1>
+    <p>A hand-tied bouquet of premium long-stem red roses, wrapped in kraft and ribbon. Grown for depth of colour, picked at their best, delivered before they know they've left the garden.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="addToCart('Rose Bouquet — Red Roses', 1499, this)">
+        Add Rose Bouquet — ₹1,499
+      </button>
+      <a href="#shop" class="btn btn-ghost">Browse all bouquets</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>50+</b><span>Bouquets designed daily</span></div>
+      <div><b>1–2 hr</b><span>Same-day delivery window</span></div>
+      <div><b>7 day</b><span>Freshness guarantee</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-badge">Bestseller</div>
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1548094967-e25a127d1f6d?auto=format&fit=crop&w=900&q=80" alt="Bouquet of premium red roses wrapped in kraft paper">
+    </div>
+    <div class="price-tag">
+      <div>
+        <div class="p-name">Dozen Red Roses</div>
+        <div class="p-val">₹1,499</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="thorn-divider">
+  <div class="line"></div>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c0 6-4 8-4 13a4 4 0 0 0 8 0c0-5-4-7-4-13Z"/></svg>
+  <div class="line"></div>
+</div>
+
+<!-- SHOP GRID -->
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The Rose Edit</span>
+        <h2>Red rose bouquets, by the stem.</h2>
+      </div>
+      <p>Every bouquet below is built from the same premium red rose, arranged for a different moment.</p>
+    </div>
+
+    <div class="grid" id="productGrid">
+      <!-- cards injected by JS -->
+    </div>
+    <div class="no-results" id="noResults">No bouquets match your search — try "rose", "vase" or "basket".</div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section" id="featured">
+  <div class="wrap">
+    <div class="featured">
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1570118281125-84ec73b8008a?auto=format&fit=crop&w=900&q=80" alt="Close up of a red rose bouquet, hand-tied">
+      </div>
+      <div class="featured-body">
+        <span class="eyebrow">Product spotlight</span>
+        <h2>Rose Bouquet — Red Roses</h2>
+        <p class="desc">Our most-ordered arrangement: a full, rounded hand-tie of red roses in a single premium grade, finished with eucalyptus, kraft wrap and satin ribbon. Choose your stem count below.</p>
+        <div class="stem-select" id="stemSelect">
+          <button class="stem-opt" data-stems="6" data-price="899">6 stems · ₹899</button>
+          <button class="stem-opt active" data-stems="12" data-price="1499">12 stems · ₹1,499</button>
+          <button class="stem-opt" data-stems="24" data-price="2799">24 stems · ₹2,799</button>
+          <button class="stem-opt" data-stems="50" data-price="5199">50 stems · ₹5,199</button>
+        </div>
+        <div class="featured-foot">
+          <div class="featured-price"><span>Price</span><span id="featPrice" style="font-size:32px;color:#fff;font-family:'Playfair Display',serif;font-weight:700;">₹1,499</span></div>
+          <button class="btn btn-cream" id="featAddBtn" onclick="addFeaturedToCart()">Add to bouquet cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARE -->
+<section class="section" id="care">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">After they arrive</span>
+        <h2>Keeping your roses at their best.</h2>
+      </div>
+    </div>
+    <div class="care">
+      <div class="care-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg>
+        <div><h4>Trim at an angle</h4><p>Cut 2cm off each stem at a 45° angle before placing in water, and re-trim every 2 days.</p></div>
+      </div>
+      <div class="care-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v5m0 0c3 2 6 5 6 9a6 6 0 0 1-12 0c0-4 3-7 6-9Z"/></svg>
+        <div><h4>Cool, out of the sun</h4><p>Keep away from direct sunlight, heaters and fruit bowls — ripening fruit ages flowers faster.</p></div>
+      </div>
+      <div class="care-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        <div><h4>Fresh water, every 2 days</h4><p>Use the enclosed flower food and change the water regularly to add days to their life.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 15.5 4 9.8C4 6.6 6.5 4.5 9 4.5C10.5 4.5 11.5 5.2 12 6C12.5 5.2 13.5 4.5 15 4.5C17.5 4.5 20 6.6 20 9.8C20 15.5 12 21 12 21Z" fill="currentColor"/></svg>
+          Bloom & Thorn
+        </a>
+        <p>Hand-tied red rose bouquets, cut fresh and delivered the same day. A small flower studio doing one thing very well.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul><li><a href="#shop">All bouquets</a></li><li><a href="#featured">Rose Bouquet</a></li><li><a href="#care">Flower care</a></li></ul>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <ul><li><a href="#">Our story</a></li><li><a href="#">Delivery areas</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Bloom & Thorn Flower Studio</span>
+      <span>UI concept — demo only, no real checkout</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toastMsg">Added to cart</span>
+</div>
+
+<script>
+  const products = [
+    {
+      name: "Rose Bouquet — Red Roses",
+      stems: "12 stems",
+      desc: "The classic dozen, hand-tied with kraft wrap and satin ribbon.",
+      price: 1499, oldPrice: 1799,
+      img: "https://images.unsplash.com/photo-1570118281125-84ec73b8008a?auto=format&fit=crop&w=700&q=80",
+      best: true
+    },
+    {
+      name: "Dozen Red Roses, Vase",
+      stems: "12 stems",
+      desc: "Arranged in a clear glass vase, ready to place — no scissors needed.",
+      price: 1899, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1620346328449-f8fb90a40ad5?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Rose Basket Arrangement",
+      stems: "18 stems",
+      desc: "A fuller, garden-style basket of red roses for tables and entryways.",
+      price: 2399, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1660675865775-15b4a15d1a68?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Red Roses, Ceramic Vase",
+      stems: "15 stems",
+      desc: "Deep red roses in a matte ceramic vase — a keepsake, not just a wrap.",
+      price: 2199, oldPrice: 2599,
+      img: "https://images.unsplash.com/photo-1581264692636-3cf6f29655c2?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Single Red Rose",
+      stems: "1 stem",
+      desc: "One perfect long-stem rose, wrapped simply. Small gesture, right amount.",
+      price: 249, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1623362036080-47d58efb1a55?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Rose & Eucalyptus Bunch",
+      stems: "10 stems",
+      desc: "Red roses loosened up with silver-dollar eucalyptus for a softer look.",
+      price: 1349, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1578439231583-9eca0a363860?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Rose Crate, Wholesale Look",
+      stems: "30 stems",
+      desc: "A wooden crate overflowing with red roses — for big rooms and big moments.",
+      price: 3899, oldPrice: 4399,
+      img: "https://images.unsplash.com/photo-1730749387748-79e6d50a269c?auto=format&fit=crop&w=700&q=80",
+      best: false
+    },
+    {
+      name: "Red & Green Rose Wreath",
+      stems: "Wreath",
+      desc: "A round wreath of red roses and foliage, for doors and tablescapes.",
+      price: 1699, oldPrice: null,
+      img: "https://images.unsplash.com/photo-1582809620589-e9748fd04437?auto=format&fit=crop&w=700&q=80",
+      best: false
+    }
+  ];
+
+  let cartTotal = 0;
+  const grid = document.getElementById('productGrid');
+
+  function fmt(n){ return '₹' + n.toLocaleString('en-IN'); }
+
+  function renderGrid(list){
+    grid.innerHTML = '';
+    document.getElementById('noResults').classList.toggle('show', list.length === 0);
+    list.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-img">
+          ${p.best ? '<span class="tag-best">Bestseller</span>' : ''}
+          <button class="wish-btn" aria-label="Save">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+          </button>
+          <img src="${p.img}" alt="${p.name}">
+        </div>
+        <div class="card-body">
+          <span class="card-stems">${p.stems}</span>
+          <h3>${p.name}</h3>
+          <p class="desc">${p.desc}</p>
+          <div class="card-foot">
+            <div class="card-price">${fmt(p.price)}${p.oldPrice ? `<span>${fmt(p.oldPrice)}</span>` : ''}</div>
+            <button class="add-btn" title="Add to cart">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>`;
+      card.querySelector('.add-btn').addEventListener('click', (e) => addToCart(p.name, p.price, e.currentTarget));
+      grid.appendChild(card);
+    });
+  }
+  renderGrid(products);
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    const filtered = products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q) ||
+      p.stems.toLowerCase().includes(q)
+    );
+    renderGrid(filtered);
+  });
+
+  function bumpCart(n){
+    cartTotal += n;
+    document.getElementById('cartCount').textContent = cartTotal;
+  }
+
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function addToCart(name, price, btnEl){
+    bumpCart(1);
+    showToast(`${name} added — ${fmt(price)}`);
+    if(btnEl){
+      const original = btnEl.innerHTML;
+      btnEl.classList.add('added');
+      setTimeout(() => btnEl.classList.remove('added'), 700);
+    }
+  }
+
+  // Featured stem selector
+  let featuredPrice = 1499;
+  document.querySelectorAll('.stem-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.stem-opt').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      featuredPrice = Number(btn.dataset.price);
+      document.getElementById('featPrice').textContent = fmt(featuredPrice);
+    });
+  });
+  function addFeaturedToCart(){
+    const stems = document.querySelector('.stem-opt.active').dataset.stems;
+    addToCart(`Rose Bouquet — Red Roses (${stems} stems)`, featuredPrice, null);
+  }
+</script>
+
+</body>
+</html>
