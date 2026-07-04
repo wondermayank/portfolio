@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confetti Books — A Rainbow Shelf for Every Mood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF2E88; --cyan:#00C2D1; --orange:#FF8A00; --violet:#7B2FF7; --yellow:#FFD400; --ink:#1A1A1A; --paper:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:'Poppins',sans-serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.brand{font-family:'Baloo 2',sans-serif;}
+
+  header{padding:20px 0;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-size:26px;font-weight:800;background:linear-gradient(90deg,var(--pink),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  nav ul{display:flex;gap:10px;list-style:none;font-weight:600;font-size:14px;}
+  nav a{padding:10px 18px;border-radius:100px;}
+  nav a:nth-child(1):hover{background:#FFE0EF;}
+  nav a:nth-child(2):hover{background:#DFF9FB;}
+  nav a:nth-child(3):hover{background:#FFEACC;}
+  .nav-cta{background:var(--ink);color:#fff;padding:11px 22px;border-radius:100px;font-weight:700;font-size:14px;}
+
+  /* hero */
+  .hero{padding:30px 0 10px;position:relative;}
+  .hero-card{border-radius:36px;background:linear-gradient(120deg,#FFE8F3,#E6F9FF 55%,#FFF3D9);padding:70px 60px;display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center;overflow:hidden;position:relative;}
+  .confetti{position:absolute;border-radius:6px;opacity:.85;}
+  .c1{width:20px;height:20px;background:var(--yellow);top:40px;left:44%;transform:rotate(20deg);}
+  .c2{width:14px;height:14px;background:var(--pink);border-radius:50%;top:100px;left:38%;}
+  .c3{width:18px;height:18px;background:var(--cyan);top:60px;right:12%;transform:rotate(-15deg);}
+  .c4{width:14px;height:14px;background:var(--violet);border-radius:50%;bottom:60px;left:8%;}
+  h1.display{font-size:50px;font-weight:800;line-height:1.1;margin-bottom:20px;}
+  h1.display .g1{color:var(--pink);} h1.display .g2{color:var(--violet);} h1.display .g3{color:var(--cyan);}
+  .hero-copy p{font-size:16px;max-width:420px;margin-bottom:30px;font-weight:500;}
+  .btn-rainbow{display:inline-block;background:linear-gradient(90deg,var(--pink),var(--violet));color:#fff;padding:16px 34px;border-radius:100px;font-weight:700;font-size:15px;}
+  .hero-figure{border-radius:28px;overflow:hidden;aspect-ratio:1/1;box-shadow:0 30px 60px -20px rgba(123,47,247,.35);}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;}
+
+  /* genre ticker */
+  .ticker{overflow:hidden;padding:26px 0;background:var(--ink);}
+  .ticker .track{display:flex;gap:50px;white-space:nowrap;font-weight:700;font-size:16px;color:#fff;animation:go 18s linear infinite;}
+  .ticker .track span:nth-child(4n+1){color:var(--pink);}
+  .ticker .track span:nth-child(4n+2){color:var(--cyan);}
+  .ticker .track span:nth-child(4n+3){color:var(--yellow);}
+  .ticker .track span:nth-child(4n+4){color:var(--violet);}
+  @keyframes go{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* products - masonry-ish colored blocks */
+  .products{padding:80px 0;}
+  .p-head{text-align:center;margin-bottom:50px;}
+  .p-head h2{font-size:36px;font-weight:800;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .p-card{border-radius:26px;overflow:hidden;position:relative;transition:.25s;}
+  .p-card:hover{transform:translateY(-6px) rotate(-1deg);}
+  .p-figure{aspect-ratio:4/3;position:relative;overflow:hidden;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;}
+  .p-sticker{position:absolute;top:14px;left:14px;padding:6px 14px;border-radius:100px;font-weight:800;font-size:12px;color:#fff;transform:rotate(-6deg);}
+  .p-body{padding:22px;color:#fff;}
+  .p-body.c1{background:var(--pink);} .p-body.c2{background:var(--cyan);} .p-body.c3{background:var(--orange);}
+  .p-body.c4{background:var(--violet);} .p-body.c5{background:#00B86B;} .p-body.c6{background:#3D5AFE;}
+  .p-genre{font-size:12px;font-weight:700;text-transform:uppercase;opacity:.85;margin-bottom:8px;}
+  .p-body h3{font-size:19px;font-weight:700;margin-bottom:4px;}
+  .p-author{font-size:13px;opacity:.85;margin-bottom:18px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;}
+  .p-price{font-family:'Baloo 2';font-weight:700;font-size:19px;}
+  .p-add{background:#fff;color:var(--ink);padding:8px 16px;border-radius:100px;font-weight:700;font-size:13px;}
+
+  /* stats confetti band */
+  .band{padding:70px 0;text-align:center;}
+  .band-grid{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;}
+  .band-stat b{display:block;font-family:'Baloo 2';font-size:38px;}
+  .band-stat:nth-child(1) b{color:var(--pink);} .band-stat:nth-child(2) b{color:var(--cyan);}
+  .band-stat:nth-child(3) b{color:var(--orange);} .band-stat:nth-child(4) b{color:var(--violet);}
+  .band-stat span{font-weight:600;font-size:14px;color:#555;}
+
+  /* newsletter */
+  .news{padding:20px 0 90px;text-align:center;}
+  .news-card{background:linear-gradient(120deg,var(--violet),var(--pink));border-radius:32px;padding:60px;max-width:680px;margin:0 auto;color:#fff;}
+  .news h2{font-size:28px;font-weight:800;margin-bottom:12px;}
+  .news p{opacity:.9;margin-bottom:26px;}
+  .news form{display:flex;justify-content:center;gap:10px;max-width:400px;margin:0 auto;}
+  .news input{flex:1;padding:14px 18px;border:none;border-radius:100px;font-family:'Poppins';font-size:14px;}
+  .news button{background:var(--ink);color:#fff;border:none;padding:14px 24px;border-radius:100px;font-weight:700;font-size:14px;}
+
+  footer{padding:40px 0;text-align:center;color:#666;font-size:13px;font-weight:500;}
+
+  @media(max-width:900px){
+    .hero-card{grid-template-columns:1fr;padding:40px 26px;}
+    nav ul{display:none;}
+    .grid{grid-template-columns:1fr;}
+    .news-card{padding:40px 24px;}
+    .news form{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">Confetti Books</div>
+    <nav><ul>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#">Genres</a></li>
+      <li><a href="#">Moods</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">🛍️ 0</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="confetti c1"></span><span class="confetti c2"></span><span class="confetti c3"></span><span class="confetti c4"></span>
+      <div class="hero-copy">
+        <h1 class="display">A <span class="g1">rainbow</span> shelf for <span class="g2">every</span> <span class="g3">mood</span>.</h1>
+        <p>Loud covers, fun genres, zero boring beige. Pick a colour, pick a feeling, find a book.</p>
+        <a href="#shop" class="btn-rainbow">Jump into the shelf →</a>
+      </div>
+      <div class="hero-figure">
+        <img src="https://images.pexels.com/photos/33651905/pexels-photo-33651905.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Vibrant colorful array of books">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="track">
+    <span>FEEL-GOOD FICTION</span><span>LOUD GRAPHIC NOVELS</span><span>SUNSHINE ROMANCE</span><span>WILD FANTASY</span><span>BRIGHT NONFICTION</span>
+    <span>FEEL-GOOD FICTION</span><span>LOUD GRAPHIC NOVELS</span><span>SUNSHINE ROMANCE</span><span>WILD FANTASY</span><span>BRIGHT NONFICTION</span>
+  </div>
+</div>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="p-head"><h2>🎨 pick your colour, pick your book</h2></div>
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure"><span class="p-sticker" style="background:var(--pink);">NEW</span><img src="https://images.pexels.com/photos/28993697/pexels-photo-28993697.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful book spines"></div>
+        <div class="p-body c1">
+          <div class="p-genre">Feel-Good Fiction</div>
+          <h3>Sunshine on a Tuesday</h3>
+          <div class="p-author">Zara Malhotra</div>
+          <div class="p-foot"><span class="p-price">₹399</span><a href="#" class="p-add">Add +</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><span class="p-sticker" style="background:var(--cyan);">HOT</span><img src="https://images.pexels.com/photos/5711/pexels-photo-5711.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful books"></div>
+        <div class="p-body c2">
+          <div class="p-genre">Fantasy</div>
+          <h3>The Kaleidoscope King</h3>
+          <div class="p-author">Devika Iyer</div>
+          <div class="p-foot"><span class="p-price">₹449</span><a href="#" class="p-add">Add +</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><span class="p-sticker" style="background:var(--orange);">FUN</span><img src="https://images.pexels.com/photos/48020/pexels-photo-48020.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Piled colorful books"></div>
+        <div class="p-body c3">
+          <div class="p-genre">Graphic Novel</div>
+          <h3>Loud Colours, Louder Plot</h3>
+          <div class="p-author">Studio Bright</div>
+          <div class="p-foot"><span class="p-price">₹349</span><a href="#" class="p-add">Add +</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/159711/pexels-photo-159711.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful books on shelf"></div>
+        <div class="p-body c4">
+          <div class="p-genre">Romance</div>
+          <h3>Confetti for Two</h3>
+          <div class="p-author">Riya D'Souza</div>
+          <div class="p-foot"><span class="p-price">₹379</span><a href="#" class="p-add">Add +</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><span class="p-sticker" style="background:#00B86B;">TOP PICK</span><img src="https://images.pexels.com/photos/33651905/pexels-photo-33651905.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful array of books"></div>
+        <div class="p-body c5">
+          <div class="p-genre">Nonfiction</div>
+          <h3>The Happy Colour Wheel</h3>
+          <div class="p-author">Anaya Bhatt</div>
+          <div class="p-foot"><span class="p-price">₹429</span><a href="#" class="p-add">Add +</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/28993697/pexels-photo-28993697.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful book spines close-up"></div>
+        <div class="p-body c6">
+          <div class="p-genre">Fantasy</div>
+          <h3>Neon Forest</h3>
+          <div class="p-author">Kabir Sethi</div>
+          <div class="p-foot"><span class="p-price">₹459</span><a href="#" class="p-add">Add +</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-grid">
+    <div class="band-stat"><b>50+</b><span>colour-coded genres</span></div>
+    <div class="band-stat"><b>10k</b><span>happy readers</span></div>
+    <div class="band-stat"><b>4.9★</b><span>average rating</span></div>
+    <div class="band-stat"><b>2 days</b><span>fast, cheerful delivery</span></div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="news-card">
+    <h2>get a burst of colour in your inbox</h2>
+    <p>new drops, fun lists, zero spam</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="your email" required>
+      <button type="submit">count me in</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">🎉 Confetti Books · © 2026 · made with colour</div>
+</footer>
+
+</body>
+</html>
