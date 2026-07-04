@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plain — Books, Nothing Else</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --off:#FAFAF8; --ink:#1B1B1B; --slate:#4C5B72; --line:#E4E3DE; --sub:#787672;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;font-size:15px;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 32px;}
+  h1,h2,.mono{font-family:'Archivo',sans-serif;letter-spacing:-0.3px;}
+
+  header{padding:34px 0;border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Archivo';font-weight:600;font-size:18px;letter-spacing:1px;text-transform:uppercase;}
+  nav ul{display:flex;gap:40px;list-style:none;font-size:14px;color:var(--sub);}
+  nav a:hover{color:var(--ink);}
+  .nav-right{font-size:14px;color:var(--sub);}
+
+  /* Hero */
+  .hero{padding:110px 0 90px;border-bottom:1px solid var(--line);}
+  .hero .index{font-size:13px;color:var(--slate);letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;}
+  h1.display{font-size:44px;font-weight:500;line-height:1.25;max-width:680px;letter-spacing:-1px;}
+  h1.display .accent{color:var(--slate);}
+  .hero p{margin-top:26px;font-size:16px;color:var(--sub);max-width:480px;}
+  .hero-links{display:flex;gap:34px;margin-top:38px;}
+  .hero-links a{font-size:14px;border-bottom:1px solid var(--ink);padding-bottom:3px;}
+  .hero-links a.muted{border-color:var(--line);color:var(--sub);}
+
+  /* signature svg line drawing */
+  .signature{display:flex;justify-content:center;padding:60px 0;border-bottom:1px solid var(--line);}
+  .signature svg{width:180px;height:auto;}
+  .signature path{fill:none;stroke:var(--ink);stroke-width:1.2;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.6s ease forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* list catalogue, not cards */
+  .catalogue{padding:90px 0;border-bottom:1px solid var(--line);}
+  .cat-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:50px;}
+  .cat-head h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);}
+  .cat-head span{font-size:13px;color:var(--sub);}
+
+  .row{display:grid;grid-template-columns:70px 90px 1fr auto auto;align-items:center;gap:24px;padding:26px 0;border-top:1px solid var(--line);}
+  .row:last-child{border-bottom:1px solid var(--line);}
+  .row .idx{font-size:13px;color:var(--sub);}
+  .row .thumb{width:70px;height:90px;overflow:hidden;background:var(--off);}
+  .row .thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(15%);}
+  .row .meta h3{font-size:17px;font-weight:500;margin-bottom:5px;}
+  .row .meta span{font-size:13px;color:var(--sub);}
+  .row .genre{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:1px;justify-self:end;}
+  .row .price{font-family:'Archivo';font-size:15px;justify-self:end;min-width:70px;text-align:right;}
+
+  /* philosophy section */
+  .philosophy{padding:100px 0;display:grid;grid-template-columns:1fr 1fr;gap:70px;border-bottom:1px solid var(--line);}
+  .philosophy h2{font-size:28px;font-weight:500;line-height:1.35;letter-spacing:-0.5px;}
+  .philosophy .points{list-style:none;}
+  .philosophy .points li{padding:20px 0;border-top:1px solid var(--line);font-size:14px;color:var(--sub);display:flex;justify-content:space-between;}
+  .philosophy .points li:last-child{border-bottom:1px solid var(--line);}
+  .philosophy .points b{color:var(--ink);font-weight:500;}
+
+  /* newsletter */
+  .news{padding:90px 0;text-align:center;}
+  .news h2{font-size:22px;font-weight:500;margin-bottom:14px;}
+  .news p{color:var(--sub);margin-bottom:30px;font-size:14px;}
+  .news form{display:flex;justify-content:center;max-width:380px;margin:0 auto;border-bottom:1px solid var(--ink);}
+  .news input{flex:1;border:none;padding:12px 0;font-size:14px;font-family:'Inter';}
+  .news button{background:none;border:none;font-size:13px;letter-spacing:1px;text-transform:uppercase;font-weight:500;}
+
+  footer{padding:40px 0;border-top:1px solid var(--line);}
+  .foot-row{display:flex;justify-content:space-between;font-size:13px;color:var(--sub);}
+  .foot-row a{margin-left:24px;}
+
+  @media(max-width:760px){
+    nav ul{display:none;}
+    h1.display{font-size:30px;}
+    .row{grid-template-columns:50px 60px 1fr;row-gap:6px;}
+    .row .genre,.row .price{grid-column:2/4;justify-self:start;}
+    .philosophy{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">Plain</div>
+    <nav><ul>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul></nav>
+    <div class="nav-right">Bag — 0</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="index">001 / A bookshop with one rule</div>
+    <h1 class="display">We sell books. <span class="accent">That is the whole idea.</span></h1>
+    <p>No recommendations engine, no bundles, no noise. A short, changing list of titles worth your time — priced plainly, described plainly.</p>
+    <div class="hero-links">
+      <a href="#catalogue">View the list</a>
+      <a href="#" class="muted">Read the one rule</a>
+    </div>
+  </div>
+</section>
+
+<div class="signature">
+  <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 110 L20 30 L100 30 L100 110 M100 30 L180 30 L180 110 M20 70 L100 70 M20 30 L20 20 L180 20 L180 30" />
+  </svg>
+</div>
+
+<section class="catalogue" id="catalogue">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>The Current List</h2>
+      <span>6 of 6</span>
+    </div>
+
+    <div class="row">
+      <span class="idx">01</span>
+      <div class="thumb"><img src="https://images.pexels.com/photos/9565975/pexels-photo-9565975.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Minimalist bookshelf"></div>
+      <div class="meta"><h3>Room to Think</h3><span>Anna Sorel</span></div>
+      <span class="genre">Essays</span>
+      <span class="price">₹399</span>
+    </div>
+    <div class="row">
+      <span class="idx">02</span>
+      <div class="thumb"><img src="https://images.pexels.com/photos/5797899/pexels-photo-5797899.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Notebook and books on desk"></div>
+      <div class="meta"><h3>Notes on Restraint</h3><span>D. K. Fenwick</span></div>
+      <span class="genre">Design</span>
+      <span class="price">₹449</span>
+    </div>
+    <div class="row">
+      <span class="idx">03</span>
+      <div class="thumb"><img src="https://images.pexels.com/photos/256467/pexels-photo-256467.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Close-up of open book"></div>
+      <div class="meta"><h3>The Unwritten Rule</h3><span>Priya Chandran</span></div>
+      <span class="genre">Fiction</span>
+      <span class="price">₹379</span>
+    </div>
+    <div class="row">
+      <span class="idx">04</span>
+      <div class="thumb"><img src="https://images.pexels.com/photos/16088727/pexels-photo-16088727.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Desk with books"></div>
+      <div class="meta"><h3>A Shorter Way</h3><span>Marcus Yee</span></div>
+      <span class="genre">Non-fiction</span>
+      <span class="price">₹499</span>
+    </div>
+    <div class="row">
+      <span class="idx">05</span>
+      <div class="thumb"><img src="https://images.pexels.com/photos/256374/pexels-photo-256374.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Books on a shelf"></div>
+      <div class="meta"><h3>Field Notes, Vol. II</h3><span>Anonymous</span></div>
+      <span class="genre">Essays</span>
+      <span class="price">₹349</span>
+    </div>
+    <div class="row">
+      <span class="idx">06</span>
+      <div class="thumb"><img src="https://images.pexels.com/photos/207662/pexels-photo-207662.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Assorted books"></div>
+      <div class="meta"><h3>Whatever Is Left</h3><span>Ingrid Vass</span></div>
+      <span class="genre">Poetry</span>
+      <span class="price">₹329</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap" style="display:contents;">
+    <div>
+      <h2>We keep the list short on purpose — it's easier to trust six good books than six hundred average ones.</h2>
+    </div>
+    <ul class="points">
+      <li><span>Titles on the list at any time</span><b>Six</b></li>
+      <li><span>Recommendations engine</span><b>None</b></li>
+      <li><span>Time to read the whole list</span><b>~4 hours</b></li>
+      <li><span>Shipping</span><b>Flat ₹49</b></li>
+    </ul>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <h2>One email when the list changes.</h2>
+    <p>Roughly once a month. Nothing else.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="Email address" required>
+      <button type="submit">Notify me</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 Plain</span>
+    <div><a href="#">Catalogue</a><a href="#">About</a><a href="#">Contact</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
