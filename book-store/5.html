@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOUD BOOKS — Read Something That Argues Back</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0E0E0E; --red:#FF4B2B; --yellow:#FFC93C; --white:#F2EFE4; --blue:#1548FF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--white);color:var(--black);font-family:'Work Sans',sans-serif;line-height:1.5;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3,.brand,.stamp{font-family:'Archivo Black',sans-serif;}
+
+  header{border-bottom:6px solid var(--black);background:var(--yellow);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1180px;margin:0 auto;}
+  .brand{font-size:24px;letter-spacing:-0.5px;}
+  nav ul{display:flex;gap:0;list-style:none;font-weight:700;font-size:14px;text-transform:uppercase;}
+  nav a{padding:10px 18px;border-left:3px solid var(--black);}
+  .nav-cta{background:var(--black);color:var(--white);padding:12px 22px;font-weight:800;font-size:13px;text-transform:uppercase;border:3px solid var(--black);}
+
+  /* Hero */
+  .hero{border-bottom:6px solid var(--black);position:relative;overflow:hidden;background:var(--white);}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;}
+  .hero-copy{padding:80px 40px 80px 28px;border-right:6px solid var(--black);}
+  .stamp{display:inline-block;background:var(--red);color:var(--white);padding:8px 18px;font-size:13px;transform:rotate(-3deg);margin-bottom:26px;}
+  h1.display{font-size:76px;line-height:0.95;letter-spacing:-2px;margin-bottom:26px;text-transform:uppercase;}
+  h1.display .hl{background:var(--yellow);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 8px;}
+  .hero p{font-size:18px;font-weight:600;max-width:460px;margin-bottom:34px;}
+  .btn-block{display:inline-block;background:var(--black);color:var(--white);padding:18px 36px;font-weight:800;font-size:15px;text-transform:uppercase;border:3px solid var(--black);box-shadow:8px 8px 0 var(--red);transition:.15s;}
+  .btn-block:hover{box-shadow:4px 4px 0 var(--red);transform:translate(4px,4px);}
+  .hero-figure{position:relative;background:var(--black);}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;opacity:.9;filter:contrast(1.1) saturate(1.2);}
+  .corner-tag{position:absolute;bottom:0;left:0;background:var(--red);color:var(--white);padding:14px 22px;font-weight:800;text-transform:uppercase;font-size:14px;}
+
+  /* ticker */
+  .ticker{background:var(--black);color:var(--white);border-bottom:6px solid var(--black);overflow:hidden;padding:16px 0;}
+  .ticker .track{display:flex;gap:50px;white-space:nowrap;font-weight:800;text-transform:uppercase;font-size:15px;animation:go 20s linear infinite;}
+  @keyframes go{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ticker span::after{content:"—";margin-left:50px;color:var(--yellow);}
+
+  /* products */
+  .products{padding:80px 0;}
+  .p-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;}
+  .p-head h2{font-size:42px;text-transform:uppercase;letter-spacing:-1px;}
+  .p-head span{font-weight:700;background:var(--blue);color:var(--white);padding:8px 16px;font-size:13px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:4px solid var(--black);border-left:4px solid var(--black);}
+  .p-card{border-right:4px solid var(--black);border-bottom:4px solid var(--black);background:var(--white);}
+  .p-figure{aspect-ratio:1/1;overflow:hidden;border-bottom:4px solid var(--black);position:relative;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;filter:contrast(1.15) saturate(1.3);}
+  .p-figure .flag{position:absolute;top:0;right:0;background:var(--yellow);padding:8px 14px;font-weight:800;font-size:12px;text-transform:uppercase;border-left:3px solid var(--black);border-bottom:3px solid var(--black);}
+  .p-body{padding:22px;}
+  .p-genre{display:inline-block;background:var(--black);color:var(--white);font-size:11px;font-weight:700;text-transform:uppercase;padding:4px 10px;margin-bottom:12px;}
+  .p-body h3{font-size:22px;text-transform:uppercase;margin-bottom:6px;letter-spacing:-0.5px;}
+  .p-author{font-weight:600;font-size:13px;color:#5b5b5b;margin-bottom:20px;text-transform:uppercase;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;}
+  .p-price{font-family:'Archivo Black';font-size:20px;}
+  .p-add{background:var(--red);color:var(--white);padding:10px 16px;font-weight:800;font-size:12px;text-transform:uppercase;border:2px solid var(--black);}
+  .p-add:hover{background:var(--black);}
+
+  /* manifesto */
+  .manifesto{background:var(--black);color:var(--white);padding:100px 0;border-top:6px solid var(--black);border-bottom:6px solid var(--black);}
+  .manifesto h2{font-size:48px;text-transform:uppercase;line-height:1.05;max-width:820px;letter-spacing:-1px;}
+  .manifesto h2 span{color:var(--yellow);}
+  .manifesto-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px;border-top:2px solid #333;}
+  .manifesto-nums div{padding:26px 0;border-right:2px solid #333;}
+  .manifesto-nums div:last-child{border-right:none;}
+  .manifesto-nums b{display:block;font-family:'Archivo Black';font-size:34px;color:var(--red);}
+  .manifesto-nums span{font-size:13px;text-transform:uppercase;color:#bbb;}
+
+  /* newsletter */
+  .news{padding:90px 0;text-align:center;background:var(--yellow);border-bottom:6px solid var(--black);}
+  .news h2{font-size:36px;text-transform:uppercase;margin-bottom:16px;}
+  .news form{display:flex;justify-content:center;max-width:480px;margin:30px auto 0;border:4px solid var(--black);}
+  .news input{flex:1;border:none;background:var(--white);padding:18px;font-weight:600;font-family:'Work Sans';font-size:15px;}
+  .news button{background:var(--black);color:var(--white);border:none;padding:18px 26px;font-weight:800;text-transform:uppercase;}
+
+  footer{padding:50px 0 26px;background:var(--black);color:var(--white);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  .foot-grid h4{font-size:13px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;font-family:'Archivo Black';}
+  .foot-grid ul{list-style:none;font-size:14px;color:#ccc;}
+  .foot-grid li{margin-bottom:10px;}
+  .foot-bottom{border-top:2px solid #333;padding-top:20px;display:flex;justify-content:space-between;font-size:12px;color:#999;text-transform:uppercase;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-copy{border-right:none;border-bottom:6px solid var(--black);}
+    nav ul{display:none;}
+    h1.display{font-size:46px;}
+    .grid{grid-template-columns:1fr;}
+    .manifesto h2{font-size:32px;}
+    .manifesto-nums{grid-template-columns:1fr;}
+    .manifesto-nums div{border-right:none;border-bottom:2px solid #333;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">LOUD BOOKS</div>
+    <nav><ul>
+      <li><a href="#">SHOP</a></li>
+      <li><a href="#shop">MANIFESTOS</a></li>
+      <li><a href="#">EVENTS</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">CART · 0</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="stamp">NOT FOR THE COMFORTABLE</span>
+      <h1 class="display">BOOKS THAT<br><span class="hl">ARGUE BACK</span></h1>
+      <p>Manifestos, hot takes, and nonfiction with an opinion. No fence-sitting. If it doesn't make you want to underline something, we don't stock it.</p>
+      <a href="#shop" class="btn-block">SHOP THE LIST →</a>
+    </div>
+    <div class="hero-figure">
+      <img src="https://images.pexels.com/photos/48020/pexels-photo-48020.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Bold stack of colorful books">
+      <div class="corner-tag">6 NEW THIS WEEK</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="track">
+    <span>LOUD OPINIONS</span><span>ZERO FILLER</span><span>UNDERLINE-WORTHY</span><span>PICK A SIDE</span><span>READ IT FAST</span>
+    <span>LOUD OPINIONS</span><span>ZERO FILLER</span><span>UNDERLINE-WORTHY</span><span>PICK A SIDE</span><span>READ IT FAST</span>
+  </div>
+</div>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="p-head">
+      <h2>PICK A FIGHT</h2>
+      <span>6 TITLES</span>
+    </div>
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="flag">HOT TAKE</span>
+          <img src="https://images.pexels.com/photos/28993697/pexels-photo-28993697.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful book spines close up">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Manifesto</div>
+          <h3>Burn the Business Plan</h3>
+          <div class="p-author">R. K. Solanki</div>
+          <div class="p-foot"><span class="p-price">₹499</span><a href="#" class="p-add">GRAB IT</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="flag">BESTSELLER</span>
+          <img src="https://images.pexels.com/photos/159711/pexels-photo-159711.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful books on shelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Nonfiction</div>
+          <h3>Everyone Is Wrong About Focus</h3>
+          <div class="p-author">Neha Ghosh</div>
+          <div class="p-foot"><span class="p-price">₹549</span><a href="#" class="p-add">GRAB IT</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <img src="https://images.pexels.com/photos/5711/pexels-photo-5711.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful books stack">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Essays</div>
+          <h3>Quit Faster</h3>
+          <div class="p-author">Arjun Vashisht</div>
+          <div class="p-foot"><span class="p-price">₹399</span><a href="#" class="p-add">GRAB IT</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="flag">NEW</span>
+          <img src="https://images.pexels.com/photos/48020/pexels-photo-48020.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Piled colorful books">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Manifesto</div>
+          <h3>Loud Is a Strategy</h3>
+          <div class="p-author">Farah Iqbal</div>
+          <div class="p-foot"><span class="p-price">₹449</span><a href="#" class="p-add">GRAB IT</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <img src="https://images.pexels.com/photos/33651905/pexels-photo-33651905.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful array of books">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Culture</div>
+          <h3>Say the Rude Thing First</h3>
+          <div class="p-author">Kabir Nanda</div>
+          <div class="p-foot"><span class="p-price">₹479</span><a href="#" class="p-add">GRAB IT</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="flag">TRENDING</span>
+          <img src="https://images.pexels.com/photos/28993697/pexels-photo-28993697.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful book spines">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Nonfiction</div>
+          <h3>The Comfortable Are Losing</h3>
+          <div class="p-author">S. Prabhakaran</div>
+          <div class="p-foot"><span class="p-price">₹549</span><a href="#" class="p-add">GRAB IT</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="wrap">
+    <h2>WE DON'T STOCK BOOKS<br>THAT PLAY IT <span>SAFE</span>.</h2>
+    <div class="manifesto-nums">
+      <div><b>0</b><span>Watered-down takes</span></div>
+      <div><b>48HR</b><span>To underline something</span></div>
+      <div><b>100%</b><span>Opinions, no filler</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <h2>GET THE LOUD LIST</h2>
+    <p style="font-weight:600;">One new argument in your inbox, every Friday.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="YOUR EMAIL" required>
+      <button type="submit">SIGN ME UP</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:20px;color:var(--white);">LOUD BOOKS</div>
+        <p style="margin-top:14px;color:#ccc;font-size:14px;max-width:260px;">Books with an opinion. Ship across India in 2–4 days.</p>
+      </div>
+      <div><h4>SHOP</h4><ul><li>New</li><li>Bestsellers</li><li>Manifestos</li></ul></div>
+      <div><h4>LOUD</h4><ul><li>About</li><li>Events</li><li>Write for Us</li></ul></div>
+      <div><h4>HELP</h4><ul><li>Shipping</li><li>Returns</li><li>Contact</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LOUD BOOKS</span>
+      <span>NO REFUNDS ON OPINIONS</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
