@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOLIO — New Books, Well Chosen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --ink:#14161A; --blue:#2F5DFF; --gray:#E7E9EE; --mist:#F3F5F9; --sub:#63687A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
+
+  header{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray);z-index:50;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1200px;margin:0 auto;}
+  .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.5px;}
+  .brand span{color:var(--blue);}
+  nav ul{display:flex;gap:8px;list-style:none;font-size:14px;font-weight:500;}
+  nav a{padding:9px 16px;border-radius:100px;transition:.2s;position:relative;}
+  nav a:hover{background:var(--mist);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--gray);display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .btn{background:var(--ink);color:#fff;padding:11px 22px;border-radius:100px;font-size:14px;font-weight:600;}
+  .btn:hover{background:var(--blue);}
+
+  /* Hero */
+  .hero{padding:90px 0 60px;position:relative;overflow:hidden;}
+  .hero-bg-num{position:absolute;top:-40px;right:-20px;font-family:'Space Grotesk';font-size:340px;font-weight:700;color:var(--mist);z-index:0;line-height:1;user-select:none;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;}
+  .tag-row{display:flex;gap:8px;margin-bottom:24px;}
+  .tag{background:var(--mist);color:var(--sub);font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;}
+  .tag.blue{background:#E9EEFF;color:var(--blue);}
+  h1.display{font-size:56px;font-weight:700;letter-spacing:-1.5px;line-height:1.05;margin-bottom:22px;}
+  .hero-copy p{font-size:17px;color:var(--sub);max-width:440px;margin-bottom:34px;}
+  .hero-cta{display:flex;gap:14px;align-items:center;}
+  .link-arrow{font-weight:600;font-size:14px;}
+  .hero-figure{border-radius:24px;overflow:hidden;aspect-ratio:4/3.2;}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;}
+
+  /* stat strip */
+  .stats{border-top:1px solid var(--gray);border-bottom:1px solid var(--gray);padding:28px 0;margin-top:50px;}
+  .stats .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .stat{display:flex;flex-direction:column;}
+  .stat b{font-family:'Space Grotesk';font-size:26px;}
+  .stat span{font-size:13px;color:var(--sub);}
+
+  /* category rail */
+  .cat-section{padding:80px 0 20px;}
+  .cat-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:32px;}
+  .cat-head h2{font-size:30px;font-weight:700;letter-spacing:-0.5px;}
+  .cat-head a{font-size:14px;font-weight:600;color:var(--blue);}
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .cat-card{background:var(--mist);border-radius:16px;padding:22px;text-align:left;transition:.2s;}
+  .cat-card:hover{background:var(--ink);color:#fff;transform:translateY(-3px);}
+  .cat-card .n{font-size:12px;color:var(--sub);}
+  .cat-card:hover .n{color:#aab0c9;}
+  .cat-card h4{margin-top:30px;font-size:17px;font-weight:600;}
+
+  /* products */
+  .products{padding:70px 0 90px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .p-card{border:1px solid var(--gray);border-radius:20px;overflow:hidden;transition:.2s;}
+  .p-card:hover{box-shadow:0 20px 40px -20px rgba(20,22,26,.25);transform:translateY(-4px);}
+  .p-figure{aspect-ratio:4/3;overflow:hidden;position:relative;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;}
+  .p-badge{position:absolute;top:14px;left:14px;background:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:100px;}
+  .p-body{padding:22px;}
+  .p-genre{font-size:12px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+  .p-body h3{font-size:19px;font-weight:600;margin-bottom:4px;}
+  .p-author{font-size:13px;color:var(--sub);margin-bottom:18px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;}
+  .p-price{font-family:'Space Grotesk';font-weight:700;font-size:18px;}
+  .p-add{background:var(--ink);color:#fff;border-radius:100px;padding:9px 18px;font-size:13px;font-weight:600;}
+  .p-add:hover{background:var(--blue);}
+
+  /* banner */
+  .banner{background:var(--ink);color:#fff;border-radius:28px;margin:0 auto 100px;max-width:1200px;padding:70px 60px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;}
+  .banner h2{font-size:34px;font-weight:700;letter-spacing:-0.5px;margin-bottom:16px;}
+  .banner p{color:#aab0c9;max-width:420px;margin-bottom:26px;}
+  .banner .btn{background:#fff;color:var(--ink);}
+  .banner .btn:hover{background:var(--blue);color:#fff;}
+  .banner-figure{border-radius:18px;overflow:hidden;aspect-ratio:1.2/1;}
+  .banner-figure img{width:100%;height:100%;object-fit:cover;}
+
+  footer{border-top:1px solid var(--gray);padding:60px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+  .foot-grid h4{font-size:13px;font-weight:700;margin-bottom:16px;}
+  .foot-grid ul{list-style:none;font-size:14px;color:var(--sub);}
+  .foot-grid li{margin-bottom:10px;}
+  .foot-bottom{border-top:1px solid var(--gray);padding-top:22px;display:flex;justify-content:space-between;font-size:13px;color:var(--sub);}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    nav ul{display:none;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .grid{grid-template-columns:1fr 1fr;}
+    .banner{grid-template-columns:1fr;padding:40px 28px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    h1.display{font-size:38px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">FOLIO<span>.</span></div>
+    <nav><ul>
+      <li><a href="#">New</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#">Genres</a></li>
+      <li><a href="#">Lists</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <div class="icon-btn">⌕</div>
+      <div class="icon-btn">0</div>
+      <a href="#" class="btn">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg-num">26</div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="tag-row">
+        <span class="tag blue">New drops weekly</span>
+        <span class="tag">Free shipping ₹499+</span>
+      </div>
+      <h1 class="display">Books for how you actually read now.</h1>
+      <p>A fast, filterable shelf of new releases, staff picks, and the internet's most-talked-about titles — updated every Monday.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn">Shop new arrivals</a>
+        <a href="#" class="link-arrow">See this week's list →</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <img src="https://images.pexels.com/photos/3952095/pexels-photo-3952095.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Modern sunlit bookstore interior">
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>2,400+</b><span>titles in stock</span></div>
+    <div class="stat"><b>24 hr</b><span>dispatch on in-stock orders</span></div>
+    <div class="stat"><b>4.8/5</b><span>from 12,000 orders</span></div>
+    <div class="stat"><b>18</b><span>curated reading lists</span></div>
+  </div>
+</div>
+
+<section class="cat-section">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>Shop by shelf</h2>
+      <a href="#">View all shelves →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card"><div class="n">01</div><h4>Fiction &amp; Fresh Voices</h4></div>
+      <div class="cat-card"><div class="n">02</div><h4>Business &amp; Career</h4></div>
+      <div class="cat-card"><div class="n">03</div><h4>Design &amp; Tech</h4></div>
+      <div class="cat-card"><div class="n">04</div><h4>Mind &amp; Habits</h4></div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="cat-head">
+      <h2>This week's picks</h2>
+      <a href="#">Full catalogue →</a>
+    </div>
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">New</span>
+          <img src="https://images.pexels.com/photos/29509137/pexels-photo-29509137.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Cozy modern bookstore interior">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Fiction</div>
+          <h3>Nine Small Signals</h3>
+          <div class="p-author">Priya Anand</div>
+          <div class="p-foot"><span class="p-price">₹449</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">Bestseller</span>
+          <img src="https://images.pexels.com/photos/256374/pexels-photo-256374.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Modern library shelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Business</div>
+          <h3>Systems Over Willpower</h3>
+          <div class="p-author">Rohan Mehta</div>
+          <div class="p-foot"><span class="p-price">₹599</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">Editor's Pick</span>
+          <img src="https://images.pexels.com/photos/16088727/pexels-photo-16088727.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Desk with books and tablet">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Design</div>
+          <h3>Interfaces That Disappear</h3>
+          <div class="p-author">Lena Ostrowski</div>
+          <div class="p-foot"><span class="p-price">₹649</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <img src="https://images.pexels.com/photos/159711/pexels-photo-159711.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Books on black wooden shelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Non-fiction</div>
+          <h3>The Attention Ledger</h3>
+          <div class="p-author">Devika Rao</div>
+          <div class="p-foot"><span class="p-price">₹399</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">New</span>
+          <img src="https://images.pexels.com/photos/3861778/pexels-photo-3861778.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Books on a shelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Habits</div>
+          <h3>Small Moves, Big Room</h3>
+          <div class="p-author">Karan Bhatt</div>
+          <div class="p-foot"><span class="p-price">₹349</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <img src="https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Row of books in shelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Fiction</div>
+          <h3>The Second Draft</h3>
+          <div class="p-author">Ayesha Kapoor</div>
+          <div class="p-foot"><span class="p-price">₹499</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="banner">
+    <div>
+      <h2>Can't decide? Take the 60-second shelf quiz.</h2>
+      <p>Answer four quick questions and we'll build a reading list matched to your mood, pace, and the last book you actually finished.</p>
+      <a href="#" class="btn">Start the quiz</a>
+    </div>
+    <div class="banner-figure">
+      <img src="https://images.pexels.com/photos/256467/pexels-photo-256467.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of open book">
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:20px;">FOLIO<span>.</span></div>
+        <p style="margin-top:14px;color:var(--sub);font-size:14px;max-width:260px;">New books, well chosen. Shipping across India in 24–72 hours.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li>New arrivals</li><li>Bestsellers</li><li>Reading lists</li><li>Gift cards</li></ul></div>
+      <div><h4>Folio</h4><ul><li>About</li><li>Careers</li><li>Press</li><li>Blog</li></ul></div>
+      <div><h4>Support</h4><ul><li>Track order</li><li>Returns</li><li>Contact</li><li>FAQ</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Folio Books Pvt. Ltd.</span>
+      <span>Made for readers, not algorithms</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
