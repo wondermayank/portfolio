@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearth &amp; Twine — Hand-Bound Books</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Libre+Baskerville:wght@400;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3ECDD; --paper:#FBF7EE; --rust:#A85C3B; --kraft:#D9C6A3; --moss:#5F6B4A; --charcoal:#2E2A26;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--cream);color:var(--charcoal);font-family:'Libre Baskerville',serif;line-height:1.7;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;}
+  .hand{font-family:'Caveat',cursive;}
+
+  header{padding:24px 0;border-bottom:2px dashed var(--kraft);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Fraunces';font-weight:600;font-size:24px;}
+  .brand .hand{color:var(--rust);font-size:26px;}
+  nav ul{display:flex;gap:34px;list-style:none;font-size:14px;}
+  nav a:hover{color:var(--rust);}
+  .nav-cta{border:1px solid var(--charcoal);padding:10px 20px;font-size:13px;}
+
+  /* hero */
+  .hero{padding:70px 0;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .stamp{display:inline-flex;align-items:center;justify-content:center;width:86px;height:86px;border:2px solid var(--rust);border-radius:50%;transform:rotate(-8deg);color:var(--rust);font-size:11px;text-transform:uppercase;letter-spacing:1px;text-align:center;padding:8px;margin-bottom:24px;}
+  h1.display{font-size:46px;font-weight:600;line-height:1.25;margin-bottom:22px;}
+  h1.display .hand{color:var(--rust);}
+  .hero p{font-size:16px;color:#5b5346;max-width:440px;margin-bottom:32px;}
+  .btn-craft{display:inline-block;background:var(--charcoal);color:var(--paper);padding:15px 32px;font-size:14px;border:2px solid var(--charcoal);position:relative;}
+  .btn-craft:hover{background:var(--rust);border-color:var(--rust);}
+  .hero-figure{position:relative;border:8px solid var(--paper);box-shadow:0 0 0 1px var(--kraft);}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1.05;}
+  .hero-figure::after{content:"est. by hand";position:absolute;bottom:-14px;right:-14px;background:var(--rust);color:#fff;font-family:'Caveat';font-size:22px;padding:6px 18px;transform:rotate(-4deg);}
+
+  /* stitched divider */
+  .stitch{border-top:2px dashed var(--kraft);margin:0;}
+
+  /* process */
+  .process{padding:80px 0;}
+  .p-head{text-align:center;max-width:520px;margin:0 auto 56px;}
+  .p-head span{font-family:'Caveat';font-size:22px;color:var(--rust);}
+  .p-head h2{font-size:32px;font-weight:600;margin-top:6px;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+  .step{text-align:center;}
+  .step .n{width:44px;height:44px;border-radius:50%;background:var(--moss);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces';margin:0 auto 16px;}
+  .step h4{font-size:16px;font-weight:600;margin-bottom:8px;}
+  .step p{font-size:13px;color:#6b6353;}
+
+  /* products */
+  .products{padding:20px 0 90px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+  .p-card{background:var(--paper);border:1px solid var(--kraft);position:relative;}
+  .p-figure{aspect-ratio:4/3.1;overflow:hidden;border-bottom:2px dashed var(--kraft);position:relative;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;filter:sepia(10%);}
+  .p-badge{position:absolute;top:-14px;right:16px;background:var(--rust);color:#fff;font-family:'Caveat';font-size:20px;padding:4px 16px;transform:rotate(4deg);border-radius:2px;}
+  .p-body{padding:24px;}
+  .p-genre{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--moss);margin-bottom:10px;}
+  .p-body h3{font-size:20px;font-weight:600;margin-bottom:5px;}
+  .p-author{font-size:13px;color:#6b6353;font-style:italic;margin-bottom:18px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--kraft);padding-top:14px;}
+  .p-price{font-family:'Fraunces';font-size:18px;color:var(--rust);}
+  .p-add{font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--charcoal);}
+  .p-add:hover{color:var(--rust);border-color:var(--rust);}
+
+  /* about band */
+  .about{background:var(--moss);color:var(--paper);padding:80px 0;}
+  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .about h2{font-size:30px;font-weight:600;margin-bottom:18px;}
+  .about p{color:#dde3d3;max-width:420px;margin-bottom:26px;}
+  .about-figure{aspect-ratio:1.1/1;overflow:hidden;border:6px solid var(--paper);}
+  .about-figure img{width:100%;height:100%;object-fit:cover;}
+
+  /* newsletter */
+  .news{padding:80px 0;text-align:center;}
+  .news span.hand{font-size:24px;color:var(--rust);}
+  .news h2{font-size:28px;font-weight:600;margin:8px 0 14px;}
+  .news p{color:#6b6353;margin-bottom:28px;}
+  .news form{display:flex;justify-content:center;max-width:420px;margin:0 auto;border:2px solid var(--charcoal);}
+  .news input{flex:1;background:var(--paper);border:none;padding:15px 16px;font-family:'Libre Baskerville';font-size:14px;}
+  .news button{background:var(--charcoal);color:var(--paper);border:none;padding:15px 22px;font-size:13px;text-transform:uppercase;letter-spacing:1px;}
+
+  footer{border-top:2px dashed var(--kraft);padding:44px 0 24px;text-align:center;font-size:13px;color:#6b6353;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    nav ul{display:none;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .grid{grid-template-columns:1fr;}
+    .about .wrap{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">Hearth <span class="hand">&amp;</span> Twine</div>
+    <nav><ul>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#">The Bindery</a></li>
+      <li><a href="#">Custom Orders</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">Basket (0)</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="stamp">Hand<br>Bound</div>
+      <h1 class="display">Every book, stitched <span class="hand">by hand</span>.</h1>
+      <p>Small-batch printing, linen thread binding, and kraft-paper wraps — from a two-person bindery that still smells like sawdust and glue.</p>
+      <a href="#shop" class="btn-craft">See this month's batch</a>
+    </div>
+    <div class="hero-figure">
+      <img src="https://images.pexels.com/photos/14751149/pexels-photo-14751149.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of hand-bound hardcover books">
+    </div>
+  </div>
+</section>
+
+<div class="stitch"></div>
+
+<section class="process">
+  <div class="wrap">
+    <div class="p-head">
+      <span class="hand">how it's made</span>
+      <h2>From loose pages to finished spine</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Fold</h4><p>Signatures folded and pressed by hand</p></div>
+      <div class="step"><div class="n">2</div><h4>Stitch</h4><p>Bound with waxed linen thread</p></div>
+      <div class="step"><div class="n">3</div><h4>Wrap</h4><p>Covered in kraft or recycled cloth</p></div>
+      <div class="step"><div class="n">4</div><h4>Stamp</h4><p>Numbered and hand-stamped, one by one</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">batch 04</span>
+          <img src="https://images.pexels.com/photos/29509137/pexels-photo-29509137.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Cozy handmade bookstore interior">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Short Stories</div>
+          <h3>Things We Keep in Jars</h3>
+          <div class="p-author">Meera Adiga</div>
+          <div class="p-foot"><span class="p-price">₹599</span><a href="#" class="p-add">Add to Basket</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">batch 02</span>
+          <img src="https://images.pexels.com/photos/37559006/pexels-photo-37559006.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Aged classic books on wooden shelves">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Poetry</div>
+          <h3>Sawdust &amp; Sunday Light</h3>
+          <div class="p-author">Nikhil Raut</div>
+          <div class="p-foot"><span class="p-price">₹449</span><a href="#" class="p-add">Add to Basket</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-badge">batch 07</span>
+          <img src="https://images.pexels.com/photos/6264007/pexels-photo-6264007.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vintage book warm lamp light">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Essays</div>
+          <h3>Notes From the Workbench</h3>
+          <div class="p-author">Alina Cho</div>
+          <div class="p-foot"><span class="p-price">₹529</span><a href="#" class="p-add">Add to Basket</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="about-figure">
+      <img src="https://images.pexels.com/photos/14751149/pexels-photo-14751149.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Handbound books close up">
+    </div>
+    <div>
+      <h2>Two people, one bindery, twelve books a month</h2>
+      <p>We cap every run so each copy gets real attention — folded, stitched, and stamped by the same two hands that will pack your order.</p>
+      <a href="#shop" class="btn-craft" style="background:var(--charcoal);border-color:var(--paper);">Meet the bindery</a>
+    </div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <span class="hand">a small letter</span>
+    <h2>Hear about the next batch first</h2>
+    <p>We announce each run to this list, a few days before it's listed.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="Your email" required>
+      <button type="submit">Sign up</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Hearth &amp; Twine Bindery · © 2026 · Hand-bound, always</div>
+</footer>
+
+</body>
+</html>
