@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashgrove &amp; Finch — Booksellers Since 1962</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F1E6; --paper:#FBF8F1; --ink:#2B2118; --burgundy:#6B2737;
+    --burgundy-dark:#4E1C29; --brass:#B08D57; --sage:#77836A; --line:#D9CBAE;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--cream);color:var(--ink);font-family:'Source Serif 4',serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+
+  /* Header */
+  header{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:50;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1160px;margin:0 auto;}
+  .brand{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;letter-spacing:0.5px;}
+  .brand small{display:block;font-family:'Source Serif 4',serif;font-weight:400;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-top:2px;}
+  nav ul{display:flex;gap:36px;list-style:none;font-size:14px;letter-spacing:1px;text-transform:uppercase;}
+  nav a{border-bottom:1px solid transparent;padding-bottom:4px;transition:.2s;}
+  nav a:hover{border-color:var(--burgundy);color:var(--burgundy);}
+  .nav-cta{border:1px solid var(--ink);padding:9px 20px;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border-bottom:1px solid var(--line);}
+  .hero-copy{padding:90px 60px 90px 32px;max-width:560px;margin-left:auto;}
+  .eyebrow{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--burgundy);margin-bottom:22px;position:relative;padding-left:34px;}
+  .eyebrow::before{content:"";position:absolute;left:0;top:50%;width:24px;height:1px;background:var(--burgundy);}
+  h1.display{font-family:'Playfair Display',serif;font-size:52px;line-height:1.15;font-weight:600;margin-bottom:24px;}
+  h1.display em{font-style:italic;color:var(--burgundy);}
+  .hero-copy p{font-size:17px;color:#4a4136;margin-bottom:34px;max-width:460px;}
+  .btn-primary{display:inline-block;background:var(--burgundy);color:var(--paper);padding:16px 34px;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--burgundy);transition:.25s;}
+  .btn-primary:hover{background:transparent;color:var(--burgundy);}
+  .hero-figure{position:relative;overflow:hidden;}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;min-height:520px;filter:sepia(8%) saturate(92%);}
+  .hero-figure::after{content:"Est. 1962";position:absolute;bottom:28px;right:28px;background:var(--paper);border:1px solid var(--brass);color:var(--burgundy-dark);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px 16px;}
+
+  /* Genre rail */
+  .rail{border-bottom:1px solid var(--line);background:var(--paper);}
+  .rail .wrap{display:flex;gap:0;overflow-x:auto;}
+  .rail a{flex:none;padding:20px 30px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border-right:1px solid var(--line);white-space:nowrap;color:#5b5142;}
+  .rail a:hover{color:var(--burgundy);background:var(--cream);}
+
+  /* Section heading */
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin:90px 0 40px;}
+  .section-head h2{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;}
+  .section-head .num{font-size:13px;letter-spacing:2px;color:var(--brass);text-transform:uppercase;}
+
+  /* Catalogue grid */
+  .catalogue{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 36px;}
+  .card{border:1px solid var(--line);background:var(--paper);}
+  .card-figure{position:relative;height:210px;overflow:hidden;border-bottom:1px solid var(--line);}
+  .card-figure img{width:100%;height:100%;object-fit:cover;}
+  .card-figure .plate{position:absolute;top:14px;left:14px;background:var(--paper);border:1px solid var(--ink);font-size:11px;letter-spacing:1.5px;padding:4px 10px;}
+  .card-body{padding:24px;}
+  .card-body .genre{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;}
+  .card-body h3{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;margin-bottom:6px;}
+  .card-body .author{font-size:13px;color:#6b6152;font-style:italic;margin-bottom:16px;}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:16px;}
+  .price{font-family:'Playfair Display',serif;font-size:19px;color:var(--burgundy);}
+  .add-btn{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:2px;}
+  .add-btn:hover{color:var(--burgundy);border-color:var(--burgundy);}
+
+  /* Quote / feature band */
+  .band{margin-top:110px;background:var(--burgundy-dark);color:var(--cream);padding:80px 0;}
+  .band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .band blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:28px;line-height:1.5;}
+  .band cite{display:block;margin-top:20px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);font-style:normal;}
+  .band-stats{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .stat b{display:block;font-family:'Playfair Display',serif;font-size:38px;color:var(--brass);}
+  .stat span{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#d9cbb0;}
+
+  /* Newsletter */
+  .news{padding:90px 0;text-align:center;}
+  .news h2{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:14px;}
+  .news p{color:#6b6152;margin-bottom:30px;}
+  .news form{display:flex;justify-content:center;gap:0;max-width:440px;margin:0 auto;}
+  .news input{flex:1;padding:16px 18px;border:1px solid var(--ink);border-right:none;background:var(--paper);font-family:'Source Serif 4',serif;font-size:14px;}
+  .news button{background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:16px 26px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;}
+
+  footer{border-top:1px solid var(--line);padding:60px 0 30px;background:var(--paper);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+  .foot-grid h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:18px;}
+  .foot-grid ul{list-style:none;font-size:14px;}
+  .foot-grid li{margin-bottom:10px;color:#5b5142;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:#8a806e;letter-spacing:0.5px;}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;}
+    .hero-copy{margin:0;padding:60px 24px;max-width:none;}
+    nav ul{display:none;}
+    .catalogue{grid-template-columns:1fr;}
+    .band .wrap{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">Ashgrove &amp; Finch<small>Booksellers &amp; Stationers</small></div>
+    <nav><ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#">Genres</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Visit Us</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">Reading List (0)</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">The Standard Collection</div>
+    <h1 class="display">A considered library, <em>bound to last</em>.</h1>
+    <p>For sixty years we have kept a single promise: every title on our shelves is one we would press into a friend's hands. No trends, no clutter — just well-made books, chosen carefully.</p>
+    <a href="#catalogue" class="btn-primary">Browse the Catalogue</a>
+  </div>
+  <div class="hero-figure">
+    <img src="https://images.pexels.com/photos/4580978/pexels-photo-4580978.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Classic wooden library shelves">
+  </div>
+</section>
+
+<div class="rail">
+  <div class="wrap">
+    <a href="#">Literary Fiction</a>
+    <a href="#">History</a>
+    <a href="#">Philosophy</a>
+    <a href="#">Biography</a>
+    <a href="#">Poetry</a>
+    <a href="#">Essays</a>
+    <a href="#">Classics in Translation</a>
+  </div>
+</div>
+
+<main class="wrap" id="catalogue">
+  <div class="section-head">
+    <h2>This Season's Shelf</h2>
+    <span class="num">No. 001 — 006</span>
+  </div>
+
+  <div class="catalogue">
+
+    <div class="card">
+      <div class="card-figure">
+        <span class="plate">No. 001</span>
+        <img src="https://images.pexels.com/photos/11156834/pexels-photo-11156834.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Wooden library shelf">
+      </div>
+      <div class="card-body">
+        <div class="genre">Literary Fiction</div>
+        <h3>The Long Correspondence</h3>
+        <div class="author">Eleanor Whitfield</div>
+        <div class="card-foot"><span class="price">₹499</span><a href="#" class="add-btn">Add to List</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-figure">
+        <span class="plate">No. 002</span>
+        <img src="https://images.pexels.com/photos/14751147/pexels-photo-14751147.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Bookshelf full of classic literature">
+      </div>
+      <div class="card-body">
+        <div class="genre">Philosophy</div>
+        <h3>On Quiet Living</h3>
+        <div class="author">Marcus Deane</div>
+        <div class="card-foot"><span class="price">₹399</span><a href="#" class="add-btn">Add to List</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-figure">
+        <span class="plate">No. 003</span>
+        <img src="https://images.pexels.com/photos/207662/pexels-photo-207662.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Assorted books on shelves">
+      </div>
+      <div class="card-body">
+        <div class="genre">History</div>
+        <h3>Empires of Salt</h3>
+        <div class="author">Rosalind Carrow</div>
+        <div class="card-foot"><span class="price">₹649</span><a href="#" class="add-btn">Add to List</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-figure">
+        <span class="plate">No. 004</span>
+        <img src="https://images.pexels.com/photos/5009158/pexels-photo-5009158.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Stack of vintage books">
+      </div>
+      <div class="card-body">
+        <div class="genre">Biography</div>
+        <h3>A Cartographer's Life</h3>
+        <div class="author">Julian Foss</div>
+        <div class="card-foot"><span class="price">₹549</span><a href="#" class="add-btn">Add to List</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-figure">
+        <span class="plate">No. 005</span>
+        <img src="https://images.pexels.com/photos/256374/pexels-photo-256374.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Books on shelf in library">
+      </div>
+      <div class="card-body">
+        <div class="genre">Poetry</div>
+        <h3>Fieldnotes &amp; Weather</h3>
+        <div class="author">Imogen Hale</div>
+        <div class="card-foot"><span class="price">₹349</span><a href="#" class="add-btn">Add to List</a></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-figure">
+        <span class="plate">No. 006</span>
+        <img src="https://images.pexels.com/photos/6436374/pexels-photo-6436374.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vintage bookshop interior">
+      </div>
+      <div class="card-body">
+        <div class="genre">Essays</div>
+        <h3>The Unhurried Reader</h3>
+        <div class="author">Thomas Aldrich</div>
+        <div class="card-foot"><span class="price">₹429</span><a href="#" class="add-btn">Add to List</a></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<section class="band">
+  <div class="wrap">
+    <div>
+      <blockquote>"A shop that still believes a book should be chosen the way a friend is chosen — slowly, and with care."</blockquote>
+      <cite>The Weekend Review</cite>
+    </div>
+    <div class="band-stats">
+      <div class="stat"><b>62</b><span>Years Trading</span></div>
+      <div class="stat"><b>11,400</b><span>Titles in Print</span></div>
+      <div class="stat"><b>3</b><span>Reading Rooms</span></div>
+      <div class="stat"><b>1</b><span>House Blend Coffee</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <h2>The Monthly Dispatch</h2>
+    <p>One letter a month. New arrivals, staff notes, and nothing else.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:20px;">Ashgrove &amp; Finch</div>
+        <p style="margin-top:14px;color:#6b6152;font-size:14px;max-width:260px;">14 Thornbury Lane, since 1962. Open every day but Sunday.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul><li>New Arrivals</li><li>Classics</li><li>Gift Editions</li><li>Gift Cards</li></ul>
+      </div>
+      <div>
+        <h4>The Shop</h4>
+        <ul><li>Our Story</li><li>Reading Rooms</li><li>Events</li><li>Careers</li></ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul><li>Shipping</li><li>Returns</li><li>Contact</li><li>FAQ</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ashgrove &amp; Finch Booksellers</span>
+      <span>Bound in-house · Printed on FSC paper</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
