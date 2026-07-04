@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Cloud Books — Soft Stories for Soft Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#F7DDE3; --lavender:#E9E0F5; --mint:#DCF1E7; --butter:#FBF0D2; --cocoa:#5B4B4E;
+    --paper:#FFFBFA; --line:#F0DEE3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--paper);color:var(--cocoa);font-family:'Nunito',sans-serif;line-height:1.65;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;}
+
+  header{padding:22px 0;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Fraunces';font-weight:600;font-size:23px;}
+  .brand .dot{color:#EFAFC1;}
+  nav ul{display:flex;gap:34px;list-style:none;font-weight:600;font-size:14px;}
+  nav a{padding:8px 4px;border-bottom:2px solid transparent;}
+  nav a:hover{border-color:#EFAFC1;}
+  .nav-cta{background:var(--blush);padding:11px 22px;border-radius:100px;font-weight:700;font-size:14px;}
+
+  /* hero */
+  .hero{padding:40px 0 30px;}
+  .hero-card{background:linear-gradient(135deg,var(--lavender),var(--blush));border-radius:40px;padding:70px 60px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;position:relative;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.6;}
+  .blob.b1{width:180px;height:180px;background:var(--butter);top:-60px;right:120px;}
+  .blob.b2{width:120px;height:120px;background:var(--mint);bottom:-40px;left:-20px;}
+  .hero-copy{position:relative;z-index:1;}
+  .eyebrow{display:inline-block;background:#fff;padding:8px 18px;border-radius:100px;font-weight:700;font-size:13px;color:#B9718C;margin-bottom:24px;}
+  h1.display{font-size:44px;font-weight:600;line-height:1.2;margin-bottom:20px;}
+  .hero-copy p{font-size:16px;max-width:400px;margin-bottom:30px;}
+  .btn-soft{display:inline-block;background:var(--cocoa);color:#fff;padding:15px 30px;border-radius:100px;font-weight:700;font-size:14px;}
+  .hero-figure{border-radius:32px;overflow:hidden;aspect-ratio:1/1;position:relative;z-index:1;box-shadow:0 30px 60px -20px rgba(180,120,140,.35);}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;}
+
+  /* mood pills */
+  .moods{padding:60px 0 10px;}
+  .moods .wrap{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .mood{padding:12px 24px;border-radius:100px;font-weight:700;font-size:14px;}
+  .mood.m1{background:var(--blush);} .mood.m2{background:var(--lavender);} .mood.m3{background:var(--mint);} .mood.m4{background:var(--butter);}
+
+  /* products */
+  .products{padding:70px 0 90px;}
+  .p-head{text-align:center;margin-bottom:50px;}
+  .p-head h2{font-size:32px;font-weight:600;}
+  .p-head p{color:#8b7a7d;margin-top:10px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .p-card{background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 20px 40px -28px rgba(90,60,70,.3);transition:.25s;}
+  .p-card:hover{transform:translateY(-6px);}
+  .p-figure{aspect-ratio:4/3.2;overflow:hidden;position:relative;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;border-radius:0 0 50% 50% / 0 0 18% 18%;}
+  .p-heart{position:absolute;top:14px;right:14px;width:34px;height:34px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .p-body{padding:24px;}
+  .p-genre{font-size:12px;font-weight:700;color:#B9718C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+  .p-body h3{font-size:19px;font-weight:600;margin-bottom:5px;}
+  .p-author{font-size:13px;color:#8b7a7d;margin-bottom:18px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;}
+  .p-price{font-family:'Fraunces';font-weight:600;font-size:18px;}
+  .p-add{background:var(--mint);padding:9px 18px;border-radius:100px;font-weight:700;font-size:13px;}
+  .p-add:hover{background:var(--cocoa);color:#fff;}
+
+  /* about band */
+  .about{background:var(--mint);border-radius:40px;margin:0 auto 90px;max-width:1140px;padding:70px 60px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .about-figure{border-radius:28px;overflow:hidden;aspect-ratio:1.1/1;}
+  .about-figure img{width:100%;height:100%;object-fit:cover;}
+  .about h2{font-size:30px;font-weight:600;margin-bottom:16px;}
+  .about p{margin-bottom:26px;max-width:420px;}
+
+  /* newsletter */
+  .news{padding:20px 0 90px;text-align:center;}
+  .news-card{background:var(--butter);border-radius:32px;padding:60px;max-width:640px;margin:0 auto;}
+  .news h2{font-size:26px;font-weight:600;margin-bottom:12px;}
+  .news p{color:#8b7a7d;margin-bottom:26px;}
+  .news form{display:flex;justify-content:center;gap:10px;max-width:400px;margin:0 auto;}
+  .news input{flex:1;padding:14px 18px;border:none;border-radius:100px;font-family:'Nunito';font-size:14px;}
+  .news button{background:var(--cocoa);color:#fff;border:none;padding:14px 24px;border-radius:100px;font-weight:700;font-size:14px;}
+
+  footer{padding:40px 0;text-align:center;color:#8b7a7d;font-size:13px;}
+
+  @media(max-width:860px){
+    .hero-card{grid-template-columns:1fr;padding:44px 28px;}
+    nav ul{display:none;}
+    .grid{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr;padding:40px 28px;}
+    .news-card{padding:40px 24px;}
+    .news form{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">little cloud<span class="dot">.</span></div>
+    <nav><ul>
+      <li><a href="#shop">shop</a></li>
+      <li><a href="#">moods</a></li>
+      <li><a href="#">about</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">🤍 0</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-card">
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">✨ for soft, slow days</span>
+        <h1 class="display">Gentle books for gentle afternoons.</h1>
+        <p>A cosy little shelf of warm fiction, comfort reads, and pretty things to keep by your bed.</p>
+        <a href="#shop" class="btn-soft">Browse the shelf 🌸</a>
+      </div>
+      <div class="hero-figure">
+        <img src="https://images.pexels.com/photos/5797899/pexels-photo-5797899.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Soft cozy desk with notebook and books">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="moods">
+  <div class="wrap">
+    <span class="mood m1">cosy &amp; comforting</span>
+    <span class="mood m2">soft romance</span>
+    <span class="mood m3">gentle growth</span>
+    <span class="mood m4">cottagecore</span>
+  </div>
+</section>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="p-head">
+      <h2>this week's soft picks</h2>
+      <p>hand-picked, hand-wrapped, mailed with a little note 🌷</p>
+    </div>
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-heart">🤍</span>
+          <img src="https://images.pexels.com/photos/9565975/pexels-photo-9565975.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Soft minimalist bookshelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Cosy Fiction</div>
+          <h3>The Tea Shop on Willow Lane</h3>
+          <div class="p-author">Mira Sen</div>
+          <div class="p-foot"><span class="p-price">₹379</span><a href="#" class="p-add">Add 🌸</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-heart">🤍</span>
+          <img src="https://images.pexels.com/photos/16088727/pexels-photo-16088727.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Calm workspace with books">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Gentle Growth</div>
+          <h3>Soft Mornings, Slow Wins</h3>
+          <div class="p-author">Aanya Kulkarni</div>
+          <div class="p-foot"><span class="p-price">₹329</span><a href="#" class="p-add">Add 🌸</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-heart">🤍</span>
+          <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Open books on grass field">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Cottagecore</div>
+          <h3>A Field, A Blanket, A Book</h3>
+          <div class="p-author">Rhea Fontaine</div>
+          <div class="p-foot"><span class="p-price">₹359</span><a href="#" class="p-add">Add 🌸</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-heart">🤍</span>
+          <img src="https://images.pexels.com/photos/6264007/pexels-photo-6264007.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Cozy reading with warm lamp">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Soft Romance</div>
+          <h3>Dear Almost Stranger</h3>
+          <div class="p-author">Ishita Verma</div>
+          <div class="p-foot"><span class="p-price">₹399</span><a href="#" class="p-add">Add 🌸</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-heart">🤍</span>
+          <img src="https://images.pexels.com/photos/207662/pexels-photo-207662.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Soft toned books on shelf">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Cosy Fiction</div>
+          <h3>The Sunday Letters</h3>
+          <div class="p-author">Naina Bose</div>
+          <div class="p-foot"><span class="p-price">₹349</span><a href="#" class="p-add">Add 🌸</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure">
+          <span class="p-heart">🤍</span>
+          <img src="https://images.pexels.com/photos/256467/pexels-photo-256467.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Open book close up">
+        </div>
+        <div class="p-body">
+          <div class="p-genre">Poetry</div>
+          <h3>Little Everyday Things</h3>
+          <div class="p-author">Simran Kaur</div>
+          <div class="p-foot"><span class="p-price">₹299</span><a href="#" class="p-add">Add 🌸</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-figure">
+    <img src="https://images.pexels.com/photos/6264007/pexels-photo-6264007.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Warm cozy reading corner">
+  </div>
+  <div>
+    <h2>a little shop, started on a rainy Tuesday</h2>
+    <p>little cloud began as a shelf in a small apartment — books that felt like a hug, wrapped and posted to anyone who needed one. it's grown, but the hugs stayed the same size.</p>
+    <a href="#shop" class="btn-soft">read our story 💌</a>
+  </div>
+</section>
+
+<section class="news">
+  <div class="news-card">
+    <h2>get a little softness in your inbox</h2>
+    <p>one cosy pick + a small surprise, every fortnight</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="your email" required>
+      <button type="submit">subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">little cloud books · made with 🩷 · © 2026</div>
+</footer>
+
+</body>
+</html>
