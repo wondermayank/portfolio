@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rang &amp; Row — Where Two Shelves Meet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marigold:#E8871E; --indigo:#1D2A4D; --white:#FAFAF8; --magenta:#C4356B; --gold:#C9A227; --ink:#241F1A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--white);color:var(--ink);font-family:'Poppins',sans-serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Poppins',sans-serif;font-weight:600;}
+  .accent-font{font-family:'Yatra One',cursive;font-weight:400;}
+
+  header{padding:22px 0;border-bottom:1px solid #eee;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-size:22px;font-weight:700;}
+  .brand .accent-font{color:var(--marigold);font-size:24px;}
+  nav ul{display:flex;gap:34px;list-style:none;font-size:14px;font-weight:500;color:#555;}
+  nav a:hover{color:var(--marigold);}
+  .nav-cta{background:var(--indigo);color:#fff;padding:11px 22px;border-radius:100px;font-size:14px;font-weight:600;}
+
+  /* split hero */
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:560px;position:relative;}
+  .hero::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--marigold),var(--gold),var(--magenta));transform:translateX(-50%);z-index:3;}
+  .hero-left{background:linear-gradient(160deg,var(--indigo),#141b30);color:#fff;padding:80px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+  .hero-left .jali-bg{position:absolute;inset:0;opacity:.12;background-image:
+      linear-gradient(45deg, var(--marigold) 25%, transparent 25%, transparent 75%, var(--marigold) 75%),
+      linear-gradient(45deg, var(--marigold) 25%, transparent 25%, transparent 75%, var(--marigold) 75%);
+    background-size:40px 40px;background-position:0 0, 20px 20px;}
+  .hero-left .content{position:relative;z-index:1;}
+  .eyebrow{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--marigold);font-weight:700;margin-bottom:20px;}
+  .hero-left h1{font-size:38px;line-height:1.3;margin-bottom:20px;}
+  .hero-left h1 .accent-font{color:var(--marigold);font-size:40px;}
+  .hero-left p{color:#c9cedd;max-width:400px;margin-bottom:30px;}
+  .btn-marigold{display:inline-block;background:var(--marigold);color:#fff;padding:15px 32px;border-radius:4px;font-weight:600;font-size:14px;}
+  .hero-right{position:relative;overflow:hidden;}
+  .hero-right img{width:100%;height:100%;object-fit:cover;}
+  .hero-right .float-tag{position:absolute;bottom:30px;right:30px;background:#fff;border-radius:8px;padding:16px 22px;box-shadow:0 20px 40px -18px rgba(0,0,0,.3);}
+  .hero-right .float-tag b{display:block;font-size:15px;}
+  .hero-right .float-tag span{font-size:12px;color:#777;}
+
+  /* genre pills mixed */
+  .genres{padding:50px 0;}
+  .genres .wrap{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .pill{padding:11px 22px;border-radius:100px;font-weight:600;font-size:13px;}
+  .pill.a{background:#FFF1DF;color:var(--marigold);}
+  .pill.b{background:#EDEFF6;color:var(--indigo);}
+  .pill.c{background:#FBE7EE;color:var(--magenta);}
+
+  /* products - alternating style */
+  .products{padding:20px 0 90px;}
+  .p-head{text-align:center;max-width:600px;margin:0 auto 50px;}
+  .p-head h2{font-size:32px;}
+  .p-head h2 .accent-font{color:var(--marigold);}
+  .p-head p{color:#777;margin-top:12px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .p-card{border-radius:14px;overflow:hidden;position:relative;box-shadow:0 20px 40px -28px rgba(30,20,10,.35);}
+  .p-card.trad{border:2px solid var(--gold);}
+  .p-card.trad::before{content:"";position:absolute;top:0;left:0;width:34px;height:34px;background:
+      linear-gradient(135deg, var(--marigold) 48%, transparent 50%);z-index:2;}
+  .p-card.mod{border:1px solid #eee;}
+  .p-figure{aspect-ratio:4/3.1;overflow:hidden;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;}
+  .p-body{padding:24px;background:#fff;}
+  .p-genre{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px;}
+  .p-card.trad .p-genre{color:var(--marigold);}
+  .p-card.mod .p-genre{color:var(--indigo);}
+  .p-body h3{font-size:19px;margin-bottom:5px;}
+  .p-author{font-size:13px;color:#888;margin-bottom:18px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;padding-top:14px;}
+  .p-price{font-weight:700;font-size:17px;}
+  .p-add{padding:8px 16px;border-radius:100px;font-size:12px;font-weight:700;color:#fff;}
+  .p-card.trad .p-add{background:var(--marigold);}
+  .p-card.mod .p-add{background:var(--indigo);}
+
+  /* about split band */
+  .about{display:grid;grid-template-columns:1fr 1fr;}
+  .about-figure{aspect-ratio:auto;overflow:hidden;min-height:420px;}
+  .about-figure img{width:100%;height:100%;object-fit:cover;}
+  .about-copy{background:var(--indigo);color:#fff;padding:70px 60px;display:flex;flex-direction:column;justify-content:center;}
+  .about-copy h2{font-size:28px;margin-bottom:18px;}
+  .about-copy h2 .accent-font{color:var(--marigold);font-size:30px;}
+  .about-copy p{color:#c9cedd;max-width:420px;margin-bottom:26px;}
+
+  /* newsletter */
+  .news{padding:90px 0;text-align:center;}
+  .news h2{font-size:28px;margin-bottom:12px;}
+  .news h2 .accent-font{color:var(--marigold);font-size:30px;}
+  .news p{color:#777;margin-bottom:28px;}
+  .news form{display:flex;justify-content:center;max-width:440px;margin:0 auto;}
+  .news input{flex:1;padding:15px 18px;border:1px solid #ddd;border-right:none;border-radius:6px 0 0 6px;font-family:'Poppins';font-size:14px;}
+  .news button{background:var(--marigold);color:#fff;border:none;padding:15px 26px;border-radius:0 6px 6px 0;font-weight:600;font-size:14px;}
+
+  footer{background:var(--ink);color:#c9c2b6;padding:44px 0 24px;text-align:center;font-size:13px;}
+  footer .accent-font{color:var(--marigold);font-size:17px;display:block;margin-bottom:8px;}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .hero::after{display:none;}
+    nav ul{display:none;}
+    .grid{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">Rang <span class="accent-font">&amp;</span> Row</div>
+    <nav><ul>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#">Retellings</a></li>
+      <li><a href="#">New Voices</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">Basket (0)</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="jali-bg"></div>
+    <div class="content">
+      <div class="eyebrow">Two Shelves, One Store</div>
+      <h1>Epics on one side. <span class="accent-font">Bestsellers</span> on the other.</h1>
+      <p>We put a retold myth next to a new thriller, on purpose — most of our readers end up loving both.</p>
+      <a href="#shop" class="btn-marigold">Explore Both Shelves</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.pexels.com/photos/6436374/pexels-photo-6436374.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Elegant towering bookshelves">
+    <div class="float-tag"><b>2 Traditions</b><span>1 shared shelf</span></div>
+  </div>
+</section>
+
+<section class="genres">
+  <div class="wrap">
+    <span class="pill a">Epics &amp; Retellings</span>
+    <span class="pill b">Modern Fiction</span>
+    <span class="pill c">Poetry, Both Ways</span>
+    <span class="pill a">Regional Voices</span>
+    <span class="pill b">Global Bestsellers</span>
+  </div>
+</section>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="p-head">
+      <h2>The <span class="accent-font">Fusion</span> Shelf</h2>
+      <p>One tradition-rooted pick, one modern pick — paired every week</p>
+    </div>
+    <div class="grid">
+
+      <div class="p-card trad">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/28541805/pexels-photo-28541805.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Warm vintage library shelf"></div>
+        <div class="p-body">
+          <div class="p-genre">Retelling</div>
+          <h3>The Merchant's Daughter</h3>
+          <div class="p-author">Retold by Anushka Rao</div>
+          <div class="p-foot"><span class="p-price">₹449</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card mod">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/33651905/pexels-photo-33651905.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colorful modern books"></div>
+        <div class="p-body">
+          <div class="p-genre">Contemporary</div>
+          <h3>Two Cities, One Signal</h3>
+          <div class="p-author">Jonas Whitfield</div>
+          <div class="p-foot"><span class="p-price">₹499</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card trad">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/18298086/pexels-photo-18298086.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Row of ornate heritage books"></div>
+        <div class="p-body">
+          <div class="p-genre">Poetry, Both Ways</div>
+          <h3>Ghazal for a Grey City</h3>
+          <div class="p-author">Fareed Ahmed</div>
+          <div class="p-foot"><span class="p-price">₹349</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card mod">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/415071/pexels-photo-415071.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Open book pages"></div>
+        <div class="p-body">
+          <div class="p-genre">Global Bestseller</div>
+          <h3>The Quiet Departure</h3>
+          <div class="p-author">Elin Marsh</div>
+          <div class="p-foot"><span class="p-price">₹549</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card trad">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/37559006/pexels-photo-37559006.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Aged heritage books"></div>
+        <div class="p-body">
+          <div class="p-genre">Regional Voices</div>
+          <h3>Monsoon Over Malgudi Road</h3>
+          <div class="p-author">Sudha Pillai</div>
+          <div class="p-foot"><span class="p-price">₹399</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+      <div class="p-card mod">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/159711/pexels-photo-159711.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Books on modern shelf"></div>
+        <div class="p-body">
+          <div class="p-genre">Modern Fiction</div>
+          <h3>Half This, Half That</h3>
+          <div class="p-author">Priya Osei</div>
+          <div class="p-foot"><span class="p-price">₹429</span><a href="#" class="p-add">Add</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-figure">
+    <img src="https://images.pexels.com/photos/415071/pexels-photo-415071.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Open book pages turning">
+  </div>
+  <div class="about-copy">
+    <h2>Two founders, two shelves, <span class="accent-font">one</span> counter</h2>
+    <p>One of us grew up on epics read aloud after dinner. The other grew up on paperbacks from the airport. Rang &amp; Row is the shop we both wanted.</p>
+    <a href="#shop" class="btn-marigold">Read Our Story</a>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <h2>Get <span class="accent-font">both</span> shelves, weekly</h2>
+    <p>One traditional pick, one modern pick, every Friday.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="accent-font">Rang &amp; Row Booksellers</span>
+    © 2026 · Two traditions, one shelf
+  </div>
+</footer>
+
+</body>
+</html>
