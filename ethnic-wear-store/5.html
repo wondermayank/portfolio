@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modi &amp; Co. — Classic Nehru Jackets</title>
+<meta name="description" content="Modi &amp; Co. — timeless mandarin-collar Nehru jackets in clean tailoring, minimal detail, for the man who prefers restraint over noise.">
+<style>
+  :root{
+    --navy:#1c2438;
+    --navy-deep:#12172a;
+    --brass:#a9863f;
+    --ivory:#faf9f5;
+    --paper:#f1efe7;
+    --ink:#1c1c1e;
+    --muted:#767268;
+    --line:#e2ddd0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Helvetica Neue',Arial,sans-serif;background:var(--ivory);color:var(--ink);}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(250,249,245,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:22px 26px;}
+  .logo{font-size:20px;font-weight:300;letter-spacing:3px;text-transform:uppercase;}
+  nav ul{display:flex;gap:36px;list-style:none;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  nav ul a:hover{color:var(--navy);}
+  .cart-btn{background:transparent;border:1px solid var(--ink);color:var(--ink);padding:10px 22px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:600;}
+  @media (max-width:760px){nav ul{display:none;}}
+
+  .hero{max-width:1160px;margin:0 auto;padding:70px 26px 0;text-align:center;}
+  .hero .kicker{color:var(--brass);font-size:12.5px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;font-weight:600;}
+  .hero h1{font-size:52px;font-weight:300;letter-spacing:-0.5px;line-height:1.15;max-width:680px;margin:0 auto 22px;}
+  .hero h1 strong{font-weight:700;}
+  .hero p{color:var(--muted);font-size:16px;max-width:440px;margin:0 auto 34px;line-height:1.6;}
+  .btn-navy{background:var(--navy);color:var(--ivory);padding:15px 34px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;font-weight:600;}
+  .hero-img{max-width:1160px;margin:44px auto 0;padding:0 26px;aspect-ratio:16/7;overflow:hidden;}
+  .hero-img img{width:100%;height:100%;object-fit:cover;}
+  @media (max-width:700px){.hero h1{font-size:32px;}.hero-img{aspect-ratio:4/5;}}
+
+  .search-section{max-width:1160px;margin:50px auto 0;padding:0 26px;text-align:center;}
+  .search-bar{max-width:600px;margin:0 auto;display:flex;border-bottom:2px solid var(--ink);align-items:center;padding:6px 4px;}
+  .search-bar svg{width:17px;height:17px;color:var(--muted);flex-shrink:0;}
+  .search-bar input{flex:1;border:none;outline:none;padding:12px;font-size:16px;background:transparent;color:var(--ink);}
+  .search-bar button{background:transparent;border:none;color:var(--navy);font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;cursor:pointer;padding:10px 16px;}
+  .filter-chips{display:flex;justify-content:center;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .chip{font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);cursor:pointer;font-weight:600;padding-bottom:6px;border-bottom:2px solid transparent;}
+  .chip.active{color:var(--navy);border-color:var(--brass);}
+
+  .section-head{max-width:1160px;margin:60px auto 26px;padding:0 26px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:20px;}
+  .section-head h2{font-size:24px;font-weight:300;letter-spacing:0.5px;}
+  .count{color:var(--muted);font-size:12.5px;letter-spacing:1px;text-transform:uppercase;}
+
+  .grid{max-width:1160px;margin:0 auto;padding:0 26px 70px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px 24px;}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+  .card{background:transparent;position:relative;}
+  .card-img{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--paper);}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:.3s;}
+  .card:hover .card-img img{transform:scale(1.04);}
+  .tag{position:absolute;top:14px;left:14px;background:var(--ivory);color:var(--navy);font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;padding:6px 12px;font-weight:700;}
+  .card-body{padding-top:16px;}
+  .card-body h3{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .fabric{color:var(--muted);font-size:12.5px;margin-bottom:12px;letter-spacing:0.2px;}
+  .price-row{display:flex;justify-content:space-between;align-items:center;}
+  .price{font-weight:700;font-size:16px;}
+  .old-price{color:var(--muted);text-decoration:line-through;font-size:13px;margin-left:8px;}
+  .add-btn{background:transparent;border:1px solid var(--line);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .add-btn:hover{background:var(--navy);border-color:var(--navy);}
+  .add-btn:hover svg{stroke:var(--ivory);}
+  .add-btn svg{width:14px;height:14px;stroke:var(--ink);}
+  .no-results{text-align:center;padding:70px 20px;color:var(--muted);grid-column:1/-1;}
+
+  footer{background:var(--navy-deep);color:#a7add0;padding:56px 26px 24px;}
+  .foot-wrap{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px;}
+  .foot-wrap h4{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:16px;font-weight:600;}
+  .foot-wrap ul{list-style:none;}
+  .foot-wrap li{margin-bottom:9px;font-size:13.5px;}
+  .foot-wrap li a:hover{color:#fff;}
+  .foot-bottom{max-width:1160px;margin:40px auto 0;padding-top:22px;border-top:1px solid #29314a;font-size:12px;display:flex;justify-content:space-between;letter-spacing:0.5px;text-transform:uppercase;}
+  @media (max-width:700px){.foot-wrap{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">Modi &amp; Co.</div>
+    <nav><ul>
+      <li><a href="#">Nehru Jackets</a></li>
+      <li><a href="#">Waistcoats</a></li>
+      <li><a href="#">Modi Coats</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul></nav>
+    <button class="cart-btn">Bag (0)</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="kicker">Classic Collection</div>
+  <h1>The <strong>Nehru jacket</strong>, restated in restraint.</h1>
+  <p>Clean mandarin collars, precise seams, no excess embroidery. A jacket built to outlast trends — the way it was always meant to be worn.</p>
+  <button class="btn-navy">Shop the Collection</button>
+</section>
+<div class="hero-img">
+  <img src="https://images.unsplash.com/photo-1622780432053-767528938f34?auto=format&fit=crop&w=1600&q=80" alt="Man wearing a classic minimal collared jacket">
+</div>
+
+<section class="search-section">
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="text" placeholder="Search navy jacket, waistcoat, mandarin collar…">
+    <button onclick="filterProducts()">Search</button>
+  </div>
+  <div class="filter-chips" id="chips">
+    <div class="chip active" data-filter="all">All</div>
+    <div class="chip" data-filter="navy">Navy</div>
+    <div class="chip" data-filter="beige">Beige</div>
+    <div class="chip" data-filter="black">Black</div>
+    <div class="chip" data-filter="printed">Printed</div>
+  </div>
+</section>
+
+<div class="section-head">
+  <h2>The Edit</h2>
+  <span class="count" id="resultCount">12 pieces</span>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo" style="margin-bottom:14px;color:#fff;">Modi &amp; Co.</div>
+      <p style="font-size:13.5px;max-width:280px;">Classic Nehru jackets, part of the Wondermayank ethnic wear collection.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/1">Kurta Pyjama Casual</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/2">Sherwani Wedding</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/3">Bandhgala Formal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Thunder</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/">Portfolio</a></li>
+        <li><a href="https://commercesehoga.github.io/">ThunderStudy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+        <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Modi &amp; Co. · by Thunder</span>
+    <span>Store 05 of 5 — Ethnic Wear Collection</span>
+  </div>
+</footer>
+
+<script>
+const products = [
+  {name:"Navy Mandarin Nehru Jacket", fabric:"Wool Blend · Sleeveless", price:2499, old:2999, tag:"Bestseller", type:["navy"], img:"https://images.unsplash.com/photo-1711044871601-301f9b0ecf91?auto=format&fit=crop&w=500&q=75"},
+  {name:"Beige Linen Modi Coat", fabric:"Linen · Half Sleeve", price:2199, old:null, tag:"New", type:["beige"], img:"https://images.unsplash.com/photo-1555447405-057915b40299?auto=format&fit=crop&w=500&q=75"},
+  {name:"Black Velvet Waistcoat", fabric:"Velvet · Structured Fit", price:2899, old:3399, tag:null, type:["black"], img:"https://images.unsplash.com/photo-1624970415682-3f99fae61a94?auto=format&fit=crop&w=500&q=75"},
+  {name:"Printed Silk Nehru Jacket", fabric:"Silk · Paisley Motif", price:2699, old:null, tag:null, type:["printed"], img:"https://images.unsplash.com/photo-1622780432053-767528938f34?auto=format&fit=crop&w=500&q=75"},
+  {name:"Charcoal Classic Bundi", fabric:"Cotton Blend · Slim Cut", price:1999, old:2399, tag:"Bestseller", type:["black"], img:"https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=500&q=75"},
+  {name:"Ivory Cotton Modi Jacket", fabric:"Cotton · Clean Placket", price:2099, old:null, tag:"New", type:["beige"], img:"https://images.unsplash.com/photo-1701365676249-9d7ab5022dec?auto=format&fit=crop&w=500&q=75"},
+  {name:"Deep Navy Brocade Jacket", fabric:"Brocade · Festive Weave", price:3199, old:3699, tag:null, type:["navy","printed"], img:"https://images.unsplash.com/photo-1628250521470-28c1fc54616c?auto=format&fit=crop&w=500&q=75"},
+  {name:"Sand Waistcoat Classic", fabric:"Cotton · Mandarin Collar", price:1899, old:null, tag:null, type:["beige"], img:"https://images.unsplash.com/photo-1620730389810-9076d9dfff84?auto=format&fit=crop&w=500&q=75"},
+  {name:"Jet Black Nehru Jacket", fabric:"Terry Wool · Formal Fit", price:2599, old:2999, tag:"Bestseller", type:["black"], img:"https://images.unsplash.com/photo-1534217466718-ef4950786e24?auto=format&fit=crop&w=500&q=75"},
+  {name:"Floral Print Modi Coat", fabric:"Cotton Silk · Block Print", price:2299, old:null, tag:"New", type:["printed"], img:"https://images.unsplash.com/photo-1727835523545-70ee992b5763?auto=format&fit=crop&w=500&q=75"},
+  {name:"Navy Zari Border Jacket", fabric:"Silk Blend · Gold Trim", price:2999, old:3499, tag:null, type:["navy"], img:"https://images.unsplash.com/photo-1677770100697-3d7a032a4c50?auto=format&fit=crop&w=500&q=75"},
+  {name:"Champagne Nehru Jacket", fabric:"Art Silk · Pearl Buttons", price:2799, old:null, tag:null, type:["beige"], img:"https://images.unsplash.com/photo-1760080839107-6798cee22d95?auto=format&fit=crop&w=500&q=75"}
+];
+
+const grid = document.getElementById('productGrid');
+const searchInput = document.getElementById('searchInput');
+let activeFilter = 'all';
+
+function render(list){
+  grid.innerHTML = '';
+  document.getElementById('resultCount').textContent = list.length + " pieces";
+  if(list.length === 0){
+    grid.innerHTML = '<div class="no-results">No Nehru jackets match your search. Try “navy” or “beige”.</div>';
+    return;
+  }
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="fabric">${p.fabric}</div>
+        <div class="price-row">
+          <div><span class="price">₹${p.price}</span>${p.old ? `<span class="old-price">₹${p.old}</span>` : ''}</div>
+          <button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterProducts(){
+  const q = searchInput.value.toLowerCase().trim();
+  let list = products.filter(p => activeFilter === 'all' || p.type.includes(activeFilter));
+  if(q){
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.fabric.toLowerCase().includes(q) || p.type.some(t=>t.includes(q)));
+  }
+  render(list);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    filterProducts();
+  });
+});
+
+searchInput.addEventListener('input', filterProducts);
+render(products);
+</script>
+</body>
+</html>
