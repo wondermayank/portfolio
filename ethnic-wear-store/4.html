@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khyber Pathani — Afghan Style Suits</title>
+<meta name="description" content="Khyber Pathani — loose-fit Pathani suits inspired by the Frontier, crafted in raw cotton and wool for a rugged, timeless silhouette.">
+<style>
+  :root{
+    --sand:#e6d3ad;
+    --sand-deep:#d3b884;
+    --rust:#a35b34;
+    --rust-deep:#7c3f20;
+    --olive:#5c5934;
+    --bg:#f3ead5;
+    --ink:#382b1d;
+    --muted:#8a765a;
+    --line:#d9c49b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Trebuchet MS','Segoe UI',sans-serif;background:var(--bg);color:var(--ink);}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  header{background:var(--rust-deep);border-bottom:3px solid var(--olive);position:sticky;top:0;z-index:50;}
+  .nav-wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:18px 26px;}
+  .logo{color:var(--sand);font-size:22px;font-weight:800;letter-spacing:0.5px;display:flex;align-items:center;gap:10px;}
+  .logo svg{width:26px;height:26px;stroke:var(--sand-deep);}
+  nav ul{display:flex;gap:30px;list-style:none;font-size:14px;font-weight:600;color:var(--sand-deep);}
+  nav ul a:hover{color:var(--sand);}
+  .cart-btn{background:var(--sand);color:var(--rust-deep);border:none;padding:10px 22px;border-radius:4px;font-weight:700;font-size:14px;cursor:pointer;}
+  @media (max-width:760px){nav ul{display:none;}}
+
+  .hero{position:relative;min-height:66vh;display:flex;align-items:center;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;}
+  .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, rgba(56,43,29,0.9) 15%, rgba(56,43,29,0.5) 55%, rgba(56,43,29,0.1));}
+  .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 26px;color:var(--sand);}
+  .hero-content .kicker{color:var(--sand-deep);font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:700;}
+  .hero-content h1{font-size:50px;line-height:1.1;font-weight:800;max-width:600px;margin-bottom:20px;}
+  .hero-content p{max-width:440px;color:#e0d3b7;font-size:16px;margin-bottom:28px;line-height:1.6;}
+  .btn-rust{background:var(--rust);color:var(--sand);padding:15px 32px;border-radius:4px;font-weight:700;font-size:15px;border:none;cursor:pointer;}
+  @media (max-width:700px){.hero-content h1{font-size:32px;}}
+
+  .search-section{max-width:1200px;margin:0 auto;padding:40px 26px 20px;}
+  .search-bar{display:flex;background:#fff;border:2px solid var(--olive);border-radius:6px;align-items:center;padding:4px 4px 4px 20px;max-width:660px;margin:0 auto;}
+  .search-bar svg{width:18px;height:18px;color:var(--muted);flex-shrink:0;}
+  .search-bar input{flex:1;border:none;outline:none;padding:13px;font-size:15px;background:transparent;color:var(--ink);}
+  .search-bar button{background:var(--olive);border:none;color:var(--sand);padding:13px 26px;border-radius:4px;font-weight:700;font-size:14px;cursor:pointer;}
+  .filter-chips{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .chip{padding:8px 18px;border:2px solid var(--line);border-radius:20px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;background:#fff;}
+  .chip.active{background:var(--rust);color:var(--sand);border-color:var(--rust);}
+
+  .section-head{max-width:1200px;margin:50px auto 22px;padding:0 26px;display:flex;justify-content:space-between;align-items:baseline;}
+  .section-head h2{font-size:26px;font-weight:800;}
+  .count{color:var(--muted);font-size:14px;font-weight:600;}
+
+  .grid{max-width:1200px;margin:0 auto;padding:0 26px 70px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+  .card{background:#fff;border-radius:10px;overflow:hidden;border:2px solid var(--line);transition:.2s;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(124,63,32,0.18);border-color:var(--rust);}
+  .card-img{aspect-ratio:3/4;overflow:hidden;position:relative;}
+  .card-img img{width:100%;height:100%;object-fit:cover;}
+  .tag{position:absolute;top:12px;left:12px;background:var(--olive);color:var(--sand);font-size:11px;font-weight:700;padding:6px 13px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;}
+  .card-body{padding:16px;}
+  .card-body h3{font-size:15.5px;font-weight:800;margin-bottom:4px;}
+  .fabric{color:var(--muted);font-size:13px;margin-bottom:12px;}
+  .price-row{display:flex;justify-content:space-between;align-items:center;}
+  .price{font-weight:800;font-size:17px;color:var(--rust-deep);}
+  .old-price{color:var(--muted);text-decoration:line-through;font-size:13px;margin-left:6px;}
+  .add-btn{background:var(--bg);border:2px solid var(--line);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .add-btn:hover{background:var(--rust);border-color:var(--rust);}
+  .add-btn:hover svg{stroke:#fff;}
+  .add-btn svg{width:16px;height:16px;stroke:var(--rust-deep);}
+  .no-results{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1;font-weight:600;}
+
+  footer{background:var(--rust-deep);color:var(--sand-deep);padding:54px 26px 24px;}
+  .foot-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;}
+  .foot-wrap h4{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--sand);margin-bottom:14px;}
+  .foot-wrap ul{list-style:none;}
+  .foot-wrap li{margin-bottom:9px;font-size:14px;}
+  .foot-wrap li a:hover{color:var(--sand);}
+  .foot-bottom{max-width:1200px;margin:36px auto 0;padding-top:20px;border-top:1px solid #96502c;font-size:13px;display:flex;justify-content:space-between;}
+  @media (max-width:700px){.foot-wrap{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20l9-16 9 16z"/><path d="M8 20l4-7 4 7"/></svg>Khyber Pathani</div>
+    <nav><ul>
+      <li><a href="#">Pathani Suits</a></li>
+      <li><a href="#">Frontier Cotton</a></li>
+      <li><a href="#">Winter Wool</a></li>
+      <li><a href="#">About</a></li>
+    </ul></nav>
+    <button class="cart-btn">Cart · 0</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1555447405-057915b40299?auto=format&fit=crop&w=1600&q=80" alt="Man in a loose beige Pathani-style thobe sitting outdoors"></div>
+  <div class="hero-content">
+    <div class="kicker">Frontier Collection</div>
+    <h1>Loose, rugged, unmistakably Pathani.</h1>
+    <p>Wide-cut kurta and shalwar sets rooted in the Afghan frontier tradition — built in raw cotton and wool for comfort that moves with you.</p>
+    <button class="btn-rust">Shop Pathani Suits</button>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="text" placeholder="Search shalwar, wool, sand Pathani suit…">
+    <button onclick="filterProducts()">Search</button>
+  </div>
+  <div class="filter-chips" id="chips">
+    <div class="chip active" data-filter="all">All</div>
+    <div class="chip" data-filter="cotton">Cotton</div>
+    <div class="chip" data-filter="wool">Wool</div>
+    <div class="chip" data-filter="winter">Winter</div>
+    <div class="chip" data-filter="summer">Summer</div>
+  </div>
+</section>
+
+<div class="section-head">
+  <h2>Frontier Edit</h2>
+  <span class="count" id="resultCount">12 suits</span>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo" style="margin-bottom:12px;color:var(--sand);">Khyber Pathani</div>
+      <p style="font-size:14px;max-width:280px;">Afghan-inspired frontier wear, part of the Wondermayank ethnic wear collection.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/1">Kurta Pyjama Casual</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/3">Bandhgala Formal</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/5">Nehru Jacket</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Thunder</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/">Portfolio</a></li>
+        <li><a href="https://commercesehoga.github.io/">ThunderStudy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+        <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Khyber Pathani · by Thunder</span>
+    <span>Store 04 of 5 — Ethnic Wear Collection</span>
+  </div>
+</footer>
+
+<script>
+const products = [
+  {name:"Sand Cotton Pathani Suit", fabric:"Raw Cotton · Wide Shalwar", price:1899, old:2299, tag:"Bestseller", type:["cotton","summer"], img:"https://images.unsplash.com/photo-1555447405-057915b40299?auto=format&fit=crop&w=500&q=75"},
+  {name:"Slate Blue Frontier Set", fabric:"Cotton Blend · Loose Fit", price:1999, old:null, tag:"New", type:["cotton","summer"], img:"https://images.unsplash.com/photo-1534217466718-ef4950786e24?auto=format&fit=crop&w=500&q=75"},
+  {name:"Charcoal Winter Pathani", fabric:"Wool Blend · Full Sleeve", price:2699, old:3199, tag:null, type:["wool","winter"], img:"https://images.unsplash.com/photo-1711044871601-301f9b0ecf91?auto=format&fit=crop&w=500&q=75"},
+  {name:"Olive Desert Kurta Set", fabric:"Cotton Twill · Straight Cut", price:1799, old:null, tag:null, type:["cotton","summer"], img:"https://images.unsplash.com/photo-1727835523545-70ee992b5763?auto=format&fit=crop&w=500&q=75"},
+  {name:"Rustic Wool Pathani Suit", fabric:"Pure Wool · Winter Weight", price:2999, old:3499, tag:"Bestseller", type:["wool","winter"], img:"https://images.unsplash.com/photo-1628250521470-28c1fc54616c?auto=format&fit=crop&w=500&q=75"},
+  {name:"Cream Linen Shalwar Set", fabric:"Linen Cotton · Airy Fit", price:2099, old:null, tag:"New", type:["cotton","summer"], img:"https://images.unsplash.com/photo-1620730389810-9076d9dfff84?auto=format&fit=crop&w=500&q=75"},
+  {name:"Grey Frontier Wool Set", fabric:"Wool · High Collar", price:2799, old:3299, tag:null, type:["wool","winter"], img:"https://images.unsplash.com/photo-1624970415682-3f99fae61a94?auto=format&fit=crop&w=500&q=75"},
+  {name:"Beige Thobe Pathani Suit", fabric:"Cotton · Traditional Cut", price:1899, old:null, tag:null, type:["cotton","summer"], img:"https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=500&q=75"},
+  {name:"Khaki Field Pathani Set", fabric:"Cotton Canvas · Utility Fit", price:2199, old:2599, tag:"Bestseller", type:["cotton","summer"], img:"https://images.unsplash.com/photo-1701365676249-9d7ab5022dec?auto=format&fit=crop&w=500&q=75"},
+  {name:"Deep Brown Wool Pathani", fabric:"Wool · Warm Lining", price:2899, old:null, tag:"New", type:["wool","winter"], img:"https://images.unsplash.com/photo-1622780432053-767528938f34?auto=format&fit=crop&w=500&q=75"},
+  {name:"Dune Cotton Frontier Suit", fabric:"Cotton · Relaxed Shalwar", price:1999, old:2399, tag:null, type:["cotton","summer"], img:"https://images.unsplash.com/photo-1727835523550-18478cacefa2?auto=format&fit=crop&w=500&q=75"},
+  {name:"Ash Wool Winter Set", fabric:"Wool Blend · Long Kurta", price:2599, old:3099, tag:"Bestseller", type:["wool","winter"], img:"https://images.unsplash.com/photo-1770359993283-a2c2f386584e?auto=format&fit=crop&w=500&q=75"}
+];
+
+const grid = document.getElementById('productGrid');
+const searchInput = document.getElementById('searchInput');
+let activeFilter = 'all';
+
+function render(list){
+  grid.innerHTML = '';
+  document.getElementById('resultCount').textContent = list.length + " suits";
+  if(list.length === 0){
+    grid.innerHTML = '<div class="no-results">No Pathani suits match your search. Try “wool” or “cotton”.</div>';
+    return;
+  }
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="fabric">${p.fabric}</div>
+        <div class="price-row">
+          <div><span class="price">₹${p.price}</span>${p.old ? `<span class="old-price">₹${p.old}</span>` : ''}</div>
+          <button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterProducts(){
+  const q = searchInput.value.toLowerCase().trim();
+  let list = products.filter(p => activeFilter === 'all' || p.type.includes(activeFilter));
+  if(q){
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.fabric.toLowerCase().includes(q) || p.type.some(t=>t.includes(q)));
+  }
+  render(list);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    filterProducts();
+  });
+});
+
+searchInput.addEventListener('input', filterProducts);
+render(products);
+</script>
+</body>
+</html>
