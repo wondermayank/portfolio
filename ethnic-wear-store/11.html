@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jodhpuri Suit — Royal Collection | Premium Ethnic Wear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#111826;
+    --navy-deep:#0A0F1A;
+    --wine:#5C0F1E;
+    --gold:#CBA135;
+    --gold-soft:#E6C875;
+    --ivory:#F3ECDD;
+    --line:rgba(203,161,53,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--ivory);color:var(--navy-deep);font-family:'Jost',sans-serif;line-height:1.55;}
+  h1,h2,h3,.disp{font-family:'Marcellus',serif;font-weight:400;letter-spacing:.5px;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  header{position:sticky;top:0;z-index:50;background:var(--navy-deep);border-bottom:1px solid var(--line);}
+  .topbar{max-width:1200px;margin:0 auto;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo .mark{width:40px;height:40px;border:2px solid var(--gold);transform:rotate(45deg);display:flex;align-items:center;justify-content:center;}
+  .logo .mark span{transform:rotate(-45deg);color:var(--gold);font-family:'Marcellus';font-size:16px;}
+  .logo-text{font-family:'Marcellus',serif;font-size:23px;color:var(--gold-soft);}
+  .logo-text small{display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:3px;color:#8b7a52;font-weight:500;}
+  nav{display:flex;gap:30px;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:#cfc6ae;}
+  nav a:hover{color:var(--gold-soft);}
+  .actions{display:flex;align-items:center;gap:16px;}
+  .search-box{display:flex;align-items:center;background:rgba(255,255,255,.05);border-radius:2px;padding:9px 16px;gap:8px;border:1px solid var(--line);}
+  .search-box input{border:none;background:transparent;outline:none;font-family:'Jost';font-size:14px;width:150px;color:var(--ivory);}
+  .search-box input::placeholder{color:#7d735a;}
+  .cart-btn{position:relative;background:transparent;border:1.5px solid var(--gold);color:var(--gold-soft);padding:10px 18px;font-family:'Jost';font-weight:500;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;text-transform:uppercase;}
+  .cart-btn:hover{background:var(--gold);color:var(--navy-deep);}
+  .cart-count{background:var(--wine);color:#fff;border-radius:50%;width:19px;height:19px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+
+  .hero{position:relative;overflow:hidden;padding:100px 24px 90px;text-align:center;background:
+    radial-gradient(ellipse at 50% -10%, rgba(203,161,53,.25), transparent 55%),
+    linear-gradient(180deg,var(--navy-deep),var(--navy) 70%,var(--navy-deep));
+    color:var(--ivory);}
+  .arch-frame{width:180px;height:90px;margin:0 auto 28px;border:2px solid var(--gold);border-bottom:none;border-radius:90px 90px 0 0;position:relative;}
+  .arch-frame:before{content:'';position:absolute;inset:8px;border:1px solid var(--gold-soft);border-bottom:none;border-radius:80px 80px 0 0;opacity:.5;}
+  .hero .eyebrow{letter-spacing:5px;font-size:12px;font-weight:500;color:var(--gold-soft);text-transform:uppercase;}
+  .hero h1{font-size:58px;margin:16px 0 20px;color:var(--ivory);}
+  .hero h1 em{color:var(--gold-soft);font-style:normal;}
+  .hero p{max-width:580px;margin:0 auto 30px;color:#c9c2ac;font-size:16px;}
+  .btn-primary{display:inline-block;background:var(--gold);color:var(--navy-deep);padding:15px 38px;font-weight:600;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;}
+  .btn-primary:hover{background:var(--gold-soft);}
+
+  .ornament-divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:44px 24px 8px;}
+  .ornament-divider .ln{width:70px;height:1px;background:var(--gold);}
+  .ornament-divider span{color:var(--gold);font-size:18px;}
+
+  .section-title{text-align:center;padding:12px 24px 10px;}
+  .section-title h2{font-size:36px;color:var(--wine);}
+  .section-title p{color:#8b7a52;margin-top:8px;font-size:13px;letter-spacing:2px;text-transform:uppercase;}
+
+  .filters{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:26px 24px 14px;}
+  .chip{padding:9px 22px;border:1px solid var(--wine);background:transparent;color:var(--wine);font-family:'Jost';font-weight:500;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;}
+  .chip.active,.chip:hover{background:var(--wine);color:#fff;}
+
+  .grid{max-width:1200px;margin:0 auto;padding:34px 24px 90px;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:30px;}
+  .card{background:#fff;position:relative;border:1px solid var(--line);transition:.3s;}
+  .card:before,.card:after{content:'';position:absolute;width:22px;height:22px;border:2px solid var(--gold);z-index:3;}
+  .card:before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+  .card:after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(17,24,38,.18);}
+  .card .tag{position:absolute;top:14px;right:14px;background:var(--wine);color:#fff;font-size:10px;font-weight:600;padding:5px 11px;z-index:2;letter-spacing:1px;text-transform:uppercase;}
+  .card .imgwrap{height:320px;overflow:hidden;}
+  .card .imgwrap img{width:100%;height:100%;object-fit:cover;transition:.6s transform;}
+  .card:hover .imgwrap img{transform:scale(1.06);}
+  .card-body{padding:22px 22px 24px;}
+  .card-body .cat{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+  .card-body h3{font-size:21px;margin:8px 0 6px;color:var(--navy-deep);}
+  .card-body .desc{font-size:13px;color:#786c50;margin-bottom:14px;}
+  .price-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px;}
+  .price{font-size:19px;font-weight:600;color:var(--wine);font-family:'Marcellus',serif;}
+  .price .old{font-size:13px;color:#b0a284;text-decoration:line-through;font-weight:400;margin-right:8px;font-family:'Jost';}
+  .add-btn{background:var(--navy-deep);color:var(--gold-soft);border:none;padding:9px 18px;font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s;}
+  .add-btn:hover{background:var(--wine);color:#fff;}
+
+  footer{background:var(--navy-deep);color:#cfc6ae;padding:56px 24px 26px;margin-top:10px;border-top:2px solid var(--gold);}
+  .foot-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;}
+  .foot-col h4{font-family:'Marcellus',serif;font-size:18px;margin-bottom:16px;color:var(--gold-soft);}
+  .foot-col p,.foot-col a{font-size:13px;color:#a99b7c;display:block;margin-bottom:9px;}
+  .foot-bottom{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid rgba(203,161,53,.15);font-size:12px;color:#786c50;}
+
+  .overlay{position:fixed;inset:0;background:rgba(10,15,26,.6);opacity:0;pointer-events:none;transition:.3s;z-index:90;}
+  .overlay.open{opacity:1;pointer-events:auto;}
+  .drawer{position:fixed;top:0;right:-430px;width:410px;max-width:92vw;height:100%;background:var(--ivory);z-index:100;transition:.35s;box-shadow:-10px 0 40px rgba(0,0,0,.3);display:flex;flex-direction:column;border-left:2px solid var(--gold);}
+  .drawer.open{right:0;}
+  .drawer-head{padding:24px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--navy-deep);}
+  .drawer-head h3{font-family:'Marcellus',serif;font-size:22px;color:var(--gold-soft);}
+  .drawer-head button{background:none;border:none;font-size:20px;cursor:pointer;color:var(--gold-soft);}
+  .drawer-items{flex:1;overflow-y:auto;padding:18px 26px;}
+  .cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .cart-item img{width:74px;height:88px;object-fit:cover;}
+  .ci-info{flex:1;}
+  .ci-info h4{font-size:14px;font-weight:600;margin-bottom:5px;}
+  .ci-info .p{color:var(--wine);font-weight:600;font-size:14px;font-family:'Marcellus',serif;}
+  .qty{display:flex;align-items:center;gap:9px;margin-top:9px;}
+  .qty button{width:24px;height:24px;border:1px solid var(--line);background:#fff;border-radius:50%;cursor:pointer;font-size:14px;}
+  .remove{font-size:12px;color:#a63b3b;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:7px;}
+  .drawer-foot{padding:22px 26px;border-top:1px solid var(--line);background:#fff;}
+  .subtotal{display:flex;justify-content:space-between;font-weight:600;font-size:17px;margin-bottom:16px;color:var(--wine);font-family:'Marcellus',serif;}
+  .checkout-btn{width:100%;background:var(--gold);color:var(--navy-deep);border:none;padding:15px;font-weight:600;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
+  .checkout-btn:hover{background:var(--gold-soft);}
+  .empty-cart{text-align:center;color:#a08a6a;padding:44px 10px;font-size:14px;}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy-deep);color:var(--gold-soft);padding:13px 28px;opacity:0;transition:.3s;z-index:200;font-weight:500;border:1px solid var(--gold);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:760px){
+    nav{display:none;}
+    .search-box input{width:90px;}
+    .hero h1{font-size:38px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="logo">
+      <div class="mark"><span>J</span></div>
+      <div class="logo-text">Jodhāana<small>JODHPURI · BANDHGALA · ROYAL</small></div>
+    </div>
+    <nav>
+      <a href="#collection">Collection</a>
+      <a href="#occasions">Occasions</a>
+      <a href="#about">Heritage</a>
+    </nav>
+    <div class="actions">
+      <div class="search-box">
+        <span style="color:#7d735a">⌕</span>
+        <input id="searchInput" type="text" placeholder="Search suits...">
+      </div>
+      <button class="cart-btn" onclick="toggleCart(true)">Cart <span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="arch-frame"></div>
+  <div class="eyebrow">Rajputana Craftsmanship, Reimagined</div>
+  <h1>The Jodhpuri Suit<br><em>Royal Collection</em></h1>
+  <p>Structured bandhgalas in velvet, jamawar and pure silk — tailored the way court dressers once fitted maharajas. Built for the man who enters a room, not just a party.</p>
+  <button class="btn-primary" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">Enter the Collection</button>
+</section>
+
+<div class="ornament-divider"><div class="ln"></div><span>❖</span><div class="ln"></div></div>
+
+<div class="section-title" id="collection">
+  <h2>Tailored for the Throne Room</h2>
+  <p>Structured Bandhgala · Hand Finished · Made to Order</p>
+</div>
+
+<div class="filters" id="occasions">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="Velvet">Velvet</button>
+  <button class="chip" data-filter="Jamawar">Jamawar</button>
+  <button class="chip" data-filter="Silk">Silk</button>
+  <button class="chip" data-filter="Wedding">Wedding</button>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer id="about">
+  <div class="foot-inner">
+    <div class="foot-col">
+      <h4>Jodhāana</h4>
+      <p>A Wondermayank ethnic-wear concept store. Structured Jodhpuri bandhgala suits for weddings, receptions and durbar-worthy occasions.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#collection">Full Collection</a>
+      <a href="#">Fabric Guide</a>
+      <a href="#">Made-to-Measure</a>
+    </div>
+    <div class="foot-col">
+      <h4>Connect</h4>
+      <a href="https://wondermayank.github.io" target="_blank">wondermayank.github.io</a>
+      <a href="#">@wondermayank</a>
+    </div>
+  </div>
+  <div class="foot-bottom">Concept storefront #11 — Ethnic Wear Store series · Wondermayank Portfolio</div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head"><h3>Your Selection</h3><button onclick="toggleCart(false)">✕</button></div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  {id:1,name:"Maroon Velvet Bandhgala",cat:"Velvet",tag:"Bestseller",price:6499,old:7999,img:"https://images.unsplash.com/photo-1760080839107-6798cee22d95?w=700&q=80&auto=format&fit=crop",desc:"Deep maroon velvet, gold buttons"},
+  {id:2,name:"Navy Jamawar Jodhpuri Set",cat:"Jamawar",tag:"Premium",price:8999,img:"https://images.unsplash.com/photo-1677770101470-b1995c36b6b7?w=700&q=80&auto=format&fit=crop",desc:"Hand-woven jamawar, regal cut"},
+  {id3:3,id:3,name:"Ivory Silk Bandhgala Suit",cat:"Silk",tag:"New",price:5999,img:"https://images.unsplash.com/photo-1760080903705-70430994b547?w=700&q=80&auto=format&fit=crop",desc:"Pure silk, ivory finish"},
+  {id:4,name:"Emerald Brocade Jodhpuri",cat:"Wedding",tag:"",price:7499,img:"https://images.unsplash.com/photo-1759906764727-ad90b3bf00ba?w=700&q=80&auto=format&fit=crop",desc:"Brocade weave, statement collar"},
+  {id:5,name:"Wine Velvet Groom Bandhgala",cat:"Velvet",tag:"Wedding",price:9299,img:"https://images.unsplash.com/photo-1744804298516-991bf12847c8?w=700&q=80&auto=format&fit=crop",desc:"Velvet wedding fit, zari cuffs"},
+  {id:6,name:"Golden Beige Jamawar Suit",cat:"Jamawar",tag:"",price:6899,img:"https://images.unsplash.com/photo-1534217466718-ef4950786e24?w=700&q=80&auto=format&fit=crop",desc:"Warm beige jamawar weave"},
+  {id:7,name:"Royal Blue Silk Bandhgala",cat:"Silk",tag:"",price:6299,img:"https://images.unsplash.com/photo-1555447405-057915b40299?w=700&q=80&auto=format&fit=crop",desc:"Structured collar, silk drape"},
+  {id:8,name:"Charcoal Nehru Jodhpuri Suit",cat:"Wedding",tag:"",price:6799,img:"https://images.unsplash.com/photo-1729347917808-e3e35a462fec?w=700&q=80&auto=format&fit=crop",desc:"Modern charcoal, minimal zari"},
+];
+
+let cart = JSON.parse(localStorage.getItem('jodhaana_cart')||'[]');
+
+function renderProducts(filter='all', search=''){
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML='';
+  products.filter(p=> (filter==='all'||p.cat===filter) && p.name.toLowerCase().includes(search.toLowerCase()))
+    .forEach(p=>{
+      grid.innerHTML += `
+      <div class="card">
+        ${p.tag?`<div class="tag">${p.tag}</div>`:''}
+        <div class="imgwrap"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="card-body">
+          <div class="cat">${p.cat}</div>
+          <h3>${p.name}</h3>
+          <div class="desc">${p.desc}</div>
+          <div class="price-row">
+            <div class="price">${p.old?`<span class="old">₹${p.old}</span>`:''}₹${p.price}</div>
+            <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+          </div>
+        </div>
+      </div>`;
+    });
+}
+
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  const existing = cart.find(x=>x.id===id);
+  if(existing){existing.qty++;} else {cart.push({...p,qty:1});}
+  saveCart();
+  showToast(p.name+" added to selection");
+  renderCart();
+}
+function changeQty(id,delta){
+  const item = cart.find(x=>x.id===id);
+  item.qty += delta;
+  if(item.qty<=0) cart = cart.filter(x=>x.id!==id);
+  saveCart(); renderCart();
+}
+function removeItem(id){ cart = cart.filter(x=>x.id!==id); saveCart(); renderCart(); }
+function saveCart(){ localStorage.setItem('jodhaana_cart', JSON.stringify(cart)); }
+function renderCart(){
+  const box = document.getElementById('drawerItems');
+  document.getElementById('cartCount').textContent = cart.reduce((a,c)=>a+c.qty,0);
+  if(cart.length===0){ box.innerHTML='<div class="empty-cart">Your selection is empty.<br>Begin your royal ensemble.</div>'; document.getElementById('subtotal').textContent='₹0'; return; }
+  box.innerHTML = cart.map(c=>`
+    <div class="cart-item">
+      <img src="${c.img}" alt="${c.name}">
+      <div class="ci-info">
+        <h4>${c.name}</h4>
+        <div class="p">₹${c.price*c.qty}</div>
+        <div class="qty">
+          <button onclick="changeQty(${c.id},-1)">−</button>
+          <span>${c.qty}</span>
+          <button onclick="changeQty(${c.id},1)">+</button>
+        </div>
+        <button class="remove" onclick="removeItem(${c.id})">Remove</button>
+      </div>
+    </div>`).join('');
+  document.getElementById('subtotal').textContent = '₹'+cart.reduce((a,c)=>a+c.price*c.qty,0);
+}
+function toggleCart(open){
+  document.getElementById('drawer').classList.toggle('open',open);
+  document.getElementById('overlay').classList.toggle('open',open);
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function checkout(){
+  if(cart.length===0) return showToast('Your selection is empty');
+  showToast('Order placed — Thank you, Your Grace');
+  cart=[]; saveCart(); renderCart(); toggleCart(false);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    renderProducts(chip.dataset.filter, document.getElementById('searchInput').value);
+  });
+});
+document.getElementById('searchInput').addEventListener('input',(e)=>{
+  const active = document.querySelector('.chip.active').dataset.filter;
+  renderProducts(active, e.target.value);
+});
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
