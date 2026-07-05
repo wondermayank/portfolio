@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saans Linen — Summer Linen Kurtas</title>
+<meta name="description" content="Saans Linen — breathable pure linen kurtas in airy sky blue, white and sand. Made for heat, humidity and long summer days.">
+<style>
+  :root{
+    --sky:#7fb8d6;
+    --sky-deep:#4a8bab;
+    --sand:#e8dcc5;
+    --white:#ffffff;
+    --bg:#f6f9fa;
+    --ink:#2a3438;
+    --muted:#7c8b90;
+    --line:#dde9ec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(246,249,250,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:18px 26px;}
+  .logo{font-size:21px;font-weight:300;letter-spacing:1px;display:flex;align-items:center;gap:8px;color:var(--sky-deep);}
+  .logo svg{width:24px;height:24px;}
+  nav ul{display:flex;gap:30px;list-style:none;font-size:14px;color:var(--muted);font-weight:500;}
+  nav ul a:hover{color:var(--sky-deep);}
+  .cart-btn{background:var(--sky-deep);color:#fff;border:none;padding:10px 22px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;}
+  @media (max-width:760px){nav ul{display:none;}}
+
+  .hero{max-width:1180px;margin:0 auto;padding:56px 26px 30px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  .hero-text .kicker{color:var(--sky-deep);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:600;}
+  .hero-text h1{font-size:44px;font-weight:300;line-height:1.2;margin-bottom:18px;color:var(--ink);}
+  .hero-text h1 strong{font-weight:700;}
+  .hero-text p{color:var(--muted);font-size:16px;max-width:400px;margin-bottom:28px;line-height:1.6;}
+  .btn-sky{background:var(--sky-deep);color:#fff;padding:14px 30px;border-radius:999px;font-size:15px;border:none;cursor:pointer;font-weight:600;}
+  .hero-img{aspect-ratio:4/5;border-radius:20px;overflow:hidden;}
+  .hero-img img{width:100%;height:100%;object-fit:cover;}
+  @media (max-width:800px){.hero{grid-template-columns:1fr;}.hero-text h1{font-size:30px;}}
+
+  .search-section{max-width:1180px;margin:20px auto 0;padding:0 26px;}
+  .search-bar{display:flex;background:#fff;border-radius:999px;align-items:center;padding:6px 6px 6px 22px;max-width:640px;margin:0 auto;box-shadow:0 6px 20px rgba(74,139,171,0.1);}
+  .search-bar svg{width:18px;height:18px;color:var(--muted);flex-shrink:0;}
+  .search-bar input{flex:1;border:none;outline:none;padding:12px;font-size:15px;background:transparent;}
+  .search-bar button{background:var(--sky);border:none;color:#fff;padding:12px 26px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;}
+  .filter-chips{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .chip{padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;background:#fff;}
+  .chip.active{background:var(--sky);color:#fff;border-color:var(--sky);}
+
+  .section-head{max-width:1180px;margin:50px auto 22px;padding:0 26px;display:flex;justify-content:space-between;align-items:baseline;}
+  .section-head h2{font-size:26px;font-weight:300;color:var(--ink);}
+  .count{color:var(--muted);font-size:14px;}
+
+  .grid{max-width:1180px;margin:0 auto;padding:0 26px 70px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+  .card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line);transition:.2s;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(74,139,171,0.14);}
+  .card-img{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--sand);}
+  .card-img img{width:100%;height:100%;object-fit:cover;}
+  .tag{position:absolute;top:12px;left:12px;background:var(--white);color:var(--sky-deep);font-size:11px;font-weight:700;padding:6px 13px;border-radius:999px;}
+  .card-body{padding:16px;}
+  .card-body h3{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .fabric{color:var(--muted);font-size:13px;margin-bottom:12px;}
+  .price-row{display:flex;justify-content:space-between;align-items:center;}
+  .price{font-weight:700;font-size:16px;color:var(--sky-deep);}
+  .old-price{color:var(--muted);text-decoration:line-through;font-size:13px;margin-left:6px;}
+  .add-btn{background:var(--bg);border:1px solid var(--line);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .add-btn:hover{background:var(--sky-deep);border-color:var(--sky-deep);}
+  .add-btn:hover svg{stroke:#fff;}
+  .add-btn svg{width:15px;height:15px;stroke:var(--sky-deep);}
+  .no-results{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1;}
+
+  footer{background:var(--white);border-top:1px solid var(--line);padding:50px 26px 24px;}
+  .foot-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;}
+  .foot-wrap h4{font-size:12.5px;text-transform:uppercase;letter-spacing:1.5px;color:var(--sky-deep);margin-bottom:14px;}
+  .foot-wrap ul{list-style:none;}
+  .foot-wrap li{margin-bottom:9px;font-size:14px;color:var(--muted);}
+  .foot-wrap li a:hover{color:var(--ink);}
+  .foot-bottom{max-width:1180px;margin:36px auto 0;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;}
+  @media (max-width:700px){.foot-wrap{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-6 10-6 10 6 10 6-3 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="2.5"/></svg>Saans Linen</div>
+    <nav><ul>
+      <li><a href="#">Linen Kurtas</a></li>
+      <li><a href="#">Beach Wear</a></li>
+      <li><a href="#">Vacation Edit</a></li>
+      <li><a href="#">About</a></li>
+    </ul></nav>
+    <button class="cart-btn">Cart · 0</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="kicker">Summer Collection</div>
+    <h1><strong>Linen</strong> that breathes when nothing else will.</h1>
+    <p>Airy, unlined linen kurtas made for 40-degree afternoons — the kind of ethnic wear that survives a summer wedding without wilting.</p>
+    <button class="btn-sky">Shop Summer Linen</button>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=900&q=80" alt="Man in a light airy linen kurta by a pool">
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="text" placeholder="Search sky blue linen, white kurta, vacation set…">
+    <button onclick="filterProducts()">Search</button>
+  </div>
+  <div class="filter-chips" id="chips">
+    <div class="chip active" data-filter="all">All</div>
+    <div class="chip" data-filter="white">White</div>
+    <div class="chip" data-filter="blue">Blue</div>
+    <div class="chip" data-filter="sand">Sand</div>
+  </div>
+</section>
+
+<div class="section-head">
+  <h2>Summer Edit</h2>
+  <span class="count" id="resultCount">10 pieces</span>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo" style="margin-bottom:12px;">Saans Linen</div>
+      <p style="color:var(--muted);font-size:13.5px;max-width:280px;">Breathable summer linen kurtas, part of the Wondermayank ethnic wear collection.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/7">Silk Kurta Festive</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/9">Embroidered Party</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/10">Dhoti Kurta</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Thunder</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/">Portfolio</a></li>
+        <li><a href="https://commercesehoga.github.io/">ThunderStudy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+        <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Saans Linen · by Thunder</span>
+    <span>Store 08 of 10 — Ethnic Wear Collection</span>
+  </div>
+</footer>
+
+<script>
+const products = [
+  {name:"Sky Blue Airy Linen Kurta", fabric:"Pure Linen · Loose Fit", price:1799, old:2099, tag:"Bestseller", type:["blue"], img:"https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=500&q=75"},
+  {name:"Pure White Summer Kurta", fabric:"Linen Cotton · Breathable", price:1699, old:null, tag:"New", type:["white"], img:"https://images.unsplash.com/photo-1620730389810-9076d9dfff84?auto=format&fit=crop&w=500&q=75"},
+  {name:"Sand Beach Linen Set", fabric:"Pure Linen · Relaxed Cut", price:1899, old:2199, tag:null, type:["sand"], img:"https://images.unsplash.com/photo-1701365676249-9d7ab5022dec?auto=format&fit=crop&w=500&q=75"},
+  {name:"Ivory Vacation Kurta", fabric:"Linen · Side Slits", price:1749, old:null, tag:null, type:["white"], img:"https://images.unsplash.com/photo-1624970415682-3f99fae61a94?auto=format&fit=crop&w=500&q=75"},
+  {name:"Ocean Blue Linen Kurta", fabric:"Linen Blend · Mandarin Collar", price:1999, old:2299, tag:"Bestseller", type:["blue"], img:"https://images.unsplash.com/photo-1770359993283-a2c2f386584e?auto=format&fit=crop&w=500&q=75"},
+  {name:"Bone White Linen Set", fabric:"Pure Linen · Minimal Cut", price:1849, old:null, tag:"New", type:["white"], img:"https://images.unsplash.com/photo-1622780432053-767528938f34?auto=format&fit=crop&w=500&q=75"},
+  {name:"Dune Sand Summer Kurta", fabric:"Linen Cotton · Airy Weave", price:1899, old:2199, tag:null, type:["sand"], img:"https://images.unsplash.com/photo-1727835523545-70ee992b5763?auto=format&fit=crop&w=500&q=75"},
+  {name:"Powder Blue Linen Kurta", fabric:"Linen · Half Sleeve Option", price:1799, old:null, tag:null, type:["blue"], img:"https://images.unsplash.com/photo-1711044871601-301f9b0ecf91?auto=format&fit=crop&w=500&q=75"},
+  {name:"Cream Linen Vacation Set", fabric:"Linen Blend · Relaxed Fit", price:1949, old:2299, tag:"Bestseller", type:["white","sand"], img:"https://images.unsplash.com/photo-1628250521470-28c1fc54616c?auto=format&fit=crop&w=500&q=75"},
+  {name:"Aqua Linen Summer Kurta", fabric:"Pure Linen · Lightweight", price:1899, old:null, tag:"New", type:["blue"], img:"https://images.unsplash.com/photo-1555447405-057915b40299?auto=format&fit=crop&w=500&q=75"}
+];
+
+const grid = document.getElementById('productGrid');
+const searchInput = document.getElementById('searchInput');
+let activeFilter = 'all';
+
+function render(list){
+  grid.innerHTML = '';
+  document.getElementById('resultCount').textContent = list.length + " pieces";
+  if(list.length === 0){
+    grid.innerHTML = '<div class="no-results">No linen kurtas match your search. Try “blue” or “white”.</div>';
+    return;
+  }
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="fabric">${p.fabric}</div>
+        <div class="price-row">
+          <div><span class="price">₹${p.price}</span>${p.old ? `<span class="old-price">₹${p.old}</span>` : ''}</div>
+          <button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterProducts(){
+  const q = searchInput.value.toLowerCase().trim();
+  let list = products.filter(p => activeFilter === 'all' || p.type.includes(activeFilter));
+  if(q){
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.fabric.toLowerCase().includes(q) || p.type.some(t=>t.includes(q)));
+  }
+  render(list);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    filterProducts();
+  });
+});
+
+searchInput.addEventListener('input', filterProducts);
+render(products);
+</script>
+</body>
+</html>
