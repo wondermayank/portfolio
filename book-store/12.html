@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ink &amp; Measure — Books, Made to Your Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22201E; --bronze:#A9773F; --linen:#EDE6DA; --paper:#F7F3EA; --teal:#2F6E68; --line:#D8CDB8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:'Work Sans',sans-serif;line-height:1.6;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Libre Caslon Text',serif;}
+
+  header{padding:24px 0;border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Libre Caslon Text';font-size:22px;letter-spacing:.5px;}
+  .brand em{font-style:italic;color:var(--bronze);}
+  nav ul{display:flex;gap:36px;list-style:none;font-size:14px;font-weight:500;color:#5b564c;}
+  nav a:hover{color:var(--bronze);}
+  .nav-cta{background:var(--ink);color:var(--paper);padding:11px 22px;font-size:13px;font-weight:600;}
+
+  /* measuring-tape divider */
+  .tape{height:26px;background:repeating-linear-gradient(90deg, var(--bronze) 0 2px, transparent 2px 22px);opacity:.5;}
+
+  /* hero */
+  .hero{padding:80px 0 60px;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .eyebrow{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:22px;}
+  h1.display{font-size:44px;font-weight:400;line-height:1.25;margin-bottom:22px;}
+  h1.display em{font-style:italic;color:var(--bronze);}
+  .hero p{color:#5b564c;max-width:440px;margin-bottom:32px;}
+  .btn-bronze{display:inline-block;background:var(--bronze);color:#fff;padding:15px 32px;font-size:14px;font-weight:600;}
+  .btn-bronze:hover{background:var(--teal);}
+  .hero-figure{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:1/1.02;}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;}
+  .monogram-preview{position:absolute;bottom:20px;right:20px;background:var(--paper);border:1px solid var(--bronze);border-radius:6px;padding:16px 22px;text-align:center;}
+  .monogram-preview .letters{font-family:'Libre Caslon Text';font-size:26px;letter-spacing:4px;color:var(--bronze);}
+  .monogram-preview span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#8a8477;margin-top:4px;}
+
+  /* configurator */
+  .configurator{padding:80px 0;}
+  .c-head{text-align:center;max-width:560px;margin:0 auto 56px;}
+  .c-head .eyebrow{justify-content:center;display:flex;}
+  .c-head h2{font-size:32px;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .step{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 26px;background:var(--linen);}
+  .step .n{font-family:'Libre Caslon Text';font-size:26px;color:var(--bronze);margin-bottom:14px;}
+  .step h4{font-size:16px;margin-bottom:8px;}
+  .step p{font-size:13px;color:#5b564c;}
+
+  /* products as bundles */
+  .products{padding:20px 0 90px;}
+  .p-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;}
+  .p-head h2{font-size:28px;}
+  .p-head span{font-size:13px;color:var(--teal);font-weight:600;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .p-card{background:var(--linen);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .p-figure{aspect-ratio:4/3.1;overflow:hidden;}
+  .p-figure img{width:100%;height:100%;object-fit:cover;}
+  .p-body{padding:24px;}
+  .p-genre{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);font-weight:700;margin-bottom:8px;}
+  .p-body h3{font-size:19px;margin-bottom:6px;}
+  .p-desc{font-size:13px;color:#5b564c;margin-bottom:20px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);padding-top:14px;}
+  .p-price{font-family:'Libre Caslon Text';font-size:18px;color:var(--bronze);}
+  .p-add{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--ink);}
+  .p-add:hover{color:var(--bronze);border-color:var(--bronze);}
+
+  /* personalize band */
+  .personalize{background:var(--ink);color:var(--linen);padding:80px 0;}
+  .personalize .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .personalize h2{font-size:30px;margin-bottom:18px;color:var(--linen);}
+  .personalize p{color:#bdb6a5;max-width:420px;margin-bottom:26px;}
+  .form-box{background:#2c2924;border:1px solid #453f34;border-radius:8px;padding:30px;}
+  .form-row{margin-bottom:16px;}
+  .form-row label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#bdb6a5;margin-bottom:8px;}
+  .form-row input,.form-row select{width:100%;background:#22201e;border:1px solid #453f34;color:var(--linen);padding:12px 14px;font-family:'Work Sans';font-size:14px;border-radius:4px;}
+
+  footer{padding:44px 0 24px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:#8a8477;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    nav ul{display:none;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .grid{grid-template-columns:1fr;}
+    .personalize .wrap{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">Ink <em>&amp;</em> Measure</div>
+    <nav><ul>
+      <li><a href="#configurator">Build a Bundle</a></li>
+      <li><a href="#shop">Bundles</a></li>
+      <li><a href="#">Corporate Gifting</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">My Order (0)</a>
+  </div>
+</header>
+
+<div class="tape"></div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Made to Your Measure</div>
+      <h1 class="display">A reading bundle, <em>cut to fit you</em>.</h1>
+      <p>Pick your genres, your binding colour, and your initials — we'll put together a set that's yours alone, embossed and boxed before it ships.</p>
+      <a href="#configurator" class="btn-bronze">Start Building →</a>
+    </div>
+    <div class="hero-figure">
+      <img src="https://images.pexels.com/photos/6264007/pexels-photo-6264007.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Personal reading setup with warm lamp">
+      <div class="monogram-preview">
+        <div class="letters">A · R</div>
+        <span>Embossing Preview</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tape"></div>
+
+<section class="configurator" id="configurator">
+  <div class="wrap">
+    <div class="c-head">
+      <div class="eyebrow">How a Bundle Is Built</div>
+      <h2>Four choices, one box, made for you</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h4>Choose Genres</h4><p>Pick two or three shelves you actually read from</p></div>
+      <div class="step"><div class="n">02</div><h4>Choose Binding</h4><p>Linen, leather, or recycled cotton cover</p></div>
+      <div class="step"><div class="n">03</div><h4>Add Initials</h4><p>Hot-foil embossed on the cover, free</p></div>
+      <div class="step"><div class="n">04</div><h4>We Pack &amp; Ship</h4><p>Boxed with a handwritten note card</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="p-head">
+      <h2>Popular Starting Bundles</h2>
+      <span>FULLY CUSTOMISABLE AT CHECKOUT</span>
+    </div>
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Open books outdoors"></div>
+        <div class="p-body">
+          <div class="p-genre">3-Book Bundle</div>
+          <h3>The Slow Weekend Set</h3>
+          <div class="p-desc">One novel, one essay collection, one poetry title — linen bound, your initials on the spine.</div>
+          <div class="p-foot"><span class="p-price">From ₹1,299</span><a href="#" class="p-add">Customise</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/256467/pexels-photo-256467.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Close-up of open book"></div>
+        <div class="p-body">
+          <div class="p-genre">2-Book Bundle</div>
+          <h3>The New Job Set</h3>
+          <div class="p-desc">A business title and a habits book, leather bound with embossed name — a considered gift.</div>
+          <div class="p-foot"><span class="p-price">From ₹1,499</span><a href="#" class="p-add">Customise</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/16088727/pexels-photo-16088727.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Desk with books and tablet"></div>
+        <div class="p-body">
+          <div class="p-genre">4-Book Bundle</div>
+          <h3>The Design Desk Set</h3>
+          <div class="p-desc">Four design and craft titles, cotton bound, packed in a fabric-wrapped box.</div>
+          <div class="p-foot"><span class="p-price">From ₹1,899</span><a href="#" class="p-add">Customise</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="personalize">
+  <div class="wrap">
+    <div>
+      <h2>Add your initials, free on every order</h2>
+      <p>Hot-foil embossing takes two extra days and comes at no cost — a small detail that makes a shared bundle feel like it's actually yours.</p>
+      <a href="#" class="btn-bronze">See binding options</a>
+    </div>
+    <div class="form-box">
+      <div class="form-row"><label>Your Initials</label><input type="text" placeholder="e.g. A.R." maxlength="4"></div>
+      <div class="form-row"><label>Binding Colour</label><select><option>Bronze Linen</option><option>Deep Teal Leather</option><option>Natural Cotton</option></select></div>
+      <div class="form-row"><label>Gift Note</label><input type="text" placeholder="Optional, up to 120 characters"></div>
+      <a href="#" class="btn-bronze" style="display:block;text-align:center;margin-top:8px;">Add to Bundle</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Ink &amp; Measure · © 2026 · Made to your order, every time</div>
+</footer>
+
+</body>
+</html>
