@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahi Sherwani House — Wedding &amp; Groom Sherwanis</title>
+<meta name="description" content="Shahi Sherwani House — regal hand-embroidered sherwanis for grooms, sangeet and reception. Zardozi, velvet and silk craftsmanship for your big day.">
+<style>
+  :root{
+    --maroon:#3d0e0f;
+    --maroon-deep:#28080a;
+    --gold:#d4af37;
+    --gold-soft:#f0dfa1;
+    --ivory:#faf6ee;
+    --ink:#2a1a12;
+    --muted:#a98f6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Georgia','Times New Roman',serif;background:var(--ivory);color:var(--ink);}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  header{background:var(--maroon);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:50;}
+  .nav-wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:20px 28px;}
+  .logo{color:var(--gold-soft);font-size:24px;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .logo svg{width:28px;height:28px;stroke:var(--gold);}
+  nav ul{display:flex;gap:32px;list-style:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-soft);}
+  nav ul a:hover{color:var(--gold);}
+  .cart-btn{background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:10px 22px;font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;}
+  @media (max-width:760px){nav ul{display:none;}}
+
+  .hero{position:relative;min-height:74vh;display:flex;align-items:center;overflow:hidden;background:var(--maroon-deep);}
+  .hero-bg{position:absolute;inset:0;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.55;}
+  .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, rgba(40,8,10,0.95) 10%, rgba(40,8,10,0.55) 60%, rgba(40,8,10,0.2));}
+  .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 28px;color:var(--ivory);}
+  .hero-content .eyebrow{color:var(--gold);letter-spacing:3px;font-size:13px;text-transform:uppercase;margin-bottom:18px;}
+  .hero-content h1{font-size:56px;line-height:1.1;max-width:620px;margin-bottom:20px;font-weight:400;}
+  .hero-content h1 em{color:var(--gold-soft);font-style:italic;}
+  .hero-content p{max-width:460px;color:#e4d3bb;font-size:16px;margin-bottom:30px;line-height:1.6;}
+  .btn-gold{background:var(--gold);color:var(--maroon-deep);padding:15px 34px;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;font-weight:bold;}
+  @media (max-width:700px){.hero-content h1{font-size:34px;}}
+
+  .search-section{max-width:1200px;margin:44px auto 0;padding:0 28px;text-align:center;}
+  .search-section h2{font-size:14px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:18px;}
+  .search-bar{max-width:640px;margin:0 auto;display:flex;border:1.5px solid var(--gold);align-items:center;padding:4px 4px 4px 22px;background:#fff;}
+  .search-bar svg{width:18px;height:18px;color:var(--maroon);flex-shrink:0;}
+  .search-bar input{flex:1;border:none;outline:none;padding:14px;font-family:inherit;font-size:15px;background:transparent;}
+  .search-bar button{background:var(--maroon);color:var(--gold-soft);border:none;padding:14px 28px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
+  .filter-chips{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap;}
+  .chip{padding:9px 20px;border:1px solid var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;background:transparent;}
+  .chip.active{background:var(--maroon);color:var(--gold-soft);border-color:var(--maroon);}
+
+  .section-head{max-width:1200px;margin:56px auto 24px;padding:0 28px;text-align:center;}
+  .section-head h3{font-size:32px;font-weight:400;}
+  .section-head .line{width:60px;height:2px;background:var(--gold);margin:14px auto 0;}
+  .count{color:var(--muted);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-top:10px;display:block;}
+
+  .grid{max-width:1200px;margin:0 auto;padding:0 28px 70px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+  .card{background:#fff;border:1px solid #e8ddc4;position:relative;transition:.25s;}
+  .card:hover{box-shadow:0 20px 40px rgba(61,14,15,0.18);transform:translateY(-4px);}
+  .card-img{aspect-ratio:3/4;overflow:hidden;position:relative;}
+  .card-img img{width:100%;height:100%;object-fit:cover;}
+  .tag{position:absolute;top:0;right:0;background:var(--gold);color:var(--maroon-deep);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;font-weight:bold;}
+  .card-body{padding:20px;text-align:center;border-top:1px solid #e8ddc4;}
+  .card-body h4{font-size:17px;margin-bottom:6px;}
+  .fabric{color:var(--muted);font-size:12.5px;letter-spacing:0.5px;margin-bottom:14px;}
+  .price{font-size:19px;color:var(--maroon);font-weight:bold;}
+  .old-price{color:var(--muted);text-decoration:line-through;font-size:13px;margin-left:8px;}
+  .view-btn{margin-top:14px;width:100%;background:transparent;border:1px solid var(--maroon);color:var(--maroon);padding:11px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
+  .view-btn:hover{background:var(--maroon);color:var(--gold-soft);}
+  .no-results{text-align:center;padding:70px 20px;color:var(--muted);grid-column:1/-1;font-style:italic;}
+
+  footer{background:var(--maroon-deep);color:#c9b696;padding:56px 28px 24px;}
+  .foot-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;}
+  .foot-wrap h5{color:var(--gold);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+  .foot-wrap ul{list-style:none;}
+  .foot-wrap li{margin-bottom:10px;font-size:14px;}
+  .foot-wrap li a:hover{color:var(--gold-soft);}
+  .foot-bottom{max-width:1200px;margin:40px auto 0;padding-top:22px;border-top:1px solid #4a1618;font-size:12.5px;display:flex;justify-content:space-between;letter-spacing:0.5px;}
+  @media (max-width:700px){.foot-wrap{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2 5 5 1-4 4 1 6-4-3-4 3 1-6-4-4 5-1z"/></svg>Shahi Sherwani House</div>
+    <nav><ul>
+      <li><a href="#">Groom Sherwani</a></li>
+      <li><a href="#">Zardozi Work</a></li>
+      <li><a href="#">Reception</a></li>
+      <li><a href="#">Bespoke</a></li>
+    </ul></nav>
+    <button class="cart-btn">Bag · 0</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1760080838961-4208536db385?auto=format&fit=crop&w=1600&q=80" alt="Groom in white embroidered sherwani with red turban"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Wedding &amp; Groom Collection</div>
+    <h1>Enter your <em>wedding day</em> in gold and thread.</h1>
+    <p>Hand-embroidered sherwanis crafted in zardozi, velvet and raw silk — tailored for the groom who wants to be remembered in every photograph.</p>
+    <button class="btn-gold">Explore the Collection</button>
+  </div>
+</section>
+
+<section class="search-section">
+  <h2>Find Your Sherwani</h2>
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="text" placeholder="Search zardozi, velvet, ivory sherwani…">
+    <button onclick="filterProducts()">Search</button>
+  </div>
+  <div class="filter-chips" id="chips">
+    <div class="chip active" data-filter="all">All</div>
+    <div class="chip" data-filter="zardozi">Zardozi</div>
+    <div class="chip" data-filter="velvet">Velvet</div>
+    <div class="chip" data-filter="silk">Silk</div>
+    <div class="chip" data-filter="reception">Reception</div>
+  </div>
+</section>
+
+<div class="section-head">
+  <h3>The Groom Edit</h3>
+  <div class="line"></div>
+  <span class="count" id="resultCount">12 pieces</span>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo" style="margin-bottom:14px;color:var(--gold-soft);">Shahi Sherwani House</div>
+      <p style="font-size:13.5px;max-width:280px;">Regal wedding sherwanis, part of the Wondermayank ethnic wear collection.</p>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/1">Kurta Pyjama Casual</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/3">Bandhgala Formal</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/4">Pathani Suit</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Thunder</h5>
+      <ul>
+        <li><a href="https://wondermayank.github.io/">Portfolio</a></li>
+        <li><a href="https://commercesehoga.github.io/">ThunderStudy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+        <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Shahi Sherwani House · by Thunder</span>
+    <span>Store 02 of 5 — Ethnic Wear Collection</span>
+  </div>
+</footer>
+
+<script>
+const products = [
+  {name:"Ivory Zardozi Sherwani", fabric:"Raw Silk · Hand Embroidery", price:12999, old:16999, tag:"Bestseller", type:["zardozi","silk"], img:"https://images.unsplash.com/photo-1760080838961-4208536db385?auto=format&fit=crop&w=500&q=75"},
+  {name:"Emerald Velvet Groom Set", fabric:"Velvet · Gold Buttons", price:15499, old:null, tag:"New", type:["velvet"], img:"https://images.unsplash.com/photo-1729347917808-e3e35a462fec?auto=format&fit=crop&w=500&q=75"},
+  {name:"Royal Blue Thobe Sherwani", fabric:"Silk Blend · Full Sleeve", price:11499, old:13999, tag:null, type:["silk","reception"], img:"https://images.unsplash.com/photo-1534217466718-ef4950786e24?auto=format&fit=crop&w=500&q=75"},
+  {name:"Beige Regal Sherwani", fabric:"Art Silk · Turban Included", price:10999, old:null, tag:null, type:["silk","reception"], img:"https://images.unsplash.com/photo-1555447405-057915b40299?auto=format&fit=crop&w=500&q=75"},
+  {name:"Wine Zardozi Groom Sherwani", fabric:"Velvet · Zari Thread", price:16999, old:19999, tag:"Bestseller", type:["zardozi","velvet"], img:"https://images.unsplash.com/photo-1744804298516-991bf12847c8?auto=format&fit=crop&w=500&q=75"},
+  {name:"Champagne Reception Set", fabric:"Silk · Pearl Buttons", price:13499, old:null, tag:"New", type:["silk","reception"], img:"https://images.unsplash.com/photo-1760080839107-6798cee22d95?auto=format&fit=crop&w=500&q=75"},
+  {name:"Maroon Wedding Sherwani", fabric:"Velvet · Zardozi Collar", price:14999, old:17999, tag:null, type:["velvet","zardozi"], img:"https://images.unsplash.com/photo-1677770100697-3d7a032a4c50?auto=format&fit=crop&w=500&q=75"},
+  {name:"Gold Thread Wedding Set", fabric:"Silk · Sequin Work", price:15999, old:null, tag:null, type:["zardozi","silk"], img:"https://images.unsplash.com/photo-1677770101470-b1995c36b6b7?auto=format&fit=crop&w=500&q=75"},
+  {name:"Pearl White Sangeet Sherwani", fabric:"Georgette · Floral Motif", price:12499, old:14499, tag:"Bestseller", type:["silk","reception"], img:"https://images.unsplash.com/photo-1760080903831-3cfeac3200dc?auto=format&fit=crop&w=500&q=75"},
+  {name:"Copper Velvet Groom Set", fabric:"Velvet · Handwork Panel", price:17499, old:null, tag:"New", type:["velvet","zardozi"], img:"https://images.unsplash.com/photo-1759906764727-ad90b3bf00ba?auto=format&fit=crop&w=500&q=75"},
+  {name:"Sapphire Reception Sherwani", fabric:"Raw Silk · Mandarin Collar", price:11999, old:13499, tag:null, type:["silk","reception"], img:"https://images.unsplash.com/photo-1760080903705-70430994b547?auto=format&fit=crop&w=500&q=75"},
+  {name:"Antique Gold Wedding Set", fabric:"Silk Velvet · Zari Border", price:18499, old:21999, tag:"Bestseller", type:["velvet","zardozi"], img:"https://images.unsplash.com/photo-1760080903705-7e8f5442fbbe?auto=format&fit=crop&w=500&q=75"}
+];
+
+const grid = document.getElementById('productGrid');
+const searchInput = document.getElementById('searchInput');
+let activeFilter = 'all';
+
+function render(list){
+  grid.innerHTML = '';
+  document.getElementById('resultCount').textContent = list.length + " pieces";
+  if(list.length === 0){
+    grid.innerHTML = '<div class="no-results">No sherwanis match your search. Try “velvet” or “zardozi”.</div>';
+    return;
+  }
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <h4>${p.name}</h4>
+        <div class="fabric">${p.fabric}</div>
+        <div><span class="price">₹${p.price}</span>${p.old ? `<span class="old-price">₹${p.old}</span>` : ''}</div>
+        <button class="view-btn">View Details</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterProducts(){
+  const q = searchInput.value.toLowerCase().trim();
+  let list = products.filter(p => activeFilter === 'all' || p.type.includes(activeFilter));
+  if(q){
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.fabric.toLowerCase().includes(q) || p.type.some(t=>t.includes(q)));
+  }
+  render(list);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    filterProducts();
+  });
+});
+
+searchInput.addEventListener('input', filterProducts);
+render(products);
+</script>
+</body>
+</html>
