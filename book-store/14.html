@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swarna Patra Booksellers — Heritage in Print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#7A1F2B; --maroon-deep:#5A1620; --gold:#C79A3D; --ivory:#F4E9D8; --forest:#2E4A34; --ink:#2B211A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--ivory);color:var(--ink);font-family:'Mukta',sans-serif;line-height:1.7;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3,.title-font{font-family:'Yatra One',cursive;font-weight:400;}
+
+  .jali-strip{height:16px;background-repeat:repeat-x;background-size:44px 16px;background-image:
+    linear-gradient(135deg, transparent 46%, var(--gold) 46% 54%, transparent 54%),
+    linear-gradient(45deg, transparent 46%, var(--gold) 46% 54%, transparent 54%);
+  }
+  .jali-strip.thick{height:22px;background-size:56px 22px;opacity:.9;}
+
+  header{padding:22px 0;background:var(--maroon);color:var(--ivory);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:'Yatra One';font-size:24px;color:var(--gold);}
+  nav ul{display:flex;gap:34px;list-style:none;font-size:14px;font-weight:600;}
+  nav a:hover{color:var(--gold);}
+  .nav-cta{border:1px solid var(--gold);color:var(--gold);padding:9px 20px;font-size:13px;font-weight:600;}
+
+  /* hero with arch */
+  .hero{padding:70px 0;background:var(--ivory);}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .eyebrow{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon);font-weight:700;margin-bottom:20px;}
+  h1.display{font-size:42px;line-height:1.35;margin-bottom:22px;color:var(--maroon-deep);}
+  h1.display span{color:var(--gold);}
+  .hero p{color:#5b4a3a;max-width:440px;margin-bottom:30px;font-size:16px;}
+  .btn-heritage{display:inline-block;background:var(--maroon);color:var(--ivory);padding:15px 34px;font-size:14px;font-weight:700;border:2px solid var(--maroon);}
+  .btn-heritage:hover{background:transparent;color:var(--maroon);}
+  .arch-frame{position:relative;border:6px solid var(--gold);border-radius:200px 200px 12px 12px;overflow:hidden;aspect-ratio:0.85/1;max-width:400px;margin:0 auto;box-shadow:0 30px 50px -20px rgba(90,22,32,.3);}
+  .arch-frame img{width:100%;height:100%;object-fit:cover;}
+
+  /* genre rail */
+  .rail{background:var(--forest);}
+  .rail .wrap{display:flex;overflow-x:auto;}
+  .rail a{padding:18px 28px;color:var(--ivory);font-size:14px;font-weight:600;border-right:1px solid rgba(244,233,216,.2);white-space:nowrap;}
+  .rail a:hover{color:var(--gold);}
+
+  /* products */
+  .products{padding:90px 0;}
+  .p-head{text-align:center;max-width:600px;margin:0 auto 56px;}
+  .p-head .eyebrow{justify-content:center;display:flex;}
+  .p-head h2{font-size:34px;color:var(--maroon-deep);}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+  .p-card{background:#fff;border:1px solid #e8d9bd;border-radius:8px 8px 4px 4px;overflow:hidden;}
+  .p-figure{aspect-ratio:4/3.3;overflow:hidden;position:relative;border-bottom:3px solid var(--gold);}
+  .p-figure img{width:100%;height:100%;object-fit:cover;}
+  .p-body{padding:26px;}
+  .p-genre{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--forest);font-weight:700;margin-bottom:10px;}
+  .p-body h3{font-size:21px;color:var(--maroon-deep);margin-bottom:6px;}
+  .p-author{font-size:13px;color:#8a7458;margin-bottom:20px;}
+  .p-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed #e8d9bd;padding-top:16px;}
+  .p-price{font-family:'Yatra One';font-size:18px;color:var(--maroon);}
+  .p-add{font-size:12px;font-weight:700;text-transform:uppercase;color:var(--maroon);border-bottom:1px solid var(--maroon);}
+
+  /* about band with lattice pattern bg */
+  .about{background:var(--maroon);color:var(--ivory);padding:90px 0;position:relative;}
+  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about h2{font-size:32px;color:var(--gold);margin-bottom:18px;}
+  .about p{color:#e8d3d3;max-width:440px;margin-bottom:26px;}
+  .about-figure{border:6px solid var(--gold);border-radius:12px;overflow:hidden;aspect-ratio:1.1/1;}
+  .about-figure img{width:100%;height:100%;object-fit:cover;}
+
+  /* newsletter */
+  .news{padding:90px 0;text-align:center;}
+  .news h2{font-size:30px;color:var(--maroon-deep);margin-bottom:14px;}
+  .news p{color:#5b4a3a;margin-bottom:30px;}
+  .news form{display:flex;justify-content:center;max-width:440px;margin:0 auto;border:2px solid var(--maroon);border-radius:6px;overflow:hidden;}
+  .news input{flex:1;border:none;padding:16px 18px;font-family:'Mukta';font-size:14px;}
+  .news button{background:var(--maroon);color:var(--ivory);border:none;padding:16px 26px;font-weight:700;font-size:14px;}
+
+  footer{background:var(--ink);color:#c9bfae;padding:44px 0 24px;text-align:center;font-size:13px;}
+  footer .title-font{color:var(--gold);font-size:18px;display:block;margin-bottom:10px;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    nav ul{display:none;}
+    .grid{grid-template-columns:1fr;}
+    .about .wrap{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="jali-strip thick"></div>
+
+<header>
+  <div class="wrap nav-inner">
+    <div class="brand">Swarna Patra</div>
+    <nav><ul>
+      <li><a href="#shop">Shelves</a></li>
+      <li><a href="#">Mythology</a></li>
+      <li><a href="#">Translations</a></li>
+      <li><a href="#">Our Story</a></li>
+    </ul></nav>
+    <a href="#" class="nav-cta">Basket (0)</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Est. In Old Print Traditions</div>
+      <h1 class="display">Stories kept <span>by hand</span>, for generations to read.</h1>
+      <p>Classics in translation, retold epics, and heritage cookbooks — printed with the same care our grandparents' booksellers once gave a good story.</p>
+      <a href="#shop" class="btn-heritage">Browse the Shelves</a>
+    </div>
+    <div class="arch-frame">
+      <img src="https://images.pexels.com/photos/28541805/pexels-photo-28541805.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vintage library shelf with warm lighting">
+    </div>
+  </div>
+</section>
+
+<div class="jali-strip"></div>
+
+<div class="rail">
+  <div class="wrap">
+    <a href="#">Epics &amp; Mythology</a>
+    <a href="#">Classics in Translation</a>
+    <a href="#">Heritage Cookbooks</a>
+    <a href="#">Folk Poetry</a>
+    <a href="#">Regional Literature</a>
+    <a href="#">Freedom Movement</a>
+  </div>
+</div>
+
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="p-head">
+      <div class="eyebrow">This Season's Shelf</div>
+      <h2>Old Stories, New Print</h2>
+    </div>
+    <div class="grid">
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/18298086/pexels-photo-18298086.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Row of old ornate hardcover books"></div>
+        <div class="p-body">
+          <div class="p-genre">Epics &amp; Mythology</div>
+          <h3>Tales of the Nine Rivers</h3>
+          <div class="p-author">Retold by Kavita Iyengar</div>
+          <div class="p-foot"><span class="p-price">₹499</span><a href="#" class="p-add">Add to Basket</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/37559006/pexels-photo-37559006.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Aged classic books on wooden shelves"></div>
+        <div class="p-body">
+          <div class="p-genre">Classics in Translation</div>
+          <h3>Letters from the Old Courtyard</h3>
+          <div class="p-author">Trans. Ramesh Vora</div>
+          <div class="p-foot"><span class="p-price">₹449</span><a href="#" class="p-add">Add to Basket</a></div>
+        </div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-figure"><img src="https://images.pexels.com/photos/6436374/pexels-photo-6436374.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Vintage bookshop towering shelves"></div>
+        <div class="p-body">
+          <div class="p-genre">Heritage Cookbook</div>
+          <h3>My Grandmother's Spice Box</h3>
+          <div class="p-author">Lakshmi Subramaniam</div>
+          <div class="p-foot"><span class="p-price">₹549</span><a href="#" class="p-add">Add to Basket</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="about-figure">
+      <img src="https://images.pexels.com/photos/6436374/pexels-photo-6436374.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Towering heritage bookshelves">
+    </div>
+    <div>
+      <h2>Four generations, one small shop</h2>
+      <p>Started as a single almirah of borrowed books in 1958, Swarna Patra now reprints the stories that first shelf carried — with the same covers, retranslated with care.</p>
+      <a href="#shop" class="btn-heritage" style="border-color:var(--gold);color:var(--gold);">Read Our Story</a>
+    </div>
+  </div>
+</section>
+
+<div class="jali-strip"></div>
+
+<section class="news">
+  <div class="wrap">
+    <h2>Join Our Reading Circle</h2>
+    <p>One story from the archive, retold in your inbox every month.</p>
+    <form onsubmit="return false;">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="title-font">Swarna Patra Booksellers</span>
+    © 2026 · Printed with care, since 1958
+  </div>
+</footer>
+
+</body>
+</html>
