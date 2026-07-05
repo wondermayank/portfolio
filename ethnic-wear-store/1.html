@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaram Kurta Co. — Everyday Kurta Pyjama Sets</title>
+<meta name="description" content="Aaram Kurta Co. — breathable cotton and linen kurta pyjama sets for effortless everyday ethnic wear. Soft, relaxed, made for real days.">
+<style>
+  :root{
+    --clay:#c96f4a;
+    --clay-deep:#a85639;
+    --cream:#fbf3e7;
+    --cream-deep:#f2e4cf;
+    --ink:#3a2c22;
+    --muted:#8a7364;
+    --line:#e6d5bd;
+    --olive:#7c8a5c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* nav */
+  header{position:sticky;top:0;z-index:50;background:rgba(251,243,231,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav-wrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+  .logo{font-size:22px;font-weight:700;letter-spacing:-0.5px;display:flex;align-items:center;gap:8px;}
+  .logo svg{width:26px;height:26px;}
+  nav ul{display:flex;gap:28px;list-style:none;font-size:14px;font-weight:600;color:var(--muted);}
+  nav ul a:hover{color:var(--clay-deep);}
+  .cart-btn{background:var(--clay);color:#fff;border:none;padding:10px 20px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;}
+  @media (max-width:720px){nav ul{display:none;}}
+
+  /* hero */
+  .hero{max-width:1180px;margin:0 auto;padding:64px 24px 40px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .hero h1{font-size:48px;line-height:1.08;font-weight:800;letter-spacing:-1px;margin-bottom:18px;}
+  .hero h1 span{color:var(--clay-deep);}
+  .hero p{color:var(--muted);font-size:17px;max-width:440px;margin-bottom:28px;}
+  .hero-cta{display:flex;gap:14px;}
+  .btn-primary{background:var(--clay);color:#fff;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;border:none;cursor:pointer;}
+  .btn-secondary{background:transparent;border:1.5px solid var(--ink);padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;}
+  .hero-img{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 20px 50px rgba(169,86,57,0.25);}
+  .hero-img img{width:100%;height:100%;object-fit:cover;}
+  .hero-badge{position:absolute;bottom:18px;left:18px;background:#fff;padding:10px 16px;border-radius:14px;font-size:13px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,0.12);}
+  @media (max-width:800px){.hero{grid-template-columns:1fr;}.hero h1{font-size:34px;}}
+
+  /* search/filter bar */
+  .search-section{max-width:1180px;margin:0 auto;padding:0 24px 20px;}
+  .search-bar{display:flex;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 8px 6px 20px;align-items:center;box-shadow:0 4px 14px rgba(169,86,57,0.06);}
+  .search-bar svg{width:18px;height:18px;flex-shrink:0;color:var(--muted);}
+  .search-bar input{flex:1;border:none;outline:none;background:transparent;font-size:15px;padding:10px 0;color:var(--ink);}
+  .search-bar button{background:var(--clay);color:#fff;border:none;padding:11px 22px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer;}
+  .filter-chips{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .chip{padding:8px 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:.15s;}
+  .chip.active{background:var(--olive);color:#fff;border-color:var(--olive);}
+  .chip:hover{border-color:var(--olive);}
+
+  /* grid */
+  .section-head{max-width:1180px;margin:36px auto 20px;padding:0 24px;display:flex;justify-content:space-between;align-items:baseline;}
+  .section-head h2{font-size:26px;font-weight:800;}
+  .count{color:var(--muted);font-size:14px;}
+  .grid{max-width:1180px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr;}}
+  .card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);transition:.2s;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(169,86,57,0.14);}
+  .card-img{aspect-ratio:3/4;overflow:hidden;position:relative;}
+  .card-img img{width:100%;height:100%;object-fit:cover;}
+  .tag{position:absolute;top:12px;left:12px;background:var(--olive);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:0.5px;}
+  .card-body{padding:16px;}
+  .card-body h3{font-size:15.5px;font-weight:700;margin-bottom:4px;}
+  .card-body .fabric{color:var(--muted);font-size:13px;margin-bottom:10px;}
+  .price-row{display:flex;justify-content:space-between;align-items:center;}
+  .price{font-weight:800;font-size:17px;}
+  .old-price{color:var(--muted);text-decoration:line-through;font-size:13px;margin-left:6px;}
+  .add-btn{background:var(--cream-deep);border:none;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;}
+  .add-btn:hover{background:var(--clay);}
+  .add-btn:hover svg{stroke:#fff;}
+  .add-btn svg{width:17px;height:17px;stroke:var(--clay-deep);}
+  .no-results{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1;}
+
+  footer{background:var(--cream-deep);border-top:1px solid var(--line);padding:50px 24px 24px;}
+  .foot-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;}
+  .foot-wrap h4{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px;}
+  .foot-wrap ul{list-style:none;}
+  .foot-wrap li{margin-bottom:10px;font-size:14px;}
+  .foot-wrap li a:hover{color:var(--clay-deep);}
+  .foot-bottom{max-width:1180px;margin:36px auto 0;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;}
+  @media (max-width:700px){.foot-wrap{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l1 4-3 2v12h16V9l-3-2 1-4"/><path d="M9 3s1 2 3 2 3-2 3-2"/></svg>
+      Aaram Kurta Co.
+    </div>
+    <nav><ul>
+      <li><a href="#">Casual Sets</a></li>
+      <li><a href="#">Cotton Kurtas</a></li>
+      <li><a href="#">Pyjama Fits</a></li>
+      <li><a href="#">About</a></li>
+    </ul></nav>
+    <button class="cart-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Cart · 0</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Kurta pyjama, made for <span>real days.</span></h1>
+    <p>Soft-washed cotton and linen sets built for comfort first — the kind of ethnic wear you actually reach for on a Tuesday, not just a festival.</p>
+    <div class="hero-cta">
+      <button class="btn-primary">Shop Casual Sets</button>
+      <button class="btn-secondary">Fabric Guide</button>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1770359993283-a2c2f386584e?auto=format&fit=crop&w=900&q=80" alt="Man in a relaxed blue kurta pyjama smiling">
+    <div class="hero-badge">100% breathable cotton</div>
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="searchInput" type="text" placeholder="Search cotton kurta, linen set, mandarin collar…">
+    <button onclick="filterProducts()">Search</button>
+  </div>
+  <div class="filter-chips" id="chips">
+    <div class="chip active" data-filter="all">All</div>
+    <div class="chip" data-filter="cotton">Cotton</div>
+    <div class="chip" data-filter="linen">Linen</div>
+    <div class="chip" data-filter="printed">Printed</div>
+    <div class="chip" data-filter="solid">Solid</div>
+  </div>
+</section>
+
+<div class="section-head">
+  <h2>Everyday Sets</h2>
+  <span class="count" id="resultCount">12 styles</span>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo" style="margin-bottom:12px;">Aaram Kurta Co.</div>
+      <p style="color:var(--muted);font-size:14px;max-width:280px;">Relaxed ethnic wear for daily life — part of the Wondermayank ethnic wear collection.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/1">Kurta Pyjama Casual</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/2">Sherwani Wedding</a></li>
+        <li><a href="https://wondermayank.github.io/portfolio/ethnic-wear-store/5">Nehru Jacket Classic</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Thunder</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/">Portfolio</a></li>
+        <li><a href="https://commercesehoga.github.io/">ThunderStudy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="https://wondermayank.github.io/terms">Terms</a></li>
+        <li><a href="https://wondermayank.github.io/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Aaram Kurta Co. · by Thunder</span>
+    <span>Store 01 of 5 — Ethnic Wear Collection</span>
+  </div>
+</footer>
+
+<script>
+const products = [
+  {name:"Sage Cotton Kurta Set", fabric:"Pure Cotton · Round Neck", price:1499, old:1999, tag:"Bestseller", type:["cotton","solid"], img:"https://images.unsplash.com/photo-1701365676249-9d7ab5022dec?auto=format&fit=crop&w=500&q=75"},
+  {name:"Ash Linen Kurta Pyjama", fabric:"Linen Blend · Mandarin Collar", price:1899, old:2399, tag:"New", type:["linen","solid"], img:"https://images.unsplash.com/photo-1711044871601-301f9b0ecf91?auto=format&fit=crop&w=500&q=75"},
+  {name:"Rustic Red Weekend Set", fabric:"Cotton Slub · Straight Cut", price:1699, old:null, tag:null, type:["cotton","printed"], img:"https://images.unsplash.com/photo-1628250521470-28c1fc54616c?auto=format&fit=crop&w=500&q=75"},
+  {name:"Terracotta Reading Kurta", fabric:"Cotton · Full Sleeve", price:1599, old:1899, tag:null, type:["cotton","solid"], img:"https://images.unsplash.com/photo-1620730389810-9076d9dfff84?auto=format&fit=crop&w=500&q=75"},
+  {name:"Olive Grove Kurta Set", fabric:"Linen · Relaxed Fit", price:1999, old:null, tag:"Bestseller", type:["linen","solid"], img:"https://images.unsplash.com/photo-1727835523545-70ee992b5763?auto=format&fit=crop&w=500&q=75"},
+  {name:"Charcoal Everyday Kurta", fabric:"Cotton · Crew Neck", price:1399, old:1699, tag:null, type:["cotton","solid"], img:"https://images.unsplash.com/photo-1624970415682-3f99fae61a94?auto=format&fit=crop&w=500&q=75"},
+  {name:"Poolside Ivory Kurta", fabric:"Cotton Voile · Loose Fit", price:1799, old:null, tag:"New", type:["cotton","solid"], img:"https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=500&q=75"},
+  {name:"Floral Block-Print Kurta", fabric:"Cotton · Printed Yoke", price:1899, old:2199, tag:null, type:["cotton","printed"], img:"https://images.unsplash.com/photo-1622780432053-767528938f34?auto=format&fit=crop&w=500&q=75"},
+  {name:"Marigold Casual Set", fabric:"Linen Cotton · Side Slits", price:1649, old:null, tag:null, type:["linen","printed"], img:"https://images.unsplash.com/photo-1727835523550-18478cacefa2?auto=format&fit=crop&w=500&q=75"},
+  {name:"Blue Dusk Kurta Pyjama", fabric:"Cotton · Mandarin Collar", price:1749, old:1999, tag:"Bestseller", type:["cotton","solid"], img:"https://images.unsplash.com/photo-1770359993283-a2c2f386584e?auto=format&fit=crop&w=500&q=75"},
+  {name:"Sandstone Linen Set", fabric:"Pure Linen · Breathable", price:2099, old:null, tag:"New", type:["linen","solid"], img:"https://images.unsplash.com/photo-1770359993283-a2c2f386584e?auto=format&fit=crop&w=500&q=75"},
+  {name:"Everyday Wine Kurta", fabric:"Cotton Blend · Straight Fit", price:1549, old:1799, tag:null, type:["cotton","solid"], img:"https://images.unsplash.com/photo-1628250521470-28c1fc54616c?auto=format&fit=crop&w=500&q=75"}
+];
+
+const grid = document.getElementById('productGrid');
+const searchInput = document.getElementById('searchInput');
+let activeFilter = 'all';
+
+function render(list){
+  grid.innerHTML = '';
+  document.getElementById('resultCount').textContent = list.length + " styles";
+  if(list.length === 0){
+    grid.innerHTML = '<div class="no-results">No kurta sets match your search. Try “cotton” or “linen”.</div>';
+    return;
+  }
+  list.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="fabric">${p.fabric}</div>
+        <div class="price-row">
+          <div><span class="price">₹${p.price}</span>${p.old ? `<span class="old-price">₹${p.old}</span>` : ''}</div>
+          <button class="add-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterProducts(){
+  const q = searchInput.value.toLowerCase().trim();
+  let list = products.filter(p => activeFilter === 'all' || p.type.includes(activeFilter));
+  if(q){
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.fabric.toLowerCase().includes(q) || p.type.some(t=>t.includes(q)));
+  }
+  render(list);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    filterProducts();
+  });
+});
+
+searchInput.addEventListener('input', filterProducts);
+render(products);
+</script>
+</body>
+</html>
