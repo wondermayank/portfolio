@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achkan — Bridal Groom Collection | Premium Ethnic Wear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0D0B0A;
+    --black-soft:#17130F;
+    --wine:#3D0C11;
+    --gold:#C9A466;
+    --gold-bright:#E4C88E;
+    --ivory:#F5EFE4;
+    --line:rgba(201,164,102,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--ivory);color:var(--black);font-family:'Raleway',sans-serif;line-height:1.6;}
+  h1,h2,h3,.disp{font-family:'Cinzel',serif;font-weight:600;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  header{position:sticky;top:0;z-index:50;background:var(--black);border-bottom:1px solid var(--line);}
+  .topbar{max-width:1220px;margin:0 auto;padding:20px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo .mark{width:36px;height:36px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cinzel';color:var(--gold);font-size:15px;}
+  .logo-text{font-family:'Cinzel',serif;font-size:21px;color:var(--ivory);letter-spacing:1px;}
+  .logo-text small{display:block;font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold);font-weight:500;margin-top:2px;}
+  nav{display:flex;gap:32px;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:#b4a99a;}
+  nav a:hover{color:var(--gold-bright);}
+  .actions{display:flex;align-items:center;gap:16px;}
+  .search-box{display:flex;align-items:center;background:rgba(255,255,255,.04);padding:9px 16px;gap:8px;border:1px solid var(--line);}
+  .search-box input{border:none;background:transparent;outline:none;font-family:'Raleway';font-size:13px;width:140px;color:var(--ivory);}
+  .search-box input::placeholder{color:#6b6156;}
+  .cart-btn{position:relative;background:var(--gold);border:none;color:var(--black);padding:10px 20px;font-family:'Raleway';font-weight:600;letter-spacing:1.5px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;}
+  .cart-btn:hover{background:var(--gold-bright);}
+  .cart-count{background:var(--wine);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+
+  .hero{display:grid;grid-template-columns:1.05fr 1fr;background:var(--black);color:var(--ivory);min-height:560px;}
+  .hero-text{display:flex;flex-direction:column;justify-content:center;padding:60px 60px;}
+  .hero-text .eyebrow{letter-spacing:5px;font-size:12px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+  .hero-text h1{font-size:52px;line-height:1.2;margin-bottom:22px;}
+  .hero-text h1 span{color:var(--gold-bright);}
+  .hero-text p{max-width:440px;color:#c8bfae;font-size:15.5px;margin-bottom:32px;}
+  .btn-primary{display:inline-block;background:transparent;border:1.5px solid var(--gold);color:var(--gold-bright);padding:15px 36px;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:fit-content;}
+  .btn-primary:hover{background:var(--gold);color:var(--black);}
+  .hero-imgs{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+  .hero-imgs img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.05);}
+  .hero-imgs div:nth-child(2){margin-top:60px;}
+
+  .marquee{background:var(--wine);color:var(--gold-bright);padding:14px 0;overflow:hidden;white-space:nowrap;}
+  .marquee span{display:inline-block;padding:0 30px;font-family:'Cinzel';font-size:13px;letter-spacing:3px;text-transform:uppercase;}
+
+  .section-title{text-align:center;padding:56px 24px 8px;}
+  .section-title h2{font-size:36px;color:var(--wine);}
+  .section-title p{color:#8b7d68;margin-top:8px;font-size:13px;letter-spacing:2px;text-transform:uppercase;}
+
+  .filters{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:28px 24px 14px;}
+  .chip{padding:9px 22px;border:1px solid var(--black);background:transparent;color:var(--black);font-family:'Raleway';font-weight:500;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.2s;}
+  .chip.active,.chip:hover{background:var(--black);color:var(--gold-bright);}
+
+  .grid{max-width:1220px;margin:0 auto;padding:34px 24px 90px;display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:30px;}
+  .card{background:#fff;position:relative;box-shadow:0 10px 30px rgba(13,11,10,.08);}
+  .card .tag{position:absolute;top:14px;left:14px;background:var(--black);color:var(--gold-bright);font-size:10px;font-weight:600;padding:6px 12px;z-index:2;letter-spacing:1.5px;text-transform:uppercase;}
+  .card .imgwrap{height:340px;overflow:hidden;position:relative;}
+  .card .imgwrap:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,11,10,.35),transparent 40%);}
+  .card .imgwrap img{width:100%;height:100%;object-fit:cover;transition:.6s transform;}
+  .card:hover .imgwrap img{transform:scale(1.08);}
+  .card-body{padding:22px 22px 24px;border-top:2px solid var(--gold);}
+  .card-body .cat{font-size:10.5px;color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+  .card-body h3{font-size:19px;margin:8px 0 6px;color:var(--black);}
+  .card-body .desc{font-size:13px;color:#7d7264;margin-bottom:16px;}
+  .price-row{display:flex;align-items:center;justify-content:space-between;}
+  .price{font-size:19px;font-weight:600;color:var(--wine);font-family:'Cinzel',serif;}
+  .price .old{font-size:12px;color:#b0a48f;text-decoration:line-through;font-weight:400;margin-right:8px;font-family:'Raleway';}
+  .add-btn{background:var(--black);color:var(--gold-bright);border:none;padding:9px 18px;font-weight:500;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.2s;}
+  .add-btn:hover{background:var(--wine);}
+
+  footer{background:var(--black);color:#b4a99a;padding:56px 24px 26px;border-top:2px solid var(--gold);}
+  .foot-inner{max-width:1220px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;}
+  .foot-col h4{font-family:'Cinzel',serif;font-size:16px;margin-bottom:16px;color:var(--gold-bright);letter-spacing:1px;}
+  .foot-col p,.foot-col a{font-size:13px;color:#8f8574;display:block;margin-bottom:9px;}
+  .foot-bottom{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid rgba(201,164,102,.15);font-size:11.5px;color:#655c4e;letter-spacing:1px;}
+
+  .overlay{position:fixed;inset:0;background:rgba(13,11,10,.6);opacity:0;pointer-events:none;transition:.3s;z-index:90;}
+  .overlay.open{opacity:1;pointer-events:auto;}
+  .drawer{position:fixed;top:0;right:-430px;width:410px;max-width:92vw;height:100%;background:var(--ivory);z-index:100;transition:.35s;box-shadow:-10px 0 40px rgba(0,0,0,.35);display:flex;flex-direction:column;}
+  .drawer.open{right:0;}
+  .drawer-head{padding:24px 26px;border-bottom:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;background:var(--black);}
+  .drawer-head h3{font-family:'Cinzel',serif;font-size:19px;color:var(--gold-bright);}
+  .drawer-head button{background:none;border:none;font-size:20px;cursor:pointer;color:var(--gold-bright);}
+  .drawer-items{flex:1;overflow-y:auto;padding:18px 26px;}
+  .cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .cart-item img{width:74px;height:88px;object-fit:cover;}
+  .ci-info{flex:1;}
+  .ci-info h4{font-size:14px;font-weight:600;margin-bottom:5px;}
+  .ci-info .p{color:var(--wine);font-weight:600;font-size:14px;font-family:'Cinzel',serif;}
+  .qty{display:flex;align-items:center;gap:9px;margin-top:9px;}
+  .qty button{width:24px;height:24px;border:1px solid var(--line);background:#fff;border-radius:50%;cursor:pointer;font-size:14px;}
+  .remove{font-size:12px;color:#a63b3b;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:7px;}
+  .drawer-foot{padding:22px 26px;border-top:1px solid var(--line);background:#fff;}
+  .subtotal{display:flex;justify-content:space-between;font-weight:600;font-size:17px;margin-bottom:16px;color:var(--wine);font-family:'Cinzel',serif;}
+  .checkout-btn{width:100%;background:var(--black);color:var(--gold-bright);border:none;padding:15px;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+  .checkout-btn:hover{background:var(--wine);}
+  .empty-cart{text-align:center;color:#a08a6a;padding:44px 10px;font-size:14px;}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:var(--gold-bright);padding:13px 28px;opacity:0;transition:.3s;z-index:200;font-weight:500;border:1px solid var(--gold);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .hero-imgs{display:none;}
+    .hero-text{padding:50px 30px;}
+  }
+  @media(max-width:760px){
+    nav{display:none;}
+    .search-box input{width:80px;}
+    .hero-text h1{font-size:36px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="logo">
+      <div class="mark">A</div>
+      <div class="logo-text">Zar Achkan<small>BRIDAL GROOM COUTURE</small></div>
+    </div>
+    <nav>
+      <a href="#collection">Collection</a>
+      <a href="#occasions">Occasions</a>
+      <a href="#about">Atelier</a>
+    </nav>
+    <div class="actions">
+      <div class="search-box">
+        <span style="color:#6b6156">⌕</span>
+        <input id="searchInput" type="text" placeholder="Search achkans...">
+      </div>
+      <button class="cart-btn" onclick="toggleCart(true)">Bag <span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">For the Man Who Walks Last Down the Aisle</div>
+    <h1>The Achkan<br><span>Bridal Groom</span> Edit</h1>
+    <p>Zardozi hand-embroidery on velvet and silk, cut close and long — the achkan that anchors every camera in the room. Made to order, fitted to you.</p>
+    <button class="btn-primary" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">View the Edit</button>
+  </div>
+  <div class="hero-imgs">
+    <div><img src="https://images.unsplash.com/photo-1760080838961-4208536db385?w=800&q=80&auto=format&fit=crop" alt=""></div>
+    <div><img src="https://images.unsplash.com/photo-1760080903705-7e8f5442fbbe?w=800&q=80&auto=format&fit=crop" alt=""></div>
+  </div>
+</section>
+
+<div class="marquee"><span>ZARDOZI HAND EMBROIDERY ✦ MADE TO ORDER ✦ VELVET &amp; PURE SILK ✦ FREE ALTERATIONS ✦ ZARDOZI HAND EMBROIDERY ✦ MADE TO ORDER ✦ VELVET &amp; PURE SILK ✦ FREE ALTERATIONS ✦</span></div>
+
+<div class="section-title" id="collection">
+  <h2>Built for the Big Entrance</h2>
+  <p>Hand Embroidery · Made to Order · Complimentary Alterations</p>
+</div>
+
+<div class="filters" id="occasions">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="Velvet">Velvet</button>
+  <button class="chip" data-filter="Silk">Silk</button>
+  <button class="chip" data-filter="Reception">Reception</button>
+  <button class="chip" data-filter="Sangeet">Sangeet</button>
+</div>
+
+<div class="grid" id="productGrid"></div>
+
+<footer id="about">
+  <div class="foot-inner">
+    <div class="foot-col">
+      <h4>Zar Achkan</h4>
+      <p>A Wondermayank ethnic-wear concept store. Hand-embroidered achkans for grooms, built for the wedding day and the photographs that outlive it.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#collection">Full Collection</a>
+      <a href="#">Book a Fitting</a>
+      <a href="#">Fabric &amp; Care</a>
+    </div>
+    <div class="foot-col">
+      <h4>Connect</h4>
+      <a href="https://wondermayank.github.io" target="_blank">wondermayank.github.io</a>
+      <a href="#">@wondermayank</a>
+    </div>
+  </div>
+  <div class="foot-bottom">Concept storefront #12 — Ethnic Wear Store series · Wondermayank Portfolio</div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head"><h3>Your Bag</h3><button onclick="toggleCart(false)">✕</button></div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  {id:1,name:"Black Gold Zardozi Achkan",cat:"Velvet",tag:"Bestseller",price:11499,old:13999,img:"https://images.unsplash.com/photo-1760080838961-4208536db385?w=700&q=80&auto=format&fit=crop",desc:"Hand zardozi, velvet base"},
+  {id:2,name:"Ivory Pearl Embroidered Achkan",cat:"Silk",tag:"Premium",price:9999,img:"https://images.unsplash.com/photo-1760080903705-7e8f5442fbbe?w=700&q=80&auto=format&fit=crop",desc:"Pearl work, pure silk"},
+  {id:3,name:"Wine Velvet Groom Achkan",cat:"Velvet",tag:"Wedding",price:12999,img:"https://images.unsplash.com/photo-1744804298516-991bf12847c8?w=700&q=80&auto=format&fit=crop",desc:"Deep wine velvet, gold thread"},
+  {id:4,name:"Champagne Silk Achkan Set",cat:"Reception",tag:"New",price:8999,img:"https://images.unsplash.com/photo-1677770100697-3d7a032a4c50?w=700&q=80&auto=format&fit=crop",desc:"Light champagne, reception fit"},
+  {id:5,name:"Midnight Navy Achkan",cat:"Sangeet",tag:"",price:8499,img:"https://images.unsplash.com/photo-1555447405-057915b40299?w=700&q=80&auto=format&fit=crop",desc:"Navy silk, subtle embroidery"},
+  {id:6,name:"Rose Gold Groom Achkan",cat:"Wedding",tag:"",price:10799,img:"https://images.unsplash.com/photo-1534217466718-ef4950786e24?w=700&q=80&auto=format&fit=crop",desc:"Rose-gold zari, statement collar"},
+  {id:7,name:"Emerald Velvet Achkan",cat:"Reception",tag:"",price:9799,img:"https://images.unsplash.com/photo-1681717055630-c62333c22fec?w=700&q=80&auto=format&fit=crop",desc:"Emerald velvet, gold trims"},
+  {id:8,name:"Classic Cream Achkan",cat:"Silk",tag:"",price:7999,img:"https://images.unsplash.com/photo-1729347917808-e3e35a462fec?w=700&q=80&auto=format&fit=crop",desc:"Timeless cream, minimal zari"},
+];
+
+let cart = JSON.parse(localStorage.getItem('zarachkan_cart')||'[]');
+
+function renderProducts(filter='all', search=''){
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML='';
+  products.filter(p=> (filter==='all'||p.cat===filter) && p.name.toLowerCase().includes(search.toLowerCase()))
+    .forEach(p=>{
+      grid.innerHTML += `
+      <div class="card">
+        ${p.tag?`<div class="tag">${p.tag}</div>`:''}
+        <div class="imgwrap"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="card-body">
+          <div class="cat">${p.cat}</div>
+          <h3>${p.name}</h3>
+          <div class="desc">${p.desc}</div>
+          <div class="price-row">
+            <div class="price">${p.old?`<span class="old">₹${p.old}</span>`:''}₹${p.price}</div>
+            <button class="add-btn" onclick="addToCart(${p.id})">Add to Bag</button>
+          </div>
+        </div>
+      </div>`;
+    });
+}
+
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  const existing = cart.find(x=>x.id===id);
+  if(existing){existing.qty++;} else {cart.push({...p,qty:1});}
+  saveCart();
+  showToast(p.name+" added to bag");
+  renderCart();
+}
+function changeQty(id,delta){
+  const item = cart.find(x=>x.id===id);
+  item.qty += delta;
+  if(item.qty<=0) cart = cart.filter(x=>x.id!==id);
+  saveCart(); renderCart();
+}
+function removeItem(id){ cart = cart.filter(x=>x.id!==id); saveCart(); renderCart(); }
+function saveCart(){ localStorage.setItem('zarachkan_cart', JSON.stringify(cart)); }
+function renderCart(){
+  const box = document.getElementById('drawerItems');
+  document.getElementById('cartCount').textContent = cart.reduce((a,c)=>a+c.qty,0);
+  if(cart.length===0){ box.innerHTML='<div class="empty-cart">Your bag is empty.<br>Begin your bridal look.</div>'; document.getElementById('subtotal').textContent='₹0'; return; }
+  box.innerHTML = cart.map(c=>`
+    <div class="cart-item">
+      <img src="${c.img}" alt="${c.name}">
+      <div class="ci-info">
+        <h4>${c.name}</h4>
+        <div class="p">₹${c.price*c.qty}</div>
+        <div class="qty">
+          <button onclick="changeQty(${c.id},-1)">−</button>
+          <span>${c.qty}</span>
+          <button onclick="changeQty(${c.id},1)">+</button>
+        </div>
+        <button class="remove" onclick="removeItem(${c.id})">Remove</button>
+      </div>
+    </div>`).join('');
+  document.getElementById('subtotal').textContent = '₹'+cart.reduce((a,c)=>a+c.price*c.qty,0);
+}
+function toggleCart(open){
+  document.getElementById('drawer').classList.toggle('open',open);
+  document.getElementById('overlay').classList.toggle('open',open);
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function checkout(){
+  if(cart.length===0) return showToast('Your bag is empty');
+  showToast('Order placed — congratulations, groom-to-be');
+  cart=[]; saveCart(); renderCart(); toggleCart(false);
+}
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    renderProducts(chip.dataset.filter, document.getElementById('searchInput').value);
+  });
+});
+document.getElementById('searchInput').addEventListener('input',(e)=>{
+  const active = document.querySelector('.chip.active').dataset.filter;
+  renderProducts(active, e.target.value);
+});
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
